@@ -25,7 +25,8 @@ function Home(props) {
         <div className="homeBg">
             <h2>여기는 몰루입니다.</h2>
             <input type='file' onChange={onUploadEvent}/>
-            <img alt={'Pk3'} src={`${photourl}${photo}`} />
+            <img alt={'Pk3'} src={`http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy/${photo}`} />
+            <div>asdf</div>
         </div>
     );
 }
