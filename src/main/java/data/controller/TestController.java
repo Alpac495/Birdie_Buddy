@@ -19,7 +19,7 @@ public class TestController {
 
     String photo;
 
-    String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+    String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/react";
 
 
     @PostMapping("/upload")
