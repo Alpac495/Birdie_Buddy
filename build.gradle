@@ -2,10 +2,13 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.14-SNAPSHOT'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id "com.github.node-gradle.node" version '4.0.0'
 }
+
 
 group = 'pro.porbes'
 version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 java {
     sourceCompatibility = '11'
@@ -34,9 +37,79 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation group: 'io.awspring.cloud', name: 'spring-cloud-starter-aws', version: '2.4.4'
     implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.12.488'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+// gradle을 실행하는 호스트에 node가 없을 경우를 대비해
+// 지정된 버전의 node를 다운로드하게 만드는 설정
+// $ gradle npmSetup 을 실행하여 node 프로그램을 설치한다.
+
+// node {
+//   //version = '18.16.0'
+//   //npmVersion = '9.5.1'
+//   download = true
+// }
+
+
+
+task appNpmInstall(type: NpmTask) {
+    dependsOn "npmSetup"
+    description = "Installs dependencies from package.json"
+    workingDir = file("${projectDir}/src/main/resources/static")
+    args = ["install"]
+}
+
+
+// React build 설정
+def reactAppDir = "$projectDir/src/main/reactjs"
+/*
+sourceSets {
+  main {
+    resources {
+      srcDirs = ["$webappDir/build", "$projectDir/src/main/resources"]
+    }
+  }
+}
+*/
+
+processResources {
+    dependsOn "copyReactFile"
+    //dependsOn "appNpmInstall"
+}
+
+
+task copyReactFile(type: Copy) {
+    dependsOn "buildReact"
+    from "$reactAppDir/build"
+    //into "$buildDir/resources/main/static"
+    into "$projectDir/src/main/resources/static/"
+}
+
+task buildReact(type: Exec) {
+    dependsOn "installReact"
+    workingDir "$reactAppDir"
+    inputs.dir "$reactAppDir"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "run-script", "build"
+    } else {
+        commandLine "npm", "run-script", "build"
+    }
+}
+
+task installReact(type: Exec) {
+    workingDir "$reactAppDir"
+    inputs.dir "$reactAppDir"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "audit", "fix"
+        commandLine "npm.cmd", "install"
+    } else {
+        commandLine "npm", "audit", "fix"
+        commandLine "npm", "install"
+    }
 }

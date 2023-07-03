@@ -25,8 +25,10 @@ function Home(props) {
         <div className="homeBg">
             <h2>여기는 몰루입니다.</h2>
             <input type='file' onChange={onUploadEvent}/>
+
             <img alt={'Pk3'} src={`${photourl}${photo}`} />
             <div>test</div>
+
         </div>
     );
 }
