@@ -41,7 +41,7 @@ function Home(props) {
 
             <ul> friend
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/friend/friend'}>친구목록</NavLink>
                 </li>
             </ul>
 
