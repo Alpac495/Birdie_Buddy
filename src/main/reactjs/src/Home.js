@@ -53,7 +53,7 @@ function Home(props) {
 
             <ul> joining
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/join/form'}>조인폼</NavLink>
                 </li>
             </ul>
 
