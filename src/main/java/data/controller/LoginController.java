@@ -1,5 +1,6 @@
 package data.controller;
 
+import data.dto.UserDto;
 import data.mapper.LoginMapper;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,9 @@ public class LoginController {
 
 
     @PostMapping("/sign")
-    public void sign(){
-
+    public void signUser(@RequestBody UserDto dto){
+        System.out.println(dto);
+        loginMapper.signUser(dto);
     }
 
 

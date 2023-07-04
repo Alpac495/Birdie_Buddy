@@ -8,5 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface LoginMapper {
+    public void signUser(UserDto dto);
     public List<UserDto> getUserData(int unum);
 }
