@@ -1,8 +1,19 @@
 import React, {useState} from 'react';
 import "./App.css";
+import "./Home.css";
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 import Axios from "axios";
 import {Login, Sign} from "./login";
 import {NavLink} from "react-router-dom";
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import ScreenSize from "./app_effect/ScreenSize";
+import Recommendslider from "./app_effect/Recommendslider";
+import Reviewslider from "./app_effect/Reviewslider";
+
+
+
+
 
 function Home(props) {
     const [photo, setPhoto]=useState('');
@@ -25,6 +36,7 @@ function Home(props) {
 
     return (
         <div className="homeBg">
+            <ScreenSize/>
             <h2>여기는 몰루입니다.</h2>
             <input type='file' onChange={onUploadEvent}/>
 
@@ -78,6 +90,54 @@ function Home(props) {
                     <NavLink to={''}></NavLink>
                 </li>
             </ul>
+
+
+            <br/>
+            <br/>
+            <button type='button' className={'btn_long'}>긴버튼</button>
+            <br/>
+            <br/>
+            <button type='button' className={'btn_mid'}>중버튼</button>
+            <br/>
+            <br/>
+            <button type='button' className={'btn_short'}>소버튼</button>
+            <br/>
+            <br/>
+            <br/>
+            <br/><br/>
+            <br/><br/>
+            <br/>
+
+
+            <hr/>
+
+
+            <div className={'main_headwrap'}>
+                <div className={'main_logo'}>BirdieBuddy</div>
+                <div className={'main_menu'}> <NotificationsNoneOutlinedIcon/> <img alt={'imsi'} src={''}/></div>
+            </div>
+            <div className={'main_banner'}>
+                <img alt={''} src={''}/>
+            </div>
+            <div className={'main_gobtn'}>
+                <div className={'main_btnwrap'}>
+                    <div className={'main_bgbtn'}>
+                        <button type={'button'}>임시</button>
+                    </div>
+                    <div className={'main_smbtn'}>
+                        <div><button type={'button'}>임시</button></div>
+                        <div><button type={'button'}>임시</button></div>
+                    </div>
+                </div>
+            </div>
+            <div>당신을 위한 조인 추천</div>
+            <div className={'main_joinreco'}>
+                <Recommendslider/>
+            </div>
+            <div>후기</div>
+            <div className={'main_review'}>
+                <Reviewslider/>
+            </div>
 
         </div>
     );
