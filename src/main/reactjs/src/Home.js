@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import "./App.css";
 import Axios from "axios";
 import {Login, Sign} from "./login";
+import {HugiList} from "./hugi";
+
 import {NavLink} from "react-router-dom";
 
 function Home(props) {
@@ -47,7 +49,7 @@ function Home(props) {
 
             <ul> hugi
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/hugi/list'}>후기</NavLink>
                 </li>
             </ul>
 

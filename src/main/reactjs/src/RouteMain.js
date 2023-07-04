@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import {Login, Sign} from "./login";
+import {HugiDetailPage, HugiList} from "./hugi";
 
 function RouteMain(props) {
     return (
@@ -15,7 +16,8 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/hugi'} >
-
+                    <Route path="list" element={<HugiList/>}/>
+                    <Route path="detail/:num" element={<HugiDetailPage/>}/>
                 </Route>
 
                 <Route path={'/joining'} >

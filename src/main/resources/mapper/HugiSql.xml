@@ -1,0 +1,21 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.HugiMapper">
+    <select id="getTotalCount" resultType="int">
+        select count(*) from hugi
+    </select>
+    <select id="getAllHugis" resultType="HugiDto">
+        select * from hugi order by unum desc
+    </select>
+    <insert id="insertHugi" parameterType="HugiDto">
+        insert into hugi values (null,#{unum},0,#{hcontent},#{hphoto},now())
+    </insert>
+    <update id="updateLikeCount" parameterType="int">
+        update hugi set hlike=hlike+1 where unum=#{unum}
+    </update>
+    <select id="detailPage" parameterType="int" resultType="HugiDto">
+        select * from hugi where hnum=#{hnum}
+    </select>
+    <delete id="deleteHugi" parameterType="int">
+        delete from hugi where hnum=#{hnum}
+    </delete>
+</mapper>
