@@ -43,7 +43,7 @@ function Home(props) {
 
             <ul> friend
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/friend/friend'}>친구목록</NavLink>
                 </li>
             </ul>
 
@@ -55,7 +55,8 @@ function Home(props) {
 
             <ul> joining
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/joining/list'}>조인list</NavLink>
+                    <NavLink to={'/joining/form'}>조인폼</NavLink>
                 </li>
             </ul>
 

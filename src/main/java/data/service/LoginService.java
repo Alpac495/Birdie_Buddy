@@ -14,6 +14,12 @@ public class LoginService implements LoginServiceInter{
     private LoginMapper loginMapper;
 
     @Override
+    public void signUser(UserDto dto) {
+        loginMapper.signUser(dto);
+
+    }
+
+    @Override
     public List<UserDto> getUserData(int unum) {
         return loginMapper.getUserData(unum);
     }
