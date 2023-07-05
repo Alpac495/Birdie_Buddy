@@ -35,7 +35,7 @@ function RouteMain(props) {
 
                 <Route path={'/hugi'} >
                     <Route path="list" element={<HugiList/>}/>
-                    <Route path="detail" element={<HugiDetailPage/>}/>
+
                 </Route>
 
                 <Route path={'/joining'} >
