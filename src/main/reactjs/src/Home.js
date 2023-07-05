@@ -3,8 +3,13 @@ import "./App.css";
 import Axios from "axios";
 import {Login, Sign} from "./login";
 import {HugiList} from "./hugi";
-
 import {NavLink} from "react-router-dom";
+import ScreenSize from "./app_effect/ScreenSize";
+
+
+
+
+
 
 function Home(props) {
     const [photo, setPhoto]=useState('');
@@ -23,10 +28,9 @@ function Home(props) {
         })
     }
 
-
-
     return (
         <div className="homeBg">
+            <ScreenSize/>
             <h2>여기는 몰루입니다.</h2>
             <input type='file' onChange={onUploadEvent}/>
 
@@ -37,7 +41,7 @@ function Home(props) {
 
             <ul> Chat
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/chat/lobby'}>채팅방 리스트</NavLink>
                 </li>
             </ul>
 
@@ -56,8 +60,12 @@ function Home(props) {
             <ul> joining
                 <li>
                     <NavLink to={'/joining/list'}>조인list</NavLink>
+                </li>
+                <li>
                     <NavLink to={'/joining/form'}>조인폼</NavLink>
                 </li>
+
+
             </ul>
 
             <ul>
@@ -86,7 +94,6 @@ function Home(props) {
                     <NavLink to={'/chatbot'}>chatbot</NavLink>
                 </li>
             </ul>
-
         </div>
     );
 }
