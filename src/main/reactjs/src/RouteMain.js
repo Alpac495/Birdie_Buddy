@@ -7,6 +7,7 @@ import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import {HugiDetailPage, HugiList} from "./hugi";
+import Logintest from "./login/Logintest";
 
 function RouteMain(props) {
     return (
@@ -34,6 +35,7 @@ function RouteMain(props) {
                 <Route path={'/login'} >
                     <Route path="login" element={<Login/>}/>
                     <Route path="sign" element={<Sign/>}/>
+                    <Route path="test" element={<Logintest/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >
