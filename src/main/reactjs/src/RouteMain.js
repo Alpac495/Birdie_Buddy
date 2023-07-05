@@ -2,6 +2,11 @@ import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import {Login, Sign} from "./login";
+import {Friend} from "./friend";
+import FriendDetail from "./friend/FriendDetail";
+import JoinForm from "./joining/JoinForm";
+import JoinList from "./joining/JoinList";
+import {HugiDetailPage, HugiList} from "./hugi";
 
 function RouteMain(props) {
     return (
@@ -11,14 +16,18 @@ function RouteMain(props) {
 
 
                 <Route path={'/friend'} >
-
+                    <Route path="friend" element={<Friend/>}/>
+                    <Route path="detail" element={<FriendDetail/>}/>
                 </Route>
 
                 <Route path={'/hugi'} >
-
+                    <Route path="list" element={<HugiList/>}/>
+                    <Route path="detail" element={<HugiDetailPage/>}/>
                 </Route>
 
                 <Route path={'/joining'} >
+                    <Route path={"list"} element={<JoinList/>}/>
+                    <Route path={"form"} element={<JoinForm/>}/>
 
                 </Route>
 

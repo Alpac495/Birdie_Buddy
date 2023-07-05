@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Axios from "axios";
 import {Login, Sign} from "./login";
+import {HugiList} from "./hugi";
+
 import {NavLink} from "react-router-dom";
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import ScreenSize from "./app_effect/ScreenSize";
@@ -53,19 +55,20 @@ function Home(props) {
 
             <ul> friend
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/friend/friend'}>친구목록</NavLink>
                 </li>
             </ul>
 
             <ul> hugi
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/hugi/list'}>후기</NavLink>
                 </li>
             </ul>
 
             <ul> joining
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/joining/list'}>조인list</NavLink>
+                    <NavLink to={'/joining/form'}>조인폼</NavLink>
                 </li>
             </ul>
 
