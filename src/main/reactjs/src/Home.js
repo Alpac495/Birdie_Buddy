@@ -81,6 +81,11 @@ function Home(props) {
                     <NavLink to={''}></NavLink>
                 </li>
             </ul>
+            <ul>chatbot
+                <li>
+                    <NavLink to={'/chatbot'}>chatbot</NavLink>
+                </li>
+            </ul>
 
         </div>
     );

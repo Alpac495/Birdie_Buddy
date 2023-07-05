@@ -7,6 +7,8 @@ import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import {HugiDetailPage, HugiList} from "./hugi";
+import Bot from "./chatbot/Bot";
+import ChatBot from "./chatbot/ChatBot";
 
 function RouteMain(props) {
     return (
@@ -43,6 +45,9 @@ function RouteMain(props) {
                 <Route path={'/score'} >
 
                 </Route>
+
+                <Route path="/chatbot" element={<ChatBot />} />
+
 
                 <Route path="*" element={
                     <div className="error404">
