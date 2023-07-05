@@ -48,8 +48,6 @@ function RouteMain(props) {
                 <Route path={'/main'}>
                     <Route path='main' element={<Main/>}/>
                 </Route>
-
-
                 <Route path="*" element={
                     <div className="error404">
                         잘못된주소

@@ -13,6 +13,7 @@ export default class SimpleSlider extends Component {
             swipeToSlide: true
         };
 
+
         return (
             <div>
                 <Slider {...settings}>

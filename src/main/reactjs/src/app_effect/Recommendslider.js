@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Slider from "react-slick";
 import no from "../images/nooooo.jpg"
 
-
 export default class SimpleSlider extends Component {
     render() {
         const settings = {

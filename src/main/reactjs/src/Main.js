@@ -9,6 +9,7 @@ import Recommendslider from "./app_effect/Recommendslider";
 import Reviewslider from "./app_effect/Reviewslider";
 
 function Main(props) {
+
     return (
         <div>
             <ScreenSize/>

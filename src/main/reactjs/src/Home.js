@@ -28,8 +28,6 @@ function Home(props) {
         })
     }
 
-
-
     return (
         <div className="homeBg">
             <ScreenSize/>
