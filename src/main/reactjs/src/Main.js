@@ -4,9 +4,16 @@ import "./Main.css";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 import ScreenSize from "./app_effect/ScreenSize";
 import Recommendslider from "./app_effect/Recommendslider";
 import Reviewslider from "./app_effect/Reviewslider";
+import Bannerslider from "./app_effect/BannerSlider";
+import no from "./images/nooooo.jpg";
+import Footer from "./footer/Footer";
+
+
+
 
 function Main(props) {
 
@@ -14,11 +21,12 @@ function Main(props) {
         <div>
             <ScreenSize/>
             <div className={'main_headwrap'}>
+                <div className={'main_rightmenu'}><MenuIcon/> </div>
                 <div className={'main_logo'}>BirdieBuddy</div>
-                <div className={'main_menu'}> <NotificationsNoneOutlinedIcon/> <img alt={'imsi'} src={''}/></div>
+                <div className={'main_leftmenu'}> <NotificationsNoneOutlinedIcon/> <img style={{width:'40px', height:'40px', borderRadius:'50px'}} alt={'imsi'} src={no}/></div>
             </div>
             <div className={'main_banner'}>
-                <img alt={''} src={''}/>
+                <Bannerslider/>
             </div>
             <div className={'main_gobtn'}>
                 <div className={'main_btnwrap'}>
@@ -43,7 +51,9 @@ function Main(props) {
                     <Reviewslider/>
                 </div>
             </div>
+
         </div>
+
     );
 }
 
