@@ -41,7 +41,7 @@ function Home(props) {
 
             <ul> Chat
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/chat/lobby'}>채팅방 리스트</NavLink>
                 </li>
             </ul>
 
