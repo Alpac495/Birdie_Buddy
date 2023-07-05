@@ -25,6 +25,7 @@ function HugiList(props) {
     const homeButton=(e)=>{
         navi("/");
     }
+
     const [data, setData] = useState([
         {
             uname: "이수근",
@@ -49,7 +50,6 @@ function HugiList(props) {
                 <button type="button" alt="" className="primary_button" onClick={homeButton} >Home</button>
             </div>
         </div>
-
             <div className="timeline">
                 {data.map((RowList) => (
                     <HugiRowList
@@ -59,7 +59,9 @@ function HugiList(props) {
                         hphoto={RowList.hphoto}
                     />
                 ))}
+
             </div>
+
         </div>
     );
 }
