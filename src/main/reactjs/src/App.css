@@ -1,0 +1,45 @@
+:root {
+    --vh: 100%;
+}
+
+.container{
+    width: 100vw;
+    height: calc(var(--vh, 1vh) * 100);
+
+}
+/*color of naver*/
+/*
+naver
+background-color: rgb(3, 199, 90);
+border : none;
+
+  kakao
+  background-color: rgb(242, 253, 247);
+  border: 1px rgb(209, 235, 222) solid;*/
+.btn_long{
+    width: 250px;
+    height: 30px;
+    background-color: rgb(3, 199, 90);
+    border: none;
+    color: white;
+    font-weight: lighter;
+    font-size: 16px;
+}
+.btn_mid{
+    width: 100px;
+    height: 30px;
+    background-color: rgb(3, 199, 90);
+    border: none;
+    color: white;
+    font-weight: lighter;
+    font-size: 16px;
+}
+.btn_short {
+    width: 50px;
+    height: 25px;
+    background-color: rgb(3, 199, 90);
+    border: none;
+    color: white;
+    font-weight: lighter;
+    font-size: 16px;
+}

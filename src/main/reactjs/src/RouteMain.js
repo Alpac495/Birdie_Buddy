@@ -7,6 +7,7 @@ import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import {HugiDetailPage, HugiList} from "./hugi";
+import Main from "./Main";
 
 function RouteMain(props) {
     return (
@@ -44,6 +45,9 @@ function RouteMain(props) {
 
                 </Route>
 
+                <Route path={'/main'}>
+                    <Route path='main' element={<Main/>}/>
+                </Route>
                 <Route path="*" element={
                     <div className="error404">
                         잘못된주소
