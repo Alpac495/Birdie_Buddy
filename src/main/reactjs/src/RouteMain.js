@@ -8,6 +8,11 @@ import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import {HugiDetailPage, HugiList} from "./hugi";
 import Logintest from "./login/Logintest";
+import Bot from "./chatbot/Bot";
+import ChatBot from "./chatbot/ChatBot";
+import Main from "./Main";
+import Lobby from "./chat/Lobby";
+import {Room} from "./chat";
 
 function RouteMain(props) {
     return (
@@ -15,6 +20,10 @@ function RouteMain(props) {
             <Routes>
                 <Route path="/" element={<Home/>}/>
 
+                <Route path={'/chat'}>
+                    <Route path="lobby" element={<Lobby/>}/>
+                    <Route path="room/:roomId" element={<Room/>}></Route>
+                </Route>
 
                 <Route path={'/friend'} >
                     <Route path="friend" element={<Friend/>}/>
@@ -44,6 +53,13 @@ function RouteMain(props) {
 
                 <Route path={'/score'} >
 
+                </Route>
+
+
+                <Route path="/chatbot" element={<ChatBot />} />
+
+                <Route path={'/main'}>
+                    <Route path='main' element={<Main/>}/>
                 </Route>
 
                 <Route path="*" element={
