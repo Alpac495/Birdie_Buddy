@@ -1,8 +1,14 @@
 import "./Joining.css";
-const JoinForm = () => {
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
+const JoinForm = (props) => {
+    const [subject,setSubject]=useState('');
+    const [photo,setPhoto]=useState('');
+    const [content,setContent]=useState('');
     return (
-        <div className="search-parent">
-            <div className="search">
+        <div className="jform-parent">
+            <div className="jform">
                 <div className="status-bar">
                     <img className="connections-icon" alt="" src="/connections.svg" />
                     <div className="time">

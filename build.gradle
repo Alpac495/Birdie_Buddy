@@ -39,6 +39,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     implementation group: 'io.awspring.cloud', name: 'spring-cloud-starter-aws', version: '2.4.4'
     implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.12.488'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
 }
 
 tasks.named('test') {
