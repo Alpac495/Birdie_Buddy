@@ -65,7 +65,7 @@ const JoinForm = (props) => {
                                value={jprice} onChange={(e)=>setJprice(e.target.value)} maxLength minLength />
                     </div>
                     <div className="jparent2">
-                        <div className="jdiv">간단설명</div>
+                        <div className="jdiv">조인설명</div>
                         <input className="jforminput5" type="text"  required placeholder="조인에 대한 간단한 설명을 입력하세요"
                                value={jcontent} onChange={(e)=>setJcontent(e.target.value)} maxLength minLength />
                     </div>
