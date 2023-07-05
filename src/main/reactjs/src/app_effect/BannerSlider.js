@@ -6,39 +6,35 @@ import no from "../images/nooooo.jpg"
 export default class SimpleSlider extends Component {
     render() {
         const settings = {
+            dots:true,
             infinite: true,
             speed: 500,
-            slidesToShow: 3,
+            slidesToShow: 1,
             slidesToScroll: 1,
-            swipeToSlide: true
+            autoplay:true,
+            autoplaySpeed:3000
         };
 
         return (
-            <div className={'test1'}>
+            <div>
                 <Slider {...settings}>
-                    <div className={'rec_slider'}>
+                    <div>
                         <img alt={''} src={no}/>
-                        <span>1</span>
                     </div>
-                    <div className={'rec_slider'}>
+                    <div>
                         <img alt={''} src={no}/>
-                        <span>2</span>
                     </div>
-                    <div className={'rec_slider'}>
+                    <div>
                         <img alt={''} src={no}/>
-                        <span>3</span>
                     </div>
-                    <div className={'rec_slider'}>
+                    <div>
                         <img alt={''} src={no}/>
-                        <span>4</span>
                     </div>
-                    <div className={'rec_slider'}>
+                    <div>
                         <img alt={''} src={no}/>
-                        <span>5</span>
                     </div>
-                    <div className={'rec_slider'}>
+                    <div>
                         <img alt={''} src={no}/>
-                        <span>6</span>
                     </div>
                 </Slider>
             </div>
