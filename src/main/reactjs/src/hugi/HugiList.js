@@ -41,6 +41,13 @@ function HugiList(props) {
             hphoto:
                 "/image/2.png",
         },
+        {
+            uname: "이승기",
+            hwriteday:"2023-07-04 17:34",
+            hcontent: "안녕하세요?",
+            hphoto:
+                "/image/2.png",
+        },
     ]);
 
     return (
