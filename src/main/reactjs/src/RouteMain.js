@@ -7,12 +7,14 @@ import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import {HugiDetailPage, HugiList} from "./hugi";
+import Mypage from "./mypage/Mypage";
 import Logintest from "./login/Logintest";
 import Bot from "./chatbot/Bot";
 import ChatBot from "./chatbot/ChatBot";
 import Main from "./Main";
 import Lobby from "./chat/Lobby";
 import {Room} from "./chat";
+
 
 function RouteMain(props) {
     return (
@@ -26,8 +28,9 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/friend'} >
-                    <Route path="friend" element={<Friend/>}/>
+                    <Route path="list" element={<Friend/>}/>
                     <Route path="detail" element={<FriendDetail/>}/>
+                    <Route path="detail/:funum" element={<FriendDetail/>}/>
                 </Route>
 
                 <Route path={'/hugi'} >
@@ -48,7 +51,8 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/mypage'} >
-
+                    <Route path="main" element={<Mypage/>}/>
+                    <Route path="main/:unum" element={<Mypage/>}/>
                 </Route>
 
                 <Route path={'/score'} >

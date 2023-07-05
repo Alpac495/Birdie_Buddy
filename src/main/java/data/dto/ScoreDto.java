@@ -1,7 +1,10 @@
 package data.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
+
+import java.sql.Timestamp;
 
 @Data
 @Alias("ScoreDto")
@@ -28,4 +31,6 @@ public class ScoreDto {
     private int h17;
     private int h18;
     private int stasu;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
+    private Timestamp swriteday;
 }

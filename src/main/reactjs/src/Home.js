@@ -53,7 +53,7 @@ function Home(props) {
 
             <ul> friend
                 <li>
-                    <NavLink to={'/friend/friend'}>친구목록</NavLink>
+                    <NavLink to={'/friend/list'}>친구목록</NavLink>
                 </li>
             </ul>
 
@@ -86,7 +86,7 @@ function Home(props) {
 
             <ul> mypage
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={`/mypage/main`}>마이페이지</NavLink>
                 </li>
             </ul>
 

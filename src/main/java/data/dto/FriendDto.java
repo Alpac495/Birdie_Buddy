@@ -10,4 +10,5 @@ public class FriendDto {
     private int unum;
     private int funum;
     private int faccept;
+    private String uname;
 }
