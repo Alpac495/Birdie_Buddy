@@ -26,15 +26,14 @@ function Login(props) {
         axios.get(`/login/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
             .then(res => {
                 console.log(res.data)
-                if (res.data) {
-                    alert("로그인 성공")
-                    //navi("/login/test")
+                if (res.data!==0) {
+                    alert("로그인 성공. 세션에 unum ")
+                    sessionStorage.setItem("unum",`${res.data}`)
                 } else {
                     alert("로그인 실패")
                 }
             })
     }
-
     const [uemail, setUemail] = useState('');
     const [upass, setUpass] = useState('');
     const [saveemail, setSaveemail] = useState('');

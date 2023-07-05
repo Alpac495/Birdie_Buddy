@@ -4,14 +4,26 @@ import Avatar from '@mui/material/Avatar';
 import MessageIcon from '@mui/icons-material/Message';
 import ShareIcon from '@mui/icons-material/Share';
 import {useNavigate} from "react-router-dom";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from '@mui/material/Button';
 function HugiRowList(props) {
     const {uname, hcontent, hphoto,hwriteday} = props;
     // const url = process.env.REACT_APP_BOARDURL;
     const navi=useNavigate();
-    const DetailButton=(e)=>{
-        navi("/hugi/detail");
-    }
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <div className="list">
             <div className="list_header">
@@ -20,16 +32,57 @@ function HugiRowList(props) {
                         />
                 <h5>{uname}</h5>
             </div>
-            <div style={{textAlign:"right"}}>
-            <span>{hwriteday}</span>
-            </div>
+            &nbsp;
+
+            <span style={{marginLeft:"10px",color:"gray"}}>{hwriteday}</span>
+
             {/*<img className="list_image" src={`${url}${hphoto}`} alt="" />*/}
             <img className="list_image" src={process.env.PUBLIC_URL +"/image/1.png"} alt="" />
-            <h5 className="list_text">
-                &nbsp;&nbsp;
+            <h6 className="list_text">
+                &nbsp;
                 {hcontent}
-            </h5>
-                <MessageIcon style={{width:"25px",margin:"10px 10px",cursor:"pointer"}} onClick={DetailButton}/>
+            </h6>
+            <hr/>
+            <div style={{width:"25px",marginBottom:"10px",marginLeft:"10px",cursor:"pointer"}}>
+                <MessageIcon onClick={handleClickOpen}/>
+            </div>
+
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <div style={{width:'550px',height:'760px',overflowX:"hidden"}}>
+                <DialogTitle id="alert-dialog-title">
+                    <Avatar className="list_avatar" alt={uname}
+                            src="/static/images/avatar/1.jpg"/>
+                    <h5 style={{position:"relative",bottom:"33px",left:"50px"}}>{uname}</h5>
+                </DialogTitle>
+                <DialogContent>
+                            <img src={process.env.PUBLIC_URL +"/image/1.png"} alt="" style={{width:"500px"}}/>
+
+                    <DialogContentText id="alert-dialog-description">
+                        <hr/>
+                        <div style={{width:'500px',height:'20px'}}>
+                        {hcontent}
+                        </div>
+                    </DialogContentText>
+                    <hr/>
+                    <textarea style={{width:"500px",height:"50px",border:"1px solid gray",borderRadius:"5px"}} placeholder="댓글을 작성 해 보세요">
+                    </textarea>
+                    <pre style={{width:'500px',height:'20px'}}>
+                        {/*댓글 출력 위치*/}
+                    </pre>
+                </DialogContent>
+                <DialogActions>
+                    <div style={{width:'250px',position:"relative",top:"5px",right:"280px"}}>
+                    <Button style={{width:'100px'}}onClick={handleClose}>댓글작성</Button>
+                    <Button style={{width:'100px'}}onClick={handleClose} autoFocus> 취소</Button>
+                    </div>
+                    </DialogActions>
+                </div>
+            </Dialog>
 
         </div>
     );

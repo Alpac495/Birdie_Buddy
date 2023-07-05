@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public boolean loginok(HttpSession session, String uemail, String upass, @RequestParam(defaultValue = "false") String saveemail) {
+    public int loginok(HttpSession session, String uemail, String upass, @RequestParam(defaultValue = "false") String saveemail) {
         System.out.println("uemail=" + uemail);
         System.out.println("upass=" + upass);
         System.out.println("이메일저장체크=" + saveemail);
@@ -41,20 +41,30 @@ public class LoginController {
         if (n == 1) {
             udto = loginService.getUserData(uemail);
             int unum = udto.getUnum();
-            String unickname = udto.getUnickname();
-            session.setMaxInactiveInterval(60 * 60 * 5);
-            session.setAttribute("unum", unum);
-            session.setAttribute("unickname", unickname);
-            session.setAttribute("saveemail", saveemail);
-            System.out.println("로그인 성공");
-            System.out.println(session.getAttribute("unickname"));
+//            String unickname = udto.getUnickname();
+//            session.setMaxInactiveInterval(60 * 60 * 5);
+//            session.setAttribute("unum", unum);
+//            session.setAttribute("unickname", unickname);
+//            session.setAttribute("saveemail", saveemail);
+//            System.out.println("로그인 성공");
+//            System.out.println(session.getAttribute("unickname"));
 
-            return true;
+            return unum;
         }else {
             System.out.println("로그인 실패");
-            return false;
+            return 0;
         }
     }
+//    @GetMapping("/getuser")
+//    public String getuser (String uemail){
+//        UserDto udto;
+//        udto = loginService.getUserData(uemail);
+//
+//
+//
+//
+//        return "udto";
+//    }
 
 
 }
