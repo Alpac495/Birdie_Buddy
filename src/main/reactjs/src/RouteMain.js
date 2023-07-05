@@ -47,7 +47,7 @@ function RouteMain(props) {
                 <Route path={'/login'} >
                     <Route path="login" element={<Login/>}/>
                     <Route path="sign" element={<Sign/>}/>
-                    <Route path="test" element={<Logintest/>}/>
+                    {/*<Route path="test" element={<Logintest/>}/>*/}
                 </Route>
 
                 <Route path={'/mypage'} >
