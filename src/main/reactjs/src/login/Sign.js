@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import "./Sign.css";
 
 function Sign(props) {
     const [uemail, setUemail]=useState('');
@@ -24,7 +25,8 @@ function Sign(props) {
 
     }
     return (
-        <div className={'container-fluid'} style={{width:'360px',textAlign:'center'}}>
+        <div className={''} style={{width:'360px'}}>
+            <div style={{textAlign:'center'}}>
             <form onSubmit={ouSubmitEvent}>
                 이메일<br/>
                 <input type={"text"} required onChange={(e)=>setUemail(e.target.value)} value={uemail} /><br/><br/>
@@ -59,6 +61,7 @@ function Sign(props) {
                 <input type={"text"} placeholder={'비워놔도됨'} /><br/>
                 <button type={'submit'}>가입</button>
             </form>
+            </div>
 
         </div>
     );

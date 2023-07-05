@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface LoginServiceInter {
     public void signUser(UserDto dto);
-    public List<UserDto> getUserData(int unum);
+    public int loginok(String uemail, String upass);
+    public String getNickname(String uemail);
+    public UserDto getUserData(String uemail);
 }

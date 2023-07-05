@@ -4,7 +4,13 @@
         insert into user (uemail, upass, uname, unickname, uage, ugender) values (#{uemail}, #{upass},
         #{uname}, #{unickname}, #{uage}, #{ugender})
     </insert>
-    <select id="getUserData" parameterType="int" resultType="UserDto">
-        select * from user where unum=#{unum}
+    <select id="loginok" parameterType="Map" resultType="int">
+        select count(*) from user where uemail=#{uemail} and upass=#{upass}
+    </select>
+    <select id="getNickname" parameterType="String" resultType="String">
+        select unickname from user where uemail=#{uemail}
+    </select>
+    <select id="getUserData" parameterType="String" resultType="UserDto">
+        select * from user where uemail=#{uemail}
     </select>
 </mapper>
