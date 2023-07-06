@@ -29,10 +29,15 @@ function Login(props) {
                 if (res.data!==0) {
                     alert("로그인 성공. 세션에 unum ")
                     sessionStorage.setItem("unum",`${res.data}`)
+                    navi("/");
                 } else {
                     alert("로그인 실패")
                 }
             })
+    }
+    const logout=()=>{
+        sessionStorage.clear();
+        navi("/")
     }
     const [uemail, setUemail] = useState('');
     const [upass, setUpass] = useState('');
@@ -46,7 +51,10 @@ function Login(props) {
                     <input type={'password'} required onChange={(e) => setUpass(e.target.value)}
                            value={upass}/><br/><br/>
                     <input type={'checkbox'} onClick={(e) => setSaveemail("true")}/>이메일저장<br/>
-                    <button>로그인</button>
+                    {
+                        sessionStorage.unum==0||sessionStorage.unum==null?<button>로그인</button>
+                        :<button type={'button'} onClick={logout}>로그아웃</button>
+                    }
                 </form>
                 <div className={'grid-naver'} id={'naverIdLogin'} onClick={NaverLogin}>네이버로그인</div>
             </div>
