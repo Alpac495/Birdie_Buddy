@@ -4,7 +4,6 @@ import Axios from "axios";
 import {Login, Sign} from "./login";
 import {HugiList} from "./hugi";
 import {NavLink} from "react-router-dom";
-import ScreenSize from "./app_effect/ScreenSize";
 
 
 
@@ -37,7 +36,6 @@ function Home(props) {
 
     return (
         <div className="homeBg">
-            <ScreenSize/>
             <h2>여기는 몰루입니다.</h2>
             <input type='file' onChange={onUploadEvent}/>
 
