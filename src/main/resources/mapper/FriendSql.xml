@@ -1,7 +1,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.FriendMapper">
     <select id="getFriendList" parameterType="int" resultType="FriendDto">
-        select *, (select uname from user where unum=friend.funum) as uname from friend where unum=#{unum} and faccept=1 order by fnum
+        select *, (select uname from user where unum=friend.funum) as uname,
+               (select uage from user where unum=friend.funum) as uage,
+               (select ugender from user where unum=friend.funum) as ugender
+        from friend where unum=#{unum} and faccept=1 order by fnum
     </select>
     <select id="detailPage" parameterType="int" resultType="UserDto">
         select * from user where unum=#{funum}
