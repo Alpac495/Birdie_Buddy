@@ -41,13 +41,6 @@ public class LoginController {
         if (n == 1) {
             udto = loginService.getUserData(uemail);
             int unum = udto.getUnum();
-//            String unickname = udto.getUnickname();
-//            session.setMaxInactiveInterval(60 * 60 * 5);
-//            session.setAttribute("unum", unum);
-//            session.setAttribute("unickname", unickname);
-//            session.setAttribute("saveemail", saveemail);
-//            System.out.println("로그인 성공");
-//            System.out.println(session.getAttribute("unickname"));
 
             return unum;
         }else {
