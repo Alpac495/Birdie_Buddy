@@ -13,6 +13,8 @@ import ChatBot from "./chatbot/ChatBot";
 import Main from "./Main";
 import Lobby from "./chat/Lobby";
 import {Room} from "./chat";
+import RankForm from "./ranking/RankForm";
+import RankList from "./ranking/RankList";
 
 
 function RouteMain(props) {
@@ -57,7 +59,8 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/score'} >
-
+                    <Route path="form" element={<RankForm/>}/>
+                    <Route path="list" element={<RankList/>}/>
                 </Route>
 
 
