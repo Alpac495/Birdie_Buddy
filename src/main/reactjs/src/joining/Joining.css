@@ -230,6 +230,11 @@ body {
     font-family: Inter;
 }
 
+span:hover {
+    cursor: pointer;
+    color : #54C64D;
+}
+
 @media screen and (max-width: 960px) {
     .jdiv {
         font-size: 0.88rem;
