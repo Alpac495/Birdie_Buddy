@@ -64,8 +64,8 @@ function HugiList(props) {
             </div>
         </div>
             <div>
-                <div>
-                    컨탠츠내용
+                <div style={{width:"450px",height:"100px",border:"1px solid gray",marginLeft:"840px",marginBottom:"10px"}}>
+                    컨탠츠내용 + 사진 + 미리보기
                 </div>
             <div className="timeline">
                 {data.map((RowList) => (
