@@ -29,6 +29,7 @@ function RouteMain(props) {
 
                 <Route path={'/friend'} >
                     <Route path="list" element={<Friend/>}/>
+                    <Route path="list/:unum" element={<Friend/>}/>
                     <Route path="detail" element={<FriendDetail/>}/>
                     <Route path="detail/:funum" element={<FriendDetail/>}/>
                 </Route>
@@ -47,7 +48,7 @@ function RouteMain(props) {
                 <Route path={'/login'} >
                     <Route path="login" element={<Login/>}/>
                     <Route path="sign" element={<Sign/>}/>
-                    <Route path="test" element={<Logintest/>}/>
+                    {/*<Route path="test" element={<Logintest/>}/>*/}
                 </Route>
 
                 <Route path={'/mypage'} >

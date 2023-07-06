@@ -39,7 +39,6 @@ public class FriendController {
     @GetMapping("/list")
     public List<FriendDto> list(int unum)
     {
-        unum = 16;
         List<FriendDto> list= friendService.getFriendList(unum);
         return list;
     }
