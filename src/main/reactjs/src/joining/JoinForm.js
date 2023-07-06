@@ -2,6 +2,12 @@ import "./Joining.css";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import mlogo from '../image/logo_main.svg';
+import imenu from '../image/🦆 icon _menu.svg';
+import ialarm from '../image/🦆 icon _notification.svg';
+import imypage from '../image/🦆 icon _profile circle.svg';
+
+
 const JoinForm = (props) => {
 
     const [jcontent,setJcontent]=useState('');
@@ -33,7 +39,7 @@ const JoinForm = (props) => {
     return (
         <div className="joinform">
             <form onSubmit={onSubmitEvent}>
-            <div className="register" />
+            <div className="jregister" />
             <div className="frame-parent">
                 <div className="frame-group">
                     <div className="jparent">
@@ -71,13 +77,13 @@ const JoinForm = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="register-parent">
-                <div className="jregister1">
-                    <div className="jdiv6">BirdieBuddy</div>
+            <div className="logo-parent">
+                <div className="logo_main">
+                    <img className="mlogo" alt="" src={mlogo} style={{display: "flex", alignItems: "center"}} />
                 </div>
-                <img className="icon-menu" alt="" src={`🦆 icon "menu".svg`} />
-                <img className="icon-notification" alt="" src={`🦆 icon "notification".svg`} />
-                <img className="icon-profile-circle" alt="" src={`🦆 icon "profile circle".svg`} />
+                <img className="icon-menu" alt="" src={imenu} />
+                <img className="icon-notification" alt="" src={ialarm} />
+                <img className="icon-profile-circle" alt="" src={imypage} />
             </div>
             <div className="joinform-child" />
             <div className="jdiv7">조인 만들기</div>
