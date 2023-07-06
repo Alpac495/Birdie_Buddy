@@ -10,11 +10,13 @@ import java.sql.Timestamp;
 @Alias("HugiDto")
 public class HugiDto {
     private int hnum;
-    private int unum;
-    private int hlike;
     private String hcontent;
     private String hphoto;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
     private Timestamp hwriteday;
+    private int hlike;
+    private int unum;
+
+
 
 }

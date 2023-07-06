@@ -1,11 +1,12 @@
 import "./Joining.css";
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useCallback, useEffect, useState} from 'react';
+import {NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import mlogo from '../image/logo_main.svg';
 import imenu from '../image/🦆 icon _menu.svg';
 import ialarm from '../image/🦆 icon _notification.svg';
 import imypage from '../image/🦆 icon _profile circle.svg';
+import Modal from '../components/Modal';
 
 
 const JoinForm = (props) => {
@@ -17,10 +18,33 @@ const JoinForm = (props) => {
     const [jtime,setJtime]=useState('');
     const [jage,setJage]=useState('');
 
-
+    // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     const navi=useNavigate();
 
+    const unum=sessionStorage.unum;
+    const [data,setData]=useState('');
+    const list=useCallback(()=>{
+        const url="/golfjang/list";
+        Axios.get(url)
+            .then(res=>{
+                setData(res.data);
+                console.log(res.data)
+            })
+    },[]);
+
+    useEffect(()=>{
+        list();
+    },[list])
+
+    const [searchTerm, setSearchTerm] = useState("");
 
 
     const onSubmitEvent=(e)=>{
@@ -33,11 +57,39 @@ const JoinForm = (props) => {
             })
     }
 
+    const selectGolfjang=(e)=>{
 
+    }
 
 
     return (
         <div className="joinform">
+            <React.Fragment>
+                <Modal open={modalOpen} close={closeModal} header="Modal heading">
+                    <div>
+                        <input style={{marginLeft:'20px'}}
+                            type="text"
+                            placeholder="검색"
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value);
+                            }}/>
+                        <br/><br/>
+                        <ul>
+                            {
+                                data.map &&
+                                data.filter((val)=>{
+                                    if(searchTerm == ""){
+                                        return val
+                                    }else if(val.gname.includes(searchTerm)){
+                                        return val
+                                    }
+                                }).map((item,idx) =>
+                                    <span onClick={selectGolfjang}><li>{item.gname}</li></span>
+                            )}
+                        </ul>
+                    </div>
+                </Modal>
+            </React.Fragment>
             <form onSubmit={onSubmitEvent}>
             <div className="jregister" />
             <div className="frame-parent">
@@ -45,7 +97,7 @@ const JoinForm = (props) => {
                     <div className="jparent">
                         <div className="jdiv">
                            골프장검색</div>
-                        <input className="jforminput" type="text" placeholder="골프장을 검색하세요"
+                        <input className="jforminput" type="search" placeholder="골프장을 검색하세요                            🔎" onClick={openModal}
                                value={gnum} onChange={(e)=>setGnum(e.target.value)} required maxLength minLength />
                     </div>
                     <div className="jparent">
@@ -55,7 +107,7 @@ const JoinForm = (props) => {
                     </div>
                     <div className="jparent">
                         <div className="jdiv">시간</div>
-                        <input className="jforminput1" type="text" placeholder={"조인 시간을 입력하세요"}
+                        <input className="jforminput1" type="time" placeholder={"조인 시간을 입력하세요"}
                                value={jtime} onChange={(e)=>setJtime(e.target.value)} required maxLength minLength />
                     </div>
                 </div>
@@ -89,6 +141,8 @@ const JoinForm = (props) => {
             <div className="jdiv7">조인 만들기</div>
             </form>
         </div>);
+
+
 };
 
 
