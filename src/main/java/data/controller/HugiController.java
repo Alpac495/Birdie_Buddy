@@ -1,11 +1,14 @@
 package data.controller;
 
 import data.dto.HugiDto;
+import data.dto.UserDto;
 import data.service.HugiService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +33,7 @@ public class HugiController {
         return hugiService.getAllHugis();
     }
     @PostMapping("/upload")
-    public String photoUpload(MultipartFile upload){
+    public String photoUpload(@RequestParam("upload") MultipartFile upload){
         System.out.println("upload>>"+upload.getOriginalFilename());
         if(hphoto!=null) {
             //이전 사진 삭제
@@ -41,14 +44,13 @@ public class HugiController {
         return hphoto;
     }
     @PostMapping("/insert")
-    public void insert(@RequestBody HugiDto hdto){
+    public void insert(@RequestBody HugiDto hdto, UserDto udto){
         System.out.println("hdto>>"+hdto);
+        System.out.println("udto>>"+udto);
         hdto.setHphoto(hphoto);
-
         hugiService.insertHugi(hdto);
 
         hphoto=null;
-
     }
     @GetMapping("/detail")
     public HugiDto detailPage(int hnum){

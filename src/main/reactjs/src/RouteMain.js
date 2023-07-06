@@ -13,6 +13,7 @@ import ChatBot from "./chatbot/ChatBot";
 import Main from "./Main";
 import Lobby from "./chat/Lobby";
 import {Room} from "./chat";
+import HugiRowList from "./hugi/HugiRowList";
 
 
 
