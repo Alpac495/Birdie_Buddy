@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import Axios from "axios";
-import axios from "axios";
 
 function Friend(props) {
     const unum=sessionStorage.unum;
