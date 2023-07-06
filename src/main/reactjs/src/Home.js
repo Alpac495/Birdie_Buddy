@@ -12,6 +12,8 @@ import ScreenSize from "./app_effect/ScreenSize";
 
 
 function Home(props) {
+    const unum=sessionStorage.unum;
+    console.log(unum)
     useEffect(() => {
 
     }, [])
@@ -53,7 +55,7 @@ function Home(props) {
 
             <ul> friend
                 <li>
-                    <NavLink to={'/friend/list'}>친구목록</NavLink>
+                    <NavLink to={`/friend/list/${unum}`}>친구목록</NavLink>
                 </li>
             </ul>
 
