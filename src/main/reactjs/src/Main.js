@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import ScreenSize from "./app_effect/ScreenSize";
 import Recommendslider from "./app_effect/Recommendslider";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
@@ -19,7 +18,7 @@ function Main(props) {
 
     return (
         <div>
-            <ScreenSize/>
+
             <div className={'main_headwrap'}>
                 <div className={'main_rightmenu'}><MenuIcon/> </div>
                 <div className={'main_logo'}>BirdieBuddy</div>
@@ -40,18 +39,18 @@ function Main(props) {
                 </div>
             </div>
             <div className={'main_join'}>
-                <div>당신을 위한 조인 추천</div>
+                <div className={'main_joinrecotxt'}>당신을 위한 조인 추천</div>
                 <div className={'main_joinreco'}>
                     <Recommendslider/>
                 </div>
             </div>
             <div className={'main_reviewwrap'}>
-                <div>후기</div>
+                <div className={'main_reviewtxt'}>후기</div>
                 <div className={'main_review'}>
                     <Reviewslider/>
                 </div>
             </div>
-
+            <Footer/>
         </div>
 
     );

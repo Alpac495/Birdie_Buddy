@@ -8,19 +8,25 @@ import HugiRowList from "./HugiRowList";
 
 
 function HugiList(props) {
-
+    const [hlike,setHlike]=useState('');
+    const [hwriteday,setHwriteday]=useState('');
+    const [hphoto,setHphoto]=useState('');
+    const [hcontent,setHcontent]=useState('');
     const navi=useNavigate();
 
-    // const list=()=>{
-    //     const url="/hugi/list"
-    //     Axios.get(url)
-    //         .then(res=>{
-    //             setData(res.data);
-    //         })
-    // }
-    // useEffect(()=>{
-    //     list();
-    // },[]);
+    //파일 업로드
+    const onUploadEvent=(e)=>{
+        const uploadFile=new FormData();
+        uploadFile.append("upload",e.target.files[0]);
+        Axios({
+            method:'post',
+            url:'/hugi/upload',
+            data:uploadFile,
+            headers:{'Content-Type':'multipart/form-data'}
+        }).then(res=>{
+            setHphoto(res.data);
+        });
+    }
 
     const homeButton=(e)=>{
         navi("/");
@@ -41,6 +47,13 @@ function HugiList(props) {
             hphoto:
                 "/image/2.png",
         },
+        {
+            uname: "이승기",
+            hwriteday:"2023-07-04 17:34",
+            hcontent: "안녕하세요?",
+            hphoto:
+                "/image/2.png",
+        },
     ]);
 
     return (
@@ -50,6 +63,10 @@ function HugiList(props) {
                 <button type="button" alt="" className="primary_button" onClick={homeButton} >Home</button>
             </div>
         </div>
+            <div>
+                <div>
+                    컨탠츠내용
+                </div>
             <div className="timeline">
                 {data.map((RowList) => (
                     <HugiRowList
@@ -59,7 +76,7 @@ function HugiList(props) {
                         hphoto={RowList.hphoto}
                     />
                 ))}
-
+            </div>
             </div>
 
         </div>
