@@ -4,9 +4,10 @@ import Axios from "axios";
 import axios from "axios";
 
 function Friend(props) {
+    const unum=sessionStorage.unum;
     const [data,setData]=useState('');
     const list=useCallback(()=>{
-        const url="/friend/list?unum="+(1);
+        const url="/friend/list?unum="+(unum);
         Axios.get(url)
             .then(res=>{
                 setData(res.data);
