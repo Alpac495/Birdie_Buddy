@@ -2,6 +2,12 @@
     margin: 0 auto;
     max-width: 500px;
     padding: 20px;
+    height: 1000px;
+    overflow-y: auto;
+
+}
+.timeline::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 * {
     margin: 0;
