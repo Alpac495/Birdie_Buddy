@@ -1,14 +1,12 @@
 .list {
-
     background-color: white;
     border: 1px solid lightgray;
-    margin-bottom: 45px;
+    margin-bottom: 50px;
 }
 .list_image {
     width: 100%;
-    object-fit: contain;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+    height: auto; /* 원하는 크기로 조정하세요 */
+    object-fit: cover;
 }
 .list_text {
     font-weight: normal;
@@ -21,4 +19,13 @@
 }
 .list_avatar {
     margin-right: 10px;
+}
+.primary_button {
+    background-color: #0095f6;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5px 9px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
 }
