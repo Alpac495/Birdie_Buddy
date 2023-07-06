@@ -11,7 +11,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Button from '@mui/material/Button';
 function HugiRowList(props) {
-    const {uname, hcontent, hphoto,hwriteday} = props;
+    const {uname, hcontent, hphoto,hwriteday,hlike} = props;
     // const url = process.env.REACT_APP_BOARDURL;
     const navi=useNavigate();
 
