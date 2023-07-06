@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {Login, Logintest, Sign, Social} from "./login";
+import {KaKaoCallBack, Login, NaverCallBack, Sign} from "./login";
 import {Friend} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
@@ -13,6 +13,8 @@ import ChatBot from "./chatbot/ChatBot";
 import Main from "./Main";
 import Lobby from "./chat/Lobby";
 import {Room} from "./chat";
+import RankForm from "./ranking/RankForm";
+import RankList from "./ranking/RankList";
 
 
 function RouteMain(props) {
@@ -47,8 +49,8 @@ function RouteMain(props) {
                 <Route path={'/login'} >
                     <Route path="login" element={<Login/>}/>
                     <Route path="sign" element={<Sign/>}/>
-                    <Route path="test" element={<Logintest/>}/>
-                    <Route path="social" element={<Social/>}/>
+                    <Route path="kcallback" element={<KaKaoCallBack/>}/>
+                    <Route path="ncallback" element={<NaverCallBack/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >
@@ -57,7 +59,8 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/score'} >
-
+                    <Route path="form" element={<RankForm/>}/>
+                    <Route path="list" element={<RankList/>}/>
                 </Route>
 
 

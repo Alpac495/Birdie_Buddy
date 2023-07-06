@@ -1,0 +1,37 @@
+.div1{
+    display: flex;
+    width: 22.5rem;
+    padding: 6.9375rem 0.96875rem 14.0625rem 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+.div2{
+    width: 20.53125rem;
+    height: 29rem;
+}
+.greenbox{
+    display: inline-flex;
+    padding: 0.6875rem 4.28113rem 0.5625rem 0.53119rem;
+    align-items: center;
+    gap: 2.65631rem;
+    border-radius: 0.125rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: #51C64D;
+}
+.savechk{
+}
+.emailtext {
+
+}
+.signbtn{
+
+}
+.div5{
+    display: inline-flex;
+    padding: 0.6875rem 4.28113rem 0.5625rem 0.53119rem;
+    align-items: center;
+    gap: 2.65631rem;
+    border-radius: 0.125rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: #51C64D;
+}

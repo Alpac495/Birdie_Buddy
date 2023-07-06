@@ -10,7 +10,7 @@ function Sign(props) {
     const [uname,setUname]=useState('');
     const [unickname,setUnickname]=useState('');
     const [uage,setUage]=useState('');
-    const [ugender,setUgender]=useState('1');
+    const [ugender,setUgender]=useState("남");
     const navi=useNavigate();
 
 
@@ -53,8 +53,8 @@ function Sign(props) {
 
                 성별<br/>
                 <select required onChange={(e)=>setUgender(e.target.value)} value={ugender}>
-                    <option value={1}>남</option>
-                    <option value={2}>여</option>
+                    <option value={"남"}>남</option>
+                    <option value={"여"}>여</option>
                 </select><br/>
 
                 휴대전화<br/>

@@ -3,7 +3,7 @@ import "./App.css";
 import Axios from "axios";
 import {Login, Sign} from "./login";
 import {HugiList} from "./hugi";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 
 
@@ -12,6 +12,7 @@ import {NavLink} from "react-router-dom";
 
 function Home(props) {
     const unum=sessionStorage.unum;
+    const navi=useNavigate();
     console.log(unum)
     useEffect(() => {
 
@@ -36,7 +37,11 @@ function Home(props) {
 
     return (
         <div className="homeBg">
-            <h2>여기는 몰루입니다.</h2>
+            {
+                sessionStorage.unum==null?
+                    <h2>여기는 몰루입니다.</h2>:
+                    <h2>로그인중<br/>unum : {unum}</h2>
+            }
             <input type='file' onChange={onUploadEvent}/>
 
 
@@ -76,9 +81,18 @@ function Home(props) {
 
             <ul>
                 Login
+
                 <li>
-                    <NavLink to={"/login/login"}>로그인</NavLink>
+                    {
+                        sessionStorage.unum==null?
+                        <NavLink to={"/login/login"}>로그인</NavLink>:
+                            <div onClick={()=>{
+                                sessionStorage.clear();
+                                navi('/');
+                            }}>로그아웃</div>
+                    }
                 </li>
+
                 <li>
                     <NavLink to={"/login/sign"}>회원가입</NavLink>
                 </li>
@@ -92,7 +106,10 @@ function Home(props) {
 
             <ul> score
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/score/form'}>랭킹폼</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/score/list'}>랭킹리스트</NavLink>
                 </li>
             </ul>
             <ul>chatbot

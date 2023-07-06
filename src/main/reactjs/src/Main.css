@@ -1,17 +1,8 @@
 body{
     overflow: hidden;
 }
-.main_headwrap{
-    width: 100vw;
-    height: 70px;
-    display: flex;
-    justify-content: space-around; /* 수정 */
-    align-items: center; /* 수정 */
-    overflow-x: hidden;
-}
-
 .main_banner{
-    margin: 10px 0 40px 0;
+    margin: 100px 0 40px 0;
     text-align: center;
 }
 .main_banner img{
@@ -43,7 +34,7 @@ body{
 }
 .main_bgbtn button{
     width: 95%;
-    height: 90%;
+    height: 95%;
     border-radius: 5px;
     background-color: #54C64D;
 }
@@ -64,7 +55,7 @@ body{
     width: 95%;
     height: 90%;
     border-radius: 5px;
-    border: 3px black solid;
+    border: 2px black solid;
 }
 .main_join{
     margin: 15px 0;
@@ -79,6 +70,7 @@ body{
     margin-left: 15px;
 }
 .main_joinrecotxt{
+    margin-bottom: 5px;
     margin-left: 15px;
 }
 .main_joinreco div img{
