@@ -1,50 +1,23 @@
-import "./JoinList.css";
-const JoinList = () => {
+import "./Joining.css";
+const JoinRowList = () => {
     return (
-        <div className="joinlist">
-            <div className="register" />
-            <div className="segmented-control">
-                <div className="frame">
-                    <b className="b">인기순</b>
-                </div>
-                <div className="frame1">
-                    <b className="b">추천순</b>
-                </div>
-                <div className="frame1">
-                    <b className="b">거리순</b>
-                </div>
+        <div className="joinrowlist">
+            <div className="joinrowlist-child" />
+            <div className="jrl_div1">
+                <p className="jrl_p">{`07.15(토) 14:10 `}</p>
+                <p className="jrl_p1">골프장이름</p>
+                <p className="jrl_p1">가격대</p>
             </div>
-            <div className="joinlist-child" />
-            <div className="button-open-links-navigate" />
-            <div className="register-parent">
-                <div className="register1">
-                    <div className="div">BirdieBuddy</div>
-                </div>
-                <img className="icon-menu" alt="" src="/-icon-menu.svg" />
-                <img
-                    className="icon-notification"
-                    alt=""
-                    src="/-icon-notification.svg"
-                />
-                <img
-                    className="icon-profile-circle"
-                    alt=""
-                    src="/-icon-profile-circle.svg"
-                />
-            </div>
+            <div className="jrl_div2">1자리 비었어요!</div>
             <div className="avatar-user-60">
                 <div className="rectangle" />
                 <div className="rectangle1" />
             </div>
-            <div className="div1">
-                <p className="p">{`날짜, 시간대, `}</p>
-                <p className="p">골프장이름</p>
-                <p className="p">가격대</p>
-            </div>
-            <div className="div2">남은 자리 : 1</div>
-            <div className="button-open-links-navigate1" />
+            <div className="joinrowlist-item" />
+            <div className="d-day">D-16</div>
+            <div className="joinrowlist-inner" />
         </div>
     );
 };
 
-export default JoinList;
+export default JoinRowList;

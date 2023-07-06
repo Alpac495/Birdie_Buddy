@@ -236,3 +236,123 @@ body {
     }
 
 }
+
+.jrl_div,
+.register1 {
+    position: absolute;
+    top: 0;
+}
+.jrl_div {
+    left: 0;
+    letter-spacing: -0.01em;
+    background: linear-gradient(202.17deg, #03c75a, #85c644);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.joinrowlist-child {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 11.94rem;
+    right: 1rem;
+    left: 1rem;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    height: 8.38rem;
+}
+.frl_p {
+    font-size: 0.81rem;
+}
+.frl_p,
+.frl_p1 {
+    margin: 0;
+}
+.frl_div1,
+.frl_div2 {
+    position: absolute;
+    line-height: 150%;
+    display: inline-block;
+    height: 1rem;
+}
+.frl_div1 {
+    top: 13.06rem;
+    left: 6.88rem;
+    color: #000;
+    width: 8.81rem;
+    font-size: 0.94rem;
+}
+.frl_div2 {
+    top: 18.63rem;
+    right: 1.81rem;
+    width: 4.94rem;
+}
+.avatar-user-60,
+.frl_rectangle,
+.frl_rectangle1 {
+    position: absolute;
+    top: 0.63rem;
+    left: 1.13rem;
+    border-radius: 24px;
+    background-color: #54c64d;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.avatar-user-60,
+.frl_rectangle1 {
+    top: 2.5rem;
+    left: -0.94rem;
+    border-radius: 90px;
+    width: 5.63rem;
+    height: 5.63rem;
+}
+.avatar-user-60 {
+    top: 13.31rem;
+    left: 1.88rem;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 3.75rem;
+    height: 3.75rem;
+    overflow: hidden;
+}
+.joinrowlist-item {
+    position: absolute;
+    width: calc(100% - 316px);
+    top: 18.56rem;
+    right: 17.94rem;
+    left: 1.81rem;
+    border-radius: 20px;
+    background-color: rgba(217, 217, 217, 0.16);
+    border: 1px solid #ed4c5c;
+    box-sizing: border-box;
+    height: 1.19rem;
+}
+.d-day {
+    position: absolute;
+    top: 18.69rem;
+    left: calc(50% - 142.5px);
+    line-height: 150%;
+    display: inline-block;
+    width: 1.75rem;
+}
+.joinrowlist-inner {
+    position: absolute;
+    top: 17.97rem;
+    left: 1.78rem;
+    border-top: 1px solid #fff;
+    box-sizing: border-box;
+    width: 19rem;
+    height: 0.06rem;
+}
+.joinrowlist {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 50rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 0.75rem;
+    color: #ed4c5c;
+    font-family: Inter;
+}
