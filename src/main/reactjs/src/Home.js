@@ -106,7 +106,10 @@ function Home(props) {
 
             <ul> score
                 <li>
-                    <NavLink to={''}></NavLink>
+                    <NavLink to={'/score/form'}>랭킹폼</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/score/list'}>랭킹리스트</NavLink>
                 </li>
             </ul>
             <ul>chatbot

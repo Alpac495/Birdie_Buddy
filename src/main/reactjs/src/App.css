@@ -1,4 +1,4 @@
-:root {
+/*:root {
     --vh: 100%;
 }
 
@@ -6,7 +6,7 @@
     width: 100vw;
     height: calc(var(--vh, 1vh) * 100);
 
-}
+}*/
 /*color of naver*/
 /*
 naver
@@ -16,6 +16,7 @@ border : none;
   kakao
   background-color: rgb(242, 253, 247);
   border: 1px rgb(209, 235, 222) solid;*/
+
 .btn_long{
     width: 250px;
     height: 30px;
