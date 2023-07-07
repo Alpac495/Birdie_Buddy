@@ -1,11 +1,14 @@
 package data.controller;
 
+import data.dto.FriendDto;
+import data.dto.JoiningDto;
 import data.mapper.JoiningMapper;
+import data.service.JoiningService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,5 +27,20 @@ public class JoiningController {
     @Autowired
     JoiningMapper joiningMapper;
 
+    @Autowired
+    JoiningService joiningService;
+
+    @PostMapping("/insert")
+    public void insert(@RequestBody JoiningDto dto)
+    {
+        joiningService.insertJoin(dto);
+    }
+
+    @GetMapping("/list")
+    public List<JoiningDto> list()
+    {
+        List<JoiningDto> list= joiningService.getJoiningList();
+        return list;
+    }
 
 }
