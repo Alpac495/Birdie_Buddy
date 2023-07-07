@@ -13,9 +13,10 @@ public class RehugiDto {
     private int hnum;
     private int unum;
     private String rhcontent;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
     private Timestamp rhwriteday;
     private int ref;
     private int step;
     private int depth;
+    private String uname;
 }

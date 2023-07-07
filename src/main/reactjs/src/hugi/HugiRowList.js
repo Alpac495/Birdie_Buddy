@@ -9,14 +9,23 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Button from '@mui/material/Button';
+import Axios from "axios";
 function HugiRowList(props) {
-    const {uname, hcontent, hphoto,hwriteday,hlike} = props;
+    const {hcontent, hphoto,hwriteday,hlike, ref, step, depth, unum: postUnum } = props;
     const url = process.env.REACT_APP_BOARDURL;
 
     const navi=useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 여부
     const [unum, setUnum] = useState(null); // unum 상태 추가
     const [open, setOpen] = React.useState(false);
+    const [rhnum,setRhnum]= useState();
+    const [hnum,setHnum]=useState();
+    const [rhcontent,setRhcontent]=useState();
+    const [rhwriteday,setRhwriteday]=useState();
+    const [comments, setComments] = useState([]);
+    const [commentAuthors, setCommentAuthors] = useState({});
+    // const [userDto, setUserDto] = useState({}); // UserDto 상태 추가
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -30,6 +39,10 @@ function HugiRowList(props) {
         const unum = sessionStorage.getItem('unum');
         setUnum(unum);
         checkLoginStatus();
+
+        // // UserDto 데이터를 가져오는 API 호출
+        // fetchUserDto();
+        // getCommentAuthors();// 댓글 작성자의 uname을 가져오기 위해 API 호출
     }, []);
 
     const checkLoginStatus = () => {
@@ -40,14 +53,57 @@ function HugiRowList(props) {
             setIsLoggedIn(false);
         }
     };
+    // const fetchUserDto = () => {
+    //     Axios.get(`/api/user/${unum}`)
+    //         .then((res) => {
+    //             setUserDto(res.data);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // };
+    // const getCommentAuthors = () => {
+    //     Axios.get('/api/getUser')
+    //         .then((res) => {
+    //             setCommentAuthors(res.data);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // };
+    const handleCommentSubmit = () => {
+        // 댓글 작성 후 처리하는 로직을 구현합니다.
+        // 서버에 댓글 작성 요청을 보내고, 성공적으로 작성되면 댓글 목록을 업데이트합니다.
+        // 이후 댓글 입력 필드를 초기화합니다.
+        const newComment = {
+            hnum: hnum,
+            unum: unum,
+            hcontent: rhcontent,
+            ref: ref,
+            step: step + 1,
+            depth: depth + 1,
+        };
+        Axios.post('/rehugi/newcomment', newComment)
+            .then((res) => {
+                setComments([...comments, res.data]);
+                setRhcontent('');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
+    };
+    const getCommentAuthorName = (unum) => {
+        const commentAuthor = commentAuthors.find(author => author.unum === unum);
+        return commentAuthor ? commentAuthor.uname : '';
+    };
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={uname}
+                <Avatar className="list_avatar" alt={postUnum}
                         src="/static/images/avatar/1.jpg"
                         />
-                <h5>{uname}</h5>
+                <h5>{postUnum}</h5>
             </div>
             &nbsp;
             <span style={{marginLeft:"10px",color:"gray"}}>{hwriteday}</span>
@@ -72,11 +128,11 @@ function HugiRowList(props) {
             >
                 <div style={{width:"100%",height:"600px",overflowX:"hidden"}}>
                 <DialogTitle id="alert-dialog-title" >
-                    <Avatar className="list_avatar" alt={uname}
+                    <Avatar className="list_avatar" alt={postUnum}
                             src="/static/images/avatar/1.jpg"
                             style={{width:"35px",height:"35px"}}
                     />
-                    <b style={{position:"relative",bottom:"35px",left:"50px",fontSize:"18px" }}>{uname}</b>
+                    <b style={{position:"relative",bottom:"35px",left:"50px",fontSize:"18px" }}>{postUnum}</b>
                 </DialogTitle>
                 <DialogContent style={{width:"100%",overflowX:"hidden"}}>
                             <img className="list_image"  src={`${url}${hphoto}`} alt="" style={{width:"100%"}} value={hphoto}/>
@@ -88,14 +144,29 @@ function HugiRowList(props) {
                     </DialogContentText>
                     <hr/>
                     { unum &&( // 로그인 상태일 때만 해당 컴포넌트가 보이도록 설정
-                    <div className="input-group">
-                    <textarea class="form-control" style={{width:"75%",height:"50px",border:"1px solid gray",fontSize:"12px"}}
-                              placeholder="댓글을 작성 해 보세요"></textarea>
-                        <button type="button" className="primary_button" style={{width:"25%"}}>댓글작성</button>
-                    <pre style={{width:'100%',height:'100%',border:"1px solid gray"}}>
-                        {/*댓글 출력 위치*/}
-                    </pre>
-                    </div>
+                        <div className="input-group">
+                <textarea
+                    className="form-control"
+                    style={{ width: '70%', height: '50px', border: '1px solid lightgray', fontSize: '12px' }}
+                    placeholder="댓글을 작성해 보세요"
+                    value={rhcontent}
+                    onChange={(e) => setRhcontent(e.target.value)}
+                ></textarea>
+                            <button type="button" className="primary_button" style={{ width: '30%',borderRadius:"5px" }} onClick={handleCommentSubmit}>
+                                댓글 작성
+                            </button>
+                            <pre style={{ width: '100%', height: '100%', border: '1px solid lightgray',borderRadius:"5px" }}>
+                  {/* 댓글 출력 위치 */}
+                                {comments.map((comment) => (
+                                    <div key={comment.hnum}>
+                                        <Avatar className="list_avatar" alt={postUnum} src="/static/images/avatar/1.jpg" style={{ width: '35px', height: '35px' }} />
+                                        <b style={{position:"relative",bottom:"28px",left:"40px",fontSize:"14px"}}>{getCommentAuthorName(comment.unum)}:</b>
+                                        <span style={{position:"relative",bottom:"28px",left:"40px",fontSize:"14px"}}>{comment.hcontent}</span>
+                                        <br />
+                                    </div>
+                                ))}
+                </pre>
+                        </div>
                         )}
                 </DialogContent>
                 <DialogActions>

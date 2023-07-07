@@ -44,13 +44,14 @@ public class HugiController {
         return hphoto;
     }
     @PostMapping("/insert")
-    public void insert(@RequestBody HugiDto hdto, UserDto udto){
+    public void insert(@RequestBody HugiDto hdto){
         System.out.println("hdto>>"+hdto);
-        System.out.println("udto>>"+udto);
+
+        // uname 정보 가져오기
+        String uname = hdto.getUname();
         hdto.setHphoto(hphoto);
         hugiService.insertHugi(hdto);
-
-        hphoto=null;
+        hphoto = null;
     }
     @GetMapping("/detail")
     public HugiDto detailPage(int hnum){
@@ -60,6 +61,7 @@ public class HugiController {
     @DeleteMapping("/delete")
     public void delete(int hnum)
     {
+        System.out.println("delete>>"+hnum);
         //num 에 해당하는 사진 스토리지에서 지우기
         String prePhoto=hugiService.detailPage(hnum).getHphoto();
         storageService.deleteFile(bucketName, "birdiebuddy", prePhoto);
@@ -67,4 +69,5 @@ public class HugiController {
         //db 에서 데이타 삭제
         hugiService.deleteHugi(hnum);
     }
+
 }
