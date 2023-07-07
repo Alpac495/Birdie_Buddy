@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+html {
+    font-size: 10px;
+}
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+.JLdiv {
+    position: absolute;
+    top: 0;
+}
+.JLdiv {
+    left: 0;
+    letter-spacing: -0.01em;
+    background: linear-gradient(202.17deg, #03c75a, #85c644);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.JLb {
+    position: relative;
+    letter-spacing: 0.03em;
+    width: 6.8rem;
+    flex-shrink: 0;
+}
+.JLb,
+.JLb1,
+.btn1_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn1_wrapper {
+    position: absolute;
+    top: 8.6rem;
+    left: 1.7rem;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: 1px solid #51c64d;
+    box-sizing: border-box;
+    width: 7.5rem;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 0.9rem 1.8rem;
+    text-align: center;
+}
+.JLb1 {
+    position: relative;
+    letter-spacing: 0.03em;
+    width: 4.4rem;
+    flex-shrink: 0;
+}
+.btn2_wrapper,
+.joinlist-child {
+    position: absolute;
+    overflow: hidden;
+}
+.btn2_wrapper {
+    top: 8.6rem;
+    right: 1.6rem;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: 1px solid #ed4c5c;
+    box-sizing: border-box;
+    width: 7.5rem;
+    display: flex;
+    flex-direction: row;
+    padding: 0.9rem 2.9rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.joinlist-child {
+    width: calc(100% - 205px);
+    top: 8.4rem;
+    right: 10.2rem;
+    left: 10.3rem;
+    max-width: 100%;
+    height: 3.7rem;
+}
+.instance-child,
+.jlist-inner {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+.instance-child {
+    height: 100%;
+    bottom: 0;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+.jlist-inner {
+    height: 13.4rem;
+}
+.JLp {
+    font-size: 1.3rem;
+}
+.JLp,
+.JLp1 {
+    margin: 0;
+}
+.JLdiv1 {
+    position: absolute;
+    top: 1.8rem;
+    left: 9.4rem;
+    line-height: 150%;
+    color: #000;
+    display: inline-block;
+    width: 14.2rem;
+    font-size: 1.5rem;
+}
+.emoji-flag-in-hole {
+    position: absolute;
+    top: 0.1rem;
+    right: 9.6rem;
+    width: 1.6rem;
+    height: 1.65rem;
+}
+.JLdiv2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 150%;
+    display: inline-block;
+    width: 8.8rem;
+}
+.emoji-flag-in-hole-parent {
+    position: absolute;
+    top: 10.7rem;
+    right: 1.6rem;
+    width: 11.2rem;
+    height: 1.8rem;
+}
+.avatar-user-60,
+.rectangle,
+.rectangle1 {
+    position: absolute;
+    top: 1rem;
+    left: 1.8rem;
+    border-radius: 24px;
+    background-color: #54c64d;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+.avatar-user-60,
+.rectangle1 {
+    top: 4rem;
+    left: -1.5rem;
+    border-radius: 90px;
+    width: 9rem;
+    height: 9rem;
+}
+.avatar-user-60 {
+    top: 2.2rem;
+    left: 1.4rem;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 6.02rem;
+    height: 6rem;
+    overflow: hidden;
+}
+.group-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    background-color: rgba(217, 217, 217, 0.16);
+    border: 1px solid #ed4c5c;
+    box-sizing: border-box;
+    width: 4.51rem;
+    height: 1.9rem;
+}
+.d-16 {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.9rem;
+    line-height: 150%;
+    display: inline-block;
+    width: 2.81rem;
+}
+.rectangle-parent {
+    position: absolute;
+    top: 10.6rem;
+    left: 1.3rem;
+    width: 4.51rem;
+    height: 2rem;
+}
+.jlist-child {
+    width: calc(100% - 25.08px);
+    top: 9.65rem;
+    right: 1.25rem;
+    left: 1.25rem;
+    border-top: 1px solid #fff;
+    box-sizing: border-box;
+    height: 0.1rem;
+}
+.jlist,
+.jlist-child,
+.jlist1 {
+    position: relative;
+}
+.jlist1 {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 33rem;
+    margin-bottom: 150px;
+}
+.jlist {
+    width: calc(100% - 30px);
+    top: 14.9rem;
+    right: 1.5rem;
+    left: 1.5rem;
+    height: 13.4rem;
+    color: #ed4c5c;
+}
+.joinlist {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 80rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 1.2rem;
+    color: #000;
+    font-family: Inter;
+}

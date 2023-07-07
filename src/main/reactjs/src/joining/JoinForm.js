@@ -13,7 +13,7 @@ const JoinForm = (props) => {
 
     const [jcontent,setJcontent]=useState('');
     const [jjoinday,setJoinday]=useState('');
-    const [gnum,setGnum]=useState('');
+    const [gname,setGname]=useState('');
     const [jprice,setJprice]=useState('');
     const [jtime,setJtime]=useState('');
     const [jage,setJage]=useState('');
@@ -49,7 +49,7 @@ const JoinForm = (props) => {
 
     const onSubmitEvent=(e)=>{
         e.preventDefault();
-        Axios.post("/joining/insert",{jcontent,jjoinday,gnum,jprice, jtime, jage})
+        Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage})
             .then(res=>{
                 alert("신청되었습니다")
                 //목록으로 이동
@@ -58,7 +58,9 @@ const JoinForm = (props) => {
     }
 
     const selectGolfjang=(e)=>{
-
+        const selectedValue = e.target.innerText;
+        setGname(selectedValue);
+        {closeModal()}
     }
 
 
@@ -97,8 +99,8 @@ const JoinForm = (props) => {
                     <div className="jparent">
                         <div className="jdiv">
                            골프장검색</div>
-                        <input className="jforminput" type="search" placeholder="골프장을 검색하세요                            🔎" onClick={openModal}
-                               value={gnum} onChange={(e)=>setGnum(e.target.value)} required maxLength minLength />
+                        <input className="jforminput" type="search" placeholder="골프장을 검색하세요                          🔎" onClick={openModal}
+                               value={gname} onChange={(e)=>setGname(e.target.value)} required maxLength minLength />
                     </div>
                     <div className="jparent">
                         <div className="jdiv">날짜</div>
@@ -114,12 +116,22 @@ const JoinForm = (props) => {
                 <div className="frame-container">
                     <div className="jparent">
                         <div className="jdiv">연령대</div>
-                        <input className="jforminput" type="text"  required placeholder="원하는 조인 멤버의 연령대를 입력하세요"
-                               value={jage} onChange={(e)=>setJage(e.target.value)} maxLength minLength />
+                        {/*<input className="jforminput" type="text"  required placeholder="원하는 조인 멤버의 연령대를 입력하세요"*/}
+                        {/*       value={jage} onChange={(e)=>setJage(e.target.value)} maxLength minLength />*/}
+                        <select className="jforminput" required onChange={(e)=>setJage(e.target.value)}>
+                            <option disabled hidden selected>원하는 연령대를 선택하세요</option>
+                            <option value={"연령무관"}>연령무관</option>
+                            <option value={"20대만"}>20대만</option>
+                            <option value={"30대만"}>30대만</option>
+                            <option value={"40대이상"}>40대이상</option>
+                            <option value={"20~30대"}>20~30대</option>
+                            <option value={"30~40대"}>30~40대</option>
+                            <option value={jage} hidden></option>
+                        </select>
                     </div>
                     <div className="jparent1">
-                        <div className="jdiv">금액</div>
-                        <input className="jforminput1" type="text"  required placeholder="그린피 예상금액을 입력하세요"
+                        <div className="jdiv">그린피 (직접입력 또는 만원 단위 조절)</div>
+                        <input className="jforminput1" type="number"  required step={10000} placeholder={"10000"}
                                value={jprice} onChange={(e)=>setJprice(e.target.value)} maxLength minLength />
                     </div>
                     <div className="jparent2">
@@ -138,7 +150,7 @@ const JoinForm = (props) => {
                 <img className="icon-profile-circle" alt="" src={imypage} />
             </div>
             <div className="joinform-child" />
-            <div className="jdiv7">조인 만들기</div>
+                <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
             </form>
         </div>);
 
