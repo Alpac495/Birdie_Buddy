@@ -16,22 +16,24 @@ import Header from "./header/Header";
 
 function Main(props) {
     return (
-        <div>
+        <div className={'mainpage'}>
+
             <div>
                 <Header/>
             </div>
+
             <div className={'main_banner'}>
                 <Bannerslider/>
             </div>
             <div className={'main_gobtn'}>
-                <div className={'main_btnwrap'}>
-                    <div className={'main_bgbtn'}>
-                        <button type={'button'}>임시</button>
-                    </div>
-                    <div className={'main_smbtn'}>
-                        <div><button type={'button'}>임시</button></div>
-                        <div><button type={'button'}>임시</button></div>
-                    </div>
+                <div className="button">
+                    <button className="button-child">조인</button>
+                </div>
+                <div className="button1">
+                    <div className="button-item">친구</div>
+                </div>
+                <div className="button2">
+                    <div className="button-item">예약</div>
                 </div>
             </div>
             <div className={'main_join'}>
@@ -42,9 +44,7 @@ function Main(props) {
             </div>
             <div className={'main_reviewwrap'}>
                 <div className={'main_reviewtxt'}>후기</div>
-                <div className={'main_review'}>
                     <Reviewslider/>
-                </div>
             </div>
             <div>
                 <Footer/>
