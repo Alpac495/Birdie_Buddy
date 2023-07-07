@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0dd0b252.css",
-    "main.js": "/static/js/main.0e6bf353.js",
+    "main.css": "/static/css/main.ffa80fc9.css",
+    "main.js": "/static/js/main.5993f7c9.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/logo_main.svg": "/static/media/logo_main.4bd7bfb35a1f90533a01da19f6b0c3f9.svg",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -12,12 +12,12 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
     "static/media/🦆 icon _menu.svg": "/static/media/🦆 icon _menu.4beaec4f2c6a854df157edcb4d894391.svg",
-    "main.0dd0b252.css.map": "/static/css/main.0dd0b252.css.map",
-    "main.0e6bf353.js.map": "/static/js/main.0e6bf353.js.map",
+    "main.ffa80fc9.css.map": "/static/css/main.ffa80fc9.css.map",
+    "main.5993f7c9.js.map": "/static/js/main.5993f7c9.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0dd0b252.css",
-    "static/js/main.0e6bf353.js"
+    "static/css/main.ffa80fc9.css",
+    "static/js/main.5993f7c9.js"
   ]
 }
