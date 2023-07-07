@@ -19,6 +19,7 @@ const JoinList = () => {
     useEffect(()=>{
         list();
     },[list])
+  
     return (
         <div className="joinlist">
             <Header/>
