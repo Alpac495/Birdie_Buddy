@@ -10,34 +10,20 @@ function HugiList(props) {
     const [hlike, setHlike] = useState('');
     const [hwriteday, setHwriteday] = useState('');
     const [hnum, setHnum] = useState('');
+    const [unum, setUnum] = useState(null);
+    const [hugiData, setHugiData] = useState([]);
 
     const url = process.env.REACT_APP_BOARDURL;
     const navi = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 여부
-    const [unum, setUnum] = useState(null); // unum 상태 추가
-    const [hugiData, setHugiData] = useState([]);
+    const isLoggedIn = sessionStorage.getItem('unum') !== null;
 
     useEffect(() => {
-        // 세션에 로그인 정보가 있는지 확인하는 로직
-        const loginStatus = sessionStorage.getItem('isLoggedIn');
-        checkLoginStatus();
-
-        // 세션에서 unum 정보 가져오기
         const storedUnum = sessionStorage.getItem('unum');
         setUnum(storedUnum);
     }, []);
-    useEffect(() => {
-        Axios.get('/hugi/list')
-            .then((res) => {
-                setHugiData(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
 
     useEffect(() => {
-        refreshHugiData(); // 컴포넌트가 마운트된 후에 refreshHugiData 함수 호출
+        refreshHugiData();
     }, []);
 
     const refreshHugiData = () => {
@@ -49,89 +35,54 @@ function HugiList(props) {
                 console.log(error);
             });
     };
-    const checkLoginStatus = () => {
-        // 세션에 로그인 정보가 있는지 확인하는 로직을 구현합니다.
-        // 예를 들어, 서버 API를 호출하여 로그인 상태를 확인하는 방법이 있습니다.
-        Axios.get('/api/checkLoginStatus')
+
+    const onUploadEvent = (e) => {
+        const uploadFile = new FormData();
+        uploadFile.append('upload', e.target.files[0]);
+        Axios.post('/hugi/upload', uploadFile)
             .then((res) => {
-                if (res.data.isLoggedIn) {
-                    setIsLoggedIn(true);
-                } else {
-                    setIsLoggedIn(false);
-                }
+                setHphoto(res.data);
             })
             .catch((error) => {
                 console.log(error);
             });
     };
 
-    //파일 업로드
-    const onUploadEvent = (e) => {
-        const uploadFile = new FormData();
-        uploadFile.append('upload', e.target.files[0]);
-        Axios({
-            method: 'post',
-            url: '/hugi/upload',
-            data: uploadFile,
-            headers: { 'Content-Type': 'multipart/form-data' },
-        }).then((res) => {
-            setHphoto(res.data);
-            refreshHugiData(); // 파일 업로드 후 목록을 다시 불러오기
-        })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
     const onSubmitEvent = (e) => {
         e.preventDefault();
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+
+        if (!hcontent) {
+            alert('글을 입력해주세요.');
+            return;
+        }
+
         const dataToSend = {
             hnum: hnum || '',
             unum: unum || '',
-            hlike: hlike ||'',
+            hlike: hlike || 0,
             hcontent: hcontent || '',
             hphoto: hphoto || '',
-            hwriteday: formattedDate
+            hwriteday: formattedDate,
         };
 
-        Axios.post('/hugi/insert', dataToSend, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
+        Axios.post('/hugi/insert', dataToSend)
             .then((res) => {
-                // 데이터 전송 성공 시 목록으로 이동
                 navi('/hugi/list');
+                refreshHugiData();
+
+                setHphoto('');
+                setHcontent('');
             })
             .catch((error) => {
                 console.log(error);
             });
     };
-    const homeButton = (e) => {
+
+    const homeButton = () => {
         navi('/');
     };
-
-    const [data, setData] = useState([
-        {
-            uname: '이수근',
-            hwriteday: '2023-07-04 17:34',
-            hcontent: '안녕하세요',
-            hphoto: '',
-        },
-        {
-            uname: '강호동',
-            hwriteday: '2023-07-04 17:34',
-            hcontent: '반갑습니다',
-            hphoto: '',
-        },
-        {
-            uname: '이승기',
-            hwriteday: '2023-07-04 17:34',
-            hcontent: '안녕하세요?',
-            hphoto: '',
-        },
-    ]);
 
     return (
         <div className="hugi">
@@ -142,14 +93,10 @@ function HugiList(props) {
                     </button>
                 </div>
             </div>
-            {unum && (
-                // 로그인 상태일 때만 해당 컴포넌트가 보이도록 설정
-                <div
-                    className="timeline"
-                    style={{ border: '1px solid gray', width: '100%', height: '100%', marginTop: '5px', marginBottom: '5px' }}
-                >
+            {isLoggedIn && (
+                <div className="timeline" style={{ border: '1px solid gray', width: '100%', height: '50%', marginTop: '5px', marginBottom: '5px' }}>
                     <input type="file" className="form-control" onChange={onUploadEvent} />
-                    <img alt="" src={`${url}${hphoto}`} style={{ width: '50%', margin: '10px 100px' }} value={hphoto}/>
+                    <img alt="" src={`${url}${hphoto}`} style={{ width: '50%', margin: '10px 100px' }} />
                     <br />
                     <br />
                     <div className="input-group">
@@ -169,7 +116,8 @@ function HugiList(props) {
                 {hugiData.map((rowData) => (
                     <HugiRowList
                         key={rowData.hnum}
-                        uname={rowData.unum}
+                        hnum={rowData.hnum}
+                        unum={rowData.uname}
                         hcontent={rowData.hcontent}
                         hphoto={rowData.hphoto}
                         hwriteday={rowData.hwriteday}

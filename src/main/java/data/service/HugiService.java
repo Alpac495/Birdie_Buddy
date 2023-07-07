@@ -1,6 +1,7 @@
 package data.service;
 
 import data.dto.HugiDto;
+import data.dto.UserDto;
 import data.mapper.HugiMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,4 +41,6 @@ public class HugiService implements HugiServiceInter
     public void deleteHugi(int hnum) {
         hugiMapper.deleteHugi(hnum);
     }
+
+
 }

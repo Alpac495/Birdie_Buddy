@@ -16,7 +16,7 @@ public class HugiDto {
     private Timestamp hwriteday;
     private int hlike;
     private int unum;
-
+    private String uname;
 
 
 }
