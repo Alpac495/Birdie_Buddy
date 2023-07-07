@@ -15,7 +15,7 @@ public class JoiningDto {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
     private Timestamp jwriteday;
     private String jjoinday;
-    private int gnum;
+    private String gname;
     private String jprice;
     private String jtime;
     private String jage;
