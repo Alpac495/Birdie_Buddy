@@ -1,6 +1,7 @@
 package data.service;
 
 import data.dto.HugiDto;
+import data.dto.UserDto;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ public interface HugiServiceInter {
     public void updateLikeCount(int unum, int hlike);
     public HugiDto detailPage(int hnum);
     public void deleteHugi(int hnum);
+
 }

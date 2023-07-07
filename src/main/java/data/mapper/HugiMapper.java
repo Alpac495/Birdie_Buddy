@@ -1,6 +1,7 @@
 package data.mapper;
 
 import data.dto.HugiDto;
+import data.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface HugiMapper {
     public void updateLikeCount(int unum, int hlike);
     public HugiDto detailPage(int hnum);
     public void deleteHugi(int hnum);
+
+
 }
