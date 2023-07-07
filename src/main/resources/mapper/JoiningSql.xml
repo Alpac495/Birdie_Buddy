@@ -1,4 +1,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.JoiningMapper">
-
+     <insert id="insertJoin" parameterType="JoiningDto">
+        insert into joining (unum,jcontent,jwriteday,jjoinday,gname,jprice,jtime,jage) values (#{unum},#{jcontent},now(),#{jjoinday},#{gname},#{jprice},#{jtime},#{jage})
+     </insert>
+    <select id="getJoiningList" resultType="JoiningDto">
+        SELECT * FROM joining order by jnum desc
+    </select>
 </mapper>

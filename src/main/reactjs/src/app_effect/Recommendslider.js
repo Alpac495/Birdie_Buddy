@@ -18,7 +18,13 @@ export default class SimpleSlider extends Component {
                 <Slider {...settings}>
                     <div className={'rec_slider'}>
                         <img alt={''} src={no}/>
-                        <span>1</span>
+                        <b className="b">{`07.02(월) `}</b>
+                        <div className="xx-0-container">
+                            <p className="xx">필리핀 세부 XX클럽</p>
+                            <p className="xx">그린피 0원</p>
+                            <p className="xx">2명 모집</p>
+                            <p className="xx">{` `}</p>
+                        </div>
                     </div>
                     <div className={'rec_slider'}>
                         <img alt={''} src={no}/>

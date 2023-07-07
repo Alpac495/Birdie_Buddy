@@ -4,7 +4,10 @@
         select count(*) from hugi
     </select>
     <select id="getAllHugis" resultType="HugiDto">
-        select * from hugi order by unum desc
+        SELECT h.*, u.uname
+        FROM hugi h
+                 INNER JOIN user u ON h.unum = u.unum
+        ORDER BY h.hwriteday DESC
     </select>
     <insert id="insertHugi" parameterType="HugiDto">
         insert into hugi (hcontent,hphoto,hwriteday,hlike,unum) values (#{hcontent},#{hphoto},now(),0,#{unum})

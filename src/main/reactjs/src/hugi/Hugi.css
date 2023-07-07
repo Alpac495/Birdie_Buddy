@@ -3,7 +3,7 @@
     padding: 10px;
     overflow-y: auto;
     max-width: 500px;
-    max-height: 490px;
+    max-height: 600px;
 }
 .timeline::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */

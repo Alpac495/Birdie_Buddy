@@ -1,0 +1,34 @@
+.review_sliderwrap{
+    width: 550px;
+}
+
+.review_slider{
+    margin-left: 10px;
+    width: 170px;
+    height: 150px;
+}
+
+.review_main{
+    position: absolute;
+    width: 170px;
+    height: 150px;
+}
+.review_profile{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border: 1px black solid;
+    border-radius: 25px;
+    left: 5px;
+    top: 5px;
+
+}
+.review_writer{
+    position: relative;
+    left: 32px;
+    bottom:18px;
+    color: white;
+}
+.review_footer{
+    position: relative;
+}

@@ -1,5 +1,10 @@
 package data.service;
 
-public interface JoiningServiceInter {
+import data.dto.JoiningDto;
 
+import java.util.List;
+
+public interface JoiningServiceInter {
+    public void insertJoin(JoiningDto dto);
+    public List<JoiningDto> getJoiningList();
 }
