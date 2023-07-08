@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Slider from "react-slick";
 import "./Review.css";
 import no from "../images/nooooo.jpg";
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 
 
@@ -22,33 +23,33 @@ export default class SimpleSlider extends Component {
                     <div className={'review_slider'}>
                         <img className={'review_main'} alt={''} src={no}/>
                         <img className={'review_profile'} alt={''} src={no}/><span className={'review_writer'}>김똘똘</span>
-                        <div className={'review_footer'}><div>빵빵골프장</div><div>하트이십억개</div></div>
+                        <div className={'review_footer'}><FavoriteOutlinedIcon/></div>
 
                     </div>
                     <div className={'review_slider'}>
                         <img className={'review_main'} alt={''} src={no}/>
                         <img className={'review_profile'} alt={''} src={no}/><span className={'review_writer'}>김똘똘</span>
-                        <div><div>빵빵골프장</div><div>하트이십억개</div></div>
+                        <div className={'review_footer'}><FavoriteOutlinedIcon/></div>
                     </div>
                     <div className={'review_slider'}>
                         <img className={'review_main'} alt={''} src={no}/>
                         <img className={'review_profile'} alt={''} src={no}/><span className={'review_writer'}>김똘똘</span>
-                        <div><div>빵빵골프장</div><div>하트이십억개</div></div>
+                        <div className={'review_footer'}><FavoriteOutlinedIcon/></div>
                     </div>
                     <div className={'review_slider'}>
                         <img className={'review_main'} alt={''} src={no}/>
                         <img className={'review_profile'} alt={''} src={no}/><span className={'review_writer'}>김똘똘</span>
-                        <div><div>빵빵골프장</div><div>하트이십억개</div></div>
+                        <div className={'review_footer'}><FavoriteOutlinedIcon/> 100 &nbsp;</div>
                     </div>
                     <div className={'review_slider'}>
                         <img className={'review_main'} alt={''} src={no}/>
                         <img className={'review_profile'} alt={''} src={no}/><span className={'review_writer'}>김똘똘</span>
-                        <div><div>빵빵골프장</div><div>하트이십억개</div></div>
+                        <div className={'review_footer'}><FavoriteOutlinedIcon/></div>
                     </div>
                     <div className={'review_slider'}>
                         <img className={'review_main'} alt={''} src={no}/>
                         <img className={'review_profile'} alt={''} src={no}/><span className={'review_writer'}>김똘똘</span>
-                        <div><div>빵빵골프장</div><div>하트이십억개</div></div>
+                        <div className={'review_footer'}><FavoriteOutlinedIcon/></div>
                     </div>
                 </Slider>
             </div>

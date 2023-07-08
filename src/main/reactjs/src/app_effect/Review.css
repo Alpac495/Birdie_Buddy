@@ -12,12 +12,14 @@
     position: absolute;
     width: 170px;
     height: 150px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px lightgrey;
 }
 .review_profile{
     position: relative;
     width: 25px;
     height: 25px;
-    border: 1px black solid;
+    border: 1px white solid;
     border-radius: 25px;
     left: 5px;
     top: 5px;
@@ -30,5 +32,11 @@
     color: white;
 }
 .review_footer{
-    position: relative;
+    position: absolute;
+    width: 170px;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 16px;
+
 }

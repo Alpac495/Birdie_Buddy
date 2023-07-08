@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from "../header/Header";
 import Axios from "axios";
 
 function RankList(props) {
+    const [ranking, setRanking]=useState([]);
 
-    Axios.get()
     return (
         <div>
             <Header/>
-            <button type={'button'}>스코어 입력</button>
-            <div className={'ranking_list'}>
+            <div className={'ranking_listwrap'}>
+                <div>랭킹 리스트</div> <button type={'button'}>스코어 입력</button>
+                <div className={'ranking_list'}>
+                    {
 
-
+                    }
+                </div>
             </div>
         </div>
     );

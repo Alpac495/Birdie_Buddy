@@ -117,6 +117,11 @@ function Home(props) {
                     <NavLink to={'/chatbot'}>chatbot</NavLink>
                 </li>
             </ul>
+            <ul>main
+                <li>
+                    <NavLink to={'/main/main'}>main</NavLink>
+                </li>
+            </ul>
         </div>
     );
 }
