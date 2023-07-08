@@ -3,17 +3,7 @@ body {
     margin: 0;
     line-height: normal;
 }
-
 .friendlist-child {
-    position: absolute;
-    width: calc(100% + 1px);
-    top: 0;
-    right: -0.06rem;
-    left: 0;
-    background-color: #fff;
-    height: 5.25rem;
-}
-.friendlist-item {
     position: absolute;
     width: calc(100% + 3px);
     top: 8rem;
@@ -41,43 +31,39 @@ body {
     height: 3.75rem;
     z-index: 1;
 }
-.b,
-.div {
+.FLb,
+.FLdiv {
     margin: 0 !important;
+    left: calc(50% - 77px);
     letter-spacing: -0.01em;
     flex-shrink: 0;
 }
-.b {
+.FLb {
     position: absolute;
     top: 0.31rem;
-    left: calc(50% - 77px);
     font-size: 1.25rem;
     display: flex;
     align-items: center;
-    width: 5.38rem;
+    width: 9.63rem;
     height: 2.38rem;
     z-index: 2;
 }
-.div {
-    top: 2.62rem;
-    left: calc(50% - 78px);
+.FLdiv {
+    top: 2.69rem;
     font-weight: 500;
-    text-align: center;
-    justify-content: center;
-    width: 2.74rem;
-    height: 1.37rem;
+    width: 7.69rem;
+    height: 1.38rem;
     z-index: 3;
 }
-.div,
-.div1,
+.FLdiv,
+.FLdiv1,
 .flist {
-    position: absolute;
+    position: relative;
     display: flex;
     align-items: center;
 }
-.div1 {
-    margin: 0 !important;
-    top: 2.93rem;
+.FLdiv1 {
+    top: 2.68rem;
     right: 0.18rem;
     letter-spacing: -0.01em;
     font-weight: 500;
@@ -98,9 +84,10 @@ body {
     max-width: 31.25rem;
     text-align: left;
     font-size: 0.94rem;
+    margin-bottom: 100px;
 }
 .flist-line {
-    position: absolute;
+    position: relative;
     width: calc(100% + 1px);
     top: 13.66rem;
     right: -0.03rem;
@@ -109,7 +96,7 @@ body {
     box-sizing: border-box;
     height: 0.06rem;
 }
-.div2 {
+.FLdiv2 {
     flex: 1;
     position: relative;
     letter-spacing: -0.01em;
