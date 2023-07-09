@@ -13,4 +13,19 @@
     <select id="getUserData" parameterType="String" resultType="UserDto">
         select * from user where uemail=#{uemail}
     </select>
+    <select id="emailChk" parameterType="String" resultType="int">
+        select count(*) from user where uemail=#{uemail}
+    </select>
+    <insert id="insertCode" parameterType="String">
+        insert into hpChk (uhp, code) values (#{uhp}, #{code})
+    </insert>
+    <delete id="deleteCode" parameterType="String">
+        delete from hpChk where uhp=#{uhp}
+    </delete>
+    <select id="cntCode" parameterType="String" resultType="int">
+        select count(*) from hpChk where uhp=#{uhp}
+    </select>
+    <select id="cntHpCode" parameterType="String" resultType="int">
+        select count(*) from hpChk where uhp=#{uhp} and code=#{code}
+    </select>
 </mapper>

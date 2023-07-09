@@ -11,6 +11,10 @@ import java.util.Map;
 public interface LoginMapper {
     public void signUser(UserDto dto);
     public int loginok(Map<String, Object> map);
-    public String getNickname(String uemail);
     public UserDto getUserData(String uemail);
+    public int emailChk(String uemail);
+    public void insertCode(String uhp, String code);
+    public void deleteCode(String uhp);
+    public int cntCode(String uhp);
+    public int cntHpCode(String uhp, String code);
 }
