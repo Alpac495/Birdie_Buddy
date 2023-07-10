@@ -11,6 +11,8 @@ function HugiList(props) {
     const [hwriteday, setHwriteday] = useState('');
     const [hnum, setHnum] = useState('');
     const [unum, setUnum] = useState(null);
+    const [uname,setUname]=useState();
+    const [unickname,setUnickname]=useState();
     const [hugiData, setHugiData] = useState([]);
 
     const url = process.env.REACT_APP_BOARDURL;
@@ -27,7 +29,7 @@ function HugiList(props) {
     }, []);
 
     const refreshHugiData = () => {
-        Axios.get('/hugi/list')
+        Axios.get(`/hugi/list`)
             .then((res) => {
                 setHugiData(res.data);
             })
@@ -61,6 +63,8 @@ function HugiList(props) {
         const dataToSend = {
             hnum: hnum || '',
             unum: unum || '',
+            uname:uname || '',
+            unickname:unickname ||'',
             hlike: hlike || 0,
             hcontent: hcontent || '',
             hphoto: hphoto || '',
@@ -71,6 +75,7 @@ function HugiList(props) {
             .then((res) => {
                 navi('/hugi/list');
                 refreshHugiData();
+
 
                 setHphoto('');
                 setHcontent('');
@@ -117,11 +122,14 @@ function HugiList(props) {
                     <HugiRowList
                         key={rowData.hnum}
                         hnum={rowData.hnum}
-                        unum={rowData.uname}
+                        unum={rowData.unum}
+                        uname={rowData.uname}
+                        unickname={rowData.unickname}
                         hcontent={rowData.hcontent}
                         hphoto={rowData.hphoto}
                         hwriteday={rowData.hwriteday}
                         refreshHugiData={refreshHugiData}
+
                     />
                 ))}
             </div>

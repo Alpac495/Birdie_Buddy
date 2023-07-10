@@ -13,6 +13,7 @@ import java.util.List;
 public class HugiService implements HugiServiceInter
 {
     private HugiMapper hugiMapper;
+
     @Override
     public int getTotalCount() {
         return hugiMapper.getTotalCount();
@@ -22,8 +23,32 @@ public class HugiService implements HugiServiceInter
     public List<HugiDto> getAllHugis() {
         return hugiMapper.getAllHugis();
     }
+//    @Override
+//    public List<HugiDto> getHugisByUser(int unum) {
+//        List<HugiDto> list = hugiMapper.getHugisByUser(unum);
+//
+//        // 각 후기의 작성자 정보 가져오기
+//        for (HugiDto hugi : list) {
+//            UserDto userDto = getUserDto(hugi.getUnum());
+//            hugi.setUname(userDto.getUname());
+//            hugi.setUnickname(userDto.getUnickname());
+//        }
+//
+//        return list;
+//    }
+
     @Override
     public void insertHugi(HugiDto hdto) {
+        // unum을 사용하여 사용자 정보 가져오기
+        int unum = hdto.getUnum();
+        UserDto userDto = getUserDto(unum);
+        String uname = userDto.getUname();
+        String unickname = userDto.getUnickname();
+
+        // HugiDto에 사용자 정보 설정
+        hdto.setUname(uname);
+        hdto.setUnickname(unickname);
+
         hugiMapper.insertHugi(hdto);
     }
 
@@ -34,13 +59,35 @@ public class HugiService implements HugiServiceInter
 
     @Override
     public HugiDto detailPage(int hnum) {
-        return hugiMapper.detailPage(hnum);
+        HugiDto hugiDto = hugiMapper.detailPage(hnum);
+
+        // unum을 사용하여 사용자 정보 가져오기
+        int unum = hugiDto.getUnum();
+        UserDto userDto = getUserDto(unum);
+        String uname = userDto.getUname();
+        String unickname = userDto.getUnickname();
+
+        // HugiDto에 사용자 정보 설정
+        hugiDto.setUname(uname);
+        hugiDto.setUnickname(unickname);
+
+        return hugiDto;
     }
 
     @Override
     public void deleteHugi(int hnum) {
         hugiMapper.deleteHugi(hnum);
     }
+    @Override
+    public UserDto getUserDto(int unum) {
+        // 여기에서 UserDto 정보를 가져오는 로직을 구현해주세요.
+        // 예시로 세션에서 가져온 값을 활용하거나, 필요한 정보를 데이터베이스 등에서 조회하는 방식으로 구현합니다.
+        // 가져온 UserDto를 반환합니다.
+        UserDto userDto = new UserDto();
+        userDto.setUname(userDto.getUname());
+        userDto.setUnickname(userDto.getUnickname());
 
-
+        return userDto;
+    }
 }
+

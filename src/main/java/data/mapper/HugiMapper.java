@@ -14,6 +14,6 @@ public interface HugiMapper {
     public void updateLikeCount(int unum, int hlike);
     public HugiDto detailPage(int hnum);
     public void deleteHugi(int hnum);
-
+    public UserDto getUserDto(int unum);
 
 }
