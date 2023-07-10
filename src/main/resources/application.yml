@@ -22,3 +22,9 @@ mybatis:
   type-aliases-package: data.dto
   mapper-locations:
     - /mapper/**/*.xml
+
+#sens Key
+naver:
+  accessKey : CBpN4xvFvo2Tkz5BDxhx
+  secretKey : R6wZyzTJhKjJXNsk6vpVHGprPyIPiNBdEvTXbcYB
+  serviceId : ncp:sms:kr:305198840444:birdiebuddy

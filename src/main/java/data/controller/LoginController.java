@@ -6,6 +6,7 @@ import data.service.LoginService;
 import naver.cloud.NcpObjectStorageService;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -25,15 +26,16 @@ import java.sql.Timestamp;
 @RequestMapping("/login")
 public class LoginController {
 
-    String photo;
-    String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+//    @Autowired
+//    private NcpObjectStorageService storageService;
+//    String photo;
+//    String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+//    private String bucketName = "bit701-bucket-111";
+
     @Autowired
     LoginService loginService;
     @Autowired
     LoginMapper loginMapper;
-    @Autowired
-    private NcpObjectStorageService storageService;
-    private String bucketName = "bit701-bucket-111";
 
     @PostMapping("/sign")
     public void signUser(@RequestBody UserDto dto) {
@@ -67,6 +69,23 @@ public class LoginController {
         System.out.println("n:"+n);
         return n;
     }
+    @GetMapping("/hpchk")
+    public int hpchk(String uhp){
+        int n = loginMapper.hpChk(uhp);
+        return n;
+    }
+
+
+
+
+
+
+    @Value("${naver.accessKey}")
+    private String accessKey;
+    @Value("${naver.secretKey}")
+    private String secretKey;
+    @Value("${naver.serviceId}")
+    private String serviceId;
 
     @GetMapping("/smsSend")
     public String smsSend(String uhp) throws Exception {
@@ -91,9 +110,9 @@ public class LoginController {
         String hostNameUrl = "https://sens.apigw.ntruss.com";     		// 호스트 URL
         String requestUrl= "/sms/v2/services/";                   		// 요청 URL
         String requestUrlType = "/messages";                      		// 요청 URL
-        String accessKey = "";                     	// 네이버 클라우드 플랫폼 회원에게 발급되는 개인 인증키			// Access Key : https://www.ncloud.com/mypage/manage/info > 인증키 관리 > Access Key ID
-        String secretKey = "";  // 2차 인증을 위해 서비스마다 할당되는 service secret key	// Service Key : https://www.ncloud.com/mypage/manage/info > 인증키 관리 > Access Key ID
-        String serviceId = "ncp:sms:kr::";       // 프로젝트에 할당된 SMS 서비스 ID							// service ID : https://console.ncloud.com/sens/project > Simple & ... > Project > 서비스 ID
+//        String accessKey = "";                     	// 네이버 클라우드 플랫폼 회원에게 발급되는 개인 인증키			// Access Key : https://www.ncloud.com/mypage/manage/info > 인증키 관리 > Access Key ID
+//        String secretKey = "";  // 2차 인증을 위해 서비스마다 할당되는 service secret key	// Service Key : https://www.ncloud.com/mypage/manage/info > 인증키 관리 > Access Key ID
+//        String serviceId = "ncp:sms:kr::";       // 프로젝트에 할당된 SMS 서비스 ID							// service ID : https://console.ncloud.com/sens/project > Simple & ... > Project > 서비스 ID
         String method = "POST";											// 요청 method
         String timestamp = Long.toString(System.currentTimeMillis()); 	// current timestamp (epoch)
         requestUrl += serviceId + requestUrlType;
@@ -172,9 +191,9 @@ public class LoginController {
         String method = "POST";					// method
         String url = "/sms/v2/services/ncp:sms:kr:305198840444:birdiebuddy/messages";	// url (include query string)
         String timestamp = ts;			// current timestamp (epoch)
-        String AccessKey = "";
-        String SecretKey = "";
-        String ServiceID = "ncp:sms:kr::";
+//        String accessKey = "";
+//        String secretKey = "";
+//        String serviceId = "ncp:sms:kr::";
         System.out.println("uhp:"+uhp);
 
         String message = new StringBuilder()
@@ -184,10 +203,10 @@ public class LoginController {
                 .append(newLine)
                 .append(timestamp)
                 .append(newLine)
-                .append(AccessKey)
+                .append(accessKey)
                 .toString();
 
-        SecretKeySpec signingKey = new SecretKeySpec(SecretKey.getBytes("UTF-8"), "HmacSHA256");
+        SecretKeySpec signingKey = new SecretKeySpec(secretKey.getBytes("UTF-8"), "HmacSHA256");
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(signingKey);
 

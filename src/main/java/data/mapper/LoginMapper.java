@@ -17,4 +17,5 @@ public interface LoginMapper {
     public void deleteCode(String uhp);
     public int cntCode(String uhp);
     public int cntHpCode(String uhp, String code);
+    public int hpChk(String uhp);
 }
