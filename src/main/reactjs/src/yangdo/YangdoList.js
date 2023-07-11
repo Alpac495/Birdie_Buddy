@@ -8,7 +8,7 @@ function YangdoList(props) {
 
     const onWriteButtonEvent=()=>{
         if(sessionStorage.unum == null){
-            alert("먼저 로그인을 해주세요");
+            alert("로그인을 해주세요");
             navi("/login/login");
         }else{
             navi("/yangdo/form");
