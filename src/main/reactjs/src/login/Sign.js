@@ -110,21 +110,21 @@ function Sign(props) {
 
     return (
         <div className={'div1'}>
-            <div style={{textAlign: 'center'}}>
+            <div className={'div2'}>
                 <img src={logo} alt={''} />
                 <form onSubmit={ouSubmitEvent}>
                     이메일<br/>
-                    <input type={"text"} required ref={emailRef} onChange={(e) => setUemail(e.target.value)}
+                    <input type={"text"} className={'textbox'} required ref={emailRef} onChange={(e) => setUemail(e.target.value)}
                            value={uemail}/><br/>
                     <button type='button' onClick={emailchk}>중복확인</button>
                     <br/><br/>
 
                     비밀번호<br/>
-                    <input type={"password"} required onChange={(e) => setUpass(e.target.value)}
+                    <input type={"password"} className={'textbox'} required onChange={(e) => setUpass(e.target.value)}
                            value={upass}/><br/><br/>
 
                     비밀번호 확인<br/>
-                    <input type={"password"} required onChange={(e) => setUpassok(e.target.value)} value={upassok}/>
+                    <input type={"password"} className={'textbox'} required onChange={(e) => setUpassok(e.target.value)} value={upassok}/>
                     {
                         upass == '' ? <div></div> : upass != '' && upass != upassok ? <div>비밀번호가 일치하지 않습니다</div> :
                             <div>비밀번호가 일치합니다</div>
@@ -133,26 +133,24 @@ function Sign(props) {
 
 
                     이름<br/>
-                    <input type={"text"} required onChange={(e) => setUname(e.target.value)} value={uname}/><br/><br/>
+                    <input type={"text"} className={'textbox'} required onChange={(e) => setUname(e.target.value)} value={uname}/><br/><br/>
 
                     휴대전화<br/>
-                    <input type={"text"} placeholder={''} required ref={hpRef} value={uhp}
+                    <input type={"text"} className={'textbox'} placeholder={''} required ref={hpRef} value={uhp}
                            onChange={(e) => setUhp(e.target.value)}/><br/>
                     <button type={'button'} onClick={sms}>전화 인증</button>
                     <br/>
-                    <input type={"text"} placeholder={'인증코드쓰는곳'} ref={codeRef}
+                    <input type={"text"} className={'textbox'} placeholder={'인증코드쓰는곳'} ref={codeRef}
                            onChange={(e) => setCode(e.target.value)}/><br/>
                     <button type={'button'} onClick={codeChk}>인증확인</button>
                     <br/>
                     <br/>
                     닉네임<br/>
-                    <input type={"text"} required onChange={(e) => setUnickname(e.target.value)}
+                    <input type={"text"} className={'textbox'} required onChange={(e) => setUnickname(e.target.value)}
                            value={unickname}/><br/><br/>
 
-                    생년월일<br/>
-                    <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage}/><br/><br/>
+                    <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage}/>&nbsp;
 
-                    성별<br/>
                     <select required onChange={(e) => setUgender(e.target.value)} value={ugender}>
                         <option value={"남"}>남</option>
                         <option value={"여"}>여</option>

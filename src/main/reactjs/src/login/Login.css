@@ -13,11 +13,20 @@
     display: inline-flex;
     width: 20rem;
     height: 2.9rem;
-    padding: 0.5rem 4rem 0.5rem 0.5rem;
+    padding: 0.5rem 4rem 0.5rem 4rem;
     align-items: center;
     gap: 2.65631rem;
 
     border-radius: 0.125rem;
     border: 1px solid rgba(255, 255, 255, 0.10);
     background: #51C64D;
+}
+.loginbtn{
+    justify-content: center;
+}
+input[type="text"]::placeholder {
+    text-align: center;
+}
+input[type="password"]::placeholder {
+    text-align: center;
 }

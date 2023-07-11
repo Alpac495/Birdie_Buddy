@@ -6,3 +6,15 @@
     align-items: center;
     border: 2px solid black;
 }
+.div2{
+    text-align: center;
+}
+.textbox{
+    display: inline-flex;
+    width: 20rem;
+    height: 2.9rem;
+    padding: 0.5rem 4rem 0.5rem 0.5rem;
+    align-items: center;
+    gap: 2.65631rem;
+    border-radius: 0.125rem;
+}

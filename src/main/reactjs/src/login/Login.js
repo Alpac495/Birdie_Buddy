@@ -51,7 +51,7 @@ function Login(props) {
                     <input type={'checkbox'} className={''} onClick={toggle}></input>
                     <span className={''}>이메일저장</span>
                     <div className={''} type={'button'} onClick={sign}>회원가입</div>
-                    <button className={'greenbox'} type={'submit'} onClick={ouSubmitEvent}>로그인</button>
+                    <button className={'greenbox loginbtn'} type={'submit'} onClick={ouSubmitEvent}><span>로그인</span></button>
                 </form>
                 <Kakao/>
                 <Naver/>
