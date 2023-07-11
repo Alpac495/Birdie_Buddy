@@ -1,8 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import Axios from "axios";
-import "./Friend.css";
-import FriendList from "./FriendList";
+import "./FriendList.css";
 
 function Friend(props) {
     const unum=sessionStorage.unum;
@@ -22,15 +21,29 @@ function Friend(props) {
 
 
     return (
-        <div className="friend">
-            <div className="friend-child" />
-            <div className="frldiv">친구 목록</div>
-            <div className="frldiv1">채팅</div>
-            <div className="friend-item" />
+        <div className="friendlist">
+            <h4>총 친구수 : {data.length}</h4>
+
+            <div className="flist-line" />
+            <div className="flframe">
+                <div className="FLdiv2">친구 목록</div>
+            </div>
+            <div className="flframe1">
+                <div className="FLdiv2">채팅</div>
+            </div>
 
             {
                 data.map &&
-                data.map((item,idx)=> <FriendList key={idx} item={item} idx={idx}/>)
+                data.map((item,idx)=>
+                        <div className="flist">
+                            <div className="flist-child">
+                            <div className="flist-item" />
+                            <b className="FLb">{item.uname}({item.unickname})</b>
+                            <div className="FLdiv">{item.ugender} /{item.uage}</div>
+                            <div className="FLdiv1">{item.ucontent}</div>
+
+                            </div>
+                    </div>)
             }
 
         </div>

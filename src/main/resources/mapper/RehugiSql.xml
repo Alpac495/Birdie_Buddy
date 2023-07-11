@@ -1,28 +1,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.RehugiMapper">
-
-    <insert id="addComment" parameterType="RehugiDto">
+    <insert id="addComment" parameterType="data.dto.RehugiDto">
         INSERT INTO rehugi (hnum, unum, rhcontent, rhwriteday)
-        VALUES (#{hnum}, #{unum}, #{rhcontent}, #{rhwriteday})
+        VALUES (#{hnum}, #{unum}, #{rhcontent}, now())
     </insert>
 
-    <insert id="addReply" parameterType="RehugiDto">
+    <insert id="addReply" parameterType="data.dto.RehugiDto">
         INSERT INTO rehugi (hnum, unum, rhcontent, rhwriteday, ref, step, depth)
-        VALUES (#{hnum}, #{unum}, #{rhcontent}, #{rhwriteday}, #{ref}, #{step}, #{depth})
+        VALUES (#{hnum}, #{unum}, #{rhcontent}, now(), #{ref}, #{step}, #{depth})
     </insert>
 
-    <select id="getAllCommentsWithReplies" resultType="RehugiDto">
+    <select id="getAllCommentsWithReplies" resultType="data.dto.RehugiDto">
         SELECT *
         FROM rehugi
+        WHERE hnum = #{hnum}
         ORDER BY ref ASC, step ASC
     </select>
 
     <delete id="deleteComment" parameterType="int">
-        DELETE FROM rehugi WHERE rhnum = #{unum}
+        DELETE FROM rehugi WHERE unum = #{unum}
     </delete>
 
     <delete id="deleteReply" parameterType="int">
-        DELETE FROM rehugi WHERE rhnum = #{unum}
+        DELETE FROM rehugi WHERE unum = #{unum}
     </delete>
-
 </mapper>

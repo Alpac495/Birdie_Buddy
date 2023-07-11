@@ -1,32 +1,29 @@
 import React, {useEffect} from 'react';
-import {useLocation} from "react-router-dom";
 
 function Naver(props) {
-    const location = useLocation();
-    const NaverLogin = () => {
-        const {naver} = window
-        const naverLogin = new naver.LoginWithNaverId(
-            {
-                clientId: "AmX1zvlO8VFKoSiQZoaz",
-                callbackUrl: "http://localhost:3000/login/ncallback",
-                isPopup: false, /* 팝업을 통한 연동처리 여부, true 면 팝업 */
-                loginButton: {color: "green", type: 3, height: 47}, /* 로그인 버튼의 타입을 지정 */
-                //callbackHandle: true,
-            }
-        );
-        naverLogin.init();
-        console.log(naverLogin);
-        if (!location.hash) return;
-        const token = location.hash.split('=')[1].split('&')[0]; //token 출력
-        console.log(token);
-    }
-
     useEffect(() => {
-        NaverLogin()
+        const naverLogin = new window.naver.LoginWithNaverId({
+            clientId: 'AmX1zvlO8VFKoSiQZoaz',
+            callbackUrl: 'http://localhost:3000/login/ncallback',
+            isPopup: false,
+            loginButton: {color: 'green', type: 3, height: 40},
+        });
+        naverLogin.init();
     }, []);
+
+    const handleNaverLogin =()=> {
+            if (document &&
+                document?.querySelector("#naverIdLogin")?.firstChild &&
+                window !== undefined) {
+                const loginBtn = document.getElementById("naverIdLogin")?.firstChild;
+                loginBtn.click();
+            }
+        }
+
     return (
-        <div className={'grid-naver'} id={'naverIdLogin'}>
-            네이버로그인2
+        <div>
+            <div id="naverIdLogin" style={{display:'none'}}></div>
+            <button onClick={handleNaverLogin}>네이버 로그인</button>
         </div>
     );
 }

@@ -1,0 +1,10 @@
+.current-page-indicator{
+    position: relative;
+    left: 300px;
+    bottom: 30px;
+    border: 1px black solid;
+    width: 50px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}

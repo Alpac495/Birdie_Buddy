@@ -10,7 +10,9 @@ export default class SimpleSlider extends Component {
             speed: 500,
             slidesToShow: 3,
             slidesToScroll: 1,
-            swipeToSlide: true
+            swipeToSlide: true,
+            autoplay:true,
+            autoplaySpeed:3000,
         };
 
         return (
@@ -18,12 +20,11 @@ export default class SimpleSlider extends Component {
                 <Slider {...settings}>
                     <div className={'rec_slider'}>
                         <img alt={''} src={no}/>
-                        <b className="b">{`07.02(월) `}</b>
-                        <div className="xx-0-container">
-                            <p className="xx">필리핀 세부 XX클럽</p>
-                            <p className="xx">그린피 0원</p>
-                            <p className="xx">2명 모집</p>
-                            <p className="xx">{` `}</p>
+                        <div className="rec_info">
+                            <span className="b">{`07.02(월) `}</span><br/>
+                            <span className="xx">필리핀 세부 XX클럽</span><br/>
+                            <span className="xx">그린피 0원</span><br/>
+                            <span className="xx">2명 모집</span>
                         </div>
                     </div>
                     <div className={'rec_slider'}>
