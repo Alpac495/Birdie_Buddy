@@ -1,7 +1,7 @@
 .mainpage {
     background-color: #fff;
     width: 100%;
-    height: 58rem;
+    height: 62rem;
     overflow: hidden;
     font-size: 0.81rem;
     color: #000;
@@ -12,11 +12,11 @@
 }
 .main_banner img{
     width: 100%;
-    height: 170px;
+    height: 150px;
 }
 
 .main_btnwrap {
-    margin: 30px auto;
+    margin: 10px auto 30px auto;
     width: 95%;
     height: 150px;
     display: flex;
@@ -33,9 +33,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(57, 199, 81);
-    border : none;
+    border : 1px solid lightgrey;
     border-radius: 5px;
-    box-shadow: 1px 1px 1px black;
+    box-shadow: 2px 4px 4px lightgrey;
 }
 .main_smbtn{
     width: 50%;
@@ -49,22 +49,26 @@
     height: 45%;
     background-color: white;
     border: 1px lightgrey solid;
-    box-shadow: 1px 1px 1px lightgrey;
+    box-shadow: 2px 4px 4px lightgrey;
     border-radius: 5px;
 }
 .main_join{
     margin: 15px 0;
-    width: 700px;
+    width: 750px;
 }
 .rec_slider{
     display: flex !important;
     border: 1px lightgrey solid;
     border-radius: 5px;
-    width: 210px !important;
+    width: 230px !important;
     height: 120px;
     align-items: center;
-    margin-left: 15px;
+    margin-left: 10px;
 }
+.rec_info{
+    width: 60%;
+    font-size: 12px;
+ }
 .main_joinrecotxt{
     margin-bottom: 5px;
     margin-left: 15px;
@@ -76,10 +80,10 @@
     margin-left: 15px;
 }
 .main_joinreco div span{
-    margin-left: 20px;
+    margin-left: 30px;
 }
 .main_reviewwrap{
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 12px;
 }
 .main_reviewtxt{

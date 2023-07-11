@@ -36,15 +36,16 @@ function Main(props) {
 
                 </div>
             </div>
-            <hr style={{height:'10px', backgroundColor:'gray'}}/>
+            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
             <div className={'main_join'}>
                 <div className={'main_joinrecotxt'}>당신을 위한 조인 추천</div>
                 <div className={'main_joinreco'}>
                     <Recommendslider/>
                 </div>
             </div>
+            <hr style={{height:'3px', backgroundColor:'lightgray', marginTop:'50px'}}/>
             <div className={'main_reviewwrap'}>
-                <div className={'main_reviewtxt'}>후기</div>
+                <div className={'main_reviewtxt'}>Best 후기</div>
                 <Reviewslider/>
             </div>
             <div>
