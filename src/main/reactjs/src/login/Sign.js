@@ -3,6 +3,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import "./Sign.css";
 import Sms from "./Sms";
+import logo from "../image/logo_main.svg"
 
 function Sign(props) {
     const [uemail, setUemail] = useState('');
@@ -108,8 +109,9 @@ function Sign(props) {
 
 
     return (
-        <div className={''} style={{width: '360px'}}>
+        <div className={'div1'}>
             <div style={{textAlign: 'center'}}>
+                <img src={logo} alt={''} />
                 <form onSubmit={ouSubmitEvent}>
                     이메일<br/>
                     <input type={"text"} required ref={emailRef} onChange={(e) => setUemail(e.target.value)}
