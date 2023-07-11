@@ -56,6 +56,12 @@ function Home(props) {
                 </li>
             </ul>
 
+            <ul> Yangdo
+                <li>
+                    <NavLink to={'/yangdo/list'}>양도 리스트</NavLink>
+                </li>
+            </ul>
+
             <ul> friend
                 <li>
                     <NavLink to={`/friend/list/${unum}`}>친구목록</NavLink>
