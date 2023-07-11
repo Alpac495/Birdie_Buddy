@@ -107,7 +107,7 @@ function HugiList(props) {
                     <div className="input-group">
             <textarea
                 className="form-control"
-                style={{ width: '80%' }}
+                style={{ width: '80%',resize:"none"}}
                 value={hcontent}
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>

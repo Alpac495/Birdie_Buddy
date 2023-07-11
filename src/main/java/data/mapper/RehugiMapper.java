@@ -10,6 +10,6 @@ public interface RehugiMapper {
     public void addComment(RehugiDto rehugiDto);
     public void addReply(RehugiDto rehugiDto);
     public List<RehugiDto> getAllCommentsWithReplies(@Param("hnum") int hnum);
-    public void deleteComment(int rhnum);
-    public void deleteReply(int rhnum);
+    public void deleteCommentOrReply(int rhnum);
+    public void deleteAllComments(int hnum);
 }

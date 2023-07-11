@@ -42,6 +42,7 @@ public class RehugiController {
         return "Comment added successfully";
     }
 
+
     @PostMapping("/newreply")
     public String newReply(@RequestParam("unum") int unum, @RequestBody RehugiDto rhdto) {
         System.out.println("unum>>"+unum);
@@ -56,14 +57,15 @@ public class RehugiController {
         return rehugiService.getAllCommentsWithReplies(hnum);
     }
 
-    @PostMapping("/deletecomment")
-    public String deleteCommentOrReply(@RequestParam(value = "unum", defaultValue = "0") int unum) {
-        if (unum != 0) {
-            rehugiService.deleteReply(unum);
-            return "Reply deleted successfully";
-        } else {
-            rehugiService.deleteComment(unum);
-            return "Comment deleted successfully";
-        }
+    @DeleteMapping("/deletecomment/{rhnum}")
+    public String deleteCommentOrReply(@PathVariable(value = "rhnum") int rhnum) {
+        System.out.println("delete rhnum>>" + rhnum);
+        rehugiService.deleteCommentOrReply(rhnum);
+        return "Comment or Reply deleted successfully";
+    }
+    @DeleteMapping("/deleteAllComments/{hnum}")
+    public String deleteAllComments(@PathVariable int hnum) {
+        rehugiService.deleteAllComments(hnum);
+        return "All comments and replies deleted successfully";
     }
 }

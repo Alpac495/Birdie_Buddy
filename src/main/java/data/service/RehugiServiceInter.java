@@ -10,6 +10,7 @@ public interface RehugiServiceInter {
     public void addReply(RehugiDto rhdto);
     public List<RehugiDto> getAllCommentsWithReplies(@Param("hnum") int hnum);
 
-    void deleteComment(int unum);
-    void deleteReply(int unum);
+    public void deleteCommentOrReply(int rhnum);
+    public void deleteAllComments(@Param("hnum")int hnum);
+
 }

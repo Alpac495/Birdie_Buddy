@@ -17,11 +17,11 @@
         ORDER BY ref ASC, step ASC
     </select>
 
-    <delete id="deleteComment" parameterType="int">
-        DELETE FROM rehugi WHERE unum = #{unum}
+    <delete id="deleteCommentOrReply" parameterType="int">
+        DELETE FROM rehugi WHERE rhnum = #{rhnum}
     </delete>
 
-    <delete id="deleteReply" parameterType="int">
-        DELETE FROM rehugi WHERE unum = #{unum}
+    <delete id="deleteAllComments" parameterType="int">
+        DELETE FROM rehugi WHERE hnum = #{hnum}
     </delete>
 </mapper>

@@ -29,3 +29,8 @@
     font-size: 12px;
     text-align: center;
 }
+
+.Icons{
+    cursor: pointer;
+    margin-left: 15px;
+}
