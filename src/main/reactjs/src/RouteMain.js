@@ -15,6 +15,7 @@ import Lobby from "./chat/Lobby";
 import {Room} from "./chat";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
+import JoinDetail from "./joining/JoinDetail";
 
 
 function RouteMain(props) {
@@ -43,6 +44,7 @@ function RouteMain(props) {
                 <Route path={'/joining'} >
                     <Route path={"list"} element={<JoinList/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
+                    <Route path={"detail"} element={<JoinDetail/>}/>
 
                 </Route>
 

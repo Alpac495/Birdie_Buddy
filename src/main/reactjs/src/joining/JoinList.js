@@ -49,7 +49,7 @@ const JoinList = () => {
                                         className="emoji-flag-in-hole"
                                         alt=""
                                         src={iconFlag}/>
-                                    <div className="JLdiv2">1자리 비었어요!</div>
+                                    <div className="JLdiv2">조인 2명</div>
                                 </div>
                                 <div className="avatar-user-60">
                                     <div className="rectangle" />
@@ -57,7 +57,7 @@ const JoinList = () => {
                                 </div>
                                 <div className="rectangle-parent">
                                     <div className="group-child" />
-                                    <div className="d-16">D-16</div>
+                                    <div className="d-16">1/3</div>
                                 </div>
                                 <div className="jlist-child" />
                             </div>)}
