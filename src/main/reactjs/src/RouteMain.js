@@ -18,6 +18,7 @@ import RankList from "./ranking/RankList";
 import YangdoList from "./yangdo/YangdoList";
 import YangdoDetail from "./yangdo/YangdoDetail";
 import YangdoForm from "./yangdo/YangdoForm";
+import JoinDetail from "./joining/JoinDetail";
 
 
 function RouteMain(props) {
@@ -54,6 +55,7 @@ function RouteMain(props) {
                 <Route path={'/joining'} >
                     <Route path={"list"} element={<JoinList/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
+                    <Route path={"detail"} element={<JoinDetail/>}/>
 
                 </Route>
 

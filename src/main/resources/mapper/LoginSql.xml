@@ -1,8 +1,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.LoginMapper">
     <insert id="signUser" parameterType="UserDto">
-        insert into user (uemail, upass, uname, unickname, uage, ugender) values (#{uemail}, #{upass},
-        #{uname}, #{unickname}, #{uage}, #{ugender})
+        insert into user (uemail, upass, uname, unickname, uage, ugender, uhp) values (#{uemail}, #{upass},
+        #{uname}, #{unickname}, #{uage}, #{ugender}, #{uhp})
     </insert>
     <select id="loginok" parameterType="Map" resultType="int">
         select count(*) from user where uemail=#{uemail} and upass=#{upass}
@@ -12,5 +12,23 @@
     </select>
     <select id="getUserData" parameterType="String" resultType="UserDto">
         select * from user where uemail=#{uemail}
+    </select>
+    <select id="emailChk" parameterType="String" resultType="int">
+        select count(*) from user where uemail=#{uemail}
+    </select>
+    <select id="hpChk" parameterType="String" resultType="int">
+        select count(*) from user where uhp=#{uhp}
+    </select>
+    <insert id="insertCode" parameterType="String">
+        insert into hpChk (uhp, code) values (#{uhp}, #{code})
+    </insert>
+    <delete id="deleteCode" parameterType="String">
+        delete from hpChk where uhp=#{uhp}
+    </delete>
+    <select id="cntCode" parameterType="String" resultType="int">
+        select count(*) from hpChk where uhp=#{uhp}
+    </select>
+    <select id="cntHpCode" parameterType="String" resultType="int">
+        select count(*) from hpChk where uhp=#{uhp} and code=#{code}
     </select>
 </mapper>
