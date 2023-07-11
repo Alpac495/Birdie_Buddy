@@ -1,13 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
-body {
-    font-size: 10px;
-}
+
 body {
     margin: 0;
     line-height: normal;
 }
-
 .JLdiv {
     position: absolute;
     top: 0;
@@ -23,7 +19,7 @@ body {
 .JLb {
     position: relative;
     letter-spacing: 0.03em;
-    width: 6.8rem;
+    width: 4.25rem;
     flex-shrink: 0;
 }
 .JLb,
@@ -35,51 +31,50 @@ body {
 }
 .btn1_wrapper {
     position: absolute;
-    top: 8.6rem;
-    left: 1.7rem;
+    top: 5.38rem;
+    left: 1.06rem;
     border-radius: 10px;
-    background-color: #d9d9d9;
+    background-color: transparent;
     border: 1px solid #51c64d;
     box-sizing: border-box;
-    width: 7.5rem;
+    width: 4.69rem;
     overflow: hidden;
     flex-direction: row;
-    padding: 0.9rem 1.8rem;
-    text-align: center;
+    padding: 0.56rem 1.13rem;
 }
 .JLb1 {
     position: relative;
     letter-spacing: 0.03em;
-    width: 4.4rem;
+    width: 2.75rem;
     flex-shrink: 0;
 }
 .btn2_wrapper,
 .joinlist-child {
     position: absolute;
     overflow: hidden;
+    border: 1px solid black;
 }
 .btn2_wrapper {
-    top: 8.6rem;
-    right: 1.6rem;
+    top: 5.38rem;
+    right: 1rem;
     border-radius: 10px;
-    background-color: #d9d9d9;
+    background-color: transparent;
     border: 1px solid #ed4c5c;
     box-sizing: border-box;
-    width: 7.5rem;
+    width: 4.69rem;
     display: flex;
     flex-direction: row;
-    padding: 0.9rem 2.9rem;
+    padding: 0.56rem 1.81rem;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 .joinlist-child {
     width: calc(100% - 205px);
-    top: 8.4rem;
-    right: 10.2rem;
-    left: 10.3rem;
+    top: 5.25rem;
+    right: 6.38rem;
+    left: 6.44rem;
     max-width: 100%;
-    height: 3.7rem;
+    height: 2.31rem;
 }
 .instance-child,
 .jlist-inner {
@@ -97,31 +92,32 @@ body {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 .jlist-inner {
-    height: 13.4rem;
-}
-.JLp {
-    font-size: 1.3rem;
+    height: 8.38rem;
 }
 .JLp,
 .JLp1 {
     margin: 0;
 }
+.JLp1 {
+    font-size: 0.94rem;
+    font-weight: 500;
+}
 .JLdiv1 {
     position: absolute;
-    top: 1.8rem;
-    left: 9.4rem;
+    top: 1.06rem;
+    left: 5.88rem;
     line-height: 150%;
     color: #000;
     display: inline-block;
-    width: 14.2rem;
-    font-size: 1.5rem;
+    width: 8.88rem;
+    font-size: 0.81rem;
 }
 .emoji-flag-in-hole {
     position: absolute;
-    top: 0.1rem;
-    right: 9.6rem;
-    width: 1.6rem;
-    height: 1.65rem;
+    top: 0.06rem;
+    right: 6.06rem;
+    width: 1rem;
+    height: 1.03rem;
 }
 .JLdiv2 {
     position: absolute;
@@ -129,41 +125,41 @@ body {
     right: 0;
     line-height: 150%;
     display: inline-block;
-    width: 8.8rem;
+    width: 5.5rem;
 }
 .emoji-flag-in-hole-parent {
     position: absolute;
-    top: 10.7rem;
-    right: 1.6rem;
-    width: 11.2rem;
-    height: 1.8rem;
+    top: 6.13rem;
+    right: 0.81rem;
+    width: 7.06rem;
+    height: 1.13rem;
 }
 .avatar-user-60,
 .rectangle,
 .rectangle1 {
     position: absolute;
-    top: 1rem;
-    left: 1.8rem;
+    top: 0.63rem;
+    left: 1.13rem;
     border-radius: 24px;
     background-color: #54c64d;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 .avatar-user-60,
 .rectangle1 {
-    top: 4rem;
-    left: -1.5rem;
+    top: 2.5rem;
+    left: -0.94rem;
     border-radius: 90px;
-    width: 9rem;
-    height: 9rem;
+    width: 5.63rem;
+    height: 5.63rem;
 }
 .avatar-user-60 {
-    top: 2.2rem;
-    left: 1.4rem;
+    top: 1.13rem;
+    left: 0.63rem;
     border-radius: 10px;
     background-color: #fff;
-    width: 6.02rem;
-    height: 6rem;
+    width: 3.76rem;
+    height: 3.75rem;
     overflow: hidden;
 }
 .group-child {
@@ -174,64 +170,73 @@ body {
     background-color: rgba(217, 217, 217, 0.16);
     border: 1px solid #ed4c5c;
     box-sizing: border-box;
-    width: 4.51rem;
-    height: 1.9rem;
+    width: 3.75rem;
+    height: 1.19rem;
 }
 .d-16 {
     position: absolute;
-    top: 0.2rem;
-    left: 0.9rem;
+    top: 0.13rem;
+    bottom: 0.13rem;
+    left: 0.75rem;
     line-height: 150%;
-    display: inline-block;
-    width: 2.81rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.33rem;
 }
 .rectangle-parent {
     position: absolute;
-    top: 10.6rem;
-    left: 1.3rem;
-    width: 4.51rem;
-    height: 2rem;
+    top: 6.13rem;
+    left: 0.63rem;
+    width: 3.75rem;
+    height: 1.25rem;
+    text-align: center;
 }
 .jlist-child {
     width: calc(100% - 25.08px);
-    top: 9.65rem;
-    right: 1.25rem;
-    left: 1.25rem;
+    top: 5.47rem;
+    right: 0.78rem;
+    left: 0.78rem;
     border-top: 1px solid #fff;
     box-sizing: border-box;
-    height: 0.1rem;
+    height: 0.06rem;
 }
 .jlist,
-.jlist-child,
 .jlist1 {
     position: relative;
+    min-width: 20.63rem;
 }
 .jlist1 {
+    margin-bottom: 180px;
     height: 100%;
     width: 100%;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    min-width: 33rem;
-    margin-bottom: 150px;
+    z-index: 0;
 }
 .jlist {
-    width: calc(100% - 30px);
-    top: 14.9rem;
-    right: 1.5rem;
-    left: 1.5rem;
-    height: 13.4rem;
+    top: 9.31rem;
+    display: flex;
+    flex-direction: row;
+    padding: 0.63rem;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 31.25rem;
+    text-align: left;
     color: #ed4c5c;
 }
+
 .joinlist {
     position: relative;
     background-color: #fff;
     width: 100%;
-    height: 80rem;
+    height: 50rem;
     overflow: hidden;
-    text-align: left;
-    font-size: 1.2rem;
+    text-align: center;
+    font-size: 0.75rem;
     color: #000;
     font-family: Inter;
 }

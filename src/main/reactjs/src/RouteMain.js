@@ -15,6 +15,10 @@ import Lobby from "./chat/Lobby";
 import {Room} from "./chat";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
+import YangdoList from "./yangdo/YangdoList";
+import YangdoDetail from "./yangdo/YangdoDetail";
+import YangdoForm from "./yangdo/YangdoForm";
+import JoinDetail from "./joining/JoinDetail";
 
 
 function RouteMain(props) {
@@ -26,6 +30,14 @@ function RouteMain(props) {
                 <Route path={'/chat'}>
                     <Route path="lobby" element={<Lobby/>}/>
                     <Route path="room/:roomId" element={<Room/>}></Route>
+                </Route>
+
+                <Route path={'yangdo'}>
+                    <Route path="list" element={<YangdoList/>}/>
+                    <Route path="list/:unum" element={<YangdoList/>}/>
+                    <Route path="detail" element={<YangdoDetail/>}/>
+                    <Route path="detail/:ynum" element={<YangdoDetail/>}/>
+                    <Route path="form" element={<YangdoForm/>}/>
                 </Route>
 
                 <Route path={'/friend'} >
@@ -43,6 +55,7 @@ function RouteMain(props) {
                 <Route path={'/joining'} >
                     <Route path={"list"} element={<JoinList/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
+                    <Route path={"detail"} element={<JoinDetail/>}/>
 
                 </Route>
 

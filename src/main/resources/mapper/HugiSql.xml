@@ -4,13 +4,14 @@
         select count(*) from hugi
     </select>
     <select id="getAllHugis" resultType="HugiDto">
-        SELECT h.*, u.uname
+        SELECT h.*, u.uname ,u.unickname
         FROM hugi h
                  INNER JOIN user u ON h.unum = u.unum
         ORDER BY h.hwriteday DESC
     </select>
     <insert id="insertHugi" parameterType="HugiDto">
-        insert into hugi (hcontent,hphoto,hwriteday,hlike,unum) values (#{hcontent},#{hphoto},now(),0,#{unum})
+        insert into hugi (hcontent, hphoto, hwriteday, hlike, unum)
+        values (#{hcontent}, #{hphoto}, now(), 0, #{unum})
     </insert>
     <update id="updateLikeCount" parameterType="int">
         update hugi set hlike=hlike+1 where unum=#{unum}
@@ -21,4 +22,10 @@
     <delete id="deleteHugi" parameterType="int">
         delete from hugi where hnum=#{hnum}
     </delete>
+<!--    <select id="getUserDto" parameterType="int" resultType="UserDto">-->
+<!--        SELECT h.*, u.uname, u.unickname-->
+<!--        FROM hugi h-->
+<!--                 JOIN user u ON h.unum = u.unum-->
+<!--        WHERE h.unum = #{unum}-->
+<!--    </select>-->
 </mapper>

@@ -8,9 +8,8 @@ import java.util.List;
 public interface RehugiServiceInter {
     public void addComment(RehugiDto rhdto);
     public void addReply(RehugiDto rhdto);
-    List<RehugiDto> getAllCommentsWithReplies();
+    public List<RehugiDto> getAllCommentsWithReplies(@Param("hnum") int hnum);
 
-    public void deleteComment(@Param("unum") int unum);
-
-    public void deleteReply(@Param("unum") int unum);
+    void deleteComment(int unum);
+    void deleteReply(int unum);
 }

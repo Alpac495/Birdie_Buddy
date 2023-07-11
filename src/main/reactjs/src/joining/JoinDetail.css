@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+
+.JDp {
+    font-weight: 600;
+}
+.JDp,
+.JDp1 {
+    margin: 0;
+}
+.JDtxt {
+    line-break: anywhere;
+    width: 100%;
+}
+.JDdiv {
+    position: absolute;
+    top: 22.56rem;
+    left: calc(50% - 73px);
+    font-size: 1rem;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    width: 8.81rem;
+}
+.jduphoto-icon {
+    position: absolute;
+    top: 21.94rem;
+    left: 1.13rem;
+    width: 4.19rem;
+    height: 4.25rem;
+    object-fit: cover;
+}
+.JDlw {
+    position: relative;
+    font-weight: 600;
+}
+.JDavatar {
+    border-radius: 40px;
+    background-color: rgba(84, 112, 255, 0.3);
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    justify-content: center;
+}
+.JDavatar,
+.JDavatar1,
+.JDuser {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.JDuser {
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+.JDavatar1 {
+    border-radius: 40px;
+    background-color: rgba(255, 99, 99, 0.3);
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    justify-content: center;
+}
+.esther-howard {
+    position: relative;
+    font-size: 0.94rem;
+    line-height: 150%;
+    color: #000;
+    text-align: left;
+}
+.JDuser1 {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    color: #ff6363;
+}
+.JDavatar2,
+.JDuser1,
+.JDuser2 {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.JDavatar2 {
+    border-radius: 40px;
+    background-color: rgba(26, 194, 125, 0.3);
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    justify-content: center;
+}
+.JDuser2 {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    color: #1ac27d;
+}
+.confirmgroup,
+.JDframe {
+    position: absolute;
+    height: 8.88rem;
+}
+.JDframe {
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+.confirmgroup {
+    width: calc(100% - 177.78px);
+    top: 30.75rem;
+    right: 10.11rem;
+    left: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #5470ff;
+}
+.JDspan {
+    color: #ed4c5c;
+}
+.JDdiv2,
+.JDdiv3 {
+    position: absolute;
+    top: 0;
+    line-height: 150%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.JDdiv2 {
+    width: 100%;
+    left: 0;
+}
+.JDdiv3 {
+    width: calc(100% - 156.72px);
+    left: 9.55rem;
+    text-align: right;
+}
+.JDparent {
+    width: calc(100% - 34.28px);
+    top: 27.75rem;
+    right: 1rem;
+    left: 1.14rem;
+    height: 1.44rem;
+}
+.JDdiv4,
+.JDframe1,
+.JDparent {
+    position: absolute;
+}
+.JDdiv4 {
+    width: calc(100% - 30.07px);
+    top: 0;
+    left: 0.17rem;
+    line-height: 150%;
+    font-weight: 600;
+    display: inline-block;
+}
+.JDframe1 {
+    width: 100%;
+    top: 2.06rem;
+    right: 0;
+    left: 0;
+    height: 8.88rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #5470ff;
+}
+.JDapplygroup {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 41.19rem;
+    right: 1rem;
+    left: 1rem;
+    height: 10.94rem;
+}
+.JDdiv5,
+.JDicon {
+    position: relative;
+}
+.JDdiv5 {
+    letter-spacing: -0.01em;
+    font-weight: 600;
+}
+.JDicon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.JDcontent,
+.JDvalue {
+    overflow: hidden;
+    display: flex;
+}
+.JDvalue {
+    width: 10.25rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.JDcontent {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 1.5rem;
+}
+.JDb {
+    position: relative;
+}
+.JDdefault {
+    border-radius: 100px;
+    background-color: #ebebf0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.38rem 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    color: #ed4c5c;
+}
+.JDdiv6 {
+    position: relative;
+    line-height: 150%;
+    display: inline-block;
+    width: 8.81rem;
+}
+.jdinfo {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 6.44rem;
+    right: 1rem;
+    left: 1rem;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 2px solid #5470ff;
+    box-sizing: border-box;
+    height: 13.94rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem 0.88rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+.JDdiv7 {
+    position: absolute;
+    top: 0;
+}
+.JDdiv7 {
+    left: 0;
+    letter-spacing: -0.01em;
+    background: linear-gradient(202.17deg, #03c75a, #85c644);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.div8,
+.joindetail-child {
+    position: absolute;
+    left: 16.69rem;
+}
+.joindetail-child {
+    top: 22.56rem;
+    border-radius: 10px;
+    background-color: #89e1a4;
+    width: 4.81rem;
+    height: 1.88rem;
+}
+.JDdiv8 {
+    width: calc(100% - 283px);
+    top: 22.88rem;
+    line-height: 150%;
+    font-weight: 600;
+    color: #636363;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25rem;
+}
+.joindetail {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 58.13rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 0.94rem;
+    color: #000;
+    font-family: Inter;
+}
