@@ -1,4 +1,6 @@
-
+body {
+    font-size: 15px;
+}
 .mainpage {
     background-color: #fff;
     width: 100%;

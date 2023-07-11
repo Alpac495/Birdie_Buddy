@@ -5,7 +5,6 @@ import Header from "../header/Header";
 import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 const JoinList = () => {
-
     const [data,setData]=useState('');
     const list=useCallback(()=>{
         const url="/joining/list";
@@ -15,6 +14,8 @@ const JoinList = () => {
                 console.log(res.data)
             })
     },[]);
+
+    const date = new Date();
 
     useEffect(()=>{
         list();
@@ -40,7 +41,7 @@ const JoinList = () => {
                                     <div className="instance-child" />
                                 </div>
                                 <div className="JLdiv1">
-                                    <p className="JLp">{item.jjoinday} {item.jtime}</p>
+                                    <p className="JLp1">{item.jjoinday} {item.jtime}</p>
                                     <p className="JLp1">{item.gname}</p>
                                     <p className="JLp1">그린피 ￦{item.jprice}</p>
                                 </div>
@@ -57,7 +58,7 @@ const JoinList = () => {
                                 </div>
                                 <div className="rectangle-parent">
                                     <div className="group-child" />
-                                    <div className="d-16">D-16</div>
+                                    <div className="d-16">dday</div>
                                 </div>
                                 <div className="jlist-child" />
                             </div>)}
