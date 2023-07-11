@@ -15,11 +15,6 @@ public class LoginService implements LoginServiceInter{
     @Autowired
     private LoginMapper loginMapper;
 
-    @Override
-    public void signUser(UserDto dto) {
-        loginMapper.signUser(dto);
-
-    }
 
     @Override
     public int loginok(String uemail, String upass) {
@@ -29,13 +24,4 @@ public class LoginService implements LoginServiceInter{
         return loginMapper.loginok(map);
     }
 
-    @Override
-    public String getNickname(String uemail) {
-        return loginMapper.getNickname(uemail);
-    }
-
-    @Override
-    public UserDto getUserData(String uemail) {
-        return loginMapper.getUserData(uemail);
-    }
 }
