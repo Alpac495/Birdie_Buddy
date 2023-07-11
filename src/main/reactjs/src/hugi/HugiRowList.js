@@ -269,56 +269,56 @@ function HugiRowList(props) {
                                 }}>
                                 {/* 댓글 출력 위치 */}
                                     {comments && comments.length > 0 ? (
-                                            comments.map((comment) => (
-                                                <div key={comment.rhnum}>
-                                                    <Avatar className="list_avatar" alt={unickname} src=""
-                                                            style={{
-                                                                position: "relative",
-                                                                width: '35px',
-                                                                height: '35px'
-                                                            }}/>
-                                                    <b style={{
+                                        comments.map((comment) => (
+                                            <div key={comment.rhnum}>
+                                                <Avatar className="list_avatar" alt={unickname} src=""
+                                                        style={{
+                                                            position: "relative",
+                                                            width: '35px',
+                                                            height: '35px'
+                                                        }}/>
+                                                <b style={{
+                                                    position: 'relative',
+                                                    bottom: '28px',
+                                                    left: '40px',
+                                                    fontSize: '14px'
+                                                }}>{unickname}({uname}):</b>&nbsp;
+                                                <span style={{
+                                                    position: 'relative',
+                                                    bottom: '28px',
+                                                    left: '40px',
+                                                    fontSize: '14px'
+                                                }}>{comment.rhcontent}</span>
+                                                {parseInt(props.unum) === parseInt(unum) && (
+                                                    <DeleteIcon style={{
                                                         position: 'relative',
-                                                        bottom: '28px',
-                                                        left: '40px',
-                                                        fontSize: '14px'
-                                                    }}>{unickname}({uname}):</b>&nbsp;
-                                                    <span style={{
-                                                        position: 'relative',
-                                                        bottom: '28px',
-                                                        left: '40px',
-                                                        fontSize: '14px'
-                                                    }}>{comment.rhcontent}</span>
-                                                    {parseInt(props.unum) === parseInt(unum) && (
-                                                        <DeleteIcon style={{
-                                                            position: 'relative',
-                                                            bottom: '29px',
-                                                            left: '45px',
-                                                            fontSize: '20px',
-                                                            cursor: "pointer"
-                                                        }} onClick={() => handleClickDeleteComment(comment.rhnum)}/>
-                                                    )}
-                                                    <br/>
-                                                    <span style={{
-                                                        position: "relative",
-                                                        bottom: "27px",
-                                                        left: "5px",
-                                                        fontSize: "10px"
-                                                    }}>{comment.rhwriteday}</span>
-                                                    {unum && (
-                                                        <button
-                                                            type="button"
-                                                            className="primary_button"
-                                                            style={{ position:"relative",right:"80px",marginBottom:"10px",width:"40px" }}
-                                                            onClick={toggleReplyForm}
-                                                        >
-                                                            {isReplyFormVisible ? '닫기' : '열기'}
-                                                        </button>
-                                                    )}
-                                                    {/* 대댓글 작성 폼 */}
-                                                    {isReplyFormVisible && unum && (
-                                                        <div className="input-group"
-                                                             style={{width:"230px",marginLeft: '10px', marginTop: '5px'}}>
+                                                        bottom: '29px',
+                                                        left: '45px',
+                                                        fontSize: '20px',
+                                                        cursor: "pointer"
+                                                    }} onClick={() => handleClickDeleteComment(comment.rhnum)}/>
+                                                )}
+                                                <br/>
+                                                <span style={{
+                                                    position: "relative",
+                                                    bottom: "27px",
+                                                    left: "5px",
+                                                    fontSize: "10px"
+                                                }}>{comment.rhwriteday}</span>
+                                                {unum && (
+                                                    <button
+                                                        type="button"
+                                                        className="primary_button"
+                                                        style={{ position:"relative",right:"80px",marginBottom:"10px",width:"40px" }}
+                                                        onClick={toggleReplyForm}
+                                                    >
+                                                        {isReplyFormVisible ? '닫기' : '열기'}
+                                                    </button>
+                                                )}
+                                                {/* 대댓글 작성 폼 */}
+                                                {isReplyFormVisible && unum && (
+                                                    <div className="input-group"
+                                                         style={{width:"230px",marginLeft: '10px', marginTop: '5px'}}>
                                                         <textarea
                                                             className="form-control"
                                                             style={{
@@ -332,85 +332,85 @@ function HugiRowList(props) {
                                                             value={rhcontent}
                                                             onChange={handleCommentChange}
                                                         ></textarea>
-                                                            <button
-                                                                type="button"
-                                                                className="primary_button"
-                                                                style={{borderRadius: '5px',width:"33%",height:"40px",resize:"none"}}
-                                                                onClick={(e) => handleCommentSubmit(e, comment.ref)}
-                                                            >
-                                                                대댓글작성
-                                                            </button>
-                                                        </div>
-                                                    )}
+                                                        <button
+                                                            type="button"
+                                                            className="primary_button"
+                                                            style={{borderRadius: '5px',width:"33%",height:"40px",resize:"none"}}
+                                                            onClick={(e) => handleCommentSubmit(e, comment.ref)}
+                                                        >
+                                                            대댓글작성
+                                                        </button>
+                                                    </div>
+                                                )}
 
-                                                    {/* 대댓글 출력 위치 */}
-                                                    {comment.comments && comment.comments.length > 0 && (
-                                                        <div style={{marginLeft: '30px', marginTop:"5px"}}>
-                                                            {comment.comments.map((reply) => (
-                                                                <div key={reply.rhnum}>
-                                                                    <Avatar
-                                                                        className="list_avatar"
-                                                                        alt={reply.unickname}
-                                                                        src=""
-                                                                        style={{
-                                                                            position: 'relative',
-                                                                            width: '35px',
-                                                                            height: '35px',
-                                                                        }}
-                                                                    />
-                                                                    <b
-                                                                        style={{
-                                                                            position: 'relative',
-                                                                            bottom: '28px',
-                                                                            left: '40px',
-                                                                            fontSize: '14px',
-                                                                        }}
-                                                                    >
-                                                                        {reply.unickname}({reply.uname}):
-                                                                    </b>
-                                                                    <span
-                                                                        style={{
-                                                                            position: 'relative',
-                                                                            bottom: '28px',
-                                                                            left: '40px',
-                                                                            fontSize: '14px',
-                                                                        }}
-                                                                    >
+                                                {/* 대댓글 출력 위치 */}
+                                                {comment.comments && comment.comments.length > 0 && (
+                                                    <div style={{marginLeft: '30px', marginTop:"5px"}}>
+                                                        {comment.comments.map((reply) => (
+                                                            <div key={reply.rhnum}>
+                                                                <Avatar
+                                                                    className="list_avatar"
+                                                                    alt={reply.unickname}
+                                                                    src=""
+                                                                    style={{
+                                                                        position: 'relative',
+                                                                        width: '35px',
+                                                                        height: '35px',
+                                                                    }}
+                                                                />
+                                                                <b
+                                                                    style={{
+                                                                        position: 'relative',
+                                                                        bottom: '28px',
+                                                                        left: '40px',
+                                                                        fontSize: '14px',
+                                                                    }}
+                                                                >
+                                                                    {reply.unickname}({reply.uname}):
+                                                                </b>
+                                                                <span
+                                                                    style={{
+                                                                        position: 'relative',
+                                                                        bottom: '28px',
+                                                                        left: '40px',
+                                                                        fontSize: '14px',
+                                                                    }}
+                                                                >
                                                                  {reply.rhcontent}
                                                                     </span>
-                                                                    {parseInt(props.unum) === parseInt(unum) && (
-                                                                        <DeleteIcon
-                                                                            style={{
-                                                                                position: 'relative',
-                                                                                bottom: '29px',
-                                                                                left: '45px',
-                                                                                fontSize: '20px',
-                                                                                cursor: 'pointer',
-                                                                            }}
-                                                                            onClick={() => handleClickDeleteComment(reply.rhnum)}
-                                                                        />
-                                                                    )}
-                                                                    <br/>
-                                                                    <span
+                                                                {parseInt(props.unum) === parseInt(unum) && (
+                                                                    <DeleteIcon
                                                                         style={{
                                                                             position: 'relative',
-                                                                            bottom: '27px',
-                                                                            left: '40px',
-                                                                            fontSize: '10px',
+                                                                            bottom: '29px',
+                                                                            left: '45px',
+                                                                            fontSize: '20px',
+                                                                            cursor: 'pointer',
                                                                         }}
-                                                                    >
+                                                                        onClick={() => handleClickDeleteComment(reply.rhnum)}
+                                                                    />
+                                                                )}
+                                                                <br/>
+                                                                <span
+                                                                    style={{
+                                                                        position: 'relative',
+                                                                        bottom: '27px',
+                                                                        left: '40px',
+                                                                        fontSize: '10px',
+                                                                    }}
+                                                                >
                                                             {reply.rhwriteday}
                                                                   </span>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    )}
-                                                    &nbsp;
-                                                </div>
-                                            ))
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                                &nbsp;
+                                            </div>
+                                        ))
 
-                                        ) : (
-                                            <div>댓글이 없습니다.</div>
+                                    ) : (
+                                        <div>댓글이 없습니다.</div>
 
                                     )}
 
