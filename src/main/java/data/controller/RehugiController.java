@@ -34,10 +34,10 @@ public class RehugiController {
     @PostMapping("/newcomment")
     public String newComment(@RequestBody RehugiDto rhdto) {
         System.out.println("rhdto>>"+rhdto);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = dateFormat.format(new Date());
-        Timestamp timestamp = Timestamp.valueOf(formattedDate);
-        rhdto.setRhwriteday(timestamp);
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//        String formattedDate = dateFormat.format(new Date());
+//        Timestamp timestamp = Timestamp.valueOf(formattedDate);
+//        rhdto.setRhwriteday(timestamp);
         rehugiService.addComment(rhdto);
         return "Comment added successfully";
     }
@@ -52,8 +52,8 @@ public class RehugiController {
     }
 
     @GetMapping("/comments")
-    public List<RehugiDto> getCommentsAndReplies() {
-        return rehugiService.getAllCommentsWithReplies();
+    public List<RehugiDto> getCommentsAndReplies(@RequestParam("hnum") int hnum) {
+        return rehugiService.getAllCommentsWithReplies(hnum);
     }
 
     @PostMapping("/deletecomment")
