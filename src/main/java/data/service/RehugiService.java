@@ -2,6 +2,7 @@ package data.service;
 
 import data.dto.RehugiDto;
 import data.mapper.RehugiMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +10,10 @@ import java.util.List;
 
 
 @Service
+@AllArgsConstructor
 public class RehugiService implements RehugiServiceInter{
 
-    @Autowired
+
     private RehugiMapper rehugiMapper;
 
     @Override
@@ -25,8 +27,8 @@ public class RehugiService implements RehugiServiceInter{
     }
 
     @Override
-    public List<RehugiDto> getAllCommentsWithReplies() {
-        return rehugiMapper.getAllCommentsWithReplies();
+    public List<RehugiDto> getAllCommentsWithReplies(int hnum) {
+        return rehugiMapper.getAllCommentsWithReplies(hnum);
     }
     @Override
     public void deleteComment(int unum) {
