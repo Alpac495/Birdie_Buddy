@@ -26,6 +26,6 @@
     </select>
 
     <update id="updateYangdo" parameterType="YangdoDto">
-
+        update
     </update>
 </mapper>

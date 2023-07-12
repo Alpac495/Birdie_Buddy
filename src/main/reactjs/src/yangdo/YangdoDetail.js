@@ -26,14 +26,12 @@ function YangdoDetail(props) {
 
     return (
         <div>
-            <b>제목 : {dto.ysubject}</b><br/>
+            <b>골프장 : {dto.yplace}</b><br/>
             <b>작성자 : {dto.unum}</b><br/>
             <b>작성일 : {dto.ywriteday}</b><br/>
-
-            <br/>
-            <b>골프장 : {dto.yplace}</b><br/>
             <b>가격 : {dto.yprice}</b><br/>
             <b>예약 일정 : {dto.yday}</b><br/>
+            <b>예약 시간 : {dto.ysubject}</b><br/>
             <b>상세 내용 : {dto.ycontent}</b><br/>
 
             <button type='button' onClick={()=>navi(`/yangdo/form`)}>글쓰기</button>
@@ -50,12 +48,19 @@ function YangdoDetail(props) {
                             // 목록으로 이동
                             navi(`/yangdo/list/${currentPage}`);
                         })
-                }}>삭제</button>:''
+                }}>삭제</button> :''
             }
             <br/>
-
             {
-
+                unum !=null && unum==dto.unum?
+                    <button type='button' onClick={()=>{
+                        const url=`/yangdo/update?num=${dto.ynum}`;
+                        Axios.update(url)
+                            .then(res=>{
+                                // 상세 페이지로 이동
+                                navi(`/yangdo/detail/:${ynum}`);
+                            })
+                    }}>수정</button> :''
             }
         </div>
     );

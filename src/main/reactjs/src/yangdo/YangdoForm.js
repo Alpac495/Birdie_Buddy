@@ -92,53 +92,45 @@ function YangdoForm(props) {
             </React.Fragment>
 
             <div>
-                <b>제목 : </b>
+                <b>골프장 : </b>
                 <input type='text' required
                        onChange={
-                    (e)=> setYsubject(e.target.value)
-                } value={ysubject}
+                           (e)=> setYplace(e.target.value)
+                       } value={yplace} onClick={openModal}
+                />
+                <br/>
+
+                <b>가격 : </b>
+                <input type='text' required
+                       onChange={
+                           (e)=> setYprice(e.target.value)
+                       } value={yprice}
+                />
+                <br/>
+
+                <b>예약날짜 : </b>
+                <input type='date' required
+                       onChange={
+                           (e)=> setYday(e.target.value)
+                       } value={yday}
+                />
+                <br/>
+
+                <b>시간 : </b>
+                <input type='time' required
+                       onChange={
+                           (e)=> setYsubject(e.target.value)
+                       } value={ysubject}
                 />
                 <br/>
 
                 <b>내용 : </b>
                 <textarea value={ycontent}
                           onChange={
-                    (e)=>setYcontent(e.target.value)}></textarea>
-                <br/>
-
-                <b>가격 : </b>
-
-                <input type='text' required
-                       onChange={
-                           (e)=> setYprice(e.target.value)
-                       } value={yprice}
-                />
-
-                <br/>
-
-                <b>골프장 : </b>
-
-                <input type='text' required
-                       onChange={
-                           (e)=> setYplace(e.target.value)
-                       } value={yplace} onClick={openModal}
-                />
-
-                <br/>
-
-                <b>예약날짜 : </b>
-
-                <input type='date' required
-                       onChange={
-                           (e)=> setYday(e.target.value)
-                       } value={yday}
-                />
-
+                              (e)=>setYcontent(e.target.value)}></textarea>
                 <br/>
 
                 <button type='submit' onClick={onSubmitEvent}>글쓰기</button>
-
-
 
             </div>
         </div>
