@@ -277,7 +277,7 @@ function HugiRowList(props) {
                 <Avatar className="list_avatar" alt={unickname}
                         src=""
                 />
-                <h5>{unickname}({uname})</h5>
+                <h5>{uname}@{unickname}</h5>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
@@ -308,7 +308,7 @@ function HugiRowList(props) {
                         <div className="Dialog_Title">
                             <Avatar className="list_avatar" alt={unickname} src=""/>
                             <span className="spanCommentList">
-                            {unickname} 님의 댓글 목록
+                            {uname}@{unickname} 님의 댓글 목록
                         </span>
                         </div>
                     </DialogTitle>
@@ -357,7 +357,7 @@ function HugiRowList(props) {
                                     <div key={comment.rhnum}>
                                         <Avatar className="list_avatar_Comment" alt={unickname} src=""/>
                                         <b className="CommentNickname">
-                                            {unickname}({uname}):</b>
+                                            {uname}@{unickname}:</b>
                                         &nbsp;
                                         <span className="spanRhcontent">
                                                     {comment.rhcontent}
@@ -435,7 +435,7 @@ function HugiRowList(props) {
                                                                     marginBottom: '5px',
                                                                 }}
                                                             >
-                                                                {reply.unickname}({reply.uname}):
+                                                                {reply.uname}@{reply.unickname}:
                                                             </b>
                                                             <span>
                                                                  {reply.rhcontent}
