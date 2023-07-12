@@ -9,4 +9,5 @@ import java.util.List;
 public interface JoiningMapper {
     public void insertJoin(JoiningDto dto);
     public List<JoiningDto> getJoiningList();
+    public JoiningDto detailPage(int jnum);
 }

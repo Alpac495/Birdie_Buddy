@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from "../header/Header";
 import Axios from "axios";
 import "./RankingList.css";
+import Footer from "../footer/Footer";
 
 function RankList(props) {
     const [ranking, setRanking] = useState([]);
@@ -74,6 +75,7 @@ function RankList(props) {
                     </div>
                 )}
             </div>
+            <Footer/>
         </div>
     );
 }

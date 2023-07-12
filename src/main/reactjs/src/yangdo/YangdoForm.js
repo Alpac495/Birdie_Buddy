@@ -21,7 +21,6 @@ function YangdoForm(props) {
 
     const [ysubject, setYsubject] = useState('');
     const [ycontent,setYcontent] = useState('');
-    const [yphoto,setYphoto] = useState('');
     const [yprice,setYprice] = useState('');
     const [yplace,setYplace] = useState('');
     const [yday,setYday] = useState('');
@@ -45,12 +44,7 @@ function YangdoForm(props) {
         list();
     },[list])
 
-
-
     const navi = useNavigate();
-
-    // 이미지 경로
-    const photoUrl = process.env.REACT_APP_YANGDOURL;
 
     // 세션 스토리지에서 저장된 unum 가져오기
     const unum = sessionStorage.unum;
@@ -66,19 +60,6 @@ function YangdoForm(props) {
             })
     }
 
-    // 파일 업로드
-    const onUploadEvent=(e)=>{
-        const uploadFile = new FormData();
-        uploadFile.append("upload",e.target.files[0]);
-        Axios({
-            method:"post",
-            url:"/yangdo/upload",
-            data:uploadFile,
-            headers:{'Content-Type':'multipart/form-data'}
-        }).then(res=>{
-            setYphoto(res.data);
-        });
-    }
 
     return (
         <div>
@@ -119,10 +100,6 @@ function YangdoForm(props) {
                 />
                 <br/>
 
-                <b>사진 : </b>
-                <input type='file' onChange={onUploadEvent}/>
-                <br/>
-
                 <b>내용 : </b>
                 <textarea value={ycontent}
                           onChange={
@@ -161,7 +138,7 @@ function YangdoForm(props) {
 
                 <button type='submit' onClick={onSubmitEvent}>글쓰기</button>
 
-                <img alt='' src={`${photoUrl}${yphoto}`} style={{width:'200px'}}/>
+
 
             </div>
         </div>

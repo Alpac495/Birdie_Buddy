@@ -4,6 +4,9 @@
         insert into joining (unum,jcontent,jwriteday,jjoinday,gname,jprice,jtime,jage) values (#{unum},#{jcontent},now(),#{jjoinday},#{gname},#{jprice},#{jtime},#{jage})
      </insert>
     <select id="getJoiningList" resultType="JoiningDto">
-        SELECT * FROM joining order by jnum desc
+        select *,(select count(jm.jnum) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn order by jnum desc
+    </select>
+    <select id="detailPage" parameterType="int" resultType="JoiningDto">
+        select *, (select count(jm.jnum) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=1) as jmcount, (select count(jm.jnum) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=0) as smcount from joining j inner join user u on j.unum = u.unum where j.jnum=#{jnum}
     </select>
 </mapper>

@@ -77,35 +77,34 @@ const JoinDetail = () => {
             <div className="confirmgroup">
                 <div className="JDframe">
                     {confirm.map && confirm.map((item, idx) => (
-                        <div className="JDuser">
-                            <div className="JDavatar">
-                                <div className="JDlw">LW</div>
-                            </div>
-                            <div className="esther-howard">{item.unickname}</div>
+                    <div className="JDuser">
+                        <div className="JDavatar">
+                            <div className="JDlw">LW</div>
                         </div>
+                        <div className="esther-howard">{item.unickname}</div>
+                    </div>
                     ))}
                 </div>
             </div>
-
             <div className="JDparent">
-                <div className="JDdiv1">
-          <span className="JDtxt">
-            <span>{`확정인원( 총 `}</span>
-            <span className="JDspan1">{dto.jmcount}</span>
-            <span>{`명) `}</span>
-          </span>
-                </div>
                 <div className="JDdiv2">
           <span className="JDtxt">
+            <span>{`확정인원( 총 `}</span>
+            <span className="JDspan">{dto.jmcount}</span>
+            <span>{`명 )`}</span>
+          </span>
+                </div>
+                <div className="JDdiv3">
+          <span className="JDtxt">
             <span>{`빈자리 `}</span>
-            <span className="JDspan1">{4 - dto.jmcount}</span>
+            <span className="JDspan">{4 - dto.jmcount}</span>
           </span>
                 </div>
             </div>
             <div className="JDapplygroup">
-                <div className="JDdiv3">
+                <div className="JDdiv4">
                     <span>{`신청인원( `}</span>
-                    <span className="JDspan1">{dto.smcount}</span>
+                    <span className="JDspan">{dto.smcount}</span>
                     <span> 명 )</span>
                 </div>
                 <div className="JDframe1">
@@ -119,39 +118,31 @@ const JoinDetail = () => {
                     ))}
                 </div>
             </div>
-
+            <div>
+            </div>
             <div className="jdinfo">
                 <div className="JDcontent">
                     <div className="JDvalue">
-                        <div className="JDdiv4">#{dto.gname}</div>
-                        <img className="JDicon" alt="" src="/icon.svg" />
+                        <div className="JDdiv5">#{dto.gname}</div>
                     </div>
                 </div>
                 <div className="JDdefault">
-                    <div className="JDdiv5">{dto.jjoinday} / {dto.jtime}</div>
+                    <b className="JDb">{dto.jjoinday} / {dto.jtime}</b>
                 </div>
-                <div className="JDinfobox-group">
-                    <div className="JDcheckbox-with-label">
-                        <img className="JDvector-icon" alt="" src="/vector.svg" />
-                        <div className="JDdiv6">그린피 {dto.jprice}원</div>
-                    </div>
-                    <div className="JDcheckbox-with-label1">
-                        <img className="JDvector-icon" alt="" src="/-icon-people.svg" />
-                        <div className="JDdiv7">{dto.jage}</div>
-                    </div>
-                    <div className="JDcheckbox-with-label">
-                        <img className="JDicon-file" alt="" src="/-icon-file.svg" />
-                        <div className="JDdiv7">
-                            <p className="JDp">{dto.jcontent}</p>
-                        </div>
-                    </div>
+                <div className="JDdiv6">
+                    <p className="JDp">그린피 {dto.jprice}원</p>
+                    <p className="JDp1">{dto.jage}</p>
+                    <p className="JDp1">{dto.jcontent}</p>
                 </div>
             </div>
 
-
             <div className="joindetail-child" />
-
-            <div className="JDdiv10">
+            <div className="JDDrectangle-parent">
+                <div className="JDgroup-child" />
+                <div className="JDdiv8">채팅하기</div>
+            </div>
+            <div className="joindetail-item" />
+            <div className="JDdiv9">
                 {dto.unum === unum ? (
                     <button type="button">모집 취소</button>
                 ) : check === 1 ? (
@@ -162,23 +153,6 @@ const JoinDetail = () => {
             </div>
 
 
-
-            <img className="icon-golf-terrain" alt="" src="/-icon-golf-terrain.svg" />
-            <div className="JDflistprofile">
-                <div className="JDflistprofile1">
-                    <img className="jduphoto-icon" alt="" src="/jduphoto@2x.png" />
-                    <div className="JDdiv11">
-            <span className="JDtxt">
-              <p className="JDp4">닉네임(이름)</p>
-              <p className="JDp5">성별, 나이</p>
-            </span>
-                    </div>
-                    <div className="JDrectangle-parent">
-                        <div className="JDgroup-child" />
-                        <div className="JDdiv12">채팅하기</div>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };

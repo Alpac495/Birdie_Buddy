@@ -10,4 +10,9 @@ public class JoinmemberDto {
     private int unum;
     private int jnum;
     private int jaceept;
+    private String uname;
+    private String unickname;
+    private String uage;
+    private String uphoto;
+    private String ugender;
 }

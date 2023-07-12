@@ -58,7 +58,7 @@ function Home(props) {
 
             <ul> Yangdo
                 <li>
-                    <NavLink to={'/yangdo/list'}>양도 리스트</NavLink>
+                    <NavLink to={'/yangdo/list/1'}>양도 리스트</NavLink>
                 </li>
             </ul>
 
@@ -126,14 +126,6 @@ function Home(props) {
             <ul>main
                 <li>
                     <NavLink to={'/main/main'}>main</NavLink>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <NavLink to={'/score/list'}>랭킹리스트</NavLink>
-                </li>
-                <li>
-                    <NavLink to={'/score/form'}>랭킹폼</NavLink>
                 </li>
             </ul>
         </div>
