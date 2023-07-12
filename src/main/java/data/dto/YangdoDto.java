@@ -12,7 +12,6 @@ public class YangdoDto {
     private int ynum;
     private int unum;
     private String ycontent;
-    private String yphoto;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
     private Timestamp ywriteday;
     private int yprice;

@@ -2,7 +2,7 @@
 <mapper namespace="data.mapper.YangdoMapper">
 
     <insert id="insertYList" parameterType="YangdoDto">
-        insert into yangdo values (null,#{unum},#{ycontent},#{yphoto},now(),#{yprice},#{yplace},#{yday},#{ysubject})
+        insert into yangdo values (null,#{unum},#{ycontent},now(),#{yprice},#{yplace},#{yday},#{ysubject})
     </insert>
 
     <select id="getAllDatas" resultType="YangdoDto">
@@ -16,4 +16,16 @@
     <delete id="deleteYangdo" parameterType="int">
         delete from yangdo where ynum=#{ynum}
     </delete>
+
+    <select id="getTotalCount" resultType="int">
+        select count(*) from yangdo
+    </select>
+
+    <select id="getPagingList" parameterType="Map" resultType="YangdoDto">
+        select * from yangdo order by ynum desc limit #{start},#{perpage}
+    </select>
+
+    <update id="updateYangdo" parameterType="YangdoDto">
+
+    </update>
 </mapper>
