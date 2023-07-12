@@ -80,6 +80,8 @@ button {
 details > summary {
     width:360px;
     padding:10px 10px;
-    background-color:RGB(137, 225, 164);
+    background-color:#0095f6;
     cursor: pointer;
+    font-weight: bold;
+    color: white;
 }
