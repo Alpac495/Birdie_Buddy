@@ -2,12 +2,11 @@ import "./Joining.css";
 import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
-import mlogo from '../image/logo_main.svg';
-import imenu from '../image/🦆 icon _menu.svg';
-import ialarm from '../image/🦆 icon _notification.svg';
-import imypage from '../image/🦆 icon _profile circle.svg';
 import Modal from '../components/Modal';
 import Header from "../header/Header";
+import PortalPopup from "../components/PortalPopup";
+import PartnerForm from "../components/ParnterForm";
+
 
 
 const JoinForm = (props) => {
@@ -18,6 +17,16 @@ const JoinForm = (props) => {
     const [jprice,setJprice]=useState('');
     const [jtime,setJtime]=useState('');
     const [jage,setJage]=useState('');
+
+    // PartnerForm 모달창 추가
+    const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
+    const openPartnerForm = useCallback(() => {
+        setPartnerFormOpen(true);
+    }, []);
+
+    const closePartnerForm = useCallback(() => {
+        setPartnerFormOpen(false);
+    }, []);
 
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
     const [modalOpen, setModalOpen] = useState(false);
@@ -66,6 +75,7 @@ const JoinForm = (props) => {
 
 
     return (
+        <>
         <div className="joinform">
             <Header/>
             <React.Fragment>
@@ -146,10 +156,25 @@ const JoinForm = (props) => {
 
             <div className="joinform-child" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
+                <div className="jcheckbox-setonon" onClick={openPartnerForm}>
+                    <div className="jcheckbox-parent">
+                        <input type={"checkbox"} className="jcheckbox-icon"/>
+                        <div className="jdiv14">동반자가 있나요?</div>
+                    </div>
+                </div>
             </form>
-        </div>);
-
-
+        </div>
+    {isPartnerFormOpen && (
+        <PortalPopup
+            overlayColor="rgba(113, 113, 113, 0.3)"
+            placement="Centered"
+            onOutsideClick={closePartnerForm}
+        >
+            <PartnerForm onClose={closePartnerForm} />
+        </PortalPopup>
+    )}
+</>
+);
 };
 
 
