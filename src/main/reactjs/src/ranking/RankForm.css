@@ -214,3 +214,13 @@
         font-size: 0.88rem;
     }
 }
+.scoretable{
+    width: 21rem;
+}
+.firsttd{
+    width: 3rem;
+    height: 2.5rem;
+}
+.tdbg{
+    background-color: #39c751;
+}

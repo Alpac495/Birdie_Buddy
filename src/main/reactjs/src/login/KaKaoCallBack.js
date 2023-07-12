@@ -14,7 +14,7 @@ const KakaoCallback = () => {
             {},
             { headers: { "Content-type": "application/x-www-form-urlencoded;charset=utf-8" } }
         )
-            .then((res: any) => {
+            .then((res) => {
                 console.log(res);
                 const { access_token } = res.data;
                 axios.post(
@@ -27,8 +27,8 @@ const KakaoCallback = () => {
                         }
                     }
                 )
-                    .then((res: any) => {
-                        console.log('2번쨰', res);
+                    .then((res) => {
+                        console.log('정보', res.data.kakao_account);
                         // const uemail = res.data.kakao_account.email;
                         // const uemail = res.data.kakao_account.email;
                         // const uemail = res.data.kakao_account.email;
@@ -36,14 +36,15 @@ const KakaoCallback = () => {
                         //axios.post("/login/sign",)
                     })
             })
-            .catch((Error: any) => {
+            .catch((Error) => {
                 console.log(Error)
             })
     }, [])
 
     return(
-        <>
-        </>
+        <div>
+            kakaocall
+        </div>
     )
 }
 export default KakaoCallback;
