@@ -100,7 +100,7 @@ function HugiList(props) {
             </div>
             {isLoggedIn && (
                 <details>
-                    <summary>게시물 작성!</summary>
+                    <summary>게시물 작성하기</summary>
                 <div className="timeline" style={{ border: '1px solid gray', width: '100%', height: '50%', marginTop: '5px', marginBottom: '5px' }}>
                     <input type="file" className="form-control" onChange={onUploadEvent} />
                     <img alt="" src={`${url}${hphoto}`} style={{ width: '50%', margin: '10px 100px' }} />
