@@ -77,3 +77,9 @@ button {
     margin: 28px 0;
     row-gap: 15px;
 }
+details > summary {
+    width:360px;
+    padding:10px 10px;
+    background-color:RGB(137, 225, 164);
+    cursor: pointer;
+}
