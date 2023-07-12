@@ -19,6 +19,7 @@ import YangdoList from "./yangdo/YangdoList";
 import YangdoDetail from "./yangdo/YangdoDetail";
 import YangdoForm from "./yangdo/YangdoForm";
 import JoinDetail from "./joining/JoinDetail";
+import YangdoUpdate from "./yangdo/YangdoUpdate";
 
 
 function RouteMain(props) {
@@ -34,10 +35,11 @@ function RouteMain(props) {
 
                 <Route path={'yangdo'}>
                     <Route path="list" element={<YangdoList/>}/>
-                    <Route path="list/:unum" element={<YangdoList/>}/>
+                    <Route path="list/:currentPage" element={<YangdoList/>}/>
                     <Route path="detail" element={<YangdoDetail/>}/>
-                    <Route path="detail/:ynum" element={<YangdoDetail/>}/>
+                    <Route path="detail/:ynum/:currentPage" element={<YangdoDetail/>}/>
                     <Route path="form" element={<YangdoForm/>}/>
+                    <Route path="update/:ynum" element={<YangdoUpdate/>}/>
                 </Route>
 
                 <Route path={'/friend'} >
