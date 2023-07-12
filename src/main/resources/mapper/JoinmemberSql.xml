@@ -1,4 +1,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.JoinmemberMapper">
-
+    <select id="getJoinmemberList" resultType="JoinmemberDto">
+        SELECT * from joinmember jm inner join user u on jm.unum = u.unum where jm.jnum=#{jnum} and jaccept=1
+    </select>
+    <select id="getSubmemberList" resultType="JoinmemberDto">
+        SELECT * from joinmember jm inner join user u on jm.unum = u.unum where jm.jnum=#{jnum} and jaccept=0
+    </select>
+    <select id="getCheckMember" parameterType="int" resultType="int">
+        select count(unum) from joinmember where unum=#{unum} and jnum=#{jnum}
+    </select>
 </mapper>

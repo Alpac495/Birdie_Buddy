@@ -99,6 +99,8 @@ function HugiList(props) {
                 </div>
             </div>
             {isLoggedIn && (
+                <details>
+                    <summary>게시물 작성하기</summary>
                 <div className="timeline" style={{ border: '1px solid gray', width: '100%', height: '50%', marginTop: '5px', marginBottom: '5px' }}>
                     <input type="file" className="form-control" onChange={onUploadEvent} />
                     <img alt="" src={`${url}${hphoto}`} style={{ width: '50%', margin: '10px 100px' }} />
@@ -107,7 +109,7 @@ function HugiList(props) {
                     <div className="input-group">
             <textarea
                 className="form-control"
-                style={{ width: '80%' }}
+                style={{ width: '80%',resize:"none"}}
                 value={hcontent}
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>
@@ -116,6 +118,7 @@ function HugiList(props) {
                         </button>
                     </div>
                 </div>
+                </details>
             )}
             <div className="timeline">
                 {hugiData.map((rowData) => (

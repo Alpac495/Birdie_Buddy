@@ -1,17 +1,11 @@
 
 .buddy_footer {
-    position: fixed;
-    border: 1px lightgrey solid;
+    position: relative;
+    bottom: 0;
+    border-top: 1px black solid;
     background-color: white;
     width: 100%;
     height: 75px;
-    bottom: 0;
-    display: flex;
-    justify-content: space-around;
+    margin-top: 50px;
+}
 
-}
-.buddy_footmenu{
-    margin-top: 20px;
-    width: 25%;
-    text-align: center;
-}

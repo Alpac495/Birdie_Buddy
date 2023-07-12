@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css"
 import Recommendslider from "./app_effect/Recommendslider";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
+import FriendSlider from "./app_effect/FriendSlider";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 
@@ -16,41 +17,46 @@ import Header from "./header/Header";
 function Main(props) {
     return (
         <div className={'mainpage'}>
+            <Header/>
 
-            <div>
-                <Header/>
-            </div>
 
             <div className={'main_banner'}>
                 <Bannerslider/>
             </div>
-            <div className={'main_btnwrap'}>
-                <div className={'main_bgbtn'}>
-                    <button className="mainbutton_child">조인</button>
+
+
+
+            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+            <div className={'main_friendtxt'} style={{marginLeft:'12px'}}>
+                친구 추천
+            </div>
+            <div style={{width:'100vw',overflow:'hidden'}}>
+                <div className={'main_friendrec'} style={{marginTop:'10px'}} >
+                    <FriendSlider/>
                 </div>
-                <div className={'main_smbtn'}>
+            </div>
 
-                        <button className="mainbutton_item">친구</button>
-
-                        <button className="mainbutton_item">예약</button>
-
+            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+            <div style={{width:'100vw',overflow:'hidden'}}>
+                <div className={'main_join'}>
+                    <div className={'main_joinrecotxt'}>당신을 위한 조인 추천</div>
+                    <div className={'main_joinreco'}>
+                        <Recommendslider/>
+                    </div>
                 </div>
             </div>
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
-            <div className={'main_join'}>
-                <div className={'main_joinrecotxt'}>당신을 위한 조인 추천</div>
-                <div className={'main_joinreco'}>
-                    <Recommendslider/>
+            <div style={{width:'100vw',overflow:'hidden'}}>
+                <div className={'main_reviewwrap'}>
+                    <div className={'main_reviewtxt'}>Best 후기</div>
+                    <Reviewslider/>
                 </div>
+
+                <hr style={{height:'3px', backgroundColor:'lightgray', marginTop:'50px'}}/>
+
+
             </div>
-            <hr style={{height:'3px', backgroundColor:'lightgray', marginTop:'50px'}}/>
-            <div className={'main_reviewwrap'}>
-                <div className={'main_reviewtxt'}>Best 후기</div>
-                <Reviewslider/>
-            </div>
-            <div>
                 <Footer/>
-            </div>
         </div>
 
     );
