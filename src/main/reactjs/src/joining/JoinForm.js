@@ -3,9 +3,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import mlogo from '../image/logo_main.svg';
-import imenu from '../image/🦆 icon _menu.svg';
-import ialarm from '../image/🦆 icon _notification.svg';
-import imypage from '../image/🦆 icon _profile circle.svg';
 import Modal from '../components/Modal';
 
 
@@ -145,9 +142,9 @@ const JoinForm = (props) => {
                 <div className="logo_main">
                     <img className="mlogo" alt="" src={mlogo} style={{display: "flex", alignItems: "center"}} />
                 </div>
-                <img className="icon-menu" alt="" src={imenu} />
-                <img className="icon-notification" alt="" src={ialarm} />
-                <img className="icon-profile-circle" alt="" src={imypage} />
+                <img className="icon-menu" alt="" src={''} />
+                <img className="icon-notification" alt="" src={''} />
+                <img className="icon-profile-circle" alt="" src={''} />
             </div>
             <div className="joinform-child" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
