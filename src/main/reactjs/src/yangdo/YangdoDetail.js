@@ -9,7 +9,6 @@ function YangdoDetail(props) {
 
     const navi = useNavigate();
 
-    const photourl=process.env.REACT_APP_YANGDOURL;
     const unum = sessionStorage.unum;
 
     const selectData=()=>{
@@ -31,10 +30,6 @@ function YangdoDetail(props) {
             <b>작성자 : {dto.unum}</b><br/>
             <b>작성일 : {dto.ywriteday}</b><br/>
 
-            {
-                dto.yphoto==null?'': <img alt='' src={`${photourl}${dto.yphoto}`}
-                                         style={{maxWidth:'500px'}}/>
-            }
             <br/>
             <b>골프장 : {dto.yplace}</b><br/>
             <b>가격 : {dto.yprice}</b><br/>
