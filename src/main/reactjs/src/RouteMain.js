@@ -56,7 +56,7 @@ function RouteMain(props) {
                     <Route path={"list"} element={<JoinList/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
                     <Route path={"detail"} element={<JoinDetail/>}/>
-
+                    <Route path={"detail/:jnum"} element={<JoinDetail/>}/>
                 </Route>
 
                 <Route path={'/login'} >
