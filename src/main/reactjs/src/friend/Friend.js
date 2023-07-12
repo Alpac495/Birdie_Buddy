@@ -1,7 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
 import Axios from "axios";
 import "./FriendList.css";
+import YangdoForm from "../yangdo/YangdoForm";
 
 function Friend(props) {
     const unum=sessionStorage.unum;
@@ -35,6 +36,7 @@ function Friend(props) {
             {
                 data.map &&
                 data.map((item,idx)=>
+                    <NavLink to={`/friend/detail/${item.funum}`}>
                         <div className="flist">
                             <div className="flist-child">
                             <div className="flist-item" />
@@ -43,7 +45,8 @@ function Friend(props) {
                             <div className="FLdiv1">{item.ucontent}</div>
 
                             </div>
-                    </div>)
+                    </div>
+                    </NavLink>)
             }
 
         </div>
