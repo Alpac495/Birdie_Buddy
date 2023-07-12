@@ -3,9 +3,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import mlogo from '../image/logo_main.svg';
-import imenu from '../image/🦆 icon _menu.svg';
-import ialarm from '../image/🦆 icon _notification.svg';
-import imypage from '../image/🦆 icon _profile circle.svg';
 import Modal from '../components/Modal';
 import Header from "../header/Header";
 
@@ -143,7 +140,6 @@ const JoinForm = (props) => {
                     </div>
                 </div>
             </div>
-
             <div className="joinform-child" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
             </form>
