@@ -1,11 +1,12 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import "./Sign.css";
 import Sms from "./Sms";
 import logo from "../image/logo_main.svg"
 
 function Sign(props) {
+    const location = useLocation();
     const [uemail, setUemail] = useState('');
     const [upass, setUpass] = useState('');
     const [upassok, setUpassok] = useState('');
@@ -22,6 +23,17 @@ function Sign(props) {
 
     const [imsiEmail, setImsiEmail] = useState('0');
     const [imsihp, setImsihp] = useState('0');
+
+    // const userinfo=()=>{
+    //     if(location.state!=null){
+    //         setUemail(location.state.uemail);
+    //     }
+    // }
+
+
+    // useEffect(()=>{
+    //     userinfo()
+    // },[])
 
     const ouSubmitEvent = (e) => {
         e.preventDefault();
