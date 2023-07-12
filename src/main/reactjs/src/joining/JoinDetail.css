@@ -5,6 +5,35 @@ body {
     line-height: normal;
 }
 
+.JDp {
+    font-weight: 600;
+}
+.JDp,
+.JDp1 {
+    margin: 0;
+}
+.JDtxt {
+    line-break: anywhere;
+    width: 100%;
+}
+.JDdiv {
+    position: absolute;
+    top: 22.56rem;
+    left: calc(50% - 73px);
+    font-size: 1rem;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    width: 8.81rem;
+}
+.jduphoto-icon {
+    position: absolute;
+    top: 21.94rem;
+    left: 1.13rem;
+    width: 4.19rem;
+    height: 4.25rem;
+    object-fit: cover;
+}
 .JDlw {
     position: relative;
     font-weight: 600;
@@ -14,26 +43,10 @@ body {
     background-color: rgba(84, 112, 255, 0.3);
     width: 2rem;
     height: 2rem;
-    overflow: hidden;
     flex-shrink: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
 }
-.JDspan {
-    font-weight: 600;
-    font-family: Inter;
-}
-.JDp {
-    margin: 0;
-}
-.JDdiv {
-    position: relative;
-    line-height: 150%;
-    color: #000;
-    text-align: left;
-}
+.JDavatar,
 .JDavatar1,
 .JDuser {
     overflow: hidden;
@@ -111,6 +124,9 @@ body {
     text-align: center;
     font-size: 0.75rem;
     color: #5470ff;
+}
+.JDspan {
+    color: #ed4c5c;
 }
 
 .JDspan1 {
