@@ -24,9 +24,9 @@
 .loginbtn{
     justify-content: center;
 }
-input[type="text"]::placeholder {
+input[type="text"],input[type="password"]::placeholder {
     text-align: center;
 }
-input[type="password"]::placeholder {
+input[type="text"], input[type="password"] {
     text-align: center;
 }

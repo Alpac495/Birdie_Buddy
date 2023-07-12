@@ -4,6 +4,7 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import mlogo from '../image/logo_main.svg';
 import Modal from '../components/Modal';
+import Header from "../header/Header";
 
 
 const JoinForm = (props) => {
@@ -63,6 +64,7 @@ const JoinForm = (props) => {
 
     return (
         <div className="joinform">
+            <Header/>
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="Modal heading">
                     <div>
@@ -137,14 +139,6 @@ const JoinForm = (props) => {
                                value={jcontent} onChange={(e)=>setJcontent(e.target.value)} maxLength minLength />
                     </div>
                 </div>
-            </div>
-            <div className="logo-parent">
-                <div className="logo_main">
-                    <img className="mlogo" alt="" src={mlogo} style={{display: "flex", alignItems: "center"}} />
-                </div>
-                <img className="icon-menu" alt="" src={''} />
-                <img className="icon-notification" alt="" src={''} />
-                <img className="icon-profile-circle" alt="" src={''} />
             </div>
             <div className="joinform-child" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>

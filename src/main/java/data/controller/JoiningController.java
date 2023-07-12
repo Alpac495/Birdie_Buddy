@@ -4,6 +4,7 @@ import data.dto.FriendDto;
 import data.dto.JoiningDto;
 import data.mapper.JoiningMapper;
 import data.service.JoiningService;
+import data.service.JoinmemberService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,14 @@ public class JoiningController {
     {
         List<JoiningDto> list= joiningService.getJoiningList();
         return list;
+    }
+
+    @GetMapping("/detail")
+    public JoiningDto detailPage(int jnum)
+    {
+        System.out.println("detail>>"+jnum);
+
+        return joiningService.detailPage(jnum);
     }
 
 }

@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import './Login.css';
 import Naver from "./Naver";
 import Kakao from "./Kakao"
 import logo from "../image/logo_main.svg"
+import {Switch} from "@mui/material";
 
 function Login(props) {
 
@@ -12,9 +13,14 @@ function Login(props) {
     const [upass, setUpass] = useState('');
     const [saveemail, setSaveemail] = useState(false);
     const navi = useNavigate();
+    const emailRef = useRef();
 
     const ouSubmitEvent = (e) => {
         e.preventDefault();
+        localStorage.removeItem("uemail");
+        if(saveemail==true){
+            localStorage.setItem("uemail",uemail)
+        }
         axios.get(`/login/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
             .then(res => {
                 console.log(res.data)
@@ -27,6 +33,13 @@ function Login(props) {
                 }
             })
     }
+    useEffect(() => {
+        if(localStorage.uemail!=null){
+            setUemail(localStorage.uemail);
+            emailRef.current.click();
+            setSaveemail(true);
+        }
+    }, []);
 
     const sign = () => {
         navi("/login/sign")
@@ -48,13 +61,13 @@ function Login(props) {
                     <input className={'greenbox'} type={'password'} required placeholder='Pass'
                            onChange={(e) => setUpass(e.target.value)}
                            value={upass}/><br/>
-                    <input type={'checkbox'} className={''} onClick={toggle}></input>
-                    <span className={''}>이메일저장</span>
-                    <div className={''} type={'button'} onClick={sign}>회원가입</div>
+                    <label><Switch ref={emailRef} className={''} onClick={toggle} />
+                        이메일저장</label>&nbsp;&nbsp;&nbsp;
+                    <span className={''} type={'button'} onClick={sign}>회원가입</span>
                     <button className={'greenbox loginbtn'} type={'submit'} onClick={ouSubmitEvent}><span>로그인</span></button>
                 </form>
-                <Kakao/>
-                <Naver/>
+                <br/>
+                <div style={{display:'flex'}}><Kakao/><Naver/></div>
             </div>
         </div>
     );

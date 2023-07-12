@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.2.6",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
+    "ncloudchat": "^1.0.43",
     "react": "^18.2.0",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
