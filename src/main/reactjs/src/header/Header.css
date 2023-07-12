@@ -1,61 +1,22 @@
-.logo_parent {
-    position: absolute;
-    top: 1.5rem;
-    left: calc(50% - 164px);
-    width: 20.44rem;
-    height: 2.25rem;
+.header_wrap {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
     font-size: 1.88rem;
     font-family: 'Zen Dots';
 }
-.logo_main {
-    position: absolute;
-    height: 100%;
-    width: 67.89%;
-    top: 0%;
-    right: 15.9%;
-    bottom: 0%;
-    left: 16.21%;
-}
 .mlogo{
-    position: relative;
+    width: 70%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     justify-content: center;
 }
-
-.icon-menu {
-    position: absolute;
-    height: 47.22%;
-    width: 6.12%;
-    top: 27.78%;
-    right: 93.88%;
-    bottom: 25%;
-    left: 0%;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
+.header_menuicon{
+    width: 15%;
 }
-.icon-notification {
-    position: absolute;
-    height: 41.77%;
-    width: 3.73%;
-    top: 38.89%;
-    right: 6.36%;
-    bottom: 19.34%;
-    left: 89.91%;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
-}
-.icon-profile-circle {
-    position: absolute;
-    height: 41.67%;
-    width: 4.59%;
-    top: 38.89%;
-    right: 0%;
-    bottom: 19.44%;
-    left: 95.41%;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
+.header_usermenu{
+    width: 15%;
 }

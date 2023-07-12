@@ -19,4 +19,11 @@ public class JoiningDto {
     private String jprice;
     private String jtime;
     private String jage;
+    private int jmcount;
+    private int smcount;
+    private String uname;
+    private String unickname;
+    private String uage;
+    private String uphoto;
+    private String ugender;
 }
