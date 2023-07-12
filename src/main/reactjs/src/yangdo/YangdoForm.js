@@ -138,7 +138,7 @@ function YangdoForm(props) {
 
                 <button type='submit' onClick={onSubmitEvent}>글쓰기</button>
 
-                <img alt='' src={`${photoUrl}${yphoto}`} style={{width:'200px'}}/>
+
 
             </div>
         </div>
