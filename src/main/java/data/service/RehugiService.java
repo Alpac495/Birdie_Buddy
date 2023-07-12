@@ -27,6 +27,11 @@ public class RehugiService implements RehugiServiceInter{
     }
 
     @Override
+    public List<RehugiDto> getCommentsByHnum(int hnum) {
+        return rehugiMapper.getCommentsByHnum(hnum);
+    }
+
+    @Override
     public List<RehugiDto> getAllCommentsWithReplies(int hnum) {
         return rehugiMapper.getAllCommentsWithReplies(hnum);
     }

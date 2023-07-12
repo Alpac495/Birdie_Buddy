@@ -10,6 +10,25 @@
         VALUES (#{hnum}, #{unum}, #{rhcontent}, now(), #{ref}, #{step}, #{depth})
     </insert>
 
+    <select id="getCommentsByHnum" resultType="data.dto.RehugiDto">
+        SELECT
+            c.*,
+            r.unickname,
+            r.uname,
+            r.hnum,
+            r.hcontent,
+            r.hphoto,
+            r.hwriteday,
+            r.hlike
+        FROM
+            rehugi c
+                JOIN rehugi r ON c.hnum = r.hnum AND c.unum = r.unum
+        WHERE
+            c.hnum = #{hnum}
+        ORDER BY
+            c.rhwriteday ASC
+    </select>
+
     <select id="getAllCommentsWithReplies" resultType="data.dto.RehugiDto">
         SELECT *
         FROM rehugi

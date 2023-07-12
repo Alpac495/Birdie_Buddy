@@ -15,10 +15,25 @@
 .list_header {
     display: flex;
     align-items: center;
-    padding: 15px 20px;
+    padding: 10px 10px;
 }
 .list_avatar {
-    margin-right: 10px;
+    margin-right:5px;
+    width: 30px;
+    height: 30px;
+}
+.list_avatar_Comment {
+    position: relative;
+    top:5px;
+    width: 20px;
+    height: 20px;
+}
+.list_avatar_Reply {
+    position: relative;
+    left:5px;
+    width: 20px;
+    height: 20px;
+
 }
 .primary_button {
     background-color: #0095f6;
@@ -29,8 +44,107 @@
     font-size: 12px;
     text-align: center;
 }
-
+.primary_button_Comment {
+    background-color: #0095f6;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5px 9px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    width: 30%;
+    borderRadius: 5px;
+}
+.primary_button_Reply {
+    background-color: #0095f6;
+    color: #fff;
+    padding: 5px 9px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    width:33%;
+    height:40px;
+    resize:none;
+}
+.CommentAlert{
+    margin-left: 12px;
+}
+.CommentNickname{
+    position: relative;
+    bottom: 28px;
+    left: 40px;
+    font-size: 14px;
+}
 .Icons{
     cursor: pointer;
     margin-left: 15px;
+}
+.IconsZone{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.ReplyForm{
+    position:relative;
+    left:41px;
+    bottom: 27px;
+    cursor:pointer;
+    color:blue;
+    text-decoration: none;
+    font-size: 12px;
+}
+.Replydiv{
+    margin-left: 50px;
+    margin-top:5px;
+}
+.spanRhwriteday{
+    position: relative;
+    left: 38px;
+    bottom: 28px;
+    font-size: 7px;
+}
+.spanRhcontent{
+    position: relative;
+    bottom: 28px;
+    left: 40px;
+    font-size: 14px;
+}
+.spanWriteday{
+    marginLeft: 10px;
+    color: gray;
+}
+.spanCommentList{
+    position: relative;
+    bottom: 35px;
+    left: 50px;
+    font-size:18px;
+}
+
+.Delete_Icon{
+    position: relative;
+    bottom: 29px;
+    left: 45px;
+    font-size: 5px;
+    cursor: pointer;
+}
+.Dialog_div{
+    width: 100%;
+    height: 580px;
+    overflow-x: hidden;
+}
+.Dialog_Title{
+    padding: 20px 10px;
+}
+.preComment{
+    width: 100%;
+    height: 100%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+.Dialog_Foot_div{
+    width: 100%;
+    position: relative;
+    top: 10px;
+    right: 10px;
 }
