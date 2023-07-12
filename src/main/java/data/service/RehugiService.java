@@ -27,16 +27,20 @@ public class RehugiService implements RehugiServiceInter{
     }
 
     @Override
-    public List<RehugiDto> getAllCommentsWithReplies(int hnum) {
-        return rehugiMapper.getAllCommentsWithReplies(hnum);
-    }
-    @Override
-    public void deleteComment(int unum) {
-        rehugiMapper.deleteComment(unum);
+    public List<RehugiDto> getCommentsByHnum(int hnum) {
+        return rehugiMapper.getCommentsByHnum(hnum);
     }
 
     @Override
-    public void deleteReply(int unum) {
-        rehugiMapper.deleteReply(unum);
+    public List<RehugiDto> getAllCommentsWithReplies(int hnum) {
+        return rehugiMapper.getAllCommentsWithReplies(hnum);
     }
+    public void deleteCommentOrReply(int rhnum) {
+        rehugiMapper.deleteCommentOrReply(rhnum);
+    }
+    @Override
+    public void deleteAllComments(int hnum) {
+        rehugiMapper.deleteAllComments(hnum);
+    }
+
 }
