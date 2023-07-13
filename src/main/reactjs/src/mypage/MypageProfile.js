@@ -1,6 +1,5 @@
-import React from 'react';
-
-function Mypage(props) {
+import "./MypageProfile.css";
+const MypageProfile = () => {
     return (
         <div className="mypageprofile">
             <div className="MPdiv">
@@ -35,10 +34,8 @@ function Mypage(props) {
                     src="/-icon-profile-circle1.svg"
                 />
             </div>
-
-
         </div>
     );
-}
+};
 
-export default Mypage;
+export default MypageProfile;
