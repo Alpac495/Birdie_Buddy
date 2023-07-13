@@ -1,0 +1,165 @@
+.MPchild {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+.MPdiv {
+    left: 0;
+    width: 22.5rem;
+    height: 5.25rem;
+}
+.MPdiv,
+.MPdiv1 {
+    position: absolute;
+    top: 0;
+}
+.MPdiv1 {
+    left: 0;
+    letter-spacing: -0.01em;
+    background: linear-gradient(202.17deg, #03c75a, #85c644);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.backprofile,
+.infobox {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    left: 0;
+}
+.MPbackprofile {
+    top: 5.25rem;
+    background-color: #d9d9d9;
+    height: 22.5rem;
+}
+.MPinfobox {
+    height: calc(100% - 416px);
+    top: 26rem;
+    bottom: 0;
+    border-radius: 15px;
+    background-color: #fff;
+}
+.MPicon-edit-2 {
+    position: absolute;
+    height: 3.6%;
+    width: 7.22%;
+    top: 86.89%;
+    right: 78.61%;
+    bottom: 9.51%;
+    left: 14.17%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.MPmainprofile {
+    position: absolute;
+    top: 22.06rem;
+    left: 1rem;
+    border-radius: 15px;
+    background-color: #89e1a4;
+    border: 4px solid #fff;
+    box-sizing: border-box;
+    width: 5.94rem;
+    height: 5.94rem;
+}
+.MPp {
+    margin: 0;
+}
+.MPtxt {
+    line-break: anywhere;
+    width: 100%;
+}
+.MPdiv2,
+.MPdiv3,
+.MPdiv4 {
+    position: absolute;
+    left: 1.56rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    width: 19.44rem;
+}
+.MPdiv2 {
+    top: 30.81rem;
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: #636363;
+}
+.MPdiv3,
+.MPdiv4 {
+    top: 33.44rem;
+    color: #000;
+}
+.MPdiv4 {
+    top: 28.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 18.94rem;
+}
+.MPdiv5,
+.MPwrapper {
+    position: absolute;
+    left: calc(50% - 40px);
+    width: 5rem;
+    height: 1.25rem;
+}
+.MPdiv5 {
+    bottom: 0;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.MPwrapper {
+    bottom: 2.44rem;
+    text-align: center;
+}
+.MPicon-camera {
+    position: absolute;
+    bottom: 1.94rem;
+    left: calc(50% - 13px);
+    width: 1.63rem;
+    height: 1.69rem;
+}
+.MPcontainer,
+.MPicon-camera-parent {
+    position: absolute;
+    bottom: 2.44rem;
+    left: calc(50% + 76px);
+    width: 5rem;
+    height: 3.63rem;
+    text-align: center;
+}
+.MPcontainer {
+    left: calc(50% - 156px);
+    height: 1.25rem;
+}
+.MPvector-icon {
+    position: absolute;
+    height: 3.57%;
+    width: 7.22%;
+    top: 86.89%;
+    right: 46.11%;
+    bottom: 9.54%;
+    left: 46.67%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.MPmypageprofile {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 46.25rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 1rem;
+    color: #292d32;
+    font-family: Inter;
+}

@@ -1,0 +1,254 @@
+.PFicon {
+    position: absolute;
+    height: 60%;
+    width: 60%;
+    top: 20%;
+    right: 20%;
+    bottom: 20%;
+    left: 20%;
+    overflow: hidden;
+}
+.PFfavorite {
+    position: relative;
+    border-radius: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.PFicon1 {
+    height: 60%;
+    width: 60%;
+    top: 20%;
+    right: 20%;
+    bottom: 20%;
+    left: 20%;
+}
+.PFactions,
+.PFicon1,
+.PFtitle {
+    position: absolute;
+}
+.PFactions {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.PFtitle {
+    bottom: 1.06rem;
+    left: 4.5rem;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+}
+.PFclose-clear {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    border-radius: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+}
+.PFaction-bar-contextual {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #292d32;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
+}
+.PFdetail-view {
+    position: relative;
+    border-radius: 2px;
+    width: 22.5rem;
+    height: 3.5rem;
+    color: #fff;
+}
+.PFlabel {
+    position: relative;
+    font-size: 1.13rem;
+    letter-spacing: 0.15px;
+    line-height: 1.5rem;
+    font-weight: 500;
+    font-family: Roboto;
+    text-align: center;
+}
+.PFdiv {
+    align-self: stretch;
+    line-height: 150%;
+    color: #52525c;
+}
+.PFdiv,
+.PFdiv2,
+.PFradio1 {
+    position: relative;
+}
+.PFradio1 {
+    border-radius: 100px;
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(46, 46, 66, 0.08);
+    border: 3px solid #32d5ad;
+    box-sizing: border-box;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.PFdiv2 {
+    line-height: 1.25rem;
+}
+.PFradio-with-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.38rem;
+}
+.PFradio2 {
+    position: relative;
+    border-radius: 100px;
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(46, 46, 66, 0.08);
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.PFdiv1,
+.PFradio {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.PFdiv1 {
+    width: 17.5rem;
+    flex-direction: row;
+    gap: 1rem;
+    color: #000;
+}
+.PFradio {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 158.5px);
+    width: 19.81rem;
+    height: 5.86rem;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.PFdiv4,
+.PFdiv5 {
+    position: relative;
+}
+.PFdiv4 {
+    align-self: stretch;
+    line-height: 150%;
+}
+.PFdiv5 {
+    flex: 1;
+    line-height: 1.5rem;
+    opacity: 0.5;
+}
+.PFtext-field {
+    border-radius: 8px;
+    background-color: #fff;
+    border: 2px solid #e2e2e2;
+    overflow: hidden;
+    display: flex;
+    padding: 0.75rem 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    color: #000;
+}
+.PFframe1,
+.PFtext-field {
+    align-self: stretch;
+    flex-direction: row;
+}
+.PFframe,
+.PFframe1,
+.PFtasu {
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.PFtasu {
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.PFframe {
+    position: absolute;
+    top: 5.69rem;
+    left: calc(50% - 158.5px);
+    width: 19.81rem;
+    height: 10.38rem;
+    flex-direction: row;
+    color: #52525c;
+}
+.PFpartnerinfo {
+    position: relative;
+    width: 19.81rem;
+    height: 16.06rem;
+    font-size: 0.94rem;
+    font-family: Inter;
+}
+.PFlabel1 {
+    position: relative;
+    letter-spacing: 0.15px;
+    line-height: 1.5rem;
+    font-weight: 500;
+}
+.PFentered {
+    position: absolute;
+    top: calc(50% - 13px);
+    left: calc(50% - 57.5px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.PFround-button-icon {
+    position: relative;
+    border-radius: 2px;
+    background-color: #fff;
+    border: 2px solid #292d32;
+    box-sizing: border-box;
+    width: 20.13rem;
+    height: 3.5rem;
+}
+.PFcta-button-1,
+.PFpartnerform {
+    background-color: #fff;
+    width: 22.5rem;
+    height: 6.1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.63rem 1rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+}
+.PFpartnerform {
+    position: relative;
+    border-radius: 2px;
+    border: 1px solid #e2e2e2;
+    height: 27.5rem;
+    overflow: hidden;
+    padding: 0 1.5rem 1.5rem;
+    justify-content: flex-start;
+    gap: 0.94rem;
+    max-width: 100%;
+    max-height: 100%;
+    text-align: left;
+    font-size: 1.25rem;
+    color: #292d32;
+    font-family: Roboto;
+}
