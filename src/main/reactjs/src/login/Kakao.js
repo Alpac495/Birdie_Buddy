@@ -1,4 +1,6 @@
 import React from 'react';
+import './Login.css';
+import kbtn from '../image/kakaobtn.png';
 
 function Kakao(props) {
     //kakao
@@ -9,7 +11,7 @@ function Kakao(props) {
 
     return (
         <div>
-            <button onClick={kakaoLogin}>카카오 로그인</button>
+            <img alt={''} src={kbtn} className={'kakaobtn'} onClick={kakaoLogin} />
         </div>
     );
 }
