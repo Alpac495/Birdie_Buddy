@@ -116,6 +116,16 @@ const JoinDetail = () => {
                             <div className="esther-howard">{item.unickname}</div>
                         </div>
                     ))}
+                    <div className="joindetail-item" />
+                    <div className="JDdiv9">
+                        {dto.unum === unum ? (
+                            <button type="button">모집 취소</button>
+                        ) : check === 1 ? (
+                            <button type="button">신청 취소</button>
+                        ) : (
+                            <button type="button">신청 하기</button>
+                        )}
+                    </div>
                 </div>
             </div>
             <div>
@@ -141,16 +151,7 @@ const JoinDetail = () => {
                 <div className="JDgroup-child" />
                 <div className="JDdiv8">채팅하기</div>
             </div>
-            <div className="joindetail-item" />
-            <div className="JDdiv9">
-                {dto.unum === unum ? (
-                    <button type="button">모집 취소</button>
-                ) : check === 1 ? (
-                    <button type="button">신청 취소</button>
-                ) : (
-                    <button type="button">신청 하기</button>
-                )}
-            </div>
+
 
 
         </div>

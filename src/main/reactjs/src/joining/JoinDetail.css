@@ -168,11 +168,11 @@ body {
     display: inline-block;
 }
 .JDframe1 {
+    position: relative;
     width: 100%;
     top: 2.06rem;
     right: 0;
     left: 0;
-    height: 10rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -306,7 +306,7 @@ body {
 .JDdiv9,
 .joindetail-item {
     position: absolute;
-    top: 56.06rem;
+    bottom : 0rem;
     height: 2.5rem;
 }
 .joindetail-item {
