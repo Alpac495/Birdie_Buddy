@@ -38,7 +38,6 @@ function HugiList(props) {
             .then((res) => {
                 setHugiData(res.data);
                 setUnickname(res.data.unickname);
-
             })
             .catch((error) => {
                 console.log(error);
