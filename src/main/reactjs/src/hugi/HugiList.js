@@ -10,8 +10,7 @@ function HugiList(props) {
     const [hlike, setHlike] = useState('');
     const [hwriteday, setHwriteday] = useState('');
     const [hnum, setHnum] = useState('');
-    const [unum, setUnum] = useState(null);
-    const [uname,setUname]=useState();
+    const [unum, setUnum] = useState('');
     const [unickname,setUnickname]=useState();
     const [hugiData, setHugiData] = useState([]);
 
@@ -20,18 +19,26 @@ function HugiList(props) {
     const isLoggedIn = sessionStorage.getItem('unum') !== null;
 
     useEffect(() => {
-        const storedUnum = sessionStorage.getItem('unum');
-        setUnum(storedUnum);
+        refreshHugiData();
+        getUser();
     }, []);
 
-    useEffect(() => {
-        refreshHugiData();
-    }, []);
+    const getUser = () => {
+        Axios.get("/hugi/getuser?unum=" + sessionStorage.unum)
+            .then((res) => {
+                setUnickname(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     const refreshHugiData = () => {
         Axios.get(`/hugi/list`)
             .then((res) => {
                 setHugiData(res.data);
+                setUnickname(res.data.unickname);
+
             })
             .catch((error) => {
                 console.log(error);
@@ -61,12 +68,9 @@ function HugiList(props) {
         }
 
         const dataToSend = {
-            hnum: hnum || '',
-            unum: unum || '',
-            uname:uname || '',
-            unickname:unickname ||'',
-            hlike: hlike || 0,
-            hcontent: hcontent || '',
+            unum:sessionStorage.unum,
+            hlike: 0,
+            hcontent: hcontent,
             hphoto: hphoto || '',
             hwriteday: formattedDate,
         };
@@ -75,8 +79,6 @@ function HugiList(props) {
             .then((res) => {
                 navi('/hugi/list');
                 refreshHugiData();
-
-
                 setHphoto('');
                 setHcontent('');
             })
@@ -92,14 +94,17 @@ function HugiList(props) {
     return (
         <div className="hugi">
             <div className="hugi_header">
-                <div className="app__headerWrapper">
+                <div className="hugi__headerWrapper">
                     <button type="button" alt="" className="primary_button" onClick={homeButton}>
                         Home
                     </button>
                 </div>
+                <b className="CommentNickname">
+                    {unickname}님이 접속중입니다.
+                </b>
             </div>
             {isLoggedIn && (
-                <details>
+                <details className="details_Timeline">
                     <summary>게시물 작성하기</summary>
                 <div className="timeline" style={{ border: '1px solid gray', width: '100%', height: '50%', marginTop: '5px', marginBottom: '5px' }}>
                     <input type="file" className="form-control" onChange={onUploadEvent} />
@@ -121,18 +126,18 @@ function HugiList(props) {
                 </details>
             )}
             <div className="timeline">
-                {hugiData.map((rowData) => (
+                {
+                    hugiData &&
+                    hugiData.map((rowData) => (
                     <HugiRowList
                         key={rowData.hnum}
                         hnum={rowData.hnum}
                         unum={rowData.unum}
-                        uname={rowData.uname}
                         unickname={rowData.unickname}
                         hcontent={rowData.hcontent}
                         hphoto={rowData.hphoto}
                         hwriteday={rowData.hwriteday}
                         refreshHugiData={refreshHugiData}
-
                     />
                 ))}
             </div>

@@ -2,12 +2,14 @@ package data.controller;
 
 import data.dto.HugiDto;
 import data.dto.UserDto;
+import data.mapper.HugiMapper;
 import data.service.HugiService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -18,19 +20,18 @@ import java.util.Map;
 @CrossOrigin
 @RequestMapping("/hugi")
 public class HugiController {
+    String hphoto;
+    String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
     @Autowired
     private NcpObjectStorageService storageService;
-
-    private String bucketName="bit701-bucket-111";
-
-    String hphoto;
-
-    String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+    private String bucketName = "bit701-bucket-111";
     @Autowired
     private HugiService hugiService;
+    @Autowired
+    private HugiMapper hugiMapper;
 
     @GetMapping("/list")
-    public List<HugiDto> list(){
+    public List<HugiDto> list() {
         System.out.println("list>>");
         return hugiService.getAllHugis();
     }
@@ -53,32 +54,34 @@ public class HugiController {
 //}
 
     @PostMapping("/upload")
-    public String photoUpload(@RequestParam("upload") MultipartFile upload){
-        System.out.println("upload>>"+upload.getOriginalFilename());
-        if(hphoto!=null) {
+    public String photoUpload(@RequestParam("upload") MultipartFile upload) {
+        System.out.println("upload>>" + upload.getOriginalFilename());
+        if (hphoto != null) {
             //이전 사진 삭제
             storageService.deleteFile(bucketName, "birdiebuddy", hphoto);
         }
-        hphoto=storageService.uploadFile(bucketName, "birdiebuddy", upload);
+        hphoto = storageService.uploadFile(bucketName, "birdiebuddy", upload);
 
         return hphoto;
     }
+
     @PostMapping("/insert")
-    public void insert(@RequestBody HugiDto hdto){
-        System.out.println("hdto>>"+hdto);
+    public void insert(@RequestBody HugiDto hdto) {
+        System.out.println("hdto>>" + hdto);
 
         // uname 정보 가져오기
-        int unum = hdto.getUnum();
-        UserDto userDto = hugiService.getUserDto(unum);
-        String uname = userDto.getUname();
-        String unickname = userDto.getUnickname();
-        hdto.setUname(uname);
-        hdto.setUnickname(unickname);
-        hdto.setHphoto(hphoto);
+        //int unum = hdto.getUnum();
+        //UserDto userDto = hugiService.getUserDto(unum);
+//        String uname = userDto.getUname();
+//        String unickname = userDto.getUnickname();
+//        hdto.setUname(uname);
+//        hdto.setUnickname(unickname);
+//        hdto.setHphoto(hphoto);
         hugiService.insertHugi(hdto);
         hphoto = null;
     }
-//    @GetMapping("/detail")
+
+    //    @GetMapping("/detail")
 //    public HugiDto detailPage(int hnum){
 //        System.out.println("detail>>"+hnum);
 //        return hugiService.detailPage(hnum);
@@ -97,8 +100,9 @@ public class HugiController {
         hugiDto.setUnickname(unickname);
 
         return hugiDto;
-}
-//    @DeleteMapping("/delete")
+    }
+
+    //    @DeleteMapping("/delete")
 //    public void delete(int hnum)
 //    {
 //        System.out.println("delete>>"+hnum);
@@ -116,15 +120,38 @@ public class HugiController {
         String prePhoto = hugiDto.getHphoto();
         storageService.deleteFile(bucketName, "birdiebuddy", prePhoto);
         hugiService.deleteHugi(hnum);
-}
+    }
+
     @GetMapping("/user/{unum}")
     public ResponseEntity<UserDto> getUserDto(@PathVariable int unum) {
+        System.out.println("unum:" + unum);
         UserDto userDto = hugiService.getUserDto(unum);
+        System.out.println(userDto.getUname());
 
         if (userDto != null) {
             return ResponseEntity.ok(userDto);
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+//    @GetMapping("/user/{unum}")
+//    public List<UserDto> getUserDto(@PathVariable int unum) {
+//        System.out.println("unum:" + unum);
+//        UserDto userDto = hugiService.getUserDto(unum);
+//        System.out.println(userDto.getUname());
+//
+//        System.out.println("unum+" + unum);
+//        return hugiMapper.getUser(unum);
+//    }
+
+    @GetMapping("/getuser")
+    public String getUser(int unum) {
+        System.out.println("unum+" + unum);
+        String unickname = hugiMapper.getNickname(unum);
+        String uname= hugiMapper.getNickname(unum);
+        System.out.println("uname+" + uname);
+        System.out.println("unickname + uname >>>" + unickname + "+" +uname);
+        return hugiMapper.getNickname(unum);
+
     }
 }

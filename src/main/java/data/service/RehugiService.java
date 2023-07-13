@@ -8,13 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 @AllArgsConstructor
-public class RehugiService implements RehugiServiceInter{
-
-
-    private RehugiMapper rehugiMapper;
+public class RehugiService implements RehugiServiceInter {
+    private final RehugiMapper rehugiMapper;
 
     @Override
     public void addComment(RehugiDto rhdto) {
@@ -35,12 +32,19 @@ public class RehugiService implements RehugiServiceInter{
     public List<RehugiDto> getAllCommentsWithReplies(int hnum) {
         return rehugiMapper.getAllCommentsWithReplies(hnum);
     }
+
+    @Override
     public void deleteCommentOrReply(int rhnum) {
         rehugiMapper.deleteCommentOrReply(rhnum);
     }
+
     @Override
     public void deleteAllComments(int hnum) {
         rehugiMapper.deleteAllComments(hnum);
     }
 
+    @Override
+    public void updateReplyStep(int ref, int step) {
+        rehugiMapper.updateReplyStep(ref, step);
+    }
 }
