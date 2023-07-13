@@ -2,7 +2,7 @@ import React from 'react';
 
 function Mypage(props) {
     return (
-        <div></div>
+        <div>마이페이지</div>
     );
 }
 

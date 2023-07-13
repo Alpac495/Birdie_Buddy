@@ -2,6 +2,7 @@ package data.service;
 
 import data.dto.GolfjangDto;
 import data.dto.JoiningDto;
+import data.dto.JoinmemberDto;
 import data.mapper.JoiningMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,14 @@ public class JoiningService implements JoiningServiceInter{
     @Override
     public JoiningDto detailPage(int jnum) {
         return joiningMapper.detailPage(jnum);
+    }
+    @Override
+    public int joinCancel(int jnum) {
+        return joiningMapper.joinCancel(jnum);
+    }
+
+    @Override
+    public void joinMaker(JoinmemberDto dto) {
+        joiningMapper.joinMaker(dto);
     }
 }

@@ -1,0 +1,141 @@
+.PFdiv {
+    position: relative;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #292d32;
+    display: inline-block;
+    height: 1.45rem;
+    flex-shrink: 0;
+}
+.PFdiv,
+.PFdiv1 {
+    align-self: stretch;
+    line-height: 150%;
+}
+.PFdiv1,
+.PFdiv3,
+.PFradio1 {
+    position: relative;
+}
+.PFradio1 {
+    border-radius: 100px;
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(46, 46, 66, 0.08);
+    border: 3px solid #32d5ad;
+    box-sizing: border-box;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.PFdiv3 {
+    line-height: 1.25rem;
+}
+.PFradio-with-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.38rem;
+}
+.PFradio2 {
+    position: relative;
+    border-radius: 100px;
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(46, 46, 66, 0.08);
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.PFdiv2,
+.PFradio {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.PFdiv2 {
+    width: 17.5rem;
+    flex-direction: row;
+    gap: 1rem;
+    color: #000;
+}
+.PFradio {
+    align-self: stretch;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.icon,
+.mm-yy {
+    position: relative;
+    opacity: 0.5;
+}
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.PFinfo1 {
+    flex: 1;
+    line-height: 1.5rem;
+}
+.PFtext-field {
+    align-self: stretch;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 2px solid #d9d9d9;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.75rem 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    color: #000;
+}
+.PFtasu {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.PFage,
+.Pfframe,
+.partnerform,
+.PFtasu {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+}
+.PFage {
+    align-self: stretch;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.PFframe,
+.partnerform {
+    gap: 1.5rem;
+}
+.PFframe {
+    align-self: stretch;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.partnerform {
+    position: relative;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ebebf0;
+    box-sizing: border-box;
+    width: 20.5rem;
+    height: 22rem;
+    flex-direction: column;
+    padding: 1.5rem;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
+    text-align: left;
+    font-size: 0.94rem;
+    color: #52525c;
+    font-family: Inter;
+}

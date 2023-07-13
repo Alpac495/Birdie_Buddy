@@ -35,7 +35,7 @@ const JoinList = () => {
         <div className="joinlist">
             <Header />
             <div className="btn1_wrapper">
-                <b className="JLb">조인만들기</b>
+                {/*<NavLink to={'/joining/form'} className='nav-style'><b className="JLb">조인만들기</b></NavLink>*/}
             </div>
             <div className="btn2_wrapper">
                 <b className="JLb1">내조인</b>
@@ -44,7 +44,7 @@ const JoinList = () => {
             <div className="jlist">
                 <div>
                     {data.map && data.map((item, idx) => (
-                        <NavLink to={`/joining/detail/${item.jnum}`}>
+                        <NavLink to={`/joining/detail/${item.jnum}`} className='nav-style'>
                         <div className="jlist1" key={idx}>
                             <div className="jlist-inner">
                                 <div className="instance-child" />
