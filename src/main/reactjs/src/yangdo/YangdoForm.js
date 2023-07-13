@@ -15,7 +15,6 @@ function YangdoForm(props) {
         setModalOpen(false);
     };
 
-    const [gname,setGname]=useState('');
     const [data,setData]=useState('');
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -56,7 +55,7 @@ function YangdoForm(props) {
             .then(res=>{
 
                 // 목록으로 이동
-                navi("/yangdo/list")
+                navi("/yangdo/list/1")
             })
     }
 
@@ -65,7 +64,7 @@ function YangdoForm(props) {
         <div>
 
             <React.Fragment>
-                <Modal open={modalOpen} close={closeModal} header="Modal heading">
+                <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>
                         <input style={{marginLeft:'20px'}}
                                type="text"

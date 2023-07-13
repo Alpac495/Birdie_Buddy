@@ -19,4 +19,5 @@ public class YangdoDto {
     private String yday;
     private String ysubject;
     private String unickname;
+    private String uhp;
 }
