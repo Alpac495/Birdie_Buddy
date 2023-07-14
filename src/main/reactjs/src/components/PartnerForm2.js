@@ -5,20 +5,13 @@ const PartnerForm2 = ({ onClose }) => {
     return (
         <div className="PF2partnerform2">
             <div className="PF2frame-parent">
-                <div className="PF2detail-view-wrapper">
-                    <div className="PF2detail-view">
-                        <div className="PF2action-bar-contextual">
-                            <div className="PF2actions">
-                                <div className="PF2favorite">
-                                    <div className="PF2icon" />
-                                </div>
-                                <div className="PF2favorite">
-                                    <CloseIcon color="white" className="PF2icon1"/>
-                                </div>
-                            </div>
-                            <div className="PF2title">동반자 정보 입력</div>
-
+                <div className="PF2detail-view">
+                    <div className="PF2action-bar-contextual">
+                        <div className="PF2favorite">
+                            <CloseIcon color="white" className="PF2icon1"/>
                         </div>
+                    </div>
+                    <div className="PF2title">동반자 정보 입력
                     </div>
                 </div>
                 <div className="PF2partnerinfo">
@@ -39,15 +32,13 @@ const PartnerForm2 = ({ onClose }) => {
                             <div className="PF2frame1">
                                 <div className="PF2tasu">
                                     <div className="PF2div4">나이</div>
-                                    <div className="PF2text-field">
-                                        <input className="PF2div5" placeholder="나이입력"/>
-                                    </div>
+                                    <input type="number" className="PF2text-field" placeholder="나이입력"/>
+
                                 </div>
                             </div>
                             <div className="PF2div4">평균 타수</div>
-                            <div className="PF2text-field">
-                                <input className="PF2div5" placeholder="타수입력"/>
-                            </div>
+                            <input type="number" className="PF2text-field" placeholder="타수입력"/>
+
                         </div>
                     </div>
                 </div>
@@ -69,15 +60,13 @@ const PartnerForm2 = ({ onClose }) => {
                             <div className="PF2frame1">
                                 <div className="PF2tasu">
                                     나이
-                                    <div className="PF2text-field">
-                                        <input type="text" className="PF2div5"/>
-                                    </div>
+                                    <input  className="PF2text-field" type="number" placeholder="나이 숫자로 입력"/>
+
                                 </div>
                             </div>
                             <div className="PF2div4">평균 타수</div>
-                            <div className="PF2text-field">
-                                <input className="PF2div5" placeholder="타수입력"/>
-                            </div>
+                            <input className="PF2text-field" type="number" placeholder="평균 타수 숫자로 입력"/>
+
                         </div>
                     </div>
                 </div>
