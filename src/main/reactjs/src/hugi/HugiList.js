@@ -14,7 +14,7 @@ function HugiList(props) {
     const [Unickname,setUnickname]=useState();
     const [hugiData, setHugiData] = useState([]);
 
-    const url = process.env.REACT_APP_BOARDURL;
+    const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
     const isLoggedIn = sessionStorage.getItem('unum') !== null;
 

@@ -24,7 +24,7 @@ public class HugiController {
     String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
     @Autowired
     private NcpObjectStorageService storageService;
-    private String bucketName = "bit701-bucket-111";
+    private String bucketName = "bit701-bucket-111/birdiebuddy";
     @Autowired
     private HugiService hugiService;
     @Autowired
@@ -55,12 +55,12 @@ public class HugiController {
 
     @PostMapping("/upload")
     public String photoUpload(@RequestParam("upload") MultipartFile upload) {
-        System.out.println("upload>>" + upload.getOriginalFilename());
+        System.out.println("hphotoUpload>>" + upload.getOriginalFilename());
         if (hphoto != null) {
             //이전 사진 삭제
-            storageService.deleteFile(bucketName, "birdiebuddy", hphoto);
+            storageService.deleteFile(bucketName, "hugi", hphoto);
         }
-        hphoto = storageService.uploadFile(bucketName, "birdiebuddy", upload);
+        hphoto = storageService.uploadFile(bucketName, "hugi", upload);
 
         return hphoto;
     }
@@ -115,7 +115,7 @@ public class HugiController {
         System.out.println("delete>>" + hnum);
         HugiDto hugiDto = hugiService.detailPage(hnum);
         String prePhoto = hugiDto.getHphoto();
-        storageService.deleteFile(bucketName, "birdiebuddy", prePhoto);
+        storageService.deleteFile(bucketName, "hugi", prePhoto);
         hugiService.deleteHugi(hnum);
     }
 
@@ -144,7 +144,7 @@ public class HugiController {
     @GetMapping("/getUser")
     public ResponseEntity<String> getUser(int unum) {
         String unickname = hugiMapper.getNickname(unum);
-        System.out.println("unickname =>>" +unickname);
+//        System.out.println("unickname =>>" +unickname);
         if (unickname != null) {
             return ResponseEntity.ok(unickname);
         } else {

@@ -15,7 +15,7 @@ import Axios from 'axios';
 function HugiRowList(props) {
     const { hnum, hcontent, hphoto, hwriteday,Unickname, hlike} = props;
     // const unickname="test";
-    const url = process.env.REACT_APP_BOARDURL;
+    const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
 
     const [open, setOpen] = React.useState(false);
@@ -250,6 +250,7 @@ function HugiRowList(props) {
         const inputValue = e.target.value;
         if (inputValue.length <= MAX_COMMENT_LENGTH) {
             setRhcontent(inputValue);
+
         }
     };
 
@@ -272,7 +273,7 @@ function HugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={unickname} src="" />
+                <Avatar className="list_avatar" alt={unickname} src="/image/1.png" />
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
@@ -299,9 +300,9 @@ function HugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={unickname} src="" />
+                        <Avatar className="list_avatar_Comment1" alt={postUserNickname} src="/image/1.png" />
                         <span className="spanCommentList">
-                        {unickname}
+                        {postUserNickname}
                       </span>
                     </div>
                 </DialogTitle>
@@ -341,10 +342,10 @@ function HugiRowList(props) {
                     <pre className="preComment">
   {comments && comments.length > 0 ? (
       comments.map((comment) => (
-          <div key={comment.rhnum}>
+          <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="" />
+                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="/image/1.png" />
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -395,7 +396,7 @@ function HugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="" />
+                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="/image/1.png" />
                                   <b className="ReplyNickname">
                                       {reply.unickname}:
                                   </b>
