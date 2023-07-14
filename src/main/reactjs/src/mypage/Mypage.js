@@ -1,4 +1,5 @@
 import React from 'react';
+import "./MypageProfile.css";
 
 function Mypage(props) {
     return (
@@ -35,8 +36,6 @@ function Mypage(props) {
                     src="/-icon-profile-circle1.svg"
                 />
             </div>
-
-
         </div>
     );
 }
