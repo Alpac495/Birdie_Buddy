@@ -14,7 +14,16 @@
     height: 175px;
 }
 .main_notice{
-
+    height: 25px;
+    font-size: 12px;
+    text-align: center;
+    align-items: center;
+    overflow-y: hidden;
+    display: flex;
+    position: relative;
+    bottom: 15px;
+    width: 100vw;
+    overflow: hidden;
 }
 .main_btnwrap {
     margin: 10px auto 30px auto;
@@ -66,6 +75,7 @@
     height: 120px;
     align-items: center;
     margin-left: 10px;
+    box-shadow: 2px 2px 4px lightgrey;
 }
 .rec_info{
     width: 60%;

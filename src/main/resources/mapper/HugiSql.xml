@@ -31,6 +31,6 @@
         select * from user where unum=#{unum}
     </select>
     <select id="getNickname" parameterType="int" resultType="String">
-        select unickname, uname from user where unum=#{unum}
+        select unickname from user where unum=#{unum}
     </select>
 </mapper>

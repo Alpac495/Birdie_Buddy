@@ -24,7 +24,7 @@ function HugiList(props) {
     }, []);
 
     const getUser = () => {
-        Axios.get("/hugi/getuser?unum=" + sessionStorage.unum)
+        Axios.get("/hugi/getUser?unum=" + sessionStorage.unum)
             .then((res) => {
                 setUnickname(res.data);
             })
@@ -98,9 +98,15 @@ function HugiList(props) {
                         Home
                     </button>
                 </div>
-                <b className="CommentNickname">
-                    {unickname}님이 접속중입니다.
-                </b>
+                {sessionStorage.unum ? (
+                    <b className="CommentNickname">
+                        {unickname}님이 접속중입니다.
+                    </b>
+                ) : (
+                    <b className="CommentNickname">
+                        Guest님이 접속중입니다.
+                    </b>
+                )}
             </div>
             {isLoggedIn && (
                 <details className="details_Timeline">
@@ -137,6 +143,7 @@ function HugiList(props) {
                         hphoto={rowData.hphoto}
                         hwriteday={rowData.hwriteday}
                         refreshHugiData={refreshHugiData}
+                        getUser={getUser}
                     />
                 ))}
             </div>

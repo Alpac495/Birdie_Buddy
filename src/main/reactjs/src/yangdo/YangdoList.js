@@ -10,6 +10,8 @@ function YangdoList(props) {
     const {currentPage} = useParams();
     console.log({currentPage});
 
+    const [searchTerm, setSearchTerm] = useState("");
+
     const navi = useNavigate();
 
     // 페이징 처리에 필요한 데이터 가져오기
@@ -34,20 +36,50 @@ function YangdoList(props) {
         }
     }
 
+    const onDetailEvent=()=>{
+        if(sessionStorage.unum == null){
+            alert("로그인을 해주세요");
+            navi("/login/login");
+        }
+    }
+
     return (
         <div>
             <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>
             <br/>
 
-            <h2>총 {data.totalCount}개</h2>
+            <h5>총 {data.totalCount}개</h5>
 
-            {
-                data.list &&
-                data.list.map((row,idx)=>
-                <YangdoRowList key={idx} row={row} no={data.no} idx={idx}
-                currentPage={currentPage}/>)
-            }
-
+            <div>
+                <input
+                       type="text"
+                       placeholder="검색"
+                       onChange={(e) => {
+                           setSearchTerm(e.target.value);
+                       }}/>
+                <br/><br/>
+                    {
+                        data.list &&
+                        data.list.filter((val)=>{
+                            if(searchTerm == ""){
+                                return val
+                            }else if(val.yplace.includes(searchTerm)){
+                                return val
+                            }
+                        }).map((row,idx)=>
+                        <div>
+                            <NavLink to={`/yangdo/detail/${row.ynum}/${currentPage}`}
+                            onClick={onDetailEvent}>
+                                <b>{row.yplace}</b><br/>
+                            </NavLink>
+                            <b>{row.yday}</b><br/>
+                            <b>{row.ysubject}</b><br/>
+                            <b>{row.yprice.toLocaleString()}원</b><br/>
+                            <b>{row.unickname}</b><br/>
+                            </div>
+                        )
+                    }
+            </div>
 
             <div style={{width:'800px',textAlign:'center'}}>
                 {/* 페이징 처리 */}

@@ -13,7 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Axios from 'axios';
 
 function HugiRowList(props) {
-    const { hnum, hcontent, hphoto, hwriteday, hlike, unickname } = props;
+    const { hnum, hcontent, hphoto, hwriteday,unickname, hlike} = props;
 
     const url = process.env.REACT_APP_BOARDURL;
     const navi = useNavigate();
@@ -29,7 +29,18 @@ function HugiRowList(props) {
     const [commentError, setCommentError] = useState(false); // 댓글 입력 오류 여부 상태 추가
     const [replyError, setReplyError] = useState(false); // 대댓글 입력 오류 여부 상태 추가
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
+    const [postUserNickname,setPostUserNickname]=useState();
     const [userDto,setUserDto]=useState();
+
+
+
+    const checkLoginStatus = () => {
+        if (unum) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    };
     const handleClickOpen = () => {
         if (unum == null) {
             alert('로그인을 먼저 해주세요!');
@@ -99,16 +110,23 @@ function HugiRowList(props) {
         }
     };
 
+    // getComments 함수 내부에서도 setNickname을 호출하여 unickname 값을 설정합니다.
     const getComments = () => {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
                 setComments(sortedComments);
+
+                res.data.forEach((comment) => {
+                    fetchUserNickname(comment.unum, comment); // 댓글 작성자의 unickname 가져오기
+                });
             })
             .catch((error) => {
                 console.log(error);
             });
     };
+
+
 
     const sortComments = (comments) => {
         const sorted = [];
@@ -133,12 +151,11 @@ function HugiRowList(props) {
             }
         }
 
-
         sorted.forEach((comment) => {
-            comment.unickname = comment.unickname;
+            comment.unickname = comment.unickname || postUserNickname; // Set comment author's nickname
             if (comment.comments && comment.comments.length > 0) {
                 comment.comments.forEach((reply) => {
-                    reply.unickname = reply.unickname;
+                    reply.unickname = reply.unickname || postUserNickname; // Set reply author's nickname
                 });
             }
         });
@@ -146,29 +163,47 @@ function HugiRowList(props) {
         return sorted;
     };
 
-    const checkLoginStatus = () => {
+    const fetchUserNickname = async (unum, comment) => {
         if (unum) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
+            try {
+                const res = await Axios.get(`/hugi/getUser/${unum}`);
+                const userNickname = res.data;
+                if (userNickname) {
+                    comment.unickname = userNickname; // unickname 속성 업데이트
+                    getComments(); // UI 업데이트를 위한 리렌더링 트리거
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    // 404 오류 처리
+                } else {
+                    console.log('오류가 발생했습니다.', error.message);
+                }
+            }
         }
     };
 
-    const fetchUserDto = (unum) => {
+
+
+
+
+    const fetchPostUserNickname = async (unum) => {
         if (unum) {
-            Axios.get(`/hugi/user/${unum}`)
-                .then((res) => {
-                    setUserDto(res.data);
-                })
-                .catch((error) => {
-                    if (error.response && error.response.status === 404) {
-                        // 404 오류 처리
-                    } else {
-                        console.log('오류가 발생했습니다.', error.message);
-                    }
-                });
+            try {
+                const res = await Axios.get(`/hugi/getUser/${unum}`);
+                const userNickname = res.data;
+                if (userNickname) {
+                    setPostUserNickname(userNickname);
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    // 404 오류 처리
+                } else {
+                    console.log('오류가 발생했습니다.', error.message);
+                }
+            }
         }
     };
+
 
     const handleCommentSubmit = (e) => {
         e.preventDefault();
@@ -184,7 +219,7 @@ function HugiRowList(props) {
             rhnum: rhnum,
             hnum: hnum,
             unum:sessionStorage.unum,
-            unickname: unickname,
+            unickname: userDto?.unickname || postUserNickname,
             rhcontent: rhcontent,
             rhwriteday: formattedDate,
             ref: null,
@@ -213,14 +248,14 @@ function HugiRowList(props) {
         const newReply = {
             hnum: hnum,
             unum:sessionStorage.unum,
-            unickname:unickname,
+            unickname:userDto?.unickname || postUserNickname,
             rhcontent: replyContent,
             ref: comment.rhnum,
             step: comment.step + 1,
             depth: comment.depth + 1,
         };
 
-        Axios.post(`/rehugi/newreply?unum=${unum}`, newReply)
+        Axios.post("/rehugi/newreply?unum="+unum, newReply)
             .then((res) => {
                 console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();
@@ -254,9 +289,20 @@ function HugiRowList(props) {
     useEffect(() => {
         setUnum(sessionStorage.unum);
         checkLoginStatus();
-        fetchUserDto(unum);
+        fetchUserNickname(props.unum);
+        fetchPostUserNickname(props.unum);
         getComments();
+
+        // Fetch userDto
+        Axios.get(`/hugi/user/${props.unum}`)
+            .then((res) => {
+                setUserDto(res.data);
+            })
+            .catch((error) => {
+                console.log('오류가 발생했습니다.', error.message);
+            });
     }, []);
+
 
     return (
         <div className="list">
@@ -328,87 +374,86 @@ function HugiRowList(props) {
                         </div>
                     )}
                     <pre className="preComment">
-            {comments && comments.length > 0 ? (
-                comments.map((comment) => (
-                    <div key={comment.rhnum}>
-                        <div>
-                            <span className="Commentname">{unickname}:
-                        </span>
-                        <Avatar className="list_avatar_Comment2" alt={unickname} src="" />
-                        <pre className="preRhcontent">{comment.rhcontent}</pre>
-                        <br/>
-                        <span className="spanRhwriteday">{comment.rhwriteday}</span>
-                        {unum && (
-                            <a className="Click_ReplyForm" onClick={() => toggleReplyForm(comment.rhnum)}>
-                                {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
-                            </a>
-                        )}
-                        {parseInt(props.unum) === parseInt(unum) && (
-                            <DeleteIcon
-                                className="Delete_Icon"
-                                onClick={() => handleClickDeleteComment(comment.rhnum)}
-                            />
-                        )}
-                        </div>
-                        {openReplyForm === comment.rhnum && unum && (
-                            <div className="input-group" style={{ width: '230px', marginBottom:"30px" }}>
-                      <textarea
-                          className="form-control"
-                          style={{
-                              width: '67%',
-                              height: '30px',
-                              border: '1px solid lightgray',
-                              fontSize: '12px',
-                              resize: 'none',
-                          }}
-                          placeholder="댓글을 작성해 보세요"
-                          value={replyContent}
-                          onChange={(e) => setReplyContent(e.target.value)}
-                      ></textarea>
-                                <button
-                                    type="button"
-                                    className="primary_button_Reply"
-                                    onClick={() => submitReply(comment)}
-                                >
-                                    대댓글 작성
-                                </button>
-                            </div>
-                        )}
-                        {replyError && comment.rhnum === errorCommentId && (
-                            <div>
-                                <p className="ReplyAlert">대댓글을 입력해주세요.</p>
-                            </div>
-                        )}
-                        {comment.comments && comment.comments.length > 0 && (  // 대댓글이 있는 경우에만 더보기 링크를 보여줍니다.
-                        <details className="details_Reply">
-                            <summary>더보기</summary>
-                        {comment.comments &&
-                            comment.comments.map((reply) => (
-                                <div key={reply.rhnum} className="Comment_Reply_List">
-                                    <Avatar className="list_avatar_Comment2" alt={unickname} src="" />
-                                    <b className="ReplyNickname">
-                                        {unickname}:
-                                    </b>
-                                    &nbsp;
-                                    <pre className="preRhcontent">{reply.rhcontent}</pre>
-                                    <br />
-                                    <span className="spanRhwriteday">{reply.rhwriteday}</span>
-                                    {parseInt(props.unum) === parseInt(unum) && (
-                                        <DeleteIcon
-                                            className="Delete_Icon"
-                                            onClick={() => handleClickDeleteComment(reply.rhnum)}
-                                        />
-                                    )}
-                                </div>
-                            ))}
-                        </details>
-                        )}
-                    </div>
-                ))
-            ) : (
-                <p>댓글이 없습니다.</p>
-            )}
-          </pre>
+  {comments && comments.length > 0 ? (
+      comments.map((comment) => (
+          <div key={comment.rhnum}>
+              <div>
+                  <span className="Commentname">{comment.unickname}:</span>
+                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="" />
+                  <pre className="preRhcontent">{comment.rhcontent}</pre>
+                  <br/>
+                  <span className="spanRhwriteday">{comment.rhwriteday}</span>
+                  {unum && (
+                      <a className="Click_ReplyForm" onClick={() => toggleReplyForm(comment.rhnum)}>
+                          {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
+                      </a>
+                  )}
+                  {parseInt(props.unum) === parseInt(unum) && (
+                      <DeleteIcon
+                          className="Delete_Icon"
+                          onClick={() => handleClickDeleteComment(comment.rhnum)}
+                      />
+                  )}
+              </div>
+              {openReplyForm === comment.rhnum && unum && (
+                  <div className="input-group" style={{ width: '230px', marginBottom:"30px" }}>
+            <textarea
+                className="form-control"
+                style={{
+                    width: '67%',
+                    height: '30px',
+                    border: '1px solid lightgray',
+                    fontSize: '12px',
+                    resize: 'none',
+                }}
+                placeholder="댓글을 작성해 보세요"
+                value={replyContent}
+                onChange={(e) => setReplyContent(e.target.value)}
+            ></textarea>
+                      <button
+                          type="button"
+                          className="primary_button_Reply"
+                          onClick={() => submitReply(comment)}
+                      >
+                          대댓글 작성
+                      </button>
+                  </div>
+              )}
+              {replyError && comment.rhnum === errorCommentId && (
+                  <div>
+                      <p className="ReplyAlert">대댓글을 입력해주세요.</p>
+                  </div>
+              )}
+              {comment.comments && comment.comments.length > 0 && (
+                  <details className="details_Reply">
+                      <summary>댓글보기</summary>
+                      {comment.comments &&
+                          comment.comments.map((reply) => (
+                              <div key={reply.rhnum} className="Comment_Reply_List">
+                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="" />
+                                  <b className="ReplyNickname">
+                                      {reply.unickname}:
+                                  </b>
+                                  &nbsp;
+                                  <pre className="preReplyRhcontent">{reply.rhcontent}</pre>
+                                  <br />
+                                  <span className="spanRhwriteday">{reply.rhwriteday}</span>
+                                  {parseInt(props.unum) === parseInt(unum) && (
+                                      <DeleteIcon
+                                          className="Delete_Icon"
+                                          onClick={() => handleClickDeleteComment(reply.rhnum)}
+                                      />
+                                  )}
+                              </div>
+                          ))}
+                  </details>
+              )}
+          </div>
+      ))
+  ) : (
+      <p>댓글이 없습니다.</p>
+  )}
+</pre>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} autoFocus>
