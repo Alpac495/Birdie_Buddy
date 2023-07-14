@@ -83,7 +83,7 @@ function Mypage(props) {
         getUserData()
     }, [])
     return (
-        <div>
+        <div className={'div1'}>
             {/*<div>*/}
             {/*    unum : {unum}<br/>*/}
             {/*    uemail : {uemail}<br/>*/}
@@ -97,7 +97,6 @@ function Mypage(props) {
             {/*    utasuopen : {utasuopen}<br/>*/}
             {/*    ucareer : {ucareer}<br/>*/}
             {/*</div>*/}
-            <div className="e1_26">
                 <div className="e1_29"></div>
                 <div className="e1_30"></div>
                 <div className="e1_31"></div>
@@ -125,7 +124,6 @@ function Mypage(props) {
                         </div>
                     </div>
                 </div>
-            </div>
 
         </div>
     );

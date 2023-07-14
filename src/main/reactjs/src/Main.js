@@ -7,9 +7,11 @@ import Recommendslider from "./app_effect/Recommendslider";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
 import FriendSlider from "./app_effect/FriendSlider";
+import NoticeSlider from "./app_effect/NoticeSlider";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
-
+import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
+import FlutterDashRoundedIcon from '@mui/icons-material/FlutterDashRounded';
 
 
 
@@ -23,9 +25,11 @@ function Main(props) {
             <div className={'main_banner'}>
                 <Bannerslider/>
             </div>
+
             <div className={'main_notice'}>
-                입구가 녹슬어 엉겨붙은 문을 열어 부지내를 마차가 스타크래프트 립버전 1.16.1다운
+                <div><NoticeSlider/></div>
             </div>
+
 
 
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>

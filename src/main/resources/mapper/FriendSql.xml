@@ -9,4 +9,24 @@
     <select id="detailPage" parameterType="int" resultType="UserDto">
         select * from user where unum=#{funum}
     </select>
+    <select id="checkBuddy" parameterType="int" resultType="int">
+        select count(unum) from friend where unum=#{unum} and funum=#{funum} and faccept=1
+    </select>
+    <select id="checkingBuddy" parameterType="int" resultType="int">
+        select count(unum) from friend where unum=#{unum} and funum=#{funum} and faccept=0
+    </select>
+    <insert id="requestFriend1" parameterType="FriendDto">
+        INSERT INTO friend (unum, funum, faccept)
+        VALUES (#{unum}, #{funum}, 0)
+    </insert>
+    <insert id="requestFriend2" parameterType="FriendDto">
+        INSERT INTO friend (unum, funum, faccept)
+        VALUES (#{funum}, #{unum}, 0)
+    </insert>
+    <delete id="friendCancel1" parameterType="int">
+        delete from friend where unum=#{unum} and funum=#{funum}
+    </delete>
+    <delete id="friendCancel2" parameterType="int">
+        delete from friend where unum=#{funum} and funum=#{unum}
+    </delete>
 </mapper>

@@ -2,12 +2,10 @@ import "./Joining.css";
 import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
-import mlogo from '../image/logo_main.svg';
 import Modal from '../components/Modal';
-import Header from "../header/Header";
-import PartnerForm from "../components/ParnterForm";
+import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
-
+import PartnerForm2 from "../components/PartnerForm2";
 
 
 const JoinForm = (props) => {
@@ -75,15 +73,15 @@ const JoinForm = (props) => {
         {closeModal()}
     }
     //동반자 모달
+    const [isPartnerForm2Open, setPartnerForm2Open] = useState(false);
     const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
-    const [isPartnerForm1Open, setPartnerForm1Open] = useState(false);
 
-    const openPartnerForm1 = useCallback(() => {
-        setPartnerForm1Open(true);
+    const openPartnerForm2 = useCallback(() => {
+        setPartnerForm2Open(true);
     }, []);
 
-    const closePartnerForm1 = useCallback(() => {
-        setPartnerForm1Open(false);
+    const closePartnerForm2 = useCallback(() => {
+        setPartnerForm2Open(false);
     }, []);
 
     const openPartnerForm = useCallback(() => {
@@ -94,9 +92,10 @@ const JoinForm = (props) => {
         setPartnerFormOpen(false);
     }, []);
 
+
     return (
         <div className="joinform">
-            <Header/>
+
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="Modal heading">
                     <div>
@@ -175,21 +174,24 @@ const JoinForm = (props) => {
             </div>
             <div className="joinform-child" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
-                <div className="jcheckbox-setonon-wrapper" onClick={openPartnerForm1}>
-                    <label className="jcheckbox-setonon">
-                        동반자가 있습니다
-                        <input type={"checkbox"} className="jdiv17"/>
-                    </label>
-                </div>
+                <label className="jradio-button-setonon">
+                    <input type='radio' name='partner' className="jdiv31"/>동반자 없음
+                </label>
+                <label className="jradio-button-setoffon" onClick={openPartnerForm2}>
+                    <input type='radio' name='partner' className="jdiv31"/>동반자 2명
+                </label>
+                <label className="jradio-button-setoffon1" onClick={openPartnerForm}>
+                    <input type='radio' name='partner' className="jdiv31"/>동반자 1명
+                </label>
             </form>
 
-            {isPartnerForm1Open && (
+            {isPartnerForm2Open && (
                 <PortalPopup
                     overlayColor="rgba(113, 113, 113, 0.3)"
                     placement="Centered"
-                    onOutsideClick={closePartnerForm1}
+                    onOutsideClick={closePartnerForm2}
                 >
-                    <PartnerForm onClose={closePartnerForm1} />
+                    <PartnerForm2 onClose={closePartnerForm2} />
                 </PortalPopup>
             )}
             {isPartnerFormOpen && (

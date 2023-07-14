@@ -144,12 +144,10 @@ public class HugiController {
 //        return hugiMapper.getUser(unum);
 //    }
 
-    @GetMapping("/getuser")
+    @GetMapping("/getUser")
     public String getUser(int unum) {
         System.out.println("unum>>>" + unum);
         String unickname = hugiMapper.getNickname(unum);
-        String uname= hugiMapper.getNickname(unum);
-        System.out.println("uname>>>" + uname);
         System.out.println("unickname >>>" + unickname);
         return hugiMapper.getNickname(unum);
 

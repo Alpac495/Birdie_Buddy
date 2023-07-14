@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import no from '../images/person1.jpg';
 import './FriendSlider.css';
-import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
 
 export default class SimpleSlider extends Component {
     constructor(props) {
@@ -38,11 +38,12 @@ export default class SimpleSlider extends Component {
                 <Slider {...settings}>
                     <div className={'friend_slide'}>
                         <img onClick={this.handleTouchStart} alt={''} src={no} />
-                        {isClicked && (
-                            <div onClick={this.handleClickClose}>
                                 <div className={`friend_modal`}></div>
-                            </div>
-                        )}
+                                <div className={'friend_plus'}><AddIcon/></div>
+                                <div className={'friend_footer'}>
+                                    <div>#1.16타 #1년</div>
+                                    <div>박복자</div>
+                                </div>
                     </div>
                     <div className="friend_slide">
                         <img alt={''} src={no} />

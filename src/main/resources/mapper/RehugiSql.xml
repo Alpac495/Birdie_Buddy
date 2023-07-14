@@ -33,20 +33,14 @@
     <select id="getCommentsByHnum" resultType="data.dto.RehugiDto">
         SELECT
             c.*,
-            r.unickname,
-            r.uname,
-            r.hnum,
-            r.hcontent,
-            r.hphoto,
-            r.hwriteday,
-            r.hlike
+            u.unickname AS user_unickname
         FROM
             rehugi c
-                JOIN rehugi r ON c.hnum = r.hnum AND c.unum = r.unum
+                JOIN user u ON c.unum = u.unum
         WHERE
             c.hnum = #{hnum}
         ORDER BY
-            c.rhwriteday ASC
+            c.rhwriteday ASC;
     </select>
 
     <select id="getAllCommentsWithReplies" resultType="data.dto.RehugiDto">
