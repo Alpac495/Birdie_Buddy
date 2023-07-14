@@ -5,10 +5,30 @@
         VALUES (#{hnum}, #{unum}, #{rhcontent}, now())
     </insert>
 
+    <update id="updateReplyStep">
+        UPDATE rehugi
+        SET step = step + 1
+        WHERE ref = #{ref} AND step >= #{step}
+    </update>
+
     <insert id="addReply" parameterType="data.dto.RehugiDto">
-        INSERT INTO rehugi (hnum, unum, rhcontent, rhwriteday, ref, step, depth)
-        VALUES (#{hnum}, #{unum}, #{rhcontent}, now(), #{ref}, #{step}, #{depth})
+        <selectKey keyProperty="step" resultType="int" order="BEFORE">
+            <choose>
+                <when test="ref != null">
+                    SELECT COALESCE(MAX(step), 0) + 1 FROM rehugi WHERE ref = #{ref}
+                </when>
+                <otherwise>
+                    SELECT COALESCE(MAX(step), 0) + 1 FROM rehugi
+                </otherwise>
+            </choose>
+        </selectKey>
+        INSERT INTO rehugi (rhnum, hnum, unum, rhcontent, rhwriteday, ref, step, depth)
+        VALUES (#{rhnum}, #{hnum}, #{unum}, #{rhcontent}, now(), #{ref}, #{step}, #{depth})
     </insert>
+
+    <delete id="deleteCommentOrReply" parameterType="int">
+        DELETE FROM rehugi WHERE rhnum = #{rhnum} OR ref = #{rhnum}
+    </delete>
 
     <select id="getCommentsByHnum" resultType="data.dto.RehugiDto">
         SELECT
@@ -35,10 +55,6 @@
         WHERE hnum = #{hnum}
         ORDER BY ref ASC, step ASC
     </select>
-
-    <delete id="deleteCommentOrReply" parameterType="int">
-        DELETE FROM rehugi WHERE rhnum = #{rhnum}
-    </delete>
 
     <delete id="deleteAllComments" parameterType="int">
         DELETE FROM rehugi WHERE hnum = #{hnum}

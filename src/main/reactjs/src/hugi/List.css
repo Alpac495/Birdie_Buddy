@@ -15,24 +15,34 @@
 .list_header {
     display: flex;
     align-items: center;
-    padding: 10px 10px;
+    padding: 12px 12px;
 }
 .list_avatar {
     margin-right:5px;
+    margin-top: 5px;
+    width: 30px;
+    height: 30px;
+}
+.list_avatar_Comment1 {
+    position: relative;
+    bottom: 20px;
+    right:20px;
+    width: 30px;
+    height: 30px;
+}
+.list_avatar_Comment2 {
+    position: relative;
+    bottom:5px;
+    left:10px;
     width: 25px;
     height: 25px;
 }
-.list_avatar_Comment {
-    position: relative;
-    top:5px;
-    width: 20px;
-    height: 20px;
-}
 .list_avatar_Reply {
     position: relative;
-    left:5px;
-    width: 20px;
-    height: 20px;
+    top:10px;
+    right:5px;
+    width: 25px;
+    height: 25px;
 
 }
 .primary_button {
@@ -58,24 +68,26 @@
 .primary_button_Reply {
     background-color: #0095f6;
     color: #fff;
-    padding: 5px 9px;
+    padding: 5px 5px;
     font-weight: 600;
     font-size: 12px;
     text-align: center;
     border-radius: 5px;
     width:33%;
-    height:40px;
+    height:31px;
     resize:none;
 }
 .CommentAlert{
+    margin-top: 5px;
     margin-left: 12px;
+    color: red;
 }
-.CommentNickname{
-    position: relative;
-    bottom: 28px;
-    left: 40px;
-    font-size: 14px;
+.ReplyAlert{
+    margin-bottom: 5px;
+    margin-left: 15px;
+    color:red;
 }
+
 .Icons{
     cursor: pointer;
     margin-left: 15px;
@@ -85,29 +97,29 @@
     margin-bottom: 10px;
     margin-left: 10px;
 }
-.ReplyForm{
+.Click_ReplyForm{
     position:relative;
-    left:41px;
-    bottom: 27px;
+    left:48px;
+    bottom: 32px;
     cursor:pointer;
     color:blue;
     text-decoration: none;
     font-size: 12px;
 }
-.Replydiv{
-    margin-left: 50px;
-    margin-top:5px;
+.Comment_Reply_List{
+    margin-left: 10px;
 }
 .spanRhwriteday{
     position: relative;
     left: 38px;
-    bottom: 28px;
+    bottom: 33px;
     font-size: 7px;
 }
-.spanRhcontent{
+.preRhcontent{
     position: relative;
-    bottom: 28px;
-    left: 40px;
+    width:120px;
+    bottom: 20px;
+    left: 70px;
     font-size: 14px;
 }
 .spanWriteday{
@@ -116,16 +128,24 @@
 }
 .spanCommentList{
     position: relative;
-    bottom: 35px;
-    left: 50px;
-    font-size:15px;
+    bottom:58px;
+    left: 23px;
+    font-size:18px;
+    font-weight: bold;
 }
 
+.spanName{
+    position: relative;
+    left:5px;
+    font-size: 18px;
+    font-weight: bold;
+}
 .Delete_Icon{
     position: relative;
-    bottom: 29px;
-    left: 45px;
-    font-size: 5px;
+    bottom: 47px;
+    left:80px;
+    font-size: 15px;
+    zoom: 0.7;
     cursor: pointer;
 }
 .Dialog_div{
@@ -135,7 +155,10 @@
     overflow-x: hidden;
 }
 .Dialog_Title{
-    padding: 20px 10px;
+    margin-top: 20px;
+    padding: 20px 20px;
+    width: 300px;
+    height:40px;
 }
 .preComment{
     width: 100%;
@@ -148,4 +171,38 @@
     position: relative;
     top: 10px;
     right: 10px;
+}
+.ReplyNickname{
+    position: relative;
+    bottom:30px;
+    left:60px;
+}
+.details_Reply{
+    border: 1px solid lightgrey;
+    margin-left: 5px;
+    padding: 5px 5px;
+    width: 235px;
+    height: 100%;
+}
+.details_Reply > summary{
+    position: relative;
+    width:70px;
+    left: 10px;
+    bottom: 15px;
+    background-color:#0095f6;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding:5px 5px;
+    margin-top: 20px;
+}
+.Commentname{
+    position: relative;
+    width: 100px;
+    height:20px;
+    top:20px;
+    left:60px;
+    font-weight: bold;
+    font-size: 14px;
 }

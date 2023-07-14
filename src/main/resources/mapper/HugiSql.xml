@@ -22,10 +22,15 @@
     <delete id="deleteHugi" parameterType="int">
         delete from hugi where hnum=#{hnum}
     </delete>
-<!--    <select id="getUserDto" parameterType="int" resultType="UserDto">-->
-<!--        SELECT h.*, u.uname, u.unickname-->
-<!--        FROM hugi h-->
-<!--                 JOIN user u ON h.unum = u.unum-->
-<!--        WHERE h.unum = #{unum}-->
-<!--    </select>-->
+    <select id="getUserDto" parameterType="int" resultType="UserDto">
+        SELECT *
+        FROM user
+        WHERE unum = #{unum}
+    </select>
+    <select id="getUser" parameterType="int" resultType="UserDto">
+        select * from user where unum=#{unum}
+    </select>
+    <select id="getNickname" parameterType="int" resultType="String">
+        select unickname, uname from user where unum=#{unum}
+    </select>
 </mapper>
