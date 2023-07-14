@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import * as ncloudchat from "ncloudchat";
+import React, { useEffect, useState } from 'react';
+import * as ncloudchat from 'ncloudchat';
 
 function NCloudChatComponent() {
-
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
@@ -15,7 +14,14 @@ function NCloudChatComponent() {
             setNc(chat);
 
             chat.bind('onMessageReceived', function (channel, message) {
-                setMessages(prevMessages => [...prevMessages, message]);
+                setMessages((prevMessages) => {
+                    // 중복된 메시지인지 확인하고 필요에 따라 중복을 제거하는 로직 추가
+                    const isDuplicate = prevMessages.some((prevMessage) => prevMessage.message_id === message.message_id);
+                    if (isDuplicate) {
+                        return prevMessages; // 중복된 메시지면 이전 상태를 그대로 반환
+                    }
+                    return [...prevMessages, message]; // 중복이 아니면 새 메시지를 추가하여 반환
+                });
             });
 
             await chat.connect({
@@ -50,7 +56,8 @@ function NCloudChatComponent() {
                     message: userInput,
                 });
 
-                setMessages(prevMessages => [...prevMessages, response]);
+                // 메시지 전송 후 상태 변경하지 않도록 수정
+                // setMessages(prevMessages => [...prevMessages, response]);
                 setUserInput('');
             } catch (error) {
                 console.error('Error:', error);
