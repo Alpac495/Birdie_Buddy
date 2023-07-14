@@ -19,4 +19,5 @@ public interface LoginMapper {
     public int cntCode(String uhp);
     public int cntHpCode(String uhp, String code);
     public int hpChk(String uhp);
+    public UserDto getUser(int unum);
 }
