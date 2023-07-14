@@ -16,6 +16,9 @@
     <select id="emailChk" parameterType="String" resultType="int">
         select count(*) from user where uemail=#{uemail}
     </select>
+    <select id="nickChk" parameterType="String" resultType="int">
+        select count(*) from user where unickname=#{unickname}
+    </select>
     <select id="hpChk" parameterType="String" resultType="int">
         select count(*) from user where uhp=#{uhp}
     </select>

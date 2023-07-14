@@ -7,14 +7,22 @@
     border: 2px solid black;
 }
 .div2{
-    text-align: center;
+    /*text-align: center;*/
 }
 .textbox{
     display: inline-flex;
     width: 20rem;
     height: 2.9rem;
-    padding: 0.5rem 4rem 0.5rem 0.5rem;
+    padding: 0.5rem 4rem 0.5rem 4rem;
     align-items: center;
     gap: 2.65631rem;
     border-radius: 0.125rem;
+    border: none;
+    background-color: rgb(238 250 234);
+}
+input[type="text"],input[type="password"]::placeholder {
+    text-align: center;
+}
+input[type="text"], input[type="password"] {
+    text-align: center;
 }

@@ -2,11 +2,11 @@ import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import "./Sign.css";
-import Sms from "./Sms";
 import logo from "../image/logo_main.svg"
+import Slider from '@mui/material-next/Slider';
 
 function Sign(props) {
-    const location = useLocation();
+
     const [uemail, setUemail] = useState('');
     const [upass, setUpass] = useState('');
     const [upassok, setUpassok] = useState('');
@@ -15,25 +15,47 @@ function Sign(props) {
     const [uage, setUage] = useState('');
     const [uhp, setUhp] = useState('');
     const [ugender, setUgender] = useState("남");
+    const [code, setCode] = useState('');
+
     const navi = useNavigate();
+
     const emailRef = useRef(null);
     const hpRef = useRef(null);
     const codeRef = useRef(null);
-    const [code, setCode] = useState('');
+    const nicknameRef = useRef(null);
+    const careerRef = useRef(null);
 
     const [imsiEmail, setImsiEmail] = useState('0');
     const [imsihp, setImsihp] = useState('0');
+    const [imsinick, setImsinick] = useState('0');
+    const [change, setChange] = useState('0');
 
-    // const userinfo=()=>{
-    //     if(location.state!=null){
-    //         setUemail(location.state.uemail);
-    //     }
-    // }
+    const location = useLocation();
+    const userInfo = {...location.state};
 
+    useEffect(() => {
+        if (userInfo.unickname) {
+            console.log("sdf:", userInfo)
+            const {uemail, uname, unickname, ugender, uhp, uage} = userInfo;
+            setChange('1');
+            if (uemail) {
+                setUemail(uemail)
+                emailRef.current.disabled = true
+                setImsiEmail('1')
+                setChange('1')
+            }
+            ;
+            if (uname) setUname(uname);
+            if (unickname) {
+                setUnickname(unickname);
+            }
+            ;
+            if (ugender) setUgender(ugender);
+            if (uhp) setUhp(uhp);
+            if (uage) setUage(uage);
+        }
+    }, [location.state])
 
-    // useEffect(()=>{
-    //     userinfo()
-    // },[])
 
     const ouSubmitEvent = (e) => {
         e.preventDefault();
@@ -47,7 +69,12 @@ function Sign(props) {
             } else {
                 if (imsihp != 1) {
                     alert("휴대폰 인증을 진행해주세요");
+                    return;
                 } else {
+                    if (imsinick != 1) {
+                        alert("닉네임 중복확인을 진행해주세요")
+                        return;
+                    }
                     axios.post("/login/sign", {uemail, upass, uname, unickname, uage, ugender, uhp})
                         .then(res => {
                             alert("회원가입 성공. 메인페이지로 이동");
@@ -66,17 +93,37 @@ function Sign(props) {
             axios.get(`/login/emailchk?uemail=${uemail}`)
                 .then(res => {
                     if (res.data == 1) {
-                        alert("이메일 중복")
+                        alert("아이디 중복")
                         setUemail('');
                     } else {
                         alert("중복체크완료")
-                        emailRef.current.disabled = true
+                        // emailRef.current.disabled = true
                         setImsiEmail('1')
                     }
                 })
         }
 
     }
+    const nickchk = () => {
+        if (unickname == '') {
+            alert("양식지켜");
+            return;
+        } else {
+            axios.get(`/login/nickchk?unickname=${unickname}`)
+                .then(res => {
+                    if (res.data == 1) {
+                        alert("닉네임 중복")
+                        setUnickname('');
+                    } else {
+                        alert("중복체크완료")
+                        //nicknameRef.current.disabled = true
+                        setImsinick('1')
+                    }
+                })
+        }
+
+    }
+
     const sms = () => {
         if (uhp.length != 11) {
             alert("양식지켜")
@@ -122,11 +169,15 @@ function Sign(props) {
 
     return (
         <div className={'div1'}>
+            <img src={logo} alt={''}/>
             <div className={'div2'}>
-                <img src={logo} alt={''} />
                 <form onSubmit={ouSubmitEvent}>
-                    이메일<br/>
-                    <input type={"text"} className={'textbox'} required ref={emailRef} onChange={(e) => setUemail(e.target.value)}
+                    아이디<br/>
+                    <input type={"text"} className={'textbox'} required ref={emailRef}
+                           onChange={(e) => {
+                               setUemail(e.target.value)
+                               setImsiEmail('0');
+                           }}
                            value={uemail}/><br/>
                     <button type='button' onClick={emailchk}>중복확인</button>
                     <br/><br/>
@@ -136,7 +187,8 @@ function Sign(props) {
                            value={upass}/><br/><br/>
 
                     비밀번호 확인<br/>
-                    <input type={"password"} className={'textbox'} required onChange={(e) => setUpassok(e.target.value)} value={upassok}/>
+                    <input type={"password"} className={'textbox'} required onChange={(e) => setUpassok(e.target.value)}
+                           value={upassok}/>
                     {
                         upass == '' ? <div></div> : upass != '' && upass != upassok ? <div>비밀번호가 일치하지 않습니다</div> :
                             <div>비밀번호가 일치합니다</div>
@@ -145,21 +197,51 @@ function Sign(props) {
 
 
                     이름<br/>
-                    <input type={"text"} className={'textbox'} required onChange={(e) => setUname(e.target.value)} value={uname}/><br/><br/>
-
-                    휴대전화<br/>
-                    <input type={"text"} className={'textbox'} placeholder={''} required ref={hpRef} value={uhp}
-                           onChange={(e) => setUhp(e.target.value)}/><br/>
-                    <button type={'button'} onClick={sms}>전화 인증</button>
-                    <br/>
-                    <input type={"text"} className={'textbox'} placeholder={'인증코드쓰는곳'} ref={codeRef}
-                           onChange={(e) => setCode(e.target.value)}/><br/>
-                    <button type={'button'} onClick={codeChk}>인증확인</button>
+                    <input type={"text"} className={'textbox'} required onChange={(e) => setUname(e.target.value)}
+                           value={uname}/><br/><br/>
+                    <div>
+                        {change === '0' ? (
+                            <div>
+                                휴대전화<br/>
+                                <input type="text" className="textbox" placeholder="" required ref={hpRef} value={uhp}
+                                       onChange={(e) => {
+                                           setUhp(e.target.value)
+                                           setImsihp('0');
+                                       }}/><br/>
+                                <button type="button" onClick={sms}>전화 인증</button>
+                                <br/>
+                                <input type="text" className="textbox" placeholder="인증코드쓰는곳" ref={codeRef}
+                                       onChange={(e) => setCode(e.target.value)}/><br/>
+                                <button type="button" onClick={codeChk}>인증확인</button>
+                            </div>
+                        ) : (
+                            <input type="text" placeholder="소셜인증완료"/>
+                        )}
+                    </div>
                     <br/>
                     <br/>
                     닉네임<br/>
-                    <input type={"text"} className={'textbox'} required onChange={(e) => setUnickname(e.target.value)}
-                           value={unickname}/><br/><br/>
+                    <input type={"text"} ref={nicknameRef} className={'textbox'} required onChange={(e) => {
+                        setUnickname(e.target.value);
+                        setImsinick('0');
+
+                    }}
+                           value={unickname}/><br/>
+                    <button type={'button'} onClick={nickchk}>닉네임 중복확인</button>
+                    <br/><br/>
+
+                    경력<br/>
+                    <Slider
+                        disabled={false}
+                        marks
+                        max={10}
+                        min={0}
+                        size="medium"
+                        valueLabelDisplay="on"
+                        color="secondary"
+                        ref={careerRef}
+                    />
+                    <br/><br/>
 
                     <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage}/>&nbsp;
 
@@ -171,7 +253,8 @@ function Sign(props) {
                 </form>
             </div>
         </div>
-    );
+    )
+        ;
 }
 
 export default Sign;

@@ -1,8 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import Axios from "axios";
+import Modal from '../components/Modal';
 
 function YangdoDetail(props) {
+
+    // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     const [dto,setDto] = useState({});
     const {ynum, currentPage} = useParams();
@@ -26,14 +37,21 @@ function YangdoDetail(props) {
 
     return (
         <div>
-            <b>제목 : {dto.ysubject}</b><br/>
-            <b>작성자 : {dto.unum}</b><br/>
-            <b>작성일 : {dto.ywriteday}</b><br/>
 
-            <br/>
+            <React.Fragment>
+                <Modal open={modalOpen} close={closeModal} header="양도 문의">
+                    <div>
+                        <h2></h2>
+                    </div>
+                </Modal>
+            </React.Fragment>
+
             <b>골프장 : {dto.yplace}</b><br/>
+            <b>작성자 : {dto.unickname}</b><br/>
+            <b>작성일 : {dto.ywriteday}</b><br/>
             <b>가격 : {dto.yprice}</b><br/>
             <b>예약 일정 : {dto.yday}</b><br/>
+            <b>예약 시간 : {dto.ysubject}</b><br/>
             <b>상세 내용 : {dto.ycontent}</b><br/>
 
             <button type='button' onClick={()=>navi(`/yangdo/form`)}>글쓰기</button>
@@ -43,19 +61,25 @@ function YangdoDetail(props) {
 
             {
                 unum !=null && unum==dto.unum?
-                <button type='button' onClick={()=>{
-                    const url=`/yangdo/delete?num=${dto.ynum}`;
-                    Axios.delete(url)
-                        .then(res=>{
-                            // 목록으로 이동
-                            navi(`/yangdo/list/${currentPage}`);
-                        })
-                }}>삭제</button>:''
+                    <button type='button' onClick={()=>navi(`/yangdo/update/${dto.ynum}/${currentPage}`)}>
+                        수정</button> :''
             }
+
             <br/>
 
             {
-
+                unum !=null && unum==dto.unum?
+                <button type='button'
+                    onClick={()=>{
+                        const url=`/yangdo/delete?num=${dto.ynum}`;
+                        Axios.delete(url)
+                        .then(res=>{
+                            // 목록으로 이동
+                            alert("마감 / 삭제하시겠습니까?");
+                            navi(`/yangdo/list/${currentPage}`);
+                        })
+                }}>마감 / 삭제</button>:
+                <button type='button' onClick={openModal}>양도 신청</button>
             }
         </div>
     );

@@ -6,11 +6,13 @@
     </insert>
 
     <select id="getAllDatas" resultType="YangdoDto">
-        select * from yangdo order by num desc
+        select * from yangdo order by ynum desc
     </select>
 
     <select id="getData" parameterType="int" resultType="YangdoDto">
-        select * from yangdo where ynum=#{yum}
+        select * ,(select unickname from user where unum=yangdo.unum) as unickname,
+               (select uhp from user where unum=yangdo.unum) as uhp
+        from yangdo where ynum=#{ynum}
     </select>
 
     <delete id="deleteYangdo" parameterType="int">
@@ -22,10 +24,13 @@
     </select>
 
     <select id="getPagingList" parameterType="Map" resultType="YangdoDto">
-        select * from yangdo order by ynum desc limit #{start},#{perpage}
+        select * ,(select unickname from user where unum=yangdo.unum) as unickname,
+               (select uhp from user where unum=yangdo.unum) as uhp
+        from yangdo order by ynum desc limit #{start},#{perpage}
     </select>
 
     <update id="updateYangdo" parameterType="YangdoDto">
-
+        update yangdo set ycontent=#{ycontent}, yprice=#{yprice}, yplace=#{yplace},
+                          yday=#{yday}, ysubject=#{ysubject} where ynum=#{ynum}
     </update>
 </mapper>

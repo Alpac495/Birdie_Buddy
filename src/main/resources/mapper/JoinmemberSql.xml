@@ -9,4 +9,13 @@
     <select id="getCheckMember" parameterType="int" resultType="int">
         select count(unum) from joinmember where unum=#{unum} and jnum=#{jnum}
     </select>
+    <insert id="joinGaip" parameterType="JoinmemberDto">
+        insert into joinmember (unum,jnum,jaccept) values (#{unum},#{jnum},0)
+    </insert>
+    <delete id="joinCancel" parameterType="int">
+        delete from joinmember where unum=#{unum} and jnum=#{jnum}
+    </delete>
+    <update id="acceptJoin" parameterType="int">
+        update joinmember set jaccept=1 where unum=#{unum} and jnum=#{jnum}
+    </update>
 </mapper>

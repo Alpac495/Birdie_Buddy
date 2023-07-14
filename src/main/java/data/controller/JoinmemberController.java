@@ -6,10 +6,7 @@ import data.mapper.JoinmemberMapper;
 import data.service.JoinmemberService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,5 +49,27 @@ public class JoinmemberController {
         System.out.println("checkmember>>"+unum+jnum);
         return joinmemberService.getCheckMember(unum,jnum);
     }
+    @PostMapping("/joinGaip")
+    public String joinGaip(@RequestBody JoinmemberDto dto)
+    {
+        System.out.println("dto>>"+dto);
+        joinmemberService.joinGaip(dto);
+        return "success";
+    }
 
+    @DeleteMapping("/joinCancel/{unum}&{jnum}")
+    public String joinGaipCancel(@PathVariable int unum, @PathVariable int jnum)
+    {
+        System.out.println("cancelunum>>"+unum);
+        System.out.println("canceljnum>>"+jnum);
+        joinmemberService.joinCancel(unum,jnum);
+        return "success";
+    }
+
+    @GetMapping("/acceptJoin/{unum}&{jnum}")
+    public String acceptJoin(@PathVariable int unum, @PathVariable int jnum)
+    {
+        joinmemberService.acceptJoin(unum, jnum);
+        return "success";
+    }
 }

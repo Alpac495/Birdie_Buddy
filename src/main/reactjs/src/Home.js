@@ -91,7 +91,7 @@ function Home(props) {
                 <li>
                     {
                         sessionStorage.unum==null?
-                        <NavLink to={"/login/login"}>로그인</NavLink>:
+                            <NavLink to={"/login/login"}>로그인</NavLink>:
                             <div onClick={()=>{
                                 sessionStorage.clear();
                                 navi('/');
@@ -106,7 +106,7 @@ function Home(props) {
 
             <ul> mypage
                 <li>
-                    <NavLink to={`/mypage/main`}>마이페이지</NavLink>
+                    <NavLink to={`/mypage/mypage/${unum}`}>마이페이지</NavLink>
                 </li>
             </ul>
 
