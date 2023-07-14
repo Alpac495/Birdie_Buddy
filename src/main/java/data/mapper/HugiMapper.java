@@ -15,5 +15,8 @@ public interface HugiMapper {
     public HugiDto detailPage(int hnum);
     public void deleteHugi(int hnum);
     public UserDto getUserDto(int unum);
+    public List<UserDto> getUser(int unum);
+    public String getNickname(int unum);
+
 
 }

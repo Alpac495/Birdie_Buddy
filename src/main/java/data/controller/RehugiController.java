@@ -34,10 +34,6 @@ public class RehugiController {
     @PostMapping("/newcomment")
     public String newComment(@RequestBody RehugiDto rhdto) {
         System.out.println("rhdto>>"+rhdto);
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-//        String formattedDate = dateFormat.format(new Date());
-//        Timestamp timestamp = Timestamp.valueOf(formattedDate);
-//        rhdto.setRhwriteday(timestamp);
         rehugiService.addComment(rhdto);
         return "Comment added successfully";
     }
@@ -45,8 +41,6 @@ public class RehugiController {
 
     @PostMapping("/newreply")
     public String newReply(@RequestParam("unum") int unum, @RequestBody RehugiDto rhdto) {
-        System.out.println("unum>>"+unum);
-        System.out.println("rhdto>>"+rhdto);
         rhdto.setUnum(unum);
         rehugiService.addReply(rhdto);
         return "Reply added successfully";
