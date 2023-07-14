@@ -16,6 +16,7 @@
 .PFdiv3,
 .PFradio1 {
     position: relative;
+
 }
 .PFradio1 {
     border-radius: 100px;
@@ -76,6 +77,7 @@
 .PFinfo1 {
     flex: 1;
     line-height: 1.5rem;
+    border: none;
 }
 .PFtext-field {
     align-self: stretch;

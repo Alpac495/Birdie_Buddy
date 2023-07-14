@@ -2,6 +2,7 @@ package data.controller;
 
 import data.dto.FriendDto;
 import data.dto.JoiningDto;
+import data.dto.JoinmemberDto;
 import data.mapper.JoiningMapper;
 import data.service.JoiningService;
 import data.service.JoinmemberService;
@@ -50,6 +51,22 @@ public class JoiningController {
         System.out.println("detail>>"+jnum);
 
         return joiningService.detailPage(jnum);
+    }
+
+    @DeleteMapping("/joinCancel/{jnum}")
+    public String joinMozipCancel(@PathVariable int jnum)
+    {
+        System.out.println("canceljnum>>"+jnum);
+        joiningService.joinCancel(jnum);
+        return "success";
+    }
+
+    @PostMapping("/joinMaker")
+    public String joinMaker(@RequestBody JoinmemberDto dto)
+    {
+        System.out.println("dto>>"+dto);
+        joiningMapper.joinMaker(dto);
+        return "success";
     }
 
 }

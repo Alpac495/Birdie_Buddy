@@ -40,10 +40,13 @@ function YangdoDetail(props) {
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="양도 문의">
                     <div>
-                        <h1>[{dto.yplace} 양도 문의]</h1>
+                        <h5>[{dto.yplace}]</h5>
                         <p>담당자 : {dto.unickname}</p>
                         <p>연락처 : {dto.uhp}</p>
-                        <p>전화 문의를 통해 자세한 정보 확인 바랍니다.</p>
+                        <p>
+                            전화 문의를 통해 자세한 정보
+                            확인 바랍니다.
+                        </p>
                     </div>
                 </Modal>
             </React.Fragment>

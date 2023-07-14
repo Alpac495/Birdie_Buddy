@@ -26,7 +26,7 @@
     <select id="getPagingList" parameterType="Map" resultType="YangdoDto">
         select * ,(select unickname from user where unum=yangdo.unum) as unickname,
                (select uhp from user where unum=yangdo.unum) as uhp
-        from yangdo order by ynum desc limit #{start},#{perpage}
+        from yangdo order by yday desc, ysubject asc limit #{start},#{perpage}
     </select>
 
     <update id="updateYangdo" parameterType="YangdoDto">

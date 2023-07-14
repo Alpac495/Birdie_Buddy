@@ -1,21 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.589ff65e.css",
-    "main.js": "/static/js/main.6a8fd8fa.js",
+    "main.css": "/static/css/main.98a8823b.css",
+    "main.js": "/static/js/main.d3650e5a.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
+    "static/media/person1.jpg": "/static/media/person1.739b90d7df88cdb96d4d.jpg",
+    "static/media/naverbtn.png": "/static/media/naverbtn.50f997a4772f912cd966.png",
+    "static/media/kakaobtn.png": "/static/media/kakaobtn.021702c8ebe688f0c434.png",
     "static/media/logo_main.svg": "/static/media/logo_main.4bd7bfb35a1f90533a01da19f6b0c3f9.svg",
+    "static/media/icon_addbuddy.svg": "/static/media/icon_addbuddy.e77cff188677a87141d5d053840ec766.svg",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "index.html": "/index.html",
     "static/media/icon_flaghole.svg": "/static/media/icon_flaghole.96de7e54c8fb622f1b616972d76d62d7.svg",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
-    "main.589ff65e.css.map": "/static/css/main.589ff65e.css.map",
-    "main.6a8fd8fa.js.map": "/static/js/main.6a8fd8fa.js.map",
+    "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
+    "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
+    "main.98a8823b.css.map": "/static/css/main.98a8823b.css.map",
+    "main.d3650e5a.js.map": "/static/js/main.d3650e5a.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.589ff65e.css",
-    "static/js/main.6a8fd8fa.js"
+    "static/css/main.98a8823b.css",
+    "static/js/main.d3650e5a.js"
   ]
 }

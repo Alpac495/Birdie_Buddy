@@ -63,14 +63,13 @@ function RouteMain(props) {
 
                 <Route path={'/login'} >
                     <Route path="login" element={<Login/>}/>
-                    <Route path="sign" element={<Sign/>}/>
+                    <Route path="sign" element={<Sign {...props}/>}/>
                     <Route path="kcallback" element={<KaKaoCallBack/>}/>
                     <Route path="ncallback" element={<NaverCallBack/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >
-                    <Route path="main" element={<Mypage/>}/>
-                    <Route path="main/:unum" element={<Mypage/>}/>
+                    <Route path="mypage/:unum" element={<Mypage/>}/>
                 </Route>
 
                 <Route path={'/score'} >

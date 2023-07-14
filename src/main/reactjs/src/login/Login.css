@@ -7,7 +7,12 @@
     border: 2px solid black;
 }
 .div2{
-    text-align: center;
+    /*text-align: center;*/
+}
+.div3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .greenbox{
     display: inline-flex;
@@ -19,10 +24,17 @@
 
     border-radius: 0.125rem;
     border: 1px solid rgba(255, 255, 255, 0.10);
-    background: #51C64D;
+    background-color: RGB(238, 250, 234);
 }
 .loginbtn{
     justify-content: center;
+    background-color: rgb(137, 255, 164);
+}
+.naverbtn{
+    width: 10rem;
+}
+.kakaobtn{
+    width: 10rem;
 }
 input[type="text"],input[type="password"]::placeholder {
     text-align: center;

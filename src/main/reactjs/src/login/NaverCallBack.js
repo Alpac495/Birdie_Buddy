@@ -63,6 +63,9 @@ function NaverCallBack(props) {
     const [uname, setUname] = useState('');
     const [unickname, setUnickname] = useState('');
     const [ugender, setUgender] = useState('');
+    const [uhp, setUhp] = useState('');
+    const [uage, setUage] = useState('');
+
 
     const getNaverToken = () => {
         const {naver} = window;
@@ -86,14 +89,20 @@ function NaverCallBack(props) {
                 console.log("naverLogin.user.gender:" + naverLogin.user.birthday)//08-25
                 console.log("naverLogin.user.gender:" + naverLogin.user.birthyear)//1997
                 console.log("naverLogin.user.gender:" + naverLogin.user.mobile)//010-8545-4961
-                setUemail(naverLogin.user.email);
-                setUname(naverLogin.user.name);
-                setUnickname(naverLogin.user.nickname);
-                setUgender(naverLogin.user.gender);
-                axios.get(`/login/signchk?uemail?${uemail}`)
+                axios.get(`/login/signchk?uemail=${naverLogin.user.email}`)
                     .then(res => {
                         if (res.data == 0) { //회원가입해야함
-                            navi("/login/sign", {uemail, uname, unickname, ugender})
+                            console.log("email:" + naverLogin.user.email);
+                            navi("/login/sign", {
+                                state: {
+                                    uemail: naverLogin.user.email,
+                                    uname: naverLogin.user.name,
+                                    unickname: naverLogin.user.nickname,
+                                    ugender: naverLogin.user.gender=="M"?"남":"여",
+                                    uhp: naverLogin.user.mobile,
+                                    uage: `${naverLogin.user.birthyear}-${naverLogin.user.birthday}`
+                                }
+                            })
                         } else {
                             sessionStorage.setItem("unum", `${res.data}`)
                             navi("/")

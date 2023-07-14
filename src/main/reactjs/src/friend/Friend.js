@@ -1,9 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {NavLink, Route} from "react-router-dom";
 import Axios from "axios";
-import "./FriendList.css";
-import YangdoForm from "../yangdo/YangdoForm";
-
+import "./Friend.css";
+import { Link } from 'react-router-dom';
 function Friend(props) {
     const unum=sessionStorage.unum;
     const [data,setData]=useState('');
@@ -21,32 +19,46 @@ function Friend(props) {
     },[list])
 
 
+
     return (
-        <div className="friendlist">
+        <div className="friend">
             <h4>총 친구수 : {data.length}</h4>
 
-            <div className="flist-line" />
-            <div className="flframe">
-                <div className="FLdiv2">친구 목록</div>
-            </div>
-            <div className="flframe1">
-                <div className="FLdiv2">채팅</div>
+            <div className="FLtab">
+                <div className="flframe">
+                    <div className="FLdiv">친구목록</div>
+                </div>
+                <div className="FLframe">
+                    <div className="FLdiv">확인</div>
+                </div>
             </div>
 
             {
                 data.map &&
                 data.map((item,idx)=>
-                    <NavLink to={`/friend/detail/${item.funum}`}>
-                        <div className="flist">
-                            <div className="flist-child">
-                            <div className="flist-item" />
-                            <b className="FLb">{item.uname}({item.unickname})</b>
-                            <div className="FLdiv">{item.ugender} /{item.uage}</div>
-                            <div className="FLdiv1">{item.ucontent}</div>
 
-                            </div>
+                    <div className="flist">
+                        <div className="flist-child" />
+                        <div className="flistprofile">
+                                <div className="flistprofile1">
+                                    <Link to={`/friend/detail/${item.funum}`} className="FDMoveLink">
+                                    <img className="FLphoto-icon" alt="" src="/jduphoto@2x.png" />
+                                    </Link>
+                                    <div className="FLdiv3">
+                                      <span className="FLtxt">
+                                        <p className="FLp">{item.uname}({item.unickname})</p>
+                                        <p className="FLp1">{item.ugender} /{item.uage}</p>
+                                      </span>
+                                    </div>
+
+                                    <div className="FLrectangle-parent">
+                                        <div className="FLgroup-child" />
+                                        <div className="FLdiv4">채팅하기</div>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
-                    </NavLink>)
+                 )
             }
 
         </div>

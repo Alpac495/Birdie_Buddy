@@ -5,6 +5,9 @@ import Axios from 'axios';
 import mlogo from '../image/logo_main.svg';
 import Modal from '../components/Modal';
 import Header from "../header/Header";
+import PartnerForm from "../components/ParnterForm";
+import PortalPopup from "../components/PortalPopup";
+
 
 
 const JoinForm = (props) => {
@@ -49,18 +52,47 @@ const JoinForm = (props) => {
         e.preventDefault();
         Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage})
             .then(res=>{
-                alert("신청되었습니다")
+                // onMakerEvent()
+                alert("정상적으로 생성되었습니다")
                 //목록으로 이동
                 navi("/joining/list/")
             })
     }
+
+    // const onMakerEvent=()=>{
+    //         Axios.post("/joining/joinMaker", {unum, jnum})
+    //             .then(res => {
+    //
+    //             })
+    //             .catch(err => {
+    //                 console.log(err.message);
+    //             })
+    // }
 
     const selectGolfjang=(e)=>{
         const selectedValue = e.target.innerText;
         setGname(selectedValue);
         {closeModal()}
     }
+    //동반자 모달
+    const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
+    const [isPartnerForm1Open, setPartnerForm1Open] = useState(false);
 
+    const openPartnerForm1 = useCallback(() => {
+        setPartnerForm1Open(true);
+    }, []);
+
+    const closePartnerForm1 = useCallback(() => {
+        setPartnerForm1Open(false);
+    }, []);
+
+    const openPartnerForm = useCallback(() => {
+        setPartnerFormOpen(true);
+    }, []);
+
+    const closePartnerForm = useCallback(() => {
+        setPartnerFormOpen(false);
+    }, []);
 
     return (
         <div className="joinform">
@@ -85,7 +117,7 @@ const JoinForm = (props) => {
                                         return val
                                     }
                                 }).map((item,idx) =>
-                                    <span onClick={selectGolfjang}><li>{item.gname}</li></span>
+                                    <span onClick={selectGolfjang}><li>{item.gname}</li><br/></span>
                             )}
                         </ul>
                     </div>
@@ -129,6 +161,7 @@ const JoinForm = (props) => {
                         </select>
                     </div>
                     <div className="jparent1">
+
                         <div className="jdiv">그린피 (직접입력 또는 만원 단위 조절)</div>
                         <input className="jforminput1" type="number"  required step={10000} placeholder={"10000"}
                                value={jprice} onChange={(e)=>setJprice(e.target.value)} maxLength minLength />
@@ -142,11 +175,35 @@ const JoinForm = (props) => {
             </div>
             <div className="joinform-child" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
+                <div className="jcheckbox-setonon-wrapper" onClick={openPartnerForm1}>
+                    <label className="jcheckbox-setonon">
+                        동반자가 있습니다
+                        <input type={"checkbox"} className="jdiv17"/>
+                    </label>
+                </div>
             </form>
-        </div>);
 
-
-};
+            {isPartnerForm1Open && (
+                <PortalPopup
+                    overlayColor="rgba(113, 113, 113, 0.3)"
+                    placement="Centered"
+                    onOutsideClick={closePartnerForm1}
+                >
+                    <PartnerForm onClose={closePartnerForm1} />
+                </PortalPopup>
+            )}
+            {isPartnerFormOpen && (
+                <PortalPopup
+                    overlayColor="rgba(113, 113, 113, 0.3)"
+                    placement="Centered"
+                    onOutsideClick={closePartnerForm}
+                >
+                    <PartnerForm onClose={closePartnerForm} />
+                </PortalPopup>
+            )}
+        </div>
+            );
+        };
 
 
 export default JoinForm;
