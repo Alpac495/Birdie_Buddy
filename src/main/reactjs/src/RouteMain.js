@@ -39,7 +39,7 @@ function RouteMain(props) {
                     <Route path="detail" element={<YangdoDetail/>}/>
                     <Route path="detail/:ynum/:currentPage" element={<YangdoDetail/>}/>
                     <Route path="form" element={<YangdoForm/>}/>
-                    <Route path="update/:ynum" element={<YangdoUpdate/>}/>
+                    <Route path="update/:ynum/:currentPage" element={<YangdoUpdate/>}/>
                 </Route>
 
                 <Route path={'/friend'} >
@@ -63,7 +63,7 @@ function RouteMain(props) {
 
                 <Route path={'/login'} >
                     <Route path="login" element={<Login/>}/>
-                    <Route path="sign" element={<Sign/>}/>
+                    <Route path="sign" element={<Sign {...props}/>}/>
                     <Route path="kcallback" element={<KaKaoCallBack/>}/>
                     <Route path="ncallback" element={<NaverCallBack/>}/>
                 </Route>

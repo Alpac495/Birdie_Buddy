@@ -76,6 +76,14 @@ public class LoginController {
         return n;
     }
 
+    @GetMapping("/nickchk")
+    public int nickchk(String unickname) {
+        System.out.println("닉네임체크:" + unickname);
+        int n = loginMapper.nickChk(unickname);
+        System.out.println("n:" + n);
+        return n;
+    }
+
     @GetMapping("/hpchk")
     public int hpchk(String uhp) {
         int n = loginMapper.hpChk(uhp);
@@ -85,6 +93,7 @@ public class LoginController {
     @GetMapping("/signchk")
     public int nsign(String uemail) {
         int n = loginMapper.emailChk(uemail);
+        System.out.println("uemail:"+uemail);
         if (n == 1) { //회원가입 내역이 있으면
             int unum = loginMapper.getUserData(uemail).getUnum();
             return unum;
@@ -93,8 +102,10 @@ public class LoginController {
         }
     }
 
+
     @GetMapping("/smsSend")
     public String smsSend(String uhp) throws Exception {
+        System.out.println("uhp:"+uhp);
         String CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         int LENGTH = 6;
         SecureRandom random = new SecureRandom();
