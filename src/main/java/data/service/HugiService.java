@@ -78,10 +78,8 @@ public class HugiService implements HugiServiceInter
     public void deleteHugi(int hnum) {
         hugiMapper.deleteHugi(hnum);
     }
-    @Override
     public UserDto getUserDto(int unum) {
-        UserDto userDto = new UserDto();
-        return userDto;
+        return hugiMapper.getUserDto(unum);
     }
 }
 
