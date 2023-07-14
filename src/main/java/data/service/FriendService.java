@@ -25,4 +25,33 @@ public class FriendService implements FriendServiceInter{
     public UserDto detailPage(int funum) {
         return friendMapper.detailPage(funum);
     }
+
+    @Override
+    public int checkBuddy(int unum, int funum) {
+        return friendMapper.checkBuddy(unum, funum);
+    }
+
+    @Override
+    public int checkingBuddy(int unum, int funum) {
+        return friendMapper.checkingBuddy(unum, funum);
+    }
+
+    @Override
+    public void requestFriend1(FriendDto dto) {
+        friendMapper.requestFriend1(dto);
+    }
+
+    @Override
+    public void requestFriend2(FriendDto dto) {
+        friendMapper.requestFriend2(dto);
+    }
+
+    @Override
+    public int friendCancel1(int unum, int funum) {
+        return friendMapper.friendCancel1(unum,funum);
+    }
+    @Override
+    public int friendCancel2(int unum, int funum) {
+        return friendMapper.friendCancel2(unum,funum);
+    }
 }

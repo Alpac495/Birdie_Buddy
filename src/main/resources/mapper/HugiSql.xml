@@ -4,7 +4,7 @@
         select count(*) from hugi
     </select>
     <select id="getAllHugis" resultType="HugiDto">
-        SELECT h.*, u.uname ,u.unickname
+        SELECT h.*,u.unickname
         FROM hugi h
                  INNER JOIN user u ON h.unum = u.unum
         ORDER BY h.hwriteday DESC

@@ -11,7 +11,7 @@ function HugiList(props) {
     const [hwriteday, setHwriteday] = useState('');
     const [hnum, setHnum] = useState('');
     const [unum, setUnum] = useState('');
-    const [unickname,setUnickname]=useState();
+    const [Unickname,setUnickname]=useState();
     const [hugiData, setHugiData] = useState([]);
 
     const url = process.env.REACT_APP_BOARDURL;
@@ -37,7 +37,7 @@ function HugiList(props) {
         Axios.get(`/hugi/list`)
             .then((res) => {
                 setHugiData(res.data);
-                setUnickname(res.data.unickname);
+                setUnickname(res.data.Unickname);
             })
             .catch((error) => {
                 console.log(error);
@@ -68,6 +68,7 @@ function HugiList(props) {
 
         const dataToSend = {
             unum:sessionStorage.unum,
+            Unickname:Unickname,
             hlike: 0,
             hcontent: hcontent,
             hphoto: hphoto || '',
@@ -89,7 +90,9 @@ function HugiList(props) {
     const homeButton = () => {
         navi('/');
     };
+    const Myhugis = () =>{
 
+    };
     return (
         <div className="hugi">
             <div className="hugi_header">
@@ -97,10 +100,13 @@ function HugiList(props) {
                     <button type="button" alt="" className="primary_button" onClick={homeButton}>
                         Home
                     </button>
+                    <button type="button" alt="" className="primary_button" onClick={Myhugis}>
+                        MyHugis
+                    </button>
                 </div>
                 {sessionStorage.unum ? (
                     <b className="CommentNickname">
-                        {unickname}님이 접속중입니다.
+                        {Unickname}님이 접속중입니다.
                     </b>
                 ) : (
                     <b className="CommentNickname">
@@ -138,7 +144,7 @@ function HugiList(props) {
                         key={rowData.hnum}
                         hnum={rowData.hnum}
                         unum={rowData.unum}
-                        unickname={rowData.unickname}
+                        Unickname={rowData.Unickname}
                         hcontent={rowData.hcontent}
                         hphoto={rowData.hphoto}
                         hwriteday={rowData.hwriteday}

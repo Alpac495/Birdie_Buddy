@@ -46,7 +46,7 @@ public class HugiService implements HugiServiceInter
         String unickname = userDto.getUnickname();
 
         // HugiDto에 사용자 정보 설정
-        hdto.setUname(uname);
+
         hdto.setUnickname(unickname);
 
         hugiMapper.insertHugi(hdto);
@@ -60,15 +60,11 @@ public class HugiService implements HugiServiceInter
     @Override
     public HugiDto detailPage(int hnum) {
         HugiDto hugiDto = hugiMapper.detailPage(hnum);
-
         // unum을 사용하여 사용자 정보 가져오기
         int unum = hugiDto.getUnum();
         UserDto userDto = getUserDto(unum);
-        String uname = userDto.getUname();
         String unickname = userDto.getUnickname();
-
         // HugiDto에 사용자 정보 설정
-        hugiDto.setUname(uname);
         hugiDto.setUnickname(unickname);
 
         return hugiDto;

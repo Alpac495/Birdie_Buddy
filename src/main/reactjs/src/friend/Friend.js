@@ -22,14 +22,14 @@ function Friend(props) {
 
     return (
         <div className="friend">
-            <h4>총 친구수 : {data.length}</h4>
+            <h4>마이 버디 : {data.length}명</h4>
 
             <div className="FLtab">
                 <div className="flframe">
-                    <div className="FLdiv">친구목록</div>
+                    <div className="FLdiv">버디 리스트</div>
                 </div>
                 <div className="FLframe">
-                    <div className="FLdiv">확인</div>
+                    <div className="FLdiv">버디 요청</div>
                 </div>
             </div>
 

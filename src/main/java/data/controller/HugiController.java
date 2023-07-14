@@ -86,21 +86,18 @@ public class HugiController {
 //        System.out.println("detail>>"+hnum);
 //        return hugiService.detailPage(hnum);
 //    }
-    @GetMapping("/detail/{hnum}")
-    public HugiDto detailPage(@PathVariable int hnum) {
-        System.out.println("detail>>" + hnum);
-        HugiDto hugiDto = hugiService.detailPage(hnum);
-
-        int unum = hugiDto.getUnum();
-        UserDto userDto = hugiService.getUserDto(unum);
-        String uname = userDto.getUname();
-        String unickname = userDto.getUnickname();
-
-        hugiDto.setUname(uname);
-        hugiDto.setUnickname(unickname);
-
-        return hugiDto;
-    }
+//    @GetMapping("/detail/{hnum}")
+//    public HugiDto detailPage(@PathVariable int hnum) {
+//        System.out.println("detail>>" + hnum);
+//        HugiDto hugiDto = hugiService.detailPage(hnum);
+//
+//        int unum = hugiDto.getUnum();
+//        UserDto userDto = hugiService.getUserDto(unum);
+//        String unickname = userDto.getUnickname();
+//        hugiDto.setUnickname(unickname);
+//
+//        return hugiDto;
+//    }
 
     //    @DeleteMapping("/delete")
 //    public void delete(int hnum)
@@ -145,11 +142,13 @@ public class HugiController {
 //    }
 
     @GetMapping("/getUser")
-    public String getUser(int unum) {
-        System.out.println("unum>>>" + unum);
+    public ResponseEntity<String> getUser(int unum) {
         String unickname = hugiMapper.getNickname(unum);
-        System.out.println("unickname >>>" + unickname);
-        return hugiMapper.getNickname(unum);
-
+        System.out.println("unickname =>>" +unickname);
+        if (unickname != null) {
+            return ResponseEntity.ok(unickname);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
