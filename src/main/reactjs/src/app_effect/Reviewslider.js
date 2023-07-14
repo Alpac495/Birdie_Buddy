@@ -43,7 +43,7 @@ export default class SimpleSlider extends Component {
                             <div onClick={this.handleClickClose}>
                                 <div className={`review_modal`}>
                                     <img className={'review_profile'} alt={''} src={no}/><span className={'review_writer'}>김똘똘</span>
-                                    <div className={'review_footer'}><FavoriteOutlinedIcon/></div>
+                                    <div className={'review_footer'}><FavoriteOutlinedIcon/> 100</div>
                                 </div>
                             </div>
                         )}
