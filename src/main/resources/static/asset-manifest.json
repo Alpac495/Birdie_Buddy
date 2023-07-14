@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e5e65e9c.css",
-    "main.js": "/static/js/main.9a6799c8.js",
+    "main.css": "/static/css/main.589ff65e.css",
+    "main.js": "/static/js/main.6a8fd8fa.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/naverbtn.png": "/static/media/naverbtn.50f997a4772f912cd966.png",
     "static/media/kakaobtn.png": "/static/media/kakaobtn.021702c8ebe688f0c434.png",
@@ -12,12 +12,12 @@
     "index.html": "/index.html",
     "static/media/icon_flaghole.svg": "/static/media/icon_flaghole.96de7e54c8fb622f1b616972d76d62d7.svg",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
-    "main.e5e65e9c.css.map": "/static/css/main.e5e65e9c.css.map",
-    "main.9a6799c8.js.map": "/static/js/main.9a6799c8.js.map",
+    "main.589ff65e.css.map": "/static/css/main.589ff65e.css.map",
+    "main.6a8fd8fa.js.map": "/static/js/main.6a8fd8fa.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e5e65e9c.css",
-    "static/js/main.9a6799c8.js"
+    "static/css/main.589ff65e.css",
+    "static/js/main.6a8fd8fa.js"
   ]
 }
