@@ -8,6 +8,7 @@ import {NavLink} from "react-router-dom";
 
 const JoinList = () => {
     const [data, setData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const list = useCallback(() => {
         const url = "/joining/list";
@@ -35,12 +36,17 @@ const JoinList = () => {
         <div className="joinlist">
             <Header />
             <div className="btn1_wrapper">
-                {/*<NavLink to={'/joining/form'} className='nav-style'><b className="JLb">조인만들기</b></NavLink>*/}
+                <NavLink to={'/joining/form'} className='nav-style'><b className="JLb">조인만들기</b></NavLink>
             </div>
             <div className="btn2_wrapper">
                 <b className="JLb1">내조인</b>
             </div>
-            <input className="joinlist-child" type="text" />
+            <input className="joinlist-child"
+                   type="text"
+                   placeholder="검색"
+                   onChange={(e) => {
+                       setSearchTerm(e.target.value);
+                   }}/>
             <div className="jlist">
                 <div>
                     {data.map && data.map((item, idx) => (
