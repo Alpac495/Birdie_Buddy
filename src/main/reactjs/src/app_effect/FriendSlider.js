@@ -1,55 +1,64 @@
-import React, {Component} from 'react';
-import Slider from "react-slick";
-import no from "../images/nooooo.jpg"
-import "./FriendSlider.css";
+import React, { Component } from 'react';
+import Slider from 'react-slick';
+import no from '../images/person1.jpg';
+import './FriendSlider.css';
+import AddIcon from '@mui/icons-material/Add';
 
-
-const totalSlides = 6; // 전체 슬라이드 수
 export default class SimpleSlider extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: 0,
+            isClicked: false,
         };
     }
 
-    handleSlideChange = (current) => {
-        this.setState({ currentPage: current });
+    handleTouchStart = () => {
+        this.setState({ isClicked: true });
+    };
+
+    handleClickClose = () => {
+        this.setState({ isClicked: false });
     };
 
     render() {
-        const { currentPage } = this.state;
+        const { isClicked } = this.state;
 
         const settings = {
             infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            autoplay:true,
-            autoplaySpeed:3000
+            speed: 1000,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            swipeToSlide: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
         };
 
         return (
-            <div className={'friend_slider'}>
+            <div className="friend_slider">
                 <Slider {...settings}>
                     <div className={'friend_slide'}>
-                        <img alt={''} src={no}/>
+                        <img onClick={this.handleTouchStart} alt={''} src={no} />
+                                <div className={`friend_modal`}></div>
+                                <div className={'friend_plus'}><AddIcon/></div>
+                                <div className={'friend_footer'}>
+                                    <div>#1.16타 #1년</div>
+                                    <div>박복자</div>
+                                </div>
                     </div>
-                    <div className={'friend_slide'}>
-                        <img alt={''} src={no}/>
+                    <div className="friend_slide">
+                        <img alt={''} src={no} />
                     </div>
-                    <div className={'friend_slide'}>
-                        <img alt={''} src={no}/>
+                    <div className="friend_slide">
+                        <img alt={''} src={no} />
                     </div>
-                    <div className={'friend_slide'}>
-                        <img alt={''} src={no}/>
+                    <div className="friend_slide">
+                        <img alt={''} src={no} />
                     </div>
-                    <div className={'friend_slide'}>
-                        <img alt={''} src={no}/>
+                    <div className="friend_slide">
+                        <img alt={''} src={no} />
                     </div>
-                    <div className={'friend_slide'}>
-                        <img alt={''} src={no}/>
+                    <div className="friend_slide">
+                        <img alt={''} src={no} />
                     </div>
                 </Slider>
             </div>

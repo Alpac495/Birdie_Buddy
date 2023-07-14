@@ -15,6 +15,7 @@ function Sign(props) {
     const [uage, setUage] = useState('');
     const [uhp, setUhp] = useState('');
     const [ugender, setUgender] = useState("남");
+    const [ucareer, setUcareer] = useState("남");
     const [code, setCode] = useState('');
 
     const navi = useNavigate();
@@ -75,7 +76,7 @@ function Sign(props) {
                         alert("닉네임 중복확인을 진행해주세요")
                         return;
                     }
-                    axios.post("/login/sign", {uemail, upass, uname, unickname, uage, ugender, uhp})
+                    axios.post("/login/sign", {uemail, upass, uname, unickname, uage, ugender, uhp, ucareer})
                         .then(res => {
                             alert("회원가입 성공. 메인페이지로 이동");
                             navi("/")
@@ -230,22 +231,21 @@ function Sign(props) {
                     <button type={'button'} onClick={nickchk}>닉네임 중복확인</button>
                     <br/><br/>
 
-                    경력<br/>
-                    <Slider
-                        disabled={false}
-                        marks
-                        max={10}
-                        min={0}
-                        size="medium"
-                        valueLabelDisplay="on"
-                        color="secondary"
-                        ref={careerRef}
-                    />
-                    <br/><br/>
 
-                    <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage}/>&nbsp;
+                    <select required onChange={(e) => setUcareer(e.target.value)} value={ucareer}>
+                        <option hidden>경력</option>
+                        <option value={"0~2"}>0~2년</option>
+                        <option value={"2~4"}>2~4년</option>
+                        <option value={"4~6"}>4~6년</option>
+                        <option value={"6~8"}>6~8년</option>
+                        <option value={"8~10"}>8~10년</option>
+                        <option value={"10~"}>10년이상</option>
+                    </select>
+
+                    <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage}/>
 
                     <select required onChange={(e) => setUgender(e.target.value)} value={ugender}>
+                        <option hidden>성별</option>
                         <option value={"남"}>남</option>
                         <option value={"여"}>여</option>
                     </select><br/><br/>

@@ -20,6 +20,7 @@ import YangdoDetail from "./yangdo/YangdoDetail";
 import YangdoForm from "./yangdo/YangdoForm";
 import JoinDetail from "./joining/JoinDetail";
 import YangdoUpdate from "./yangdo/YangdoUpdate";
+import MypageUpdate from "./mypage/MypageUpdate";
 
 
 function RouteMain(props) {
@@ -69,8 +70,8 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/mypage'} >
-                    <Route path="main" element={<Mypage/>}/>
-                    <Route path="main/:unum" element={<Mypage/>}/>
+                    <Route path="mypage/:unum" element={<Mypage/>}/>
+                    <Route path="update" element={<MypageUpdate/>}/>
                 </Route>
 
                 <Route path={'/score'} >

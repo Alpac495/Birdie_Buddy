@@ -50,11 +50,22 @@ const JoinForm = (props) => {
         e.preventDefault();
         Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage})
             .then(res=>{
-                alert("신청되었습니다")
+                // onMakerEvent()
+                alert("정상적으로 생성되었습니다")
                 //목록으로 이동
                 navi("/joining/list/")
             })
     }
+
+    // const onMakerEvent=()=>{
+    //         Axios.post("/joining/joinMaker", {unum, jnum})
+    //             .then(res => {
+    //
+    //             })
+    //             .catch(err => {
+    //                 console.log(err.message);
+    //             })
+    // }
 
     const selectGolfjang=(e)=>{
         const selectedValue = e.target.innerText;
@@ -105,7 +116,7 @@ const JoinForm = (props) => {
                                         return val
                                     }
                                 }).map((item,idx) =>
-                                    <span onClick={selectGolfjang}><li>{item.gname}</li></span>
+                                    <span onClick={selectGolfjang}><li>{item.gname}</li><br/></span>
                             )}
                         </ul>
                     </div>

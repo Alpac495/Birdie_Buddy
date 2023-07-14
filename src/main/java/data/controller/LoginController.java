@@ -102,6 +102,12 @@ public class LoginController {
         }
     }
 
+    @GetMapping("/getuser")
+    public UserDto getUser(int unum) {
+        System.out.println("unum:" + unum);
+        return loginMapper.getUser(unum);
+    }
+
 
     @GetMapping("/smsSend")
     public String smsSend(String uhp) throws Exception {

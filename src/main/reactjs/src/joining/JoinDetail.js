@@ -1,7 +1,7 @@
 import "./JoinDetail.css";
 import {useCallback, useEffect, useState} from "react";
 import Axios from "axios";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 const JoinDetail = () => {
     const unum = Number(sessionStorage.unum);
     const [dto,setDto]=useState({});
@@ -11,6 +11,8 @@ const JoinDetail = () => {
     const [confirm, setConfirm] = useState([]);
     const [sub, setSub] = useState([]);
     const [check, setCheck]=useState('');
+
+    const navi=useNavigate();
 
     const confirmlist = useCallback(() => {
         const url = "/joinmember/confirmlist?jnum="+(jnum);
@@ -65,6 +67,70 @@ const JoinDetail = () => {
         checkmember();
     },[checkmember]);
 
+    const onGaipEvent=(e)=>{
+        e.preventDefault();
+        if(4 - dto.jmcount === 0){
+            alert("빈자리가 없습니다")
+        }else{
+        const confirmed = window.confirm('정말 신청하시겠습니까?');
+        if (confirmed) {
+            Axios.post("/joinmember/joinGaip", {unum, jnum})
+                .then(res => {
+                    window.location.replace(`/joining/detail/${jnum}`)
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
+        }
+        }
+    }
+
+    const onGaipCancelEvent=()=> {
+        const confirmed = window.confirm('정말 취소하시겠습니까?');
+        if (confirmed) {
+            Axios.delete(`/joinmember/joinCancel/${unum}&${jnum}`)
+                .then(res => {
+                    alert("정상적으로 취소되었습니다");
+                    window.location.replace(`/joining/detail/${jnum}`)
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
+             }
+         };
+
+    const onJoinCancelEvent=()=> {
+        const confirmed = window.confirm('모집을 취소하시겠습니까?');
+        if (confirmed) {
+            Axios.delete(`/joining/joinCancel/${jnum}`)
+                .then(res => {
+                    alert("정상적으로 취소되었습니다");
+                    window.location.replace(`/joining/list`)
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
+        }
+    };
+
+    const onAcceptEvent = (unum) => {
+        if(4 - dto.jmcount === 0){
+            alert("빈자리가 없습니다")
+        }else {
+            const confirmed = window.confirm('신청을 수락하시겠습니까?');
+            if (confirmed) {
+                Axios.get(`/joinmember/acceptJoin/${unum}&${jnum}`)
+                    .then(res => {
+                        window.location.replace(`/joining/detail/${jnum}`);
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    });
+            }
+        }
+    };
+
+
     return (
         <div className="joindetail">
             <div className="JDdiv">
@@ -81,7 +147,9 @@ const JoinDetail = () => {
                             <div className="JDavatar">
                                 <div className="JDlw">LW</div>
                             </div>
-                            <div className="esther-howard">{item.unickname}</div>
+                            <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반 1인/나이/성별)<br/>
+                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -114,18 +182,32 @@ const JoinDetail = () => {
                             <div className="JDavatar">
                                 <div className="JDlw">LW</div>
                             </div>
-                            <div className="esther-howard">{item.unickname}</div>
+                            <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반 1인/나이/성별)&nbsp;<div style={{display:'none'}}>{item.unum}</div>
+                                {dto.unum === unum ? (
+                                    <button type='button' value={item.unum} className='btn btn-sm btn-success' onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>
+                                ) : (
+                                    null
+                                )}
+
+                                <br/>
+                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
+                            </div>
                         </div>
                     ))}
+                    <br/><br/><br/><br/>
                     <div className="joindetail-child" />
 
                     <div className="JDdiv10">
                         {dto.unum === unum ? (
-                            <button type="button">모집 취소</button>
+                            <button type="button" onClick={onJoinCancelEvent}>모집 취소</button>
                         ) : check === 1 ? (
-                            <button type="button">신청 취소</button>
+                            <button type="button" onClick={onGaipCancelEvent}>신청 취소</button>
                         ) : (
-                            <button type="button">신청 하기</button>
+                            <form onClick={onGaipEvent}>
+                                <input type='hidden' value={unum}/>
+                                <input type='hidden' value={jnum}/>
+                                <button type="submit">신청 하기</button>
+                            </form>
                         )}
                     </div>
                 </div>
@@ -169,8 +251,8 @@ const JoinDetail = () => {
                     <img className="jduphoto-icon" alt="" src="/jduphoto@2x.png" />
                     <div className="JDdiv11">
             <span className="JDtxt">
-              <p className="JDp4">닉네임(이름)</p>
-              <p className="JDp5">성별, 나이</p>
+              <p className="JDp4">{dto.unickname} (모집자)</p>
+              <p className="JDp5">{dto.ugender} / {year - (dto.uage && parseInt(dto.uage.substring(0, 4), 10))}세 / 타수</p>
             </span>
                     </div>
                     <div className="JDrectangle-parent">

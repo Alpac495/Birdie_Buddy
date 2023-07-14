@@ -106,7 +106,10 @@ function Home(props) {
 
             <ul> mypage
                 <li>
-                    <NavLink to={`/mypage/main`}>마이페이지</NavLink>
+                    <NavLink to={`/mypage/mypage/${unum}`}>마이페이지</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/mypage/update`}>마이페이지/수정</NavLink>
                 </li>
             </ul>
 

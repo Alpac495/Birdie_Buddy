@@ -1,16 +1,42 @@
 .friend_slider{
-    width: 700px;
+    width: 350px;
     height: 150px;
 }
 .friend_slide{
-    width: 150px !important;
-    height: 150px;
-    box-shadow: 2px 2px 4px lightgrey;
+    position: relative;
+    width: 90px !important;
+    height: 120px;
     margin-left: 15px;
-
+    border-radius: 10px;
 }
 .friend_slider div img{
     width: 100%;
     height: 100%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px lightgrey;
+    object-fit: cover;
 }
+.friend_modal{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    border-radius: 10px;
+}
+.friend_plus{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    /*text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;*/
+}
+.friend_footer{
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    font-weight: lighter;
+    color: white;
+    margin-left: 5px;
 
+}

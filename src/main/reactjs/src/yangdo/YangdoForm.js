@@ -62,7 +62,6 @@ function YangdoForm(props) {
 
     return (
         <div>
-
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>

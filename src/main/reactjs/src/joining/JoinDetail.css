@@ -102,7 +102,6 @@ body {
 .JDconfirmgroup,
 .JDframe {
     position: absolute;
-    height: 11rem;
 }
 .JDframe {
     width: 100%;
@@ -115,9 +114,10 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
     gap: 0.8rem;
+    font-size: 0.75rem;
 }
 .JDconfirmgroup {
-    width: calc(100% - 177.78px);
+    width: calc(100% - 32px);
     top: 30.75rem;
     right: 10.11rem;
     left: 1rem;
@@ -195,7 +195,7 @@ body {
 .JDapplygroup {
     position: absolute;
     width: calc(100% - 32px);
-    top: 38.69rem;
+    top: 42rem;
     right: 1rem;
     left: 1rem;
 }
@@ -316,7 +316,7 @@ body {
 .JDdiv10,
 .joindetail-child {
     position: absolute;
-    bottom: -2rem;
+    bottom: 1rem;
     height: 2.5rem;
     margin-top: 10px;
 }

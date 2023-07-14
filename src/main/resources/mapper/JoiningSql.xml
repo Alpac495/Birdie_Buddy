@@ -9,4 +9,10 @@
     <select id="detailPage" parameterType="int" resultType="JoiningDto">
         select *, (select count(jm.jnum) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=1) as jmcount, (select count(jm.jnum) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=0) as smcount from joining j inner join user u on j.unum = u.unum where j.jnum=#{jnum}
     </select>
+    <delete id="joinCancel" parameterType="int">
+        delete from joining where jnum=#{jnum}
+    </delete>
+    <insert id="joinMaker" parameterType="JoinmemberDto">
+        insert into joinmember (unum,jnum,jaccept) values (#{unum},#{jnum},1)
+    </insert>
 </mapper>

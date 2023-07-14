@@ -43,14 +43,14 @@ const RankForm = () => {
 
     const minusHole = () => {
         if(n===1){
-            alert("이전홀 없음")
+            alert("첫번째 홀입니다")
             return;
         }
         setN(prevN => prevN - 1);
     };
     const plusHole = () => {
         if(n===18){
-            alert("다음홀 없음")
+            alert("마지막 홀입니다")
             return;
         }
         setN(prevN => prevN + 1);
@@ -115,29 +115,34 @@ const RankForm = () => {
                 </tr>
                 </tbody>
             </table>
-            <br/>
-            <hr/>
-            <br/>
-            <Button onClick={minusHole} variant="outlined" size="large">
-                prev hole
-            </Button>
-            {n}번홀
-            <Button onClick={plusHole} variant="outlined" size="large">
-                next hole
-            </Button>
-            <br/>
-            <Button onClick={minusScore} variant="outlined" size="large">
-                s-
-            </Button>
-            <Button onClick={plusScore} variant="outlined" size="large">
-                s+
-            </Button>
-            <Button onClick={minusPar} variant="outlined" size="large">
-                p-
-            </Button>
-            <Button onClick={plusPar} variant="outlined" size="large">
-                p+
-            </Button>
+            <hr style={{height:'3px', backgroundColor:'lightgray', margin:'30px 0'}}/>
+            <div className={'ranking_btnwrap'}>
+                <div className={'ranking_hole'}>
+                    <Button onClick={minusHole} variant="outlined" size="large">
+                        prev hole
+                    </Button>
+                    {n}번홀
+                    <Button onClick={plusHole} variant="outlined" size="large">
+                        next hole
+                    </Button>
+                </div>
+                <div className={'ranking_par'}>
+                    <Button onClick={minusPar} variant="outlined" size="large">
+                        p-
+                    </Button>
+                    <Button onClick={plusPar} variant="outlined" size="large">
+                        p+
+                    </Button>
+                </div>
+                <div className={'ranking_score'}>
+                    <Button onClick={minusScore} variant="outlined" size="large">
+                        s-
+                    </Button>
+                    <Button onClick={plusScore} variant="outlined" size="large">
+                        s+
+                    </Button>
+                </div>
+            </div>
         </div>
     );
 };

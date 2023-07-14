@@ -7,9 +7,11 @@ import Recommendslider from "./app_effect/Recommendslider";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
 import FriendSlider from "./app_effect/FriendSlider";
+import NoticeSlider from "./app_effect/NoticeSlider";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
-
+import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
+import FlutterDashRoundedIcon from '@mui/icons-material/FlutterDashRounded';
 
 
 
@@ -22,6 +24,10 @@ function Main(props) {
 
             <div className={'main_banner'}>
                 <Bannerslider/>
+            </div>
+
+            <div className={'main_notice'}>
+                <div><NoticeSlider/></div>
             </div>
 
 
@@ -46,9 +52,11 @@ function Main(props) {
                 </div>
             </div>
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+
             <div style={{width:'100vw',overflow:'hidden'}}>
+                <div className={'main_reviewtxt'}>Best 후기</div>
+
                 <div className={'main_reviewwrap'}>
-                    <div className={'main_reviewtxt'}>Best 후기</div>
                     <Reviewslider/>
                 </div>
 
