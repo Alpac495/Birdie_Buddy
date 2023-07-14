@@ -23,7 +23,9 @@ function Main(props) {
             <div className={'main_banner'}>
                 <Bannerslider/>
             </div>
-
+            <div className={'main_notice'}>
+                입구가 녹슬어 엉겨붙은 문을 열어 부지내를 마차가 스타크래프트 립버전 1.16.1다운
+            </div>
 
 
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
@@ -46,9 +48,11 @@ function Main(props) {
                 </div>
             </div>
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+
             <div style={{width:'100vw',overflow:'hidden'}}>
+                <div className={'main_reviewtxt'}>Best 후기</div>
+
                 <div className={'main_reviewwrap'}>
-                    <div className={'main_reviewtxt'}>Best 후기</div>
                     <Reviewslider/>
                 </div>
 
