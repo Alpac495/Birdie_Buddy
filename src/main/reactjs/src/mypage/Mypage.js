@@ -48,7 +48,6 @@ import axios from "axios";
 import './Mypage.css'
 import EditIcon from '@mui/icons-material/Edit';
 
-
 function Mypage(props) {
 
     const [unum, setUnum] = useState('');

@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
-import "./Friend.css";
+import "./FriendRequest.css";
 import {Link, NavLink} from 'react-router-dom';
-function Friend(props) {
+function FriendRequest(props) {
     const unum=sessionStorage.unum;
     const [data,setData]=useState('');
     const list=useCallback(()=>{
-        const url="/friend/list?unum="+(unum);
+        const url="/friend/requestlist?unum="+(unum);
         Axios.get(url)
             .then(res=>{
                 setData(res.data);
@@ -18,22 +18,37 @@ function Friend(props) {
         list();
     },[list])
 
+    const onAcceptEvent = (unum) => {
+        const funum = sessionStorage.unum;
+        const confirmed = window.confirm('신청을 수락하시겠습니까?');
+            if (confirmed) {
+                Axios.get(`/friend/acceptfriend/${unum}&${funum}`)
+                    .then(res => {
+                        alert("버디 추가 완료. 버디 리스트에서 확인하세요.");
+                        window.location.replace(`/friend/requestlist/${unum}`);
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    });
+            }
+    };
+
 
 
     return (
         <div className="friend">
-            <h4>마이 버디 : {data.length}명</h4>
+            <h4>버디 요청 : {data.length}명</h4>
 
             <div className="FLtab">
                 <NavLink to={`/friend/list/${unum}`}>
-                    <div className="flframe">
-                        <div className="FLdiv">버디 리스트</div>
-                    </div>
+                <div className="flframe">
+                    <div className="FLdiv">버디 리스트</div>
+                </div>
                 </NavLink>
                 <NavLink to={`/friend/requestlist/${unum}`}>
-                    <div className="FLframe">
-                        <div className="FLdiv">버디 요청</div>
-                    </div>
+                <div className="FLframe">
+                    <div className="FLdiv">버디 요청</div>
+                </div>
                 </NavLink>
             </div>
 
@@ -45,7 +60,7 @@ function Friend(props) {
                         <div className="flist-child" />
                         <div className="flistprofile">
                                 <div className="flistprofile1">
-                                    <Link to={`/friend/detail/${item.funum}`} className="FDMoveLink">
+                                    <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
                                     <img className="FLphoto-icon" alt="" src="/jduphoto@2x.png" />
                                     </Link>
                                     <div className="FLdiv3">
@@ -57,7 +72,7 @@ function Friend(props) {
 
                                     <div className="FLrectangle-parent">
                                         <div className="FLgroup-child" />
-                                        <div className="FLdiv4">채팅하기</div>
+                                        <button type='button' className="FLdiv4" onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>
                                     </div>
                                 </div>
                         </div>
@@ -69,4 +84,4 @@ function Friend(props) {
     );
 }
 
-export default Friend;
+export default FriendRequest;

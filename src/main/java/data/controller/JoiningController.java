@@ -45,6 +45,13 @@ public class JoiningController {
         return list;
     }
 
+    @GetMapping("/myjoinlist")
+    public List<JoiningDto> myJoinlist(int unum)
+    {
+        List<JoiningDto> myjoinlist= joiningService.getMyJoinList(unum);
+        return myjoinlist;
+    }
+
     @GetMapping("/detail")
     public JoiningDto detailPage(int jnum)
     {
