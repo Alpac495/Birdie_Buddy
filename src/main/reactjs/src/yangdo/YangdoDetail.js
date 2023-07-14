@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import Axios from "axios";
 import Modal from '../components/Modal';
@@ -34,14 +34,16 @@ function YangdoDetail(props) {
         selectData();
     },[]);
 
-
     return (
         <div>
 
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="양도 문의">
                     <div>
-                        <h2></h2>
+                        <h1>[{dto.yplace} 양도 문의]</h1>
+                        <p>담당자 : {dto.unickname}</p>
+                        <p>연락처 : {dto.uhp}</p>
+                        <p>전화 문의를 통해 자세한 정보 확인 바랍니다.</p>
                     </div>
                 </Modal>
             </React.Fragment>
