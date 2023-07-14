@@ -1,8 +1,8 @@
 .mainpage {
     background-color: #fff;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    overflow: auto; /* 스크롤이 필요한 경우 자동으로 생성되도록 설정합니다. */
+    overflow-x: hidden; /* 스크롤이 필요한 경우 자동으로 생성되도록 설정합니다. */
     font-size: 0.81rem;
     color: #000;
 }
@@ -13,7 +13,9 @@
     width: 100%;
     height: 175px;
 }
+.main_notice{
 
+}
 .main_btnwrap {
     margin: 10px auto 30px auto;
     width: 90%;
@@ -81,10 +83,6 @@
 }
 .main_joinreco div span{
     margin-left: 30px;
-}
-.main_reviewwrap{
-    margin-top: 10px;
-    margin-left: 12px;
 }
 .main_reviewtxt{
     margin-bottom: 8px;

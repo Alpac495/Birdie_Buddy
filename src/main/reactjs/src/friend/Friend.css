@@ -1,110 +1,178 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
 body {
     margin: 0;
     line-height: normal;
 }
 
-.friend-child {
-    position: absolute;
-    width: calc(100% + 1px);
-    top: 0;
-    right: -0.06rem;
-    left: 0;
-    background-color: #fff;
-    height: 5.25rem;
-}
-.frldiv,
-.frldiv1 {
-    position: absolute;
-    width: calc(100% - 205px);
-    top: 5.38rem;
-    left: 1rem;
+.FLdiv {
+    flex: 1;
+    position: relative;
     letter-spacing: -0.01em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.56rem;
-}
-.frldiv1 {
-    width: calc(100% - 204px);
-    left: 11.69rem;
-}
-.friend-item {
-    position: absolute;
-    width: calc(100% + 3px);
-    top: 8rem;
-    right: -0.12rem;
-    left: -0.06rem;
-    border-top: 2px solid #b9b9b9;
-    box-sizing: border-box;
-    height: 0.13rem;
-}
-.group-child {
-    position: absolute;
-    top: 0;
-    left: calc(50% - 163.05px);
-    background-color: #fff;
-    width: 20.38rem;
-    height: 4.36rem;
-}
-.group-item {
-    position: absolute;
-    top: 0.62rem;
-    left: calc(50% - 160.06px);
-    border-radius: 15px;
-    background-color: #82ecc2;
-    width: 3.12rem;
-    height: 3.12rem;
-}
-.frlb,
-.frldiv2,
-.frldiv3 {
-    position: absolute;
-    letter-spacing: -0.01em;
-    display: flex;
-    align-items: center;
-}
-.frlb {
-    top: 0.56rem;
-    left: calc(50% - 93.24px);
-    font-size: 1.21rem;
-    justify-content: center;
-    width: 3.62rem;
-    height: 2.37rem;
-}
-.frldiv2,
-.frldiv3 {
-    top: 2.93rem;
     font-weight: 500;
-    height: 1.37rem;
 }
-.frldiv2 {
-    left: calc(50% - 93.24px);
-    justify-content: center;
-    width: 2.74rem;
-}
-.frldiv3 {
-    left: calc(50% + 8.48px);
-    text-align: right;
-    width: 9.47rem;
-}
-.rectangle-parent {
+.flframe,
+.FLframe {
     position: absolute;
-    top: 8.63rem;
-    left: calc(50% - 164px);
-    width: 20.38rem;
-    height: 4.36rem;
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.63rem 0.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+.flframe {
+    width: calc(100% - 178px);
+    top: -0.06rem;
+    right: 11.19rem;
+    left: -0.06rem;
+    background-color: #ebebf0;
+    border: 1px solid transparent;
+    height: 3.25rem;
+}
+.FLframe {
+    width: calc(100% - 180px);
+    top: 0;
+    right: 0;
+    left: 11.25rem;
+    background-color: #fff;
+    height: 3.13rem;
+}
+.FLtab {
+    width: 100%;
+    right: 0;
+    left: 0;
+}
+.FLtab {
+    position: absolute;
+    top: 6.19rem;
+    height: 3.13rem;
+    text-align: center;
     font-size: 0.94rem;
 }
-.friend-inner {
+
+.FLdiv2 {
+    position: absolute;
+    top: 0;
+}
+.FLdiv2 {
+    left: 0;
+    letter-spacing: -0.01em;
+    background: linear-gradient(202.17deg, #03c75a, #85c644);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.flist-child {
     position: absolute;
     width: calc(100% + 1px);
-    top: 13.66rem;
+    top: 5.22rem;
     right: -0.03rem;
     left: -0.03rem;
     border-top: 1px solid #b9b9b9;
     box-sizing: border-box;
     height: 0.06rem;
+}
+.FLphoto-icon {
+    position: relative;
+    width: 3.69rem;
+    height: 3.63rem;
+    object-fit: cover;
+}
+.FLp,
+.FLp1 {
+    margin: 0;
+    font-weight: 600;
+}
+.FLp1 {
+    font-weight: 300;
+    color: #636363;
+}
+.FLtxt {
+    line-break: anywhere;
+    width: 100%;
+}
+.FLdiv3 {
+    position: relative;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    width: 9.5rem;
+    flex-shrink: 0;
+}
+.FLgroup-child {
+    position: absolute;
+    top: 0.06rem;
+    right: 0;
+    border-radius: 20px;
+    background-color: #292d32;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    width: 3.75rem;
+    height: 1.53rem;
+}
+.FLdiv4,
+.FLrectangle-parent {
+    width: 3.75rem;
+    height: 1.63rem;
+}
+.FLdiv4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 150%;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.FLrectangle-parent {
+    position: relative;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #fff;
+}
+.flistprofile,
+.flistprofile1 {
+    display: flex;
+    flex-direction: row;
+}
+.flistprofile1 {
+    align-self: stretch;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 0.75rem 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.63rem;
+}
+.flistprofile {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 180px);
+    width: 22.5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.flist,
+.flist1 {
+    position: relative;
+    width: 100%;
+    right: 0;
+    left: 0;
+    height: 5.25rem;
+}
+.FDMoveLink{
+    cursor: pointer;
+}
+.flist {
+    top: 9.31rem;
+}
+.flist1 {
+    top: 14.56rem;
 }
 .friend {
     position: relative;
@@ -112,8 +180,8 @@ body {
     width: 100%;
     height: 50rem;
     overflow: hidden;
-    text-align: center;
-    font-size: 1.13rem;
+    text-align: left;
+    font-size: 1rem;
     color: #000;
     font-family: Inter;
 }

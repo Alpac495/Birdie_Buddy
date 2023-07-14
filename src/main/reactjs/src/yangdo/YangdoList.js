@@ -39,7 +39,7 @@ function YangdoList(props) {
             <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>
             <br/>
 
-            <h2>{data.totalCount}개의 글이 있습니다 양도 리스트</h2>
+            <h2>총 {data.totalCount}개</h2>
 
             {
                 data.list &&

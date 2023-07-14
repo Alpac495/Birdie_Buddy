@@ -15,7 +15,6 @@ function YangdoForm(props) {
         setModalOpen(false);
     };
 
-    const [gname,setGname]=useState('');
     const [data,setData]=useState('');
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -56,7 +55,7 @@ function YangdoForm(props) {
             .then(res=>{
 
                 // 목록으로 이동
-                navi("/yangdo/list")
+                navi("/yangdo/list/1")
             })
     }
 
@@ -65,7 +64,7 @@ function YangdoForm(props) {
         <div>
 
             <React.Fragment>
-                <Modal open={modalOpen} close={closeModal} header="Modal heading">
+                <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>
                         <input style={{marginLeft:'20px'}}
                                type="text"
@@ -92,53 +91,45 @@ function YangdoForm(props) {
             </React.Fragment>
 
             <div>
-                <b>제목 : </b>
+                <b>골프장 : </b>
                 <input type='text' required
                        onChange={
-                    (e)=> setYsubject(e.target.value)
-                } value={ysubject}
+                           (e)=> setYplace(e.target.value)
+                       } value={yplace} onClick={openModal}
+                />
+                <br/>
+
+                <b>가격 : </b>
+                <input type='text' required
+                       onChange={
+                           (e)=> setYprice(e.target.value)
+                       } value={yprice}
+                />
+                <br/>
+
+                <b>예약날짜 : </b>
+                <input type='date' required
+                       onChange={
+                           (e)=> setYday(e.target.value)
+                       } value={yday}
+                />
+                <br/>
+
+                <b>시간 : </b>
+                <input type='time' required
+                       onChange={
+                           (e)=> setYsubject(e.target.value)
+                       } value={ysubject}
                 />
                 <br/>
 
                 <b>내용 : </b>
                 <textarea value={ycontent}
                           onChange={
-                    (e)=>setYcontent(e.target.value)}></textarea>
-                <br/>
-
-                <b>가격 : </b>
-
-                <input type='text' required
-                       onChange={
-                           (e)=> setYprice(e.target.value)
-                       } value={yprice}
-                />
-
-                <br/>
-
-                <b>골프장 : </b>
-
-                <input type='text' required
-                       onChange={
-                           (e)=> setYplace(e.target.value)
-                       } value={yplace} onClick={openModal}
-                />
-
-                <br/>
-
-                <b>예약날짜 : </b>
-
-                <input type='date' required
-                       onChange={
-                           (e)=> setYday(e.target.value)
-                       } value={yday}
-                />
-
+                              (e)=>setYcontent(e.target.value)}></textarea>
                 <br/>
 
                 <button type='submit' onClick={onSubmitEvent}>글쓰기</button>
-
-
 
             </div>
         </div>

@@ -13,6 +13,7 @@ public interface LoginMapper {
     public int loginok(Map<String, Object> map);
     public UserDto getUserData(String uemail);
     public int emailChk(String uemail);
+    public int nickChk(String unickname);
     public void insertCode(String uhp, String code);
     public void deleteCode(String uhp);
     public int cntCode(String uhp);
