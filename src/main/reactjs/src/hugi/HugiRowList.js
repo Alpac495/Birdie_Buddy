@@ -13,10 +13,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Axios from 'axios';
 
 function HugiRowList(props) {
-    const { hnum, hcontent, hphoto, hwriteday,unickname, hlike} = props;
+    const { hnum, hcontent, hphoto, hwriteday,Unickname, hlike} = props;
+    // const unickname="test";
 
     const url = process.env.REACT_APP_BOARDURL;
     const navi = useNavigate();
+    const [unickname,setUnickname]=useState();
 
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 여부
@@ -30,9 +32,6 @@ function HugiRowList(props) {
     const [replyError, setReplyError] = useState(false); // 대댓글 입력 오류 여부 상태 추가
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
     const [postUserNickname,setPostUserNickname]=useState();
-    const [userDto,setUserDto]=useState();
-
-
 
     const checkLoginStatus = () => {
         if (unum) {
@@ -115,10 +114,17 @@ function HugiRowList(props) {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
+                console.log(res.data)
                 setComments(sortedComments);
 
                 res.data.forEach((comment) => {
-                    fetchUserNickname(comment.unum, comment); // 댓글 작성자의 unickname 가져오기
+                    // fetchUserNickname(comment.unum, comment); // 댓글 작성자의 unickname 가져오기
+
+                    if (comment.comments) {
+                        comment.comments.forEach((reply) => {
+                            // fetchUserNickname(reply.unum, reply); // 대댓글 작성자의 unickname 가져오기
+                        });
+                    }
                 });
             })
             .catch((error) => {
@@ -127,7 +133,24 @@ function HugiRowList(props) {
     };
 
 
+    const fetchPostUserNickname = async (unum) => {
+        if (unum) {
+            try {
+                const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
+                const unickname = res.data;
 
+                if (unickname) {
+                    setPostUserNickname(unickname);
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    // 404 오류 처리
+                } else {
+                    console.log('오류가 발생했습니다.', error.message);
+                }
+            }
+        }
+    };
     const sortComments = (comments) => {
         const sorted = [];
         const commentMap = {};
@@ -147,65 +170,15 @@ function HugiRowList(props) {
                         parentComment.comments = [];
                     }
                     parentComment.comments.push(comment);
+                    // fetchUserNickname(comment.unum, comment); // 대댓글 작성자의 unickname 가져오기
                 }
             }
         }
-
-        sorted.forEach((comment) => {
-            comment.unickname = comment.unickname || postUserNickname; // Set comment author's nickname
-            if (comment.comments && comment.comments.length > 0) {
-                comment.comments.forEach((reply) => {
-                    reply.unickname = reply.unickname || postUserNickname; // Set reply author's nickname
-                });
-            }
-        });
 
         return sorted;
     };
 
-    const fetchUserNickname = async (unum, comment) => {
-        if (unum) {
-            try {
-                const res = await Axios.get(`/hugi/getUser/${unum}`);
-                const userNickname = res.data;
-                if (userNickname) {
-                    comment.unickname = userNickname; // unickname 속성 업데이트
-                    getComments(); // UI 업데이트를 위한 리렌더링 트리거
-                }
-            } catch (error) {
-                if (error.response && error.response.status === 404) {
-                    // 404 오류 처리
-                } else {
-                    console.log('오류가 발생했습니다.', error.message);
-                }
-            }
-        }
-    };
-
-
-
-
-
-    const fetchPostUserNickname = async (unum) => {
-        if (unum) {
-            try {
-                const res = await Axios.get(`/hugi/getUser/${unum}`);
-                const userNickname = res.data;
-                if (userNickname) {
-                    setPostUserNickname(userNickname);
-                }
-            } catch (error) {
-                if (error.response && error.response.status === 404) {
-                    // 404 오류 처리
-                } else {
-                    console.log('오류가 발생했습니다.', error.message);
-                }
-            }
-        }
-    };
-
-
-    const handleCommentSubmit = (e) => {
+    const handleCommentSubmit = async (e) => {
         e.preventDefault();
         if (rhcontent.trim() === '') {
             setCommentError(true);
@@ -215,27 +188,29 @@ function HugiRowList(props) {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
-        const newComment = {
-            rhnum: rhnum,
-            hnum: hnum,
-            unum:sessionStorage.unum,
-            unickname: userDto?.unickname || postUserNickname,
-            rhcontent: rhcontent,
-            rhwriteday: formattedDate,
-            ref: null,
-            step: null,
-            depth: null,
-        };
+        try {
+            const res = await Axios.get(`/hugi/getUser?unum=${sessionStorage.unum}`);
+            const userNickname = res.data;
+            if (userNickname) {
+                const newComment = {
+                    rhnum: rhnum,
+                    hnum: hnum,
+                    unum: sessionStorage.unum,
+                    rhcontent: rhcontent,
+                    rhwriteday: formattedDate,
+                    ref: null,
+                    step: null,
+                    depth: null,
+                };
 
-        Axios.post('/rehugi/newcomment', newComment)
-            .then((res) => {
+                await Axios.post('/rehugi/newcomment', newComment);
                 getComments();
                 setRhcontent('');
                 setCommentError(false);
-            })
-            .catch((error) => {
-                console.log('오류가 발생했습니다.', error.message);
-            });
+            }
+        } catch (error) {
+            console.log('오류가 발생했습니다.', error.message);
+        }
     };
 
     const submitReply = (comment) => {
@@ -248,7 +223,6 @@ function HugiRowList(props) {
         const newReply = {
             hnum: hnum,
             unum:sessionStorage.unum,
-            unickname:userDto?.unickname || postUserNickname,
             rhcontent: replyContent,
             ref: comment.rhnum,
             step: comment.step + 1,
@@ -289,26 +263,15 @@ function HugiRowList(props) {
     useEffect(() => {
         setUnum(sessionStorage.unum);
         checkLoginStatus();
-        fetchUserNickname(props.unum);
-        fetchPostUserNickname(props.unum);
+        fetchPostUserNickname(props.unum); // 작성자의 unickname 가져오기
         getComments();
-
-        // Fetch userDto
-        Axios.get(`/hugi/user/${props.unum}`)
-            .then((res) => {
-                setUserDto(res.data);
-            })
-            .catch((error) => {
-                console.log('오류가 발생했습니다.', error.message);
-            });
     }, []);
-
 
     return (
         <div className="list">
             <div className="list_header">
                 <Avatar className="list_avatar" alt={unickname} src="" />
-                <span className="spanName">{unickname}</span>
+                <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
@@ -388,7 +351,7 @@ function HugiRowList(props) {
                           {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
                       </a>
                   )}
-                  {parseInt(props.unum) === parseInt(unum) && (
+                  {parseInt(comment.unum) === parseInt(unum) && (
                       <DeleteIcon
                           className="Delete_Icon"
                           onClick={() => handleClickDeleteComment(comment.rhnum)}
@@ -438,7 +401,7 @@ function HugiRowList(props) {
                                   <pre className="preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br />
                                   <span className="spanRhwriteday">{reply.rhwriteday}</span>
-                                  {parseInt(props.unum) === parseInt(unum) && (
+                                  {parseInt(reply.unum) === parseInt(unum) && (
                                       <DeleteIcon
                                           className="Delete_Icon"
                                           onClick={() => handleClickDeleteComment(reply.rhnum)}

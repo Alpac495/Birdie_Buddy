@@ -1,20 +1,15 @@
 package data.controller;
 
 import data.dto.FriendDto;
+import data.dto.JoinmemberDto;
 import data.dto.UserDto;
 import data.mapper.FriendMapper;
 import data.service.FriendService;
 import naver.cloud.NcpObjectStorageService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -48,5 +43,44 @@ public class FriendController {
     {
         System.out.println("funum="+funum);
         return friendService.detailPage(funum);
+    }
+
+    @GetMapping("/checkbuddy")
+    public int checkBuddy(int unum, int funum)
+    {
+        System.out.println("unum="+unum);
+        return friendService.checkBuddy(unum,funum);
+    }
+
+    @GetMapping("/checkingbuddy")
+    public int checkingBuddy(int unum, int funum)
+    {
+        System.out.println("unum="+unum);
+        return friendService.checkingBuddy(unum,funum);
+    }
+
+    @PostMapping("/requestfriend1")
+    public String requestFriend1(@RequestBody FriendDto dto)
+    {
+        System.out.println("dto>>"+dto);
+        friendService.requestFriend1(dto);
+        return "success";
+    }
+    @PostMapping("/requestfriend2")
+    public String requestFriend2(@RequestBody FriendDto dto)
+    {
+        System.out.println("dto>>"+dto);
+        friendService.requestFriend2(dto);
+        return "success";
+    }
+
+    @DeleteMapping("/friendcancel/{unum}&{funum}")
+    public String friendCancel(@PathVariable int unum, @PathVariable int funum)
+    {
+        System.out.println("cancelunum>>"+unum);
+        System.out.println("cancelfunum>>"+funum);
+        friendService.friendCancel1(unum,funum);
+        friendService.friendCancel2(unum,funum);
+        return "success";
     }
 }
