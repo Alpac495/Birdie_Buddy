@@ -16,7 +16,7 @@ public class UserDto {
     private String ugender;
     private String ucontent;
     private String utasuopen;
-    private String ucarrer;
+    private String ucareer;
 
     private String uhp;
     private String code;
