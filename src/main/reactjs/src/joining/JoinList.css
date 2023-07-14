@@ -240,3 +240,7 @@ body {
     color: #000;
     font-family: Inter;
 }
+.nav-style {
+    text-decoration: none;
+    color: black;
+}

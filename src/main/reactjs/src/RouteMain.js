@@ -69,8 +69,7 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/mypage'} >
-                    <Route path="main" element={<Mypage/>}/>
-                    <Route path="main/:unum" element={<Mypage/>}/>
+                    <Route path="mypage/:unum" element={<Mypage/>}/>
                 </Route>
 
                 <Route path={'/score'} >
