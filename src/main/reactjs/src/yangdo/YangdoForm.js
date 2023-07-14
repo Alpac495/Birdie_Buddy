@@ -24,6 +24,8 @@ function YangdoForm(props) {
     const [yplace,setYplace] = useState('');
     const [yday,setYday] = useState('');
 
+    const navigate = useNavigate();
+
     const list=useCallback(()=>{
         const url="/golfjang/list";
         Axios.get(url)
@@ -51,14 +53,29 @@ function YangdoForm(props) {
     const onSubmitEvent = (e)=>{
         e.preventDefault();
 
-        Axios.post("/yangdo/insert",{unum,ycontent,yprice,yday,ysubject,yplace})
-            .then(res=>{
+        if (!yplace) {
+            alert("골프장을 입력해주세요.")
+        }else if(!yprice) {
+            alert("가격을 입력해주세요.")
+        }else if(isNaN(yprice)){
+            alert("숫자로만 가격을 입력해주세요.")
+        }else if(!yday) {
+            alert("예약 날짜를 입력해주세요.")
+        }else if(!ysubject) {
+            alert("예약 시간을 입력해주세요.")
+        }else{
+            Axios.post("/yangdo/insert", {unum, ycontent, yprice, yday, ysubject, yplace})
+                .then(res => {
 
-                // 목록으로 이동
-                navi("/yangdo/list/1")
-            })
+                    // 목록으로 이동
+                    navi("/yangdo/list/1")
+                });
+        }
     }
 
+    const goBack = () => {
+        navigate(-1);
+    }
 
     return (
         <div>
@@ -91,7 +108,7 @@ function YangdoForm(props) {
 
             <div>
                 <b>골프장 : </b>
-                <input type='text' required
+                <input type='text'
                        onChange={
                            (e)=> setYplace(e.target.value)
                        } value={yplace} onClick={openModal}
@@ -99,7 +116,7 @@ function YangdoForm(props) {
                 <br/>
 
                 <b>가격 : </b>
-                <input type='text' required
+                <input type='text'
                        onChange={
                            (e)=> setYprice(e.target.value)
                        } value={yprice}
@@ -107,7 +124,7 @@ function YangdoForm(props) {
                 <br/>
 
                 <b>예약날짜 : </b>
-                <input type='date' required
+                <input type='date'
                        onChange={
                            (e)=> setYday(e.target.value)
                        } value={yday}
@@ -115,7 +132,7 @@ function YangdoForm(props) {
                 <br/>
 
                 <b>시간 : </b>
-                <input type='time' required
+                <input type='time'
                        onChange={
                            (e)=> setYsubject(e.target.value)
                        } value={ysubject}
@@ -129,6 +146,7 @@ function YangdoForm(props) {
                 <br/>
 
                 <button type='submit' onClick={onSubmitEvent}>글쓰기</button>
+                <button type='button' onClick={goBack}>취소</button>
 
             </div>
         </div>

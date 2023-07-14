@@ -11,16 +11,14 @@ import Mypage from "./mypage/Mypage";
 import Bot from "./chatbot/Bot";
 import ChatBot from "./chatbot/ChatBot";
 import Main from "./Main";
-import Lobby from "./chat/Lobby";
-import {Room} from "./chat";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
-import YangdoList from "./yangdo/YangdoList";
-import YangdoDetail from "./yangdo/YangdoDetail";
-import YangdoForm from "./yangdo/YangdoForm";
 import JoinDetail from "./joining/JoinDetail";
-import YangdoUpdate from "./yangdo/YangdoUpdate";
 import MypageUpdate from "./mypage/MypageUpdate";
+import MypageSetting from "./mypage/MypageSetting";
+import MyYangdo from "./mypage/MyYangdo";
+import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
+
 
 
 function RouteMain(props) {
@@ -28,11 +26,6 @@ function RouteMain(props) {
         <div>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-
-                <Route path={'/chat'}>
-                    <Route path="lobby" element={<Lobby/>}/>
-                    <Route path="room/:roomId" element={<Room/>}></Route>
-                </Route>
 
                 <Route path={'yangdo'}>
                     <Route path="list" element={<YangdoList/>}/>
@@ -73,6 +66,8 @@ function RouteMain(props) {
                 <Route path={'/mypage'} >
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
+                    <Route path="setting/:unum" element={<MypageSetting/>}/>
+                    <Route path="myyangdo/:unum" element={<MyYangdo/>}/>
                 </Route>
 
                 <Route path={'/score'} >
