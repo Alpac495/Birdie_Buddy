@@ -22,6 +22,11 @@ public class FriendService implements FriendServiceInter{
     }
 
     @Override
+    public List<FriendDto> getRequestList(int unum){
+        return friendMapper.getRequestList(unum);
+    }
+
+    @Override
     public UserDto detailPage(int funum) {
         return friendMapper.detailPage(funum);
     }
@@ -53,5 +58,14 @@ public class FriendService implements FriendServiceInter{
     @Override
     public int friendCancel2(int unum, int funum) {
         return friendMapper.friendCancel2(unum,funum);
+    }
+
+    @Override
+    public int acceptFriend1(int unum, int funum) {
+        return friendMapper.acceptFriend1(unum, funum);
+    }
+    @Override
+    public int acceptFriend2(int unum, int funum) {
+        return friendMapper.acceptFriend2(unum, funum);
     }
 }

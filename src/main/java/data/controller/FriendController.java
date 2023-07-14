@@ -38,6 +38,13 @@ public class FriendController {
         return list;
     }
 
+    @GetMapping("/requestlist")
+    public List<FriendDto> requestlist(int unum)
+    {
+        List<FriendDto> requestlist= friendService.getRequestList(unum);
+        return requestlist;
+    }
+
     @GetMapping("/detail")
     public UserDto detailPage(int funum)
     {
@@ -81,6 +88,14 @@ public class FriendController {
         System.out.println("cancelfunum>>"+funum);
         friendService.friendCancel1(unum,funum);
         friendService.friendCancel2(unum,funum);
+        return "success";
+    }
+
+    @GetMapping("/acceptfriend/{unum}&{funum}")
+    public String acceptFriend(@PathVariable int unum, @PathVariable int funum)
+    {
+        friendService.acceptFriend1(unum, funum);
+        friendService.acceptFriend2(unum, funum);
         return "success";
     }
 }
