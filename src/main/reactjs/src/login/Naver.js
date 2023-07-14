@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react';
+import './Login.css';
+import nbtn from '../image/naverbtn.png';
 
 function Naver(props) {
     useEffect(() => {
@@ -23,7 +25,7 @@ function Naver(props) {
     return (
         <div>
             <div id="naverIdLogin" style={{display:'none'}}></div>
-            <button onClick={handleNaverLogin}>네이버 로그인</button>
+            <img src={nbtn} alt={''} className={'naverbtn'} onClick={handleNaverLogin}/>
         </div>
     );
 }
