@@ -78,16 +78,8 @@ public class HugiService implements HugiServiceInter
     public void deleteHugi(int hnum) {
         hugiMapper.deleteHugi(hnum);
     }
-    @Override
     public UserDto getUserDto(int unum) {
-        // 여기에서 UserDto 정보를 가져오는 로직을 구현해주세요.
-        // 예시로 세션에서 가져온 값을 활용하거나, 필요한 정보를 데이터베이스 등에서 조회하는 방식으로 구현합니다.
-        // 가져온 UserDto를 반환합니다.
-        UserDto userDto = new UserDto();
-        userDto.setUname(userDto.getUname());
-        userDto.setUnickname(userDto.getUnickname());
-
-        return userDto;
+        return hugiMapper.getUserDto(unum);
     }
 }
 
