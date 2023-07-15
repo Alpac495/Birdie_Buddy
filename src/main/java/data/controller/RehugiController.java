@@ -66,12 +66,5 @@ public class RehugiController {
         rehugiService.deleteAllComments(hnum);
         return "All comments and replies deleted successfully";
     }
-//    @GetMapping("/comments/{hnum}")
-//    public List<RehugiDto> getCommentsByHnum(@PathVariable int hnum) {
-//        List<RehugiDto> list = rehugiService.getCommentsByHnum(hnum);
-//        for(RehugiDto a:list) {
-//            System.out.println(a.getUnickname());
-//        }
-//        return rehugiService.getCommentsByHnum(hnum);
-//    }
+
 }

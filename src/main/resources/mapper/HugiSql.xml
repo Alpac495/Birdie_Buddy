@@ -13,8 +13,8 @@
         insert into hugi (hcontent, hphoto, hwriteday, hlike, unum)
         values (#{hcontent}, #{hphoto}, now(), 0, #{unum})
     </insert>
-    <update id="updateLikeCount" parameterType="int">
-        update hugi set hlike=hlike+1 where unum=#{unum}
+    <update id="updateLikeCount" parameterType="map">
+        update hugi set hlike=hlike+1 where hnum=#{hnum}
     </update>
     <select id="detailPage" parameterType="int" resultType="HugiDto">
         select * from hugi where hnum=#{hnum}
@@ -32,5 +32,12 @@
     </select>
     <select id="getNickname" parameterType="int" resultType="String">
         select unickname from user where unum=#{unum}
+    </select>
+    <select id="getHugiListByUnum" resultType="HugiDto">
+        SELECT h.*, u.unickname
+        FROM hugi h
+                 INNER JOIN user u ON h.unum = u.unum
+        WHERE h.unum = #{unum}
+        ORDER BY h.hwriteday DESC;
     </select>
 </mapper>

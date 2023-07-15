@@ -35,23 +35,32 @@ public class HugiController {
         System.out.println("list>>");
         return hugiService.getAllHugis();
     }
-//    @GetMapping("/list/{unum}")
-//    public List<HugiDto> list(@PathVariable int unum) {
-//    System.out.println("listByUser>>");
-//
-//    UserDto userDto = hugiService.getUserDto(unum);
-//    String uname = userDto.getUname();
-//    String unickname = userDto.getUnickname();
-//
-//    List<HugiDto> hugiList = hugiService.getHugisByUser(unum);
-//
-//    for (HugiDto hugi : hugiList) {
-//        hugi.setUname(uname);
-//        hugi.setUnickname(unickname);
-//    }
-//
-//    return hugiList;
-//}
+    @GetMapping("/mylist/{unum}")
+    public List<HugiDto> getHugiListByUnum(@PathVariable int unum) {
+        // unum 값을 기반으로 해당 사용자의 후기 데이터를 조회합니다.
+        return hugiService.getHugiListByUnum(unum);
+    }
+    @PostMapping("/like/{hnum}")
+    public ResponseEntity<String> addLike(@PathVariable int hnum) {
+        try {
+            // hnum을 사용하여 해당 게시물의 좋아요 정보를 업데이트합니다.
+            hugiService.updateLikeCount(hnum, 1);
+            return ResponseEntity.ok("좋아요 추가 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("좋아요 추가 실패");
+        }
+    }
+
+    @DeleteMapping("/unlike/{hnum}")
+    public ResponseEntity<String> removeLike(@PathVariable int hnum) {
+        try {
+            // hnum을 사용하여 해당 게시물의 좋아요 정보를 업데이트합니다.
+            hugiService.updateLikeCount(hnum, -1);
+            return ResponseEntity.ok("좋아요 취소 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("좋아요 취소 실패");
+        }
+    }
 
     @PostMapping("/upload")
     public String photoUpload(@RequestParam("upload") MultipartFile upload) {
@@ -68,48 +77,11 @@ public class HugiController {
     @PostMapping("/insert")
     public void insert(@RequestBody HugiDto hdto) {
         System.out.println("hdto>>" + hdto);
-
-        // uname 정보 가져오기
-        //int unum = hdto.getUnum();
-        //UserDto userDto = hugiService.getUserDto(unum);
-//        String uname = userDto.getUname();
-//        String unickname = userDto.getUnickname();
-//        hdto.setUname(uname);
-//        hdto.setUnickname(unickname);
-//        hdto.setHphoto(hphoto);
         hugiService.insertHugi(hdto);
         hphoto = null;
     }
 
-    //    @GetMapping("/detail")
-//    public HugiDto detailPage(int hnum){
-//        System.out.println("detail>>"+hnum);
-//        return hugiService.detailPage(hnum);
-//    }
-//    @GetMapping("/detail/{hnum}")
-//    public HugiDto detailPage(@PathVariable int hnum) {
-//        System.out.println("detail>>" + hnum);
-//        HugiDto hugiDto = hugiService.detailPage(hnum);
-//
-//        int unum = hugiDto.getUnum();
-//        UserDto userDto = hugiService.getUserDto(unum);
-//        String unickname = userDto.getUnickname();
-//        hugiDto.setUnickname(unickname);
-//
-//        return hugiDto;
-//    }
 
-    //    @DeleteMapping("/delete")
-//    public void delete(int hnum)
-//    {
-//        System.out.println("delete>>"+hnum);
-//        //num 에 해당하는 사진 스토리지에서 지우기
-//        String prePhoto=hugiService.detailPage(hnum).getHphoto();
-//        storageService.deleteFile(bucketName, "birdiebuddy", prePhoto);
-//
-//        //db 에서 데이타 삭제
-//        hugiService.deleteHugi(hnum);
-//    }
     @DeleteMapping("/delete/{hnum}")
     public void delete(@PathVariable int hnum) {
         System.out.println("delete>>" + hnum);
@@ -131,15 +103,7 @@ public class HugiController {
             return ResponseEntity.notFound().build();
         }
     }
-//    @GetMapping("/user/{unum}")
-//    public List<UserDto> getUserDto(@PathVariable int unum) {
-//        System.out.println("unum:" + unum);
-//        UserDto userDto = hugiService.getUserDto(unum);
-//        System.out.println(userDto.getUname());
-//
-//        System.out.println("unum+" + unum);
-//        return hugiMapper.getUser(unum);
-//    }
+
 
     @GetMapping("/getUser")
     public ResponseEntity<String> getUser(int unum) {

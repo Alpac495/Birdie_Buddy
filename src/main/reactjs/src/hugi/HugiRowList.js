@@ -11,9 +11,11 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Axios from 'axios';
+import {Favorite, FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
+
 
 function HugiRowList(props) {
-    const { hnum, hcontent, hphoto, hwriteday,Unickname, hlike} = props;
+    const { hnum, hcontent, hphoto, hwriteday,Unickname,hlike} = props;
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
@@ -21,6 +23,7 @@ function HugiRowList(props) {
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 여부
+    const [showLike,setShowLike]=useState(props.showLike || false);
 
     const [unum, setUnum] = useState(); // unum 상태 추가
     const [unickname,setUnickname]=useState();
@@ -49,11 +52,33 @@ function HugiRowList(props) {
             setOpen(true);
         }
     };
-
     const handleClose = () => {
         setOpen(false);
     };
-
+    const handleClickLikeOn = () => {
+        // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
+        // setShowLike(true)를 호출하여 버튼을 활성화합니다.
+        Axios.post(`/hugi/like/${hnum}`)
+            .then(() => {
+                alert("좋아요를 눌렀습니다!");
+                setShowLike(true);
+            })
+            .catch((error) => {
+                console.log('좋아요 처리 중 오류가 발생했습니다.', error);
+            });
+    };
+    const handleClickLikeOff = () => {
+        // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
+        // setShowLike(false)를 호출하여 버튼을 비활성화합니다.
+        Axios.delete(`/hugi/unlike/${hnum}`)
+            .then(() => {
+                alert("좋아요를 취소했습니다!");
+                setShowLike(false);
+            })
+            .catch((error) => {
+                console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
+            });
+    };
     const handleClickDelete = () => {
         const sessionUnum = sessionStorage.getItem('unum');
         if (parseInt(props.unum) === parseInt(sessionUnum)) {
@@ -78,7 +103,6 @@ function HugiRowList(props) {
             alert('자신이 작성한 게시물만 삭제할 수 있습니다.');
         }
     };
-
     const deleteAllComments = () => {
         return new Promise((resolve, reject) => {
             Axios.delete(`/rehugi/deleteAllComments/${hnum}`)
@@ -92,7 +116,6 @@ function HugiRowList(props) {
                 });
         });
     };
-
     const handleDeleteComment = (rhnum) => {
         Axios.delete(`/rehugi/deletecomment/${rhnum}`)
             .then(() => {
@@ -103,14 +126,12 @@ function HugiRowList(props) {
                 console.log('댓글 삭제 중 오류가 발생함', error);
             });
     };
-
     const handleClickDeleteComment = (rhnum) => {
         const confirmed = window.confirm('정말 삭제하시겠습니까?');
         if (confirmed) {
             handleDeleteComment(rhnum);
         }
     };
-
     // getComments 함수 내부에서도 setNickname을 호출하여 unickname 값을 설정합니다.
     const getComments = () => {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
@@ -133,8 +154,6 @@ function HugiRowList(props) {
                 console.log(error);
             });
     };
-
-
     const fetchPostUserNickname = async (unum) => {
         if (unum) {
             try {
@@ -179,7 +198,6 @@ function HugiRowList(props) {
 
         return sorted;
     };
-
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         if (rhcontent.trim() === '') {
@@ -286,6 +304,12 @@ function HugiRowList(props) {
             </h6>
             <hr />
             <div className="IconsZone">
+                {showLike && parseInt(props.unum) === parseInt(unum) ?(
+                    <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{color:"red"}}/>
+                        ) : (
+                    <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{color:"red"}}/>
+                )}
+
                 <MessageIcon onClick={handleClickOpen} className="Icons" />
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="Icons" />

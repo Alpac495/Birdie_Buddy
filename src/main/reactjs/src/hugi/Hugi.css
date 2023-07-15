@@ -62,8 +62,17 @@ button {
     font-weight: 500;
     font-size: 11px;
     text-align: center;
-
-
+    border-radius: 5px;
+}
+.primary_button_hugis{
+    background-color: #0095f6;
+    color: #fff;
+    padding: 5px 9px;
+    font-weight: 500;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 2px;
 }
 .text_button {
     color: #0095f6;
