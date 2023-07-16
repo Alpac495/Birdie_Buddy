@@ -20,4 +20,7 @@ public interface LoginMapper {
     public int cntHpCode(String uhp, String code);
     public int hpChk(String uhp);
     public UserDto getUser(int unum);
+    public void updateCon(Map<String, Object> map);
+    public void updateNick(Map<String, Object> map);
+    public void updatePhoto(Map<String, Object> map);
 }

@@ -24,4 +24,28 @@ public class LoginService implements LoginServiceInter{
         return loginMapper.loginok(map);
     }
 
+    @Override
+    public void updateCon(String ucontent, int unum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("ucontent",ucontent);
+        map.put("unum",unum);
+        loginMapper.updateCon(map);
+    }
+
+    @Override
+    public void updateNick(String unickname, int unum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("unickname",unickname);
+        map.put("unum",unum);
+        loginMapper.updateNick(map);
+    }
+
+    @Override
+    public void updatePhoto(String uphoto, int unum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("uphoto",uphoto);
+        map.put("unum",unum);
+        loginMapper.updatePhoto(map);
+    }
+
 }
