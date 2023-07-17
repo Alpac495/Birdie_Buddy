@@ -23,20 +23,11 @@ public class HugiService implements HugiServiceInter
     public List<HugiDto> getAllHugis() {
         return hugiMapper.getAllHugis();
     }
-//    @Override
-//    public List<HugiDto> getHugisByUser(int unum) {
-//        List<HugiDto> list = hugiMapper.getHugisByUser(unum);
-//
-//        // 각 후기의 작성자 정보 가져오기
-//        for (HugiDto hugi : list) {
-//            UserDto userDto = getUserDto(hugi.getUnum());
-//            hugi.setUname(userDto.getUname());
-//            hugi.setUnickname(userDto.getUnickname());
-//        }
-//
-//        return list;
-//    }
-
+    public List<HugiDto> getHugiListByUnum(int unum) {
+        // 데이터베이스에서 해당 unum을 가진 사용자의 후기 데이터를 조회하는 메소드를 호출합니다.
+        // hugiRepository.getHugiListByUnum(unum)와 같은 형태로 가정합니다.
+        return hugiMapper.getHugiListByUnum(unum);
+    }
     @Override
     public void insertHugi(HugiDto hdto) {
         // unum을 사용하여 사용자 정보 가져오기
@@ -46,29 +37,25 @@ public class HugiService implements HugiServiceInter
         String unickname = userDto.getUnickname();
 
         // HugiDto에 사용자 정보 설정
-        hdto.setUname(uname);
+
         hdto.setUnickname(unickname);
 
         hugiMapper.insertHugi(hdto);
     }
 
     @Override
-    public void updateLikeCount(int unum ,int hlike) {
-        hugiMapper.updateLikeCount(unum,hlike);
+    public void updateLikeCount(int hnum ,int hlike) {
+        hugiMapper.updateLikeCount(hnum,hlike);
     }
 
     @Override
     public HugiDto detailPage(int hnum) {
         HugiDto hugiDto = hugiMapper.detailPage(hnum);
-
         // unum을 사용하여 사용자 정보 가져오기
         int unum = hugiDto.getUnum();
         UserDto userDto = getUserDto(unum);
-        String uname = userDto.getUname();
         String unickname = userDto.getUnickname();
-
         // HugiDto에 사용자 정보 설정
-        hugiDto.setUname(uname);
         hugiDto.setUnickname(unickname);
 
         return hugiDto;
@@ -81,5 +68,6 @@ public class HugiService implements HugiServiceInter
     public UserDto getUserDto(int unum) {
         return hugiMapper.getUserDto(unum);
     }
+
 }
 
