@@ -7,10 +7,6 @@ import {NavLink, useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 
-
-
-
-
 function Home(props) {
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
@@ -64,12 +60,6 @@ function Home(props) {
             <img style={{width: '300px'}} alt={'test2img'}
                  src={`http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy/${photo}`}/>
 
-
-            <ul> Chat
-                <li>
-                    <NavLink to={'/chat/lobby'}>채팅방 리스트</NavLink>
-                </li>
-            </ul>
 
             <ul> Yangdo
                 <li>

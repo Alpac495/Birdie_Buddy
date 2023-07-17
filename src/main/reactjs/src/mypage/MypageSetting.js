@@ -1,67 +1,75 @@
 import "./MypageSetting.css";
+import {useNavigate, useParams} from "react-router-dom";
 const MypageSetting = () => {
+
+    const {currentPage,unum} = useParams();
+    const navi = useNavigate();
+
+    const onMyYangdo=()=>{
+        navi(`/mypage/myyangdo/${unum}`);
+    }
+
     return (
         <div className="mypagesetting">
-            <div className="content-area">
-                <div className="list-item-group-subtitle">
-                    <div className="subtitle">
-                        <div className="label">General</div>
+            <div className="MPScontent-area">
+                <div className="MPSlist-item-group-subtitle">
+                    <div className="MPSsubtitle">
+                        <div className="MPSlabel">General</div>
                     </div>
                 </div>
-                <div className="single-line-item">
+                <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/account.svg" />
-                    <div className="label1">마이 프로필</div>
+                    <div className="MPSlabel1">마이 프로필</div>
                 </div>
-                <div className="single-line-item1" />
-                <div className="divider">
-                    <div className="line-separator" />
+                <div className="MPSsingle-line-item">
+                    <img className="account-icon" alt="" src="/account.svg" />
+                    <div className="MPSlabel1">마이 버디</div>
                 </div>
-                <div className="list-item-group-subtitle">
-                    <div className="subtitle">
-                        <div className="label">Features</div>
+                <div className="MPSsingle-line-item1" />
+                <div className="MPSdivider">
+                    <div className="MPSline-separator" />
+                </div>
+                <div className="MPSlist-item-group-subtitle">
+                    <div className="MPSsubtitle">
+                        <div className="MPSlabel">Features</div>
                     </div>
                 </div>
-                <div className="single-line-item2">
+                <div className="MPSsingle-line-item2">
                     <img className="account-icon" alt="" src="/notification.svg" />
-                    <div className="label1">마이 조인</div>
+                    <div className="MPSlabel1">마이 조인</div>
                 </div>
-                <div className="single-line-item">
+                <div className="MPSsingle-line-item"
+                onClick={onMyYangdo}>
                     <img className="account-icon" alt="" src="/time.svg" />
-                    <div className="label1">마이 양도</div>
+                    <div className="MPSlabel1">마이 양도</div>
                 </div>
-                <div className="single-line-item">
+                <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/payment.svg" />
-                    <div className="label1">마이 랭킹</div>
+                    <div className="MPSlabel1">마이 랭킹</div>
                 </div>
-                <div className="single-line-item">
+                <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/settings.svg" />
-                    <div className="label1">마이 스토리</div>
+                    <div className="MPSlabel1">마이 스토리</div>
                 </div>
-                <div className="divider">
-                    <div className="line-separator" />
+                <div className="MPSdivider">
+                    <div className="MPSline-separator" />
                 </div>
-                <div className="list-item-group-subtitle">
-                    <div className="subtitle">
-                        <div className="label">Services</div>
+                <div className="MPSlist-item-group-subtitle">
+                    <div className="MPSsubtitle">
+                        <div className="MPSlabel">Services</div>
                     </div>
                 </div>
-                <div className="single-line-item">
+                <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="label1">이용정책</div>
+                    <div className="MPSlabel1">공지사항</div>
                 </div>
-                <div className="single-line-item">
-                    <div className="link" />
-                    <div className="label1">설정</div>
-                </div>
-                <div className="list-item-group-subtitle3">
-                    <div className="subtitle">
-                        <div className="label">로그아웃</div>
+                <div className="MPSlist-item-group-subtitle3">
+                    <div className="MPSsubtitle">
+                        <div className="MPSlabel">로그아웃</div>
                     </div>
                 </div>
             </div>
             <img className="settings-icon1" alt="" src="/settings1.svg" />
-            <img className="settings-icon2" alt="" src="/settings2.svg" />
-            <div className="label11">마이 버디</div>
             <img className="vector-icon" alt="" src="/vector.svg" />
             <img className="vector-icon1" alt="" src="/vector1.svg" />
             <img className="vector-icon2" alt="" src="/vector2.svg" />

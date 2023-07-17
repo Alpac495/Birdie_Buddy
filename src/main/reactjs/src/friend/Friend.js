@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./Friend.css";
-import { Link } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 function Friend(props) {
     const unum=sessionStorage.unum;
     const [data,setData]=useState('');
@@ -25,12 +25,16 @@ function Friend(props) {
             <h4>마이 버디 : {data.length}명</h4>
 
             <div className="FLtab">
-                <div className="flframe">
-                    <div className="FLdiv">버디 리스트</div>
-                </div>
-                <div className="FLframe">
-                    <div className="FLdiv">버디 요청</div>
-                </div>
+                <NavLink to={`/friend/list/${unum}`}>
+                    <div className="flframe">
+                        <div className="FLdiv">버디 리스트</div>
+                    </div>
+                </NavLink>
+                <NavLink to={`/friend/requestlist/${unum}`}>
+                    <div className="FLframe">
+                        <div className="FLdiv">버디 요청</div>
+                    </div>
+                </NavLink>
             </div>
 
             {

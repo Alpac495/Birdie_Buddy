@@ -5,16 +5,6 @@ body {
     line-height: normal;
 }
 
-.PF2icon {
-    position: absolute;
-    height: 60%;
-    width: 60%;
-    top: 20%;
-    right: 20%;
-    bottom: 20%;
-    left: 20%;
-    overflow: hidden;
-}
 .PF2favorite {
     position: relative;
     border-radius: 40px;
@@ -29,6 +19,7 @@ body {
     bottom: 20%;
     left: 20%;
 }
+
 .PF2actions,
 .PF2icon1,
 .PF2title {
@@ -48,6 +39,7 @@ body {
     left: 4.5rem;
     letter-spacing: 0.15px;
     font-weight: 500;
+    color: white;
 }
 
 .PF2action-bar-contextual {
@@ -66,13 +58,6 @@ body {
     border-radius: 2px;
     width: 22.5rem;
     height: 3.5rem;
-}
-.PF2detail-view-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 1.25rem;
     color: #fff;
 }
 
@@ -156,7 +141,7 @@ body {
     border: 2px solid #e2e2e2;
     overflow: hidden;
     display: flex;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.75rem;
     align-items: center;
     justify-content: flex-start;
     color: #000;
@@ -177,21 +162,20 @@ body {
 .PF2tasu {
     flex: 1;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.2rem;
 }
 .PF2frame {
     position: absolute;
     top: 5.69rem;
     left: calc(50% - 158.5px);
     width: 19.81rem;
-    height: 10.38rem;
     flex-direction: row;
     color: #52525c;
 }
 .PF2partnerinfo {
     position: relative;
     width: 19.81rem;
-    height: 16.06rem;
+    height: 15.5rem;
     font-family: Inter;
 }
 .PF2label1 {
@@ -231,16 +215,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.PF2cta-button-1 {
-    background-color: #fff;
-    width: 22.5rem;
-    height: 6.1rem;
-    padding: 0.63rem 1rem;
-    box-sizing: border-box;
-    justify-content: center;
-    text-align: center;
-    font-size: 1rem;
-}
+
 .PF2frame-parent {
     justify-content: flex-start;
     gap: 0.94rem;

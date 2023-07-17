@@ -66,7 +66,7 @@ function NCloudChatComponent() {
     };
 
     return (
-        <div>
+        <div style={{ width: '500px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
             <div className="chatbox">
                 {messages.map((message, index) => (
                     <div key={index} className="message">

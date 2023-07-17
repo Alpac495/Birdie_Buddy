@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Link, NavLink, useNavigate, useParams} from "react-router-dom";
-import YangdoRowList from "./YangdoRowList";
 import Axios from "axios";
 
 function YangdoList(props) {
@@ -36,10 +35,13 @@ function YangdoList(props) {
         }
     }
 
-    const onDetailEvent=()=>{
+    const onDetailEvent=(ynum)=>{
+
         if(sessionStorage.unum == null){
             alert("로그인을 해주세요");
-            navi("/login/login");
+            return; // 이동을 막기 위해 함수 실행을 중단
+        }else{
+            navi(`/yangdo/detail/${ynum}/${currentPage}`);
         }
     }
 
@@ -68,10 +70,15 @@ function YangdoList(props) {
                             }
                         }).map((row,idx)=>
                         <div>
-                            <NavLink to={`/yangdo/detail/${row.ynum}/${currentPage}`}
-                            onClick={onDetailEvent}>
+                            {/*<NavLink to={`/yangdo/detail/${row.ynum}/${currentPage}`}*/}
+                            {/*>*/}
+
+                            <a href="#" onClick={(e)=>{
+                                e.preventDefault();
+                                onDetailEvent(row.ynum);
+                            }} >
                                 <b>{row.yplace}</b><br/>
-                            </NavLink>
+                            </a>
                             <b>{row.yday}</b><br/>
                             <b>{row.ysubject}</b><br/>
                             <b>{row.yprice.toLocaleString()}원</b><br/>
@@ -96,7 +103,7 @@ function YangdoList(props) {
 
                         <NavLink to={`/yangdo/list/${pno}`} style={{textDecoration:'none'}}>
                             <b style={{marginRight:'10px',
-                                color:pno == currentPage?'red':'black'}}>{pno}</b>
+                                color:pno == currentPage?'#58FAAC':'black'}}>{pno}</b>
                         </NavLink>)
                 }
 

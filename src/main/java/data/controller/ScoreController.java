@@ -4,6 +4,7 @@ import data.dto.GolfjangScoreDto;
 import data.dto.ScoreDataDto;
 import data.dto.ScoreDto;
 import data.mapper.ScoreMapper;
+import data.service.ScoreService;
 import naver.cloud.NcpObjectStorageService;
 
 import java.util.Arrays;
@@ -27,6 +28,9 @@ public class ScoreController {
     String photo;
 
     String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+
+    @Autowired
+    ScoreService scoreService;
 
     @Autowired
     ScoreMapper scoreMapper;
@@ -70,6 +74,16 @@ public class ScoreController {
         scoreMapper.saveScore(dto);
 
         return "요청이 성공적으로 처리되었습니다.";
+    @GetMapping("/list")
+    public List<ScoreDto> list(int unum){
+
+        scoreService.getRankingList(unum);
+        System.out.println(scoreService.getRankingList(unum));
+
+        /*List<ScoreDto> list = int [];*/
+
+
+        return new ArrayList<>();
     }
 
 }

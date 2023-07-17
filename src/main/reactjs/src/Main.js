@@ -4,17 +4,13 @@ import "./Main.css";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Recommendslider from "./app_effect/Recommendslider";
+import no from "./images/nooooo.jpg";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
 import FriendSlider from "./app_effect/FriendSlider";
 import NoticeSlider from "./app_effect/NoticeSlider";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
-import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
-import FlutterDashRoundedIcon from '@mui/icons-material/FlutterDashRounded';
-
-
-
 
 function Main(props) {
     return (
@@ -27,7 +23,7 @@ function Main(props) {
             </div>
 
             <div className={'main_notice'}>
-                <div><NoticeSlider/></div>
+                <NoticeSlider/>
             </div>
 
 
@@ -40,6 +36,11 @@ function Main(props) {
                 <div className={'main_friendrec'} style={{marginTop:'10px'}} >
                     <FriendSlider/>
                 </div>
+            </div>
+
+            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+            <div className={'main_ad'}>
+                <img alt={''} src={no}/>
             </div>
 
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
