@@ -1,36 +1,30 @@
 .ranking_listwrap{
     width: 100%;
     height: 100vh;
-    background-color: white;
     padding: 20px;
 }
 .ranking_listwrap div{
     border: 1px black solid;
 }
-
 .ranking_topper{
-    margin: 100px auto 0 auto;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
-
 .ranking_list table, tr ,td ,th{
-    border: 1px black solid;
+    border-bottom: 1px black solid;
 }
 .ranking_list table {
     width: 100%;
 }
-
-
 /*modal*/
 .ranking_modal{
     position: fixed;
-    bottom: -100%;
     transition: transform 0.3s ease;
     transform: translateY(100%);
     width: 100%;
-    z-index: 98;
+    border: black 1px solid;
+    z-index: 10;
 }
 .ranking_modal.open {
     bottom: 0;
@@ -42,14 +36,10 @@
 }
 .modal_background {
     /* 배경 스타일 */
-
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 97;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* 변경된 부분 */
+
+
 }

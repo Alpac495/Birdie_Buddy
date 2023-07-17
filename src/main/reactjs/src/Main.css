@@ -25,42 +25,8 @@
     width: 100vw;
     overflow: hidden;
 }
-.main_btnwrap {
-    margin: 10px auto 30px auto;
-    width: 90%;
-    height: 150px;
-    display: flex;
-    justify-content: space-between;
-}
-.main_bgbtn{
-    width: 45%;
-}
-.mainbutton_child{
-    position: relative;
+.main_ad img{
     width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(57, 199, 81);
-    border : 1px solid lightgrey;
-    border-radius: 5px;
-    box-shadow: 2px 4px 4px lightgrey;
-}
-.main_smbtn{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-}
-.mainbutton_item{
-    width: 100%;
-    height: 45%;
-    background-color: white;
-    border: 1px lightgrey solid;
-    box-shadow: 2px 4px 4px lightgrey;
-    border-radius: 5px;
 }
 .main_join{
     margin: 15px 0;
