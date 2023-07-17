@@ -6,7 +6,6 @@ import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
-import {HugiDetailPage, HugiList} from "./hugi";
 import Mypage from "./mypage/Mypage";
 import Bot from "./chatbot/Bot";
 import ChatBot from "./chatbot/ChatBot";
@@ -18,7 +17,8 @@ import MypageUpdate from "./mypage/MypageUpdate";
 import MypageSetting from "./mypage/MypageSetting";
 import MyYangdo from "./mypage/MyYangdo";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
-
+import {HugiList} from "./hugi";
+import HugiRowList from "./hugi/HugiRowList";
 
 
 function RouteMain(props) {
@@ -46,6 +46,8 @@ function RouteMain(props) {
 
                 <Route path={'/hugi'} >
                     <Route path="list" element={<HugiList/>}/>
+                    <Route path="hugilist" element={<HugiRowList/>}/>
+
 
                 </Route>
 

@@ -23,10 +23,10 @@ public class RehugiService implements RehugiServiceInter {
         rehugiMapper.addReply(rhdto);
     }
 
-    @Override
-    public List<RehugiDto> getCommentsByHnum(int hnum) {
-        return rehugiMapper.getCommentsByHnum(hnum);
-    }
+//    @Override
+//    public List<RehugiDto> getCommentsByHnum(int hnum) {
+//        return rehugiMapper.getCommentsByHnum(hnum);
+//    }
 
     @Override
     public List<RehugiDto> getAllCommentsWithReplies(int hnum) {
