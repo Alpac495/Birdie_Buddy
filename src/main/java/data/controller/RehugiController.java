@@ -33,7 +33,7 @@ public class RehugiController {
 
     @PostMapping("/newcomment")
     public String newComment(@RequestBody RehugiDto rhdto) {
-        System.out.println("rhdto>>"+rhdto);
+//        System.out.println("rhdto>>"+rhdto);
         rehugiService.addComment(rhdto);
         return "Comment added successfully";
     }
@@ -47,13 +47,17 @@ public class RehugiController {
     }
 
     @GetMapping("/comments")
-    public List<RehugiDto> getCommentsAndReplies(@RequestParam("hnum") int hnum) {
+    public List<RehugiDto> getAllCommentsWithReplies(@RequestParam("hnum") int hnum) {
+        List<RehugiDto> list = rehugiService.getAllCommentsWithReplies(hnum);
+//        for(RehugiDto a:list) {
+//            System.out.println(a.getUnickname());
+//        }
         return rehugiService.getAllCommentsWithReplies(hnum);
     }
 
     @DeleteMapping("/deletecomment/{rhnum}")
     public String deleteCommentOrReply(@PathVariable(value = "rhnum") int rhnum) {
-        System.out.println("delete rhnum>>" + rhnum);
+//        System.out.println("delete rhnum>>" + rhnum);
         rehugiService.deleteCommentOrReply(rhnum);
         return "Comment or Reply deleted successfully";
     }
@@ -62,8 +66,5 @@ public class RehugiController {
         rehugiService.deleteAllComments(hnum);
         return "All comments and replies deleted successfully";
     }
-    @GetMapping("/comments/{hnum}")
-    public List<RehugiDto> getCommentsByHnum(@PathVariable int hnum) {
-        return rehugiService.getCommentsByHnum(hnum);
-    }
+
 }

@@ -1,32 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './Hugi.css';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
 
+
 function HugiList(props) {
+    const [unum,setUnum]=useState();
+    const [showMyHugis, setShowMyHugis] = useState(false);// MyHugiList를 보여줄지 여부를 저장하는 상태
     const [hphoto, setHphoto] = useState('');
     const [hcontent, setHcontent] = useState('');
     const [hlike, setHlike] = useState('');
-    const [hwriteday, setHwriteday] = useState('');
-    const [hnum, setHnum] = useState('');
-    const [unum, setUnum] = useState('');
-    const [unickname,setUnickname]=useState();
+    const [Unickname, setUnickname] = useState();
     const [hugiData, setHugiData] = useState([]);
-
-    const url = process.env.REACT_APP_BOARDURL;
-    const navi = useNavigate();
+    const [myHugiData, setMyHugiData] = useState([]);
     const isLoggedIn = sessionStorage.getItem('unum') !== null;
+    const url = process.env.REACT_APP_HUGI;
+    const navi = useNavigate();
+
 
     useEffect(() => {
         refreshHugiData();
         getUser();
     }, []);
 
+    useEffect(() => {
+        if(unum) {
+            refreshHugiData2();
+        }
+    },[unum])
     const getUser = () => {
         Axios.get("/hugi/getUser?unum=" + sessionStorage.unum)
             .then((res) => {
                 setUnickname(res.data);
+                setUnum(sessionStorage.unum); // unum 상태 값 설정
             })
             .catch((error) => {
                 console.log(error);
@@ -37,13 +44,21 @@ function HugiList(props) {
         Axios.get(`/hugi/list`)
             .then((res) => {
                 setHugiData(res.data);
-                setUnickname(res.data.unickname);
+                setUnickname(res.data.Unickname);
             })
             .catch((error) => {
                 console.log(error);
             });
     };
-
+    const refreshHugiData2 = () => {
+        Axios.get(`/hugi/mylist/${unum}`)
+            .then((res) => {
+                setMyHugiData(res.data); // 사용자의 후기 데이터를 바로 업데이트
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
     const onUploadEvent = (e) => {
         const uploadFile = new FormData();
         uploadFile.append('upload', e.target.files[0]);
@@ -67,17 +82,18 @@ function HugiList(props) {
         }
 
         const dataToSend = {
-            unum:sessionStorage.unum,
+            unum: sessionStorage.unum,
+            Unickname: Unickname,
             hlike: 0,
             hcontent: hcontent,
             hphoto: hphoto || '',
             hwriteday: formattedDate,
         };
-
         Axios.post('/hugi/insert', dataToSend)
             .then((res) => {
                 navi('/hugi/list');
                 refreshHugiData();
+                refreshHugiData2();
                 setHphoto('');
                 setHcontent('');
             })
@@ -85,11 +101,17 @@ function HugiList(props) {
                 console.log(error);
             });
     };
-
     const homeButton = () => {
         navi('/');
     };
+    const Myhugis = () => {
+        refreshHugiData2();
+        setShowMyHugis(true);
+    };
 
+    const AllHugis = () =>{
+        setShowMyHugis(false);
+    };
     return (
         <div className="hugi">
             <div className="hugi_header">
@@ -97,10 +119,19 @@ function HugiList(props) {
                     <button type="button" alt="" className="primary_button" onClick={homeButton}>
                         Home
                     </button>
+                    {showMyHugis ? (
+                        <button type="button" alt="" className="primary_button_hugis" onClick={AllHugis}>
+                            AllHugis
+                        </button>
+                    ) : (
+                        <button type="button" alt="" className="primary_button_hugis" onClick={Myhugis}>
+                            MyHugis
+                        </button>
+                    )}
                 </div>
                 {sessionStorage.unum ? (
                     <b className="CommentNickname">
-                        {unickname}님이 접속중입니다.
+                        {Unickname}님이 접속중입니다.
                     </b>
                 ) : (
                     <b className="CommentNickname">
@@ -111,42 +142,69 @@ function HugiList(props) {
             {isLoggedIn && (
                 <details className="details_Timeline">
                     <summary>게시물 작성하기</summary>
-                <div className="timeline" style={{ border: '1px solid gray', width: '100%', height: '50%', marginTop: '5px', marginBottom: '5px' }}>
-                    <input type="file" className="form-control" onChange={onUploadEvent} />
-                    <img alt="" src={`${url}${hphoto}`} style={{ width: '50%', margin: '10px 100px' }} />
-                    <br />
-                    <br />
-                    <div className="input-group">
+                    <div className="timeline" style={{
+                        border: '1px solid gray',
+                        width: '100%',
+                        height: '50%',
+                        marginTop: '5px',
+                        marginBottom: '5px'
+                    }}>
+                        <input type="file" className="form-control" onChange={onUploadEvent}/>
+                        <img alt="" src={`${url}${hphoto}`} style={{width: '50%', margin: '10px 100px'}}/>
+                        <br/>
+                        <br/>
+                        <div className="input-group">
             <textarea
                 className="form-control"
-                style={{ width: '80%',resize:"none"}}
+                style={{width: '80%', resize: "none"}}
                 value={hcontent}
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>
-                        <button type="submit" className="primary_button" style={{ width: '20%' }} onClick={onSubmitEvent}>
-                            작성
-                        </button>
+                            <button type="submit" className="primary_button" style={{width: '20%'}}
+                                    onClick={onSubmitEvent}>
+                                작성
+                            </button>
+                        </div>
                     </div>
-                </div>
                 </details>
             )}
-            <div className="timeline">
-                {
-                    hugiData &&
-                    hugiData.map((rowData) => (
-                    <HugiRowList
-                        key={rowData.hnum}
-                        hnum={rowData.hnum}
-                        unum={rowData.unum}
-                        unickname={rowData.unickname}
-                        hcontent={rowData.hcontent}
-                        hphoto={rowData.hphoto}
-                        hwriteday={rowData.hwriteday}
-                        refreshHugiData={refreshHugiData}
-                        getUser={getUser}
-                    />
-                ))}
-            </div>
+            {/* MyHugiList 또는 HugiRowList를 조건부 렌더링 */}
+            {showMyHugis ? (
+                <div className="timeline">
+                    {myHugiData &&
+                        myHugiData.map((rowData) => (
+                            <HugiRowList
+                                key={rowData.hnum}
+                                hnum={rowData.hnum}
+                                unum={rowData.unum}
+                                Unickname={rowData.Unickname}
+                                hcontent={rowData.hcontent}
+                                hphoto={rowData.hphoto}
+                                hwriteday={rowData.hwriteday}
+                                refreshHugiData2={refreshHugiData2}
+                                getUser={getUser}
+                            />
+                        ))}
+                </div>
+            ) : (
+                // HugiRowList를 보여줄 때
+                <div className="timeline">
+                    {hugiData &&
+                        hugiData.map((rowData) => (
+                            <HugiRowList
+                                key={rowData.hnum}
+                                hnum={rowData.hnum}
+                                unum={rowData.unum}
+                                Unickname={rowData.Unickname}
+                                hcontent={rowData.hcontent}
+                                hphoto={rowData.hphoto}
+                                hwriteday={rowData.hwriteday}
+                                refreshHugiData={refreshHugiData}
+                                getUser={getUser}
+                            />
+                        ))}
+                </div>
+            )}
         </div>
     );
 }
