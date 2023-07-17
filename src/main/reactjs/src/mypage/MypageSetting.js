@@ -1,5 +1,14 @@
 import "./MypageSetting.css";
+import {useNavigate, useParams} from "react-router-dom";
 const MypageSetting = () => {
+
+    const {currentPage,unum} = useParams();
+    const navi = useNavigate();
+
+    const onMyYangdo=()=>{
+        navi(`/mypage/myyangdo/${unum}`);
+    }
+
     return (
         <div className="mypagesetting">
             <div className="MPScontent-area">
@@ -29,7 +38,8 @@ const MypageSetting = () => {
                     <img className="account-icon" alt="" src="/notification.svg" />
                     <div className="MPSlabel1">마이 조인</div>
                 </div>
-                <div className="MPSsingle-line-item">
+                <div className="MPSsingle-line-item"
+                onClick={onMyYangdo}>
                     <img className="account-icon" alt="" src="/time.svg" />
                     <div className="MPSlabel1">마이 양도</div>
                 </div>
