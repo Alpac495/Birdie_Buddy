@@ -1,10 +1,12 @@
 import React from 'react';
 import NCloudChatComponent from "./NCloudChatComponent";
+import NCloudChatRoomList from "./NCloudChatRoomList";
 
 function ChatBot(props) {
     return (
         <div>
-            <div style={{ width: '500px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
+            <div>
+                <NCloudChatRoomList/>
                 <NCloudChatComponent/>
             </div>
         </div>
