@@ -18,7 +18,6 @@ public class RehugiDto {
     private int ref;
     private int step;
     private int depth;
-
-    private String user_unickname;
+    private String unickname;
 
 }
