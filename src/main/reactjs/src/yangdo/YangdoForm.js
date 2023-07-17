@@ -47,8 +47,16 @@ function YangdoForm(props) {
 
     const navi = useNavigate();
 
-    // 세션 스토리지에서 저장된 unum 가져오기
-    const unum = sessionStorage.unum;
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
 
     const onSubmitEvent = (e)=>{
         e.preventDefault();
