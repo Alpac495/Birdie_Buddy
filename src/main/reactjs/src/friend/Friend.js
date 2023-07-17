@@ -3,7 +3,16 @@ import Axios from "axios";
 import "./Friend.css";
 import {Link, NavLink} from 'react-router-dom';
 function Friend(props) {
-    const unum=sessionStorage.unum;
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
     const [data,setData]=useState('');
     const list=useCallback(()=>{
         const url="/friend/list?unum="+(unum);

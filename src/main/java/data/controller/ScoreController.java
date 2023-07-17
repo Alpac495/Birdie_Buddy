@@ -7,6 +7,7 @@ import data.mapper.ScoreMapper;
 import data.service.ScoreService;
 import naver.cloud.NcpObjectStorageService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -74,8 +75,9 @@ public class ScoreController {
         scoreMapper.saveScore(dto);
 
         return "요청이 성공적으로 처리되었습니다.";
+    }
     @GetMapping("/list")
-    public List<ScoreDto> list(int unum){
+    public List<ScoreDto> getRanklist(int unum){
 
         scoreService.getRankingList(unum);
         System.out.println(scoreService.getRankingList(unum));
