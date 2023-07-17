@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+.MPSlabel {
+    position: relative;
+    letter-spacing: 0.25px;
+    line-height: 1.25rem;
+}
+.MPSlist-item-group-subtitle,
+.MPSsubtitle {
+    align-self: stretch;
+    display: flex;
+    justify-content: flex-start;
+}
+.MPSsubtitle {
+    height: 1.25rem;
+    flex-direction: row;
+    padding: 0 0 0 1rem;
+    box-sizing: border-box;
+    align-items: center;
+}
+.MPSlist-item-group-subtitle {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+    flex-direction: column;
+    padding: 1rem 0 0.5rem;
+    align-items: flex-start;
+    font-size: 0.88rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+.account-icon {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.MPSlabel1 {
+    flex: 1;
+    position: relative;
+    letter-spacing: 0.15px;
+    line-height: 1.5rem;
+}
+.MPSsingle-line-item {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.5rem;
+}
+.MPSsingle-line-item,
+.MPSsingle-line-item1 {
+    align-self: stretch;
+    background-color: #fff;
+    overflow: hidden;
+}
+.MPSline-separator {
+    align-self: stretch;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.12);
+    height: 0.06rem;
+}
+.MPSdivider,
+.MPSsingle-line-item2 {
+    align-self: stretch;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.MPSsingle-line-item2 {
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1.5rem;
+}
+.MPScontent-area,
+.MPSlist-item-group-subtitle3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.MPSlist-item-group-subtitle3 {
+    align-self: stretch;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+    padding: 1rem 0;
+    font-size: 0.88rem;
+}
+.MPScontent-area {
+    position: absolute;
+    height: calc(100% - 85px);
+    width: 100%;
+    top: 5.31rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+.MPSlabel10,
+.settings-icon1 {
+    position: absolute;
+    top: calc(50% - 188px);
+}
+.settings-icon1 {
+    left: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.MPSlabel10 {
+    left: 4.13rem;
+    letter-spacing: 0.15px;
+    line-height: 1.5rem;
+    display: flex;
+    align-items: center;
+    width: 17.5rem;
+}
+.vector-icon,
+.vector-icon1,
+.vector-icon2,
+.vector-icon3,
+.vector-icon4,
+.vector-icon5,
+.vector-icon6,
+.vector-icon7 {
+    position: absolute;
+    height: 1.54%;
+    width: 2.06%;
+    top: 19.21%;
+    right: 5.72%;
+    bottom: 79.26%;
+    left: 92.22%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    mix-blend-mode: normal;
+}
+.vector-icon1,
+.vector-icon2,
+.vector-icon3,
+.vector-icon4,
+.vector-icon5,
+.vector-icon6,
+.vector-icon7 {
+    top: 26.38%;
+    bottom: 72.09%;
+}
+.vector-icon2,
+.vector-icon3,
+.vector-icon4,
+.vector-icon5,
+.vector-icon6,
+.vector-icon7 {
+    top: 43.41%;
+    bottom: 55.06%;
+}
+.vector-icon3,
+.vector-icon4,
+.vector-icon5,
+.vector-icon6,
+.vector-icon7 {
+    top: 50.58%;
+    bottom: 47.89%;
+}
+.vector-icon4,
+.vector-icon5,
+.vector-icon6,
+.vector-icon7 {
+    top: 57.75%;
+    bottom: 40.72%;
+}
+.vector-icon5,
+.vector-icon6,
+.vector-icon7 {
+    top: 64.92%;
+    bottom: 33.55%;
+}
+.vector-icon6,
+.vector-icon7 {
+    top: 81.95%;
+    bottom: 16.52%;
+}
+.vector-icon7 {
+    top: 89.12%;
+    bottom: 9.35%;
+}
+
+.mypagesetting {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 48.75rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto;
+}
