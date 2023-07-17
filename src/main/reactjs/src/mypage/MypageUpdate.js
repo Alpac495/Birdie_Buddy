@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import './MypageUpdate.css';
 
 function MypageUpdate(props) {
     const [unum,setUnum]=useState('');
@@ -37,7 +36,7 @@ function MypageUpdate(props) {
     },[])
     return (
         <div>
-            
+
         </div>
     );
 }

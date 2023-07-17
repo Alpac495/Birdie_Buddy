@@ -4,15 +4,23 @@ import Axios from "axios";
 import {Login, Sign} from "./login";
 import {HugiList} from "./hugi";
 import {NavLink, useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 
 function Home(props) {
-    const unum=sessionStorage.unum;
-    const navi=useNavigate();
-    console.log(unum)
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        axios.get("/login/unumChk?unum="+unum)
+        .then(res=>{
+            setUnum(res.data);
+        })
+    }
     useEffect(() => {
-
+        unumchk()
     }, [])
+
+    const navi=useNavigate();
+
     const [photo, setPhoto] = useState('');
     const photourl = `${process.env.REACT_APP_BOARDURL}`
 
@@ -31,10 +39,17 @@ function Home(props) {
         })
     }
 
+    const logout =()=>{
+        axios.get("/login/logout")
+        .then(res=>{
+            setUnum(0);
+        })
+    }
+
     return (
         <div className="homeBg">
             {
-                sessionStorage.unum==null?
+                unum==0?
                     <h2>여기는 몰루입니다.</h2>:
                     <h2>로그인중<br/>unum : {unum}</h2>
             }
@@ -80,12 +95,9 @@ function Home(props) {
 
                 <li>
                     {
-                        sessionStorage.unum==null?
+                        unum==0?
                             <NavLink to={"/login/login"}>로그인</NavLink>:
-                            <div onClick={()=>{
-                                sessionStorage.clear();
-                                navi('/');
-                            }}>로그아웃</div>
+                            <div onClick={logout}>로그아웃</div>
                     }
                 </li>
 

@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpSession;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -26,11 +29,10 @@ import java.sql.Timestamp;
 @RequestMapping("/login")
 public class LoginController {
 
-//    @Autowired
-//    private NcpObjectStorageService storageService;
-//    String photo;
-//    String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
-//    private String bucketName = "bit701-bucket-111";
+    @Autowired
+    private NcpObjectStorageService storageService;
+    String photo;
+    private String bucketName = "bit701-bucket-111/birdiebuddy";
 
     @Autowired
     LoginService loginService;
@@ -50,7 +52,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public int loginok(String uemail, String upass, @RequestParam(defaultValue = "false") String saveemail) {
+    public int loginok(HttpSession session, String uemail, String upass, @RequestParam(defaultValue = "false") String saveemail) {
         System.out.println("uemail=" + uemail);
         System.out.println("upass=" + upass);
         System.out.println("이메일저장체크=" + saveemail);
@@ -60,12 +62,18 @@ public class LoginController {
         if (n == 1) {
             udto = loginMapper.getUserData(uemail);
             int unum = udto.getUnum();
+            session.setMaxInactiveInterval(60*60*5);
+            session.setAttribute("unum", unum);
 
             return unum;
         } else {
             System.out.println("로그인 실패");
             return 0;
         }
+    }
+    @GetMapping("/logout")
+    public void logout(HttpSession session){
+        session.removeAttribute("unum");
     }
 
     @GetMapping("/emailchk")
@@ -107,6 +115,54 @@ public class LoginController {
         System.out.println("unum:" + unum);
         return loginMapper.getUser(unum);
     }
+    @GetMapping("/updateCon")
+    public String updateCon(String ucontent, int unum){
+        System.out.println(ucontent+","+unum);
+        loginService.updateCon(ucontent, unum);
+        return ucontent;
+    }
+    @GetMapping("/updateNick")
+    public String updateNick(String unickname, int unum){
+        System.out.println(unickname+","+unum);
+        loginService.updateNick(unickname, unum);
+        return unickname;
+    }
+
+    @PostMapping("/upload")
+    public String photoUpload(@RequestParam("upload") MultipartFile upload) {
+        System.out.println("upload>>" + upload.getOriginalFilename());
+        if (photo != null) {
+            //이전 사진 삭제
+            storageService.deleteFile(bucketName, "profile", photo);
+        }
+        photo = storageService.uploadFile(bucketName, "profile", upload);
+
+        return photo;
+    }
+
+    @GetMapping("/updatePhoto")
+    public String updatePhoto(String uphoto, int unum){
+        System.out.println(uphoto+","+unum);
+        loginService.updatePhoto(uphoto, unum);
+        return uphoto;
+    }
+
+    @GetMapping("/unumChk")
+    public int unumChk(HttpSession session , int unum){
+        System.out.println("unumChk:"+unum);
+        if(session.getAttribute("unum")!=null){
+            int chkunum = (int)session.getAttribute("unum");
+            return chkunum;
+        }
+        return 0;
+    }
+    
+
+
+
+
+
+
 
 
     @GetMapping("/smsSend")

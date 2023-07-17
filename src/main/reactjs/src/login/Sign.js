@@ -15,7 +15,7 @@ function Sign(props) {
     const [uage, setUage] = useState('');
     const [uhp, setUhp] = useState('');
     const [ugender, setUgender] = useState("남");
-    const [ucareer, setUcareer] = useState("남");
+    const [ucareer, setUcareer] = useState('');
     const [code, setCode] = useState('');
 
     const navi = useNavigate();
@@ -24,6 +24,7 @@ function Sign(props) {
     const hpRef = useRef(null);
     const codeRef = useRef(null);
     const nicknameRef = useRef(null);
+    const nameRef = useRef(null);
     const careerRef = useRef(null);
 
     const [imsiEmail, setImsiEmail] = useState('0');
@@ -46,13 +47,23 @@ function Sign(props) {
                 setChange('1')
             }
             ;
-            if (uname) setUname(uname);
+            if (uname) {
+                setUname(uname);
+                nameRef.current.disabled = true
+            }
             if (unickname) {
                 setUnickname(unickname);
             }
             ;
-            if (ugender) setUgender(ugender);
-            if (uhp) setUhp(uhp);
+            if (ugender == "M" || "Male" ) {
+                setUgender("남");
+            } else {
+                setUgender("여");
+            }
+            if (uhp) {
+                setUhp(uhp.replace(/-/g, ""));
+                hpRef.current.disabled = true
+            }
             if (uage) setUage(uage);
         }
     }, [location.state])
@@ -134,6 +145,7 @@ function Sign(props) {
                 .then(res => {
                     if (res.data == 1) {
                         alert("이미 등록된 번호")
+                        hpRef.current.disabled = null
                         setUhp('');
                     } else {
                         alert("코드발송")
@@ -199,9 +211,8 @@ function Sign(props) {
 
                     이름<br/>
                     <input type={"text"} className={'textbox'} required onChange={(e) => setUname(e.target.value)}
-                           value={uname}/><br/><br/>
+                           value={uname} ref={nameRef}/><br/><br/>
                     <div>
-                        {change === '0' ? (
                             <div>
                                 휴대전화<br/>
                                 <input type="text" className="textbox" placeholder="" required ref={hpRef} value={uhp}
@@ -215,9 +226,6 @@ function Sign(props) {
                                        onChange={(e) => setCode(e.target.value)}/><br/>
                                 <button type="button" onClick={codeChk}>인증확인</button>
                             </div>
-                        ) : (
-                            <input type="text" placeholder="소셜인증완료"/>
-                        )}
                     </div>
                     <br/>
                     <br/>
