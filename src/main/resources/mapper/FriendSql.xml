@@ -6,6 +6,12 @@
                (select uname from user where unum=friend.funum) as uname
         from friend where unum=#{unum} and faccept=1 order by fnum
     </select>
+    <select id="getRequestList" parameterType="int" resultType="FriendDto">
+        select *, (select ugender from user where unum=friend.funum) as ugender,
+               (select uage from user where unum=friend.unum) as uage,
+               (select uname from user where unum=friend.unum) as uname
+        from friend where funum=#{unum} and faccept=0 order by fnum
+    </select>
     <select id="detailPage" parameterType="int" resultType="UserDto">
         select * from user where unum=#{funum}
     </select>
@@ -29,4 +35,10 @@
     <delete id="friendCancel2" parameterType="int">
         delete from friend where unum=#{funum} and funum=#{unum}
     </delete>
+    <update id="acceptFriend1" parameterType="int">
+        update friend set faccept=1 where unum=#{unum} and funum=#{funum}
+    </update>
+    <update id="acceptFriend2" parameterType="int">
+        update friend set faccept=1 where unum=#{funum} and funum=#{unum}
+    </update>
 </mapper>

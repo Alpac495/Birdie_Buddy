@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b34d8a27.css",
-    "main.js": "/static/js/main.55f5d57f.js",
+    "main.css": "/static/css/main.f605507e.css",
+    "main.js": "/static/js/main.5db068dc.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/person1.jpg": "/static/media/person1.739b90d7df88cdb96d4d.jpg",
     "static/media/naverbtn.png": "/static/media/naverbtn.50f997a4772f912cd966.png",
@@ -16,12 +16,12 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
     "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
-    "main.b34d8a27.css.map": "/static/css/main.b34d8a27.css.map",
-    "main.55f5d57f.js.map": "/static/js/main.55f5d57f.js.map",
+    "main.f605507e.css.map": "/static/css/main.f605507e.css.map",
+    "main.5db068dc.js.map": "/static/js/main.5db068dc.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b34d8a27.css",
-    "static/js/main.55f5d57f.js"
+    "static/css/main.f605507e.css",
+    "static/js/main.5db068dc.js"
   ]
 }

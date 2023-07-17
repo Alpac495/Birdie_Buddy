@@ -115,7 +115,7 @@ function FriendDetail(props) {
                 <div className="FDdiv5">버디스토리</div>
             </div>
             {checkbuddy === 1 ? (
-            <div className="FDparent">
+            <div className="FDparent" onClick={onFriendCancelEvent}>
                 <div className="FDdiv5">버디 취소</div>
                 <img
                     className="FDicon-user-cirlce-add"

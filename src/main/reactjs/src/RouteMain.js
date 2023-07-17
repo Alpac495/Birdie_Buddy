@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import {KaKaoCallBack, Login, NaverCallBack, Sign} from "./login";
-import {Friend} from "./friend";
+import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
@@ -48,6 +48,7 @@ function RouteMain(props) {
                 <Route path={'/friend'} >
                     <Route path="list" element={<Friend/>}/>
                     <Route path="list/:unum" element={<Friend/>}/>
+                    <Route path="requestlist/:unum" element={<FriendRequest/>}/>
                     <Route path="detail" element={<FriendDetail/>}/>
                     <Route path="detail/:funum" element={<FriendDetail/>}/>
                 </Route>
