@@ -1,4 +1,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.ScoreMapper">
+    <select id="getGpar" resultType="GolfjangScoreDto">
+        SELECT * FROM golfjangscore where gnum=#{gnum}
+    </select>
+    <insert id="saveScore" parameterType="data.dto.ScoreDto">
+        INSERT INTO score (unum, gnum, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16, h17, h18, stasu, swriteday)
+        VALUES (#{unum}, #{gnum}, #{h1}, #{h2}, #{h3}, #{h4}, #{h5}, #{h6}, #{h7}, #{h8}, #{h9}, #{h10}, #{h11}, #{h12}, #{h13}, #{h14}, #{h15}, #{h16}, #{h17}, #{h18}, #{h1} + #{h2} + #{h3} + #{h4} + #{h5} + #{h6} + #{h7} + #{h8} + #{h9} + #{h10} + #{h11} + #{h12} + #{h13} + #{h14} + #{h15} + #{h16} + #{h17} + #{h18}, now())
+    </insert>
 
 </mapper>

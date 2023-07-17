@@ -25,8 +25,7 @@ function Login(props) {
             .then(res => {
                 console.log(res.data)
                 if (res.data !== 0) {
-                    alert("로그인 성공. 세션에 unum ")
-                    sessionStorage.setItem("unum", `${res.data}`)
+                    alert("로그인 성공")
                     navi("/");
                 } else {
                     alert("로그인 실패")

@@ -17,6 +17,8 @@ public class UserDto {
     private String ucontent;
     private String utasuopen;
     private String ucareer;
+    private String ubgphoto;
+    
 
     private String uhp;
     private String code;

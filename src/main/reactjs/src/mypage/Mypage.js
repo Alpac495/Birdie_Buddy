@@ -1,48 +1,3 @@
-// import React from 'react';
-//
-// function Mypage(props) {
-//     return (
-//         <div className="mypageprofile">
-//             <div className="MPdiv">
-//                 <div className="MPchild" />
-//             </div>
-//
-//             <div className="MPbackprofile" />
-//             <div className="MPinfobox" />
-//             <div className="MPmainprofile" />
-//             <div className="MPdiv2">
-//         <span className="MPtxt">
-//           <p className="MPp">1992.09.07. 서울 강남구</p>
-//           <p className="MPp">골프경력 1년 평균타수 89타</p>
-//         </span>
-//             </div>
-//             <div className="MPdiv3">안녕하세요~</div>
-//             <div className="MPdiv4">닉네임</div>
-//             <div className="MPwrapper">
-//                 <div className="MPdiv5">프로필수정</div>
-//             </div>
-//             <div className="MPicon-camera-parent">
-//                 <img className="MPicon-camera" alt="" src="/-icon-camera.svg" />
-//                 <div className="MPdiv5">내 스토리</div>
-//             </div>
-//             <div className="MPgroup-parent">
-//                 <div className="MPcontainer">
-//                     <div className="MPdiv5">내 정보</div>
-//                 </div>
-//                 <img
-//                     className="MPicon-profile-circle1"
-//                     alt=""
-//                     src="/-icon-profile-circle1.svg"
-//                 />
-//             </div>
-//
-//
-//         </div>
-//     );
-// }
-//
-// export default Mypage;
-
 import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import './Mypage.css'
@@ -65,14 +20,20 @@ function Mypage(props) {
     const [imsiCon, setImsiCon]=useState('');
     const [unickname, setUnickname]=useState('');
     const [imsiNick, setImsiNick]=useState('');
-    const [unum, setUnum]=useState('');
+    const [unum, setUnum]=useState(0);
     const [uphoto, setUphoto]=useState('');
     const [imsiphoto, setImsiphoto]=useState('');
+    const [ubgphoto, setUbgphoto]=useState('');
+    const [imsibgphoto, setImsibgphoto]=useState('');
     const conRef = useRef();
     const nickRef = useRef();
     const photoRef = useRef();
-    const getUserData = () => {
-        axios.get("/login/getuser?unum=" + sessionStorage.unum)
+
+    const unumchk=()=>{
+        axios.get("/login/unumChk?unum="+unum)
+        .then(res=>{
+            setUnum(res.data);
+            axios.get("/login/getuser?unum=" + res.data)
             .then(res => {
                 console.log(res.data);
                 setDto(res.data);
@@ -81,10 +42,14 @@ function Mypage(props) {
                 setUcontent(res.data.ucontent);
                 setImsiCon(res.data.ucontent);
                 setUphoto(res.data.uphoto);
+                setUbgphoto(res.data.ubgphoto);
+                setImsibgphoto(res.data.ubgphoto);
                 setImsiphoto(res.data.uphoto);
                 setUnum(res.data.unum);
             })
+        })
     }
+
     const changeCon =()=>{
         setUcontent(conRef.current.value)
         axios.get(`/login/updateCon?ucontent=${conRef.current.value}&unum=${unum}`)
@@ -150,7 +115,7 @@ function Mypage(props) {
     };
 
     useEffect(() => {
-        getUserData()
+        unumchk()
     }, [])
     return (
 
@@ -158,13 +123,13 @@ function Mypage(props) {
             <div className="FDdiv">
                 <div className="FDchild"/>
             </div>
-            <div className="FDbackprofile"/>
+            <div className="FDbackprofile"></div>
             <div className="FDinfobox"/>
             <div className="FDmainprofile"><img alt='error' style={{borderRadius:'11%'}} src={`${image1}${uphoto}${image2}`} />
 
                 <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto}/>
                 <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto}  header="사진 변경">
-                    <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={'error'}/>
+                    <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''}/>
                     <input className={'inputfile'} type={'file'}  ref={photoRef} onChange={onUploadEvent}/>
                 </ModalPhoto>
             </div>
@@ -173,7 +138,7 @@ function Mypage(props) {
             <div className="FDdiv2">
         <span className="FDtxt">
           <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
-          <p className="FDp">골프경력 {dto.ucareer} 평균타수 89타</p>
+          <p className="FDp">골프경력 {dto.ucareer} / 평균타수 89타</p>
         </span>
             </div>
             <div className="FDdiv3">

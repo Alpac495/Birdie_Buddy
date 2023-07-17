@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpSession;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -50,7 +52,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public int loginok(String uemail, String upass, @RequestParam(defaultValue = "false") String saveemail) {
+    public int loginok(HttpSession session, String uemail, String upass, @RequestParam(defaultValue = "false") String saveemail) {
         System.out.println("uemail=" + uemail);
         System.out.println("upass=" + upass);
         System.out.println("이메일저장체크=" + saveemail);
@@ -60,12 +62,18 @@ public class LoginController {
         if (n == 1) {
             udto = loginMapper.getUserData(uemail);
             int unum = udto.getUnum();
+            session.setMaxInactiveInterval(60*60*5);
+            session.setAttribute("unum", unum);
 
             return unum;
         } else {
             System.out.println("로그인 실패");
             return 0;
         }
+    }
+    @GetMapping("/logout")
+    public void logout(HttpSession session){
+        session.removeAttribute("unum");
     }
 
     @GetMapping("/emailchk")
@@ -138,6 +146,17 @@ public class LoginController {
         loginService.updatePhoto(uphoto, unum);
         return uphoto;
     }
+
+    @GetMapping("/unumChk")
+    public int unumChk(HttpSession session , int unum){
+        System.out.println("unumChk:"+unum);
+        if(session.getAttribute("unum")!=null){
+            int chkunum = (int)session.getAttribute("unum");
+            return chkunum;
+        }
+        return 0;
+    }
+    
 
 
 
