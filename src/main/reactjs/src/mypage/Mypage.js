@@ -1,129 +1,184 @@
-// import React from 'react';
-//
-// function Mypage(props) {
-//     return (
-//         <div className="mypageprofile">
-//             <div className="MPdiv">
-//                 <div className="MPchild" />
-//             </div>
-//
-//             <div className="MPbackprofile" />
-//             <div className="MPinfobox" />
-//             <div className="MPmainprofile" />
-//             <div className="MPdiv2">
-//         <span className="MPtxt">
-//           <p className="MPp">1992.09.07. 서울 강남구</p>
-//           <p className="MPp">골프경력 1년 평균타수 89타</p>
-//         </span>
-//             </div>
-//             <div className="MPdiv3">안녕하세요~</div>
-//             <div className="MPdiv4">닉네임</div>
-//             <div className="MPwrapper">
-//                 <div className="MPdiv5">프로필수정</div>
-//             </div>
-//             <div className="MPicon-camera-parent">
-//                 <img className="MPicon-camera" alt="" src="/-icon-camera.svg" />
-//                 <div className="MPdiv5">내 스토리</div>
-//             </div>
-//             <div className="MPgroup-parent">
-//                 <div className="MPcontainer">
-//                     <div className="MPdiv5">내 정보</div>
-//                 </div>
-//                 <img
-//                     className="MPicon-profile-circle1"
-//                     alt=""
-//                     src="/-icon-profile-circle1.svg"
-//                 />
-//             </div>
-//
-//
-//         </div>
-//     );
-// }
-//
-// export default Mypage;
-
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import './Mypage.css'
 import EditIcon from '@mui/icons-material/Edit';
+import FDicon2 from "../image/icon_buddychat.svg";
+import FDicon3 from "../image/icon_buddystory.svg";
+import FDicon1 from "../image/icon_addbuddy.svg";
+import ModalNick from "./MypageUpdateNickname"
+import ModalCon from "./MypageUpdateContent"
+import ModalPhoto from "./MypageUpdatePhoto"
+import Axios from "axios";
 
 function Mypage(props) {
 
-    const [unum, setUnum] = useState('');
-    const [uemail, setUemail] = useState('');
-    const [uname, setUname] = useState('');
-    const [unickname, setUnickname] = useState('');
-    const [uage, setUage] = useState('');
-    const [uphoto, setUphoto] = useState('');
-    const [ugender, setUgender] = useState('');
-    const [uhp, setUhp] = useState('');
-    const [ucontent, setUcontent] = useState('');
-    const [utasuopen, setUtasuopen] = useState('');
-    const [ucareer, setUcareer] = useState('');
+    const url = process.env.REACT_APP_PROFILE;
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
+    const [dto, setDto] = useState([]);
+    const [ucontent, setUcontent]=useState('');
+    const [imsiCon, setImsiCon]=useState('');
+    const [unickname, setUnickname]=useState('');
+    const [imsiNick, setImsiNick]=useState('');
+    const [unum, setUnum]=useState(0);
+    const [uphoto, setUphoto]=useState('');
+    const [imsiphoto, setImsiphoto]=useState('');
+    const [ubgphoto, setUbgphoto]=useState('');
+    const [imsibgphoto, setImsibgphoto]=useState('');
+    const conRef = useRef();
+    const nickRef = useRef();
+    const photoRef = useRef();
 
-    const getUserData = () => {
-        axios.get("/login/getuser?unum=" + sessionStorage.unum)
+    const unumchk=()=>{
+        axios.get("/login/unumChk?unum="+unum)
+        .then(res=>{
+            setUnum(res.data);
+            axios.get("/login/getuser?unum=" + res.data)
             .then(res => {
-                console.log(res.data)
-                setUnum(res.data.unum);
-                setUemail(res.data.uemail);
-                setUname(res.data.uname);
+                console.log(res.data);
+                setDto(res.data);
                 setUnickname(res.data.unickname);
-                setUage(res.data.uage);
-                setUphoto(res.data.uphoto);
-                setUgender(res.data.ugender);
-                setUhp(res.data.uhp);
+                setImsiNick(res.data.unickname);
                 setUcontent(res.data.ucontent);
-                setUtasuopen(res.data.utasuopen);
-                setUcareer(res.data.ucareer);
+                setImsiCon(res.data.ucontent);
+                setUphoto(res.data.uphoto);
+                setUbgphoto(res.data.ubgphoto);
+                setImsibgphoto(res.data.ubgphoto);
+                setImsiphoto(res.data.uphoto);
+                setUnum(res.data.unum);
             })
+        })
     }
+
+    const changeCon =()=>{
+        setUcontent(conRef.current.value)
+        axios.get(`/login/updateCon?ucontent=${conRef.current.value}&unum=${unum}`)
+            .then(res=>{
+                console.log(res.data)
+                setUcontent(res.data);
+            })
+        setConOpen(false);
+    }
+    const chnageNick =()=>{
+        setUnickname(nickRef.current.value)
+        axios.get(`/login/updateNick?unickname=${nickRef.current.value}&unum=${unum}`)
+            .then(res=>{
+                console.log(res.data)
+                setUnickname(res.data);
+            })
+        setNickOpen(false);
+    }
+    const changePhoto =()=>{
+        axios.get(`/login/updatePhoto?uphoto=${imsiphoto}&unum=${unum}`)
+            .then(res=>{
+                console.log(res.data)
+                setUphoto(res.data);
+            })
+        setPhotoOpen(false);
+    }
+
+    const [nickOpen, setNickOpen] = useState(false);
+    const openNick = () => {
+        setNickOpen(true);
+    };
+    const closeNick = () => {
+        setNickOpen(false);
+    };
+
+    const [conOpen, setConOpen] = useState(false);
+    const openCon = () => {
+        setConOpen(true);
+    };
+    const closeCon = () => {
+        setConOpen(false);
+    };
+
+    const [photoOpen, setPhotoOpen] = useState(false);
+    const openPhoto = () => {
+        setPhotoOpen(true);
+    };
+    const closePhoto = () => {
+        setPhotoOpen(false);
+    };
+
+    const onUploadEvent = (e) => {
+        const uploadFile = new FormData();
+        uploadFile.append('upload', e.target.files[0]);
+        Axios.post('/login/upload', uploadFile)
+            .then((res) => {
+                console.log(res.data);
+                setImsiphoto(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     useEffect(() => {
-        getUserData()
+        unumchk()
     }, [])
     return (
-        <div className={'div1'}>
-            {/*<div>*/}
-            {/*    unum : {unum}<br/>*/}
-            {/*    uemail : {uemail}<br/>*/}
-            {/*    uname : {uname}<br/>*/}
-            {/*    unickname : {unickname}<br/>*/}
-            {/*    uage : {uage}<br/>*/}
-            {/*    uphoto : {uphoto}<br/>*/}
-            {/*    ugender : {ugender}<br/>*/}
-            {/*    uhp : {uhp}<br/>*/}
-            {/*    ucontent : {ucontent}<br/>*/}
-            {/*    utasuopen : {utasuopen}<br/>*/}
-            {/*    ucareer : {ucareer}<br/>*/}
-            {/*</div>*/}
-                <div className="e1_29"></div>
-                <div className="e1_30"></div>
-                <div className="e1_31"></div>
-                <span className="e1_32">{uage}</span>
-                <span className="e1_33">{ucontent}<EditIcon fontSize="small"/></span>
-                <span className="e1_34">{unickname}<EditIcon fontSize="small"/></span>
-                <div className="e1_35">
-                    <div className="e1_36">
-                        <div className="e1_37"></div>
-                    </div>
-                    <span className="e1_38">버디채팅</span>
-                </div>
-                <div className="e1_39">
-                    <div className="e1_40">
-                        <div className="e1_41"></div>
-                    </div>
-                    <span className="e1_42">버디스토리</span>
-                </div>
-                <div className="e1_43"><span className="e1_44">버디추가</span>
-                    <div className="e1_45">
-                        <div className="e1_46">
-                            <div className="e1_47"></div>
-                            <div className="e1_48"></div>
-                            <div className="e1_49"></div>
-                        </div>
-                    </div>
-                </div>
+
+        <div className="FDprofile">
+            <div className="FDdiv">
+                <div className="FDchild"/>
+            </div>
+            <div className="FDbackprofile"></div>
+            <div className="FDinfobox"/>
+            <div className="FDmainprofile"><img alt='error' style={{borderRadius:'11%'}} src={`${image1}${uphoto}${image2}`} />
+
+                <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto}/>
+                <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto}  header="사진 변경">
+                    <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''}/>
+                    <input className={'inputfile'} type={'file'}  ref={photoRef} onChange={onUploadEvent}/>
+                </ModalPhoto>
+            </div>
+
+
+            <div className="FDdiv2">
+        <span className="FDtxt">
+          <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
+          <p className="FDp">골프경력 {dto.ucareer} / 평균타수 89타</p>
+        </span>
+            </div>
+            <div className="FDdiv3">
+                {
+                    ucontent===null?<div>자기소개를 입력해 주세요.</div>
+                        :
+                        ucontent
+                }
+                &nbsp;
+                <EditIcon fontSize="small" onClick={openCon}/>
+                <ModalCon open={conOpen} close={closeCon} changeCon={changeCon}  header="자기소개 변경">
+                    <input className={'inputtext'} type={'text'}  value={imsiCon} onChange={(e) =>
+                      setImsiCon(e.target.value)
+                    } ref={conRef}/>
+                </ModalCon>
+            </div>
+            <div className="FDdiv4">{unickname}&nbsp;
+                <EditIcon fontSize="small" onClick={openNick}/>
+                <ModalNick open={nickOpen} close={closeNick} chnageNick={chnageNick} header="닉네임 변경">
+                    <input className={'inputtext'} type={'text'}  value={imsiNick} onChange={(e) =>
+                        setImsiNick(e.target.value)
+                    } ref={nickRef}/>
+                </ModalNick>
+            </div>
+            <div className="FDicon-message-parent">
+                <img className="FDicon-message" alt="" src={FDicon2}/>
+                <div className="FDdiv5">TEXT2</div>
+            </div>
+            <div className="FDicon-camera-parent">
+                <img className="FDicon-camera" alt="" src={FDicon3}/>
+                <div className="FDdiv5">TEXT3</div>
+            </div>
+
+            <div className="FDparent" >
+                <div className="FDdiv5">TEXT1</div>
+                <img
+                    className="FDicon-user-cirlce-add"
+                    alt="" src={FDicon1}/>
+            </div>
+
         </div>
     );
 }

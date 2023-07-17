@@ -37,4 +37,13 @@
     <select id="getUser" parameterType="int" resultType="UserDto">
         select * from user where unum=#{unum}
     </select>
+    <update id="updateCon" parameterType="Map">
+        update user set ucontent=#{ucontent} where unum=#{unum}
+    </update>
+    <update id="updateNick" parameterType="Map">
+        update user set unickname=#{unickname} where unum=#{unum}
+    </update>
+    <update id="updatePhoto" parameterType="Map">
+        update user set uphoto=#{uphoto} where unum=#{unum}
+    </update>
 </mapper>
