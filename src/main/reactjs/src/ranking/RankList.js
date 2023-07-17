@@ -1,35 +1,37 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../header/Header";
 import Axios from "axios";
 import "./RankingList.css";
 import Footer from "../footer/Footer";
+import {Link} from "react-router-dom";
 
 function RankList(props) {
-    const [ranking, setRanking] = useState([]);
-    const [isOpen, setIsOpen] = useState(false);
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+    const url = "";
 
-    const handleBackgroundClick = (event) => {
-        if (event.target === event.currentTarget) {
-            closeModal();
-        }
-    };
+    Axios.get(url=>{
+
+    })
 
     return (
-        <div>
+        <div className={''}>
             <Header/>
-            <div className="ranking_listwrap" onClick={handleBackgroundClick}>
+            <div className="ranking_listwrap" >
                 <div className="ranking_topper">
                     <div>랭킹 리스트</div>
                     <div>
-                        <button type="button" onClick={openModal}>스코어 입력</button>
+                        <Link to="/score/form">스코어 입력</Link>
                     </div>
                 </div>
 
@@ -44,39 +46,22 @@ function RankList(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>응애</td>
-                            <td>53523</td>
-                            <td>응애노스DB</td>
-                        </tr>
+                        {/*{Array.from({ length: repeatCount }, (_, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{data.name}</td>
+                                <td>{data.score}</td>
+                                <td>{data.golfCourse}</td>
+                            </tr>
+                        ))}*/}
                         </tbody>
                     </table>
                 </div>
-
-                {isOpen && (
-                    <div className="modal_background">
-                        <div className={`ranking_modal ${isOpen ? "open" : ""}`}>
-                            <div className="rankingmodal_content">
-                                <h2>Modal Title</h2>
-                                <select>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
             <Footer/>
-        </div>
+            </div>
+
+
     );
 }
 
