@@ -26,11 +26,15 @@
     <select id="getPagingList" parameterType="Map" resultType="YangdoDto">
         select * ,(select unickname from user where unum=yangdo.unum) as unickname,
                (select uhp from user where unum=yangdo.unum) as uhp
-        from yangdo order by yday desc, ysubject asc limit #{start},#{perpage}
+        from yangdo order by yday asc, ysubject asc limit #{start},#{perpage}
     </select>
 
     <update id="updateYangdo" parameterType="YangdoDto">
         update yangdo set ycontent=#{ycontent}, yprice=#{yprice}, yplace=#{yplace},
                           yday=#{yday}, ysubject=#{ysubject} where ynum=#{ynum}
     </update>
+
+    <select id="MyYangdoList" parameterType="Map" resultType="YangdoDto">
+        select * from yangdo order by ynum desc limit #{start},#{perpage}
+    </select>
 </mapper>
