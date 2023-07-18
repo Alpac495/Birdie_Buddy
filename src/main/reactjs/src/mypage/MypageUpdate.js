@@ -1,44 +1,95 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+//결제 api
 
-function MypageUpdate(props) {
-    const [unum,setUnum]=useState('');
-    const [uemail,setUemail]=useState('');
-    const [uname,setUname]=useState('');
-    const [unickname,setUnickname]=useState('');
-    const [uage,setUage]=useState('');
-    const [uphoto,setUphoto]=useState('');
-    const [ugender,setUgender]=useState('');
-    const [uhp,setUhp]=useState('');
-    const [ucontent,setUcontent]=useState('');
-    const [utasuopen,setUtasuopen]=useState('');
-    const [ucareer,setUcareer]=useState('');
+import { useEffect, useRef, useState } from "react";
+import { loadPaymentWidget, PaymentWidgetInstance } from "@tosspayments/payment-widget-sdk";
+import { nanoid } from "nanoid";
+import "./MypagePay.css"
 
-    const getUserData =()=>{
-        axios.get("/login/getuser?unum="+sessionStorage.unum)
-            .then(res=>{
-                console.log(res.data)
-                setUnum(res.data.unum);
-                setUemail(res.data.uemail);
-                setUname(res.data.uname);
-                setUnickname(res.data.unickname);
-                setUage(res.data.uage);
-                setUphoto(res.data.uphoto);
-                setUgender(res.data.ugender);
-                setUhp(res.data.uhp);
-                setUcontent(res.data.ucontent);
-                setUtasuopen(res.data.utasuopen);
-                setUcareer(res.data.ucareer);
-            })
-    }
-    useEffect(()=>{
-        getUserData()
-    },[])
+const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
+const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
+
+const MypageUpdate = () => {
+    const paymentWidgetRef = useRef(null);
+    const paymentMethodsWidgetRef = useRef(null);
+    const [price, setPrice] = useState(50000);
+
+    useEffect(() => {
+        (async () => {
+            const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
+
+            const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
+                "#payment-widget",
+                price
+            );
+
+            paymentWidgetRef.current = paymentWidget;
+            paymentMethodsWidgetRef.current = paymentMethodsWidget;
+        })();
+    }, []);
+
+    useEffect(() => {
+        const paymentMethodsWidget = paymentMethodsWidgetRef.current;
+
+        if (paymentMethodsWidget == null) {
+            return;
+        }
+
+        paymentMethodsWidget.updateAmount(
+            price,
+            paymentMethodsWidget.UPDATE_REASON.COUPON
+        );
+    }, [price]);
+
     return (
-        <div>
+        <div className="mypagepay">
 
+                <div className="cta-header-1">
+                    <div className="headline">🌤️ Sunny</div>
+                    <div className="subtitle">Enjoy your day!</div>
+                    <div className="spacer">
+                        <div className="x16" />
+                    </div>
+                    <img
+                        className="rounded-end-piece"
+                        alt=""
+                        src="/rounded-end-piece.svg"
+                    />
+                </div>
+
+
+            <h1>주문서</h1>
+            <div id="payment-widget" />
+            <div>
+                <input
+                    type="checkbox"
+                    onChange={(event) => {
+                        setPrice(event.target.checked ? price - 5000 : price + 5000);
+                    }}
+                />
+                <label>5,000원 할인 쿠폰 적용</label>
+            </div>
+            <button
+                onClick={async () => {
+                    const paymentWidget = paymentWidgetRef.current;
+
+                    try {
+                        await paymentWidget?.requestPayment({
+                            orderId: nanoid(),
+                            orderName: "토스 티셔츠 외 2건",
+                            customerName: "김토스",
+                            customerEmail: "customer123@gmail.com",
+                            successUrl: `${window.location.origin}/success`,
+                            failUrl: `${window.location.origin}/fail`,
+                        });
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }}
+            >
+                결제하기
+            </button>
+            <div className="title3">Dashboard</div>
         </div>
     );
 }
-
 export default MypageUpdate;
