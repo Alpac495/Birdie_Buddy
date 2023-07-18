@@ -10,4 +10,19 @@
     <select id="getRankingList" parameterType="int" resultType="ScoreDto">
         select * from score where unum = #{unum}
     </select>
+    <select id="getRankingCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM (SELECT * FROM score WHERE unum = #{unum} LIMIT 3) AS subquery;
+    </select>
+    <select id="stasuSum" parameterType="int" resultType="int">
+        SELECT sum(stasu) from score where unum = #{unum} limit 3
+    </select>
+    <select id="getRankCount" parameterType="int" resultType="int">
+        select count(*) from ranking where unum=#{unum}
+    </select>
+    <insert id="saveRankingInsert" parameterType="Map">
+        insert into ranking (unum, rtasu) values  (#{unum}, #{avg})
+    </insert>
+    <update id="saveRankingUpdate" parameterType="Map">
+        update ranking set rtasu=#{avg} where unum=#{unum}
+    </update>
 </mapper>

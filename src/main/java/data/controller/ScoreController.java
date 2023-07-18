@@ -73,6 +73,14 @@ public class ScoreController {
         dto.setH17(s[16]);
         dto.setH18(s[17]);
         scoreMapper.saveScore(dto);
+        int count = scoreMapper.getRankingCount(unum);
+        int sum = scoreMapper.stasuSum(unum);
+        int avg = sum/count;
+        if(scoreMapper.getRankCount(unum)==0){
+            scoreService.saveRankingInsert(unum, avg);
+        } else {
+            scoreService.saveRankingUpdate(unum, avg);
+        }
 
         return "요청이 성공적으로 처리되었습니다.";
     }
