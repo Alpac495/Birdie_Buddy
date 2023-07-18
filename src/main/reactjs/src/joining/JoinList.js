@@ -7,7 +7,16 @@ import Axios from 'axios';
 import {NavLink} from "react-router-dom";
 
 const JoinList = () => {
-    const unum=sessionStorage.unum;
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
     const [data, setData] = useState([]);
     // const [mydata, setMydata] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");

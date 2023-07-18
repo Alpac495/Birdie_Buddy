@@ -28,7 +28,16 @@ const JoinForm = (props) => {
 
     const navi=useNavigate();
 
-    const unum=sessionStorage.unum;
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
     const [data,setData]=useState('');
     const list=useCallback(()=>{
         const url="/golfjang/list";
