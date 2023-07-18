@@ -14,5 +14,6 @@ public interface YangdoServiceInter {
     public int getTotalCount();
     public List<YangdoDto> getPagingList(int start, int perpage);
     public void updateYangdo(YangdoDto dto);
+    public List<YangdoDto> MyYangdoList(int start, int perpage);
 
 }

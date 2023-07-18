@@ -57,4 +57,12 @@ public class YangdoService implements YangdoServiceInter{
         yangdoMapper.updateYangdo(dto);
     }
 
+    @Override
+    public List<YangdoDto> MyYangdoList(int start, int perpage) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("start", start);
+        map.put("perpage", perpage);
+
+        return yangdoMapper.MyYangdoList(map);
+    }
 }
