@@ -14,7 +14,7 @@
         SELECT COUNT(*) FROM (SELECT * FROM score WHERE unum = #{unum} LIMIT 3) AS subquery;
     </select>
     <select id="stasuSum" parameterType="int" resultType="int">
-        SELECT sum(stasu) from score where unum = #{unum} limit 3
+        SELECT sum(stasu) from (SELECT * FROM score WHERE unum = #{unum} order by swriteday desc LIMIT 3) as subquery;
     </select>
     <select id="getRankCount" parameterType="int" resultType="int">
         select count(*) from ranking where unum=#{unum}

@@ -73,9 +73,16 @@ public class ScoreController {
         dto.setH17(s[16]);
         dto.setH18(s[17]);
         scoreMapper.saveScore(dto);
+        
         int count = scoreMapper.getRankingCount(unum);
+        System.out.println("count:"+count);
+
         int sum = scoreMapper.stasuSum(unum);
-        int avg = sum/count;
+        System.out.println("sum:"+sum);
+
+        int avg = (sum/count)+72;
+        System.out.println("avg:"+avg);
+
         if(scoreMapper.getRankCount(unum)==0){
             scoreService.saveRankingInsert(unum, avg);
         } else {
