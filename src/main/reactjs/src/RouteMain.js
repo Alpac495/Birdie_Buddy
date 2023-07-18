@@ -19,6 +19,7 @@ import MyYangdo from "./mypage/MyYangdo";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
+import MypagePay from "./mypage/MypagePay";
 
 
 function RouteMain(props) {
@@ -69,7 +70,7 @@ function RouteMain(props) {
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
                     <Route path="setting/:unum" element={<MypageSetting/>}/>
-                    <Route path="myyangdo/:unum" element={<MyYangdo/>}/>
+                    <Route path="myyangdo/:unum/:currentPage" element={<MyYangdo/>}/>
                 </Route>
 
                 <Route path={'/score'} >
