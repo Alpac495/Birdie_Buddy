@@ -120,7 +120,7 @@ public class YangdoController {
         int no;            //출력할 시작번호
 
         //총갯수
-        totalCount=yangdoService.getTotalCount();
+        totalCount=yangdoService.getMyCount(unum);
         //총 페이지수
         totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
         //시작페이지

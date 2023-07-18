@@ -27,8 +27,10 @@ function MyYangdo(props) {
 
     // 페이징 처리에 필요한 데이터 가져오기
     const list=()=>{
+
+        // controller로 데이터를 보내는 과정
         const url = "/yangdo/myyangdo?unum="+unum+"&currentPage="+(currentPage==null?1:currentPage);
-        //const url = "/yangdo/list?currentPage="+(currentPage==null?1:currentPage);
+
         Axios.get(url)
             .then(res=>{
                 setData(res.data);
@@ -58,7 +60,7 @@ function MyYangdo(props) {
                     }}/>
                 <br/><br/>
                 {
-                    data.list && unum!=0 &&
+                    data.list && unum != 0 &&
                     data.list.filter((val)=>{
                         if(searchTerm == ""){
                             return val

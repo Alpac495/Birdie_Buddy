@@ -39,4 +39,8 @@
                (select uhp from user where unum=yangdo.unum) as uhp
         from yangdo where unum=#{unum} order by ynum desc limit #{start},#{perpage}
     </select>
+
+    <select id="getMyCount" parameterType="int" resultType="int">
+        select count(*) from yangdo where unum=#{unum}
+    </select>
 </mapper>
