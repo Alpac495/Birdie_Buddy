@@ -25,7 +25,16 @@ function HugiRowList(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 여부
     const [showLike,setShowLike]=useState(props.showLike || false);
 
-    const [unum, setUnum] = useState(); // unum 상태 추가
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
     const [unickname,setUnickname]=useState();
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');

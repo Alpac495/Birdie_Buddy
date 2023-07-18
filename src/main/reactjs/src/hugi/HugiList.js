@@ -6,7 +6,16 @@ import HugiRowList from './HugiRowList';
 
 
 function HugiList(props) {
-    const [unum,setUnum]=useState();
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
     const [showMyHugis, setShowMyHugis] = useState(false);// MyHugiList를 보여줄지 여부를 저장하는 상태
     const [hphoto, setHphoto] = useState('');
     const [hcontent, setHcontent] = useState('');

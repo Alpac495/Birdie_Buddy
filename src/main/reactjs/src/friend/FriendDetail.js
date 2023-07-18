@@ -7,7 +7,16 @@ import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
 
 function FriendDetail(props) {
-    const unum=sessionStorage.unum;
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
     const [dto,setDto]=useState('');
     const {funum}=useParams('');
     const [checkbuddy, setCheckbuddy]=useState('');
