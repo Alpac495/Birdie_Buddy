@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-
 import './List.css';
 import Avatar from '@mui/material/Avatar';
 import MessageIcon from '@mui/icons-material/Message';
@@ -18,12 +17,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
+import ListIcon from '@mui/icons-material/List';
 
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
-    const { hwriteday, postUserNickname } = props;
-    const [hphoto, setHphoto] = useState('');
-    const [hcontent, setHcontent] = useState('');
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
@@ -44,10 +41,17 @@ function HugiDetail(props) {
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
-
+    const [postUserNickname, setPostUserNickname] = useState('');
+    const [hphoto, setHphoto] = useState('');
+    const [hcontent, setHcontent] = useState('');
+    const [hwriteday,setHwriteday]=useState('');
+    const [hlike,setHlike]=useState('');
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
+    const handleClickList = () =>{
+        navi('/hugi/list');
+    }
     const handleClickShare = () => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
         const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
@@ -90,17 +94,6 @@ function HugiDetail(props) {
         unumchk()
     }, [])
 
-    const handleClickOpen = () => {
-        if (unum == 0) {
-            alert('로그인을 먼저 해주세요!');
-        } else {
-            setOpen(true);
-        }
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
     const handleClickLikeOn = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(true)를 호출하여 버튼을 활성화합니다.
@@ -205,10 +198,10 @@ function HugiDetail(props) {
         if (unum) {
             try {
                 const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
-                const unickname = res.data;
-
-                if (unickname) {
-                    setPostUserNickname(unickname);
+                const Unickname = res.data;
+                if (Unickname) {
+                    setPostUserNickname(Unickname);
+                    console.log("pN=>"+Unickname);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
@@ -219,6 +212,7 @@ function HugiDetail(props) {
             }
         }
     };
+
     const sortComments = (comments) => {
         const sorted = [];
         const commentMap = {};
@@ -332,6 +326,8 @@ function HugiDetail(props) {
         // 서버로부터 hnum에 해당하는 데이터를 가져와서 상태에 저장합니다.
         Axios.get(`/hugi/detail/${hnum}`)
             .then((res) => {
+                setPostUserNickname(res.data.unickname);
+                setHwriteday(res.data.hwriteday);
                 setHphoto(res.data.hphoto);
                 setHcontent(res.data.hcontent);
                 // 서버에서 가져온 다른 데이터도 필요한 경우 여기에 추가적으로 설정합니다.
@@ -346,8 +342,10 @@ function HugiDetail(props) {
     }, [hnum, unum]);
 
     useEffect(() => {
-        fetchPostUserNickname(props.unum); // 작성자의 unickname 가져오기
+        // fetchPostUserNickname 함수를 사용하여 postUserNickname 상태를 설정합니다.
+        fetchPostUserNickname(props.unum);
     }, [props.unum]);
+
     useEffect(() => {
         // 페이지가 로드될 때 localStorage에서 좋아요 상태를 불러와서 적용
         const likeStatus = localStorage.getItem(`likeStatus_${hnum}`);
@@ -363,14 +361,14 @@ function HugiDetail(props) {
     }, [hnum]);
 
     return (
-        <div className="list">
+        <div className="list_detail">
             <div className="list_header">
                 <Avatar className="list_avatar" alt={''} src="/image/1.png"/>
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
-            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto}/>
+            <img className="list_detailimage" src={`${url}${hphoto}`} alt="" value={hphoto}/>
             <h6 className="list_text">
                 &nbsp;
                 {hcontent}
@@ -382,36 +380,15 @@ function HugiDetail(props) {
                 ) : (
                     <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{color: "red"}}/>
                 ))}
-                <MessageIcon onClick={handleClickOpen} className="Icons"/>
                 <ShareIcon onClick={handleClickShare} className="Icons"/>
+                <ListIcon onClick={handleClickList} className="Icons"/>
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="Icons"/>
                 )}
             </div>
 
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={''} src="/image/1.png"/>
-                        <span className="spanCommentList">
-                        {postUserNickname}
-                      </span>
-                    </div>
-                </DialogTitle>
-                <DialogContent style={{width: '100%', overflowX: 'hidden'}}>
-                    <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto}/>
-                    <DialogContentText id="alert-dialog-description">
-                        <hr/>
-                        <div style={{width: '100%'}}>{hcontent}</div>
-                    </DialogContentText>
-                    <hr/>
-                    {unum && (
-                        <div className="input-group">
+            {unum !== 0 && (
+                <div className="input-group">
               <textarea
                   className="form-control"
                   style={{
@@ -425,18 +402,18 @@ function HugiDetail(props) {
                   value={rhcontent}
                   onChange={handleCommentChange}
               ></textarea>
-                            <button type="button" className="primary_button_Comment" onClick={handleCommentSubmit}>
-                                댓글 작성
-                            </button>
-                        </div>
-                    )}
+                    <button type="button" className="primary_button_Comment" onClick={handleCommentSubmit}>
+                        댓글 작성
+                    </button>
+                </div>
+            )}
 
-                    {commentError && (
-                        <div>
-                            <p className="CommentAlert">댓글을 입력해주세요.</p>
-                        </div>
-                    )}
-                    <pre className="preComment">
+            {commentError && (
+                <div>
+                    <p className="CommentAlert">댓글을 입력해주세요.</p>
+                </div>
+            )}
+            <pre className="preComment">
   {comments && comments.length > 0 ? (
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
@@ -446,7 +423,7 @@ function HugiDetail(props) {
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
-                  {unum && (
+                  {unumchk && (
                       <a className="Click_ReplyForm" onClick={() => toggleReplyForm(comment.rhnum)}>
                           {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
                       </a>
@@ -517,13 +494,6 @@ function HugiDetail(props) {
       <p>댓글이 없습니다.</p>
   )}
 </pre>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} autoFocus>
-                        닫기
-                    </Button>
-                </DialogActions>
-            </Dialog>
 
             <Snackbar
                 anchorOrigin={{

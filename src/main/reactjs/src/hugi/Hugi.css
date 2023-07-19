@@ -2,8 +2,8 @@
     margin: 10px auto;
     padding: 10px;
     overflow-y: auto;
-    max-width: 500px;
-    max-height: 600px;
+    max-width: 360px;
+    max-height: 620px;
 }
 .timeline::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */

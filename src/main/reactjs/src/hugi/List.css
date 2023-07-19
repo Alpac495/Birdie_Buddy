@@ -1,12 +1,29 @@
 .list {
+    max-width:360px;
+    max-height:100%;
+    margin: 2px;
     background-color: white;
     border: 1px solid lightgray;
     margin-bottom: 30px;
+}
+.list_detail{
+    max-width:360px;
+    max-height:100%;
+    background-color: white;
+    border: 1px solid lightgray;
+    margin:auto;
 }
 .list_image {
     width: 100%;
     height: auto; /* 원하는 크기로 조정하세요 */
     object-fit: cover;
+    cursor: pointer;
+}
+.list_detailimage {
+    width: 100%;
+    height: auto; /* 원하는 크기로 조정하세요 */
+    object-fit: cover;
+
 }
 .list_text {
     font-weight: normal;
@@ -22,6 +39,7 @@
     margin-top: 5px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 .list_avatar_Comment1 {
     position: relative;
@@ -29,6 +47,7 @@
     right:20px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 .list_avatar_Comment2 {
     position: relative;
@@ -36,6 +55,7 @@
     left:10px;
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }
 .list_avatar_Reply {
     position: relative;
@@ -43,6 +63,7 @@
     right:5px;
     width: 25px;
     height: 25px;
+    cursor: pointer;
 
 }
 .primary_button {
@@ -91,6 +112,7 @@
 .Icons{
     cursor: pointer;
     margin-left: 20px;
+    display: flex;
 }
 .IconsZone{
     width: 100%;
@@ -150,6 +172,7 @@
     left:5px;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
 }
 .Delete_Icon{
     position: relative;
@@ -164,6 +187,7 @@
     max-width: 360px;
     height: 550px;
     overflow-x: hidden;
+
 }
 .Dialog_Title{
     margin-top: 20px;
@@ -187,6 +211,7 @@
     position: relative;
     bottom:30px;
     left:60px;
+    cursor: pointer;
 }
 .details_Reply{
     border: 1px solid lightgrey;
@@ -218,4 +243,5 @@
     left:60px;
     font-weight: bold;
     font-size: 14px;
+    cursor: pointer;
 }
