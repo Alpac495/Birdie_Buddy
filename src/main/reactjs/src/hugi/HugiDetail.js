@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {useScript} from "./hooks";
+
 import './List.css';
 import Avatar from '@mui/material/Avatar';
 import MessageIcon from '@mui/icons-material/Message';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -19,23 +19,25 @@ import Alert from '@mui/material/Alert';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 
-function HugiRowList(props) {
-    const {hnum, hcontent, hphoto, hwriteday, Unickname, hlike} = props;
+function HugiDetail(props) {
+    const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
+    const { hwriteday, postUserNickname } = props;
+    const [hphoto, setHphoto] = useState('');
+    const [hcontent, setHcontent] = useState('');
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
+    const [name, setName]=useState('');
 
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [showLike, setShowLike] = useState(props.showLike || false);
-
+    const [hugiData, setHugiData] = useState(null);
     const [unum, setUnum] = useState(0);
-    const [unickname, setUnickname] = useState();
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
     const [replyContent, setReplyContent] = useState('');
-    const [postUserNickname, setPostUserNickname] = useState();
 
     const [commentError, setCommentError] = useState(false); // 댓글 입력 오류 여부 상태 추가
     const [replyError, setReplyError] = useState(false); // 대댓글 입력 오류 여부 상태 추가
@@ -95,15 +97,7 @@ function HugiRowList(props) {
             setOpen(true);
         }
     };
-    const handleClickDetail = () => {
-        navi(`/hugi/detail/${hnum}`, {
-            hnum: hnum,
-            hphoto: hphoto,
-            hcontent: hcontent,
-            postUserNickname:postUserNickname,
-            // 여기에 다른 데이터도 추가할 수 있습니다.
-        });
-    };
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -335,8 +329,22 @@ function HugiRowList(props) {
     };
 
     useEffect(() => {
+        // 서버로부터 hnum에 해당하는 데이터를 가져와서 상태에 저장합니다.
+        Axios.get(`/hugi/detail/${hnum}`)
+            .then((res) => {
+                setHphoto(res.data.hphoto);
+                setHcontent(res.data.hcontent);
+                // 서버에서 가져온 다른 데이터도 필요한 경우 여기에 추가적으로 설정합니다.
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [hnum]);
+
+    useEffect(() => {
         getComments();
     }, [hnum, unum]);
+
     useEffect(() => {
         fetchPostUserNickname(props.unum); // 작성자의 unickname 가져오기
     }, [props.unum]);
@@ -357,12 +365,12 @@ function HugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={postUserNickname} src="/image/1.png"/>
+                <Avatar className="list_avatar" alt={''} src="/image/1.png"/>
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
-            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
+            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto}/>
             <h6 className="list_text">
                 &nbsp;
                 {hcontent}
@@ -389,7 +397,7 @@ function HugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={postUserNickname} src="/image/1.png"/>
+                        <Avatar className="list_avatar_Comment1" alt={''} src="/image/1.png"/>
                         <span className="spanCommentList">
                         {postUserNickname}
                       </span>
@@ -553,4 +561,4 @@ function HugiRowList(props) {
     );
 }
 
-export default HugiRowList;
+export default HugiDetail;

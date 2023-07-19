@@ -45,12 +45,10 @@ function MyYangdo(props) {
     const onDetailEvent = (ynum) => {
         navi(`/yangdo/detail/${ynum}/${currentPage}`);
     }
-    const onWriteButtonEvent =()=>{
-        //함수 없는 문제로 오류 떠서 임시로 만들어뒀습니다.
-    }
+
     return (
         <div>
-            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>
+            <button type='button'>글쓰기</button>
             <br />
 
             <h5>총 {data.totalCount}개</h5>
@@ -178,7 +176,6 @@ function MyYangdo(props) {
                 </div>
             </div>
          </div>
-        </div>
     );
 }
 
