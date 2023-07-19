@@ -22,4 +22,5 @@ public class UserDto {
 
     private String uhp;
     private String code;
+    private int rtasu;
 }

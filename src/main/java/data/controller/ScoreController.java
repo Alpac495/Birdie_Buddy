@@ -1,8 +1,11 @@
 package data.controller;
 
 import data.dto.GolfjangScoreDto;
+import data.dto.RankingDto;
 import data.dto.ScoreDataDto;
 import data.dto.ScoreDto;
+import data.dto.UserDto;
+import data.mapper.LoginMapper;
 import data.mapper.ScoreMapper;
 import data.service.ScoreService;
 import naver.cloud.NcpObjectStorageService;
@@ -35,6 +38,9 @@ public class ScoreController {
 
     @Autowired
     ScoreMapper scoreMapper;
+
+    @Autowired
+    LoginMapper loginMapper;
 
     @GetMapping("/getGpar")
     public List<GolfjangScoreDto> list(int gnum) {
@@ -74,18 +80,34 @@ public class ScoreController {
         dto.setH18(s[17]);
         scoreMapper.saveScore(dto);
 
+        int count = scoreMapper.getRankingCount(unum);
+        System.out.println("count:"+count);
+
+        int sum = scoreMapper.stasuSum(unum);
+        System.out.println("sum:"+sum);
+
+        int avg = (sum/count)+72;
+        System.out.println("avg:"+avg);
+
+        if(scoreMapper.getRankCount(unum)==0){
+            scoreService.saveRankingInsert(unum, avg);
+        } else {
+            scoreService.saveRankingUpdate(unum, avg);
+        }
+
         return "요청이 성공적으로 처리되었습니다.";
     }
     @GetMapping("/list")
-    public List<ScoreDto> getRanklist(int unum){
-
-        scoreService.getRankingList(unum);
-        System.out.println(scoreService.getRankingList(unum));
-
-        /*List<ScoreDto> list = int [];*/
-
-
-        return new ArrayList<>();
+    public List<RankingDto> getRanklist(){
+        List<RankingDto> list = scoreMapper.getRanklist();
+        System.out.println(list);
+        return list;
+    }
+    
+    @GetMapping("/getuser")
+    public UserDto getUser(int unum) {
+        System.out.println("unum:" + unum);
+        return loginMapper.getUser(unum);
     }
 
 }

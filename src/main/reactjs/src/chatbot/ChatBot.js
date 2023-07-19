@@ -6,7 +6,7 @@ function ChatBot(props) {
     return (
         <div>
             <div>
-                <NCloudChatRoomList/>
+                {/*<NCloudChatRoomList/>*/}
                 <NCloudChatComponent/>
             </div>
         </div>

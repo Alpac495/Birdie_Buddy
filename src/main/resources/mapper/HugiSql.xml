@@ -13,8 +13,11 @@
         insert into hugi (hcontent, hphoto, hwriteday, hlike, unum)
         values (#{hcontent}, #{hphoto}, now(), 0, #{unum})
     </insert>
-    <update id="updateLikeCount" parameterType="map">
-        update hugi set hlike=hlike+1 where hnum=#{hnum}
+    <update id="addLikeCount" parameterType="int">
+        update hugi set hlike = hlike + 1 where hnum = #{hnum}
+    </update>
+    <update id="removeLikeCount" parameterType="int">
+        update hugi set hlike = hlike - 1 where hnum = #{hnum}
     </update>
     <select id="detailPage" parameterType="int" resultType="HugiDto">
         select * from hugi where hnum=#{hnum}
