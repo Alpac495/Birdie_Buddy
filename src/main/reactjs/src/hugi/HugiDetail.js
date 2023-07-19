@@ -208,7 +208,7 @@ function HugiDetail(props) {
                 const unickname = res.data;
 
                 if (unickname) {
-                    setPostUserNickname(unickname);
+                    // setPostUserNickname(unickname);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {

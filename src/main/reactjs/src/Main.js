@@ -4,7 +4,7 @@ import "./Main.css";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Recommendslider from "./app_effect/Recommendslider";
-import no from "./images/nooooo.jpg";
+import no from "./images/golf_ad.jpg";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
 import FriendSlider from "./app_effect/FriendSlider";
@@ -53,11 +53,8 @@ function Main(props) {
             </div>
 
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
-            <div className={'main_ad'}>
-                <img alt={''} src={no}/>
-            </div>
 
-            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_join'}>
                     <div className={'main_joinrecotxt'}>당신을 위한 조인 추천</div>
@@ -66,6 +63,13 @@ function Main(props) {
                     </div>
                 </div>
             </div>
+
+            <hr style={{height:'3px', backgroundColor:'lightgray', marginTop:'15px'}}/>
+
+            <div className={'main_ad'}>
+                <img alt={''} src={no}/>
+            </div>
+
             <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
 
             <div style={{width:'100vw',overflow:'hidden'}}>
