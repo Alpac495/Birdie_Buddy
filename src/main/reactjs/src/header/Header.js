@@ -4,7 +4,7 @@ import "./Header.css";
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from "../image/logo_main.svg";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { NavLink } from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import EditIcon from '@mui/icons-material/Edit';
 import PeopleIcon from '@mui/icons-material/People';
@@ -12,13 +12,23 @@ import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStati
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
+import no from "../images/nooooo.jpg"
+
 
 function Header(props) {
+    const navigate = useNavigate();
+
     const [sideBar, setSideBar] = useState(false);
 
     const toggleDrawer = (open) => (event) => {
         setSideBar(open);
     };
+
+    function handleClick() {
+        // 페이지 이동을 처리하는 로직 작성
+        // 예시로 '/' 경로로 이동하는 경우
+        navigate('/'); // 페이지 이동
+    }
 
     const list = () => (
         <Box
@@ -27,13 +37,11 @@ function Header(props) {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                <ListItem key="inbox" disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary="Inbox" />
-                    </ListItemButton>
-                </ListItem>
+                <div className='side_profile'>
+                    <img alt='' src={no}/><div>김똘똘 님</div>
+                </div>
             </List>
-            <Divider />
+            <Divider style={{height:'2px'}}/>
             <List>
                 <h6 style={{ marginLeft: '15px' }}>여기는 중요부</h6>
                 {[
@@ -50,7 +58,7 @@ function Header(props) {
                     </ListItem>
                 ))}
             </List>
-            <Divider />
+            <Divider style={{height:'2px'}} />
             <List>
                 {[
                     { text: '조인', path: '/joining/list', icon: <PeopleIcon />, marginLeft: '20px' },
@@ -86,7 +94,9 @@ function Header(props) {
                 {list()}
             </Drawer>
 
-            <img className="mlogo" alt="" src={logo} />
+
+            <img className="mlogo" alt="" src={logo} onClick={handleClick}/>
+
 
             <div className="header_usermenu">
                 <AccountCircleOutlinedIcon />
