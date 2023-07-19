@@ -72,7 +72,7 @@ function RouteMain(props) {
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
                     <Route path="setting/:unum" element={<MypageSetting/>}/>
-                    <Route path="myyangdo/:unum/:currentPage" element={<MyYangdo/>}/>
+                    <Route path="myyangdo/:currentPage" element={<MyYangdo/>}/>
                 </Route>
 
                 <Route path={'/score'} >
