@@ -44,19 +44,12 @@ function MyYangdo(props) {
         list();
     }, [currentPage]);   // currentPage가 변경될 때 마다 호출
 
-    const onWriteButtonEvent=()=>{
-        navi("/yangdo/form"); 
-    }
-
     const onDetailEvent = (ynum) => {
         navi(`/mypage/myyangdodetail/${ynum}/${currentPage}`);
     }
 
     return (
         <div>
-            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>
-            <br />
-
             <h5>총 {data.totalCount}개</h5>
 
             <div>
@@ -80,12 +73,10 @@ function MyYangdo(props) {
                     }).map((row, idx) =>
                     
                     <div>
-                        <b onClick={(e) => {
+                        <b onClick={(e)=>{
                             e.preventDefault();
                             onDetailEvent(row.ynum);
-                        }}>
-                            <b>{row.yplace}</b><br />
-                        </b>
+                        }}>{row.yplace}</b><br/>
                         
                         <b>{row.yday}</b><br />
                         <b>{row.ysubject}</b><br />

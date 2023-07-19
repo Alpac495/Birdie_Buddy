@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import Axios from "axios";
 import Modal from '../components/Modal';
+import "./YangdoUpdate.css";
 
 function YangdoUpdate(props) {
 
