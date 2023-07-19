@@ -25,6 +25,7 @@ function Mypage(props) {
     const [imsiphoto, setImsiphoto]=useState('');
     const [ubgphoto, setUbgphoto]=useState('');
     const [imsibgphoto, setImsibgphoto]=useState('');
+    const [stasu, setStasu]=useState('');
     const conRef = useRef();
     const nickRef = useRef();
     const photoRef = useRef();
@@ -46,6 +47,10 @@ function Mypage(props) {
                 setImsibgphoto(res.data.ubgphoto);
                 setImsiphoto(res.data.uphoto);
                 setUnum(res.data.unum);
+                axios.get("/login/getRtasu?unum="+res.data.unum)
+                .then(res=>{
+                    setStasu(res.data);
+                })
             })
         })
     }
@@ -138,7 +143,7 @@ function Mypage(props) {
             <div className="FDdiv2">
         <span className="FDtxt">
           <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
-          <p className="FDp">골프경력 {dto.ucareer} / 평균타수 89타</p>
+          <p className="FDp">골프경력 {dto.ucareer} / 평균타수 {stasu}타</p>
         </span>
             </div>
             <div className="FDdiv3">

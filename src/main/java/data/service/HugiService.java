@@ -42,10 +42,14 @@ public class HugiService implements HugiServiceInter
 
         hugiMapper.insertHugi(hdto);
     }
+    @Override
+    public void addLikeCount(int hnum) {
+        hugiMapper.addLikeCount(hnum);
+    }
 
     @Override
-    public void updateLikeCount(int hnum ,int hlike) {
-        hugiMapper.updateLikeCount(hnum,hlike);
+    public void removeLikeCount(int hnum) {
+        hugiMapper.removeLikeCount(hnum);
     }
 
     @Override
