@@ -1,11 +1,14 @@
-package data.security;
+// package data.security;
 
-import org.springframework.stereotype.Service;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
 
-//@Service
-//public class SecurityService {
-//    private  static final String SECRET_KEY = "1243asdf";
-//    public String createToken(String subject, long expTime){
-//
-//    }
-//}
+// @Configuration
+// public class SecurityService {
+//     @Bean
+//     public PasswordEncoder passwordEncoder() {
+//         return new BCryptPasswordEncoder();
+//     }
+// }
