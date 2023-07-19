@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, NavLink, useNavigate, useParams} from "react-router-dom";
 import Axios from "axios";
+import "./YangdoList.css";
 
 function YangdoList(props) {
 
@@ -81,15 +82,11 @@ function YangdoList(props) {
                             }
                         }).map((row,idx)=>
                         <div>
-                            {/*<NavLink to={`/yangdo/detail/${row.ynum}/${currentPage}`}*/}
-                            {/*>*/}
-
                             <b onClick={(e)=>{
                                 e.preventDefault();
                                 onDetailEvent(row.ynum);
-                            }} >
-                                <b>{row.yplace}</b><br/>
-                            </b>
+                            }}>{row.yplace}</b><br/>
+                            
                             <b>{row.yday}</b><br/>
                             <b>{row.ysubject}</b><br/>
                             <b>{row.yprice.toLocaleString()}원</b><br/>
