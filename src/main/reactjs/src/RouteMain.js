@@ -22,7 +22,8 @@ import HugiRowList from "./hugi/HugiRowList";
 import {JoinListMine} from "./joining";
 import MypagePay from "./mypage/MypagePay";
 import HugiDetail from "./hugi/HugiDetail";
-
+import MyYangdoDetail from './mypage/MyYangdoDetail';
+import MyYangdoUpdate from './mypage/MyYangdoUpdate';
 
 
 function RouteMain(props) {
@@ -73,7 +74,9 @@ function RouteMain(props) {
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
                     <Route path="setting/:unum" element={<MypageSetting/>}/>
-                    <Route path="myyangdo/:currentPage" element={<MyYangdo/>}/>
+                    <Route path="myyangdo/:unum/:currentPage" element={<MyYangdo/>}/>
+                    <Route path="myyangdodetail/:ynum/:currentPage" element={<MyYangdoDetail/>}/>
+                    <Route path="update/:ynum/:currentPage" element={<MyYangdoUpdate/>}/>
                 </Route>
 
                 <Route path={'/score'} >
