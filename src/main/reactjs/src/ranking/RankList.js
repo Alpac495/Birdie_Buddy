@@ -8,38 +8,37 @@ import { Link } from "react-router-dom";
 function RankList(props) {
     const [unum, setUnum] = useState(0);
     const [data, setData] = useState([]);
+    const [newList, setNewList] = useState([]); // 업데이트된 리스트를 저장하기 위해 useState를 사용합니다.
+
     const unumchk = () => {
         Axios.get("/login/unumChk?unum=" + unum)
             .then(res => {
                 setUnum(res.data);
             })
     }
+    
     useEffect(() => {
-        unumchk()
-        getList()
-    }, [])
+        unumchk();
+        getList();
+    }, []);
+
     const getList = () => {
         Axios.get("/score/list")
             .then(res => {
-                console.log(res.data)
-                const list = res.data
-                const newList=[];
-                console.log(list[0].unum)
-                for(let i=0;i<list.length;i++){
-                    Axios.get('/socre/getuser?unum='+(list[i].unum))
-                    .then(res=>{
-                        const uickname = res.data.unickname
-                        const updateList = {...list[i], uickname}
-                        newList.push(updateList);
-                        // if(newList.length===list.length){
-
-                        // }
+                const list = res.data;
+                const fetchUserPromises = list.map(item =>
+                    Axios.get('/score/getuser?unum=' + item.unum)
+                        .then(res => {
+                            const unickname = res.data.unickname;
+                            return { ...item, unickname };
+                        })
+                );
+                Promise.all(fetchUserPromises)
+                    .then(updatedList => {
+                        setNewList(updatedList); // newList 상태를 업데이트합니다.
                     })
-                }
-                setData(newList);
             })
     }
-
 
     return (
         <div>
@@ -49,17 +48,13 @@ function RankList(props) {
             </div>
 
             <div>
-                {
-                    data &&
-                    data.map((item, idx) => (
-                        <div className={`ranking_list rank${idx+1}`} key={idx}>
-                            <div>{idx+1} / {item.unum} / {item.rtasu}</div>
-                        </div>
-                    ))
-                }
+                {newList.map((item, idx) => (
+                    <div className={`ranking_list rank${idx + 1}`} key={idx}>
+                        <div>{idx + 1} / {item.unum} / {item.rtasu} / {item.unickname}</div>
+                    </div>
+                ))}
             </div>
         </div>
-
     );
 }
 
