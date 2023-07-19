@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './Hugi.css';
 import Axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,Link} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
-import {debounce} from "@mui/material";
 
 
 function HugiList(props) {

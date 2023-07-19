@@ -5,6 +5,8 @@ import data.dto.JoinmemberDto;
 import data.mapper.JoinmemberMapper;
 import data.service.JoinmemberService;
 import naver.cloud.NcpObjectStorageService;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,10 +45,10 @@ public class JoinmemberController {
         return sublist;
     }
 
-    @GetMapping("/checkmember")
-    public int getCheckMember(int unum, int jnum)
+    @GetMapping("/checkmember/{unum}&{jnum}")
+    public int getCheckMember(@PathVariable int unum, @PathVariable int jnum)
     {
-        System.out.println("checkmember>>"+unum+jnum);
+        System.out.println("checkmember>>"+unum+jnum);        
         return joinmemberService.getCheckMember(unum,jnum);
     }
     @PostMapping("/joinGaip")

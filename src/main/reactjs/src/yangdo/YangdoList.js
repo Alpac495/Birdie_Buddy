@@ -84,12 +84,12 @@ function YangdoList(props) {
                             {/*<NavLink to={`/yangdo/detail/${row.ynum}/${currentPage}`}*/}
                             {/*>*/}
 
-                            <a href="#" onClick={(e)=>{
+                            <b onClick={(e)=>{
                                 e.preventDefault();
                                 onDetailEvent(row.ynum);
                             }} >
                                 <b>{row.yplace}</b><br/>
-                            </a>
+                            </b>
                             <b>{row.yday}</b><br/>
                             <b>{row.ysubject}</b><br/>
                             <b>{row.yprice.toLocaleString()}원</b><br/>

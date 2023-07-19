@@ -3,23 +3,14 @@ import {useCallback, useEffect, useState} from "react";
 import Axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 const JoinDetail = () => {
-    const [unum, setUnum]=useState(0);
-    const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
-                setUnum(res.data);
-            })
-    }
-    useEffect(() => {
-        unumchk()
-    }, [])
+    const {unum,jnum} = useParams('');
     const [dto,setDto]=useState({});
-    const {jnum}=useParams('');
     const now = new Date();
     const year = now.getFullYear();
     const [confirm, setConfirm] = useState([]);
     const [sub, setSub] = useState([]);
     const [check, setCheck]=useState('');
+    console.log(unum,jnum)
 
     const navi=useNavigate();
 
@@ -63,13 +54,17 @@ const JoinDetail = () => {
         selectData();
     },[selectData]);
 
-    const checkmember=useCallback(()=>{
-        const url="/joinmember/checkmember?unum="+(unum)+"&jnum="+(jnum);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const checkmember = useCallback(()=>{
+        const url=`/joinmember/checkmember/${unum}&${jnum}`;        
         Axios.get(url)
             .then(res=>{
                 setCheck(res.data)
                 console.log(res.data)
-            });
+            })
+            .catch(error => {
+                // 오류 발생 시 처리할 로직
+                console.error('오류 발생:', error)});
     }, );
 
     useEffect(()=>{
@@ -123,7 +118,7 @@ const JoinDetail = () => {
     };
 
     const onAcceptEvent = (unum) => {
-        if(4 - dto.jmcount === 0){
+        if(3 - dto.jmcount === 0){
             alert("빈자리가 없습니다")
         }else {
             const confirmed = window.confirm('신청을 수락하시겠습니까?');
@@ -143,11 +138,10 @@ const JoinDetail = () => {
     return (
         <div className="joindetail">
             <div className="JDdiv">
-        <span className="JDtxt">
-          <p className="JDp">{dto.unickname}</p>
-          <p className="JDp1">{dto.ugender=== '1' ?"남자":"여자"}, {year - (dto.uage && parseInt(dto.uage.substring(0, 4), 10))}세</p>
-        </span>
             </div>
+                {/* <div className="esther-howard"><b>모집자 동반인</b><br/>
+                    {dto.jp1gender} / {dto.jp1age}세 / {dto.jp1tasu}타수
+                </div> */}
             <img className="jduphoto-icon" alt="" src="/jduphoto@2x.png" />
             <div className="JDconfirmgroup">
                 <div className="JDframe">
@@ -175,7 +169,7 @@ const JoinDetail = () => {
                 <div className="JDdiv2">
           <span className="JDtxt">
             <span>{`빈자리 `}</span>
-            <span className="JDspan1">{4 - dto.jmcount}</span>
+            <span className="JDspan1">{3 - dto.jmcount}</span>
           </span>
                 </div>
             </div>
@@ -192,7 +186,7 @@ const JoinDetail = () => {
                                 <div className="JDlw">LW</div>
                             </div>
                             <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반 1인/나이/성별)&nbsp;<div style={{display:'none'}}>{item.unum}</div>
-                                {dto.unum === unum ? (
+                                {dto.unum == unum ? (
                                     <button type='button' value={item.unum} className='btn btn-sm btn-success' onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>
                                 ) : (
                                     null
@@ -207,7 +201,7 @@ const JoinDetail = () => {
                     <div className="joindetail-child" />
 
                     <div className="JDdiv10">
-                        {dto.unum === unum ? (
+                        {dto.unum == unum ? (
                             <button type="button" onClick={onJoinCancelEvent}>모집 취소</button>
                         ) : check === 1 ? (
                             <button type="button" onClick={onGaipCancelEvent}>신청 취소</button>

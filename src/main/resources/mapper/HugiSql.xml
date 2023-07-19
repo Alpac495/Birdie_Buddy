@@ -43,4 +43,10 @@
         WHERE h.unum = #{unum}
         ORDER BY h.hwriteday DESC;
     </select>
+    <select id="getHugiByHnum" parameterType="int" resultType="HugiDto">
+        SELECT h.*, u.unickname
+        FROM hugi h
+                 INNER JOIN user u ON h.unum = u.unum
+        WHERE h.hnum = #{hnum}
+    </select>
 </mapper>
