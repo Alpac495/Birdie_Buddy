@@ -2,11 +2,11 @@ import "./MypageSetting.css";
 import {useNavigate, useParams} from "react-router-dom";
 const MypageSetting = () => {
 
-    const {currentPage,unum} = useParams();
+    const {unum} = useParams();
     const navi = useNavigate();
 
     const onMyYangdo=()=>{
-        navi(`/mypage/myyangdo/1`);
+        navi(`/mypage/myyangdo/${unum}/1`);
     }
 
     return (
