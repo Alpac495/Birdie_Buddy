@@ -6,7 +6,7 @@
     <select id="getSubmemberList" resultType="JoinmemberDto">
         SELECT * from joinmember jm inner join user u on jm.unum = u.unum where jm.jnum=#{jnum} and jaccept=0
     </select>
-    <select id="getCheckMember" parameterType="int" resultType="int">
+    <select id="getCheckMember" parameterType="Map" resultType="int">
         select count(unum) from joinmember where unum=#{unum} and jnum=#{jnum}
     </select>
     <insert id="joinGaip" parameterType="JoinmemberDto">
