@@ -26,4 +26,12 @@ public class JoiningDto {
     private String uage;
     private String uphoto;
     private String ugender;
+    private int jaccept;
+    private String jp1gender;
+    private String jp1age;
+    private String jp1tasu;
+    private String jp2gender;
+    private String jp2age;
+    private String jp2tasu;
+
 }

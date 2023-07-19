@@ -6,7 +6,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Axios from 'axios';
 import {NavLink} from "react-router-dom";
 
-const JoinList = () => {
+const JoinListMine = () => {
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
         Axios.get("/login/unumChk?unum="+unum)
@@ -16,22 +16,23 @@ const JoinList = () => {
     }
     useEffect(() => {
         unumchk()
-    }, [])
-    const [data, setData] = useState([]);
+    }, []);
+
+    const [mydata, setMydata] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
-    const list = useCallback(() => {
-        const url = "/joining/list";
+    const myjoinlist = useCallback(() => {
+        const url = "/joining/myjoinlist?unum="+unum;
         Axios.get(url)
             .then(res => {
-                setData(res.data);
-                // console.log(res.data);
+                setMydata(res.data);
+                console.log(res.data);
             });
     }, []);
 
     useEffect(() => {
-        list();
-    }, [list]);
+        myjoinlist();
+    }, [myjoinlist]);
 
     // D-day 계산 함수
     const calculateDday = jjoinday => {
@@ -42,8 +43,8 @@ const JoinList = () => {
         return dDay;
     };
     const myjoinClick = () => {
-            window.location.replace(`/joining/mylist/${unum}`)
-        };
+        window.location.replace(`/joining/list`)
+    };
     const joinformClick = () =>{
         window.location.replace(`/joining/form`)
     }
@@ -58,7 +59,7 @@ const JoinList = () => {
             </div>
             <div className="btn2_wrapper">
                 <button type='button' onClick={myjoinClick}>
-                    <b className="JLb1">내조인</b>
+                    <b className="JLb1">전체조인</b>
                 </button>
             </div>
             <input className="joinlist-child"
@@ -70,8 +71,8 @@ const JoinList = () => {
             <div className="jlist">
                 <div>
                     {
-                        data.map &&
-                        data.filter((val)=>{
+                        mydata.map &&
+                        mydata.filter((val)=>{
                             if(searchTerm == ""){
                                 return val
                             }else if(val.gname.includes(searchTerm)){
@@ -87,7 +88,7 @@ const JoinList = () => {
                                     </div>
                                     <div className="JLdiv1">
                                         <p className="JLp">{item.jjoinday} {item.jtime}</p>
-                                        {/*<p className="JLp2">#조인 확정</p>*/}
+                                        {item.jaccept===0?(<p className="JLp2">#신청 중</p>) : item.jaccept===1?(<p className="JLp2">#조인 확정</p>) : item.jaccept===2?(<p className="JLp2">#모집 중</p>) : null}
                                         <p className="JLp1">{item.gname}</p>
                                         <p className="JLp1">그린피 ￦{item.jprice}</p>
                                     </div>
@@ -116,6 +117,6 @@ const JoinList = () => {
     );
 };
 
-export default JoinList;
+export default JoinListMine;
 
 

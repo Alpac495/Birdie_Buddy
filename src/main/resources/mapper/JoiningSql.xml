@@ -1,13 +1,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.JoiningMapper">
      <insert id="insertJoin" parameterType="JoiningDto">
-        insert into joining (unum,jcontent,jwriteday,jjoinday,gname,jprice,jtime,jage) values (#{unum},#{jcontent},now(),#{jjoinday},#{gname},#{jprice},#{jtime},#{jage})
+        insert into joining (unum,jcontent,jwriteday,jjoinday,gname,jprice,jtime,jage,jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu) values (#{unum},#{jcontent},now(),#{jjoinday},#{gname},#{jprice},#{jtime},#{jage},#{jp1gender},#{jp1age},#{jp1tasu},#{jp2gender},#{jp2age},#{jp2tasu})
      </insert>
     <select id="getJoiningList" resultType="JoiningDto">
         select *,(select count(jm.jnum) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn order by jnum desc
     </select>
     <select id="getMyJoinList" parameterType="int" resultType="JoiningDto">
-        select *,(select count(jm.jnum) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn WHERE jn.jnum IN (SELECT jnum FROM joinmember WHERE unum = #{unum}) or jn.unum=#{unum} order by jn.jnum desc
+        select *,(select count(jm.jnum) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.jnum IN (SELECT jnum FROM joinmember  WHERE unum = #{unum}) or jn.unum=#{unum} order by jn.jnum desc
     </select>
     <select id="detailPage" parameterType="int" resultType="JoiningDto">
         select *, (select count(jm.jnum) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=1) as jmcount, (select count(jm.jnum) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=0) as smcount from joining j inner join user u on j.unum = u.unum where j.jnum=#{jnum}

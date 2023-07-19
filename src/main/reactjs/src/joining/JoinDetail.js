@@ -3,7 +3,6 @@ import {useCallback, useEffect, useState} from "react";
 import Axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 const JoinDetail = () => {
-    // const unum = Number(sessionStorage.unum);
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
         Axios.get("/login/unumChk?unum="+unum)

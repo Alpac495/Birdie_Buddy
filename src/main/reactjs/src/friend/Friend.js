@@ -8,11 +8,19 @@ function Friend(props) {
         Axios.get("/login/unumChk?unum="+unum)
             .then(res=>{
                 setUnum(res.data);
-            })
+                const url="/friend/list?unum="+(res.data);
+                Axios.get(url)
+                    .then(res=>{
+                        setData(res.data);
+                        console.log(res.data)
+                    })
+            }
+            )
     }
     useEffect(() => {
         unumchk()
     }, [])
+    console.log(unum)
     const [data,setData]=useState('');
     const list=useCallback(()=>{
         const url="/friend/list?unum="+(unum);
