@@ -19,6 +19,7 @@ import MyYangdo from "./mypage/MyYangdo";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
+import MypagePay from "./mypage/MypagePay";
 
 
 function RouteMain(props) {
