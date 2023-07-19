@@ -16,6 +16,13 @@ const JoinForm = (props) => {
     const [jprice,setJprice]=useState('');
     const [jtime,setJtime]=useState('');
     const [jage,setJage]=useState('');
+    const [jp1gender, setJp1gender] = useState("");
+    const [jp1age, setJp1age] = useState("");
+    const [jp1tasu, setJp1tasu] = useState("");
+    const [jp2gender, setJp2gender] = useState("");
+    const [jp2age, setJp2age] = useState("");
+    const [jp2tasu, setJp2tasu] = useState("");
+    console.log(jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu)
 
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
     const [modalOpen, setModalOpen] = useState(false);
@@ -38,6 +45,7 @@ const JoinForm = (props) => {
     useEffect(() => {
         unumchk()
     }, [])
+    console.log(unum)
     const [data,setData]=useState('');
     const list=useCallback(()=>{
         const url="/golfjang/list";
@@ -57,7 +65,7 @@ const JoinForm = (props) => {
 
     const onSubmitEvent=(e)=>{
         e.preventDefault();
-        Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage})
+        Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage, jp1gender, jp1age, jp1tasu, jp2gender, jp2age, jp2tasu})
             .then(res=>{
                 // onMakerEvent()
                 alert("정상적으로 생성되었습니다")
@@ -65,16 +73,6 @@ const JoinForm = (props) => {
                 navi("/joining/list/")
             })
     }
-
-    // const onMakerEvent=()=>{
-    //         Axios.post("/joining/joinMaker", {unum, jnum})
-    //             .then(res => {
-    //
-    //             })
-    //             .catch(err => {
-    //                 console.log(err.message);
-    //             })
-    // }
 
     const selectGolfjang=(e)=>{
         const selectedValue = e.target.innerText;
@@ -100,6 +98,22 @@ const JoinForm = (props) => {
     const closePartnerForm = useCallback(() => {
         setPartnerFormOpen(false);
     }, []);
+
+    const partnerone = (jp1gender,jp1age,jp1tasu) => {
+        setJp1gender(jp1gender);
+        setJp1age(jp1age);
+        setJp1tasu(jp1tasu);
+        setPartnerFormOpen(false);
+    }
+    const partnertwo = (jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu) => {
+        setJp1gender(jp1gender);
+        setJp1age(jp1age);
+        setJp1tasu(jp1tasu);
+        setJp2gender(jp2gender);
+        setJp2age(jp2age);
+        setJp2tasu(jp2tasu);
+        setPartnerForm2Open(false);
+    }
 
 
     return (
@@ -170,8 +184,8 @@ const JoinForm = (props) => {
                     </div>
                     <div className="jparent1">
 
-                        <div className="jdiv">그린피 (직접입력 또는 만원 단위 조절)</div>
-                        <input className="jforminput1" type="number"  required step={10000} placeholder={"10000"}
+                        <div className="jdiv">그린피 (단위 원)</div>
+                        <input className="jforminput1" type="number"  required step={10000} placeholder={"ex) 150000"}
                                value={jprice} onChange={(e)=>setJprice(e.target.value)} maxLength minLength />
                     </div>
                     <div className="jparent2">
@@ -192,6 +206,13 @@ const JoinForm = (props) => {
                 <label className="jradio-button-setoffon1" onClick={openPartnerForm}>
                     <input type='radio' name='partner' className="jdiv31"/>동반자 1명
                 </label>
+
+                <input type='hidden' value={jp1gender}/>
+                <input type='hidden' value={jp1age}/>
+                <input type='hidden' value={jp1tasu}/>
+                <input type='hidden' value={jp2gender}/>
+                <input type='hidden' value={jp2age}/>
+                <input type='hidden' value={jp2tasu}/>
             </form>
 
             {isPartnerForm2Open && (
@@ -200,7 +221,7 @@ const JoinForm = (props) => {
                     placement="Centered"
                     onOutsideClick={closePartnerForm2}
                 >
-                    <PartnerForm2 onClose={closePartnerForm2} />
+                    <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo}/>
                 </PortalPopup>
             )}
             {isPartnerFormOpen && (
@@ -209,7 +230,7 @@ const JoinForm = (props) => {
                     placement="Centered"
                     onOutsideClick={closePartnerForm}
                 >
-                    <PartnerForm onClose={closePartnerForm} />
+                    <PartnerForm props={closePartnerForm} propFunction={partnerone} />
                 </PortalPopup>
             )}
         </div>

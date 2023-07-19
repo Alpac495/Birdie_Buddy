@@ -9,6 +9,7 @@ import ModalNick from "./MypageUpdateNickname"
 import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
 import Axios from "axios";
+import {useParams} from "react-router-dom";
 
 function Mypage(props) {
 
@@ -20,19 +21,22 @@ function Mypage(props) {
     const [imsiCon, setImsiCon]=useState('');
     const [unickname, setUnickname]=useState('');
     const [imsiNick, setImsiNick]=useState('');
-    const [unum, setUnum]=useState(0);
+    // const [unum, setUnum]=useState(0);
     const [uphoto, setUphoto]=useState('');
     const [imsiphoto, setImsiphoto]=useState('');
     const [ubgphoto, setUbgphoto]=useState('');
     const [imsibgphoto, setImsibgphoto]=useState('');
+    const [stasu, setStasu]=useState('');
     const conRef = useRef();
     const nickRef = useRef();
     const photoRef = useRef();
+    const {unum}=useParams('');
 
     const unumchk=()=>{
+        console.log("unum:"+unum);
         axios.get("/login/unumChk?unum="+unum)
         .then(res=>{
-            setUnum(res.data);
+            // setUnum(res.data);
             axios.get("/login/getuser?unum=" + res.data)
             .then(res => {
                 console.log(res.data);
@@ -45,7 +49,11 @@ function Mypage(props) {
                 setUbgphoto(res.data.ubgphoto);
                 setImsibgphoto(res.data.ubgphoto);
                 setImsiphoto(res.data.uphoto);
-                setUnum(res.data.unum);
+                // setUnum(res.data.unum);
+                axios.get("/login/getRtasu?unum="+res.data.unum)
+                .then(res=>{
+                    setStasu(res.data);
+                })
             })
         })
     }
@@ -138,7 +146,7 @@ function Mypage(props) {
             <div className="FDdiv2">
         <span className="FDtxt">
           <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
-          <p className="FDp">골프경력 {dto.ucareer} / 평균타수 89타</p>
+          <p className="FDp">골프경력 {dto.ucareer} / 평균타수 {stasu}타</p>
         </span>
             </div>
             <div className="FDdiv3">

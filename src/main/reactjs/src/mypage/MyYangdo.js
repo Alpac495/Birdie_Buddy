@@ -48,6 +48,65 @@ function MyYangdo(props) {
 
     return (
         <div>
+            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>
+            <br/>
+
+            <h5>총 {data.totalCount}개</h5>
+
+            <div>
+                <input
+                    type="text"
+                    placeholder="검색"
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}/>
+                <br/><br/>
+                {
+                    data.list &&
+                    data.list.filter((val)=>{
+                        if(searchTerm == ""){
+                            return val
+                        }else if(val.yplace.includes(searchTerm)){
+                            return val
+                        }
+                    }).map((row,idx)=>
+                        <div>
+                            {/*<NavLink to={`/yangdo/detail/${row.ynum}/${currentPage}`}*/}
+                            {/*>*/}
+
+                            <a href="#" onClick={(e)=>{
+                                e.preventDefault();
+                                onDetailEvent(row.ynum);
+                            }} >
+                                <b>{row.yplace}</b><br/>
+                            </a>
+                            <b>{row.yday}</b><br/>
+                            <b>{row.ysubject}</b><br/>
+                            <b>{row.yprice.toLocaleString()}원</b><br/>
+                            <b>{row.unickname}</b><br/>
+                        </div>
+                    )
+                }
+            </div>
+
+            <div style={{width:'800px',textAlign:'center'}}>
+                {/* 페이징 처리 */}
+                {
+                    // 이전
+                    data.startPage>1?
+                        <Link to={`/yangdo/list/${data.startPage-1}`}
+                              style={{textDecoration:'none',marginRight:'10px', cursor:'pointer'}}>이전</Link>:''
+                }
+
+                {
+                    data.parr &&
+                    data.parr.map((pno,i)=>
+
+                        <NavLink to={`/yangdo/list/${pno}`} style={{textDecoration:'none'}}>
+                            <b style={{marginRight:'10px',
+                                color:pno == currentPage?'#58FAAC':'black'}}>{pno}</b>
+                        </NavLink>)
+                }
 
             <h5>총 {data.totalCount}개</h5>
 

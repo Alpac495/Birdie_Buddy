@@ -1,16 +1,22 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./FriendRequest.css";
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useParams} from 'react-router-dom';
 function FriendRequest(props) {
-    const [unum, setUnum]=useState(0);
+    const {unum}=useParams('');
     const [funum, setFunum]=useState(0);
     const unumchk=()=>{
         Axios.get("/login/unumChk?unum="+unum)
             .then(res=>{
-                setUnum(res.data);
                 setFunum(res.data);
-            })
+                const url="/friend/requestlist?unum="+(res.data);
+                Axios.get(url)
+                    .then(res=>{
+                        setData(res.data);
+                        console.log(res.data)
+                    })
+            }
+            )
     }
     useEffect(() => {
         unumchk()
@@ -30,16 +36,6 @@ function FriendRequest(props) {
     },[list])
 
     const onAcceptEvent = (unum) => {
-
-        // const unumchk=()=>{
-        //     Axios.get("/login/unumChk?unum="+unum)
-        //         .then(res=>{
-        //             setFunum(res.data);
-        //         })
-        // }
-        // useEffect(() => {
-        //     unumchk()
-        // }, [])
         const confirmed = window.confirm('신청을 수락하시겠습니까?');
             if (confirmed) {
                 Axios.get(`/friend/acceptfriend/${unum}&${funum}`)

@@ -35,6 +35,7 @@ public class FriendController {
     public List<FriendDto> list(int unum)
     {
         List<FriendDto> list= friendService.getFriendList(unum);
+        System.out.println(unum);
         return list;
     }
 
