@@ -81,7 +81,7 @@ function Home(props) {
 
             <ul> joining
                 <li>
-                    <NavLink to={'/joining/list'}>조인list</NavLink>
+                    <NavLink to={`/joining/list/${unum}`}>조인list</NavLink>
                 </li>
                 <li>
                     <NavLink to={'/joining/form'}>조인폼</NavLink>

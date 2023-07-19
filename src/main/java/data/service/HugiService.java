@@ -28,6 +28,12 @@ public class HugiService implements HugiServiceInter
         // hugiRepository.getHugiListByUnum(unum)와 같은 형태로 가정합니다.
         return hugiMapper.getHugiListByUnum(unum);
     }
+
+    @Override
+    public HugiDto getHugiByHnum(int hnum) {
+        return hugiMapper.getHugiByHnum(hnum);
+    }
+
     @Override
     public void insertHugi(HugiDto hdto) {
         // unum을 사용하여 사용자 정보 가져오기
@@ -69,6 +75,7 @@ public class HugiService implements HugiServiceInter
     public void deleteHugi(int hnum) {
         hugiMapper.deleteHugi(hnum);
     }
+    @Override
     public UserDto getUserDto(int unum) {
         return hugiMapper.getUserDto(unum);
     }

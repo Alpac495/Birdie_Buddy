@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import no from '../images/nooooo.jpg';
+import no from '../images/golf_hugi.jpg';
 import "./Review.css";
 import CloseIcon from '@mui/icons-material/Close';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';

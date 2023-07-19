@@ -20,5 +20,6 @@ public interface HugiMapper {
     public List<UserDto> getUser(int unum);
     public String getNickname(int unum);
     public List<HugiDto> getHugiListByUnum(int unum);
+    public HugiDto getHugiByHnum(int hnum);
 
 }

@@ -16,4 +16,5 @@ public interface HugiServiceInter {
     public void deleteHugi(int hnum);
     public UserDto getUserDto(int unum);
     public List<HugiDto> getHugiListByUnum(int unum);
+    public HugiDto getHugiByHnum(int hnum);
 }

@@ -118,7 +118,7 @@ const RankForm = () => {
     return (
         <div className="rankform">
             <Header/>
-            <button className="select_golf" onClick={openModal}>골프장선택</button>{gnum}:{gname}
+            <button className="select_golf" onClick={openModal}>골프장선택</button>{gname}
             <Modal open={modalOpen} close={closeModal} header="골프장 선택">
                 <div>
                     <input style={{marginLeft: '20px'}}
@@ -150,7 +150,8 @@ const RankForm = () => {
                 <tr>
                     <td className={'firsttd'}>HOLE</td>
                     {h.slice(0, 9).map((hole, index) => (
-                        <td key={index} className={n === index + 1 ? 'tdbg' : ''}>
+                        
+<td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
                             {hole}
                         </td>
                     ))}
@@ -158,7 +159,8 @@ const RankForm = () => {
                 <tr>
                     <td className={'firsttd'}>PAR</td>
                     {p.slice(0, 9).map((par, index) => (
-                        <td key={index} className={n === index + 1 ? 'tdbg' : ''}>
+                        
+                    <td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
                             {par}
                         </td>
                     ))}
@@ -166,7 +168,8 @@ const RankForm = () => {
                 <tr>
                     <td className={'firsttd'}>SCORE</td>
                     {s.slice(0, 9).map((score, index) => (
-                        <td key={index} className={n === index + 1 ? 'tdbg' : ''}>
+                        
+                        <td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
                             {score}
                         </td>
                     ))}
@@ -202,23 +205,23 @@ const RankForm = () => {
                 </tr>
                 </tbody>
             </table>
-            <hr style={{height: '3px', backgroundColor: 'rgba(0, 0, 0, 0)', margin: '30px 0'}}/>
+            <hr style={{height: '3px', backgroundColor: 'rgba(0, 0, 0, 0)', margin: '10px 0'}}/>
             <div className={'ranking_btnwrap'}>
                 <div className={'ranking_hole'}>
-                    <button onClick={minusHole} variant="outlined" size="large">
+                    <button onClick={minusHole}>
                         prev hole
                     </button>
-                    {n}번홀
-                    <button onClick={plusHole} variant="outlined" size="large">
+                    <div className="current_hole">{n}번홀</div>
+                    <button onClick={plusHole}>
                         next hole
                     </button>
                 </div>
                 <div className={'ranking_score'}>
-                    <button onClick={minusScore} variant="outlined" size="large">
+                    <button onClick={minusScore}>
                         s-
                     </button>
-                    <div style={{visibility:'hidden'}}>{n}번홀</div>
-                    <button onClick={plusScore} variant="outlined" size="large">
+                    <div className="current_hole" >score</div>
+                    <button onClick={plusScore}>
                         s+
                     </button>
                 </div>
