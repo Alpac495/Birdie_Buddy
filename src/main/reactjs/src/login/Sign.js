@@ -118,7 +118,7 @@ function Sign(props) {
     }
     const nickchk = () => {
         if (unickname == '') {
-            alert("양식지켜");
+            alert("닉네임은 비워둘수 없습니다");
             return;
         } else {
             axios.get(`/login/nickchk?unickname=${unickname}`)
@@ -138,13 +138,13 @@ function Sign(props) {
 
     const sms = () => {
         if (uhp.length != 11) {
-            alert("양식지켜")
+            alert("휴대폰번호 11자리를 입력해 주세요")
             setUhp('');
         } else {
             axios.get('/login/hpchk?uhp=' + uhp)
                 .then(res => {
                     if (res.data == 1) {
-                        alert("이미 등록된 번호")
+                        alert("이미 등록된 번호입니다")
                         hpRef.current.disabled = null
                         setUhp('');
                     } else {
@@ -242,12 +242,11 @@ function Sign(props) {
 
                     <select required onChange={(e) => setUcareer(e.target.value)} value={ucareer}>
                         <option hidden>경력</option>
-                        <option value={"0~2"}>0~2년</option>
-                        <option value={"2~4"}>2~4년</option>
-                        <option value={"4~6"}>4~6년</option>
-                        <option value={"6~8"}>6~8년</option>
-                        <option value={"8~10"}>8~10년</option>
-                        <option value={"10~"}>10년이상</option>
+                        <option value={"1년 미만"}>1년 미만</option>
+                        <option value={"1~3년"}>1~3년</option>
+                        <option value={"4~6년"}>4~6년</option>
+                        <option value={"7~9년"}>7~9년</option>
+                        <option value={"10년 이상"}>10년이상</option>
                     </select>
 
                     <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage}/>
