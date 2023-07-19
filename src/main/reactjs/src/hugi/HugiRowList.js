@@ -16,21 +16,20 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
+import EditIcon from '@mui/icons-material/Edit';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 
 function HugiRowList(props) {
-    const {hnum, hcontent, hphoto, hwriteday, Unickname, hlike} = props;
+    const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
-
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [showLike, setShowLike] = useState(props.showLike || false);
 
     const [unum, setUnum] = useState(0);
-    const [unickname, setUnickname] = useState();
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
@@ -46,6 +45,9 @@ function HugiRowList(props) {
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
+    const handleClickModify = () =>{
+        navi(`/hugi/modify/${hnum}`);
+    }
     const handleClickShare = () => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
         const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
@@ -95,15 +97,7 @@ function HugiRowList(props) {
             setOpen(true);
         }
     };
-    const handleClickDetail = () => {
-        navi(`/hugi/detail/${hnum}`, {
-            hnum: hnum,
-            hphoto: hphoto,
-            hcontent: hcontent,
-            postUserNickname:postUserNickname,
-            // 여기에 다른 데이터도 추가할 수 있습니다.
-        });
-    };
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -211,10 +205,11 @@ function HugiRowList(props) {
         if (unum) {
             try {
                 const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
-                const unickname = res.data;
+                const Unickname = res.data;
 
-                if (unickname) {
-                    setPostUserNickname(unickname);
+                if (Unickname) {
+                    setPostUserNickname(Unickname);
+                    // console.log("pN=>"+Unickname);//잘받아옴
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
@@ -223,6 +218,26 @@ function HugiRowList(props) {
                     console.log('오류가 발생했습니다.', error.message);
                 }
             }
+        }
+    };
+    const handleClickDetail = () => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+
+        if (unum === 0) {
+            alert('로그인을 먼저 해주세요!');
+        } else {
+            navi(`/hugi/detail/${hnum}`, {
+                unum: unum,
+                hnum: hnum,
+                hphoto: hphoto,
+                hcontent: hcontent,
+                hwriteday: formattedDate,
+                Unickname: props.Unickname // Unickname 매개변수를 사용합니다.
+                // 여기에 다른 데이터도 추가할 수 있습니다.
+
+            });
+            fetchPostUserNickname(unum); // fetchPostUserNickname 함수에 unum 전달
         }
     };
     const sortComments = (comments) => {
@@ -362,8 +377,9 @@ function HugiRowList(props) {
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
+            <span>{props.hlike}</span>
             <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
-            <h6 className="list_text">
+            <h6 className="list_text" onClick={handleClickDetail}>
                 &nbsp;
                 {hcontent}
             </h6>
@@ -376,6 +392,9 @@ function HugiRowList(props) {
                 ))}
                 <MessageIcon onClick={handleClickOpen} className="Icons"/>
                 <ShareIcon onClick={handleClickShare} className="Icons"/>
+                {parseInt(props.unum) === parseInt(unum) && (
+                    <EditIcon onClick={handleClickModify} className="Icons"/>
+                )}
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="Icons"/>
                 )}
