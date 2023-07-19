@@ -6,9 +6,10 @@ import Footer from "../footer/Footer";
 import {Link} from "react-router-dom";
 
 function RankList(props) {
-
+    const [rankingList, setRankingList]=useState([]);
     const [unum, setUnum]=useState(0);
-    const unumchk=()=>{
+    
+   /* const unumchk=()=>{
         Axios.get("/login/unumChk?unum="+unum)
             .then(res=>{
                 setUnum(res.data);
@@ -16,46 +17,49 @@ function RankList(props) {
     }
     useEffect(() => {
         unumchk()
-    }, [])
+    }, [])*/
 
-    const url = "";
 
-    Axios.get(url=>{
+    const getRankingList=()=>{
+        Axios.get("/score/list")
+            .then(res=>{
+                setRankingList(res.data);
+            })
+    }
 
-    })
 
     return (
         <div className={''}>
             <Header/>
             <div className="ranking_listwrap" >
-                <div className="ranking_topper">
-                    <div>랭킹 리스트</div>
-                    <div>
-                        <Link to="/score/form">스코어 입력</Link>
-                    </div>
+                <div className="my_ranking">
+                    
+                  
                 </div>
+           
+                <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
 
                 <div className="ranking_list">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>등수</th>
-                            <th>이름</th>
-                            <th>평균타수</th>
-                            <th>골프장명</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {/*{Array.from({ length: repeatCount }, (_, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{data.name}</td>
-                                <td>{data.score}</td>
-                                <td>{data.golfCourse}</td>
-                            </tr>
-                        ))}*/}
-                        </tbody>
-                    </table>
+                   <div className='ranking_bar1'>
+
+                   </div>
+
+                   <div className='ranking_bar2'>
+                        
+                   </div>
+
+                   <div className='ranking_bar3'>
+                        
+                   </div>
+
+                   <div className='ranking_bar'>
+                        
+                   </div>
+
+                   <div className='ranking_bar'>
+                        
+                    </div>
+
                 </div>
             </div>
             <Footer/>

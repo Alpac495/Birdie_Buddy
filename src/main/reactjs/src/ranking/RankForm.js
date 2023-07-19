@@ -68,12 +68,6 @@ const RankForm = () => {
             alert("골프장을 선택해 주세요")
             return;
         }
-        for (let i = 0; i < [...s].length; i++) {
-            if (s[i] === 0) {
-                alert("0점은 입력할수 없습니다")
-                return;
-            }
-        }
         axios.post('/score/saveScore', {s, unum, gnum})
             .then(res => {
                 alert("일단 성공")
@@ -120,10 +114,11 @@ const RankForm = () => {
         }
         setN(prevN => prevN + 1);
     };
+
     return (
         <div className="rankform">
             <Header/>
-            <button onClick={openModal}>골프장선택</button>{gnum}:{gname}
+            <button className="select_golf" onClick={openModal}>골프장선택</button>{gnum}:{gname}
             <Modal open={modalOpen} close={closeModal} header="골프장 선택">
                 <div>
                     <input style={{marginLeft: '20px'}}
@@ -207,27 +202,28 @@ const RankForm = () => {
                 </tr>
                 </tbody>
             </table>
-            <hr style={{height: '3px', backgroundColor: 'lightgray', margin: '30px 0'}}/>
+            <hr style={{height: '3px', backgroundColor: 'rgba(0, 0, 0, 0)', margin: '30px 0'}}/>
             <div className={'ranking_btnwrap'}>
                 <div className={'ranking_hole'}>
-                    <Button onClick={minusHole} variant="outlined" size="large">
+                    <button onClick={minusHole} variant="outlined" size="large">
                         prev hole
-                    </Button>
+                    </button>
                     {n}번홀
-                    <Button onClick={plusHole} variant="outlined" size="large">
+                    <button onClick={plusHole} variant="outlined" size="large">
                         next hole
-                    </Button>
+                    </button>
                 </div>
                 <div className={'ranking_score'}>
-                    <Button onClick={minusScore} variant="outlined" size="large">
+                    <button onClick={minusScore} variant="outlined" size="large">
                         s-
-                    </Button>
-                    <Button onClick={plusScore} variant="outlined" size="large">
+                    </button>
+                    <div style={{visibility:'hidden'}}>{n}번홀</div>
+                    <button onClick={plusScore} variant="outlined" size="large">
                         s+
-                    </Button>
+                    </button>
                 </div>
                 <div>
-                    <button onClick={() => {
+                    <button className="rank_save" onClick={() => {
                         saveScore()
                     }}>저장
                     </button>
