@@ -23,5 +23,5 @@ public interface LoginMapper {
     public void updateCon(Map<String, Object> map);
     public void updateNick(Map<String, Object> map);
     public void updatePhoto(Map<String, Object> map);
-    public int getRtasu(int unum);
+    public String getRtasu(int unum);
 }
