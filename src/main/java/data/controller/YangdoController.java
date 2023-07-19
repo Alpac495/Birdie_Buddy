@@ -104,8 +104,8 @@ public class YangdoController {
         yangdoService.updateYangdo(dto);
     }
 
-    @GetMapping("myyangdo")
-    public Map<String, Object> myyangdo(@RequestParam(defaultValue = "1") int currentPage)
+    @GetMapping("/myyangdo")
+    public Map<String, Object> myyangdo(@RequestParam(defaultValue = "1") int currentPage, int unum)
     {
         System.out.println("list>>"+currentPage);
 
@@ -120,7 +120,7 @@ public class YangdoController {
         int no;            //출력할 시작번호
 
         //총갯수
-        totalCount=yangdoService.getTotalCount();
+        totalCount=yangdoService.getMyCount(unum);
         //총 페이지수
         totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
         //시작페이지
@@ -135,7 +135,7 @@ public class YangdoController {
         //각페이지당 출력할 번호
         no=totalCount-(currentPage-1)*perPage;
 
-        List<YangdoDto> list=yangdoService.MyYangdoList(startNum, perPage);
+        List<YangdoDto> list=yangdoService.MyYangdoList(startNum, perPage, unum);
 
         //출력할 페이지번호들을 Vector에 담아서 보내기
         Vector<Integer> parr=new Vector<>();

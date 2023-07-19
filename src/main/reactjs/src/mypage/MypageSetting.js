@@ -6,7 +6,7 @@ const MypageSetting = () => {
     const navi = useNavigate();
 
     const onMyYangdo=()=>{
-        navi(`/mypage/myyangdo/${unum}`);
+        navi(`/mypage/myyangdo/1`);
     }
 
     return (
