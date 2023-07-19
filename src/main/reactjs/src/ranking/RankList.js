@@ -22,12 +22,22 @@ function RankList(props) {
     const getList = () => {
         Axios.get("/score/list")
             .then(res => {
-                setData(res.data)
                 console.log(res.data)
-                Axios.get("/score/getuser?unum"+(res.data.unum))
-                .then(res=>{
-                    console.log(res.data);
-                })
+                const list = res.data
+                const newList=[];
+                console.log(list[0].unum)
+                for(let i=0;i<list.length;i++){
+                    Axios.get('/socre/getuser?unum='+(list[i].unum))
+                    .then(res=>{
+                        const uickname = res.data.unickname
+                        const updateList = {...list[i], uickname}
+                        newList.push(updateList);
+                        // if(newList.length===list.length){
+
+                        // }
+                    })
+                }
+                setData(newList);
             })
     }
 
