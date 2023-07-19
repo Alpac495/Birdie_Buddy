@@ -156,6 +156,12 @@ public class LoginController {
         }
         return 0;
     }
+
+    @GetMapping("/getRtasu")
+    public int getRtasu(int unum){
+        int stasu = loginMapper.getRtasu(unum);
+        return stasu;
+    }
     
 
 

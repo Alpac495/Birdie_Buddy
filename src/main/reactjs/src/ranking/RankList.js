@@ -1,70 +1,54 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from "../header/Header";
 import Axios from "axios";
 import "./RankingList.css";
 import Footer from "../footer/Footer";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function RankList(props) {
-    const [rankingList, setRankingList]=useState([]);
-    const [unum, setUnum]=useState(0);
-    
-   /* const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
+    const [unum, setUnum] = useState(0);
+    const [data, setData] = useState([]);
+    const unumchk = () => {
+        Axios.get("/login/unumChk?unum=" + unum)
+            .then(res => {
                 setUnum(res.data);
             })
     }
     useEffect(() => {
         unumchk()
-    }, [])*/
-
-
-    const getRankingList=()=>{
+        getList()
+    }, [])
+    const getList = () => {
         Axios.get("/score/list")
-            .then(res=>{
-                setRankingList(res.data);
+            .then(res => {
+                setData(res.data)
+                console.log(res.data)
+                Axios.get("/score/getuser?unum"+(res.data.unum))
+                .then(res=>{
+                    console.log(res.data);
+                })
             })
     }
 
 
     return (
-        <div className={''}>
-            <Header/>
-            <div className="ranking_listwrap" >
-                <div className="my_ranking">
-                    
-                  
-                </div>
-           
-                <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
-
-                <div className="ranking_list">
-                   <div className='ranking_bar1'>
-
-                   </div>
-
-                   <div className='ranking_bar2'>
-                        
-                   </div>
-
-                   <div className='ranking_bar3'>
-                        
-                   </div>
-
-                   <div className='ranking_bar'>
-                        
-                   </div>
-
-                   <div className='ranking_bar'>
-                        
-                    </div>
-
-                </div>
-            </div>
-            <Footer/>
+        <div>
+            <Header />
+            <div>
+                <Link to="/score/form">스코어 입력</Link>
             </div>
 
+            <div>
+                {
+                    data &&
+                    data.map((item, idx) => (
+                        <div className={`ranking_list rank${idx+1}`} key={idx}>
+                            <div>{idx+1} / {item.unum} / {item.rtasu}</div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
 
     );
 }

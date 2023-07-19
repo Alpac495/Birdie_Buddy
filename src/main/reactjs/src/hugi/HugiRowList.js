@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useScript } from "./hooks";
 import './List.css';
 import Avatar from '@mui/material/Avatar';
 import MessageIcon from '@mui/icons-material/Message';
@@ -10,8 +11,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ShareIcon from '@mui/icons-material/Share';
 import Axios from 'axios';
-import {Favorite, FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
+import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 
 
 function HugiRowList(props) {
@@ -22,19 +24,9 @@ function HugiRowList(props) {
 
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 여부
     const [showLike,setShowLike]=useState(props.showLike || false);
 
     const [unum, setUnum]=useState(0);
-    const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
-                setUnum(res.data);
-            })
-    }
-    useEffect(() => {
-        unumchk()
-    }, [])
     const [unickname,setUnickname]=useState();
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
@@ -46,16 +38,67 @@ function HugiRowList(props) {
     const [replyError, setReplyError] = useState(false); // 대댓글 입력 오류 여부 상태 추가
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
 
-
-    const checkLoginStatus = () => {
-        if (unum) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
+//     const status = useScript("https://developers.kakao.com/sdk/js/kakao.js");// kakao SDK import하기
+// // kakao sdk 초기화하기
+//     // status가 변경될 때마다 실행되며, status가 ready일 때 초기화를 시도합니다.
+//     useEffect(() => {
+//         if (status === "ready" && window.Kakao) {
+//             // 중복 initialization 방지
+//             if (!window.Kakao.isInitialized()) {
+//                 // 두번째 step 에서 가져온 javascript key 를 이용하여 initialize
+//                 window.Kakao.init("82d531473f9f3c5fc093e4d7e3225bc7");
+//             }
+//         }
+//     }, [status]);
+    const handleKakaoButton = () => {
+//         window.Kakao.Link.sendScrap({
+//             requestUrl: currentUrl,
+//         });
     };
+    const handleClickShare = () => {
+        const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
+        const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
+        const api_url = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
+        const longUrl = 'http://devster.kr/'; // 짧게 만들고 싶은 URL 입력칸입니다!!! (젠킨스주소 넣어보기)
+
+        const requestData = {
+            url: longUrl, // 서버에서 단축시킬 URL 대신에 목록 URL을 보냄
+            client_id: client_id,
+            client_secret: client_secret,
+        };
+
+        Axios.post(api_url, requestData)
+            .then((res) => {
+                const shortenedURL = res.data.result.url; // 단축 URL 값 가져오기
+                console.log('Shortened URL:', shortenedURL);
+                // TODO: 여기서 생성된 단축 URL을 사용하여 공유 기능을 구현합니다.
+                // 예를 들어, 해당 URL을 SNS의 공유 버튼에 연결하거나 클립보드에 복사하는 등의 작업을 수행할 수 있습니다.
+                // Clipboard API를 사용하여 클립보드에 복사
+                navigator.clipboard.writeText(shortenedURL)
+                    .then(() => {
+                        console.log('URL복사완료!!:', shortenedURL);
+                    })
+                    .catch((error) => {
+                        console.error('Error copying to clipboard:', error);
+                    });
+            })
+            .catch((error) => {
+                console.error('Error generating shortened URL:', error);
+            });
+    };
+
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
+
     const handleClickOpen = () => {
-        if (unum == null) {
+        if (unum == 0) {
             alert('로그인을 먼저 해주세요!');
         } else {
             setOpen(true);
@@ -70,6 +113,7 @@ function HugiRowList(props) {
         Axios.post(`/hugi/like/${hnum}`)
             .then(() => {
                 alert("좋아요를 눌렀습니다!");
+                localStorage.setItem(`likeStatus_${hnum}`, "true"); // 좋아요 상태를 localStorage에 저장
                 setShowLike(true);
             })
             .catch((error) => {
@@ -82,6 +126,7 @@ function HugiRowList(props) {
         Axios.delete(`/hugi/unlike/${hnum}`)
             .then(() => {
                 alert("좋아요를 취소했습니다!");
+                localStorage.setItem(`likeStatus_${hnum}`, "false"); // 좋아요 상태를 localStorage에 저장
                 setShowLike(false);
             })
             .catch((error) => {
@@ -89,8 +134,7 @@ function HugiRowList(props) {
             });
     };
     const handleClickDelete = () => {
-        const sessionUnum = sessionStorage.getItem('unum');
-        if (parseInt(props.unum) === parseInt(sessionUnum)) {
+        if (parseInt(props.unum) === parseInt(unum)) {
             const confirmed = window.confirm('정말 삭제하시겠습니까?');
             if (confirmed) {
                 deleteAllComments()
@@ -218,13 +262,13 @@ function HugiRowList(props) {
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
         try {
-            const res = await Axios.get(`/hugi/getUser?unum=${sessionStorage.unum}`);
+            const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
             const userNickname = res.data;
             if (userNickname) {
                 const newComment = {
                     rhnum: rhnum,
                     hnum: hnum,
-                    unum: sessionStorage.unum,
+                    unum: unum,
                     rhcontent: rhcontent,
                     rhwriteday: formattedDate,
                     ref: null,
@@ -251,7 +295,7 @@ function HugiRowList(props) {
 
         const newReply = {
             hnum: hnum,
-            unum:sessionStorage.unum,
+            unum: unum,
             rhcontent: replyContent,
             ref: comment.rhnum,
             step: comment.step + 1,
@@ -291,35 +335,48 @@ function HugiRowList(props) {
     };
 
     useEffect(() => {
-        setUnum(sessionStorage.unum);
-        checkLoginStatus();
-        fetchPostUserNickname(props.unum); // 작성자의 unickname 가져오기
         getComments();
-    }, []);
+    }, [hnum,unum]);
+    useEffect(() => {
+        fetchPostUserNickname(props.unum); // 작성자의 unickname 가져오기
+    }, [props.unum]);
+    useEffect(() => {
+        // 페이지가 로드될 때 localStorage에서 좋아요 상태를 불러와서 적용
+        const likeStatus = localStorage.getItem(`likeStatus_${hnum}`);
+        setShowLike(likeStatus === "true");
+    }, [hnum]); // hnum이 변경될 때마다 실행
 
+        // 마지막에 componentWillUnmount 등록
+    useEffect(() => {
+        return () => {
+            // 컴포넌트가 unmount 되기 전에 localStorage에서 좋아요 상태 삭제
+            localStorage.removeItem(`likeStatus_${hnum}`);
+        };
+    }, [hnum]);
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={unickname} src="/image/1.png" />
+                <Avatar className="list_avatar" alt={postUserNickname} src="/image/1.png" />
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
 
-            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} />
+            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickOpen}/>
             <h6 className="list_text">
                 &nbsp;
                 {hcontent}
             </h6>
             <hr />
             <div className="IconsZone">
-                {showLike && parseInt(props.unum) === parseInt(unum) ?(
-                    <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{color:"red"}}/>
-                        ) : (
-                    <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{color:"red"}}/>
-                )}
-
+                {unum !== 0 && (showLike ? (
+                    <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{ color: "red" }} />
+                ) : (
+                    <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{ color: "red" }} />
+                ))}
                 <MessageIcon onClick={handleClickOpen} className="Icons" />
+                <ShareIcon onClick={handleClickShare} className="Icons"/>
+                <button onClick={handleKakaoButton}>카카오 공유하기  api </button>
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="Icons" />
                 )}
