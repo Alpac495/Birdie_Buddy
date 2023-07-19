@@ -4,20 +4,21 @@ import iconFlag from "../image/icon_flaghole.svg"
 import Header from "../header/Header";
 import React, { useState, useEffect, useCallback } from 'react';
 import Axios from 'axios';
-import {NavLink} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 
 const JoinListMine = () => {
-    const [unum, setUnum]=useState(0);
-    const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
-                setUnum(res.data);
-            })
-    }
-    useEffect(() => {
-        unumchk()
-    }, []);
+    // const [unum, setUnum]=useState(0);
+    // const unumchk=()=>{
+    //     Axios.get("/login/unumChk?unum="+unum)
+    //         .then(res=>{
+    //             setUnum(res.data);
+    //         })
+    // }
+    // useEffect(() => {
+    //     unumchk()
+    // }, []);
 
+    const {unum} = useParams('');
     const [mydata, setMydata] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -43,7 +44,7 @@ const JoinListMine = () => {
         return dDay;
     };
     const myjoinClick = () => {
-        window.location.replace(`/joining/list`)
+        window.location.replace(`/joining/list/${unum}`)
     };
     const joinformClick = () =>{
         window.location.replace(`/joining/form`)
@@ -81,7 +82,7 @@ const JoinListMine = () => {
                                 return val
                             }
                         }).map((item,idx) =>
-                            <NavLink to={`/joining/detail/${item.jnum}`} className='nav-style'>
+                            <NavLink to={`/joining/detail/${item.jnum}/${unum}`} className='nav-style'>
                                 <div className="jlist1" key={idx}>
                                     <div className="jlist-inner">
                                         <div className="instance-child" />

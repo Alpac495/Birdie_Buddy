@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import './Mypage.css'
 import EditIcon from '@mui/icons-material/Edit';
@@ -9,7 +9,7 @@ import ModalNick from "./MypageUpdateNickname"
 import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
 import Axios from "axios";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function Mypage(props) {
 
@@ -17,68 +17,67 @@ function Mypage(props) {
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
     const [dto, setDto] = useState([]);
-    const [ucontent, setUcontent]=useState('');
-    const [imsiCon, setImsiCon]=useState('');
-    const [unickname, setUnickname]=useState('');
-    const [imsiNick, setImsiNick]=useState('');
-    // const [unum, setUnum]=useState(0);
-    const [uphoto, setUphoto]=useState('');
-    const [imsiphoto, setImsiphoto]=useState('');
-    const [ubgphoto, setUbgphoto]=useState('');
-    const [imsibgphoto, setImsibgphoto]=useState('');
-    const [stasu, setStasu]=useState('');
+    const [ucontent, setUcontent] = useState('');
+    const [imsiCon, setImsiCon] = useState('');
+    const [unickname, setUnickname] = useState('');
+    const [imsiNick, setImsiNick] = useState('');
+    const [unum, setUnum]=useState(0);
+    const [uphoto, setUphoto] = useState('');
+    const [imsiphoto, setImsiphoto] = useState('');
+    const [ubgphoto, setUbgphoto] = useState('');
+    const [imsibgphoto, setImsibgphoto] = useState('');
+    const [stasu, setStasu] = useState('');
     const conRef = useRef();
     const nickRef = useRef();
     const photoRef = useRef();
-    const {unum}=useParams('');
 
-    const unumchk=()=>{
-        console.log("unum:"+unum);
-        axios.get("/login/unumChk?unum="+unum)
-        .then(res=>{
-            // setUnum(res.data);
-            axios.get("/login/getuser?unum=" + res.data)
+    const unumchk = () => {
+        console.log("unum:" + unum);
+        axios.get("/login/unumChk?unum=" + unum)
             .then(res => {
-                console.log(res.data);
-                setDto(res.data);
-                setUnickname(res.data.unickname);
-                setImsiNick(res.data.unickname);
-                setUcontent(res.data.ucontent);
-                setImsiCon(res.data.ucontent);
-                setUphoto(res.data.uphoto);
-                setUbgphoto(res.data.ubgphoto);
-                setImsibgphoto(res.data.ubgphoto);
-                setImsiphoto(res.data.uphoto);
-                // setUnum(res.data.unum);
-                axios.get("/login/getRtasu?unum="+res.data.unum)
-                .then(res=>{
-                    setStasu(res.data);
-                })
+                // setUnum(res.data);
+                axios.get("/login/getuser?unum=" + res.data)
+                    .then(res => {
+                        console.log(res.data);
+                        setDto(res.data);
+                        setUnickname(res.data.unickname);
+                        setImsiNick(res.data.unickname);
+                        setUcontent(res.data.ucontent);
+                        setImsiCon(res.data.ucontent);
+                        setUphoto(res.data.uphoto);
+                        setUbgphoto(res.data.ubgphoto);
+                        setImsibgphoto(res.data.ubgphoto);
+                        setImsiphoto(res.data.uphoto);
+                        setUnum(res.data.unum);
+                        axios.get("/login/getRtasu?unum=" + res.data.unum)
+                            .then(res => {
+                                setStasu(res.data);
+                            })
+                    })
             })
-        })
     }
 
-    const changeCon =()=>{
+    const changeCon = () => {
         setUcontent(conRef.current.value)
         axios.get(`/login/updateCon?ucontent=${conRef.current.value}&unum=${unum}`)
-            .then(res=>{
+            .then(res => {
                 console.log(res.data)
                 setUcontent(res.data);
             })
         setConOpen(false);
     }
-    const chnageNick =()=>{
+    const chnageNick = () => {
         setUnickname(nickRef.current.value)
         axios.get(`/login/updateNick?unickname=${nickRef.current.value}&unum=${unum}`)
-            .then(res=>{
+            .then(res => {
                 console.log(res.data)
                 setUnickname(res.data);
             })
         setNickOpen(false);
     }
-    const changePhoto =()=>{
+    const changePhoto = () => {
         axios.get(`/login/updatePhoto?uphoto=${imsiphoto}&unum=${unum}`)
-            .then(res=>{
+            .then(res => {
                 console.log(res.data)
                 setUphoto(res.data);
             })
@@ -146,7 +145,15 @@ function Mypage(props) {
             <div className="FDdiv2">
         <span className="FDtxt">
           <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
-          <p className="FDp">골프경력 {dto.ucareer} / 평균타수 {stasu}타</p>
+          <p className="FDp">골프경력 {dto.ucareer} / 
+          {
+            stasu == null || stasu == '' || stasu == 0?
+            <span> 입력된 타수 정보가 없습니다</span>:
+            <span>
+              평균타수 {stasu}타
+            </span>
+          }
+          </p>
         </span>
             </div>
             <div className="FDdiv3">
@@ -187,7 +194,7 @@ function Mypage(props) {
                     alt="" src={FDicon1}/>
             </div>
 
-        </div>
+        </div >
     );
 }
 

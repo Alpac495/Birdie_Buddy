@@ -1,12 +1,9 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
-import Axios from "axios";
+import Axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modal from '../components/Modal';
-import "./YangdoUpdate.css";
 
-function YangdoUpdate(props) {
-
-
+function MyYangdoUpdate(props) {
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -82,7 +79,7 @@ function YangdoUpdate(props) {
                 .then(res => {
 
                     // 상세 페이지로 이동
-                    navi(`/yangdo/detail/${ynum}/${currentPage}`);
+                    navi(`/mypage/myyangdodetail/${ynum}/${currentPage}`);
                 });
         }
    }
@@ -181,4 +178,4 @@ function YangdoUpdate(props) {
     );
 }
 
-export default YangdoUpdate;
+export default MyYangdoUpdate;

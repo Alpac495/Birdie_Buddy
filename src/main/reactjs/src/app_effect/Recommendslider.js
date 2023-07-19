@@ -1,9 +1,23 @@
 import React, {Component} from 'react';
 import Slider from "react-slick";
-import no from "../images/nooooo.jpg"
+import no from "../images/golf_place.jpg"
+import Axios from 'axios';
 
 
 export default class SimpleSlider extends Component {
+
+    // componentDidMount() {
+    //     Axios.get('/api/data') // 예시로 '/api/data' 경로에 GET 요청을 보냅니다.
+    //         .then(response => {
+    //             // 응답 데이터를 처리합니다.
+    //             console.log(response.data);
+    //         })
+    //         .catch(error => {
+    //             // 에러 처리
+    //             console.log(error);
+    //         });
+    // }
+    
     render() {
         const settings = {
             infinite: true,
