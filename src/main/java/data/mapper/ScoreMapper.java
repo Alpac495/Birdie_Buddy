@@ -1,6 +1,7 @@
 package data.mapper;
 
 import data.dto.GolfjangScoreDto;
+import data.dto.RankingDto;
 import data.dto.ScoreDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,5 +19,6 @@ public interface ScoreMapper {
     public int getRankCount(int unum);//랭킹테이블에 있는지 없는지
     public void saveRankingInsert(Map<String, Object> map);
     public void saveRankingUpdate(Map<String, Object> map);
+    public List<RankingDto> getRanklist();
 
 }
