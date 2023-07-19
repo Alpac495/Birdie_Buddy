@@ -48,7 +48,9 @@ public class JoiningController {
     @GetMapping("/myjoinlist")
     public List<JoiningDto> myJoinlist(int unum)
     {
+        unum=16;
         List<JoiningDto> myjoinlist= joiningService.getMyJoinList(unum);
+        System.out.println("myjoinlist>>"+unum);
         return myjoinlist;
     }
 

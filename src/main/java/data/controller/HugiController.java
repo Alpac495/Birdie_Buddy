@@ -6,8 +6,11 @@ import data.mapper.HugiMapper;
 import data.service.HugiService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
@@ -17,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/hugi")
 public class HugiController {
     String hphoto;
@@ -25,11 +28,38 @@ public class HugiController {
     @Autowired
     private NcpObjectStorageService storageService;
     private String bucketName = "bit701-bucket-111/birdiebuddy";
+
     @Autowired
     private HugiService hugiService;
     @Autowired
     private HugiMapper hugiMapper;
+    @PostMapping("/shortenUrl")
+    public ResponseEntity<String> shortenUrl(@RequestBody String longUrl) {
+        String clientId = "8cvbhm3fzt"; // 애플리케이션 클라이언트 아이디값
+        String clientSecret = "j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N"; // 애플리케이션 클라이언트 시크릿값
 
+        try {
+            String apiURL = "https://naveropenapi.apigw.ntruss.com/util/v1/shorturl";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("X-NCP-APIGW-API-KEY-ID", clientId);
+            headers.set("X-NCP-APIGW-API-KEY", clientSecret);
+
+            RestTemplate restTemplate = new RestTemplate();
+            HttpEntity<String> requestEntity = new HttpEntity<>(longUrl, headers);
+
+            ResponseEntity<String> responseEntity = restTemplate.exchange(apiURL, HttpMethod.POST, requestEntity, String.class);
+            if (responseEntity.getStatusCode() == HttpStatus.OK) {
+                String shortUrlResponse = responseEntity.getBody();
+                return ResponseEntity.ok(shortUrlResponse);
+            } else {
+                return ResponseEntity.status(responseEntity.getStatusCode()).body("Error1: " + responseEntity.getBody());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error2: " + e.getMessage());
+        }
+    }
     @GetMapping("/list")
     public List<HugiDto> list() {
         System.out.println("list>>");
@@ -44,18 +74,17 @@ public class HugiController {
     public ResponseEntity<String> addLike(@PathVariable int hnum) {
         try {
             // hnum을 사용하여 해당 게시물의 좋아요 정보를 업데이트합니다.
-            hugiService.updateLikeCount(hnum, 1);
+            hugiService.addLikeCount(hnum);
             return ResponseEntity.ok("좋아요 추가 성공");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("좋아요 추가 실패");
         }
     }
-
     @DeleteMapping("/unlike/{hnum}")
     public ResponseEntity<String> removeLike(@PathVariable int hnum) {
         try {
             // hnum을 사용하여 해당 게시물의 좋아요 정보를 업데이트합니다.
-            hugiService.updateLikeCount(hnum, -1);
+            hugiService.removeLikeCount(hnum);
             return ResponseEntity.ok("좋아요 취소 성공");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("좋아요 취소 실패");

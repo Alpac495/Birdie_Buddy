@@ -6,7 +6,6 @@ import Footer from "../footer/Footer";
 import { Link } from "react-router-dom";
 
 function RankList(props) {
-
     const [unum, setUnum] = useState(0);
     const [data, setData] = useState([]);
     const unumchk = () => {

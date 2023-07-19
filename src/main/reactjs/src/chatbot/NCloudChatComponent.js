@@ -5,7 +5,8 @@ function NCloudChatComponent() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
-    const [channelId, setChannelId] = useState('');
+    const [channels, setChannels] = useState(null);
+    const [selectedChannel, setSelectedChannel] = useState(null);
 
     useEffect(() => {
         const initializeChat = async () => {
@@ -14,14 +15,7 @@ function NCloudChatComponent() {
             setNc(chat);
 
             chat.bind('onMessageReceived', function (channel, message) {
-                setMessages((prevMessages) => {
-                    // 중복된 메시지인지 확인하고 필요에 따라 중복을 제거하는 로직 추가
-                    const isDuplicate = prevMessages.some((prevMessage) => prevMessage.message_id === message.message_id);
-                    if (isDuplicate) {
-                        return prevMessages; // 중복된 메시지면 이전 상태를 그대로 반환
-                    }
-                    return [...prevMessages, message]; // 중복이 아니면 새 메시지를 추가하여 반환
-                });
+                setMessages((prevMessages) => [...prevMessages, message]);
             });
 
             await chat.connect({
@@ -31,13 +25,44 @@ function NCloudChatComponent() {
                 customField: 'json',
             });
 
-            const existingChannelId = '3798edd0-acff-410a-a5b5-986d45830a60';
-            await chat.subscribe(existingChannelId);
-            setChannelId(existingChannelId);
+            fetchChannels(chat); // fetchChannels 함수 호출 및 chat 인스턴스 전달
         };
 
         initializeChat();
     }, []);
+
+    useEffect(() => {
+        const fetchChannelMessages = async () => {
+            try {
+                if (!selectedChannel) return;
+                const filter = { channel_id: selectedChannel.id };
+                const sort = { created_at: -1 };
+                const option = { offset: 0, per_page: 100 };
+                const channelMessages = await nc.getMessages(filter, sort, option);
+                console.log("channelMessages:", channelMessages);
+                setMessages(channelMessages.edges);
+            } catch (error) {
+                console.error('Error fetching channel messages:', error);
+                setMessages([]); // 메시지 목록 불러오기 실패 시 빈 배열로 설정
+            }
+        };
+
+        fetchChannelMessages();
+    }, [selectedChannel]);
+
+    const fetchChannels = async (chat) => {
+        try {
+            const channels = await chat.getChannels({}, { created_at: -1 }, { offset: 0, per_page: 100 });
+            console.log("Channels data:", channels); // 확인용 콘솔 로그
+            setChannels(channels.edges);
+            if (channels.length > 0) {
+                setSelectedChannel(channels[0].node); // 첫 번째 채널 선택
+            }
+        } catch (error) {
+            console.error('Error fetching channels:', error);
+            setChannels([]); // 채널 목록 불러오기 실패 시 빈 배열로 설정
+        }
+    };
 
     const handleUserInput = (e) => {
         setUserInput(e.target.value);
@@ -51,13 +76,11 @@ function NCloudChatComponent() {
                     throw new Error('Chat is not initialized');
                 }
 
-                const response = await nc.sendMessage(channelId, {
+                const response = await nc.sendMessage(selectedChannel.id, {
                     type: 'text',
                     message: userInput,
                 });
 
-                // 메시지 전송 후 상태 변경하지 않도록 수정
-                // setMessages(prevMessages => [...prevMessages, response]);
                 setUserInput('');
             } catch (error) {
                 console.error('Error:', error);
@@ -68,9 +91,20 @@ function NCloudChatComponent() {
     return (
         <div style={{ width: '500px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
             <div className="chatbox">
-                {messages.map((message, index) => (
-                    <div key={index} className="message">
-                        {message.content}
+                {channels && channels.map(({ node }) => (
+                    <div
+                        key={node.id}
+                        className={`message ${selectedChannel && selectedChannel.id === node.id ? 'selected' : ''}`}
+                        onClick={() => setSelectedChannel(node)}
+                    >
+                        {node.name} - {node.lastMessage?.content || 'No message'}
+                    </div>
+                ))}
+            </div>
+            <div className="chat-messages">
+                {messages.map((message) => (
+                    <div key={message.id} className="message">
+                        {message.sender.name}: {message.content}
                     </div>
                 ))}
             </div>

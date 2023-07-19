@@ -1,22 +1,60 @@
+.header_wrap{
+    
+}
+
 .ranking_listwrap{
     width: 100%;
     height: 100vh;
-    padding: 20px;
+    
 }
-.ranking_listwrap div{
-    border: 1px black solid;
+
+.my_ranking{
+    width: 95%;
+    height: 150px;
+    margin: 0 auto 25px auto;
+    border-radius: 10px ;
+    background-color: rgba(0, 0, 0, 0.1);
 }
-.ranking_topper{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.ranking_bar{
+    width: 95%;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.07);
+    margin-bottom: 15px;
 }
-.ranking_list table, tr ,td ,th{
-    border-bottom: 1px black solid;
+
+.ranking_bar1{
+    width: 95%;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-image: linear-gradient(to right, #fcdd2c 0%, #f8e170 100%);
 }
-.ranking_list table {
-    width: 100%;
+
+
+.ranking_bar2{
+    width: 95%;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-bottom: 15px;    
+    background-color: #DCD9D4;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
+    background-blend-mode: soft-light,screen;
 }
+
+.ranking_bar3{
+    width: 95%;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #a47c6d, #c78e79);
+}
+
+
 /*modal*/
 .ranking_modal{
     position: fixed;

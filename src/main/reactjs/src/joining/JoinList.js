@@ -18,9 +18,7 @@ const JoinList = () => {
         unumchk()
     }, [])
     const [data, setData] = useState([]);
-    // const [mydata, setMydata] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [buttonText, setButtonText] = useState('내조인');
 
     const list = useCallback(() => {
         const url = "/joining/list";
@@ -35,19 +33,6 @@ const JoinList = () => {
         list();
     }, [list]);
 
-    // const myjoinlist = useCallback(() => {
-    //     const url = `/joining/myjoinlist/${unum}`;
-    //     Axios.get(url)
-    //         .then(res => {
-    //             setMydata(res.data);
-    //             console.log(res.data);
-    //         });
-    // }, []);
-    //
-    // useEffect(() => {
-    //     myjoinlist();
-    // }, [myjoinlist]);
-
     // D-day 계산 함수
     const calculateDday = jjoinday => {
         const today = new Date();
@@ -57,11 +42,7 @@ const JoinList = () => {
         return dDay;
     };
     const myjoinClick = () => {
-            if (buttonText === '내조인') {
-                setButtonText('전체조인');
-            } else {
-                setButtonText('내조인');
-            }
+            window.location.replace(`/joining/mylist/${unum}`)
         };
     const joinformClick = () =>{
         window.location.replace(`/joining/form`)
@@ -77,7 +58,7 @@ const JoinList = () => {
             </div>
             <div className="btn2_wrapper">
                 <button type='button' onClick={myjoinClick}>
-                    <b className="JLb1">{buttonText}</b>
+                    <b className="JLb1">내조인</b>
                 </button>
             </div>
             <input className="joinlist-child"
@@ -89,45 +70,46 @@ const JoinList = () => {
             <div className="jlist">
                 <div>
                     {
-                    data.map &&
-                    data.filter((val)=>{
-                        if(searchTerm == ""){
-                            return val
-                        }else if(val.gname.includes(searchTerm)){
-                            return val
-                        }else if(val.jjoinday.includes(searchTerm)){
-                            return val
-                        }
-                    }).map((item,idx) =>
-                        <NavLink to={`/joining/detail/${item.jnum}`} className='nav-style'>
-                            <div className="jlist1" key={idx}>
-                                <div className="jlist-inner">
-                                    <div className="instance-child" />
+                        data.map &&
+                        data.filter((val)=>{
+                            if(searchTerm == ""){
+                                return val
+                            }else if(val.gname.includes(searchTerm)){
+                                return val
+                            }else if(val.jjoinday.includes(searchTerm)){
+                                return val
+                            }
+                        }).map((item,idx) =>
+                            <NavLink to={`/joining/detail/${item.jnum}`} className='nav-style'>
+                                <div className="jlist1" key={idx}>
+                                    <div className="jlist-inner">
+                                        <div className="instance-child" />
+                                    </div>
+                                    <div className="JLdiv1">
+                                        <p className="JLp">{item.jjoinday} {item.jtime}</p>
+                                        {/*<p className="JLp2">#조인 확정</p>*/}
+                                        <p className="JLp1">{item.gname}</p>
+                                        <p className="JLp1">그린피 ￦{item.jprice}</p>
+                                    </div>
+                                    <div className="emoji-flag-in-hole-parent">
+                                        <img
+                                            className="emoji-flag-in-hole"
+                                            alt=""
+                                            src={iconFlag} />
+                                        <div className="JLdiv2">{4 - item.jmcount === 0 ? "꽉 찼어요!" : `${4 - item.jmcount}자리 비었어요!`}</div>
+                                    </div>
+                                    <div className="avatar-user-60">
+                                        <div className="rectangle" />
+                                        <div className="rectangle1" />
+                                    </div>
+                                    <div className="rectangle-parent">
+                                        <div className="group-child" />
+                                        <div className="d-16">{calculateDday(item.jjoinday) === 0 ? "D-DAY" : calculateDday(item.jjoinday) < 0 ? `D+${Math.abs(calculateDday(item.jjoinday))}` : `D-${calculateDday(item.jjoinday)}`}</div>
+                                    </div>
+                                    <div className="jlist-child" />
                                 </div>
-                                <div className="JLdiv1">
-                                    <p className="JLp">{item.jjoinday} {item.jtime}</p>
-                                    <p className="JLp1">{item.gname}</p>
-                                    <p className="JLp1">그린피 ￦{item.jprice}</p>
-                                </div>
-                                <div className="emoji-flag-in-hole-parent">
-                                    <img
-                                        className="emoji-flag-in-hole"
-                                        alt=""
-                                        src={iconFlag} />
-                                    <div className="JLdiv2">{4 - item.jmcount === 0 ? "꽉 찼어요!" : `${4 - item.jmcount}자리 비었어요!`}</div>
-                                </div>
-                                <div className="avatar-user-60">
-                                    <div className="rectangle" />
-                                    <div className="rectangle1" />
-                                </div>
-                                <div className="rectangle-parent">
-                                    <div className="group-child" />
-                                    <div className="d-16">{calculateDday(item.jjoinday) === 0 ? "D-DAY" : calculateDday(item.jjoinday) < 0 ? `D+${Math.abs(calculateDday(item.jjoinday))}` : `D-${calculateDday(item.jjoinday)}`}</div>
-                                </div>
-                                <div className="jlist-child" />
-                            </div>
-                        </NavLink>
-                    )}
+                            </NavLink>
+                        )}
                 </div>
             </div>
         </div>

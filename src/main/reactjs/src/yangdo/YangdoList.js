@@ -4,6 +4,17 @@ import Axios from "axios";
 
 function YangdoList(props) {
 
+    const [unum, setUnum]=useState(0);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk?unum="+unum)
+            .then(res=>{
+                setUnum(res.data);
+            })
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
+
     const [data, setData] = useState('');
 
     const {currentPage} = useParams();
@@ -27,9 +38,9 @@ function YangdoList(props) {
     },[currentPage]);   // currentPage가 변경될 때 마다 호출
 
     const onWriteButtonEvent=()=>{
-        if(sessionStorage.unum == null){
+        if(unum == 0){
             alert("로그인을 해주세요");
-            navi("/login/login");
+            return;
         }else{
             navi("/yangdo/form");
         }
@@ -37,7 +48,7 @@ function YangdoList(props) {
 
     const onDetailEvent=(ynum)=>{
 
-        if(sessionStorage.unum == null){
+        if(unum == 0){
             alert("로그인을 해주세요");
             return; // 이동을 막기 위해 함수 실행을 중단
         }else{

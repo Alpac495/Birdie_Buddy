@@ -11,9 +11,9 @@ function Home(props) {
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
         axios.get("/login/unumChk?unum="+unum)
-        .then(res=>{
+        .then(res=> {
             setUnum(res.data);
-        })
+        });
     }
     useEffect(() => {
         unumchk()
@@ -112,6 +112,9 @@ function Home(props) {
                 </li>
                 <li>
                     <NavLink to={`/mypage/update`}>마이페이지/수정</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/mypage/setting/${unum}`}>마이페이지 세팅</NavLink>
                 </li>
             </ul>
 

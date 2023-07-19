@@ -16,5 +16,6 @@ public interface YangdoMapper {
     public List<YangdoDto> getPagingList(Map<String, Integer> map);
     public void updateYangdo(YangdoDto dto);
     public List<YangdoDto> MyYangdoList(Map<String, Integer> map);
+    public int getMyCount(int num);
 
 }

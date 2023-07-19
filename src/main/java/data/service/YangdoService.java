@@ -39,6 +39,7 @@ public class YangdoService implements YangdoServiceInter{
 
     @Override
     public int getTotalCount() {
+
         return yangdoMapper.getTotalCount();
     }
 
@@ -58,11 +59,17 @@ public class YangdoService implements YangdoServiceInter{
     }
 
     @Override
-    public List<YangdoDto> MyYangdoList(int start, int perpage) {
+    public List<YangdoDto> MyYangdoList(int start, int perpage, int unum) {
         Map<String, Integer> map = new HashMap<>();
         map.put("start", start);
         map.put("perpage", perpage);
+        map.put("unum",unum);
 
         return yangdoMapper.MyYangdoList(map);
+    }
+
+    @Override
+    public int getMyCount(int num) {
+        return yangdoMapper.getMyCount(num);
     }
 }
