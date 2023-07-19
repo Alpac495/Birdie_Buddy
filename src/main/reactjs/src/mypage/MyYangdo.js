@@ -48,7 +48,7 @@ function MyYangdo(props) {
 
     return (
         <div>
-            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>
+            <button type='button'>글쓰기</button>
             <br />
 
             <h5>총 {data.totalCount}개</h5>
