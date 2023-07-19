@@ -82,7 +82,7 @@ function MyYangdo(props) {
                             </a>
                             <b>{row.yday}</b><br />
                             <b>{row.ysubject}</b><br />
-                            <b>{row.yprice.toLocaleString()}원</b><br />
+                            <b>{row.yprice.toLocaleString()}원d</b><br />
                             <b>{row.unickname}</b><br />
                         </div>
                     )
