@@ -46,4 +46,9 @@
     <update id="updatePhoto" parameterType="Map">
         update user set uphoto=#{uphoto} where unum=#{unum}
     </update>
+    <select id="getRtasu" parameterType="int" resultType="int">
+        select rtasu from ranking where unum=#{unum};
+    </select>
+
+
 </mapper>

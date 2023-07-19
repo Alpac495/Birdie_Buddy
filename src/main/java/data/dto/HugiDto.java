@@ -17,5 +17,4 @@ public class HugiDto {
     private int hlike;
     private int unum;
     private String unickname;
-
 }
