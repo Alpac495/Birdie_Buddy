@@ -12,6 +12,7 @@ public interface HugiMapper {
     public int getTotalCount();
     public List<HugiDto> getAllHugis();
     public void insertHugi(HugiDto hdto);
+    public void updateHugi(HugiDto hdto);
     public void addLikeCount(int hnum);
     public void removeLikeCount(int hnum);
     public HugiDto detailPage(int hnum);

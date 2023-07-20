@@ -40,14 +40,18 @@ function HugiList(props) {
         }
     },[unum]);
 // 사용자 정보 가져오기
+    //여기서 unum 문제가 있어서 동작이 안됨, 다른 기능에는 문제가 없음
+    //loading 아이콘 사용 하기 위해 방치해둔 코드입니다//
+
     const getUser = () => {
-        Axios.get("/hugi/getUser?unum=" + unum)
+        Axios.get(`/hugi/getUser?unum=${unum}`)
             .then((res) => {
+                //console.log("unum>>"+unum);// Success!
                 setUnickname(res.data);
                 setLoading(false); // 요청이 완료되면 로딩 상태 변경
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 setLoading(false); // 에러 발생 시에도 로딩 상태 변경
             });
     };

@@ -27,10 +27,12 @@
 
 }
 .list_text {
+    height:100%;
     font-weight: normal;
     text-align: left;
-    padding: 15px 20px;
-    cursor: pointer;
+    padding: 20px 20px;
+    white-space: pre-wrap;
+    font-size: 13px;
 }
 .list_header {
     display: flex;
@@ -249,4 +251,9 @@
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
+}
+.NoComments{
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
 }

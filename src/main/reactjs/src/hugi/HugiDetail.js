@@ -363,7 +363,7 @@ function HugiDetail(props) {
     return (
         <div className="list_detail">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={''} src="/image/1.png"/>
+                <Avatar className="list_avatar" alt={''} src=''/>
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
@@ -422,7 +422,7 @@ function HugiDetail(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="/image/1.png"/>
+                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -473,7 +473,7 @@ function HugiDetail(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="/image/1.png"/>
+                                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
                                   <b className="ReplyNickname">
                                       {reply.unickname}:
                                   </b>
@@ -494,7 +494,7 @@ function HugiDetail(props) {
           </div>
       ))
   ) : (
-      <p>댓글이 없습니다.</p>
+      <p className="NoComments">댓글이 없습니다.</p>
   )}
 </pre>
 

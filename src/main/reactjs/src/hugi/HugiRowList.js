@@ -46,8 +46,22 @@ function HugiRowList(props) {
         setSnackbarOpen(false);
     };
     const handleClickModify = () =>{
-        navi(`/hugi/modify/${hnum}`);
-    }
+        if (unum === 0) {
+            alert('로그인을 먼저 해주세요!');
+        } else {
+           // console.log("unickname>>"+postUserNickname);//success
+           // console.log("hnum,unum,hphoto,hcontent,hlike>>"+hnum+","+unum+","+hphoto+","+hcontent+","+hlike);//success
+            navi(`/hugi/modify/${hnum}`, {
+                hnum: hnum,
+                unum: unum,
+                hlike: hlike,
+                postUserNickname: postUserNickname,
+                hcontent: hcontent,
+                hphoto: hphoto,
+                hwriteday: hwriteday,
+            });
+        }
+    };
     const handleClickShare = () => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
         const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
@@ -372,14 +386,14 @@ function HugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={postUserNickname} src="/image/1.png"/>
+                <Avatar className="list_avatar" alt={''} src=''/>
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
             <span>{props.hlike}</span>
             <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
-            <h6 className="list_text" onClick={handleClickDetail}>
+            <h6 className="list_text">
                 &nbsp;
                 {hcontent}
             </h6>
@@ -393,7 +407,7 @@ function HugiRowList(props) {
                 <MessageIcon onClick={handleClickOpen} className="Icons"/>
                 <ShareIcon onClick={handleClickShare} className="Icons"/>
                 {parseInt(props.unum) === parseInt(unum) && (
-                    <EditIcon onClick={handleClickModify} className="Icons"/>
+                    <EditIcon onClick={()=>handleClickModify(hnum)} className="Icons"/>
                 )}
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="Icons"/>
@@ -408,7 +422,7 @@ function HugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={postUserNickname} src="/image/1.png"/>
+                        <Avatar className="list_avatar_Comment1" alt={''} src=''/>
                         <span className="spanCommentList">
                         {postUserNickname}
                       </span>
@@ -453,7 +467,7 @@ function HugiRowList(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="/image/1.png"/>
+                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -504,7 +518,7 @@ function HugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="/image/1.png"/>
+                                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
                                   <b className="ReplyNickname">
                                       {reply.unickname}:
                                   </b>
@@ -525,7 +539,7 @@ function HugiRowList(props) {
           </div>
       ))
   ) : (
-      <p>댓글이 없습니다.</p>
+      <p className="NoComments">댓글이 없습니다.</p>
   )}
 </pre>
                 </DialogContent>
