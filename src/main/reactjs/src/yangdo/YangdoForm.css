@@ -1,0 +1,201 @@
+.div {
+    align-self: stretch;
+    position: relative;
+    font-weight: 500;
+  }
+  .email,
+  .email1,
+  .parent {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email {
+    border: 0;
+    background-color: #eefaea;
+    align-self: stretch;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 1rem 0.75rem;
+    align-items: center;
+    outline: 0;
+  }
+  .email1,
+  .parent {
+    font-family: Roboto;
+  }
+  .parent {
+    position: absolute;
+    top: 31.31rem;
+    left: 1.06rem;
+    width: 20.38rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.38rem;
+  }
+  .email1 {
+    border: 0;
+    font-size: 1rem;
+    background-color: #eefaea;
+    align-self: stretch;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 1rem 0.75rem;
+    align-items: center;
+  }
+  .email1:focus {
+    outline: 0;
+  }
+  .email2,
+  .group {
+    align-self: stretch;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.38rem;
+  }
+  .email2 {
+    border: 0;
+    font-family: Roboto;
+    font-size: 1rem;
+    background-color: #eefaea;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 1rem 0.75rem;
+    align-items: center;
+    outline: 0;
+  }
+  .frame-group {
+    align-self: stretch;
+    height: 17.06rem;
+    align-items: flex-start;
+  }
+  .frame-group,
+  .frame-parent,
+  .frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .frame-wrapper {
+    align-self: stretch;
+    align-items: flex-start;
+  }
+  .frame-parent {
+    position: absolute;
+    top: 6.69rem;
+    left: calc(50% - 163px);
+    width: 20.38rem;
+    height: 36.19rem;
+    align-items: center;
+  }
+  .logo-ex {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22.5rem;
+    height: 5.25rem;
+    display: none;
+  }
+  .graylbtn-child {
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    background-color: #ebebf0;
+  }
+  .div5,
+  .graylbtn,
+  .graylbtn-child {
+    position: absolute;
+    top: 0;
+  }
+  .div5 {
+    height: 100%;
+    width: 37.73%;
+    left: 30.98%;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .graylbtn {
+    left: 14.92rem;
+    border-radius: 3px;
+    width: 5.39rem;
+    height: 2.5rem;
+  }
+  .div6 {
+    flex: 1;
+    position: relative;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  .frame,
+  .popupbtn {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .frame {
+    width: 100%;
+    right: 0;
+    border-radius: 5px;
+    background-color: #89e1a4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.63rem 0.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+  }
+  .popupbtn {
+    width: 69.13%;
+    right: 30.87%;
+    color: #000;
+  }
+  .btngroup {
+    position: absolute;
+    top: 37.63rem;
+    left: 1.06rem;
+    width: 20.31rem;
+    height: 2.5rem;
+    text-align: center;
+    font-size: 0.94rem;
+  }
+  .joinform,
+  .yangdoform {
+    background-color: #fff;
+    height: 46.25rem;
+    overflow: hidden;
+  }
+  .joinform {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22.5rem;
+  }
+  .yangdoform {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    font-size: 1.13rem;
+    color: #292d32;
+    font-family: Inter;
+  }
+  @media screen and (max-width: 960px) {
+    .div {
+      font-size: 0.88rem;
+    }
+  }
+  
