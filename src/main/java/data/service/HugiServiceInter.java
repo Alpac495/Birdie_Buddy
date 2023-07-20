@@ -10,6 +10,7 @@ public interface HugiServiceInter {
     public int getTotalCount();
     public List<HugiDto> getAllHugis();
     public void insertHugi(HugiDto hdto);
+    public void updateHugi(HugiDto hdto);
     public void addLikeCount(int hnum);
     public void removeLikeCount(int hnum);
     public HugiDto detailPage(int hnum);
@@ -17,4 +18,5 @@ public interface HugiServiceInter {
     public UserDto getUserDto(int unum);
     public List<HugiDto> getHugiListByUnum(int unum);
     public HugiDto getHugiByHnum(int hnum);
+
 }
