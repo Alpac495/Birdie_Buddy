@@ -50,6 +50,25 @@ function YangdoDetail(props) {
             })
     }
 
+    // 현재 나이를 구하는 함수
+    const calculateAge = (birthDate) => {
+        const birthYear = new Date(birthDate).getFullYear();
+        const currentYear = new Date().getFullYear();
+        return currentYear - birthYear;
+    };
+
+    // 날짜를 원하는 형식으로 포맷팅하는 함수
+    const formatDate = (dateString) => {
+        const dateObj = new Date(dateString);
+        const year = dateObj.getFullYear().toString().slice(2); // 뒤의 두 자리만 가져오기
+        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // 1월은 0이므로 +1 해주고 두 자리로 맞추기
+        const day = dateObj.getDate().toString().padStart(2, '0'); // 두 자리로 맞추기
+        const dayOfWeek = dateObj.toLocaleDateString("ko-KR", { weekday: "short" }); // 요일 정보 가져오기
+        
+        return `${year}.${month}.${day} (${dayOfWeek})`;
+    };
+
+    
     useEffect(()=>{
         selectData();
     },[]);
@@ -101,7 +120,7 @@ function YangdoDetail(props) {
                 <div className="YDDcontent-area">
                     <div className="YDDsingle-line-item1">
                         <img className="YDDicon" alt="" src="/time.svg" />
-                        <div className="YDDlabel1">{dto.yday} {dto.ysubject}</div>
+                        <div className="YDDlabel1">{formatDate(dto.yday)} {dto.ysubject}</div>
                     </div>
                     <div className="YDDsingle-line-item1">
                         <img className="YDDicon" alt="" src="/payment.svg" />
@@ -137,11 +156,12 @@ function YangdoDetail(props) {
             </div>
             <div className="YDDflistprofile">
                 <div className="YDDflistprofile1">
+
                     <img className="YDDjduphoto-icon" alt="" src="/jduphoto@2x.png" />
                     <div className="YDDdiv2">
             <span className="YDDtxt">
               <p className="YDDp">{dto.unickname}</p>
-              <p className="YDDp1">{dto.ugender}, {dto.uage}</p>
+              <p className="YDDp1">{dto.ugender}, {calculateAge(dto.uage)}세</p>
             </span>
                     </div>
                     <div className="YDDrectangle-parent">

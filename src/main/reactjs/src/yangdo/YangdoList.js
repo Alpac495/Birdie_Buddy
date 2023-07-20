@@ -83,9 +83,10 @@ function YangdoList(props) {
                         }).map((row,idx)=>
                         <div>
                             <b onClick={(e)=>{
-                                e.preventDefault();
-                                onDetailEvent(row.ynum);
-                            }}>{row.yplace}</b><br/>
+                                    e.preventDefault();
+                                    onDetailEvent(row.ynum);
+                                }}>{row.yplace}
+                            </b><br/>
                             
                             <b>{row.yday}</b><br/>
                             <b>{row.ysubject}</b><br/>
