@@ -26,6 +26,6 @@
         update ranking set rtasu=#{avg} where unum=#{unum}
     </update>
     <select id="getRanklist" resultType="RankingDto">
-        select * from ranking order by rtasu desc
+        select * from ranking order by rtasu asc
     </select>
 </mapper>
