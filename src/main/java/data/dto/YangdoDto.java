@@ -20,4 +20,7 @@ public class YangdoDto {
     private String ysubject;
     private String unickname;
     private String uhp;
+    private String uage;
+    private String uphoto;
+    private String ugender;
 }

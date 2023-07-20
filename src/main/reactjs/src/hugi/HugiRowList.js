@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useScript } from "./hooks";
+import React, {useEffect, useState} from 'react';
+import {useScript} from "./hooks";
 import './List.css';
 import Avatar from '@mui/material/Avatar';
 import MessageIcon from '@mui/icons-material/Message';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -12,48 +12,39 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Alert from '@mui/material/Alert';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 
-
 function HugiRowList(props) {
-    const { hnum, hcontent, hphoto, hwriteday,Unickname,hlike} = props;
+    const {hnum, hcontent, hphoto, hwriteday, Unickname, hlike} = props;
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
 
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
-    const [showLike,setShowLike]=useState(props.showLike || false);
+    const [showLike, setShowLike] = useState(props.showLike || false);
 
-    const [unum, setUnum]=useState(0);
-    const [unickname,setUnickname]=useState();
+    const [unum, setUnum] = useState(0);
+    const [unickname, setUnickname] = useState();
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
     const [replyContent, setReplyContent] = useState('');
-    const [postUserNickname,setPostUserNickname]=useState();
+    const [postUserNickname, setPostUserNickname] = useState();
 
     const [commentError, setCommentError] = useState(false); // 댓글 입력 오류 여부 상태 추가
     const [replyError, setReplyError] = useState(false); // 대댓글 입력 오류 여부 상태 추가
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
 
-//     const status = useScript("https://developers.kakao.com/sdk/js/kakao.js");// kakao SDK import하기
-// // kakao sdk 초기화하기
-//     // status가 변경될 때마다 실행되며, status가 ready일 때 초기화를 시도합니다.
-//     useEffect(() => {
-//         if (status === "ready" && window.Kakao) {
-//             // 중복 initialization 방지
-//             if (!window.Kakao.isInitialized()) {
-//                 // 두번째 step 에서 가져온 javascript key 를 이용하여 initialize
-//                 window.Kakao.init("82d531473f9f3c5fc093e4d7e3225bc7");
-//             }
-//         }
-//     }, [status]);
-    const handleKakaoButton = () => {
-//         window.Kakao.Link.sendScrap({
-//             requestUrl: currentUrl,
-//         });
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
     };
     const handleClickShare = () => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
@@ -77,6 +68,7 @@ function HugiRowList(props) {
                 navigator.clipboard.writeText(shortenedURL)
                     .then(() => {
                         console.log('URL복사완료!!:', shortenedURL);
+                        setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
                     })
                     .catch((error) => {
                         console.error('Error copying to clipboard:', error);
@@ -86,10 +78,9 @@ function HugiRowList(props) {
                 console.error('Error generating shortened URL:', error);
             });
     };
-
-    const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
+    const unumchk = () => {
+        Axios.get("/login/unumChk?unum=" + unum)
+            .then(res => {
                 setUnum(res.data);
             })
     }
@@ -103,6 +94,15 @@ function HugiRowList(props) {
         } else {
             setOpen(true);
         }
+    };
+    const handleClickDetail = () => {
+        navi(`/hugi/detail/${hnum}`, {
+            hnum: hnum,
+            hphoto: hphoto,
+            hcontent: hcontent,
+            postUserNickname:postUserNickname,
+            // 여기에 다른 데이터도 추가할 수 있습니다.
+        });
     };
     const handleClose = () => {
         setOpen(false);
@@ -302,7 +302,7 @@ function HugiRowList(props) {
             depth: comment.depth + 1,
         };
 
-        Axios.post("/rehugi/newreply?unum="+unum, newReply)
+        Axios.post("/rehugi/newreply?unum=" + unum, newReply)
             .then((res) => {
                 console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();
@@ -336,7 +336,7 @@ function HugiRowList(props) {
 
     useEffect(() => {
         getComments();
-    }, [hnum,unum]);
+    }, [hnum, unum]);
     useEffect(() => {
         fetchPostUserNickname(props.unum); // 작성자의 unickname 가져오기
     }, [props.unum]);
@@ -346,39 +346,38 @@ function HugiRowList(props) {
         setShowLike(likeStatus === "true");
     }, [hnum]); // hnum이 변경될 때마다 실행
 
-        // 마지막에 componentWillUnmount 등록
+    // 마지막에 componentWillUnmount 등록
     useEffect(() => {
         return () => {
             // 컴포넌트가 unmount 되기 전에 localStorage에서 좋아요 상태 삭제
             localStorage.removeItem(`likeStatus_${hnum}`);
         };
     }, [hnum]);
+
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={postUserNickname} src="/image/1.png" />
+                <Avatar className="list_avatar" alt={postUserNickname} src="/image/1.png"/>
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
-
-            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickOpen}/>
+            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
             <h6 className="list_text">
                 &nbsp;
                 {hcontent}
             </h6>
-            <hr />
+            <hr/>
             <div className="IconsZone">
                 {unum !== 0 && (showLike ? (
-                    <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{ color: "red" }} />
+                    <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{color: "red"}}/>
                 ) : (
-                    <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{ color: "red" }} />
+                    <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{color: "red"}}/>
                 ))}
-                <MessageIcon onClick={handleClickOpen} className="Icons" />
+                <MessageIcon onClick={handleClickOpen} className="Icons"/>
                 <ShareIcon onClick={handleClickShare} className="Icons"/>
-                <button onClick={handleKakaoButton}>카카오 공유하기  api </button>
                 {parseInt(props.unum) === parseInt(unum) && (
-                    <DeleteIcon onClick={handleClickDelete} className="Icons" />
+                    <DeleteIcon onClick={handleClickDelete} className="Icons"/>
                 )}
             </div>
 
@@ -390,19 +389,19 @@ function HugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={postUserNickname} src="/image/1.png" />
+                        <Avatar className="list_avatar_Comment1" alt={postUserNickname} src="/image/1.png"/>
                         <span className="spanCommentList">
                         {postUserNickname}
                       </span>
                     </div>
                 </DialogTitle>
-                <DialogContent style={{ width: '100%', overflowX: 'hidden' }}>
-                    <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} />
+                <DialogContent style={{width: '100%', overflowX: 'hidden'}}>
+                    <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto}/>
                     <DialogContentText id="alert-dialog-description">
-                        <hr />
-                        <div style={{ width: '100%' }}>{hcontent}</div>
+                        <hr/>
+                        <div style={{width: '100%'}}>{hcontent}</div>
                     </DialogContentText>
-                    <hr />
+                    <hr/>
                     {unum && (
                         <div className="input-group">
               <textarea
@@ -435,7 +434,7 @@ function HugiRowList(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="/image/1.png" />
+                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="/image/1.png"/>
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -452,7 +451,7 @@ function HugiRowList(props) {
                   )}
               </div>
               {openReplyForm === comment.rhnum && unum && (
-                  <div className="input-group" style={{ width: '230px', marginBottom:"30px" }}>
+                  <div className="input-group" style={{width: '230px', marginBottom: "30px"}}>
             <textarea
                 className="form-control"
                 style={{
@@ -486,13 +485,13 @@ function HugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="/image/1.png" />
+                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="/image/1.png"/>
                                   <b className="ReplyNickname">
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;
                                   <pre className="preReplyRhcontent">{reply.rhcontent}</pre>
-                                  <br />
+                                  <br/>
                                   <span className="spanRhwriteday">{reply.rhwriteday}</span>
                                   {parseInt(reply.unum) === parseInt(unum) && (
                                       <DeleteIcon
@@ -517,6 +516,39 @@ function HugiRowList(props) {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={snackbarOpen}
+                autoHideDuration={3000} // 3초 후 자동으로 사라집니다.
+                onClose={handleSnackbarClose}
+            >
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity="success"
+                    sx={{
+                        width: '100%',
+                        '& .MuiAlert-action': {
+                            alignItems: 'center', // 아이콘을 세로 가운데 정렬합니다.
+                        },
+                    }}
+                    action={
+                        <IconButton
+                            size="small"
+                            aria-label="close"
+                            color="inherit"
+                            onClick={handleSnackbarClose}
+                        >
+                            <CloseIcon fontSize="small" />
+                        </IconButton>
+                    }
+                >
+                    URL이 복사되었습니다!
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

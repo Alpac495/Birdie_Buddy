@@ -8,19 +8,22 @@ import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import Mypage from "./mypage/Mypage";
 import Bot from "./chatbot/Bot";
-import ChatBot from "./chatbot/ChatBot";
+import ChatBot from "./chatbot/ChatApp";
 import Main from "./Main";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
 import JoinDetail from "./joining/JoinDetail";
 import MypageUpdate from "./mypage/MypageUpdate";
 import MypageSetting from "./mypage/MypageSetting";
-import MyYangdo from "./mypage/MyYangdo";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
 import {JoinListMine} from "./joining";
 import MypagePay from "./mypage/MypagePay";
+import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
+import Test from './yangdo/Test';
+import HugiDetail from "./hugi/HugiDetail";
+
 
 
 function RouteMain(props) {
@@ -36,6 +39,7 @@ function RouteMain(props) {
                     <Route path="detail/:ynum/:currentPage" element={<YangdoDetail/>}/>
                     <Route path="form" element={<YangdoForm/>}/>
                     <Route path="update/:ynum/:currentPage" element={<YangdoUpdate/>}/>
+                    <Route path="test" element={<Test/>}/>
                 </Route>
 
                 <Route path={'/friend'} >
@@ -49,16 +53,15 @@ function RouteMain(props) {
                 <Route path={'/hugi'} >
                     <Route path="list" element={<HugiList/>}/>
                     <Route path="hugilist" element={<HugiRowList/>}/>
-
-
+                    <Route path="detail/:hnum" element={<HugiDetail/>}/>
                 </Route>
 
                 <Route path={'/joining'} >
-                    <Route path={"list"} element={<JoinList/>}/>
+                    <Route path={"list/:unum"} element={<JoinList/>}/>
                     <Route path={"mylist/:unum"} element={<JoinListMine/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
                     <Route path={"detail"} element={<JoinDetail/>}/>
-                    <Route path={"detail/:jnum"} element={<JoinDetail/>}/>
+                    <Route path={"detail/:jnum/:unum"} element={<JoinDetail/>}/>
                 </Route>
 
                 <Route path={'/login'} >
@@ -72,7 +75,9 @@ function RouteMain(props) {
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
                     <Route path="setting/:unum" element={<MypageSetting/>}/>
-                    <Route path="myyangdo/:currentPage" element={<MyYangdo/>}/>
+                    <Route path="myyangdo/:unum/:currentPage" element={<MyYangdo/>}/>
+                    <Route path="myyangdodetail/:ynum/:currentPage" element={<MyYangdoDetail/>}/>
+                    <Route path="update/:ynum/:currentPage" element={<MyYangdoUpdate/>}/>
                 </Route>
 
                 <Route path={'/score'} >

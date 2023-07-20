@@ -122,9 +122,9 @@ public class HugiController {
 
     @GetMapping("/user/{unum}")
     public ResponseEntity<UserDto> getUserDto(@PathVariable int unum) {
-        System.out.println("unum:" + unum);
+//        System.out.println("unum:" + unum);
         UserDto userDto = hugiService.getUserDto(unum);
-        System.out.println(userDto.getUname());
+//        System.out.println(userDto.getUname());
 
         if (userDto != null) {
             return ResponseEntity.ok(userDto);
@@ -132,7 +132,6 @@ public class HugiController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
     @GetMapping("/getUser")
     public ResponseEntity<String> getUser(int unum) {
@@ -142,6 +141,16 @@ public class HugiController {
             return ResponseEntity.ok(unickname);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/detail/{hnum}") // 경로에 hnum을 받기 위해 {hnum}을 사용합니다.
+    public ResponseEntity<HugiDto> getHugiByHnum(@PathVariable int hnum) {
+        HugiDto hugiDto = hugiService.getHugiByHnum(hnum); // 데이터베이스에서 해당 hnum에 해당하는 게시물 정보를 가져옵니다.
+
+        if (hugiDto != null) {
+            return ResponseEntity.ok(hugiDto); // 게시물 정보를 클라이언트에게 반환합니다.
+        } else {
+            return ResponseEntity.notFound().build(); // 해당 hnum에 해당하는 게시물이 없는 경우 404 에러를 반환합니다.
         }
     }
 }

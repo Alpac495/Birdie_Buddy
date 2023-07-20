@@ -4,19 +4,20 @@ import iconFlag from "../image/icon_flaghole.svg"
 import Header from "../header/Header";
 import React, { useState, useEffect, useCallback } from 'react';
 import Axios from 'axios';
-import {NavLink} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 
 const JoinList = () => {
-    const [unum, setUnum]=useState(0);
-    const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
-                setUnum(res.data);
-            })
-    }
-    useEffect(() => {
-        unumchk()
-    }, [])
+    // const [unum, setUnum]=useState(0);
+    // const unumchk=()=>{
+    //     Axios.get("/login/unumChk?unum="+unum)
+    //         .then(res=>{
+    //             setUnum(res.data);
+    //         })
+    // }
+    // useEffect(() => {
+    //     unumchk()
+    // }, [])
+    const {unum} = useParams('');
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -80,7 +81,7 @@ const JoinList = () => {
                                 return val
                             }
                         }).map((item,idx) =>
-                            <NavLink to={`/joining/detail/${item.jnum}`} className='nav-style'>
+                            <NavLink to={`/joining/detail/${item.jnum}/${unum}`} className='nav-style'>
                                 <div className="jlist1" key={idx}>
                                     <div className="jlist-inner">
                                         <div className="instance-child" />
@@ -96,7 +97,7 @@ const JoinList = () => {
                                             className="emoji-flag-in-hole"
                                             alt=""
                                             src={iconFlag} />
-                                        <div className="JLdiv2">{4 - item.jmcount === 0 ? "꽉 찼어요!" : `${4 - item.jmcount}자리 비었어요!`}</div>
+                                        <div className="JLdiv2">{3 - item.jmcount === 0 ? "꽉 찼어요!" : `${3 - item.jmcount}자리 비었어요!`}</div>
                                     </div>
                                     <div className="avatar-user-60">
                                         <div className="rectangle" />

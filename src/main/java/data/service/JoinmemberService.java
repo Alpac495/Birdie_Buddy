@@ -28,7 +28,10 @@ public class JoinmemberService implements JoinmemberServiceInter{
 
     @Override
     public int getCheckMember(int unum, int jnum) {
-        return joinmemberMapper.getCheckMember(unum,jnum);
+        Map<String, Object> map = new HashMap<>(); 
+        map.put("unum", unum);
+        map.put("jnum", jnum);
+        return joinmemberMapper.getCheckMember(map);
     }
 
     @Override
