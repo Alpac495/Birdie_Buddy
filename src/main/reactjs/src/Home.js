@@ -136,6 +136,11 @@ function Home(props) {
                     <NavLink to={'/main/main'}>main</NavLink>
                 </li>
             </ul>
+            <ul>admin
+                <li>
+                    <NavLink to={'/admin/userlist'}>전체사용자</NavLink>
+                </li>
+            </ul>
         </div>
     );
 }

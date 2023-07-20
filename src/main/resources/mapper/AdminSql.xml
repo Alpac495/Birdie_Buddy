@@ -1,0 +1,6 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.AdminMapper">
+    <select id="getUserList" resultType="UserDto">
+        select * from user order by unum
+    </select>
+</mapper>
