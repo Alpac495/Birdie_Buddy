@@ -4,7 +4,8 @@ import Button from '@mui/material/Button';
 import {useNavigate, useParams} from "react-router-dom";
 
 function HugiModify(props) {
-    const { hnum } = useParams();
+    const hnum=useParams();
+    // const [hnum,setHnum]=useState('');
     const [unum, setUnum] = useState('');
     const [hlike, setHlike] = useState('');
     const [hphoto, setHphoto] = useState('');
@@ -58,14 +59,20 @@ function HugiModify(props) {
     }
     // 수정 폼이 로드될 때 원래 사진과 내용을 보여주기 위해 useEffect를 사용합니다.
     useEffect(() => {
-        setHphoto(props.hphoto); // 게시물의 원래 사진을 보여줍니다.
-        setHcontent(props.hcontent); // 게시물의 원래 내용을 보여줍니다.
-    }, [props.hphoto, props.hcontent]);
+        // props로 받은 데이터를 설정
+        //setHnum(props.hnum);
+        setUnum(props.unum);
+        setHlike(props.hlike);
+        setPostUserNickname(props.postUserNickname);
+        setHcontent(props.hcontent);
+        setHphoto(props.hphoto);
+        setHwriteday(props.hwriteday);
+    }, [props]);
 
     return (
         <div className="timeline" style={{ border: '1px solid gray', width: '100%', height: '50%', marginTop: '5px', marginBottom: '5px' }}>
             {/* 이미지 미리보기 */}
-            {hphoto && <img alt="" src={`${process.env.REACT_APP_HUGI}${hphoto}`} style={{ width: '50%', margin: '10px 100px' }} value={hphoto}/>}
+            {hphoto && <img alt="" src={`${process.env.REACT_APP_HUGI}${hphoto}`} style={{ width: '50%', margin: '10px 100px' }}/>}
             <input type="file" className="form-control" onChange={onUploadEvent} />
             <br />
             <br />

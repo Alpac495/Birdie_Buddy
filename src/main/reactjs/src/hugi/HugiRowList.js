@@ -45,7 +45,7 @@ function HugiRowList(props) {
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
-    const handleClickModify = () =>{
+    const handleClickModify = (hnum) =>{
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
         } else {

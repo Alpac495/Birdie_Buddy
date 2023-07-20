@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.aa5b839f.css",
-    "main.js": "/static/js/main.67b0055e.js",
+    "main.css": "/static/css/main.e55bd00e.css",
+    "main.js": "/static/js/main.898701d8.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
     "static/media/golf_place.jpg": "/static/media/golf_place.acf2d03cace00fe60acd.jpg",
@@ -20,12 +20,12 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
     "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
-    "main.aa5b839f.css.map": "/static/css/main.aa5b839f.css.map",
-    "main.67b0055e.js.map": "/static/js/main.67b0055e.js.map",
+    "main.e55bd00e.css.map": "/static/css/main.e55bd00e.css.map",
+    "main.898701d8.js.map": "/static/js/main.898701d8.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa5b839f.css",
-    "static/js/main.67b0055e.js"
+    "static/css/main.e55bd00e.css",
+    "static/js/main.898701d8.js"
   ]
 }
