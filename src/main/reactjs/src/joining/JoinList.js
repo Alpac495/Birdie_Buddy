@@ -6,6 +6,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Axios from 'axios';
 import {NavLink, useParams} from "react-router-dom";
 
+
 const JoinList = () => {
     // const [unum, setUnum]=useState(0);
     // const unumchk=()=>{
@@ -43,33 +44,55 @@ const JoinList = () => {
         return dDay;
     };
     const myjoinClick = () => {
-            window.location.replace(`/joining/mylist/${unum}`)
-        };
+        window.location.replace(`/joining/mylist/${unum}`)
+    };
     const joinformClick = () =>{
         window.location.replace(`/joining/form`)
     }
 
     return (
-        <div className="joinlist">
-            <Header />
-            <div className="btn1_wrapper">
-                <button type='button' onClick={joinformClick}>
-                    <b className="JLb">조인만들기</b>
-                </button>
+        <div className="JEjoinlistreact">
+
+            <div className="JEjoinheader">
+                <div className="header"><Header/></div>
+                <div className="JEjtap">
+                    <div className="JEyangdo-bar">
+                        <div className="JEapp-bar-top">
+                            <div className="JEactions">
+                                <div className="btn1_wrapper">
+                                    <button type='button' onClick={joinformClick}>
+                                        <b className="JLb">조인만들기</b>
+                                    </button>
+                                </div>
+                            </div>
+                            <input className="JEtitle"
+                                   type="text"
+                                   placeholder="골프장명 또는 날짜로 검색"
+                                   onChange={(e) => {
+                                       setSearchTerm(e.target.value);
+                                   }}/>
+
+                        </div>
+                    </div>
+                    <div className="JEsegmented-control">
+                        <div className="JEsegmented-control1">
+                            <div className="JEframe">
+                                <div className="JEdiv1">전체</div>
+                            </div>
+                            <div className="JEframe1">
+                                <div className="JEdiv1">모집</div>
+                            </div>
+                            <div className="JEframe1">
+                                <div className="JEdiv1">신청</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="btn2_wrapper">
-                <button type='button' onClick={myjoinClick}>
-                    <b className="JLb1">내조인</b>
-                </button>
-            </div>
-            <input className="joinlist-child"
-                   type="text"
-                   placeholder="골프장명 또는 날짜로 검색"
-                   onChange={(e) => {
-                       setSearchTerm(e.target.value);
-                   }}/>
-            <div className="jlist">
-                <div>
+
+            <div className="JEjlist-parent">
+                <div className="JEjlist">
+                    <div className="JEjlist-wrapper">
                     {
                         data.map &&
                         data.filter((val)=>{
@@ -82,35 +105,38 @@ const JoinList = () => {
                             }
                         }).map((item,idx) =>
                             <NavLink to={`/joining/detail/${item.jnum}/${unum}`} className='nav-style'>
-                                <div className="jlist1" key={idx}>
-                                    <div className="jlist-inner">
-                                        <div className="instance-child" />
+
+                                <div className="JEjlist" key={idx}>
+                                    <div className="JEjlist-inner">
+                                        <div className="JEinstance-child" />
                                     </div>
-                                    <div className="JLdiv1">
-                                        <p className="JLp">{item.jjoinday} {item.jtime}</p>
-                                        {/*<p className="JLp2">#조인 확정</p>*/}
-                                        <p className="JLp1">{item.gname}</p>
-                                        <p className="JLp1">그린피 ￦{item.jprice}</p>
+                                    <div className="JEdiv4">
+                                        <p className="JEp">{item.jjoinday} {item.jtime}</p>
+                                        {<p className="JLp2">#조인 확정</p>}
+                                        <p className="JEp1"><span className="JEspan">{item.gname}</span></p>
+                                        <p className="JEp1"><span className="JEspan1">그린피 ￦{item.jprice}</span></p>
                                     </div>
-                                    <div className="emoji-flag-in-hole-parent">
+                                    <div className="JEemoji-flag-in-hole-parent">
                                         <img
                                             className="emoji-flag-in-hole"
                                             alt=""
                                             src={iconFlag} />
-                                        <div className="JLdiv2">{3 - item.jmcount === 0 ? "꽉 찼어요!" : `${3 - item.jmcount}자리 비었어요!`}</div>
+                                        <div className="JEdiv5">{3 - item.jmcount === 0 ? "꽉 찼어요!" : `${3 - item.jmcount}자리 비었어요!`}</div>
                                     </div>
-                                    <div className="avatar-user-60">
-                                        <div className="rectangle" />
-                                        <div className="rectangle1" />
+                                    <div className="JEavatar-user-60">
+                                        <div className="JErectangle" />
+                                        <div className="JErectangle1" />
                                     </div>
-                                    <div className="rectangle-parent">
-                                        <div className="group-child" />
-                                        <div className="d-16">{calculateDday(item.jjoinday) === 0 ? "D-DAY" : calculateDday(item.jjoinday) < 0 ? `D+${Math.abs(calculateDday(item.jjoinday))}` : `D-${calculateDday(item.jjoinday)}`}</div>
+                                    <div className="JErectangle-parent">
+                                        <div className="JEgroup-child" />
+                                        <div className="JEd-16">{calculateDday(item.jjoinday) === 0 ? "D-DAY" : calculateDday(item.jjoinday) < 0 ? `D+${Math.abs(calculateDday(item.jjoinday))}` : `D-${calculateDday(item.jjoinday)}`}</div>
                                     </div>
-                                    <div className="jlist-child" />
+
                                 </div>
+
                             </NavLink>
                         )}
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,5 +144,3 @@ const JoinList = () => {
 };
 
 export default JoinList;
-
-
