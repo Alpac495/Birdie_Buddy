@@ -8,7 +8,7 @@ import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import Mypage from "./mypage/Mypage";
 import Bot from "./chatbot/Bot";
-import ChatBot from "./chatbot/ChatBot";
+import ChatBot from "./chatbot/ChatApp";
 import Main from "./Main";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
