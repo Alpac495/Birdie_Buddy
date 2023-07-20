@@ -16,7 +16,7 @@ import JoinDetail from "./joining/JoinDetail";
 import MypageUpdate from "./mypage/MypageUpdate";
 import MypageSetting from "./mypage/MypageSetting";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
-import {HugiList} from "./hugi";
+import {HugiList, HugiModify} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
 import {JoinListMine} from "./joining";
 import MypagePay from "./mypage/MypagePay";
@@ -54,6 +54,7 @@ function RouteMain(props) {
                     <Route path="list" element={<HugiList/>}/>
                     <Route path="hugilist" element={<HugiRowList/>}/>
                     <Route path="detail/:hnum" element={<HugiDetail/>}/>
+                    <Route path="modify/:hnum" element={<HugiModify/>}/>
                 </Route>
 
                 <Route path={'/joining'} >
