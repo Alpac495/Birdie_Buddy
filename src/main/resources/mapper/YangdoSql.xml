@@ -11,9 +11,10 @@
 
     <select id="getData" parameterType="int" resultType="YangdoDto">
         select * ,(select unickname from user where unum=yangdo.unum) as unickname,
-               (select uage from user where unum=yangdo.unum) as uage,
-               (select uphoto from user where unum=yangdo.unum) as uphoto,
-               (select ugender from user where unum=yangdo.unum) as ugender
+        (select uhp from user where unum=yangdo.unum) as uhp,
+        (select uage from user where unum=yangdo.unum) as uage,
+        (select uphoto from user where unum=yangdo.unum) as uphoto,
+        (select ugender from user where unum=yangdo.unum) as ugender
         from yangdo where ynum=#{ynum}
     </select>
 

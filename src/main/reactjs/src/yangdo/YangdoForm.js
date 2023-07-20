@@ -87,77 +87,71 @@ function YangdoForm(props) {
     }
 
     return (
-        <div>
-            <React.Fragment>
-                <Modal open={modalOpen} close={closeModal} header="골프장 목록">
-                    <div>
-                        <input style={{marginLeft:'20px'}}
-                               type="text"
-                               placeholder="검색"
-                               onChange={(e) => {
-                                   setSearchTerm(e.target.value);
-                               }}/>
-                        <br/><br/>
-                        <ul>
-                            {
-                                data.map &&
-                                data.filter((val)=>{
-                                    if(searchTerm == ""){
-                                        return val
-                                    }else if(val.gname.includes(searchTerm)){
-                                        return val
-                                    }
-                                }).map((item,idx) =>
-                                    <span onClick={selectGolfjang}><li>{item.gname}</li></span>
-                                )}
-                        </ul>
-                    </div>
-                </Modal>
-            </React.Fragment>
-
-            <div>
-                <b>골프장 : </b>
-                <input type='text'
-                       onChange={
-                           (e)=> setYplace(e.target.value)
-                       } value={yplace} onClick={openModal}
-                />
-                <br/>
-
-                <b>가격 : </b>
-                <input type='text'
-                       onChange={
-                           (e)=> setYprice(e.target.value)
-                       } value={yprice}
-                />
-                <br/>
-
-                <b>예약날짜 : </b>
-                <input type='date'
-                       onChange={
-                           (e)=> setYday(e.target.value)
-                       } value={yday}
-                />
-                <br/>
-
-                <b>시간 : </b>
-                <input type='time'
-                       onChange={
-                           (e)=> setYsubject(e.target.value)
-                       } value={ysubject}
-                />
-                <br/>
-
-                <b>내용 : </b>
-                <textarea value={ycontent}
-                          onChange={
-                              (e)=>setYcontent(e.target.value)}></textarea>
-                <br/>
-
-                <button type='submit' onClick={onSubmitEvent}>글쓰기</button>
-                <button type='button' onClick={goBack}>취소</button>
-
+        <div className="yangdoform">
+        <div className="joinform">
+            <div className="parent">
+            <div className="div">내용</div>
+            <input
+                className="email"
+                type="text"
+                placeholder=""
+                maxLength
+                minLength
+            />
             </div>
+            <div className="frame-parent">
+            <div className="frame-group">
+                <div className="group">
+                <div className="div">골프장</div>
+                <input
+                    className="email1"
+                    type="text"
+                    placeholder=""
+                    maxLength
+                    minLength
+                />
+                </div>
+                <div className="group">
+                <div className="div">날짜</div>
+                <input
+                    className="email2"
+                    type="text"
+                    placeholder=""
+                    maxLength
+                    minLength
+                />
+                </div>
+                <div className="group">
+                <div className="div">시간</div>
+                <input className="email2" type="text" maxLength minLength />
+                </div>
+            </div>
+            <div className="frame-wrapper">
+                <div className="group">
+                <div className="div">금액</div>
+                <input
+                    className="email1"
+                    type="text"
+                    placeholder=""
+                    maxLength
+                    minLength
+                />
+                </div>
+            </div>
+            </div>
+            <div className="logo-ex" />
+            <div className="btngroup">
+            <div className="graylbtn">
+                <div className="graylbtn-child" />
+                <div className="div5">닫기</div>
+            </div>
+            <div className="popupbtn">
+                <div className="frame">
+                <div className="div6">양도 신청</div>
+                </div>
+            </div>
+            </div>
+        </div>
         </div>
     );
 }

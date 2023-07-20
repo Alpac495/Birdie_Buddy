@@ -22,7 +22,7 @@
     <select id="hpChk" parameterType="String" resultType="int">
         select count(*) from user where uhp=#{uhp}
     </select>
-    <insert id="insertCode" parameterType="String">
+    <insert id="insertCode" parameterType="Map">
         insert into hpChk (uhp, code) values (#{uhp}, #{code})
     </insert>
     <delete id="deleteCode" parameterType="String">
@@ -31,7 +31,7 @@
     <select id="cntCode" parameterType="String" resultType="int">
         select count(*) from hpChk where uhp=#{uhp}
     </select>
-    <select id="cntHpCode" parameterType="String" resultType="int">
+    <select id="cntHpCode" parameterType="String" resultType="Map">
         select count(*) from hpChk where uhp=#{uhp} and code=#{code}
     </select>
     <select id="getUser" parameterType="int" resultType="UserDto">
