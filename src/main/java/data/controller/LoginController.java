@@ -22,7 +22,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.SecureRandom;
-import java.sql.Timestamp;
 
 @RestController
 @CrossOrigin
@@ -191,7 +190,7 @@ public class LoginController {
         if (n != 0) {
             loginMapper.deleteCode(uhp);
         }
-        loginMapper.insertCode(uhp, code);
+        loginService.insertCode(uhp, code);
 
         String hostNameUrl = "https://sens.apigw.ntruss.com"; // 호스트 URL
         String requestUrl = "/sms/v2/services/"; // 요청 URL
@@ -276,6 +275,7 @@ public class LoginController {
 
         } catch (Exception e) {
             System.out.println(e);
+            e.getMessage();
         }
         return "smsSend";
     }
@@ -312,7 +312,7 @@ public class LoginController {
 
     @GetMapping("/codechk")
     public boolean codeChk(String uhp, String code) {
-        int n = loginMapper.cntHpCode(uhp, code);
+        int n = loginService.cntHpCode(uhp, code);
         if (n == 1) {
             loginMapper.deleteCode(uhp);
             return true;
