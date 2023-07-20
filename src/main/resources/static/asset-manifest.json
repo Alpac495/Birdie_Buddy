@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.4d268f9b.css",
-    "main.js": "/static/js/main.442c06e3.js",
+    "main.js": "/static/js/main.fafbd555.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
     "static/media/golf_place.jpg": "/static/media/golf_place.acf2d03cace00fe60acd.jpg",
@@ -21,11 +21,11 @@
     "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
     "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
     "main.4d268f9b.css.map": "/static/css/main.4d268f9b.css.map",
-    "main.442c06e3.js.map": "/static/js/main.442c06e3.js.map",
+    "main.fafbd555.js.map": "/static/js/main.fafbd555.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4d268f9b.css",
-    "static/js/main.442c06e3.js"
+    "static/js/main.fafbd555.js"
   ]
 }

@@ -100,9 +100,13 @@ body {
 }
 .JDconfirmgroup,
 .JDframe {
-    position: absolute;
+    position: absolute;    
 }
-.JDframe {
+.JDdongbangroup,
+.JDframe2 {
+    position: absolute;    
+}
+.JDframe2 {
     width: 100%;
     top: -3rem;
     right: 0;
@@ -115,9 +119,31 @@ body {
     gap: 0.8rem;
     font-size: 0.75rem;
 }
-.JDconfirmgroup {
+.JDdongbangroup {
     width: calc(100% - 32px);
     top: 30.75rem;
+    right: 10.11rem;
+    left: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #5470ff;
+}
+.JDframe {
+    width: 100%;
+    top: -4rem;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.8rem;
+    font-size: 0.75rem;
+}
+.JDconfirmgroup {
+    width: calc(100% - 32px);
+    top: 41.75rem;
     right: 10.11rem;
     left: 1rem;
     text-align: center;
@@ -135,10 +161,21 @@ body {
     line-break: anywhere;
     width: 100%;
 }
+.JDdiv0 {
+    position: absolute;
+    top: 0rem;
+    line-height: 150%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.39rem;
+    width: 100%;
+    left: 0;
+}
 .JDdiv1,
 .JDdiv2 {
     position: absolute;
-    top: 0;
+    top: 10rem;
     line-height: 150%;
     font-weight: 600;
     display: flex;
@@ -168,7 +205,7 @@ body {
 }
 .JDdiv3 {
     width: calc(100% - 3px);
-    top: 1rem;
+    top: 8rem;
     left: 0.19rem;
     line-height: 150%;
     font-weight: 600;
@@ -178,7 +215,7 @@ body {
 .JDframe1 {
     position: relative;
     width: 100%;
-    top: 2.63rem;
+    top: 10rem;
     right: 0;
     left: 0;
     overflow: hidden;

@@ -15,4 +15,8 @@ public class JoinmemberDto {
     private String uage;
     private String uphoto;
     private String ugender;
+    private String jp1gender;
+    private String jp1age;
+    private String jp1tasu;
+    private int jcount;
 }

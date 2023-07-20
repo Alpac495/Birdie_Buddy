@@ -22,7 +22,6 @@ const JoinForm = (props) => {
     const [jp2gender, setJp2gender] = useState("");
     const [jp2age, setJp2age] = useState("");
     const [jp2tasu, setJp2tasu] = useState("");
-    console.log(jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu)
 
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
     const [modalOpen, setModalOpen] = useState(false);
@@ -115,14 +114,14 @@ const JoinForm = (props) => {
         setPartnerForm2Open(false);
     }
 
-
+    
     return (
         <div className="joinform">
 
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="Modal heading">
                     <div>
-                        <input style={{marginLeft:'20px'}}
+                        <input style={{marginLeft:'50px'}}
                             type="text"
                             placeholder="검색"
                             onChange={(e) => {
@@ -196,7 +195,9 @@ const JoinForm = (props) => {
                 </div>
             </div>
             <div className="joinform-child" />
+            <div className="joinform-child2" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
+                <div className="jdiv8"><button onClick={ () => {navi(-1);} }>취소</button></div>
                 <label className="jradio-button-setonon">
                     <input type='radio' name='partner' className="jdiv31"/>동반자 없음
                 </label>
