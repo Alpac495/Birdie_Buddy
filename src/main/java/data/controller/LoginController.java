@@ -22,7 +22,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.SecureRandom;
-import java.sql.Timestamp;
 
 @RestController
 @CrossOrigin
@@ -277,6 +276,7 @@ public class LoginController {
 
         } catch (Exception e) {
             System.out.println(e);
+            e.getMessage();
         }
         return "smsSend";
     }

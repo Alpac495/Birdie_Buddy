@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
 import Slider from 'react-slick';
 import no from '../images/golf_hugi.jpg';
 import "./Review.css";
-import CloseIcon from '@mui/icons-material/Close';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 export default class SimpleSlider extends Component {
+
     constructor(props) {
         super(props);
         this.state = {

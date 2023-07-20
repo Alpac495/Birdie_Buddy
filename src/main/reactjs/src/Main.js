@@ -64,7 +64,7 @@ function Main(props) {
                 </div>
             </div>
 
-            <hr style={{height:'3px', backgroundColor:'lightgray', marginTop:'15px'}}/>
+            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
 
             <div className={'main_ad'}>
                 <img alt={''} src={no}/>

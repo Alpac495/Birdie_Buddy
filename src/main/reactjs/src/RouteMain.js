@@ -8,22 +8,21 @@ import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import Mypage from "./mypage/Mypage";
 import Bot from "./chatbot/Bot";
-import ChatBot from "./chatbot/ChatBot";
+import ChatBot from "./chatbot/ChatApp";
 import Main from "./Main";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
 import JoinDetail from "./joining/JoinDetail";
 import MypageUpdate from "./mypage/MypageUpdate";
 import MypageSetting from "./mypage/MypageSetting";
-import MyYangdo from "./mypage/MyYangdo";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
-import {HugiList} from "./hugi";
+import {HugiList, HugiModify} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
 import {JoinListMine, JoinUpdateForm} from "./joining";
 import MypagePay from "./mypage/MypagePay";
+import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
+import Test from './yangdo/Test';
 import HugiDetail from "./hugi/HugiDetail";
-import MyYangdoDetail from './mypage/MyYangdoDetail';
-import MyYangdoUpdate from './mypage/MyYangdoUpdate';
 import { UserList } from './admin';
 
 
@@ -44,6 +43,7 @@ function RouteMain(props) {
                     <Route path="detail/:ynum/:currentPage" element={<YangdoDetail/>}/>
                     <Route path="form" element={<YangdoForm/>}/>
                     <Route path="update/:ynum/:currentPage" element={<YangdoUpdate/>}/>
+                    <Route path="test" element={<Test/>}/>
                 </Route>
 
                 <Route path={'/friend'} >
@@ -58,6 +58,7 @@ function RouteMain(props) {
                     <Route path="list" element={<HugiList/>}/>
                     <Route path="hugilist" element={<HugiRowList/>}/>
                     <Route path="detail/:hnum" element={<HugiDetail/>}/>
+                    <Route path="modify/:hnum" element={<HugiModify/>}/>
                 </Route>
 
                 <Route path={'/joining'} >

@@ -47,6 +47,20 @@ public class LoginService implements LoginServiceInter{
         map.put("unum",unum);
         loginMapper.updatePhoto(map);
     }
+    @Override
+    public void insertCode(String uhp, String code){
+        Map<String, Object> map = new HashMap<>();
+        map.put("uhp",uhp);
+        map.put("code",code);
+        loginMapper.insertCode(map);
+    }
+    @Override
+    public int cntHpCode(String uhp, String code){
+        Map<String, Object> map = new HashMap<>();
+        map.put("uhp",uhp);
+        map.put("code",code);
+        return loginMapper.cntHpCode(map);
+    }
 
     @Override
     public int cntHpCode(String uhp, String code) {
