@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../header/Header.css";
 import Header from "../header/Header";
 import Axios from "axios";
 import "./RankingList.css";
@@ -50,7 +51,9 @@ function RankList(props) {
 
     return (
         <div className='rankingList_wrap'>
-            <Header />
+            <div>
+                <Header />
+            </div>
             {/* <div>
                 <Link to="/score/form">스코어 입력</Link>
             </div> */}
@@ -59,14 +62,27 @@ function RankList(props) {
                 
                 {newList.map((item, idx) => (
                     <div className='ranking_wrap'> 
-                        <div className={`ranking_mem rank${idx + 1}`} key={idx}>
+                        <div className={`ranking_mem rank${idx + 1}`} key={idx} style={{ backgroundImage: `url(${image1}${item.uphoto}${image2})`, backgroundSize:'cover'}}>
                             
+                        <div
+                            className="overlay"
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                backgroundColor: 'rgba(0, 0, 0, 0.7)', // 배경 색상과 투명도 조절
+                            }}
+                        />
                             
                             <div className='ranking_profile'><img alt='없네' src={`${image1}${item.uphoto}${image2}`} onError={(e) => e.target.style.display = 'none'}/></div>
-                            <div className='ranking_mid'>
-                                <div className='ranking_nickname'>{item.unickname} 님</div> 
 
-                                <div className='ranking_tasu'>{item.rtasu}</div>
+
+                            <div className='ranking_mid'>
+                                <div className='ranking_nickname'>{item.unickname}</div> 
+
+                                <div className='ranking_tasu'>{item.rtasu} 타</div>
                             </div>
 
                             <div className='ranking_place'>
