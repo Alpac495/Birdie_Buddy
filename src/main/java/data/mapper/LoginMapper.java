@@ -14,10 +14,10 @@ public interface LoginMapper {
     public UserDto getUserData(String uemail);
     public int emailChk(String uemail);
     public int nickChk(String unickname);
-    public void insertCode(String uhp, String code);
+    public void insertCode(Map<String, Object> map);
     public void deleteCode(String uhp);
     public int cntCode(String uhp);
-    public int cntHpCode(String uhp, String code);
+    public int cntHpCode(Map<String, Object> map);
     public int hpChk(String uhp);
     public UserDto getUser(int unum);
     public void updateCon(Map<String, Object> map);

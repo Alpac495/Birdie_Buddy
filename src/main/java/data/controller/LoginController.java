@@ -164,8 +164,8 @@ public class LoginController {
 
     @GetMapping("/getRtasu")
     public int getRtasu(int unum) {
-        String s= loginMapper.getRtasu(unum);
-        if(s==null){
+        String s = loginMapper.getRtasu(unum);
+        if (s == null) {
             return 0;
         } else {
             return Integer.parseInt(s);
@@ -191,7 +191,7 @@ public class LoginController {
         if (n != 0) {
             loginMapper.deleteCode(uhp);
         }
-        loginMapper.insertCode(uhp, code);
+        loginService.insertCode(uhp, code);
 
         String hostNameUrl = "https://sens.apigw.ntruss.com"; // 호스트 URL
         String requestUrl = "/sms/v2/services/"; // 요청 URL
@@ -212,6 +212,7 @@ public class LoginController {
         JSONObject bodyJson = new JSONObject();
         JSONObject toJson = new JSONObject();
         JSONArray toArr = new JSONArray();
+        System.out.println("bodyJson=" + bodyJson);
 
         // toJson.put("subject",""); // Optional, messages.subject 개별 메시지 제목, LMS,
         // MMS에서만 사용 가능
@@ -312,7 +313,7 @@ public class LoginController {
 
     @GetMapping("/codechk")
     public boolean codeChk(String uhp, String code) {
-        int n = loginMapper.cntHpCode(uhp, code);
+        int n = loginService.cntHpCode(uhp, code);
         if (n == 1) {
             loginMapper.deleteCode(uhp);
             return true;

@@ -19,11 +19,12 @@ import MyYangdo from "./mypage/MyYangdo";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
-import {JoinListMine} from "./joining";
+import {JoinListMine, JoinUpdateForm} from "./joining";
 import MypagePay from "./mypage/MypagePay";
 import HugiDetail from "./hugi/HugiDetail";
 import MyYangdoDetail from './mypage/MyYangdoDetail';
 import MyYangdoUpdate from './mypage/MyYangdoUpdate';
+import { UserList } from './admin';
 
 
 function RouteMain(props) {
@@ -31,6 +32,10 @@ function RouteMain(props) {
         <div>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+
+                <Route path={'/admin'} >
+                    <Route path="userlist" element={<UserList/>}/>
+                </Route>
 
                 <Route path={'yangdo'}>
                     <Route path="list" element={<YangdoList/>}/>
@@ -59,6 +64,7 @@ function RouteMain(props) {
                     <Route path={"list/:unum"} element={<JoinList/>}/>
                     <Route path={"mylist/:unum"} element={<JoinListMine/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
+                    <Route path={"updateform/:jnum/:unum"} element={<JoinUpdateForm/>}/>
                     <Route path={"detail"} element={<JoinDetail/>}/>
                     <Route path={"detail/:jnum/:unum"} element={<JoinDetail/>}/>
                 </Route>
