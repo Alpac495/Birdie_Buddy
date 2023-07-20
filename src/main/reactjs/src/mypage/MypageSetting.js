@@ -23,7 +23,7 @@ const MypageSetting = () => {
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/account.svg" />
-                    <div className="MPSlabel1">마이 버디</div>
+                    <div className="MPSlabel1">내 정보 수정</div>
                 </div>
                 <div className="MPSsingle-line-item1" />
                 <div className="MPSdivider">
@@ -68,6 +68,7 @@ const MypageSetting = () => {
                         <div className="MPSlabel">로그아웃</div>
                     </div>
                 </div>
+
             </div>
             <img className="settings-icon1" alt="" src="/settings1.svg" />
             <img className="vector-icon" alt="" src="/vector.svg" />
