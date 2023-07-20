@@ -140,6 +140,9 @@ function Home(props) {
                 <li>
                     <NavLink to={'/admin/userlist'}>전체사용자</NavLink>
                 </li>
+                <li>
+                    <NavLink to={'/admin/blacklist'}>블랙리스트</NavLink>
+                </li>
             </ul>
         </div>
     );

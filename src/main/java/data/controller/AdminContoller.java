@@ -2,6 +2,7 @@ package data.controller;
 
 import java.util.List;
 import data.dto.UserDto;
+import data.mapper.AdminMapper;
 import data.service.AdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,20 @@ public class AdminContoller {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private AdminMapper adminMapper;
+
     @GetMapping("/userlist")
     public List<UserDto> list() {
         List<UserDto> list = adminService.getUserList();
         return list;
+    }
+    @GetMapping("/addBlackList")
+    public void addBlackList(int unum){
+        adminMapper.addBlackList(unum);
+    }
+    @GetMapping("/removeBlackList")
+    public void removeBlackList(int unum){
+        adminMapper.removeBlackList(unum);
     }
 }

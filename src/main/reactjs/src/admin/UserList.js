@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./UserList.css";
 import {Link, NavLink} from 'react-router-dom';
+import axios from 'axios';
 function UserList(props) {
     const [searchTerm, setSearchTerm] = useState("");
     
@@ -13,10 +14,20 @@ function UserList(props) {
                 setData(res.data);
             })
     },[]);
+    const  addBlackList=(unum)=>{
+        axios.get('/admin/addBlackList?unum='+unum)
+        
+    }
+
+    const removeBlackList=(unum)=>{
+        axios.get('/admin/removeBlackList?unum='+unum)
+    }
 
     useEffect(()=>{
         list();
-    },[list])
+    },[list, addBlackList, removeBlackList])
+
+
 
 
 
@@ -71,7 +82,12 @@ function UserList(props) {
 
                                     <div className="FLrectangle-parent">
                                         <div className="FLgroup-child" />
-                                        <div className="FLdiv4">블랙</div>
+                                        {
+                                            item.ublacklist==0?
+                                            <div className="FLdiv4" onClick={(e)=>addBlackList(item.unum)}>차단하기</div>
+                                            :
+                                            <div className="FLdiv4" onClick={(e)=>removeBlackList(item.unum)}>취소하기</div>
+                                        }
                                     </div>
                                 </div>
                         </div>
