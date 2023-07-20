@@ -1,128 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
 
-function NCloudChatRoomList() {
-    const [chatRooms, setChatRooms] = useState([]);
-    const [chat, setChat] = useState(null);
-    const [lastMessages, setLastMessages] = useState({});
+const NCloudChatRoomList = ({ selectedChannel, onChannelSelect }) => {
+    const [channels, setChannels] = useState([]);
 
-    const getLastMessageForChannel = async (channelId) => {
+    useEffect(() => {
+        const fetchChannels = async (chat) => {
+            try {
+                const channels = await chat.getChannels({}, { created_at: -1 }, { offset: 0, per_page: 100 });
+                const updatedChannels = await Promise.all(
+                    channels.edges.map(async (channel) => {
+                        const lastMessage = await getLastMessage(chat, channel.node.id);
+                        return { ...channel, node: { ...channel.node, lastMessage } };
+                    })
+                );
+                setChannels(updatedChannels);
+            } catch (error) {
+                console.error('Error fetching channels:', error);
+                setChannels([]);
+            }
+        };
+
+        const initializeChat = async () => {
+            const chat = new ncloudchat.Chat();
+            await chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
+
+            await chat.connect({
+                id: 'guest@company',
+                name: 'Guest',
+                profile: 'https://image_url',
+                customField: 'json',
+            });
+
+            fetchChannels(chat);
+        };
+
+        initializeChat();
+    }, []);
+
+    const getLastMessage = async (chat, channelId) => {
         try {
-            if (chat && chat.getChannelMessages) {
-                const messages = await chat.getChannelMessages(channelId);
-                if (messages.length > 0) {
-                    return messages[messages.length - 1].content;
-                } else {
-                    return "No messages";
-                }
-            } else {
-                return "No messages";
-            }
+            const filter = { channel_id: channelId };
+            const sort = { created_at: -1 };
+            const option = { offset: 0, per_page: 1 };
+            const channelMessages = await chat.getMessages(filter, sort, option);
+            const lastMessage = channelMessages.edges[0]?.node;
+            return lastMessage;
         } catch (error) {
-            console.error("Error fetching last message:", error);
-            return "No messages";
+            console.error('Error fetching last message:', error);
+            return null;
         }
     };
-
-    const fetchLastMessages = async (channels) => {
-        if (channels.length === 0) return;
-
-        const lastMessageMap = {};
-        for (const edge of channels) {
-            const channelId = edge.node.id;
-            const lastMessage = await getLastMessageForChannel(channelId);
-            lastMessageMap[channelId] = lastMessage;
-        }
-
-        setLastMessages(lastMessageMap);
-    };
-
-    useEffect(() => {
-        const fetchChatRooms = async () => {
-            const chatInstance = new ncloudchat.Chat();
-            setChat(chatInstance);
-
-            try {
-                await chatInstance.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
-                await chatInstance.connect({
-                    id: 'guest@company',
-                    name: 'Guest',
-                    profile: 'https://image_url',
-                    customField: 'json',
-                });
-
-                const { edges } = await chatInstance.getChannels({});
-                setChatRooms(edges);
-            } catch (error) {
-                console.error('Error fetching chat rooms:', error);
-            }
-        };
-
-        fetchChatRooms();
-    }, []);
-
-    useEffect(() => {
-        const fetchChatRooms = async () => {
-            const chatInstance = new ncloudchat.Chat();
-            setChat(chatInstance);
-
-            try {
-                await chatInstance.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
-                await chatInstance.connect({
-                    id: 'guest@company',
-                    name: 'Guest',
-                    profile: 'https://image_url',
-                    customField: 'json',
-                });
-
-                const { edges } = await chatInstance.getChannels({});
-                setChatRooms(edges);
-
-                // 채널 목록이 불러와진 후에 fetchLastMessages 호출
-                fetchLastMessages(edges);
-            } catch (error) {
-                console.error('Error fetching chat rooms:', error);
-            }
-        };
-
-        fetchChatRooms();
-    }, []);
-
-    useEffect(() => {
-        // chat 객체가 없을 경우 메시지를 불러오지 않음
-        if (!chat) return;
-
-        const fetchLastMessages = async (channels) => {
-            if (channels.length === 0) return;
-
-            const lastMessageMap = {};
-            for (const edge of channels) {
-                const channelId = edge.node.id;
-                const lastMessage = await getLastMessageForChannel(channelId);
-                lastMessageMap[channelId] = lastMessage;
-            }
-
-            setLastMessages(lastMessageMap);
-        };
-
-        fetchLastMessages(chatRooms);
-    }, [chat, chatRooms]);
 
     return (
         <div>
-            <h2>ncloudchat 대화방 목록</h2>
-            <ul>
-                {chatRooms.map((edge) => (
-                    <li key={edge.node.id}>
-                        {edge.node.name}
-                        <ul>
-                            <li>{lastMessages[edge.node.id]}</li>
-                        </ul>
-                    </li>
-                ))}
-            </ul>
+            {/* 채팅방 목록을 출력하는 부분 */}
+            {channels.map(({ node }) => (
+                <div
+                    key={node.id}
+                    className={`message ${selectedChannel && selectedChannel.id === node.id ? 'selected' : ''}`}
+                    onClick={() => onChannelSelect(node)}
+                >
+                    {node.name} - {node.lastMessage?.content || 'No message'}
+                </div>
+            ))}
         </div>
     );
-}
+};
 
 export default NCloudChatRoomList;

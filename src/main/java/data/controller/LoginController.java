@@ -247,6 +247,7 @@ public class LoginController {
         JSONObject bodyJson = new JSONObject();
         JSONObject toJson = new JSONObject();
         JSONArray toArr = new JSONArray();
+        System.out.println("bodyJson=" + bodyJson);
 
         // toJson.put("subject",""); // Optional, messages.subject 개별 메시지 제목, LMS,
         // MMS에서만 사용 가능

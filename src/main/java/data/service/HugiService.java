@@ -48,6 +48,18 @@ public class HugiService implements HugiServiceInter
 
         hugiMapper.insertHugi(hdto);
     }
+    public void updateHugi(HugiDto hdto) {
+        // unum을 사용하여 사용자 정보 가져오기
+        int unum = hdto.getUnum();
+        UserDto userDto = getUserDto(unum);
+        String unickname = userDto.getUnickname();
+
+        // HugiDto에 사용자 정보 설정
+        hdto.setUnickname(unickname);
+
+        // HugiMapper를 통해 데이터베이스에서 해당 게시물 정보를 업데이트합니다.
+        hugiMapper.updateHugi(hdto);
+    }
     @Override
     public void addLikeCount(int hnum) {
         hugiMapper.addLikeCount(hnum);
@@ -77,8 +89,16 @@ public class HugiService implements HugiServiceInter
     }
     @Override
     public UserDto getUserDto(int unum) {
-        return hugiMapper.getUserDto(unum);
+        UserDto userDto = hugiMapper.getUserDto(unum);
+        if (userDto == null) {
+            // 데이터베이스에서 사용자 정보를 찾지 못한 경우 적절한 로직을 추가하여 처리
+            // 예를 들어, 존재하지 않는 사용자를 처리하는 방법을 정의하거나 기본값을 설정할 수 있습니다.
+            // 여기서는 빈 UserDto 객체를 반환하도록 설정하는 예시를 보여드립니다.
+            userDto = new UserDto();
+        }
+        return userDto;
     }
+
 
 }
 

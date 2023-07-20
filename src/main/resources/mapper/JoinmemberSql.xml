@@ -10,12 +10,12 @@
         select count(unum) from joinmember where unum=#{unum} and jnum=#{jnum}
     </select>
     <insert id="joinGaip" parameterType="JoinmemberDto">
-        insert into joinmember (unum,jnum,jaccept) values (#{unum},#{jnum},0)
+        insert into joinmember (unum,jnum,jaccept,jp1gender,jp1age,jp1tasu,jcount) values (#{unum},#{jnum},0,#{jp1gender},#{jp1age},#{jp1tasu},#{jcount})
     </insert>
-    <delete id="joinCancel" parameterType="int">
+    <delete id="joinCancel" parameterType="Map">
         delete from joinmember where unum=#{unum} and jnum=#{jnum}
     </delete>
-    <update id="acceptJoin" parameterType="int">
+    <update id="acceptJoin" parameterType="Map">
         update joinmember set jaccept=1 where unum=#{unum} and jnum=#{jnum}
     </update>
 </mapper>

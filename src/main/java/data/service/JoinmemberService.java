@@ -9,9 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @Service
-public class JoinmemberService implements JoinmemberServiceInter{
+public class JoinmemberService implements JoinmemberServiceInter {
 
     @Autowired
     private JoinmemberMapper joinmemberMapper;
@@ -28,7 +27,7 @@ public class JoinmemberService implements JoinmemberServiceInter{
 
     @Override
     public int getCheckMember(int unum, int jnum) {
-        Map<String, Object> map = new HashMap<>(); 
+        Map<String, Object> map = new HashMap<>();
         map.put("unum", unum);
         map.put("jnum", jnum);
         return joinmemberMapper.getCheckMember(map);
@@ -41,12 +40,18 @@ public class JoinmemberService implements JoinmemberServiceInter{
 
     @Override
     public int joinCancel(int unum, int jnum) {
-        return joinmemberMapper.joinCancel(unum,jnum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", jnum);
+        return joinmemberMapper.joinCancel(map);
     }
 
     @Override
     public int acceptJoin(int unum, int jnum) {
-        return joinmemberMapper.acceptJoin(unum, jnum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", jnum);
+        return joinmemberMapper.acceptJoin(map);
     }
 
 }
