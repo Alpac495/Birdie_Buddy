@@ -1,4 +1,5 @@
 import "./RankForm.css";
+import "../header/Header.css";
 import Header from "../header/Header";
 import {useCallback, useEffect, useState} from "react";
 import Button from "@mui/material/Button";
@@ -117,7 +118,9 @@ const RankForm = () => {
 
     return (
         <div className="rankform">
-            <Header/>
+            <div>
+                <Header/>
+            </div>
             <button className="select_golf" onClick={openModal}>골프장선택</button>{gname}
             <Modal open={modalOpen} close={closeModal} header="골프장 선택">
                 <div>
