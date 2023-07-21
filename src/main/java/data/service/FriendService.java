@@ -10,19 +10,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @Service
-public class FriendService implements FriendServiceInter{
+public class FriendService implements FriendServiceInter {
 
     @Autowired
     private FriendMapper friendMapper;
+
     @Override
-    public List<FriendDto> getFriendList(int unum){
+    public List<FriendDto> getFriendList(int unum) {
         return friendMapper.getFriendList(unum);
     }
 
     @Override
-    public List<FriendDto> getRequestList(int unum){
+    public List<FriendDto> getRequestList(int unum) {
         return friendMapper.getRequestList(unum);
     }
 
@@ -33,12 +33,18 @@ public class FriendService implements FriendServiceInter{
 
     @Override
     public int checkBuddy(int unum, int funum) {
-        return friendMapper.checkBuddy(unum, funum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", funum);
+        return friendMapper.checkBuddy(map);
     }
 
     @Override
     public int checkingBuddy(int unum, int funum) {
-        return friendMapper.checkingBuddy(unum, funum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", funum);
+        return friendMapper.checkingBuddy(map);
     }
 
     @Override
@@ -53,19 +59,33 @@ public class FriendService implements FriendServiceInter{
 
     @Override
     public int friendCancel1(int unum, int funum) {
-        return friendMapper.friendCancel1(unum,funum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", funum);
+        return friendMapper.friendCancel1(map);
     }
+
     @Override
     public int friendCancel2(int unum, int funum) {
-        return friendMapper.friendCancel2(unum,funum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", funum);
+        return friendMapper.friendCancel2(map);
     }
 
     @Override
     public int acceptFriend1(int unum, int funum) {
-        return friendMapper.acceptFriend1(unum, funum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", funum);
+        return friendMapper.acceptFriend1(map);
     }
+
     @Override
     public int acceptFriend2(int unum, int funum) {
-        return friendMapper.acceptFriend2(unum, funum);
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("jnum", funum);
+        return friendMapper.acceptFriend2(map);
     }
 }

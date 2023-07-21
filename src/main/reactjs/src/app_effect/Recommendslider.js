@@ -6,19 +6,18 @@ import Axios from 'axios';
 
 export default class SimpleSlider extends Component {
 
-    // componentDidMount() {
-    //     Axios.get('/api/data') // 예시로 '/api/data' 경로에 GET 요청을 보냅니다.
-    //         .then(response => {
-    //             // 응답 데이터를 처리합니다.
-    //             console.log(response.data);
-    //         })
-    //         .catch(error => {
-    //             // 에러 처리
-    //             console.log(error);
-    //         });
-    // }
+    /*componentDidMount() {
+        Axios.get('/api/data') // 예시로 '/api/data' 경로에 GET 요청을 보냅니다.
+            .then(response => {
+                // 응답 데이터를 처리합니다.
+                console.log(response.data);
+            })
+    }*/
     
     render() {
+
+
+
         const settings = {
             infinite: true,
             speed: 500,

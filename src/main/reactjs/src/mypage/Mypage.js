@@ -9,10 +9,8 @@ import ModalNick from "./MypageUpdateNickname"
 import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
 import Axios from "axios";
-import { useParams } from "react-router-dom";
 
 function Mypage(props) {
-
     const url = process.env.REACT_APP_PROFILE;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
@@ -21,7 +19,7 @@ function Mypage(props) {
     const [imsiCon, setImsiCon] = useState('');
     const [unickname, setUnickname] = useState('');
     const [imsiNick, setImsiNick] = useState('');
-    const [unum, setUnum]=useState(0);
+    const [unum, setUnum]=useState('');
     const [uphoto, setUphoto] = useState('');
     const [imsiphoto, setImsiphoto] = useState('');
     const [ubgphoto, setUbgphoto] = useState('');
@@ -32,10 +30,8 @@ function Mypage(props) {
     const photoRef = useRef();
 
     const unumchk = () => {
-        console.log("unum:" + unum);
-        axios.get("/login/unumChk?unum=" + unum)
+        axios.get("/login/unumChk")
             .then(res => {
-                // setUnum(res.data);
                 axios.get("/login/getuser?unum=" + res.data)
                     .then(res => {
                         console.log(res.data);

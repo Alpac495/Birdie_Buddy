@@ -124,12 +124,6 @@ body {
     top: 47.5rem;
     height: 2.5rem;
 }
-.jdiv8,
-.joinform-child2 {
-    position: absolute;
-    top: 48.5rem;
-    height: 2.5rem;
-}
 .joinform-child {
     width: calc(100% - 34px);
     right: 1.06rem;
@@ -137,24 +131,7 @@ body {
     border-radius: 2px;
     background-color: #89e1a4;
 }
-.joinform-child2 {
-    width: calc(100% - 34px);
-    right: 1.06rem;
-    left: 1.06rem;
-    border-radius: 2px;
-    background-color: #89e1a4;
-}
 .jdiv7 {
-    left: calc(50% - 62px);
-    font-size: 0.94rem;
-    font-weight: 600;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 7.69rem;
-}
-.jdiv8 {
     left: calc(50% - 62px);
     font-size: 0.94rem;
     font-weight: 600;

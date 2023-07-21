@@ -1,6 +1,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.AdminMapper">
     <select id="getUserList" resultType="UserDto">
-        select * from user order by unum
+        select * from user where ublacklist=0 and unum!=1 order by ureport desc;
+    </select>
+    <update id="addBlackList" parameterType="int">
+        update user set ublacklist=ublacklist+1 where unum=#{unum}
+    </update>
+    <update id="removeBlackList" parameterType="int">
+        update user set ublacklist=ublacklist-1 and ureport=0 where unum=#{unum}
+    </update>
+    <select id="getBlackList" resultType="UserDto">
+        select * from user where ublacklist=1 order by ureport desc;
+    </select>
+    <insert id="noticeWrite" parameterType="NoticeDto">
+        insert into notice (nsubject, ncontent, nwriteday) values (#{nsubject}, #{ncontent}, now())
+    </insert>
+    <select id="noticeList" resultType="NoticeDto">
+        select * from notice;
+    </select>
+    <select id="noticeDetail" parameterType="int" resultType="NoticeDto">
+        select * from notice where nnum=#{nnum}
     </select>
 </mapper>
