@@ -4,3 +4,4 @@ export {default as Logintest} from './Logintest';
 export {default as KaKaoCallBack} from './KaKaoCallBack';
 export {default as NaverCallBack} from './NaverCallBack';
 export {default as Naver} from './Naver';
+export {default as Taltae} from './Taltae';

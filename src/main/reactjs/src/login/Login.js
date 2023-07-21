@@ -65,7 +65,11 @@ function Login(props) {
                             }
                             label="이메일저장"
                         />
-                        <span className={''} type={'button'} onClick={sign}>회원가입</span>
+                        <span>
+                            {/*<span className={''} type={'button'} onClick={sign}>ID찾기</span> /*/}
+                            {/*<span className={''} type={'button'} onClick={sign}>PASS찾기</span> /*/}
+                            <span className={''} type={'button'} onClick={sign}>회원가입</span>
+                        </span>
                     </div>
                     <button className={'greenbox loginbtn'} type={'submit'} onClick={ouSubmitEvent}><span>로그인</span>
                     </button>
