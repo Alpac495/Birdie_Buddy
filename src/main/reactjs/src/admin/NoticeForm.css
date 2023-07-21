@@ -1,0 +1,30 @@
+.NForm_div1{
+    display: flex;
+    /*width: 22.5rem;*/
+    padding: 7rem 1rem 1rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+}
+.NForm_textbox{
+    display: inline-flex;
+    width: 20rem;
+    height: 2.9rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+
+    border-radius: 0.125rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background-color: RGB(238, 250, 234);
+}
+.NForm_textarea{
+    display: inline-flex;
+    width: 20rem;
+    height: 20rem;
+    padding: 1rem 1rem 1rem 1rem;
+    overflow: auto;
+    resize: none;
+
+    border-radius: 0.125rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background-color: RGB(238, 250, 234);
+}

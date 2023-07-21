@@ -75,7 +75,7 @@ const MypageSetting = () => {
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="MPSlabel1">회원탈퇴</div>
+                    <div className="MPSlabel1" onClick={()=>navi('/login/taltae')}>회원탈퇴</div>
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />

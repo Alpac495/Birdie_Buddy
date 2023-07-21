@@ -23,7 +23,7 @@ import MypagePay from "./mypage/MypagePay";
 import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
 import Test from './yangdo/Test';
 import HugiDetail from "./hugi/HugiDetail";
-import { Blacklist, UserList } from './admin';
+import { Blacklist, NoticeDetail, NoticeForm, NoticeList, UserList } from './admin';
 
 
 function RouteMain(props) {
@@ -35,6 +35,9 @@ function RouteMain(props) {
                 <Route path={'/admin'} >
                     <Route path="userlist" element={<UserList/>}/>
                     <Route path="blacklist" element={<Blacklist/>}/>
+                    <Route path="NoticeForm" element={<NoticeForm/>}/>
+                    <Route path="NoticeList" element={<NoticeList/>}/>
+                    <Route path="NoticeDetail/:nnum" element={<NoticeDetail/>}/>
                 </Route>
 
                 <Route path={'yangdo'}>
