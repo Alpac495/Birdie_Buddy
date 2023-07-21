@@ -1,14 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
 body {
     margin: 0;
     line-height: normal;
 }
-.JLdiv {
-    position: absolute;
-    top: 0;
+.header{
+    width: 100%;
 }
-.JLdiv {
+.btn1_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.JElogo-ex-child {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
+}
+.JEdiv,
+.JElogo-ex-child,
+.JEregister {
+    position: absolute;
+}
+.JEdiv {
+    top: -2.85%;
     left: 0;
     letter-spacing: -0.01em;
     background: linear-gradient(202.17deg, #03c75a, #85c644);
@@ -16,93 +38,167 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.JLb {
-    position: relative;
-    letter-spacing: 0.03em;
-    width: 4.25rem;
-    flex-shrink: 0;
-    font-size: 10px;
+.JEicon-notification,
+.JEicon-profile-circle {
+    height: 41.77%;
+    width: 3.73%;
+    top: 38.89%;
+    right: 6.36%;
+    bottom: 19.34%;
+    left: 89.91%;
 }
-.JLb,
-.JLb1,
-.btn1_wrapper {
+.JEicon-profile-circle {
+    height: 41.67%;
+    width: 4.59%;
+    right: 0;
+    bottom: 19.44%;
+    left: 95.41%;
+}
+.JEregister-parent {
+    position: absolute;
+    height: 42.86%;
+    width: 90.83%;
+    top: 28.57%;
+    right: 4.44%;
+    bottom: 28.57%;
+    left: 4.72%;
+}
+.JElogo-ex {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20.63rem;
+    height: 5.13rem;
+}
+.JEsearch-icon {
+    position: relative;
+    border-radius: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.JEactions,
+.JEtitle {
+    position: absolute;
+}
+.JEactions {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    overflow: hidden;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.JEtitle {
+    width: 60%;
+    bottom: 1.06rem;
+    left: 1.25rem;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+    border: none;
+}
+.JEapp-bar-top {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+.JEyangdo-bar {
+    align-self: stretch;
+    position: relative;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    height: 3.13rem;
+}
+.JEdiv1 {
+    flex: 1;
+    position: relative;
+    line-height: 0.88rem;
+    text-transform: uppercase;
+}
+.JEframe {
+    align-self: stretch;
+    background-color: #ebebf0;
+    border: 1px solid #ebebf0;
+    display: flex;
+    padding: 0.63rem 0.5rem;
     align-items: center;
     justify-content: center;
 }
-.btn1_wrapper {
-    position: absolute;
-    top: 5.18rem;
-    left: 1.06rem;
-    border-radius: 10px;
-    background-color: transparent;
-    border: 1px solid #51c64d;
-    box-sizing: border-box;
-    width: 4.69rem;
+.JEframe,
+.JEframe1,
+.JEsegmented-control1 {
+    flex: 1;
     overflow: hidden;
     flex-direction: row;
-    padding: 0.56rem 1.13rem;
 }
-.JLb1 {
-    position: relative;
-    letter-spacing: 0.03em;
-    width: 2.75rem;
-    flex-shrink: 0;
-    font-size: 10px;
-}
-.btn2_wrapper,
-.joinlist-child {
-    position: absolute;
-    overflow: hidden;
-    border: 1px solid black;
-}
-.btn2_wrapper {
-    top: 5.18rem;
-    right: 1rem;
-    border-radius: 10px;
-    background-color: transparent;
-    border: 1px solid #ed4c5c;
-    box-sizing: border-box;
-    width: 4.69rem;
+.JEframe1 {
+    align-self: stretch;
+    border: 1px solid #ebebf0;
     display: flex;
-    flex-direction: row;
-    padding: 0.56rem 1.81rem;
+    padding: 0.63rem 0.5rem;
     align-items: center;
     justify-content: center;
 }
-.joinlist-child {
-    width: calc(100% - 205px);
-    top: 5.25rem;
-    right: 6.38rem;
-    left: 6.44rem;
-    max-width: 100%;
-    height: 2.31rem;
+.JEsegmented-control1 {
+    border-radius: 5px;
+    background-color: #fff;
+    height: 2.06rem;
+    align-items: flex-start;
 }
-.instance-child,
-.jlist-inner {
+.JEjtap,
+.JEsegmented-control,
+.JEsegmented-control1 {
+    display: flex;
+    justify-content: flex-start;
+}
+.JEsegmented-control {
+    align-self: stretch;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: center;
+    font-size: 0.88rem;
+    color: #000;
+    font-family: Inter;
+}
+.JEjtap {
+    position: absolute;
+    top: 5.19rem;
+    left: 0;
+    width: 100%;
+    height: 5.19rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.13rem;
+    font-size: 1.25rem;
+    font-family: Roboto;
+}
+.JEjoinheader {
+    align-self: stretch;
+    position: relative;
+    height: 10.38rem;
+}
+.JEinstance-child,
+.JEjlist-inner {
     position: absolute;
     width: 100%;
     top: 0;
     right: 0;
     left: 0;
 }
-.instance-child {
+.JEinstance-child {
     height: 100%;
     bottom: 0;
     border-radius: 6px;
     background-color: rgba(0, 0, 0, 0.03);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
-.jlist-inner {
+.JEjlist-inner {
     height: 8.38rem;
-}
-.JLp,
-.JLp1 {
-    margin: 0;
-}
-.JLp1 {
-    font-size: 0.94rem;
-    font-weight: 500;
+    cursor: pointer;
 }
 .JLp2 {
     position: absolute;
@@ -113,24 +209,39 @@ body {
     color: #ed4c5c;
     font-size: 12.96px;
 }
-.JLdiv1 {
+.JEp {
+    margin: 0;
+    line-height: 0.75rem;
+    text-transform: uppercase;
+}
+.JEspan {
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 0.75rem;
+}
+.JEp1 {
+    margin: 0;
+}
+.JEspan1 {
+    font-size: 0.8rem;
+    line-height: 0.75rem;
+}
+.JEdiv4 {
     position: absolute;
+    width: 100%;
     top: 1.06rem;
     left: 5.88rem;
-    line-height: 150%;
     color: #000;
     display: inline-block;
-    width: 8.88rem;
-    font-size: 0.81rem;
 }
-.emoji-flag-in-hole {
+.JEemoji-flag-in-hole {
     position: absolute;
     top: 0.06rem;
     right: 6.06rem;
     width: 1rem;
     height: 1.03rem;
 }
-.JLdiv2 {
+.JEdiv5 {
     position: absolute;
     top: 0;
     right: 0;
@@ -138,72 +249,73 @@ body {
     display: inline-block;
     width: 5.5rem;
 }
-.emoji-flag-in-hole-parent {
+.JEemoji-flag-in-hole-parent {
     position: absolute;
     top: 6.13rem;
     right: 0.81rem;
     width: 7.06rem;
     height: 1.13rem;
 }
-.avatar-user-60,
-.rectangle,
-.rectangle1 {
+.JEavatar-user-60,
+.JErectangle,
+.JErectangle1 {
     position: absolute;
     top: 0.63rem;
     left: 1.13rem;
     border-radius: 24px;
-    background-color: #54c64d;
+    background-color: #89e1a4;
     width: 1.5rem;
     height: 1.5rem;
 }
-.avatar-user-60,
-.rectangle1 {
+.JEavatar-user-60,
+.JErectangle1 {
     top: 2.5rem;
     left: -0.94rem;
     border-radius: 90px;
     width: 5.63rem;
     height: 5.63rem;
 }
-.avatar-user-60 {
+.JEavatar-user-60 {
     top: 1.13rem;
     left: 0.63rem;
     border-radius: 10px;
     background-color: #fff;
-    width: 3.76rem;
+    width: 3.75rem;
     height: 3.75rem;
     overflow: hidden;
 }
-.group-child {
-    position: absolute;
+.JEgroup-child {
     top: 0;
     left: 0;
     border-radius: 20px;
     background-color: rgba(217, 217, 217, 0.16);
     border: 1px solid #ed4c5c;
     box-sizing: border-box;
-    width: 3.75rem;
-    height: 1.19rem;
+    height: 1.25rem;
 }
-.d-16 {
+.JEd-16,
+.JEgroup-child,
+.JErectangle-parent {
     position: absolute;
-    top: 0.13rem;
-    bottom: 0.13rem;
-    left: 0.75rem;
+    width: 3.75rem;
+}
+.JEd-16 {
+    top: 0.07rem;
+    left: 0;
     line-height: 150%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.33rem;
+    height: 1.18rem;
 }
-.rectangle-parent {
-    position: absolute;
+.JErectangle-parent {
     top: 6.13rem;
     left: 0.63rem;
-    width: 3.75rem;
     height: 1.25rem;
     text-align: center;
 }
-.jlist-child {
+.JEjlist-child {
+    position: absolute;
     width: calc(100% - 25.08px);
     top: 5.47rem;
     right: 0.78rem;
@@ -212,45 +324,41 @@ body {
     box-sizing: border-box;
     height: 0.06rem;
 }
-.jlist,
-.jlist1 {
+.JEjlist {
     position: relative;
-    min-width: 20.63rem;
+    min-width: 330px;
+    height: 8.38rem;
 }
-.jlist1 {
-    margin-bottom: 180px;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 0;
-}
-.jlist {
-    top: 9.31rem;
+.JEjlist-wrapper {
     display: flex;
-    flex-direction: row;
-    padding: 0.63rem;
-    box-sizing: border-box;
+    flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: center;
-    max-width: 31.25rem;
-    text-align: left;
-    color: #ed4c5c;
+    gap: 16px;
 }
-
-.joinlist {
-    position: relative;
-    background-color: #fff;
-    width: 100%;
-    height: 50rem;
-    text-align: center;
+.JEjlist-parent,
+.JEjoinlistreact {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.JEjlist-parent {
+    align-self: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.75rem;
     font-size: 0.75rem;
-    color: #000;
+    color: #ed4c5c;
     font-family: Inter;
 }
-.nav-style {
-    text-decoration: none;
-    color: black;
+.JEjoinlistreact {
+    position: relative;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 0.94rem;
+    box-sizing: border-box;
+    gap: 0.63rem;
+    text-align: left;
+    font-size: 1.88rem;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: "Zen Dots";
 }
