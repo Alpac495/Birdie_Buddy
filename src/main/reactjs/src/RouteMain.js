@@ -24,6 +24,8 @@ import HugiDetail from "./hugi/HugiDetail";
 import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
 import ChatRoom from "./chatbot/ChatRoom";
 import { Blacklist, UserList } from './admin';
+import MyHugiList from "./hugi/MyHugiList";
+import MyHugiRowList from "./hugi/MyHugiRowList";
 
 
 function RouteMain(props) {
@@ -57,9 +59,9 @@ function RouteMain(props) {
 
                 <Route path={'/hugi'} >
                     <Route path="list" element={<HugiList/>}/>
-                    <Route path="hugilist" element={<HugiRowList/>}/>
                     <Route path="detail/:hnum" element={<HugiDetail/>}/>
                     <Route path="modify/:hnum" element={<HugiModify/>}/>
+                    <Route path="list/:unum" element={<MyHugiList/>}/>
                 </Route>
 
                 <Route path={'/joining'} >

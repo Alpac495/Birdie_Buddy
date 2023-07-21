@@ -75,8 +75,13 @@ function Home(props) {
 
             <ul> hugi
                 <li>
-                    <NavLink to={'/hugi/list'}>후기</NavLink>
+                    <NavLink to={'/hugi/list'}>후기list</NavLink>
                 </li>
+                {unum !== 0 &&(
+                <li>
+                    <NavLink to={`/hugi/list/${unum}`}>내 후기list</NavLink>
+                </li>
+                )}
             </ul>
 
             <ul> joining

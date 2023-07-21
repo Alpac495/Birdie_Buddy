@@ -20,7 +20,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 
-function HugiRowList(props) {
+function MyHugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
@@ -30,6 +30,7 @@ function HugiRowList(props) {
     const [showLike, setShowLike] = useState(props.showLike || false);
 
     const [unum, setUnum]=useState('');
+    const [userNum,setUserNum]=useState('');
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
@@ -41,7 +42,6 @@ function HugiRowList(props) {
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
-
 
 
     const handleSnackbarClose = () => {
@@ -96,7 +96,9 @@ function HugiRowList(props) {
                 console.error('Error generating shortened URL:', error);
             });
     };
-
+    const handleClickAvatar  = () =>{
+        navi(`/mypage/mypage/${unum}`);
+    };
     const unumchk=()=>{
         Axios.get("/login/unumChk")
             .then(res=> {
@@ -201,7 +203,7 @@ function HugiRowList(props) {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
-                // console.log(res.data)
+                console.log(res.data)
                 setComments(sortedComments);
 
                 res.data.forEach((comment) => {
@@ -226,7 +228,7 @@ function HugiRowList(props) {
 
                 if (Unickname) {
                     setPostUserNickname(Unickname);
-                    // console.log("pN=>"+Unickname);//success
+                    // console.log("pN=>"+Unickname);//잘받아옴
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
@@ -255,7 +257,7 @@ function HugiRowList(props) {
 
             });
             fetchPostUserNickname(unum); // fetchPostUserNickname 함수에 unum 전달
-            // console.log("unum>>"+unum);
+            console.log("unum>>"+unum);
         }
     };
     const sortComments = (comments) => {
@@ -337,7 +339,7 @@ function HugiRowList(props) {
 
         Axios.post("/rehugi/newreply?unum=" + unum, newReply)
             .then((res) => {
-                // console.log('댓글이 성공적으로 추가되었습니다.');
+                console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();
                 toggleReplyForm(comment.rhnum);
                 setReplyError(false);
@@ -390,8 +392,8 @@ function HugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={''} src=''/>
-                <span className="spanName">{postUserNickname}</span>
+                <Avatar className="list_avatar" alt={''} src='' onClick={handleClickAvatar}/>
+                <span className="spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
@@ -426,8 +428,8 @@ function HugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={''} src=''/>
-                        <span className="spanCommentList">
+                        <Avatar className="list_avatar_Comment1" alt={''} src='' onClick={handleClickAvatar}/>
+                        <span className="spanCommentList" onClick={handleClickAvatar}>
                         {postUserNickname}
                       </span>
                     </div>
@@ -470,8 +472,8 @@ function HugiRowList(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
-                  <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
+                  <span className="Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
+                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -522,8 +524,8 @@ function HugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
-                                  <b className="ReplyNickname">
+                                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
+                                  <b className="ReplyNickname" onClick={handleClickAvatar}>
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;
@@ -590,4 +592,4 @@ function HugiRowList(props) {
     );
 }
 
-export default HugiRowList;
+export default MyHugiRowList;

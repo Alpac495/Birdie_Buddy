@@ -147,6 +147,7 @@
     height: 100%;
     border: 1px solid lightgray;
     border-radius: 5px;
+
 }
 .preRhcontent{
     position: relative;
@@ -156,15 +157,32 @@
     left: 120px;
     font-size: 14px;
     white-space: pre-wrap;
+    word-break: break-all;
+    overflow: auto;
+
 }
 .preReplyRhcontent{
     position: relative;
     bottom: 47px;
     left: 120px;
-    width:60px;
+    width:80px;
     height: 100%;
-    font-size: 14px;
+    font-size: 13px;
     white-space: pre-wrap;
+    word-break: break-all;
+    overflow: auto;
+
+}
+.detail_preReplyRhcontent{
+    position: relative;
+    bottom: 47px;
+    left: 120px;
+    width:100px;
+    height: 100%;
+    font-size: 13px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow: auto;
 }
 .spanWriteday{
     marginLeft: 10px;
@@ -229,6 +247,30 @@
     height: 100%;
 }
 .details_Reply > summary{
+    position: relative;
+    width:70px;
+    left: 10px;
+    bottom: 10px;
+    background-color:RGB(137 225 164);
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    padding:5px 5px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.detail_details_Reply{
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    position: relative;
+    padding: 0 10px;
+    left: 10px;
+    width: 320px;
+    height: 100%;
+}
+.detail_details_Reply > summary{
     position: relative;
     width:70px;
     left: 10px;
