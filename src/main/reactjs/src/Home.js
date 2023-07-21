@@ -128,7 +128,7 @@ function Home(props) {
             </ul>
             <ul>chatbot
                 <li>
-                    <NavLink to={'/chatbot'}>chatbot</NavLink>
+                    <NavLink to={'/chating'}>chating room</NavLink>
                 </li>
             </ul>
             <ul>main
