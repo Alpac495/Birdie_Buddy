@@ -28,7 +28,8 @@ function HugiDetail(props) {
 
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [showLike, setShowLike] = useState(props.showLike || false);
-    const [unum, setUnum] = useState(0);
+    const [unum, setUnum] = useState('');
+    const [userNum,setUserNum]=useState('');
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
@@ -66,7 +67,7 @@ function HugiDetail(props) {
         Axios.post(api_url, requestData)
             .then((res) => {
                 const shortenedURL = res.data.result.url; // 단축 URL 값 가져오기
-                console.log('Shortened URL:', shortenedURL);
+                // console.log('Shortened URL:', shortenedURL);
                 // TODO: 여기서 생성된 단축 URL을 사용하여 공유 기능을 구현합니다.
                 // 예를 들어, 해당 URL을 SNS의 공유 버튼에 연결하거나 클립보드에 복사하는 등의 작업을 수행할 수 있습니다.
                 // Clipboard API를 사용하여 클립보드에 복사
@@ -83,11 +84,11 @@ function HugiDetail(props) {
                 console.error('Error generating shortened URL:', error);
             });
     };
-    const unumchk = () => {
-        Axios.get("/login/unumChk?unum=" + unum)
-            .then(res => {
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+            .then(res=> {
                 setUnum(res.data);
-            })
+            });
     }
     useEffect(() => {
         unumchk()
@@ -176,7 +177,7 @@ function HugiDetail(props) {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
-                console.log(res.data)
+                // console.log(res.data)
                 setComments(sortedComments);
 
                 res.data.forEach((comment) => {
@@ -200,7 +201,7 @@ function HugiDetail(props) {
                 const Unickname = res.data;
                 if (Unickname) {
                     setPostUserNickname(Unickname);
-                    console.log("pN=>"+Unickname);
+                    // console.log("pN=>"+Unickname);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
@@ -329,7 +330,7 @@ function HugiDetail(props) {
                 setHwriteday(res.data.hwriteday);
                 setHphoto(res.data.hphoto);
                 setHcontent(res.data.hcontent);
-                setUnum(res.data.unum);
+                setUserNum(res.data.unum);
                 // 서버에서 가져온 다른 데이터도 필요한 경우 여기에 추가적으로 설정합니다.
             })
             .catch((error) => {
@@ -375,22 +376,23 @@ function HugiDetail(props) {
             </h6>
             <hr/>
             <div className="IconsZone">
-                {unum !== 0 && (showLike ? (
+                {unumchk &&
+                    (showLike ? (
                     <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{color: "red"}}/>
                 ) : (
                     <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{color: "red"}}/>
                 ))}
                 <ShareIcon onClick={handleClickShare} className="Icons"/>
                 <ListIcon onClick={handleClickList} className="Icons"/>
-                {parseInt(props.unum) === parseInt(unum) && (
+                {unum  === userNum  && (
                     <DeleteIcon onClick={handleClickDelete} className="Icons"/>
                 )}
-                {parseInt(props.unum) === parseInt(unum) && (
+                {unum  === userNum && (
                     <EditIcon onClick={handleClickModify} className="Icons"/>
                 )}
             </div>
 
-            {unum !== 0 && (
+            {unumchk && (
                 <div className="input-group">
               <textarea
                   className="form-control"
@@ -468,7 +470,7 @@ function HugiDetail(props) {
                   </div>
               )}
               {comment.comments && comment.comments.length > 0 && (
-                  <details className="details_Reply">
+                  <details className="detail_details_Reply">
                       <summary>댓글보기</summary>
                       {comment.comments &&
                           comment.comments.map((reply) => (
@@ -478,7 +480,7 @@ function HugiDetail(props) {
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;
-                                  <pre className="preReplyRhcontent">{reply.rhcontent}</pre>
+                                  <pre className="detail_preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br/>
                                   <span className="spanRhwriteday">{reply.rhwriteday}</span>
                                   {parseInt(reply.unum) === parseInt(unum) && (

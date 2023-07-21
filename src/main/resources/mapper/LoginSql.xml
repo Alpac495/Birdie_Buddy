@@ -49,6 +49,12 @@
     <select id="getRtasu" parameterType="int" resultType="String">
         select rtasu from ranking where unum=#{unum};
     </select>
+    <select id="getUserUhp" parameterType="String" resultType="UserDto">
+        select * from user where uhp=#{uhp}
+    </select>
+    <delete id="taltae" parameterType="int">
+        delete from user where unum=#{unum}
+    </delete>
 
 
 </mapper>
