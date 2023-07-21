@@ -21,6 +21,9 @@ function YangdoDetail(props) {
 
     const navi = useNavigate();
 
+    const photourl1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const photourl2 = process.env.REACT_APP_IMAGE60;
+
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
         Axios.get("/login/unumChk?unum="+unum)
@@ -74,7 +77,7 @@ function YangdoDetail(props) {
     },[]);
 
     return (
-        <div className="yangdodetail">
+        <div className="YEyangdodetailend">
 
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="양도 문의">
@@ -90,89 +93,116 @@ function YangdoDetail(props) {
                 </Modal>
             </React.Fragment>
 
-
-            <div className="YDDgreenlbtn">
-                <div className="YDDgreenlbtn1">
-                    <div className="YDDgreenlbtn-child" />
-                    
-                    {
-                        unum !=null && unum==dto.unum?
-                        <button type='button' className="YDDdiv"
-                            onClick={()=>{
-                                const url=`/yangdo/delete?num=${dto.ynum}`;
-                                Axios.delete(url)
-                                .then(res=>{
-                                    // 목록으로 이동
-                                    alert("마감 / 삭제하시겠습니까?");
-                                    navi(`/yangdo/list/${currentPage}`);
-                                })
-                        }}>마감 / 삭제</button>:
-                        <button type='button' className="YDDdiv" onClick={openModal}>양도 신청</button>
-                    }
-                    
-                </div>
-            </div>
-            <div className="YDDjdinfo">
-                    <div className="YDDdiv1">{dto.yplace}</div>
-                <div className="YDDsingle-line-item">
-                    <div className="YDDlabel">{dto.ywriteday} 등록</div>
-                </div>
-                <div className="YDDcontent-area">
-                    <div className="YDDsingle-line-item1">
-                        <img className="YDDicon" alt="" src="/time.svg" />
-                        <div className="YDDlabel1">{formatDate(dto.yday)} {dto.ysubject}</div>
-                    </div>
-                    <div className="YDDsingle-line-item1">
-                        <img className="YDDicon" alt="" src="/payment.svg" />
-                        <div className="YDDlabel1">{dto.yprice? dto.yprice.toLocaleString() : '가격 정보 없음'}원</div>
-
-                    </div>
-                    <div className="YDDsingle-line-item1">
-                        <div className="YDDicon" />
-                        <div className="YDDlabel1">{dto.ycontent}</div>
-                    </div>
-                    <div className="YDDsettings-3">
-                        <div className="YDDlist-item-group-subtitle" />
-                        <div className="YDDsingle-line-item4" />
-                        <div className="YDDlist-item-group-subtitle" />
-                        <div className="YDDselection-control-list-item" />
-                        <div className="YDDsingle-line-item5">
-                            <img className="YDDicon" alt="" src="/time1.svg" />
-                            <div className="YDDlabel1">{`2023.07.12 17:37 `}</div>
-                            <img className="YDDicon" alt="" src="/secondary-action.svg" />
+            <div className="YEyangdodetailend-child" />
+            <div className="YEgreenstroke-parent">
+                <div className="YEgreenstroke">
+                    <div className="YEframe-parent">
+                        <div className="YEwrapper">
+                            <div className="YEdiv">#{dto.yplace}</div>
                         </div>
-                        <div className="YDDsingle-line-item4" />
-                        <div className="YDDsingle-line-item4" />
-                        <div className="YDDlist-item-group-subtitle2">
-                            <div className="YDDsubtitle">
-                                <div className="YDDlabel5">{`위약금 규정 `}</div>
+                        <div className="YEframe-group">
+                            <div className="YElabel-wrapper">
+                                <div className="YElabel">{dto.ywriteday} 등록</div>
+                            </div>
+                            <div className="YEgroup-wrapper">
+                                <div className="YEparent">
+                                    {
+                                        unum !==null && unum===dto.unum?
+                                        <label className='YElabelUp'
+                                            onClick={()=>
+                                                navi(`/yangdo/update/${dto.ynum}/${currentPage}`)
+                                            }
+                                        >
+                                            <div className="YEdiv1">수정</div>
+                                            <img className="YEgroup-child" alt="" src='' />
+                                        </label>:''
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <div className="YDDsingle-line-item8">
-                            <div className="YDDlabel1">골프장 규정에 따름</div>
+                    </div>
+                    <div className="YEsingle-line-item-parent">
+                        <div className="YEsingle-line-item">
+                            <img className="YEtime-icon" alt="" src='' />
+                            <div className="YElabel1">{formatDate(dto.yday)} {dto.ysubject}</div>
+                        </div>
+                        <div className="YEsingle-line-item">
+                            <img className="YEtime-icon" alt="" src='' />
+                            <div className="YElabel1">
+                                {dto.yprice? dto.yprice.toLocaleString() : '가격 정보 없음'}원
+                            </div>
+                        </div>
+                        <div className="YEsingle-line-item">
+                            <img className="YEicon-note-1" alt="" src='' />
+                            <div className="YElabel1">
+                                {
+                                    dto.ycontent === ''?'내용 없음': dto.ycontent
+                                }
+                            </div>
+                            <div className="YEsecondary-action" />
+                        </div>
+                    </div>
+                    <div className="YElist-item-group-subtitle-parent">
+                        <div className="YElist-item-group-subtitle">
+                            <div className="YEsubtitle">
+                                <div className="YElabel4">{`위약금 규정 `}</div>
+                            </div>
+                        </div>
+                        <div className="YEsingle-line-item3">
+                            <div className="YElabel1">골프장 규정에 따름</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="YDDflistprofile">
-                <div className="YDDflistprofile1">
-
-                    <img className="YDDjduphoto-icon" alt="" src="/jduphoto@2x.png" />
-                    <div className="YDDdiv2">
-            <span className="YDDtxt">
-              <p className="YDDp">{dto.unickname}</p>
-              <p className="YDDp1">{dto.ugender}, {calculateAge(dto.uage)}세</p>
-            </span>
+                <div className="YEframe-container">
+                    <div className="YEgroup">
+                        <div className="YEdiv2">양도자 정보</div>
+                        <div className="YEdiv3">신고하기</div>
                     </div>
-                    <div className="YDDrectangle-parent">
-                        <div className="YDDgroup-child" />
-                        <div className="YDDdiv3">채팅하기</div>
+                    <div className="YEflistprofile">
+                        <div className="YEflistprofile1">
+                            {
+                                dto.uphoto == null?'':
+                                <img className="YEjduphoto-icon" alt="" 
+                                src={`${photourl1}${dto.uphoto}${photourl2}`} />
+                            }
+                            <div className="YEdiv4">
+                <span className="YEtxt">
+                  <p className="YEp">{dto.unickname}</p>
+                  <p className="YEp1">{dto.ugender}, {calculateAge(dto.uage)}세</p>
+                </span>
+                            </div>
+                            <div className="YErectangle-parent">
+                                <div className="YEgroup-item" />
+                                <div className="YEdiv5">채팅하기</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="YDDparent">
-                <div className="YDDdiv4">양도자 정보
-                <div className="YDDdiv5">신고하기</div>
+                <div className="YEgraylbtn-parent">
+                    <div className="YEgraylbtn">
+                        <div className="YEgraylbtn-child" />
+                        <div className="YEdiv6">
+                            <button type='button' onClick={()=>navi(`/yangdo/list/${currentPage}`)}>닫기</button>
+                        </div>
+                    </div>
+                    <div className="YEpopupbtn">
+                        
+                        {
+                            unum !=null && unum==dto.unum?
+                                <button type='button' className="YEframe"
+                                    onClick={()=>{
+                                        const url=`/yangdo/delete?num=${dto.ynum}`;
+                                        window.confirm("마감 / 삭제하시겠습니까?") &&
+                                        Axios.delete(url)
+                                        .then((res)=>{
+                                            // 목록으로 이동
+                                            navi(`/yangdo/list/${currentPage}`);
+                                        })
+                                    }}>마감 / 삭제</button>:
+                            <button type='button' className="YEframe" onClick={openModal}>양도 신청</button>
+                        }
+                         
+                    </div>
                 </div>
             </div>
         </div>

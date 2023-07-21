@@ -2,9 +2,6 @@ package data.mapper;
 
 import data.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
 import java.util.Map;
 
 @Mapper

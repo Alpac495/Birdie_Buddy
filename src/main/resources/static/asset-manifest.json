@@ -1,17 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.4d268f9b.css",
-    "main.js": "/static/js/main.fafbd555.js",
+    "main.css": "/static/css/main.09e6b986.css",
+    "main.js": "/static/js/main.4a9af9d0.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
+    "static/media/golf_ranking.jpg": "/static/media/golf_ranking.61722abbaf185e6f0068.jpg",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
     "static/media/golf_place.jpg": "/static/media/golf_place.acf2d03cace00fe60acd.jpg",
+    "static/media/golf_rankingback.jpg": "/static/media/golf_rankingback.2986f03d94ac89e1c2ba.jpg",
     "static/media/golf_hugi.jpg": "/static/media/golf_hugi.271d900574cc09a3d8b5.jpg",
     "static/media/golf_ad.jpg": "/static/media/golf_ad.d61cf15fb63d8b304b63.jpg",
+    "static/media/bronze-medal.png": "/static/media/bronze-medal.b042076e2a4f3ac51d53.png",
+    "static/media/silver-medal.png": "/static/media/silver-medal.2ef932430b675267f9df.png",
     "static/media/person1.jpg": "/static/media/person1.739b90d7df88cdb96d4d.jpg",
+    "static/media/gold-medal.png": "/static/media/gold-medal.b884151fbb05c35b57f3.png",
     "static/media/naverbtn.png": "/static/media/naverbtn.50f997a4772f912cd966.png",
     "static/media/kakaobtn.png": "/static/media/kakaobtn.021702c8ebe688f0c434.png",
     "static/media/logo_main.svg": "/static/media/logo_main.4bd7bfb35a1f90533a01da19f6b0c3f9.svg",
     "static/media/icon_addbuddy.svg": "/static/media/icon_addbuddy.e77cff188677a87141d5d053840ec766.svg",
+    "static/media/icon_mybuddy.svg": "/static/media/icon_mybuddy.aaaecfa7583c9c85e8c7c0a34dbb1413.svg",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
@@ -20,12 +26,13 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
     "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
-    "main.4d268f9b.css.map": "/static/css/main.4d268f9b.css.map",
-    "main.fafbd555.js.map": "/static/js/main.fafbd555.js.map",
+    "static/media/icon_yangdo.svg": "/static/media/icon_yangdo.527296a35396680a1a82a44b268c50c9.svg",
+    "main.09e6b986.css.map": "/static/css/main.09e6b986.css.map",
+    "main.4a9af9d0.js.map": "/static/js/main.4a9af9d0.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4d268f9b.css",
-    "static/js/main.fafbd555.js"
+    "static/css/main.09e6b986.css",
+    "static/js/main.4a9af9d0.js"
   ]
 }

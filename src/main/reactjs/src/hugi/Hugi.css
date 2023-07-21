@@ -109,4 +109,52 @@ button {
     top:5px;
     left:5px;
 }
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 70%;
+    color: black;
 
+}
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: black;
+    vertical-align: middle;
+    background-color: RGB(137 225 164);
+    cursor: pointer;
+    width:30%;
+    height: 40px;
+    font-weight: bold;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.my_primary_button {
+    background-color: RGB(252 243 168);
+    color: black;
+    padding: 5px 9px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+}
+.my_primary_button_hugis{
+    background-color: RGB(252 243 168);
+    color: black;
+    padding: 5px 9px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 2px;
+}

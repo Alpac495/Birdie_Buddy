@@ -1,15 +1,17 @@
-.div {
+.yfdiv {
     align-self: stretch;
     position: relative;
     font-weight: 500;
   }
-  .email,
-  .email1,
-  .parent {
+
+  .yfemail,
+  .yfemail1,
+  .yfparent {
     display: flex;
     justify-content: flex-start;
   }
-  .email {
+
+  .yfemail {
     border: 0;
     background-color: #eefaea;
     align-self: stretch;
@@ -19,21 +21,16 @@
     padding: 1rem 0.75rem;
     align-items: center;
     outline: 0;
+    font-size: 1rem;
+    resize: none;
   }
-  .email1,
-  .parent {
+
+  .yfemail1,
+  .yfparent {
     font-family: Roboto;
   }
-  .parent {
-    position: absolute;
-    top: 31.31rem;
-    left: 1.06rem;
-    width: 20.38rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.38rem;
-  }
-  .email1 {
+  
+  .yfemail1 {
     border: 0;
     font-size: 1rem;
     background-color: #eefaea;
@@ -44,21 +41,25 @@
     padding: 1rem 0.75rem;
     align-items: center;
   }
-  .email1:focus {
+
+  .yfemail1:focus {
     outline: 0;
   }
-  .email2,
-  .group {
+
+  .yfemail2,
+  .yfgroup {
     align-self: stretch;
     display: flex;
     justify-content: flex-start;
   }
-  .group {
+
+  .yfgroup {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.38rem;
   }
-  .email2 {
+
+  .yfemail2 {
     border: 0;
     font-family: Roboto;
     font-size: 1rem;
@@ -70,31 +71,30 @@
     align-items: center;
     outline: 0;
   }
-  .frame-group {
-    align-self: stretch;
-    height: 17.06rem;
-    align-items: flex-start;
-  }
-  .frame-group,
-  .frame-parent,
-  .frame-wrapper {
+  
+  .yframe-yfparent,
+  .yframe-yfwrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
   }
-  .frame-wrapper {
+
+  .yframe-yfwrapper {
     align-self: stretch;
     align-items: flex-start;
+    height: 6.5rem;
   }
-  .frame-parent {
+  
+  .yframe-yfparent {
     position: absolute;
-    top: 6.69rem;
+    top: 6.0rem;
     left: calc(50% - 163px);
     width: 20.38rem;
     height: 36.19rem;
     align-items: center;
   }
-  .logo-ex {
+
+  .yflogo-ex {
     position: absolute;
     top: 0;
     left: 0;
@@ -102,7 +102,8 @@
     height: 5.25rem;
     display: none;
   }
-  .graylbtn-child {
+
+  .yfgraylbtn-child {
     height: 100%;
     width: 100%;
     right: 0;
@@ -111,13 +112,15 @@
     border-radius: 5px;
     background-color: #ebebf0;
   }
-  .div5,
-  .graylbtn,
-  .graylbtn-child {
+
+  .yfdiv5,
+  .yfgraylbtn,
+  .yfgraylbtn-child {
     position: absolute;
     top: 0;
   }
-  .div5 {
+
+  .yfdiv5 {
     height: 100%;
     width: 37.73%;
     left: 30.98%;
@@ -126,27 +129,31 @@
     align-items: center;
     justify-content: center;
   }
-  .graylbtn {
+
+  .yfgraylbtn {
     left: 14.92rem;
     border-radius: 3px;
     width: 5.39rem;
     height: 2.5rem;
   }
-  .div6 {
+
+  .yfdiv6 {
     flex: 1;
     position: relative;
     letter-spacing: -0.01em;
     font-weight: 500;
   }
-  .frame,
-  .popupbtn {
+
+  .yframe,
+  .yfpopupbtn {
     position: absolute;
     height: 100%;
     top: 0;
     bottom: 0;
     left: 0;
   }
-  .frame {
+
+  .yframe {
     width: 100%;
     right: 0;
     border-radius: 5px;
@@ -159,32 +166,37 @@
     align-items: center;
     justify-content: center;
   }
-  .popupbtn {
+
+  .yfpopupbtn {
     width: 69.13%;
     right: 30.87%;
     color: #000;
   }
-  .btngroup {
+
+  .yfbtngroup {
     position: absolute;
-    top: 37.63rem;
+    top: 40.5rem;
     left: 1.06rem;
     width: 20.31rem;
     height: 2.5rem;
     text-align: center;
     font-size: 0.94rem;
   }
-  /* .joinform, */
+
+  .yform,
   .yangdoform {
     background-color: #fff;
     height: 46.25rem;
     overflow: hidden;
   }
-  /* .joinform {
+
+  .yform {
     position: absolute;
     top: 0;
     left: 0;
     width: 22.5rem;
-  } */
+  }
+
   .yangdoform {
     position: relative;
     width: 100%;
@@ -193,6 +205,7 @@
     color: #292d32;
     font-family: Inter;
   }
+
   @media screen and (max-width: 960px) {
     .div {
       font-size: 0.88rem;
