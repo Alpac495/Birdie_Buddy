@@ -48,17 +48,17 @@ function Login(props) {
     }
 
     return (
-        <div className={'div1'}>
+        <div className={'Login_div1'}>
             <img src={logo} alt={''}/>
-            <div className={'div2'}>
+            <div className={'Login_div2'}>
                 <form onSubmit={ouSubmitEvent}>
-                    <input className={'greenbox'} type={'text'} required placeholder='ID'
+                    <input className={'Login_greenbox'} type={'text'} required placeholder='ID'
                            onChange={(e) => setUemail(e.target.value)}
                            value={uemail}/><br/><br/>
-                    <input className={'greenbox'} type={'password'} required placeholder='Pass'
+                    <input className={'Login_greenbox'} type={'password'} required placeholder='Pass'
                            onChange={(e) => setUpass(e.target.value)}
                            value={upass}/><br/>
-                    <div className={'div3'}>
+                    <div className={'Login_div3'}>
                         <FormControlLabel
                             control={
                                 <Switch ref={emailRef} onChange={toggle} defaultChecked />
@@ -71,7 +71,8 @@ function Login(props) {
                             <span className={''} type={'button'} onClick={sign}>회원가입</span>
                         </span>
                     </div>
-                    <button className={'greenbox loginbtn'} type={'submit'} onClick={ouSubmitEvent}><span>로그인</span>
+                    <button className={'Login_greenbox Login_loginbtn'} type={'submit'} onClick={ouSubmitEvent}>
+                        로그인
                     </button>
                 </form>
                 <br/>

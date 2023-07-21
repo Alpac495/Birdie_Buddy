@@ -8,13 +8,10 @@ import data.dto.UserDto;
 import data.mapper.LoginMapper;
 import data.mapper.ScoreMapper;
 import data.service.ScoreService;
-import naver.cloud.NcpObjectStorageService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +20,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/score")
 public class ScoreController {
-
-    @Autowired
-    private NcpObjectStorageService storageService;
-
-    private String bucketName = "bit701-bucket-111";
 
     String photo;
 

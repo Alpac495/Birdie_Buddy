@@ -1,14 +1,14 @@
-.Sign_div1{
+.Taltae_div1{
     display: flex;
     /*width: 22.5rem;*/
     padding: 7rem 1rem 15rem 1rem;
     flex-direction: column;
     align-items: center;
 }
-.Sign_div2{
+.Taltae_div2{
     /*text-align: center;*/
 }
-.Sign_textbox{
+.Taltae_textbox{
     text-align: center;
     display: inline-flex;
     width: 20rem;

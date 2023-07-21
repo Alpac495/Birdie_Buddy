@@ -205,6 +205,32 @@ public class LoginController {
         loginMapper.taltae(unum);
         session.removeAttribute("unum");
     }
+    @GetMapping("/getUserInfo")
+    public UserDto getUserInfo(HttpSession session){
+        int unum = (int) session.getAttribute("unum");
+        UserDto udto = loginMapper.getUser(unum);
+        return udto;
+    }
+    @GetMapping("/passChk")
+    public boolean passChk(HttpSession session, String upass){
+        int unum = (int) session.getAttribute("unum");
+        UserDto udto = loginMapper.getUser(unum);
+        if(upass==udto.getUpass()){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/smsSend")
     public String smsSend(String uhp) throws Exception {

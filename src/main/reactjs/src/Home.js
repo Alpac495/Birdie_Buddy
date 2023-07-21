@@ -148,6 +148,12 @@ function Home(props) {
                 <li>
                     <NavLink to={'/admin/blacklist'}>블랙리스트</NavLink>
                 </li>
+                <li>
+                    <NavLink to={'/admin/noticeform'}>공지작성폼</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/admin/noticeList'}>공지리스트</NavLink>
+                </li>
             </ul>
         </div>
     );

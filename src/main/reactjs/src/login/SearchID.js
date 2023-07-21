@@ -1,27 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import './Taltae.css';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-function Taltae(props) {
-    const [uhp, setUhp] = useState('');
+function SearchID(props) {
+    const [data, setData]=useState([]);
+    const [unum, setUnum]=useState('');
+    const [uhp, setUhp]=useState('');
     const [code, setCode] = useState('');
-    const [unum, setUnum] = useState('');
     const [chk, setChk] = useState(false);
-    const navi = useNavigate();
-
-    const unumchk= async ()=>{
-        await axios.get("/login/unumChk?unum=" + unum)
-            .then(res=>{
-                console.log(res.data)
-                setUnum(res.data)
-            })
+    const [upass, setUpass]=useState('');
+    const [upassok, setUpassok]=useState('');
+    const getUserInfo=()=>{
+        axios.get("/login/getUserInfo")
+        .then(res=>{
+            setData(res.data)
+        })
     }
-
-    useEffect(() => {
-        unumchk();
-    }, []);
-
+    useEffect(()=>{
+        getUserInfo();
+    },[])
     const sms = () => {
         if (uhp.length != 11) {
             alert("휴대폰번호 11자리를 입력해 주세요")
@@ -40,7 +36,6 @@ function Taltae(props) {
                 })
         }
     }
-
     const codeChk = () => {
         axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
@@ -51,21 +46,6 @@ function Taltae(props) {
                     alert("코드가 일치하지 않습니다")
                 }
             })
-    }
-    const taltae =()=>{
-        if(chk==false){
-            alert("인증을 먼저 진행해주세요")
-        } else {
-            if(window.confirm("회원탈퇴를 진행하시겠습니까?")){
-                axios.get('/login/taltae?unum='+unum)
-                    .then(res=>{
-                        alert("탈퇴완료")
-                        navi("/")
-                    })
-            } else {
-                alert("취소")
-            }
-        }
     }
     return (
         <div className='Taltae_div1'>
@@ -80,9 +60,20 @@ function Taltae(props) {
                    onChange={(e) => setCode(e.target.value)}/><br/>
             <button type="button" onClick={codeChk}>인증확인</button>
             <br/>
-            <button onClick={taltae}>탈퇴</button>
+            비밀번호<br/>
+                    <input type={"password"} className={'Sign_textbox'} required onChange={(e) => setUpass(e.target.value)}
+                           value={upass}/><br/><br/>
+
+                    비밀번호 확인<br/>
+                    <input type={"password"} className={'Sign_textbox'} required onChange={(e) => setUpassok(e.target.value)}
+                           value={upassok}/>
+                    {
+                        upass == '' ? <div></div> : upass != '' && upass != upassok ? <div>비밀번호가 일치하지 않습니다</div> :
+                            <div>비밀번호가 일치합니다</div>
+                    }
+            <button>탈퇴</button>
         </div>
     );
 }
 
-export default Taltae;
+export default SearchID;
