@@ -6,9 +6,10 @@ import Modal from '../components/Modal';
 import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 import PartnerForm2 from "../components/PartnerForm2";
+import JoinDetail from "./JoinDetail";
 
 
-const JoinUpdateForm = (props) => {
+const JoinUpdateForm = () => {
     const {unum,jnum} = useParams('');    
     const [dto,setDto]=useState({});    
     const [jcontent,setJcontent]=useState('');
@@ -23,6 +24,7 @@ const JoinUpdateForm = (props) => {
     const [jp2gender, setJp2gender] = useState("");
     const [jp2age, setJp2age] = useState("");
     const [jp2tasu, setJp2tasu] = useState("");
+    const [jucount, setJucount] = useState("");
     
     console.log(jnum)
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
@@ -59,6 +61,10 @@ const JoinUpdateForm = (props) => {
             url,
         }).then(res=>{
             setDto(res.data);
+            setJprice(res.data.jprice);
+            setJage(res.data.jage);
+            setJcontent(res.data.jcontent);
+            setJucount(res.data.jucount);
         })
     },[])
 
@@ -69,12 +75,12 @@ const JoinUpdateForm = (props) => {
 
     const onSubmitEvent=(e)=>{
         e.preventDefault();
-        Axios.post("/joining/update",{jcontent,jprice, jage, jp1gender, jp1age, jp1tasu, jp2gender, jp2age, jp2tasu})
+        Axios.post("/joining/update",{jnum,jcontent,jprice, jage, jp1gender, jp1age, jp1tasu, jp2gender, jp2age, jp2tasu, jucount})
             .then(res=>{
                 // onMakerEvent()
                 alert("정상적으로 수정되었습니다")
                 //목록으로 이동
-                navi("/joining/list/")
+                navi(`/joining/detail/${jnum}/${unum}`)
             })
     }
 
@@ -103,10 +109,17 @@ const JoinUpdateForm = (props) => {
         setPartnerFormOpen(false);
     }, []);
 
+    // const originalData = (jprice,jage,jcontent) => {
+    //     setJprice(jprice);
+    //     setJage(jage);
+    //     setJcontent(jcontent);
+    // }
+
     const partnerone = (jp1gender,jp1age,jp1tasu) => {
         setJp1gender(jp1gender);
         setJp1age(jp1age);
-        setJp1tasu(jp1tasu);
+        setJp1tasu(jp1tasu);        
+        setJucount(2);
         setPartnerFormOpen(false);
     }
     const partnertwo = (jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu) => {
@@ -115,13 +128,14 @@ const JoinUpdateForm = (props) => {
         setJp1tasu(jp1tasu);
         setJp2gender(jp2gender);
         setJp2age(jp2age);
-        setJp2tasu(jp2tasu);
+        setJp2tasu(jp2tasu);        
+        setJucount(3);
         setPartnerForm2Open(false);
     }
     console.log(jprice)
 
     return (
-        <div className="joinform">
+        <div className="ujoinform">
 
             {/* <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="Modal heading">
@@ -151,7 +165,7 @@ const JoinUpdateForm = (props) => {
             </React.Fragment> */}
             <form onSubmit={onSubmitEvent}>
             <div className="jregister" />
-            <div className="frame-parent">
+            <div className="uframe-parent">
                 {/* <div className="frame-group">
                     <div className="jparent">
                         <div className="jdiv">
@@ -170,15 +184,15 @@ const JoinUpdateForm = (props) => {
                                value={jtime} onChange={(e)=>setJtime(e.target.value)} required maxLength minLength />
                     </div>
                 </div> */}
-                <div className="frame-container">
-                    <div className="jparent">
+                <div className="uframe-container">
+                    <div className="ujparent">
                         <div className="jdiv1">#하기 내용 전체 재입력이 필요합니다.<br/>
                         #동반자가 있을 경우 동반자 정보도 <br/>&nbsp;&nbsp;반드시! 재입력 해주세요.</div><br/>
                         <div className="jdiv">연령대</div>
                         {/*<input className="jforminput" type="text"  required placeholder="원하는 조인 멤버의 연령대를 입력하세요"*/}
                         {/*       value={jage} onChange={(e)=>setJage(e.target.value)} maxLength minLength />*/}
                         <select className="jforminput" required onChange={(e)=>setJage(e.target.value)}>
-                            <option disabled hidden selected>{dto.jage}</option>
+                            <option disabled hidden selected>{jage}</option>
                             <option value={"연령무관"}>연령무관</option>
                             <option value={"20대만"}>20대만</option>
                             <option value={"30대만"}>30대만</option>
@@ -191,25 +205,25 @@ const JoinUpdateForm = (props) => {
                     <div className="jparent1">
 
                         <div className="jdiv">그린피 (단위 원)</div>
-                        <input className="jforminput1" type="number"  required step={10000} placeholder={dto.jprice}
+                        <input className="jforminput1" type="number"  required step={10000} 
                                value={jprice} onChange={(e)=>setJprice(e.target.value)} maxLength minLength />
                     </div>
                     <div className="jparent2">
                         <div className="jdiv">조인설명</div>
-                        <input className="jforminput5" type="text"  required placeholder={dto.jcontent}
+                        <input className="jforminput5" type="text"  required 
                                value={jcontent} onChange={(e)=>setJcontent(e.target.value)} maxLength minLength />
                     </div>
                 </div>
             </div>
-            <div className="joinform-child" />
-                <div className="jdiv7"><button type='submit'>조인 수정하기</button></div>
-                <label className="jradio-button-setonon">
+            <div className="joinupdateform-child" />
+                <div className="updatejdiv7"><button type='submit'>조인 수정하기</button></div>
+                <label className="juradio-button-setonon">
                     <input type='radio' name='partner' className="jdiv31"/>동반자 없음
                 </label>
-                <label className="jradio-button-setoffon" onClick={openPartnerForm2}>
+                <label className="juradio-button-setoffon" onClick={openPartnerForm2}>
                     <input type='radio' name='partner' className="jdiv31"/>동반자 2명
                 </label>
-                <label className="jradio-button-setoffon1" onClick={openPartnerForm}>
+                <label className="juradio-button-setoffon1" onClick={openPartnerForm}>
                     <input type='radio' name='partner' className="jdiv31"/>동반자 1명
                 </label>
                 
@@ -219,9 +233,9 @@ const JoinUpdateForm = (props) => {
                 <input type='hidden' value={jp2gender}/>
                 <input type='hidden' value={jp2age}/>
                 <input type='hidden' value={jp2tasu}/>
-                
+                <input type='hidden' value={jucount}/>
             </form>
-
+            {/* <JoinDetail propFunction={originalData} /> */}
             {isPartnerForm2Open && (
                 <PortalPopup
                     overlayColor="rgba(113, 113, 113, 0.3)"

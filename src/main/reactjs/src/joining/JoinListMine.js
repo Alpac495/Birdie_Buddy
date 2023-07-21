@@ -17,11 +17,11 @@ const JoinListMine = () => {
     // useEffect(() => {
     //     unumchk()
     // }, []);
-
+    
     const {unum} = useParams('');
     const [mydata, setMydata] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-
+    
     const myjoinlist = useCallback(() => {
         const url = "/joining/myjoinlist?unum="+unum;
         Axios.get(url)

@@ -35,7 +35,7 @@ body {
 .jforminput:focus {
     outline: 0;
 }
-.jparent {
+.ujparent {
     align-self: stretch;
     display: flex;
     flex-direction: column;
@@ -92,8 +92,8 @@ body {
     align-items: center;
     outline: 0;
 }
-.frame-container,
-.frame-parent,
+.uframe-container,
+.uframe-parent,
 .jparent2 {
     display: flex;
     flex-direction: column;
@@ -105,39 +105,39 @@ body {
     align-items: flex-start;
     gap: 0.38rem;
 }
-.frame-container,
-.frame-parent {
+.uframe-container,
+.uframe-parent {
     gap: 1.13rem;
 }
-.frame-container {
+.uframe-container {
     align-self: stretch;
     height: 17.63rem;
     padding: 0 0 5.19rem;
     box-sizing: border-box;
     align-items: flex-start;
 }
-.frame-parent {
+.uframe-parent {
     position: absolute;
     width: calc(100% - 34px);
-    top: 12.69rem;
+    top: 10.69rem;
     right: 1.06rem;
     left: 1.06rem;
     align-items: center;
 }
-.jdiv7,
-.joinform-child {
+.updatejdiv7,
+.joinupdateform-child {
     position: absolute;
     top: 38.5rem;
     height: 2.5rem;
 }
-.joinform-child {
+.joinupdateform-child {
     width: calc(100% - 34px);
     right: 1.06rem;
     left: 1.06rem;
     border-radius: 2px;
     background-color: #89e1a4;
 }
-.jdiv7 {
+.updatejdiv7 {
     left: calc(50% - 62px);
     font-size: 0.94rem;
     font-weight: 600;
@@ -172,7 +172,7 @@ body {
 .jdiv31 {
     line-height: 1.25rem;
 }
-.jradio-button-setonon {
+.juradio-button-setonon {
     position: absolute;
     top: calc(50% + 166.5px);
     left: calc(50% - 163px);
@@ -183,8 +183,8 @@ body {
     gap: 0.38rem;
 }
 
-.jradio-button-setoffon,
-.jradio-button-setoffon1 {
+.juradio-button-setoffon,
+.juradio-button-setoffon1 {
     position: absolute;
     top: calc(50% + 166.5px);
     left: calc(50% + 62.5px);
@@ -195,11 +195,11 @@ body {
     gap: 0.38rem;
     cursor: pointer;
 }
-.jradio-button-setoffon1 {
+.juradio-button-setoffon1 {
     left: calc(50% - 46px);
 }
 
-.joinform {
+.ujoinform {
     position: relative;
     background-color: #fff;
     width: 100%;
