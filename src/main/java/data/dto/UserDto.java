@@ -18,7 +18,9 @@ public class UserDto {
     private String utasuopen;
     private String ucareer;
     private String ubgphoto;
-    
+    private int ureport;
+    private int ublacklist;
+
 
     private String uhp;
     private String code;

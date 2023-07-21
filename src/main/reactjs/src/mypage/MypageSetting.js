@@ -86,6 +86,7 @@ const MypageSetting = () => {
                         <div className="MPSlabel">로그아웃</div>
                     </div>
                 </div>
+
             </div>
 
             <img className="vector-icon" alt="" src="/vector.svg" />
