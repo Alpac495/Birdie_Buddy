@@ -1,14 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './List.css';
 import Avatar from '@mui/material/Avatar';
-import MessageIcon from '@mui/icons-material/Message';
 import {useNavigate, useParams} from 'react-router-dom';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
 import Snackbar from '@mui/material/Snackbar';
@@ -22,7 +15,6 @@ import EditIcon from "@mui/icons-material/Edit";
 
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
-    // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
 
@@ -52,6 +44,9 @@ function HugiDetail(props) {
     const handleClickModify = () =>{
         navi(`/hugi/modify/${hnum}`);
     }
+    const handleClickAvatar  = () =>{
+        navi(`/mypage/mypage/${unum}`);
+    };
     const handleClickShare = () => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
         const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
@@ -177,15 +172,10 @@ function HugiDetail(props) {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
-                // console.log(res.data)
                 setComments(sortedComments);
-
                 res.data.forEach((comment) => {
-                    // fetchUserNickname(comment.unum, comment); // 댓글 작성자의 unickname 가져오기
-
                     if (comment.comments) {
                         comment.comments.forEach((reply) => {
-                            // fetchUserNickname(reply.unum, reply); // 대댓글 작성자의 unickname 가져오기
                         });
                     }
                 });
@@ -201,7 +191,6 @@ function HugiDetail(props) {
                 const Unickname = res.data;
                 if (Unickname) {
                     setPostUserNickname(Unickname);
-                    // console.log("pN=>"+Unickname);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
@@ -232,7 +221,6 @@ function HugiDetail(props) {
                         parentComment.comments = [];
                     }
                     parentComment.comments.push(comment);
-                    // fetchUserNickname(comment.unum, comment); // 대댓글 작성자의 unickname 가져오기
                 }
             }
         }
@@ -364,8 +352,8 @@ function HugiDetail(props) {
     return (
         <div className="list_detail">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={''} src=''/>
-                <span className="spanName">{postUserNickname}</span>
+                <Avatar className="list_avatar" alt={''} src='' onClick={handleClickAvatar}/>
+                <span className="spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
@@ -423,8 +411,8 @@ function HugiDetail(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
-                  <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
+                  <span className="Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
+                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -475,8 +463,8 @@ function HugiDetail(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
-                                  <b className="ReplyNickname">
+                                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
+                                  <b className="ReplyNickname" onClick={handleClickAvatar}>
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;

@@ -42,6 +42,8 @@ function HugiRowList(props) {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+
+
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
@@ -116,13 +118,16 @@ function HugiRowList(props) {
     const handleClose = () => {
         setOpen(false);
     };
+    const handleClickAvatar  = () =>{
+        navi(`/mypage/mypage/${unum}`);
+    };
     const handleClickLikeOn = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(true)를 호출하여 버튼을 활성화합니다.
         Axios.post(`/hugi/like/${hnum}`)
             .then(() => {
                 alert("좋아요를 눌렀습니다!");
-                localStorage.setItem(`likeStatus_${hnum}`, "true"); // 좋아요 상태를 localStorage에 저장
+                localStorage.setItem(`likeStatus_${hnum}`, "true"); // 좋아요 상태 저장
                 setShowLike(true);
             })
             .catch((error) => {
@@ -135,7 +140,7 @@ function HugiRowList(props) {
         Axios.delete(`/hugi/unlike/${hnum}`)
             .then(() => {
                 alert("좋아요를 취소했습니다!");
-                localStorage.setItem(`likeStatus_${hnum}`, "false"); // 좋아요 상태를 localStorage에 저장
+                localStorage.setItem(`likeStatus_${hnum}`, "false"); // 좋아요 상태 저장
                 setShowLike(false);
             })
             .catch((error) => {
@@ -388,8 +393,8 @@ function HugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={''} src=''/>
-                <span className="spanName">{postUserNickname}</span>
+                <Avatar className="list_avatar" alt={''} src='' onClick={handleClickAvatar}/>
+                <span className="spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
@@ -424,8 +429,8 @@ function HugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={''} src=''/>
-                        <span className="spanCommentList">
+                        <Avatar className="list_avatar_Comment1" alt={''} src='' onClick={handleClickAvatar}/>
+                        <span className="spanCommentList" onClick={handleClickAvatar}>
                         {postUserNickname}
                       </span>
                     </div>
@@ -468,8 +473,8 @@ function HugiRowList(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
-                  <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
+                  <span className="Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
+                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -520,8 +525,8 @@ function HugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
-                                  <b className="ReplyNickname">
+                                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
+                                  <b className="ReplyNickname" onClick={handleClickAvatar}>
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;
