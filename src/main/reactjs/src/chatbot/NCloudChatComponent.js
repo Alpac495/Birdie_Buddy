@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
 
-const NCloudChatComponent = ({ selectedChannel }) => {
+function NCloudChatComponent() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
+    const [channelId, setChannelId] = useState('');
 
     useEffect(() => {
-        let chat = null;
-
         const initializeChat = async () => {
-            chat = new ncloudchat.Chat();
+            const chat = new ncloudchat.Chat();
             await chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
             setNc(chat);
 
             chat.bind('onMessageReceived', function (channel, message) {
-                if (channel.id === selectedChannel?.id) {
-                    setMessages((prevMessages) => [...prevMessages, message]);
-                }
+                setMessages((prevMessages) => {
+                    // 중복된 메시지인지 확인하고 필요에 따라 중복을 제거하는 로직 추가
+                    const isDuplicate = prevMessages.some((prevMessage) => prevMessage.message_id === message.message_id);
+                    if (isDuplicate) {
+                        return prevMessages; // 중복된 메시지면 이전 상태를 그대로 반환
+                    }
+                    return [...prevMessages, message]; // 중복이 아니면 새 메시지를 추가하여 반환
+                });
             });
 
             await chat.connect({
@@ -27,68 +31,14 @@ const NCloudChatComponent = ({ selectedChannel }) => {
                 customField: 'json',
             });
 
-            if (selectedChannel) {
-                fetchChannelMessages(chat, selectedChannel.id);
-            }
+            const existingChannelId = '3798edd0-acff-410a-a5b5-986d45830a60';
+            await chat.subscribe(existingChannelId);
+            setChannelId(existingChannelId);
         };
 
         initializeChat();
+    }, []);
 
-        return () => {
-            if (chat) {
-                chat.disconnect();
-            }
-        };
-    }, [selectedChannel]);
-
-    useEffect(() => {
-        // 메시지가 업데이트될 때마다 화면을 스크롤 아래로 이동
-        const chatMessagesDiv = document.getElementById('chat-messages');
-        if (chatMessagesDiv) {
-            chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-        }
-    }, [messages]);
-    const fetchChannelMessages = async () => {
-        try {
-            if (!selectedChannel) return;
-            const filter = { channel_id: selectedChannel.id };
-            const sort = { created_at: -1 }; // 오름차순으로 변경
-            let offset = 0;
-            const per_page = 100; // 한 번에 가져올 대화 개수
-            let allMessages = [];
-
-            while (true) {
-                const option = { offset, per_page };
-                const channelMessages = await nc.getMessages(filter, sort, option);
-                const messages = channelMessages.edges.map((edge) => edge.node);
-                allMessages = allMessages.concat(messages);
-
-                if (messages.length < per_page) {
-                    // 더 이상 가져올 대화 내용이 없으면 반복문 종료
-                    break;
-                }
-
-                offset += per_page;
-            }
-
-            setMessages(allMessages);
-        } catch (error) {
-            console.error('Error fetching channel messages:', error);
-            setMessages([]); // 메시지 목록 불러오기 실패 시 빈 배열로 설정
-        }
-    };
-
-    const Message = ({ message }) => {
-        const isSentByMe = message.sender.id === 'guest@company'; // 사용자 아이디에 따라 수정해주세요
-
-        return (
-            <div style={{ textAlign: isSentByMe ? 'right' : 'left', margin: '10px' }}>
-                <div style={{ backgroundColor: isSentByMe ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
-                    {message.content}
-                </div>
-            </div>
-        );
-    };
     const handleUserInput = (e) => {
         setUserInput(e.target.value);
     };
@@ -101,11 +51,13 @@ const NCloudChatComponent = ({ selectedChannel }) => {
                     throw new Error('Chat is not initialized');
                 }
 
-                const response = await nc.sendMessage(selectedChannel.id, {
+                const response = await nc.sendMessage(channelId, {
                     type: 'text',
                     message: userInput,
                 });
 
+                // 메시지 전송 후 상태 변경하지 않도록 수정
+                // setMessages(prevMessages => [...prevMessages, response]);
                 setUserInput('');
             } catch (error) {
                 console.error('Error:', error);
@@ -114,10 +66,12 @@ const NCloudChatComponent = ({ selectedChannel }) => {
     };
 
     return (
-        <div>
-            <div className="chat-messages" style={{ width: '500px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
-                {messages.slice().reverse().map((message) => (
-                    <Message key={message.id} message={message} />
+        <div style={{ width: '500px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
+            <div className="chatbox">
+                {messages.map((message, index) => (
+                    <div key={index} className="message">
+                        {message.content}
+                    </div>
                 ))}
             </div>
             <form onSubmit={handleSubmit}>
@@ -131,6 +85,6 @@ const NCloudChatComponent = ({ selectedChannel }) => {
             </form>
         </div>
     );
-};
+}
 
 export default NCloudChatComponent;
