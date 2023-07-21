@@ -64,7 +64,7 @@ function UserList(props) {
                         <div className="flist-child" />
                         <div className="flistprofile">
                                 <div className="flistprofile1">
-                                    <Link to={`/friend/detail/${item.funum}`} className="FDMoveLink">
+                                    <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
                                     <img className="FLphoto-icon" alt="" src="/jduphoto@2x.png" />
                                     </Link>
                                     <div className="FLdiv3">
