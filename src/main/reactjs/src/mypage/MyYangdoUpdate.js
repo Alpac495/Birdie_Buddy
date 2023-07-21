@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Modal from '../components/Modal';
+import "../yangdo/YangdoForm.css";
 
 function MyYangdoUpdate(props) {
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
@@ -89,7 +90,7 @@ function MyYangdoUpdate(props) {
     }
 
     return (
-        <div>
+        <div className="yangdoform">
 
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
@@ -118,61 +119,122 @@ function MyYangdoUpdate(props) {
                 </Modal>
             </React.Fragment>
 
-            <div>
-                <b>골프장 : </b>
-                <input type='text'
-                       value={yangdoData.yplace}
-                       onClick={openModal}
-                       onChange={
-                           (e)=> setYangdoData({
-                               ...yangdoData,
-                               "yplace":e.target.value
-                           })}
-                        />
-                <br/>
+            <div className="yform">
 
-                <b>가격 : </b>
-                <input type='text'
-                       value={yangdoData.yprice}
-                       onChange={
-                           (e)=> setYangdoData({
-                               ...yangdoData,
-                               "yprice":e.target.value
-                           })}/>
-                <br/>
+                <div className="yframe-yfparent">
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">골프장</div>
+                            <input
+                                className="yfemail1"
+                                type="text"
+                                //placeholder=""
+                                maxLength
+                                minLength
+                                value={yangdoData.yplace}
+                                onClick={openModal}
+                                onChange={
+                                    (e)=> setYangdoData({
+                                        ...yangdoData,
+                                        "yplace":e.target.value
+                                })}
+                            />
+                        </div>
+                    </div>
 
-                <b>예약날짜 : </b>
-                <input type='date'
-                       value={yangdoData.yday}
-                       onChange={
-                           (e)=> setYangdoData({
-                               ...yangdoData,
-                               "yday":e.target.value
-                           })}/>
-                <br/>
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">날짜</div>
+                            <input
+                                className="yfemail2"
+                                type="date"
+                                //placeholder=""
+                                maxLength
+                                minLength
+                                value={yangdoData.yday}
+                                onChange={
+                                    (e)=> setYangdoData({
+                                        ...yangdoData,
+                                        "yday":e.target.value
+                                })}
+                            />      
+                        </div>
+                    </div>
 
-                <b>시간 : </b>
-                <input type='time'
-                       value={yangdoData.ysubject}
-                       onChange={
-                           (e)=> setYangdoData({
-                               ...yangdoData,
-                               "ysubject":e.target.value
-                           })}/>
-                <br/>
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">시간</div>
+                            <input className="yfemail2" type="time" 
+                                maxLength 
+                                minLength 
+                                value={yangdoData.ysubject}
+                                onChange={
+                                    (e)=> setYangdoData({
+                                        ...yangdoData,
+                                        "ysubject":e.target.value
+                                    })
+                                }
+                            />
+                        </div>
+                    </div>
 
-                <b>내용 : </b>
-                <textarea value={yangdoData.ycontent}
-                          onChange={
-                              (e)=>setYangdoData({
-                                  ...yangdoData,
-                                  "ycontent":e.target.value
-                              })}></textarea>
-                <br/>
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">금액</div>
+                            <input
+                                className="yfemail1"
+                                type="text"
+                                //placeholder=""
+                                maxLength
+                                minLength
+                                value={yangdoData.yprice}
+                                onChange={
+                                    (e)=> setYangdoData({
+                                        ...yangdoData,
+                                        "yprice":e.target.value
+                                    })
+                                }
+                            />
+                        </div>
+                    </div>
 
-                <button type='submit' onClick={onSubmitEvent}>수정</button>
-                <button type='button' onClick={goBack}>취소</button>
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">내용</div>
+                            <textarea
+                                className="yfemail"
+                                // placeholder=""
+                                maxLength
+                                minLength
+                                value={yangdoData.ycontent}
+                                onChange={
+                                    (e)=>setYangdoData({
+                                        ...yangdoData,
+                                        "ycontent":e.target.value
+                                    })
+                                }></textarea>
+                        </div>
+                    </div>
 
+                </div>
+
+                <div className="yflogo-ex" />
+
+                <div className="yfbtngroup">
+                    <div className="yfgraylbtn">
+
+                        <button className="yfgraylbtn-child"
+                            type='button' onClick={goBack}>닫기
+                        </button>
+                    </div>
+                
+                    <div className="yfpopupbtn">
+                        <button className="yframe"
+                            type='submit' onClick={onSubmitEvent}>양도 수정
+                        </button>
+                    </div>
+                </div>
+                
             </div>
         </div>
     );
