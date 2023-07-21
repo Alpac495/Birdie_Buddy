@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {KaKaoCallBack, Login, NaverCallBack, Sign, Taltae} from "./login";
+import {KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, Sign, Taltae} from "./login";
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
@@ -80,6 +80,9 @@ function RouteMain(props) {
                     <Route path="kcallback" element={<KaKaoCallBack/>}/>
                     <Route path="ncallback" element={<NaverCallBack/>}/>
                     <Route path="taltae" element={<Taltae/>}/>
+                    <Route path="passchange" element={<PassChange/>}/>
+                    <Route path="searchID" element={<SearchID/>}/>
+                    <Route path="searchPass" element={<SearchPass/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >

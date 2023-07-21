@@ -3,7 +3,6 @@ import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import "./Sign.css";
 import logo from "../image/logo_main.svg"
-import Slider from '@mui/material-next/Slider';
 
 function Sign(props) {
 
