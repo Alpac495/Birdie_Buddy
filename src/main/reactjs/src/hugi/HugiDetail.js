@@ -16,6 +16,7 @@ import EditIcon from "@mui/icons-material/Edit";
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
     const url = process.env.REACT_APP_HUGI;
+    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
     const navi = useNavigate();
 
     const [openReplyForm, setOpenReplyForm] = useState(null);
@@ -35,9 +36,9 @@ function HugiDetail(props) {
     const [hcontent, setHcontent] = useState('');
     const [hwriteday,setHwriteday]=useState('');
     const [hlike,setHlike]=useState('');
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
+    const [shortenedURL, setShortenedURL] = useState('');
+
+
     const handleClickList = () =>{
         navi('/hugi/list');
     }
@@ -47,11 +48,12 @@ function HugiDetail(props) {
     const handleClickAvatar  = () =>{
         navi(`/mypage/mypage/${unum}`);
     };
-    const handleClickShare = () => {
+
+    const generateShortURL  = (longUrl) => {
+
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
         const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
-        const api_url = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
-        const longUrl = 'http://devster.kr/'; // 짧게 만들고 싶은 URL 입력칸입니다!!! (젠킨스주소 넣어보기)
+        // const longUrl = 'http://devster.kr/'; // 짧게 만들고 싶은 URL 입력칸입니다!!! (젠킨스주소 넣어보기)
 
         const requestData = {
             url: longUrl, // 서버에서 단축시킬 URL 대신에 목록 URL을 보냄
@@ -59,26 +61,66 @@ function HugiDetail(props) {
             client_secret: client_secret,
         };
 
-        Axios.post(api_url, requestData)
+        Axios.post(apiURL, requestData)
             .then((res) => {
-                const shortenedURL = res.data.result.url; // 단축 URL 값 가져오기
-                // console.log('Shortened URL:', shortenedURL);
-                // TODO: 여기서 생성된 단축 URL을 사용하여 공유 기능을 구현합니다.
-                // 예를 들어, 해당 URL을 SNS의 공유 버튼에 연결하거나 클립보드에 복사하는 등의 작업을 수행할 수 있습니다.
-                // Clipboard API를 사용하여 클립보드에 복사
-                navigator.clipboard.writeText(shortenedURL)
-                    .then(() => {
-                        console.log('URL복사완료!!:', shortenedURL);
-                        setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
-                    })
-                    .catch((error) => {
-                        console.error('Error copying to clipboard:', error);
-                    });
+                const generatedURL = res.data.result.url; // 단축된 URL 값
+                setShortenedURL(generatedURL);
+                shareShortenedURL(generatedURL); // 단축 URL을 생성하고 나서 SNS 공유 함수 호출
+                copyToClipboard(generatedURL); // 클립보드에 복사
             })
             .catch((error) => {
                 console.error('Error generating shortened URL:', error);
             });
     };
+
+    // SNS 공유 함수
+    const shareShortenedURL = (url) => {
+        if (navigator.share) {
+            navigator.share({
+                title: '링크를 확인하세요!',
+                url: url,
+            })
+                .then(() => {
+                    console.log('URL 공유 성공!');
+                    setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
+                })
+                .catch((error) => {
+                    console.error('URL 공유 중 오류 발생:', error);
+                });
+        } else {
+            // navigator.share() API를 지원하지 않는 브라우저를 위한 대체 방법
+            // 메시지를 사용자에게 보여주거나 다른 접근 방식을 사용할 수 있습니다.
+            alert('이 링크를 공유하세요: ' + url);
+            // copyToClipboard(url);// 클립보드에 복사하는 함수 호출
+        }
+    };
+    const copyToClipboard = (text) => {
+        // Clipboard API를 사용하여 클립보드에 복사
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                console.log('URL 복사 완료!!:', text);
+                setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
+            })
+            .catch((error) => {
+                console.error('클립보드 복사 중 오류 발생:', error);
+            });
+    };
+    // 클릭 이벤트 핸들러
+    const handleClickShare = () => {
+        const longUrl = `http://devster.kr/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        generateShortURL(longUrl);
+    };
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+    // Snackbar 표시를 위한 useEffect
+    useEffect(() => {
+        if (snackbarOpen) {
+            // TODO: Snackbar를 표시하는 로직을 구현합니다.
+            // 예를 들어, Material-UI의 Snackbar 컴포넌트를 사용하여 표시할 수 있습니다.
+            //setSnackbarOpen(false); // Snackbar를 표시하고 나서 상태를 다시 false로 변경
+        }
+    }, [snackbarOpen]);
     const unumchk=()=>{
         Axios.get("/login/unumChk")
             .then(res=> {
@@ -341,13 +383,13 @@ function HugiDetail(props) {
         setShowLike(likeStatus === "true");
     }, [hnum]); // hnum이 변경될 때마다 실행
 
-    // 마지막에 componentWillUnmount 등록
-    useEffect(() => {
-        return () => {
-            // 컴포넌트가 unmount 되기 전에 localStorage에서 좋아요 상태 삭제
-            localStorage.removeItem(`likeStatus_${hnum}`);
-        };
-    }, [hnum]);
+    // // 마지막에 componentWillUnmount 등록
+    // useEffect(() => {
+    //     return () => {
+    //         // 컴포넌트가 unmount 되기 전에 localStorage에서 좋아요 상태 삭제
+    //         localStorage.removeItem(`likeStatus_${hnum}`);
+    //     };
+    // }, [hnum]);
 
     return (
         <div className="list_detail">

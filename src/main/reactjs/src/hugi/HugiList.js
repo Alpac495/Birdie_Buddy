@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './Hugi.css';
 import Axios from 'axios';
-import {useNavigate,Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
 function HugiList(props) {
     const [unum, setUnum]=useState('');

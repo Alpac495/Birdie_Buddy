@@ -62,7 +62,7 @@ function MyYangdoDetail(props) {
             <b>골프장 : {dto.yplace}</b><br/>
             <b>작성자 : {dto.unickname}</b><br/>
             <b>작성일 : {dto.ywriteday}</b><br/>
-            <b>가격 : {dto.yprice.toLocaleString()}원</b><br/>
+            <b>가격 : {dto.yprice}원</b><br/>
             <b>예약 일정 : {dto.yday}</b><br/>
             <b>예약 시간 : {dto.ysubject}</b><br/>
             <b>상세 내용 : {dto.ycontent}</b><br/>
@@ -72,7 +72,7 @@ function MyYangdoDetail(props) {
 
             {
                 unum !=null && unum==dto.unum?
-                    <button type='button' onClick={()=>navi(`//update/${dto.ynum}/${currentPage}`)}>
+                    <button type='button' onClick={()=>navi(`/mypage/update/${dto.ynum}/${currentPage}`)}>
                         수정</button> :''
             }
 

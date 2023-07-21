@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useScript} from "./hooks";
 import './List.css';
 import Avatar from '@mui/material/Avatar';
 import MessageIcon from '@mui/icons-material/Message';
@@ -23,7 +22,10 @@ import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 function HugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
-    const url = process.env.REACT_APP_HUGI;
+    const URL = process.env.REACT_APP_HUGI;
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
+    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
     const navi = useNavigate();
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
@@ -40,13 +42,11 @@ function HugiRowList(props) {
     const [replyError, setReplyError] = useState(false); // 대댓글 입력 오류 여부 상태 추가
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
 
+    const [shortenedURL, setShortenedURL] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-
-
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
+    const [uphoto, setUphoto] = useState('');
+    // handleClickModify 함수: 게시물 수정 클릭 이벤트 처리 함수
     const handleClickModify = (hnum) =>{
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
@@ -64,11 +64,16 @@ function HugiRowList(props) {
             });
         }
     };
+    // handleClickShare 함수: 게시물을 SNS에 공유하는 클릭 이벤트 처리 함수
     const handleClickShare = () => {
+        const longUrl = `http://devster.kr/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        generateShortURL(longUrl);
+    };
+    // generateShortURL 함수: 입력된 URL을 단축 URL로 생성하는 함수
+    const generateShortURL  = (longUrl) => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
         const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
-        const api_url = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
-        const longUrl = 'http://devster.kr/'; // 짧게 만들고 싶은 URL 입력칸입니다!!! (젠킨스주소 넣어보기)
+        // const longUrl = 'http://devster.kr/'; // 짧게 만들고 싶은 URL 입력칸입니다!!! (젠킨스주소 넣어보기)
 
         const requestData = {
             url: longUrl, // 서버에서 단축시킬 URL 대신에 목록 URL을 보냄
@@ -76,33 +81,73 @@ function HugiRowList(props) {
             client_secret: client_secret,
         };
 
-        Axios.post(api_url, requestData)
+        Axios.post(apiURL, requestData)
             .then((res) => {
-                const shortenedURL = res.data.result.url; // 단축 URL 값 가져오기
-                console.log('Shortened URL:', shortenedURL);
-                // TODO: 여기서 생성된 단축 URL을 사용하여 공유 기능을 구현합니다.
-                // 예를 들어, 해당 URL을 SNS의 공유 버튼에 연결하거나 클립보드에 복사하는 등의 작업을 수행할 수 있습니다.
-                // Clipboard API를 사용하여 클립보드에 복사
-                navigator.clipboard.writeText(shortenedURL)
-                    .then(() => {
-                        console.log('URL복사완료!!:', shortenedURL);
-                        setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
-                    })
-                    .catch((error) => {
-                        console.error('Error copying to clipboard:', error);
-                    });
+                const generatedURL = res.data.result.url;
+                // 단축된 URL 값
+                setShortenedURL(generatedURL);
+                shareShortenedURL(generatedURL); // 단축 URL을 생성하고 나서 SNS 공유 함수 호출
+                copyToClipboard(generatedURL); // 클립보드에 복사
             })
             .catch((error) => {
                 console.error('Error generating shortened URL:', error);
             });
     };
 
+    // shareShortenedURL 함수: 단축 URL을 SNS에 공유하는 함수
+    const shareShortenedURL = (url) => {
+        if (navigator.share)// navigator.share() API를 지원하는 경우
+           {
+            navigator.share({
+                title: '링크를 확인하세요!',
+                url: url,
+            })
+                .then(() => {
+                    console.log('URL 공유 성공!');
+                    // setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
+                })
+                .catch((error) => {
+                    console.error('URL 공유 중 오류 발생:', error);
+                });
+        } else {
+            // navigator.share() API를 지원하지 않는 브라우저를 위한 대체 방법
+            // 메시지를 사용자에게 보여주거나 다른 접근 방식을 사용할 수 있습니다.
+            alert('이 링크를 공유하세요: ' + url);
+            // copyToClipboard(url);// 클립보드에 복사하는 함수 호출
+        }
+    };
+    // copyToClipboard 함수: 주어진 텍스트를 클립보드에 복사하는 함수
+    const copyToClipboard = (text) => {
+        // Clipboard API를 사용하여 클립보드에 복사
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                console.log('URL 복사 완료!!:', text);
+                setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
+            })
+            .catch((error) => {
+                console.error('클립보드 복사 중 오류 발생:', error);
+            });
+    };
+    // handleSnackbarClose 함수: Snackbar 닫는 이벤트 처리 함수
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+    // Snackbar 표시를 위한 useEffect
+    useEffect(() => {
+        if (snackbarOpen) {
+            // TODO: Snackbar를 표시하는 로직을 구현합니다.
+            // 예를 들어, Material-UI의 Snackbar 컴포넌트를 사용하여 표시할 수 있습니다.
+            //setSnackbarOpen(false); // Snackbar를 표시하고 나서 상태를 다시 false로 변경
+        }
+    }, [snackbarOpen]);
+// unumchk 함수: 로그인된 사용자의 unum 값을 확인하는 함수
     const unumchk=()=>{
         Axios.get("/login/unumChk")
             .then(res=> {
                 setUnum(res.data);
             });
     }
+    // 초기 로딩 시에 unumchk 함수 호출
     useEffect(() => {
         unumchk()
     }, [])
@@ -121,6 +166,7 @@ function HugiRowList(props) {
     const handleClickAvatar  = () =>{
         navi(`/mypage/mypage/${unum}`);
     };
+    // handleClickLikeOn 함수: 좋아요 누르기 이벤트 처리 함수
     const handleClickLikeOn = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(true)를 호출하여 버튼을 활성화합니다.
@@ -134,6 +180,7 @@ function HugiRowList(props) {
                 console.log('좋아요 처리 중 오류가 발생했습니다.', error);
             });
     };
+    // handleClickLikeOff 함수: 좋아요 취소하기 이벤트 처리 함수
     const handleClickLikeOff = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(false)를 호출하여 버튼을 비활성화합니다.
@@ -147,6 +194,7 @@ function HugiRowList(props) {
                 console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
             });
     };
+    // handleClickDelete 함수: 게시물 삭제 이벤트 처리 함수
     const handleClickDelete = () => {
         if (parseInt(props.unum) === parseInt(unum)) {
             const confirmed = window.confirm('정말 삭제하시겠습니까?');
@@ -170,6 +218,7 @@ function HugiRowList(props) {
             alert('자신이 작성한 게시물만 삭제할 수 있습니다.');
         }
     };
+    // deleteAllComments 함수: 게시물에 해당하는 모든 댓글과 대댓글을 삭제하는 함수
     const deleteAllComments = () => {
         return new Promise((resolve, reject) => {
             Axios.delete(`/rehugi/deleteAllComments/${hnum}`)
@@ -183,6 +232,7 @@ function HugiRowList(props) {
                 });
         });
     };
+    // handleDeleteComment 함수: 특정 댓글을 삭제하는 함수
     const handleDeleteComment = (rhnum) => {
         Axios.delete(`/rehugi/deletecomment/${rhnum}`)
             .then(() => {
@@ -193,12 +243,14 @@ function HugiRowList(props) {
                 console.log('댓글 삭제 중 오류가 발생함', error);
             });
     };
+    // handleClickDeleteComment 함수: 댓글 삭제 이벤트 처리 함수
     const handleClickDeleteComment = (rhnum) => {
         const confirmed = window.confirm('정말 삭제하시겠습니까?');
         if (confirmed) {
             handleDeleteComment(rhnum);
         }
     };
+    // getComments 함수: 게시물에 해당하는 모든 댓글과 대댓글을 가져오는 함수
     // getComments 함수 내부에서도 setNickname을 호출하여 unickname 값을 설정합니다.
     const getComments = () => {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
@@ -221,6 +273,7 @@ function HugiRowList(props) {
                 console.log(error);
             });
     };
+    // fetchPostUserNickname 함수: 게시물 작성자의 닉네임을 가져오는 함수
     const fetchPostUserNickname = async (unum) => {
         if (unum) {
             try {
@@ -240,6 +293,7 @@ function HugiRowList(props) {
             }
         }
     };
+    // handleClickDetail 함수: 게시물 상세 페이지 이동 이벤트 처리 함수
     const handleClickDetail = () => {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
@@ -261,6 +315,7 @@ function HugiRowList(props) {
             // console.log("unum>>"+unum);
         }
     };
+    // sortComments 함수: 댓글과 대댓글을 정렬하는 함수
     const sortComments = (comments) => {
         const sorted = [];
         const commentMap = {};
@@ -287,6 +342,7 @@ function HugiRowList(props) {
 
         return sorted;
     };
+    // handleCommentSubmit 함수: 댓글 작성 폼을 제출하는 함수
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         if (rhcontent.trim() === '') {
@@ -321,7 +377,7 @@ function HugiRowList(props) {
             console.log('오류가 발생했습니다.', error.message);
         }
     };
-
+    // submitReply 함수: 댓글에 대한 대댓글을 작성하는 함수
     const submitReply = (comment) => {
         if (replyContent.trim() === '') {
             setReplyError(true);
@@ -352,7 +408,8 @@ function HugiRowList(props) {
     };
 
     const MAX_COMMENT_LENGTH = 20;
-
+    //20자 제한
+    // handleCommentChange 함수: 댓글 내용 변경 이벤트 처리 함수
     const handleCommentChange = (e) => {
         const inputValue = e.target.value;
         if (inputValue.length <= MAX_COMMENT_LENGTH) {
@@ -360,7 +417,7 @@ function HugiRowList(props) {
 
         }
     };
-
+    // toggleReplyForm 함수: 대댓글 작성 폼 열기/닫기 이벤트 처리 함수
     const toggleReplyForm = (rhnum) => {
         if (openReplyForm === rhnum) {
             setOpenReplyForm(null);
@@ -369,26 +426,22 @@ function HugiRowList(props) {
         }
         setReplyContent('');
     };
-
+    // useEffect를 이용하여 초기 데이터 로딩
     useEffect(() => {
         getComments();
     }, [hnum, unum]);
+    // useEffect를 이용하여 게시물 작성자의 닉네임 가져오기
     useEffect(() => {
-        fetchPostUserNickname(props.unum); // 작성자의 unickname 가져오기
+        fetchPostUserNickname(props.unum);
     }, [props.unum]);
+    // useEffect를 이용하여 좋아요 상태 설정
     useEffect(() => {
         // 페이지가 로드될 때 localStorage에서 좋아요 상태를 불러와서 적용
         const likeStatus = localStorage.getItem(`likeStatus_${hnum}`);
         setShowLike(likeStatus === "true");
     }, [hnum]); // hnum이 변경될 때마다 실행
 
-    // 마지막에 componentWillUnmount 등록
-    useEffect(() => {
-        return () => {
-            // 컴포넌트가 unmount 되기 전에 localStorage에서 좋아요 상태 삭제
-            localStorage.removeItem(`likeStatus_${hnum}`);
-        };
-    }, [hnum]);
+
 
     return (
         <div className="list">
@@ -399,7 +452,7 @@ function HugiRowList(props) {
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
             <span>{props.hlike}</span>
-            <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
+            <img className="list_image" src={`${URL}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
             <h6 className="list_text">
                 &nbsp;
                 {hcontent}
@@ -436,7 +489,7 @@ function HugiRowList(props) {
                     </div>
                 </DialogTitle>
                 <DialogContent style={{width: '100%', overflowX: 'hidden'}}>
-                    <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto}/>
+                    <img className="list_image" src={`${URL}${hphoto}`} alt="" value={hphoto}/>
                     <DialogContentText id="alert-dialog-description">
                         <hr/>
                         <div style={{width: '100%'}}>{hcontent}</div>

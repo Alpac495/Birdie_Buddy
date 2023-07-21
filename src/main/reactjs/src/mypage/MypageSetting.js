@@ -75,11 +75,11 @@ const MypageSetting = () => {
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="MPSlabel1">회원탈퇴</div>
+                    <div className="MPSlabel1" onClick={()=>navi('/login/taltae')}>회원탈퇴</div>
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="MPSlabel1">비밀번호 찾기</div>
+                    <div className="MPSlabel1" onClick={()=>navi('/login/passchange')} >비밀번호 변경</div>
                 </div>
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">

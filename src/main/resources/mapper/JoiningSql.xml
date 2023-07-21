@@ -1,8 +1,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.JoiningMapper">
      <insert id="insertJoin" parameterType="JoiningDto">
-        insert into joining (unum,jcontent,jwriteday,jjoinday,gname,jprice,jtime,jage,jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu) values (#{unum},#{jcontent},now(),#{jjoinday},#{gname},#{jprice},#{jtime},#{jage},#{jp1gender},#{jp1age},#{jp1tasu},#{jp2gender},#{jp2age},#{jp2tasu})
+        insert into joining (unum,jcontent,jwriteday,jjoinday,gname,jprice,jtime,jage,jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu,jucount) values (#{unum},#{jcontent},now(),#{jjoinday},#{gname},#{jprice},#{jtime},#{jage},#{jp1gender},#{jp1age},#{jp1tasu},#{jp2gender},#{jp2age},#{jp2tasu},#{jucount})
      </insert>
+     <update id="updateJoin" parameterType="JoiningDto">
+        update joining set jcontent=#{jcontent},jprice=#{jprice},jage=#{jage},jp1age=#{jp1age},jp1gender=#{jp1gender},jp1tasu=#{jp1tasu},
+        jp2age=#{jp2age},jp2gender=#{jp2gender},jp2tasu=#{jp2tasu},jucount=#{jucount} where jnum=#{jnum}
+     </update>
     <select id="getJoiningList" resultType="JoiningDto">
         select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn order by jnum desc
     </select>

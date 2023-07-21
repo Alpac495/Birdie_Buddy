@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import './Taltae.css';
 
 function Taltae(props) {
     const [uhp, setUhp] = useState('');
     const [code, setCode] = useState('');
-    const [unum, setUnum] = useState(0);
+    const [unum, setUnum] = useState('');
     const [chk, setChk] = useState(false);
     const navi = useNavigate();
 
@@ -18,10 +19,7 @@ function Taltae(props) {
     }
 
     useEffect(() => {
-        const fetchUnum = async () => {
-            await unumchk();
-        };
-        fetchUnum();
+        unumchk();
     }, []);
 
     const sms = () => {
@@ -70,15 +68,15 @@ function Taltae(props) {
         }
     }
     return (
-        <div>
+        <div className='Taltae_div1'>
             휴대전화<br/>
-            <input type="text" className="textbox" placeholder="휴대폰번호" required
+            <input type="text" className="Taltae_textbox" placeholder="휴대폰번호" required
                    onChange={(e) => {
                        setUhp(e.target.value)
                    }}/><br/>
             <button type="button" onClick={sms}>전화 인증</button>
             <br/>
-            <input type="text" className="textbox" placeholder="인증코드"
+            <input type="text" className="Taltae_textbox" placeholder="인증코드"
                    onChange={(e) => setCode(e.target.value)}/><br/>
             <button type="button" onClick={codeChk}>인증확인</button>
             <br/>

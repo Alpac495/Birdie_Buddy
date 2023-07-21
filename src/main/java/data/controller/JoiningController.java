@@ -20,11 +20,11 @@ public class JoiningController {
     @Autowired
     private NcpObjectStorageService storageService;
 
-    private String bucketName="bit701-bucket-111";
+    private String bucketName = "bit701-bucket-111";
 
     String photo;
 
-    String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+    String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
 
     @Autowired
     JoiningMapper joiningMapper;
@@ -33,47 +33,45 @@ public class JoiningController {
     JoiningService joiningService;
 
     @PostMapping("/insert")
-    public void insert(@RequestBody JoiningDto dto)
-    {
+    public void insert(@RequestBody JoiningDto dto) {
         joiningService.insertJoin(dto);
     }
 
+    @PostMapping("/update")
+    public void update(@RequestBody JoiningDto dto) {
+        joiningService.updateJoin(dto);
+    }
+
     @GetMapping("/list")
-    public List<JoiningDto> list()
-    {
-        List<JoiningDto> list= joiningService.getJoiningList();
+    public List<JoiningDto> list() {
+        List<JoiningDto> list = joiningService.getJoiningList();
         return list;
     }
 
     @GetMapping("/myjoinlist")
-    public List<JoiningDto> myJoinlist(int unum)
-    {
-        unum=16;
-        List<JoiningDto> myjoinlist= joiningService.getMyJoinList(unum);
-        System.out.println("myjoinlist>>"+unum);
+    public List<JoiningDto> myJoinlist(int unum) {
+        List<JoiningDto> myjoinlist = joiningService.getMyJoinList(unum);
+        System.out.println("myjoinlist>>" + unum);
         return myjoinlist;
     }
 
     @GetMapping("/detail")
-    public JoiningDto detailPage(int jnum)
-    {
-        System.out.println("detail>>"+jnum);
+    public JoiningDto detailPage(int jnum) {
+        System.out.println("detail>>" + jnum);
 
         return joiningService.detailPage(jnum);
     }
 
     @DeleteMapping("/joinCancel/{jnum}")
-    public String joinMozipCancel(@PathVariable int jnum)
-    {
-        System.out.println("canceljnum>>"+jnum);
+    public String joinMozipCancel(@PathVariable int jnum) {
+        System.out.println("canceljnum>>" + jnum);
         joiningService.joinCancel(jnum);
         return "success";
     }
 
     @PostMapping("/joinMaker")
-    public String joinMaker(@RequestBody JoinmemberDto dto)
-    {
-        System.out.println("dto>>"+dto);
+    public String joinMaker(@RequestBody JoinmemberDto dto) {
+        System.out.println("dto>>" + dto);
         joiningMapper.joinMaker(dto);
         return "success";
     }

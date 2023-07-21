@@ -133,7 +133,7 @@ function Home(props) {
             </ul>
             <ul>chatbot
                 <li>
-                    <NavLink to={'/chatbot'}>chatbot</NavLink>
+                    <NavLink to={'/chating'}>chating room</NavLink>
                 </li>
             </ul>
             <ul>main
@@ -147,6 +147,12 @@ function Home(props) {
                 </li>
                 <li>
                     <NavLink to={'/admin/blacklist'}>블랙리스트</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/admin/noticeform'}>공지작성폼</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/admin/noticeList'}>공지리스트</NavLink>
                 </li>
             </ul>
         </div>
