@@ -1,12 +1,15 @@
-
+.header{
+    width: 100%;
+    height: 100px;
+}
 
 .rankingList_wrap{
-    margin-top: 100px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     
 }
 .ranking_List{
+    padding-top: 100px;
     background-image: url("../images/golf_ranking.jpg");
     background-size: cover;
     overflow-y: auto;
@@ -27,34 +30,40 @@
     align-items: center;
     background-size: cover;
     border-radius: 4px;
-    color: black;
     font-weight: 500;
     font-size: 20px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     overflow: hidden;
     position: relative;
     box-shadow: 2px 2px 4px black;
-    
+    color: aliceblue;
 }
 .ranking_profile{
-    width: 20%;
-    border-radius: 100px;
+    width: 95px;
     object-fit: contain;
     margin-left: 10px;
-    background-color: black;
+    margin-right: 30px;
+    background-color: green;
     z-index: 10;
 }
-
-.ranking_mid{
-    position: relative;
-    
-    width: 150px;
-    height: 100%;
-    left: 30px;
-    align-items: center;
-    color: aliceblue;
-    
+.ranking_profile img{
+    width: 100%;
 }
+
+
+.ranking_mid{ 
+    position: relative;
+    width: 200px;
+    height: 100%;
+}
+.ranking_nickname{
+    margin-top: 10px;
+    text-align: left;
+}
+.ranking_tasu{
+    text-align: left;
+}
+
 .ranking_place{
     position: absolute;
     bottom: 0;
@@ -78,9 +87,7 @@
     transform: rotate(125deg);   
 }
 
-.ranking_mem .ranking_nickname{
-    margin-left: 15px;
-}
+
 
 .ranking_mem.rank1 .ranking_neck{
     background-color: gold;
@@ -107,5 +114,5 @@
 
 .ranking_mem.rank3 .ranking_place{
     color: #a47c6d;
-    text-shadow: 1px 1px 1px black;
+    
 }
