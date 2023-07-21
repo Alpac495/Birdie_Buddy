@@ -29,7 +29,7 @@ function HugiRowList(props) {
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [showLike, setShowLike] = useState(props.showLike || false);
 
-    const [unum, setUnum] = useState(0);
+    const [unum, setUnum]=useState('');
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
@@ -42,10 +42,12 @@ function HugiRowList(props) {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+
+
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
-    const handleClickModify = () =>{
+    const handleClickModify = (hnum) =>{
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
         } else {
@@ -94,11 +96,12 @@ function HugiRowList(props) {
                 console.error('Error generating shortened URL:', error);
             });
     };
-    const unumchk = () => {
-        Axios.get("/login/unumChk?unum=" + unum)
-            .then(res => {
+
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+            .then(res=> {
                 setUnum(res.data);
-            })
+            });
     }
     useEffect(() => {
         unumchk()
@@ -198,7 +201,7 @@ function HugiRowList(props) {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
-                console.log(res.data)
+                // console.log(res.data)
                 setComments(sortedComments);
 
                 res.data.forEach((comment) => {
@@ -223,7 +226,7 @@ function HugiRowList(props) {
 
                 if (Unickname) {
                     setPostUserNickname(Unickname);
-                    // console.log("pN=>"+Unickname);//잘받아옴
+                    // console.log("pN=>"+Unickname);//success
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
@@ -242,7 +245,7 @@ function HugiRowList(props) {
             alert('로그인을 먼저 해주세요!');
         } else {
             navi(`/hugi/detail/${hnum}`, {
-                unum: unum,
+                userNum: unum,
                 hnum: hnum,
                 hphoto: hphoto,
                 hcontent: hcontent,
@@ -252,6 +255,7 @@ function HugiRowList(props) {
 
             });
             fetchPostUserNickname(unum); // fetchPostUserNickname 함수에 unum 전달
+            // console.log("unum>>"+unum);
         }
     };
     const sortComments = (comments) => {
@@ -333,7 +337,7 @@ function HugiRowList(props) {
 
         Axios.post("/rehugi/newreply?unum=" + unum, newReply)
             .then((res) => {
-                console.log('댓글이 성공적으로 추가되었습니다.');
+                // console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();
                 toggleReplyForm(comment.rhnum);
                 setReplyError(false);

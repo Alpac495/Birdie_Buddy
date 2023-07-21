@@ -99,6 +99,5 @@ public class HugiService implements HugiServiceInter
         return userDto;
     }
 
-
 }
 

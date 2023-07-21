@@ -29,8 +29,9 @@ function Main(props) {
 
     return (
         <div className={'mainpage'}>
-            <Header/>
-
+            <div className='header'>
+                <Header/>
+            </div>
 
             <div className={'main_banner'}>
                 <Bannerslider/>

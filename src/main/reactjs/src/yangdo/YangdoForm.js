@@ -68,6 +68,8 @@ function YangdoForm(props) {
             alert("가격을 입력해주세요.")
         }else if(isNaN(yprice)){
             alert("숫자로만 가격을 입력해주세요.")
+        }else if(yprice == 0){
+            alert("1원 이상의 가격을 입력해주세요")
         }else if(!yday) {
             alert("예약 날짜를 입력해주세요.")
         }else if(!ysubject) {
@@ -88,70 +90,130 @@ function YangdoForm(props) {
 
     return (
         <div className="yangdoform">
-        <div className="joinform">
-            <div className="parent">
-            <div className="div">내용</div>
-            <input
-                className="email"
-                type="text"
-                placeholder=""
-                maxLength
-                minLength
-            />
-            </div>
-            <div className="frame-parent">
-            <div className="frame-group">
-                <div className="group">
-                <div className="div">골프장</div>
-                <input
-                    className="email1"
-                    type="text"
-                    placeholder=""
-                    maxLength
-                    minLength
-                />
+
+            <React.Fragment>
+                <Modal open={modalOpen} close={closeModal} header="골프장 목록">
+                    <div>
+                        <input style={{marginLeft:'20px'}}
+                               type="text"
+                               placeholder="검색"
+                               onChange={(e) => {
+                                   setSearchTerm(e.target.value);
+                               }}/>
+                        <br/><br/>
+                        <ul>
+                            {
+                                data.map &&
+                                data.filter((val)=>{
+                                    if(searchTerm == ""){
+                                        return val
+                                    }else if(val.gname.includes(searchTerm)){
+                                        return val
+                                    }
+                                }).map((item,idx) =>
+                                    <span onClick={selectGolfjang}><li>{item.gname}</li></span>
+                                )}
+                        </ul>
+                    </div>
+                </Modal>
+            </React.Fragment>
+
+            <div className="yform">
+
+                <div className="yframe-yfparent">
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">골프장</div>
+                            <input
+                                className="yfemail1"
+                                type="text"
+                                //placeholder=""
+                                maxLength
+                                minLength
+                                onChange={
+                                    (e)=> setYplace(e.target.value)
+                                } value={yplace} onClick={openModal}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">날짜</div>
+                            <input
+                                className="yfemail2"
+                                type="date"
+                                //placeholder=""
+                                maxLength
+                                minLength
+                                onChange={
+                                    (e)=> setYday(e.target.value)
+                                } value={yday}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">시간</div>
+                            <input className="yfemail2" type="time" maxLength minLength 
+                                onChange={
+                                    (e)=> setYsubject(e.target.value)
+                                } value={ysubject}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">금액</div>
+                            <input
+                                className="yfemail1"
+                                type="text"
+                                //placeholder=""
+                                maxLength
+                                minLength
+                                onChange={
+                                    (e)=> setYprice(e.target.value)
+                                } value={yprice}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="yframe-yfwrapper">
+                        <div className="yfgroup">
+                            <div className="yfdiv">내용</div>
+                            <textarea
+                                className="yfemail"
+                                // placeholder=""
+                                maxLength
+                                minLength
+                                value={ycontent}
+                                onChange={(e)=>setYcontent(e.target.value)
+                                }></textarea>
+                        </div>
+                    </div>
+
                 </div>
-                <div className="group">
-                <div className="div">날짜</div>
-                <input
-                    className="email2"
-                    type="text"
-                    placeholder=""
-                    maxLength
-                    minLength
-                />
+
+                <div className="yflogo-ex" />
+
+                <div className="yfbtngroup">
+                    <div className="yfgraylbtn">
+
+                        <button className="yfgraylbtn-child"
+                            type='button' onClick={goBack}>닫기
+                        </button>
+                    </div>
+                
+                    <div className="yfpopupbtn">
+                        <button className="yframe"
+                            type='submit' onClick={onSubmitEvent}>양도 작성
+                        </button>
+                    </div>
                 </div>
-                <div className="group">
-                <div className="div">시간</div>
-                <input className="email2" type="text" maxLength minLength />
-                </div>
+                
             </div>
-            <div className="frame-wrapper">
-                <div className="group">
-                <div className="div">금액</div>
-                <input
-                    className="email1"
-                    type="text"
-                    placeholder=""
-                    maxLength
-                    minLength
-                />
-                </div>
-            </div>
-            </div>
-            <div className="logo-ex" />
-            <div className="btngroup">
-            <div className="graylbtn">
-                <div className="graylbtn-child" />
-                <div className="div5">닫기</div>
-            </div>
-            <div className="popupbtn">
-                <div className="frame">
-                <div className="div6">양도 신청</div>
-                </div>
-            </div>
-            </div>
-        </div>
         </div>
     );
 }

@@ -7,8 +7,6 @@ import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import Mypage from "./mypage/Mypage";
-import Bot from "./chatbot/Bot";
-import ChatBot from "./chatbot/ChatApp";
 import Main from "./Main";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
@@ -24,6 +22,10 @@ import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
 import Test from './yangdo/Test';
 import HugiDetail from "./hugi/HugiDetail";
 import { Blacklist, NoticeDetail, NoticeForm, NoticeList, UserList } from './admin';
+import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
+import ChatRoom from "./chatbot/ChatRoom";
+import MyHugiList from "./hugi/MyHugiList";
+import MyHugiRowList from "./hugi/MyHugiRowList";
 
 
 function RouteMain(props) {
@@ -60,9 +62,9 @@ function RouteMain(props) {
 
                 <Route path={'/hugi'} >
                     <Route path="list" element={<HugiList/>}/>
-                    <Route path="hugilist" element={<HugiRowList/>}/>
                     <Route path="detail/:hnum" element={<HugiDetail/>}/>
                     <Route path="modify/:hnum" element={<HugiModify/>}/>
+                    <Route path="list/:unum" element={<MyHugiList/>}/>
                 </Route>
 
                 <Route path={'/joining'} >
@@ -99,8 +101,9 @@ function RouteMain(props) {
                     <Route path="list" element={<RankList/>}/>
                 </Route>
 
+                <Route path="/chating" element={<NCloudChatRoomList />} />
+                <Route path="/chating/room/:channelId" element={<ChatRoom />} />
 
-                <Route path="/chatbot" element={<ChatBot />} />
 
                 <Route path={'/main'}>
                     <Route path='main' element={<Main/>}/>

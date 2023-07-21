@@ -1,300 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 body {
     margin: 0;
     line-height: normal;
 }
-
-.YDDline-separator {
-    align-self: stretch;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.12);
-    height: 0.06rem;
-}
-.YDDdivider {
+.YEyangdodetailend-child {
     position: absolute;
-    top: 5.19rem;
-    left: calc(50% - 164px);
+    top: 1rem;
+    left: 1rem;
     width: 20.5rem;
-    height: 0.12rem;
-    display: flex;
-    flex-direction: column;
-    padding: 0.19rem 0 0.25rem;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
+    height: 2.25rem;
+    display: none;
 }
-.YDDgreenlbtn-child {
-    width: 100%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 2px;
-    background-color: #89e1a4;
-}
-.YDDdiv,
-.YDDgreenlbtn-child,
-.YDDgreenlbtn1 {
-    position: absolute;
-    height: 100%;
-    top: 0;
-}
-.YDDdiv {
-    width: 37.73%;
-    left: 30.98%;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.YDDgreenlbtn1 {
-    width: 100%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-.YDDgreenlbtn {
-    position: absolute;
-    bottom: 1.94rem;
-    left: calc(50% - 163px);
-    width: 20.38rem;
-    height: 2.5rem;
-    text-align: center;
-    color: #292d32;
-}
-.YDDdiv1,
-.YDDicon {
+.YEdiv {
+    width: 18.5rem;
+    flex: 1;
     position: relative;
-}
-.YDDdiv1 {
     letter-spacing: -0.01em;
     font-weight: 600;
 }
-.YDDicon {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-.YDDvalue {
-    width: 10.25rem;
-    overflow: hidden;
+.YEwrapper {
+    align-self: stretch;
     display: flex;
     flex-direction: row;
+    padding: 0.63rem;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
-.YDDlabel {
-    flex: 1;
+.YElabel {
     position: relative;
     line-height: 0.94rem;
 }
-.YDDsingle-line-item {
-    align-self: stretch;
-    background-color: #fff;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+.YEdiv1,
+.YElabel-wrapper {
     display: flex;
-    flex-direction: row;
-    padding: 1rem;
     align-items: center;
+}
+.YElabel-wrapper {
+    align-self: stretch;
+    width: 9.06rem;
+    flex-direction: row;
+    padding: 0.63rem;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.YEdiv1 {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 10px);
+    letter-spacing: 0.4px;
+    line-height: 1rem;
+    width: 1.9rem;
+    height: 2.19rem;
+}
+.YEgroup-child {
+    position: absolute;
+    height: 34.29%;
+    width: 31.58%;
+    top: 34.29%;
+    right: 68.42%;
+    bottom: 31.43%;
+    left: 0;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.YEparent {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 18px);
+    width: 3rem;
+    height: 2.19rem;
+}
+.YEgroup-wrapper {
+    align-self: stretch;
+    position: relative;
+    width: 2.38rem;
+    text-align: right;
+    font-family: Roboto;
+}
+.YEframe-group,
+.YEframe-parent {
+    align-self: stretch;
+    display: flex;
     justify-content: flex-start;
+}
+.YEframe-group {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 6.69rem;
     font-size: 0.75rem;
     color: #636363;
 }
-.YDDlabel1 {
+.YEframe-parent {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.19rem;
+    font-family: Inter;
+}
+.YEtime-icon {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.YElabel1 {
     flex: 1;
     position: relative;
     letter-spacing: 0.15px;
     line-height: 1.5rem;
 }
-.YDDlist-item-group-subtitle,
-.YDDsingle-line-item1 {
-    align-self: stretch;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-}
-.YDDsingle-line-item1 {
+.YEsingle-line-item {
     background-color: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+    width: 18.5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     padding: 1rem;
+    box-sizing: border-box;
     align-items: center;
     justify-content: flex-start;
     gap: 2rem;
 }
-.YDDlist-item-group-subtitle {
+.YEicon-note-1 {
+    position: relative;
+    width: 1.38rem;
+    height: 1.38rem;
+}
+.YEsecondary-action {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
     display: none;
 }
-.YDDsingle-line-item4 {
-    overflow: hidden;
-}
-.YDDselection-control-list-item,
-.YDDsingle-line-item4,
-.YDDsingle-line-item5 {
+.YEsingle-line-item-parent {
     align-self: stretch;
-    background-color: #fff;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-    display: none;
-}
-.YDDsingle-line-item5 {
-    overflow: hidden;
-    flex-direction: row;
-    padding: 1rem;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
-    gap: 2rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.87);
 }
-.YDDlabel5 {
+.YElabel4 {
     position: relative;
     line-height: 1.5rem;
     font-weight: 500;
 }
-.YDDsubtitle {
+.YEsubtitle {
     display: flex;
     flex-direction: row;
     padding: 0 0 0 1rem;
     align-items: center;
     justify-content: flex-start;
 }
-.YDDlist-item-group-subtitle2,
-.YDDsingle-line-item8 {
+.YElist-item-group-subtitle,
+.YEsingle-line-item3 {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+    width: 18.5rem;
     display: flex;
-}
-.YDDlist-item-group-subtitle2 {
-    align-self: stretch;
     flex-direction: column;
     padding: 0.5rem 0;
+    box-sizing: border-box;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 0.88rem;
-    color: rgba(0, 0, 0, 0.6);
 }
-.YDDsingle-line-item8 {
+.YEsingle-line-item3 {
     background-color: #fff;
     overflow: hidden;
     flex-direction: row;
     padding: 0.5rem 1rem;
     align-items: center;
-    gap: 2rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.87);
 }
-.YDDsettings-3,
-.YDDsingle-line-item8 {
-    align-self: stretch;
-    justify-content: flex-start;
-}
-.YDDcontent-area,
-.YDDjdinfo,
-.YDDsettings-3 {
-    overflow: hidden;
+.YEgreenstroke,
+.YElist-item-group-subtitle-parent {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-.YDDcontent-area {
-    align-self: stretch;
-    height: 15.5rem;
-    flex-shrink: 0;
     justify-content: flex-start;
-    font-size: 1rem;
-    color: rgba(0, 0, 0, 0.87);
-    font-family: Roboto;
 }
-.YDDjdinfo {
-    position: absolute;
-    top: 5.75rem;
-    left: calc(50% - 165px);
-    border-radius: 8px;
-    background-color: #fff;
+.YElist-item-group-subtitle-parent {
+    align-self: stretch;
+    padding: 0.63rem 0;
+    font-size: 0.88rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+.YEgreenstroke {
+    border-radius: 10px;
     border: 2px solid #89e1a4;
     box-sizing: border-box;
-    width: 20.63rem;
-    padding: 1.5rem 1.5rem 0.88rem;
-    justify-content: space-between;
-    font-size: 1.5rem;
+    width: 20.5rem;
+    padding: 1rem 1rem 0;
+    font-size: 1.25rem;
+    font-family: Roboto;
 }
-.YDDjduphoto-icon {
-    position: relative;
-    width: 3.69rem;
-    height: 3.63rem;
-    object-fit: cover;
-}
-.YDDp,
-.YDDp1 {
-    margin: 0;
-    font-weight: 600;
-}
-.YDDp1 {
-    font-weight: 300;
-    color: #636363;
-}
-.YDDtxt {
-    line-break: anywhere;
-    width: 100%;
-}
-.YDDdiv2 {
-    position: relative;
-    line-height: 150%;
-    display: flex;
-    align-items: center;
-    width: 9.5rem;
-    flex-shrink: 0;
-}
-.YDDgroup-child {
-    position: absolute;
-    top: 0.06rem;
-    right: 0;
-    border-radius: 20px;
-    background-color: #292d32;
-    border: 1px solid #000;
-    box-sizing: border-box;
-    width: 3.75rem;
-    height: 1.53rem;
-}
-.YDDdiv3,
-.YDDrectangle-parent {
-    width: 3.75rem;
-    height: 1.63rem;
-}
-.YDDdiv3 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    line-height: 150%;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.YDDrectangle-parent {
-    position: relative;
-    text-align: center;
-    font-size: 0.75rem;
-    color: #fff;
-}
-.YDDflistprofile,
-.YDDflistprofile1 {
-    display: flex;
-    flex-direction: row;
-}
-.YDDflistprofile1 {
-    align-self: stretch;
-    border-radius: 8px;
-    background-color: #fff;
-    overflow: hidden;
-    padding: 0.75rem 1rem;
-    align-items: center;
-    justify-content: center;
-    gap: 1.63rem;
-}
-.YDDflistprofile {
-    position: absolute;
-    top: 32.31rem;
-    left: calc(50% - 175px);
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 1rem;
-}
-.YDDdiv4 {
+.YEdiv2 {
     position: relative;
     line-height: 150%;
     font-weight: 600;
@@ -305,13 +207,14 @@ body {
     flex-shrink: 0;
     z-index: 0;
 }
-.YDDdiv5,
-.YDDparent {
+.YEdiv3,
+.YEgroup {
     position: absolute;
 }
-.YDDdiv5 {
-
-    left: calc(50% + 111px);
+.YEdiv3 {
+    margin: 0 !important;
+    top: 0.25rem;
+    left: calc(50% + 110px);
     font-size: 0.75rem;
     letter-spacing: 0.4px;
     line-height: 1rem;
@@ -320,16 +223,187 @@ body {
     text-align: right;
     z-index: 1;
 }
-.YDDparent {
-    top: 30.63rem;
-    left: calc(50% - 162px);
+.YEgroup {
+    top: 0;
+    left: calc(50% - 164px);
+    width: 20.5rem;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 0.63rem;
 }
-.yangdodetail {
+.YEjduphoto-icon {
+    position: relative;
+    /* width: 3.69rem;
+    height: 3.63rem; */
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+.YEp,
+.YEp1 {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.YEp1 {
+    font-weight: 300;
+    color: #636363;
+}
+.YEtxt {
+    line-break: anywhere;
+    width: 100%;
+}
+.YEdiv4 {
+    position: relative;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    width: 9.5rem;
+    flex-shrink: 0;
+}
+.YEgroup-item {
+    position: absolute;
+    top: 0.06rem;
+    right: 0;
+    border-radius: 20px;
+    background-color: #292d32;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    width: 3.75rem;
+    height: 1.53rem;
+}
+.YEdiv5,
+.YErectangle-parent {
+    width: 3.75rem;
+    height: 1.63rem;
+}
+.YEdiv5 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 150%;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.YErectangle-parent {
+    position: relative;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #fff;
+}
+.YEflistprofile,
+.YEflistprofile1 {
+    display: flex;
+    flex-direction: row;
+}
+.YEflistprofile1 {
+    align-self: stretch;
+    flex: 1;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.7rem;
+}
+.YEflistprofile {
+    position: absolute;
+    top: 1.38rem;
+    left: calc(50% - 164px);
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 1rem;
+}
+.YEframe-container {
+    align-self: stretch;
+    position: relative;
+    height: 6.5rem;
+}
+.YEgraylbtn-child {
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    background-color: #ebebf0;
+}
+.YEdiv6,
+.YEgraylbtn,
+.YEgraylbtn-child {
+    position: absolute;
+    top: 0;
+}
+.YEdiv6 {
+    height: 100%;
+    width: 37.73%;
+    left: 30.98%;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.YEgraylbtn {
+    left: 15.11rem;
+    border-radius: 3px;
+    width: 5.39rem;
+    height: 2.5rem;
+}
+.YEdiv7 {
+    flex: 1;
+    position: relative;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+}
+.YEframe,
+.YEpopupbtn {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+.YEframe {
+    width: 100%;
+    right: 0;
+    border-radius: 5px;
+    background-color: #89e1a4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.63rem 0.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+.YEpopupbtn {
+    width: 68.5%;
+    right: 31.5%;
+    color: #000;
+}
+.YEgraylbtn-parent {
+    position: relative;
+    width: 20.5rem;
+    height: 2.5rem;
+    text-align: center;
+    color: #292d32;
+}
+.YEgreenstroke-parent {
+    position: absolute;
+    top: 5.19rem;
+    left: 1.06rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.38rem;
+}
+.YEyangdodetailend {
     position: relative;
     background-color: #fff;
     width: 100%;
@@ -339,4 +413,8 @@ body {
     font-size: 0.94rem;
     color: #000;
     font-family: Inter;
+}
+
+.YElabelUp{
+    cursor: pointer;
 }
