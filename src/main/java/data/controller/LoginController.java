@@ -28,15 +28,15 @@ import java.security.SecureRandom;
 @RequestMapping("/login")
 public class LoginController {
 
-    @Autowired
-    private NcpObjectStorageService storageService;
     String photo;
-    private String bucketName = "bit701-bucket-111/birdiebuddy";
-
     @Autowired
     LoginService loginService;
     @Autowired
     LoginMapper loginMapper;
+    @Autowired
+    private NcpObjectStorageService storageService;
+    private String bucketName = "bit701-bucket-111/birdiebuddy";
+    
     @Value("${naver.accessKey}")
     private String accessKey;
     @Value("${naver.secretKey}")
@@ -52,7 +52,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public int loginok(HttpSession session, String uemail, String upass,
-            @RequestParam(defaultValue = "false") String saveemail) {
+                       @RequestParam(defaultValue = "false") String saveemail) {
         System.out.println("uemail=" + uemail);
         System.out.println("upass=" + upass);
         System.out.println("이메일저장체크=" + saveemail);
@@ -71,6 +71,13 @@ public class LoginController {
             System.out.println("로그인 실패");
             return 0;
         }
+    }
+
+    @GetMapping("/socialLogin")
+    public void socialLogin(HttpSession session, int unum) {
+        session.setMaxInactiveInterval(60 * 60 * 5);
+        session.setAttribute("unum", unum);
+        System.out.println("세션에 저장된 넘:" + unum);
     }
 
     @GetMapping("/logout")
@@ -151,14 +158,24 @@ public class LoginController {
         return uphoto;
     }
 
+    //    @GetMapping("/unumChk")
+//    public int unumChk(HttpSession session, int unum) {
+//        System.out.println("unumChk:" + unum);
+//        if (session.getAttribute("unum") != null) {
+//            int chkunum = (int) session.getAttribute("unum");
+//            return chkunum;
+//        }
+//        return 0;
+//    }
+
     @GetMapping("/unumChk")
-    public int unumChk(HttpSession session, int unum) {
-        System.out.println("unumChk:" + unum);
-        if (session.getAttribute("unum") != null) {
-            int chkunum = (int) session.getAttribute("unum");
-            return chkunum;
+    public int unumChk(HttpSession session) {
+        if (session.getAttribute("unum") != null) { //로그인을 했을경우
+            int unum = (int) session.getAttribute("unum");
+            return unum;
         }
         return 0;
+        
     }
 
     @GetMapping("/getRtasu")
@@ -169,6 +186,24 @@ public class LoginController {
         } else {
             return Integer.parseInt(s);
         }
+    }
+
+    @GetMapping("/unumHpchk")
+    public int unumHpchk(int unum, String uhp) {
+        UserDto udto = loginMapper.getUserUhp(uhp);
+        if (udto.getUnum() != unum) { //번호랑 로그인한unum이랑 같지않은경우
+            return 0;
+        } else {
+            return 1;
+        }
+
+    }
+
+    @GetMapping("/taltae")
+    public void taltae(HttpSession session, int unum) {
+        System.out.println("삭제할유저:" + unum);
+        loginMapper.taltae(unum);
+        session.removeAttribute("unum");
     }
 
     @GetMapping("/smsSend")
@@ -192,6 +227,8 @@ public class LoginController {
         }
         loginService.insertCode(uhp, code);
 
+        // String hostNameUrl = "https://api-sens.ncloud.com"; // 호스트 URL
+        // String requestUrl = "/v1/sms/services/"; // 요청 URL
         String hostNameUrl = "https://sens.apigw.ntruss.com"; // 호스트 URL
         String requestUrl = "/sms/v2/services/"; // 요청 URL
         String requestUrlType = "/messages"; // 요청 URL
@@ -227,9 +264,9 @@ public class LoginController {
         // bodyJson.put("countryCode","82"); // Optional, 국가 전화번호, (default: 82)
         bodyJson.put("from", "01085454961"); // Mandatory, 발신번호, 사전 등록된 발신번호만 사용 가능
         // bodyJson.put("subject",""); // Optional, 기본 메시지 제목, LMS, MMS에서만 사용 가능
-        bodyJson.put("content", "BirdieBuddy의 문자인증 서비스 입니다.\n[" + code + "]를 입력해 주세요"); // Mandatory(필수), 기본 메시지 내용,
-                                                                                        // SMS: 최대 80byte, LMS, MMS: 최대
-                                                                                        // 2000byte
+        bodyJson.put("content", "["+code+"]"); // Mandatory(필수), 기본 메시지 내용,
+        // SMS: 최대 80byte, LMS, MMS: 최대
+        // 2000byte
         bodyJson.put("messages", toArr); // Mandatory(필수), 아래 항목들 참조 (messages.XXX), 최대 1,000개
 
         // String body = bodyJson.toJSONString();
@@ -281,12 +318,12 @@ public class LoginController {
         return "smsSend";
     }
 
-    public String makeSig(String uhp, String ts) throws Exception {
+    public String makeSig(String uhp, String timestamp) throws Exception {
         String space = " "; // one space
         String newLine = "\n"; // new line
         String method = "POST"; // method
         String url = "/sms/v2/services/ncp:sms:kr:305198840444:birdiebuddy/messages"; // url (include query string)
-        String timestamp = ts; // current timestamp (epoch)
+        // String timestamp = ts; // current timestamp (epoch)
         // String accessKey = "";
         // String secretKey = "";
         // String serviceId = "ncp:sms:kr::";

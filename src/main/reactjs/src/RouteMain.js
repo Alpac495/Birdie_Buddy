@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {KaKaoCallBack, Login, NaverCallBack, Sign} from "./login";
+import {KaKaoCallBack, Login, NaverCallBack, Sign, Taltae} from "./login";
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
@@ -21,9 +21,9 @@ import MypagePay from "./mypage/MypagePay";
 import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
 import Test from './yangdo/Test';
 import HugiDetail from "./hugi/HugiDetail";
-import { UserList } from './admin';
 import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
 import ChatRoom from "./chatbot/ChatRoom";
+import { Blacklist, UserList } from './admin';
 
 
 function RouteMain(props) {
@@ -34,6 +34,7 @@ function RouteMain(props) {
 
                 <Route path={'/admin'} >
                     <Route path="userlist" element={<UserList/>}/>
+                    <Route path="blacklist" element={<Blacklist/>}/>
                 </Route>
 
                 <Route path={'yangdo'}>
@@ -75,6 +76,7 @@ function RouteMain(props) {
                     <Route path="sign" element={<Sign {...props}/>}/>
                     <Route path="kcallback" element={<KaKaoCallBack/>}/>
                     <Route path="ncallback" element={<NaverCallBack/>}/>
+                    <Route path="taltae" element={<Taltae/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >
