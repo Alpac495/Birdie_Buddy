@@ -250,7 +250,7 @@ body {
     display: flex;
 }
 .JDvalue {
-    width: 10.25rem;
+    width: 15.25rem;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

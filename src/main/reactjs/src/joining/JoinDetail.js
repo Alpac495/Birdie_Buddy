@@ -309,7 +309,7 @@ const JoinDetail = () => {
             <div className="jdinfo">
                 <div className="JDcontent">
                     <div className="JDvalue">
-                        <div className="JDdiv4">#{dto.gname}</div>
+                        <div className="JDdiv4">{dto.gname}</div>
                     </div>
                 </div>
                 <div className="JDdefault">

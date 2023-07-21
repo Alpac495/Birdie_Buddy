@@ -1,4 +1,4 @@
-import "./Joining.css";
+import "./JoinUpdateForm.css";
 import React, {useCallback, useEffect, useState} from 'react';
 import {NavLink, useNavigate, useParams} from 'react-router-dom';
 import Axios from 'axios';
@@ -172,6 +172,8 @@ const JoinUpdateForm = (props) => {
                 </div> */}
                 <div className="frame-container">
                     <div className="jparent">
+                        <div className="jdiv1">#하기 내용 전체 재입력이 필요합니다.<br/>
+                        #동반자가 있을 경우 동반자 정보도 <br/>&nbsp;&nbsp;반드시! 재입력 해주세요.</div><br/>
                         <div className="jdiv">연령대</div>
                         {/*<input className="jforminput" type="text"  required placeholder="원하는 조인 멤버의 연령대를 입력하세요"*/}
                         {/*       value={jage} onChange={(e)=>setJage(e.target.value)} maxLength minLength />*/}

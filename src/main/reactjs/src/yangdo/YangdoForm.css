@@ -173,18 +173,18 @@
     text-align: center;
     font-size: 0.94rem;
   }
-  .joinform,
+  /* .joinform, */
   .yangdoform {
     background-color: #fff;
     height: 46.25rem;
     overflow: hidden;
   }
-  .joinform {
+  /* .joinform {
     position: absolute;
     top: 0;
     left: 0;
     width: 22.5rem;
-  }
+  } */
   .yangdoform {
     position: relative;
     width: 100%;

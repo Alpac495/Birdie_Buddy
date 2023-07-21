@@ -195,9 +195,7 @@ const JoinForm = (props) => {
                 </div>
             </div>
             <div className="joinform-child" />
-            <div className="joinform-child2" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
-                <div className="jdiv8"><button onClick={ () => {navi(-1);} }>취소</button></div>
                 <label className="jradio-button-setonon">
                     <input type='radio' name='partner' className="jdiv31"/>동반자 없음
                 </label>
