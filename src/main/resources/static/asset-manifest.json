@@ -1,12 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.09e6b986.css",
-    "main.js": "/static/js/main.4a9af9d0.js",
+    "main.css": "/static/css/main.2fc5a94c.css",
+    "main.js": "/static/js/main.661f4a1f.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_ranking.jpg": "/static/media/golf_ranking.61722abbaf185e6f0068.jpg",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
     "static/media/golf_place.jpg": "/static/media/golf_place.acf2d03cace00fe60acd.jpg",
-    "static/media/golf_rankingback.jpg": "/static/media/golf_rankingback.2986f03d94ac89e1c2ba.jpg",
     "static/media/golf_hugi.jpg": "/static/media/golf_hugi.271d900574cc09a3d8b5.jpg",
     "static/media/golf_ad.jpg": "/static/media/golf_ad.d61cf15fb63d8b304b63.jpg",
     "static/media/bronze-medal.png": "/static/media/bronze-medal.b042076e2a4f3ac51d53.png",
@@ -27,12 +26,12 @@
     "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
     "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
     "static/media/icon_yangdo.svg": "/static/media/icon_yangdo.527296a35396680a1a82a44b268c50c9.svg",
-    "main.09e6b986.css.map": "/static/css/main.09e6b986.css.map",
-    "main.4a9af9d0.js.map": "/static/js/main.4a9af9d0.js.map",
+    "main.2fc5a94c.css.map": "/static/css/main.2fc5a94c.css.map",
+    "main.661f4a1f.js.map": "/static/js/main.661f4a1f.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.09e6b986.css",
-    "static/js/main.4a9af9d0.js"
+    "static/css/main.2fc5a94c.css",
+    "static/js/main.661f4a1f.js"
   ]
 }

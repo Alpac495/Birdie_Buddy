@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./Friend.css";
 import {Link, NavLink} from 'react-router-dom';
+import Header from "../header/Header";
 function Friend(props) {
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{

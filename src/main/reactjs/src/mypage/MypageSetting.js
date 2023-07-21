@@ -6,13 +6,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import PeopleIcon from '@mui/icons-material/People';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import JoinIcon from"../image/icon_flaghole.svg";
+import JoinIcon from"../image/icon_join.svg";
 import BuddyIcon from "../image/icon_mybuddy.svg";
 import YangdoIcon from "../image/icon_yangdo.svg";
-import RateReviewIcon from '@mui/icons-material/RateReview';
-import PersonIcon from '@mui/icons-material/Person';
+import MoveIcon from "../image/vector.svg";
 import BuddyStory from "../image/icon_buddystory.svg";
 import {useNavigate, useParams} from "react-router-dom";
+import Header from "../header/Header";
 
 const MypageSetting = () => {
 
@@ -25,6 +25,7 @@ const MypageSetting = () => {
 
     return (
         <div className="mypagesetting">
+            <div className="header"><Header/></div>
             <div className="MPScontent-area">
                 <div className="MPSlist-item-group-subtitle">
                     <div className="MPSsubtitle">
@@ -89,14 +90,14 @@ const MypageSetting = () => {
 
             </div>
 
-            <img className="vector-icon" alt="" src="/vector.svg" />
-            <img className="vector-icon1" alt="" src="/vector1.svg" />
-            <img className="vector-icon2" alt="" src="/vector2.svg" />
-            <img className="vector-icon3" alt="" src="/vector3.svg" />
-            <img className="vector-icon4" alt="" src="/vector4.svg" />
-            <img className="vector-icon5" alt="" src="/vector5.svg" />
-            <img className="vector-icon6" alt="" src="/vector6.svg" />
-            <img className="vector-icon7" alt="" src="/vector7.svg" />
+            <img className="vector-icon" alt="" src={MoveIcon} />
+            <img className="vector-icon1" alt="" src={MoveIcon} />
+            <img className="vector-icon2" alt="" src={MoveIcon}/>
+            <img className="vector-icon3" alt="" src={MoveIcon} />
+            <img className="vector-icon4" alt="" src={MoveIcon}/>
+            <img className="vector-icon5" alt="" src={MoveIcon} />
+            <img className="vector-icon6" alt="" src={MoveIcon} />
+            <img className="vector-icon7" alt="" src={MoveIcon} />
 
         </div>
     );
