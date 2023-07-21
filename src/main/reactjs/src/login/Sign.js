@@ -98,8 +98,8 @@ function Sign(props) {
 
     }
     const emailchk = () => {
-        if (uemail.length>17 || uemail=='') {
-            alert("ID는 16자 이내로 설정해주세요");
+        if (uemail=='') {
+            alert("ID를 확인해주세요");
             return;
         } else {
             axios.get(`/login/emailchk?uemail=${uemail}`)

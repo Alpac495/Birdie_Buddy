@@ -15,7 +15,6 @@ const KakaoCallback = () => {
         const REDIRECT_URI = "http://localhost:3000/login/kcallback";
 
 
-
         axios.post(
             `https://kauth.kakao.com/oauth/token?grant_type=${grantType}&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${code}`,
             {},
@@ -35,8 +34,8 @@ const KakaoCallback = () => {
                     }
                 )
                     .then((res) => {
-                        const { kakao_account } = res.data;
-                        if(kakao_account.profile.nickname) {
+                        const {kakao_account} = res.data;
+                        if (kakao_account.profile.nickname) {
                             console.log('전체', res.data);
                             console.log('이메일' + kakao_account.email);
                             console.log('성별' + kakao_account.gender);
@@ -49,12 +48,14 @@ const KakaoCallback = () => {
                                             state: {
                                                 uemail: kakao_account.email,
                                                 unickname: kakao_account.profile.nickname,
-                                                ugender: kakao_account.gender=="male"?"남":"여"
+                                                ugender: kakao_account.gender == "male" ? "남" : "여"
                                             }
                                         })
                                     } else {
-                                        sessionStorage.setItem("unum", `${res.data}`)
-                                        navi("/")
+                                        axios.get('/login/socialLogin?unum=' + res.data)
+                                            .then((res => {
+                                                navi("/")
+                                            }))
                                     }
                                 })
                         }
