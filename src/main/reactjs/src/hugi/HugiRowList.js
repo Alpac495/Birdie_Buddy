@@ -42,6 +42,8 @@ function HugiRowList(props) {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+
+
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
