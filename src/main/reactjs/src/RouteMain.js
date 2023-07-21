@@ -1,14 +1,12 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {KaKaoCallBack, Login, NaverCallBack, Sign} from "./login";
+import {KaKaoCallBack, Login, NaverCallBack, Sign, Taltae} from "./login";
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
 import JoinList from "./joining/JoinList";
 import Mypage from "./mypage/Mypage";
-import Bot from "./chatbot/Bot";
-import ChatBot from "./chatbot/ChatApp";
 import Main from "./Main";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
@@ -16,14 +14,16 @@ import JoinDetail from "./joining/JoinDetail";
 import MypageUpdate from "./mypage/MypageUpdate";
 import MypageSetting from "./mypage/MypageSetting";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
-import {HugiList} from "./hugi";
+import {HugiList, HugiModify} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
-import {JoinListMine} from "./joining";
+import {JoinListMine, JoinUpdateForm} from "./joining";
 import MypagePay from "./mypage/MypagePay";
 import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
 import Test from './yangdo/Test';
 import HugiDetail from "./hugi/HugiDetail";
-
+import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
+import ChatRoom from "./chatbot/ChatRoom";
+import { Blacklist, UserList } from './admin';
 
 
 function RouteMain(props) {
@@ -31,6 +31,11 @@ function RouteMain(props) {
         <div>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+
+                <Route path={'/admin'} >
+                    <Route path="userlist" element={<UserList/>}/>
+                    <Route path="blacklist" element={<Blacklist/>}/>
+                </Route>
 
                 <Route path={'yangdo'}>
                     <Route path="list" element={<YangdoList/>}/>
@@ -54,12 +59,14 @@ function RouteMain(props) {
                     <Route path="list" element={<HugiList/>}/>
                     <Route path="hugilist" element={<HugiRowList/>}/>
                     <Route path="detail/:hnum" element={<HugiDetail/>}/>
+                    <Route path="modify/:hnum" element={<HugiModify/>}/>
                 </Route>
 
                 <Route path={'/joining'} >
                     <Route path={"list/:unum"} element={<JoinList/>}/>
                     <Route path={"mylist/:unum"} element={<JoinListMine/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
+                    <Route path={"updateform/:jnum/:unum"} element={<JoinUpdateForm/>}/>
                     <Route path={"detail"} element={<JoinDetail/>}/>
                     <Route path={"detail/:jnum/:unum"} element={<JoinDetail/>}/>
                 </Route>
@@ -69,6 +76,7 @@ function RouteMain(props) {
                     <Route path="sign" element={<Sign {...props}/>}/>
                     <Route path="kcallback" element={<KaKaoCallBack/>}/>
                     <Route path="ncallback" element={<NaverCallBack/>}/>
+                    <Route path="taltae" element={<Taltae/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >
@@ -85,8 +93,9 @@ function RouteMain(props) {
                     <Route path="list" element={<RankList/>}/>
                 </Route>
 
+                <Route path="/chating" element={<NCloudChatRoomList />} />
+                <Route path="/chating/room/:channelId" element={<ChatRoom />} />
 
-                <Route path="/chatbot" element={<ChatBot />} />
 
                 <Route path={'/main'}>
                     <Route path='main' element={<Main/>}/>

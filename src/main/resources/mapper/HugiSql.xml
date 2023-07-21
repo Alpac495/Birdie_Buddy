@@ -13,6 +13,13 @@
         insert into hugi (hcontent, hphoto, hwriteday, hlike, unum)
         values (#{hcontent}, #{hphoto}, now(), 0, #{unum})
     </insert>
+    <update id="updateHugi" parameterType="HugiDto">
+        UPDATE hugi
+        SET hcontent = #{hcontent},
+            hphoto = #{hphoto},
+            hwriteday = #{hwriteday}
+        WHERE hnum = #{hnum}
+    </update>
     <update id="addLikeCount" parameterType="int">
         update hugi set hlike = hlike + 1 where hnum = #{hnum}
     </update>

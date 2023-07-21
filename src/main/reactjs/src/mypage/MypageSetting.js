@@ -1,5 +1,19 @@
 import "./MypageSetting.css";
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+import EditIcon from '@mui/icons-material/Edit';
+import PeopleIcon from '@mui/icons-material/People';
+import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import JoinIcon from"../image/icon_flaghole.svg";
+import BuddyIcon from "../image/icon_mybuddy.svg";
+import YangdoIcon from "../image/icon_yangdo.svg";
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import PersonIcon from '@mui/icons-material/Person';
+import BuddyStory from "../image/icon_buddystory.svg";
 import {useNavigate, useParams} from "react-router-dom";
+
 const MypageSetting = () => {
 
     const {unum} = useParams();
@@ -18,11 +32,11 @@ const MypageSetting = () => {
                     </div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src="/account.svg" />
+                    <AccountCircleOutlinedIcon/>
                     <div className="MPSlabel1">마이 프로필</div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src="/account.svg" />
+                    <img className="account-icon" alt="" src={BuddyIcon} />
                     <div className="MPSlabel1">마이 버디</div>
                 </div>
                 <div className="MPSsingle-line-item1" />
@@ -35,20 +49,20 @@ const MypageSetting = () => {
                     </div>
                 </div>
                 <div className="MPSsingle-line-item2">
-                    <img className="account-icon" alt="" src="/notification.svg" />
+                    <img className="account-icon" alt="" src={JoinIcon} />
                     <div className="MPSlabel1">마이 조인</div>
                 </div>
                 <div className="MPSsingle-line-item"
                 onClick={onMyYangdo}>
-                    <img className="account-icon" alt="" src="/time.svg" />
+                    <img className="account-icon" alt="" src={YangdoIcon} />
                     <div className="MPSlabel1">마이 양도</div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src="/payment.svg" />
+                    <TrendingUpIcon/>
                     <div className="MPSlabel1">마이 랭킹</div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src="/settings.svg" />
+                    <img className="account-icon" alt="" src={BuddyStory} />
                     <div className="MPSlabel1">마이 스토리</div>
                 </div>
                 <div className="MPSdivider">
@@ -61,15 +75,20 @@ const MypageSetting = () => {
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="MPSlabel1">공지사항</div>
+                    <div className="MPSlabel1">회원탈퇴</div>
+                </div>
+                <div className="MPSsingle-line-item">
+                    <img className="account-icon" alt="" src="/info.svg" />
+                    <div className="MPSlabel1">비밀번호 찾기</div>
                 </div>
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">
                         <div className="MPSlabel">로그아웃</div>
                     </div>
                 </div>
+
             </div>
-            <img className="settings-icon1" alt="" src="/settings1.svg" />
+
             <img className="vector-icon" alt="" src="/vector.svg" />
             <img className="vector-icon1" alt="" src="/vector1.svg" />
             <img className="vector-icon2" alt="" src="/vector2.svg" />

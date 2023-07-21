@@ -1,96 +1,103 @@
-.header_wrap{
-    
-}
 
-.ranking_listwrap{
+
+.rankingList_wrap{
     width: 100%;
     height: 100vh;
+    background-image: url("../images/golf_ranking.jpg");
+    background-size: cover;
+}
+
+.ranking_List{
+    text-align: center;
+    height: calc(100% - 100px);
     
 }
 
-.my_ranking{
-    width: 95%;
-    height: 150px;
-    margin: 0 auto 25px auto;
-    border-radius: 10px ;
-    background-color: rgba(0, 0, 0, 0.1);
+.ranking_mem{
+    width: 90%;
+    height: 100px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    background-image: url("../images/golf_rankingback.jpg");
+    background-size: cover;
+    border-radius: 4px;
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px 2px 4px black;
+    
 }
-.ranking_bar{
-    width: 95%;
-    height: 70px;
-    margin: 0 auto;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.07);
-    margin-bottom: 15px;
+.ranking_profile{
+    width: 20%;
+    border-radius: 100px;
+    object-fit: contain;
+    margin-left: 10px;
+    background-color: black;
 }
 
-.ranking_bar1{
-    width: 95%;
-    height: 70px;
-    margin: 0 auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    background-image: linear-gradient(to right, #fcdd2c 0%, #f8e170 100%);
+.ranking_mid{
+    text-align: left;
+    width: 50%;
+}
+.ranking_place{
+    position: absolute;
+    bottom: 0;
+    right: 10px;   
+}
+.ranking_place img{
+    position: relative;
+    bottom: 50px;
+    right: -13px;   
+    width: 50px;
+    height: 50px;
+    z-index: 10;
 }
 
+.ranking_neck{
+    position: relative;
+    left: 100px;
+    width: 75px;
+    height: 500px;
+    opacity: 0.9;
+    transform: rotate(120deg);   
+}
 
-.ranking_bar2{
-    width: 95%;
-    height: 70px;
-    margin: 0 auto;
-    border-radius: 10px;
-    margin-bottom: 15px;    
+.ranking_mem .ranking_nickname{
+    margin-left: 15px;
+}
+
+.ranking_mem.rank1 .ranking_neck{
+    background-color: gold;
+    
+}
+.ranking_mem.rank1 .ranking_place{
+    color: gold;
+    text-shadow: 1px 1px 1px black;
+}
+
+.ranking_mem.rank2 .ranking_neck{
     background-color: #DCD9D4;
     background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
     background-blend-mode: soft-light,screen;
+}    
+.ranking_mem.rank2 .ranking_place{
+    color: silver;
+    text-shadow: 1px 1px 1px black;
 }
 
-.ranking_bar3{
-    width: 95%;
-    height: 70px;
-    margin: 0 auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    background: linear-gradient(to right, #a47c6d, #c78e79);
+.ranking_mem.rank3 .ranking_neck{
+    background-color:  #c06442;
 }
 
-
-/*modal*/
-.ranking_modal{
-    position: fixed;
-    transition: transform 0.3s ease;
-    transform: translateY(100%);
-    width: 100%;
-    border: black 1px solid;
-    z-index: 10;
+.ranking_mem.rank3 .ranking_place{
+    color: #a47c6d;
+    text-shadow: 1px 1px 1px black;
 }
-.ranking_modal.open {
-    bottom: 0;
-    transform: translateY(0%);
-}
-.ranking_modal.close{
-    bottom: -100%;
-    transform: translateY(1000%);
-}
-.modal_background {
-    /* 배경 스타일 */
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
 
-
-}
-.ranking_list{
-
-}
-.ranking_list rank1{
-
-}
-.ranking_list rank2{
-
-}
-.ranking_list rank3{
-
+.ranking_mem.rank4{
 }
 
