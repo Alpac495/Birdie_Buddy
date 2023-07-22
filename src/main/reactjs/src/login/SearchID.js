@@ -1,32 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SearchID(props) {
-    const [data, setData]=useState([]);
-    const [unum, setUnum]=useState('');
-    const [uhp, setUhp]=useState('');
+    const [uhp, setUhp] = useState('');
     const [code, setCode] = useState('');
+    const [unum, setUnum] = useState('');
     const [chk, setChk] = useState(false);
-    const [upass, setUpass]=useState('');
-    const [upassok, setUpassok]=useState('');
-    const getUserInfo=()=>{
-        axios.get("/login/getUserInfo")
-        .then(res=>{
-            setData(res.data)
-        })
-    }
-    useEffect(()=>{
-        getUserInfo();
-    },[])
+    const navi = useNavigate();
+    
     const sms = () => {
         if (uhp.length != 11) {
             alert("휴대폰번호 11자리를 입력해 주세요")
             setUhp('');
         } else {
-            axios.get("/login/hpchk?unum="+unum+"&uhp="+uhp)
+            axios.get("/login/unumHpchk?unum="+unum+"&uhp="+uhp)
                 .then(res=>{
                     if(res.data==0){
                         alert("회원정보와 휴대폰번호가 일치하지 않습니다")
+                        setUhp('');
                     } else {
                         axios.get("/login/smsSend?uhp="+uhp)
                             .then(res=>{
@@ -36,6 +28,7 @@ function SearchID(props) {
                 })
         }
     }
+
     const codeChk = () => {
         axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
@@ -46,6 +39,21 @@ function SearchID(props) {
                     alert("코드가 일치하지 않습니다")
                 }
             })
+    }
+    const taltae =()=>{
+        if(chk==false){
+            alert("인증을 먼저 진행해주세요")
+        } else {
+            if(window.confirm("회원탈퇴를 진행하시겠습니까?")){
+                axios.get('/login/taltae?unum='+unum)
+                    .then(res=>{
+                        alert("탈퇴완료")
+                        navi("/")
+                    })
+            } else {
+                alert("취소")
+            }
+        }
     }
     return (
         <div className='Taltae_div1'>
@@ -60,18 +68,7 @@ function SearchID(props) {
                    onChange={(e) => setCode(e.target.value)}/><br/>
             <button type="button" onClick={codeChk}>인증확인</button>
             <br/>
-            비밀번호<br/>
-                    <input type={"password"} className={'Sign_textbox'} required onChange={(e) => setUpass(e.target.value)}
-                           value={upass}/><br/><br/>
-
-                    비밀번호 확인<br/>
-                    <input type={"password"} className={'Sign_textbox'} required onChange={(e) => setUpassok(e.target.value)}
-                           value={upassok}/>
-                    {
-                        upass == '' ? <div></div> : upass != '' && upass != upassok ? <div>비밀번호가 일치하지 않습니다</div> :
-                            <div>비밀번호가 일치합니다</div>
-                    }
-            <button>탈퇴</button>
+            <button onClick={taltae}>탈퇴</button>
         </div>
     );
 }

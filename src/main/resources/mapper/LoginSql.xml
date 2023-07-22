@@ -55,6 +55,15 @@
     <delete id="taltae" parameterType="int">
         delete from user where unum=#{unum}
     </delete>
+    <select id="passChk" parameterType="String" resultType="String">
+        SELECT SHA2(#{upass}, 256);
+    </select>
+    <update id="passChange" parameterType="Map">
+        update user set upass=sha2(#{upass},256) where unum=#{unum}
+    </update>
+    <update id="hpChange" parameterType="Map">
+        update user set uhp=#{uhp} where unum=#{unum}
+    </update>
 
 
 </mapper>

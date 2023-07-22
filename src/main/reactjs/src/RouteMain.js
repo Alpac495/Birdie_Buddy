@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, Sign, Taltae} from "./login";
+import {HpChange, KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, Sign, Taltae} from "./login";
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
@@ -26,6 +26,7 @@ import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
 import ChatRoom from "./chatbot/ChatRoom";
 import MyHugiList from "./hugi/MyHugiList";
 import MyHugiRowList from "./hugi/MyHugiRowList";
+import AccountSetting from './mypage/AccountSetting';
 
 
 function RouteMain(props) {
@@ -83,8 +84,10 @@ function RouteMain(props) {
                     <Route path="ncallback" element={<NaverCallBack/>}/>
                     <Route path="taltae" element={<Taltae/>}/>
                     <Route path="passchange" element={<PassChange/>}/>
+                    <Route path="hpchange" element={<HpChange/>}/>
                     <Route path="searchID" element={<SearchID/>}/>
                     <Route path="searchPass" element={<SearchPass/>}/>
+                    <Route path="account" element={<AccountSetting/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >

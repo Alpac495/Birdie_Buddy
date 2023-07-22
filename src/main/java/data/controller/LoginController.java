@@ -190,8 +190,8 @@ public class LoginController {
 
     @GetMapping("/unumHpchk")
     public int unumHpchk(int unum, String uhp) {
-        UserDto udto = loginMapper.getUserUhp(uhp);
-        if (udto.getUnum() != unum) { //번호랑 로그인한unum이랑 같지않은경우
+        UserDto udto = loginMapper.getUser(unum);
+        if (!udto.getUhp().equals(uhp)) { //hp비교
             return 0;
         } else {
             return 1;
@@ -215,14 +215,27 @@ public class LoginController {
     public boolean passChk(HttpSession session, String upass){
         int unum = (int) session.getAttribute("unum");
         UserDto udto = loginMapper.getUser(unum);
-        if(upass==udto.getUpass()){
+        System.out.println(udto.getUpass());
+        String pass = loginMapper.passChk(upass);
+        System.out.println(pass);
+        if(pass.equals(udto.getUpass())){
             return true;
         } else {
             return false;
         }
 
     }
-
+    @GetMapping("/passChange")
+    public void passChange(HttpSession session, String upass){
+        int unum = (int) session.getAttribute("unum");
+        loginService.passChange(unum, upass);
+    }
+    @GetMapping("/hpChange")
+    public void hpChange(HttpSession session, String uhp){
+        System.out.println(uhp);
+        int unum = (int) session.getAttribute("unum");
+        loginService.hpChange(unum, uhp);
+    }
 
 
 
