@@ -61,6 +61,21 @@ function YangdoDetail(props) {
     };
 
     // 날짜를 원하는 형식으로 포맷팅하는 함수
+    const formatWDate = (dateString) => {
+        const dateObj = new Date(dateString);
+        const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: false,
+        };
+        const formattedDate = new Intl.DateTimeFormat('ko-KR', options).format(dateObj);
+        return formattedDate.replace(/\. /g, '.').replace(' ', ' ');
+    };
+
+    // 날짜를 원하는 형식으로 포맷팅하는 함수
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
         const year = dateObj.getFullYear().toString().slice(2); // 뒤의 두 자리만 가져오기
@@ -102,7 +117,7 @@ function YangdoDetail(props) {
                         </div>
                         <div className="YEframe-group">
                             <div className="YElabel-wrapper">
-                                <div className="YElabel">{dto.ywriteday} 등록</div>
+                                <div className="YElabel">{formatWDate(dto.ywriteday)} 등록</div>
                             </div>
                             <div className="YEgroup-wrapper">
                                 <div className="YEparent">
