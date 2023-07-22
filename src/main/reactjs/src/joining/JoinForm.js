@@ -22,7 +22,7 @@ const JoinForm = (props) => {
     const [jp2gender, setJp2gender] = useState("");
     const [jp2age, setJp2age] = useState("");
     const [jp2tasu, setJp2tasu] = useState("");
-    console.log(jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu)
+    const [jucount, setJucount] = useState("");
 
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
     const [modalOpen, setModalOpen] = useState(false);
@@ -65,12 +65,12 @@ const JoinForm = (props) => {
 
     const onSubmitEvent=(e)=>{
         e.preventDefault();
-        Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage, jp1gender, jp1age, jp1tasu, jp2gender, jp2age, jp2tasu})
+        Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage, jp1gender, jp1age, jp1tasu, jp2gender, jp2age, jp2tasu, jucount})
             .then(res=>{
                 // onMakerEvent()
                 alert("정상적으로 생성되었습니다")
                 //목록으로 이동
-                navi("/joining/list/")
+                navi(`/joining/list/${unum}`)
             })
     }
 
@@ -103,6 +103,7 @@ const JoinForm = (props) => {
         setJp1gender(jp1gender);
         setJp1age(jp1age);
         setJp1tasu(jp1tasu);
+        setJucount(2);
         setPartnerFormOpen(false);
     }
     const partnertwo = (jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu) => {
@@ -112,17 +113,18 @@ const JoinForm = (props) => {
         setJp2gender(jp2gender);
         setJp2age(jp2age);
         setJp2tasu(jp2tasu);
+        setJucount(3);
         setPartnerForm2Open(false);
     }
 
-
+    
     return (
         <div className="joinform">
 
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="Modal heading">
                     <div>
-                        <input style={{marginLeft:'20px'}}
+                        <input style={{marginLeft:'50px'}}
                             type="text"
                             placeholder="검색"
                             onChange={(e) => {

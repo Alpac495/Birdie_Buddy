@@ -8,9 +8,9 @@ import axios from 'axios';
 
 
 function Home(props) {
-    const [unum, setUnum]=useState(0);
+    const [unum, setUnum]=useState('');
     const unumchk=()=>{
-        axios.get("/login/unumChk?unum="+unum)
+        axios.get("/login/unumChk")
         .then(res=> {
             setUnum(res.data);
         });
@@ -42,7 +42,7 @@ function Home(props) {
     const logout =()=>{
         axios.get("/login/logout")
         .then(res=>{
-            setUnum(0);
+            setUnum('');
         })
     }
 
@@ -75,8 +75,13 @@ function Home(props) {
 
             <ul> hugi
                 <li>
-                    <NavLink to={'/hugi/list'}>후기</NavLink>
+                    <NavLink to={'/hugi/list'}>후기list</NavLink>
                 </li>
+                {unum !== 0 &&(
+                <li>
+                    <NavLink to={`/hugi/list/${unum}`}>내 후기list</NavLink>
+                </li>
+                )}
             </ul>
 
             <ul> joining
@@ -128,12 +133,26 @@ function Home(props) {
             </ul>
             <ul>chatbot
                 <li>
-                    <NavLink to={'/chatbot'}>chatbot</NavLink>
+                    <NavLink to={'/chating'}>chating room</NavLink>
                 </li>
             </ul>
             <ul>main
                 <li>
                     <NavLink to={'/main/main'}>main</NavLink>
+                </li>
+            </ul>
+            <ul>admin
+                <li>
+                    <NavLink to={'/admin/userlist'}>전체사용자</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/admin/blacklist'}>블랙리스트</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/admin/noticeform'}>공지작성폼</NavLink>
+                </li>
+                <li>
+                    <NavLink to={'/admin/noticeList'}>공지리스트</NavLink>
                 </li>
             </ul>
         </div>

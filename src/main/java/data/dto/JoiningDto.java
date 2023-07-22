@@ -12,7 +12,7 @@ public class JoiningDto {
     private int jnum;
     private int unum;
     private String jcontent;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     private Timestamp jwriteday;
     private String jjoinday;
     private String gname;
@@ -33,5 +33,5 @@ public class JoiningDto {
     private String jp2gender;
     private String jp2age;
     private String jp2tasu;
-
+    private int jucount;
 }

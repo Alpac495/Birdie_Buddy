@@ -2,6 +2,9 @@ import "./JoinDetail.css";
 import {useCallback, useEffect, useState} from "react";
 import Axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
+import PartnerForm from "../components/PartnerForm";
+import PortalPopup from "../components/PortalPopup";
+
 const JoinDetail = () => {
     const {unum,jnum} = useParams('');
     const [dto,setDto]=useState({});
@@ -10,9 +13,37 @@ const JoinDetail = () => {
     const [confirm, setConfirm] = useState([]);
     const [sub, setSub] = useState([]);
     const [check, setCheck]=useState('');
-    console.log(unum,jnum)
-
+    const [jp1gender, setJp1gender] = useState("");
+    const [jp1age, setJp1age] = useState("");
+    const [jp1tasu, setJp1tasu] = useState("");
+    const [jcount, setJcount] = useState(1);
+    const writerunum=unum;
     const navi=useNavigate();
+
+    //동반자 모달
+    const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
+
+    const openPartnerForm = useCallback(() => {
+        setPartnerFormOpen(true);
+    }, []);
+
+    const closePartnerForm = useCallback(() => {
+        setPartnerFormOpen(false);
+    }, []);
+
+    const partnerone = (jp1gender,jp1age,jp1tasu) => {
+        setJp1gender(jp1gender);
+        setJp1age(jp1age);
+        setJp1tasu(jp1tasu);        
+        setPartnerFormOpen(false);
+        Axios.post("/joinmember/joinGaip", {unum, jnum, jp1gender, jp1age, jp1tasu, jcount})
+                .then(res => {
+                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
+    }
 
     const confirmlist = useCallback(() => {
         const url = "/joinmember/confirmlist?jnum="+(jnum);
@@ -73,14 +104,17 @@ const JoinDetail = () => {
 
     const onGaipEvent=(e)=>{
         e.preventDefault();
-        if(4 - dto.jmcount === 0){
+        if(3 - dto.jmcount === 0){
             alert("빈자리가 없습니다")
         }else{
-        const confirmed = window.confirm('정말 신청하시겠습니까?');
+        const confirmed = window.confirm('동반자가 있습니까? 있을경우 확인을, 없을경우 취소를 눌러주세요');
         if (confirmed) {
-            Axios.post("/joinmember/joinGaip", {unum, jnum})
+            setJcount(2);
+            setPartnerFormOpen(true);   
+        }else{
+            Axios.post("/joinmember/joinGaip", {unum, jnum, jcount})
                 .then(res => {
-                    window.location.replace(`/joining/detail/${jnum}`)
+                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -95,7 +129,7 @@ const JoinDetail = () => {
             Axios.delete(`/joinmember/joinCancel/${unum}&${jnum}`)
                 .then(res => {
                     alert("정상적으로 취소되었습니다");
-                    window.location.replace(`/joining/detail/${jnum}`)
+                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -118,14 +152,14 @@ const JoinDetail = () => {
     };
 
     const onAcceptEvent = (unum) => {
-        if(3 - dto.jmcount === 0){
+        if (dto.jmcount + confirm == 4) {
             alert("빈자리가 없습니다")
         }else {
             const confirmed = window.confirm('신청을 수락하시겠습니까?');
             if (confirmed) {
                 Axios.get(`/joinmember/acceptJoin/${unum}&${jnum}`)
                     .then(res => {
-                        window.location.replace(`/joining/detail/${jnum}`);
+                        window.location.replace(`/joining/detail/${jnum}/${writerunum}`);
                     })
                     .catch(err => {
                         console.log(err.message);
@@ -133,15 +167,45 @@ const JoinDetail = () => {
             }
         }
     };
+    console.log(dto.jmcount)
+    const onJoinUpdateEvent = () => {
+        window.location.replace(`/joining/updateform/${jnum}/${unum}`);
+    }
+
+    
 
 
     return (
         <div className="joindetail">
             <div className="JDdiv">
             </div>
-                {/* <div className="esther-howard"><b>모집자 동반인</b><br/>
-                    {dto.jp1gender} / {dto.jp1age}세 / {dto.jp1tasu}타수
-                </div> */}
+            <div className="JDdongbangroup">
+                <div className="JDframe2">
+                {dto.jucount == 1 ? <div className="JDuser">
+                        <div className="JDavatar">
+                            <div className="JDlw">동</div>
+                        </div>
+                        <div className="esther-howard"><b>모집자 동반인 없음</b>
+                        </div>
+                    </div> : (
+                    <div className="JDuser">
+                        <div className="JDavatar">
+                            <div className="JDlw">LW</div>
+                        </div>
+                        <div className="esther-howard"><b>모집자 동반인1</b><br/>
+                            {dto.jp1gender} / {dto.jp1age}세 / {dto.jp1tasu}타
+                        </div>
+                    </div>)}
+                    {dto.jucount != 3 ? null : (<div className="JDuser">
+                        <div className="JDavatar">
+                            <div className="JDlw">LW</div>
+                        </div>
+                        <div className="esther-howard"><b>모집자 동반인2</b><br/>
+                            {dto.jp2gender} / {dto.jp2age}세 / {dto.jp2tasu}타
+                        </div>
+                    </div>)}                                        
+                </div>
+            </div>
             <img className="jduphoto-icon" alt="" src="/jduphoto@2x.png" />
             <div className="JDconfirmgroup">
                 <div className="JDframe">
@@ -150,42 +214,57 @@ const JoinDetail = () => {
                             <div className="JDavatar">
                                 <div className="JDlw">LW</div>
                             </div>
-                            <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반 1인/나이/성별)<br/>
+                            {item.jcount == 1 ? <div className="esther-howard"><b>{item.unickname}</b>
+                                <div style={{display:'none'}}>{item.unum}</div>
+                                <br/>
                                 {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
-                            </div>
+                            </div> : (                                 
+                            <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반인/{item.jp1gender}/{item.jp1age}세/{item.jp1tasu}타)
+                                <div style={{display:'none'}}>{item.unum}</div>
+                                <br/>
+                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
+                            </div>)}
                         </div>
                     ))}
                 </div>
             </div>
 
             <div className="JDparent">
+            <div className="JDdiv0">
+          <div className="JDtxt">
+            <span>{`모집자 동반인( 총 `}</span>
+            <span className="JDspan1">{dto.jucount}</span>
+            <span>{` 명) `}</span>
+          </div>
+                </div>
                 <div className="JDdiv1">
-          <span className="JDtxt">
+          <div className="JDtxt">
             <span>{`확정인원( 총 `}</span>
-            <span className="JDspan1">{dto.jmcount}</span>
-            <span>{`명) `}</span>
-          </span>
+            <span className="JDspan1">{dto.jmcount+dto.jucount}</span>
+            <span>{` 명) `}</span>
+          </div>
                 </div>
                 <div className="JDdiv2">
           <span className="JDtxt">
             <span>{`빈자리 `}</span>
-            <span className="JDspan1">{3 - dto.jmcount}</span>
+            <span className="JDspan1">{4-dto.jmcount-dto.jucount}</span>
           </span>
                 </div>
             </div>
             <div className="JDapplygroup">
                 <div className="JDdiv3">
-                    <span>{`신청인원( `}</span>
+                    <span>{`신청인원( 총 `}</span>
                     <span className="JDspan1">{dto.smcount}</span>
-                    <span> 명 )</span>
+                    <span> 명)</span>
                 </div>
                 <div className="JDframe1">
                     {sub.map && sub.map((item, idx) => (
                         <div className="JDuser">
                             <div className="JDavatar">
                                 <div className="JDlw">LW</div>
-                            </div>
-                            <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반 1인/나이/성별)&nbsp;<div style={{display:'none'}}>{item.unum}</div>
+                            </div> 
+                            {item.jp1gender == null ? <div className="esther-howard"><b>{item.unickname}</b>
+                                <div style={{display:'none'}}>{item.unum}</div>&nbsp;&nbsp;
                                 {dto.unum == unum ? (
                                     <button type='button' value={item.unum} className='btn btn-sm btn-success' onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>
                                 ) : (
@@ -194,7 +273,18 @@ const JoinDetail = () => {
 
                                 <br/>
                                 {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
-                            </div>
+                            </div> : (                                 
+                            <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반인/{item.jp1gender}/{item.jp1age}세/{item.jp1tasu}타)
+                                <div style={{display:'none'}}>{item.unum}</div>&nbsp;&nbsp;
+                                {dto.unum == unum ? (
+                                    <button type='button' value={item.unum} className='btn btn-sm btn-success' onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>
+                                ) : (
+                                    null
+                                )}
+
+                                <br/>
+                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
+                            </div>)}
                         </div>
                     ))}
                     <br/><br/><br/><br/>
@@ -209,8 +299,25 @@ const JoinDetail = () => {
                             <form onClick={onGaipEvent}>
                                 <input type='hidden' value={unum}/>
                                 <input type='hidden' value={jnum}/>
+                                <input type='hidden' value={jp1gender}/>
+                                <input type='hidden' value={jp1age}/>
+                                <input type='hidden' value={jp1tasu}/>
+                                <input type='hidden' value={jcount}/>
                                 <button type="submit">신청 하기</button>
                             </form>
+                        )}
+                    </div>
+                    <br/><br/>
+                    {dto.unum == unum ? (
+                            <div className="joindetail-child2" />
+                        ) : (
+                            null
+                        )}                    
+                    <div className="JDdiv20">
+                        {dto.unum == unum ? (
+                            <button type="button" onClick={onJoinUpdateEvent}>수정하기</button>
+                        ) : (
+                            null
                         )}
                     </div>
                 </div>
@@ -219,7 +326,7 @@ const JoinDetail = () => {
             <div className="jdinfo">
                 <div className="JDcontent">
                     <div className="JDvalue">
-                        <div className="JDdiv4">#{dto.gname}</div>
+                        <div className="JDdiv4">{dto.gname}</div>
                     </div>
                 </div>
                 <div className="JDdefault">
@@ -247,8 +354,6 @@ const JoinDetail = () => {
 
 
 
-
-            <img className="icon-golf-terrain" alt="" src="/-icon-golf-terrain.svg" />
             <div className="JDflistprofile">
                 <div className="JDflistprofile1">
                     <img className="jduphoto-icon" alt="" src="/jduphoto@2x.png" />
@@ -263,7 +368,16 @@ const JoinDetail = () => {
                         <div className="JDdiv12">채팅하기</div>
                     </div>
                 </div>
-            </div>
+            </div>            
+            {isPartnerFormOpen && (
+                <PortalPopup
+                    overlayColor="rgba(113, 113, 113, 0.3)"
+                    placement="Centered"
+                    onOutsideClick={closePartnerForm}
+                >
+                    <PartnerForm props={closePartnerForm} propFunction={partnerone} />
+                </PortalPopup>
+            )}
         </div>
     );
 };

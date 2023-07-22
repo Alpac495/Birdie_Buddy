@@ -109,7 +109,17 @@ public class HugiController {
         hugiService.insertHugi(hdto);
         hphoto = null;
     }
-
+    @PostMapping("/update")
+    public ResponseEntity<String> updateHugi(@RequestBody HugiDto hdto) {
+        try {
+            // hdto의 hnum 값을 기준으로 해당 게시물 정보를 업데이트합니다.
+            hugiService.updateHugi(hdto);
+            return ResponseEntity.ok("게시물 수정 성공");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("게시물 수정 실패");
+        }
+    }
 
     @DeleteMapping("/delete/{hnum}")
     public void delete(@PathVariable int hnum) {

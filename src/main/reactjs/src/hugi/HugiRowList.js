@@ -16,21 +16,20 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
+import EditIcon from '@mui/icons-material/Edit';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 
 function HugiRowList(props) {
-    const {hnum, hcontent, hphoto, hwriteday, Unickname, hlike} = props;
+    const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
-
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [showLike, setShowLike] = useState(props.showLike || false);
 
-    const [unum, setUnum] = useState(0);
-    const [unickname, setUnickname] = useState();
+    const [unum, setUnum]=useState('');
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
@@ -43,8 +42,27 @@ function HugiRowList(props) {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+
+
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
+    };
+    const handleClickModify = (hnum) =>{
+        if (unum === 0) {
+            alert('로그인을 먼저 해주세요!');
+        } else {
+           // console.log("unickname>>"+postUserNickname);//success
+           // console.log("hnum,unum,hphoto,hcontent,hlike>>"+hnum+","+unum+","+hphoto+","+hcontent+","+hlike);//success
+            navi(`/hugi/modify/${hnum}`, {
+                hnum: hnum,
+                unum: unum,
+                hlike: hlike,
+                postUserNickname: postUserNickname,
+                hcontent: hcontent,
+                hphoto: hphoto,
+                hwriteday: hwriteday,
+            });
+        }
     };
     const handleClickShare = () => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
@@ -78,11 +96,12 @@ function HugiRowList(props) {
                 console.error('Error generating shortened URL:', error);
             });
     };
-    const unumchk = () => {
-        Axios.get("/login/unumChk?unum=" + unum)
-            .then(res => {
+
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+            .then(res=> {
                 setUnum(res.data);
-            })
+            });
     }
     useEffect(() => {
         unumchk()
@@ -95,15 +114,7 @@ function HugiRowList(props) {
             setOpen(true);
         }
     };
-    const handleClickDetail = () => {
-        navi(`/hugi/detail/${hnum}`, {
-            hnum: hnum,
-            hphoto: hphoto,
-            hcontent: hcontent,
-            postUserNickname:postUserNickname,
-            // 여기에 다른 데이터도 추가할 수 있습니다.
-        });
-    };
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -190,7 +201,7 @@ function HugiRowList(props) {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
-                console.log(res.data)
+                // console.log(res.data)
                 setComments(sortedComments);
 
                 res.data.forEach((comment) => {
@@ -211,10 +222,11 @@ function HugiRowList(props) {
         if (unum) {
             try {
                 const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
-                const unickname = res.data;
+                const Unickname = res.data;
 
-                if (unickname) {
-                    setPostUserNickname(unickname);
+                if (Unickname) {
+                    setPostUserNickname(Unickname);
+                    // console.log("pN=>"+Unickname);//success
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
@@ -223,6 +235,27 @@ function HugiRowList(props) {
                     console.log('오류가 발생했습니다.', error.message);
                 }
             }
+        }
+    };
+    const handleClickDetail = () => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+
+        if (unum === 0) {
+            alert('로그인을 먼저 해주세요!');
+        } else {
+            navi(`/hugi/detail/${hnum}`, {
+                userNum: unum,
+                hnum: hnum,
+                hphoto: hphoto,
+                hcontent: hcontent,
+                hwriteday: formattedDate,
+                Unickname: props.Unickname // Unickname 매개변수를 사용합니다.
+                // 여기에 다른 데이터도 추가할 수 있습니다.
+
+            });
+            fetchPostUserNickname(unum); // fetchPostUserNickname 함수에 unum 전달
+            // console.log("unum>>"+unum);
         }
     };
     const sortComments = (comments) => {
@@ -304,7 +337,7 @@ function HugiRowList(props) {
 
         Axios.post("/rehugi/newreply?unum=" + unum, newReply)
             .then((res) => {
-                console.log('댓글이 성공적으로 추가되었습니다.');
+                // console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();
                 toggleReplyForm(comment.rhnum);
                 setReplyError(false);
@@ -357,11 +390,12 @@ function HugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={postUserNickname} src="/image/1.png"/>
+                <Avatar className="list_avatar" alt={''} src=''/>
                 <span className="spanName">{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="spanWriteday">{hwriteday}</span>
+            <span>{props.hlike}</span>
             <img className="list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
             <h6 className="list_text">
                 &nbsp;
@@ -377,6 +411,9 @@ function HugiRowList(props) {
                 <MessageIcon onClick={handleClickOpen} className="Icons"/>
                 <ShareIcon onClick={handleClickShare} className="Icons"/>
                 {parseInt(props.unum) === parseInt(unum) && (
+                    <EditIcon onClick={()=>handleClickModify(hnum)} className="Icons"/>
+                )}
+                {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="Icons"/>
                 )}
             </div>
@@ -389,7 +426,7 @@ function HugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={postUserNickname} src="/image/1.png"/>
+                        <Avatar className="list_avatar_Comment1" alt={''} src=''/>
                         <span className="spanCommentList">
                         {postUserNickname}
                       </span>
@@ -434,7 +471,7 @@ function HugiRowList(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname">{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={comment.unickname} src="/image/1.png"/>
+                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -485,7 +522,7 @@ function HugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={reply.unickname} src="/image/1.png"/>
+                                  <Avatar className="list_avatar_Comment2" alt={''} src=''/>
                                   <b className="ReplyNickname">
                                       {reply.unickname}:
                                   </b>
@@ -506,7 +543,7 @@ function HugiRowList(props) {
           </div>
       ))
   ) : (
-      <p>댓글이 없습니다.</p>
+      <p className="NoComments">댓글이 없습니다.</p>
   )}
 </pre>
                 </DialogContent>

@@ -29,8 +29,9 @@ function Main(props) {
 
     return (
         <div className={'mainpage'}>
-            <Header/>
-
+            <div className='header'>
+                <Header/>
+            </div>
 
             <div className={'main_banner'}>
                 <Bannerslider/>
@@ -64,7 +65,7 @@ function Main(props) {
                 </div>
             </div>
 
-            <hr style={{height:'3px', backgroundColor:'lightgray', marginTop:'15px'}}/>
+            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
 
             <div className={'main_ad'}>
                 <img alt={''} src={no}/>
