@@ -61,7 +61,42 @@ function RankList(props) {
             <div className='ranking_List'>
                 
                 {newList.map((item, idx) => (
+
                     <div className='ranking_wrap'> 
+                       {unum === item.unum ? (
+                            <div className='my_ranking'>
+                            <div className={`myranking_mem rank${idx + 1}`} key={idx}  style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../images/default_golf.png)`, backgroundSize:'cover'}}>
+                              
+                                    
+                                    {item.uphoto != null ? (
+                                        <div className='myranking_profile'>
+                                        <img alt='프로필 사진' src={`${image1}${item.uphoto}${image2}`} />
+                                        </div>
+                                    ) : (
+                                        <div className='myranking_profile'>
+                                        <img alt='프로필 사진' src={user} />
+                                        </div>
+                                    )}
+        
+        
+                                    <div className='myranking_mid'>
+                                        <div className='myranking_nickname'>{item.unickname} 님</div> 
+        
+                                        <div className='myranking_tasu'>{item.rtasu} 타</div>
+                                    </div>
+        
+        
+                                    <div>
+                                    <div className='myranking_place'>
+                                        {idx + 1 === 1 ? <img alt='' src={gold}/> :
+                                        idx + 1 === 2 ? <img alt='' src={silver}/> :
+                                        idx + 1 === 3 ? <img alt='' src={bronze}/> :
+                                        <span>{`${idx + 1}th`}</span>}
+                                    </div>
+                                    </div>  
+                                </div>
+                        </div>
+                       ):''}
                         <div className={`ranking_mem rank${idx + 1}`} key={idx}  style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../images/default_golf.png)`, backgroundSize:'cover'}}>
                             
                         <div
