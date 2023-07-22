@@ -9,7 +9,7 @@
     
 }
 .ranking_List{
-    padding-top: 100px;
+    
     background-image: url("../images/golf_ranking.jpg");
     background-size: cover;
     overflow-y: auto;
@@ -115,4 +115,26 @@
 .ranking_mem.rank3 .ranking_place{
     color: #a47c6d;
     
+}
+
+
+.myranking_mem{
+    background-color: rgba(0,0,0,0.50);
+    width: 100%;
+    height: 150px;
+    display: flex;
+    
+}
+.myranking_profile{
+    width: 30%;
+}
+.myranking_mid{
+    width: 50%;
+}
+.myranking_place{
+    width: 20%;
+}
+.myranking_place img{
+    width: 50px;
+    height: 50px;
 }
