@@ -71,7 +71,7 @@ function MyYangdoDetail(props) {
             <br/>
 
             {
-                unum !=null && unum===dto.unum?
+                unum !=null && unum==dto.unum?
                     <button type='button' onClick={()=>navi(`/mypage/update/${dto.ynum}/${currentPage}`)}>
                         수정</button> :''
             }
@@ -79,7 +79,7 @@ function MyYangdoDetail(props) {
             <br/>
 
             {
-                unum !=null && unum===dto.unum?
+                unum !=null && unum==dto.unum?
                 <button type='button'
                     onClick={()=>{
                         const url=`/yangdo/delete?num=${dto.ynum}`;

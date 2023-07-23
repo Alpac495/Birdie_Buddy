@@ -3,6 +3,11 @@ import {useNavigate, useParams} from "react-router-dom";
 import Axios from "axios";
 import Modal from '../components/Modal';
 import "./YangdoDetail.css";
+import ProfileImg from "../image/user60.png";
+import TimeIcon from "../image/icon_time.svg";
+import CardIcon from "../image/icon_card.svg";
+import TextIcon from "../image/icon_text.svg";
+import SettingIcon from "../image/icon_setting.svg";
 
 function YangdoDetail(props) {
 
@@ -63,16 +68,13 @@ function YangdoDetail(props) {
     // 날짜를 원하는 형식으로 포맷팅하는 함수
     const formatWDate = (dateString) => {
         const dateObj = new Date(dateString);
-        const options = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: false,
-        };
-        const formattedDate = new Intl.DateTimeFormat('ko-KR', options).format(dateObj);
-        return formattedDate.replace(/\. /g, '.').replace(' ', ' ');
+        const year = dateObj.getFullYear().toString();
+        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // 1월은 0이므로 +1 해주고 두 자리로 맞추기
+        const day = dateObj.getDate().toString().padStart(2, '0'); // 두 자리로 맞추기
+        const hours = dateObj.getHours().toString().padStart(2, '0'); // 두 자리로 맞추기
+        const minutes = dateObj.getMinutes().toString().padStart(2, '0'); // 두 자리로 맞추기
+
+        return `${year}.${month}.${day} ${hours}:${minutes}`;
     };
 
     // 날짜를 원하는 형식으로 포맷팅하는 함수
@@ -129,7 +131,7 @@ function YangdoDetail(props) {
                                             }
                                         >
                                             <div className="YEdiv1">수정</div>
-                                            <img className="YEgroup-child" alt="" src='' />
+                                            <img className="YEgroup-child" alt="" src={SettingIcon} />
                                         </label>:''
                                     }
                                 </div>
@@ -138,17 +140,17 @@ function YangdoDetail(props) {
                     </div>
                     <div className="YEsingle-line-item-parent">
                         <div className="YEsingle-line-item">
-                            <img className="YEtime-icon" alt="" src='' />
+                            <img className="YEtime-icon" alt="" src={TimeIcon} />
                             <div className="YElabel1">{formatDate(dto.yday)} {dto.ysubject}</div>
                         </div>
                         <div className="YEsingle-line-item">
-                            <img className="YEtime-icon" alt="" src='' />
+                            <img className="YEtime-icon" alt="" src={CardIcon} />
                             <div className="YElabel1">
                                 {dto.yprice? dto.yprice.toLocaleString() : '가격 정보 없음'}원
                             </div>
                         </div>
                         <div className="YEsingle-line-item">
-                            <img className="YEicon-note-1" alt="" src='' />
+                            <img className="YEicon-note-1" alt="" src={TextIcon} />
                             <div className="YElabel1">
                                 {
                                     dto.ycontent === ''?'내용 없음': dto.ycontent
@@ -176,7 +178,8 @@ function YangdoDetail(props) {
                     <div className="YEflistprofile">
                         <div className="YEflistprofile1">
                             {
-                                dto.uphoto == null?'':
+                                dto.uphoto == null?<img className="YEjduphoto-icon" alt="" 
+                                src={ProfileImg} />:
                                 <img className="YEjduphoto-icon" alt="" 
                                 src={`${photourl1}${dto.uphoto}${photourl2}`} />
                             }
