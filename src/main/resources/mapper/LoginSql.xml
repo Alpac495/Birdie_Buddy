@@ -64,6 +64,9 @@
     <update id="hpChange" parameterType="Map">
         update user set uhp=#{uhp} where unum=#{unum}
     </update>
+    <select id="getUserUhpCnt" parameterType="String" resultType="int">
+        select count(*) from user where uhp=#{uhp}
+    </select>
 
 
 </mapper>

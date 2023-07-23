@@ -236,6 +236,34 @@ public class LoginController {
         int unum = (int) session.getAttribute("unum");
         loginService.hpChange(unum, uhp);
     }
+    @GetMapping("/getUserUhp")
+    public String getUserUhp(String uhp){
+        int n = loginMapper.getUserUhpCnt(uhp);
+        if(n==0){
+            return "no";
+        } else {
+            UserDto udto = loginMapper.getUserUhp(uhp);
+            String uemail = udto.getUemail();
+            return uemail;
+        }
+
+    }
+    @GetMapping("/searchPass")
+    public boolean searchPass(String uhp, String uemail){
+        UserDto dto = loginMapper.getUserUhp(uhp);
+        String email = dto.getUemail();
+        if(!email.equals(uemail)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    @GetMapping("/passChange2")
+    public void passChange2(String upass, String uemail){
+       UserDto udto = loginMapper.getUserData(uemail);
+       int unum = udto.getUnum();
+       loginService.passChange(unum, upass);
+    }
 
 
 
