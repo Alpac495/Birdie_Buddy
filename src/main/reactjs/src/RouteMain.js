@@ -16,7 +16,7 @@ import MypageSetting from "./mypage/MypageSetting";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList, HugiModify} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
-import {JoinListMine, JoinUpdateForm} from "./joining";
+import {JoinAllList, JoinListMine, JoinMakeList, JoinRequestList, JoinUpdateForm} from "./joining";
 import MypagePay from "./mypage/MypagePay";
 import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
 import Test from './yangdo/Test';
@@ -26,6 +26,7 @@ import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
 import ChatRoom from "./chatbot/ChatRoom";
 import MyHugiList from "./hugi/MyHugiList";
 import MyHugiRowList from "./hugi/MyHugiRowList";
+import FriendSearch from './friend/FriendSearch';
 
 
 function RouteMain(props) {
@@ -58,6 +59,7 @@ function RouteMain(props) {
                     <Route path="requestlist/:unum" element={<FriendRequest/>}/>
                     <Route path="detail" element={<FriendDetail/>}/>
                     <Route path="detail/:funum" element={<FriendDetail/>}/>
+                    <Route path="search" element={<FriendSearch/>}/>
                 </Route>
 
                 <Route path={'/hugi'} >
@@ -68,12 +70,13 @@ function RouteMain(props) {
                 </Route>
 
                 <Route path={'/joining'} >
-                    <Route path={"list/:unum"} element={<JoinList/>}/>
-                    <Route path={"mylist/:unum"} element={<JoinListMine/>}/>
+                    <Route path={"alllist"} element={<JoinAllList/>}/>
+                    <Route path={"makelist"} element={<JoinMakeList/>}/>
+                    <Route path={"requestlist"} element={<JoinRequestList/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
                     <Route path={"updateform/:jnum/:unum"} element={<JoinUpdateForm/>}/>
                     <Route path={"detail"} element={<JoinDetail/>}/>
-                    <Route path={"detail/:jnum/:unum"} element={<JoinDetail/>}/>
+                    <Route path={"detail/:jnum"} element={<JoinDetail/>}/>
                 </Route>
 
                 <Route path={'/login'} >

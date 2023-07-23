@@ -18,8 +18,6 @@ public interface FriendMapper {
 
     public int checkBuddy(Map<String, Object> map);
 
-    public int checkingBuddy(Map<String, Object> map);
-
     public void requestFriend1(FriendDto dto);
 
     public void requestFriend2(FriendDto dto);
@@ -31,5 +29,9 @@ public interface FriendMapper {
     public int acceptFriend1(Map<String, Object> map);
 
     public int acceptFriend2(Map<String, Object> map);
+
+    public List<UserDto> getUserList(int unum);
+
+    public List<FriendDto> getRequestCheck(int unum);
 
 }

@@ -14,7 +14,9 @@ public interface JoiningMapper {
 
     public List<JoiningDto> getJoiningList();
 
-    public List<JoiningDto> getMyJoinList(int unum);
+    public List<JoiningDto> getMakeJoinList(int unum);
+
+    public List<JoiningDto> getRequestJoinList(int unum);
 
     public JoiningDto detailPage(int jnum);
 

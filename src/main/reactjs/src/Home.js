@@ -71,6 +71,9 @@ function Home(props) {
                 <li>
                     <NavLink to={`/friend/list/${unum}`}>친구목록</NavLink>
                 </li>
+                <li>
+                    <NavLink to={`/friend/search`}>전체사용자목록</NavLink>
+                </li>
             </ul>
 
             <ul> hugi
@@ -86,7 +89,7 @@ function Home(props) {
 
             <ul> joining
                 <li>
-                    <NavLink to={`/joining/list/${unum}`}>조인list</NavLink>
+                    <NavLink to={`/joining/alllist`}>조인list</NavLink>
                 </li>
                 <li>
                     <NavLink to={'/joining/form'}>조인폼</NavLink>

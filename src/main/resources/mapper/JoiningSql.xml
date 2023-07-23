@@ -10,8 +10,11 @@
     <select id="getJoiningList" resultType="JoiningDto">
         select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn order by jnum desc
     </select>
-    <select id="getMyJoinList" parameterType="int" resultType="JoiningDto">
-        select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.jnum IN (SELECT jnum FROM joinmember  WHERE unum = #{unum}) or jn.unum=#{unum} order by jn.jnum desc
+    <select id="getMakeJoinList" parameterType="int" resultType="JoiningDto">
+        select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.unum=#{unum} order by jn.jnum desc
+    </select>
+    <select id="getRequestJoinList" parameterType="int" resultType="JoiningDto">
+        select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.jnum IN (SELECT jnum FROM joinmember  WHERE unum = #{unum}) order by jn.jnum desc
     </select>
     <select id="detailPage" parameterType="int" resultType="JoiningDto">
         select *, (select sum(jm.jcount) from joinmember jm where j.jnum=jm.jnum and jm.jaccept=1) as jmcount, (select sum(jm.jcount) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=0) as smcount from joining j inner join user u on j.unum = u.unum where j.jnum=#{jnum}

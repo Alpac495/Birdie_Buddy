@@ -13,4 +13,5 @@ public class FriendDto {
     private String uname;
     private String ugender;
     private String uage;
+    private int frequest;
 }

@@ -5,6 +5,7 @@ import {Link, NavLink, useParams} from 'react-router-dom';
 function FriendRequest(props) {
     const {unum}=useParams('');
     const [funum, setFunum]=useState(0);
+    console.log(unum,funum)
     const unumchk=()=>{
         Axios.get("/login/unumChk?unum="+unum)
             .then(res=>{
@@ -49,6 +50,10 @@ function FriendRequest(props) {
             }
     };
 
+    const onRequestingEvent = () => {
+        alert("수락을 기다리거나 해당 사용자 프로필에 방문하여 요청을 취소하세요");
+    }
+
 
 
     return (
@@ -57,12 +62,12 @@ function FriendRequest(props) {
 
             <div className="FLtab">
                 <NavLink to={`/friend/list/${unum}`}>
-                <div className="flframe">
+                <div className="frframe">
                     <div className="FLdiv">버디 리스트</div>
                 </div>
                 </NavLink>
                 <NavLink to={`/friend/requestlist/${unum}`}>
-                <div className="FLframe">
+                <div className="FRframe">
                     <div className="FLdiv">버디 요청</div>
                 </div>
                 </NavLink>
@@ -88,7 +93,8 @@ function FriendRequest(props) {
 
                                     <div className="FLrectangle-parent">
                                         <div className="FLgroup-child" />
-                                        <button type='button' className="FLdiv4" onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>
+                                        {item.frequest == 2 ? <button type='button' className="FLdiv4" onClick={onRequestingEvent}>요청중</button>
+                                        : (<button type='button' className="FLdiv4" onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>)}
                                     </div>
                                 </div>
                         </div>

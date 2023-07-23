@@ -48,17 +48,20 @@ public class JoiningController {
         return list;
     }
 
-    @GetMapping("/myjoinlist")
-    public List<JoiningDto> myJoinlist(int unum) {
-        List<JoiningDto> myjoinlist = joiningService.getMyJoinList(unum);
-        System.out.println("myjoinlist>>" + unum);
-        return myjoinlist;
+    @GetMapping("/makejoinlist")
+    public List<JoiningDto> makeJoinlist(int unum) {
+        List<JoiningDto> makejoinlist = joiningService.getMakeJoinList(unum);
+        return makejoinlist;
+    }
+
+    @GetMapping("/requestjoinlist")
+    public List<JoiningDto> requestJoinlist(int unum) {
+        List<JoiningDto> requestjoinlist = joiningService.getRequestJoinList(unum);
+        return requestjoinlist;
     }
 
     @GetMapping("/detail")
     public JoiningDto detailPage(int jnum) {
-        System.out.println("detail>>" + jnum);
-
         return joiningService.detailPage(jnum);
     }
 

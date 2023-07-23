@@ -7,33 +7,26 @@ import Axios from 'axios';
 import {NavLink, useParams} from "react-router-dom";
 
 const JoinListMine = () => {
-    // const [unum, setUnum]=useState(0);
-    // const unumchk=()=>{
-    //     Axios.get("/login/unumChk?unum="+unum)
-    //         .then(res=>{
-    //             setUnum(res.data);
-    //         })
-    // }
-    // useEffect(() => {
-    //     unumchk()
-    // }, []);
-    
-    const {unum} = useParams('');
+    const [unum, setUnum]=useState('');
     const [mydata, setMydata] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    
-    const myjoinlist = useCallback(() => {
-        const url = "/joining/myjoinlist?unum="+unum;
-        Axios.get(url)
+
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+            const url = "/joining/myjoinlist?unum="+res.data;
+            Axios.get(url)
             .then(res => {
                 setMydata(res.data);
                 console.log(res.data);
             });
-    }, []);
-
+        });
+    }
     useEffect(() => {
-        myjoinlist();
-    }, [myjoinlist]);
+        unumchk()
+    }, [])  
+    
 
     // D-day 계산 함수
     const calculateDday = jjoinday => {

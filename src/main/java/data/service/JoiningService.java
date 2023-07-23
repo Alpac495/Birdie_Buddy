@@ -31,8 +31,13 @@ public class JoiningService implements JoiningServiceInter {
     }
 
     @Override
-    public List<JoiningDto> getMyJoinList(int unum) {
-        return joiningMapper.getMyJoinList(unum);
+    public List<JoiningDto> getMakeJoinList(int unum) {
+        return joiningMapper.getMakeJoinList(unum);
+    }
+
+    @Override
+    public List<JoiningDto> getRequestJoinList(int unum) {
+        return joiningMapper.getRequestJoinList(unum);
     }
 
     @Override

@@ -6,7 +6,8 @@ import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 
 const JoinDetail = () => {
-    const {unum,jnum} = useParams('');
+    const [unum, setUnum]=useState('');
+    const {jnum} = useParams('');
     const [dto,setDto]=useState({});
     const now = new Date();
     const year = now.getFullYear();
@@ -18,7 +19,18 @@ const JoinDetail = () => {
     const [jp1tasu, setJp1tasu] = useState("");
     const [jcount, setJcount] = useState(1);
     const writerunum=unum;
-    const navi=useNavigate();
+
+    const navi=useNavigate();    
+
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+        });
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
 
     //동반자 모달
     const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
@@ -38,7 +50,7 @@ const JoinDetail = () => {
         setPartnerFormOpen(false);
         Axios.post("/joinmember/joinGaip", {unum, jnum, jp1gender, jp1age, jp1tasu, jcount})
                 .then(res => {
-                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
+                    window.location.replace(`/joining/detail/${jnum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -114,7 +126,7 @@ const JoinDetail = () => {
         }else{
             Axios.post("/joinmember/joinGaip", {unum, jnum, jcount})
                 .then(res => {
-                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
+                    window.location.replace(`/joining/detail/${jnum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -129,7 +141,7 @@ const JoinDetail = () => {
             Axios.delete(`/joinmember/joinCancel/${unum}&${jnum}`)
                 .then(res => {
                     alert("정상적으로 취소되었습니다");
-                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
+                    window.location.replace(`/joining/detail/${jnum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
