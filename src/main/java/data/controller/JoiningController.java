@@ -4,7 +4,6 @@ import data.dto.JoiningDto;
 import data.dto.JoinmemberDto;
 import data.mapper.JoiningMapper;
 import data.service.JoiningService;
-import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,6 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/joining")
 public class JoiningController {
-
-    @Autowired
-    private NcpObjectStorageService storageService;
-
-    private String bucketName = "bit701-bucket-111";
 
     String photo;
 

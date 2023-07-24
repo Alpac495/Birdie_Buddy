@@ -113,7 +113,7 @@ const JoinMakeList = () => {
                                     </div>
                                     <div className="JEdiv4">
                                         <p className="JEp">{item.jjoinday} {item.jtime}</p>
-                                        {item.jaccept===0?(<p className="JLp2">#신청 중</p>) : item.jaccept===1?(<p className="JLp2">#조인 확정</p>) : item.jaccept===2?(<p className="JLp2">#모집 중</p>) : null}
+                                        
                                         <p className="JEp1"><span className="JEspan">{item.gname}</span></p>
                                         <p className="JEp1"><span className="JEspan1">그린피 ￦{item.jprice}</span></p>
                                     </div>

@@ -71,7 +71,7 @@ const JoinUpdateForm = () => {
                 // onMakerEvent()
                 alert("정상적으로 수정되었습니다")
                 //목록으로 이동
-                navi(`/joining/detail/${jnum}/${unum}`)
+                navi(`/joining/detail/${jnum}`)
             })
     }
 

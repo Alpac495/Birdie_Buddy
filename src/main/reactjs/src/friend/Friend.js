@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Axios from "axios";
 import "./Friend.css";
 import {Link, NavLink} from 'react-router-dom';
@@ -61,7 +61,7 @@ function Friend(props) {
                                     <div className="FLdiv3">
                                       <span className="FLtxt">
                                         <p className="FLp">{item.unickname}</p>
-                                        <p className="FLp1">{item.ugender} /{year - (parseInt(item.uage.substring(0, 4), 10))}세</p>
+                                        <p className="FLp1">{item.ugender} / {year - (parseInt(item.uage.substring(0, 4), 10))}세</p>
                                       </span>
                                     </div>
 

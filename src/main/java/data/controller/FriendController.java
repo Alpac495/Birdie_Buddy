@@ -4,7 +4,6 @@ import data.dto.FriendDto;
 import data.dto.UserDto;
 import data.mapper.FriendMapper;
 import data.service.FriendService;
-import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,6 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/friend")
 public class FriendController {
-
-    @Autowired
-    private NcpObjectStorageService storageService;
-
-    private String bucketName = "bit701-bucket-111";
 
     String photo;
 

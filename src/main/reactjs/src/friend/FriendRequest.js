@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
 import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./FriendRequest.css";
@@ -84,7 +86,7 @@ function FriendRequest(props) {
                                     <div className="FLdiv3">
                                       <span className="FLtxt">
                                         <p className="FLp">{item.unickname}</p>
-                                        <p className="FLp1">{item.ugender} /{year - (parseInt(item.uage.substring(0, 4), 10))}세</p>
+                                        <p className="FLp1">{item.ugender} / {year - (parseInt(item.uage.substring(0, 4), 10))}세</p>
                                       </span>
                                     </div>
 
