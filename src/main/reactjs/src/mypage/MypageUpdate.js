@@ -1,3 +1,7 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-lone-blocks */
+/* eslint-disable eqeqeq */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';

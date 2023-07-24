@@ -1,29 +1,36 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import './HpChange.css';
 import { useNavigate } from 'react-router-dom';
-import './SearchID.css';
+import axios from 'axios';
 
-function SearchID(props) {
+function HpChange(props) {
     const [uhp, setUhp] = useState('');
     const [code, setCode] = useState('');
     const [unum, setUnum] = useState('');
-    const [uemail, setUemail] = useState('');
+    const [data, setData]=useState([]);
     const [chk, setChk] = useState(false);
     const navi = useNavigate();
-    
+    const getUserInfo=()=>{
+        axios.get("/login/getUserInfo")
+        .then(res=>{
+            setData(res.data)
+        })
+    }
+    useEffect(()=>{
+        getUserInfo();
+    },[])
     const sms = () => {
         if (uhp.length != 11) {
             alert("휴대폰번호 11자리를 입력해 주세요")
             setUhp('');
         } else {
-            axios.get("/login/getUserUhp?uhp="+uhp)
-                .then(res=>{
-                    if(res.data=="no"){
-                        alert("휴대폰번호와 일치하는 ID가 없습니다")
+            axios.get('/login/hpchk?uhp=' + uhp)
+                .then(res => {
+                    if (res.data == 1) {
+                        alert("이미 등록된 번호입니다")
                         setUhp('');
                     } else {
-                       setUemail(res.data);
-                       alert("코드발송")
+                        alert("코드발송")
                         axios.get('/login/smsSend?uhp=' + uhp)
                             .then(response => {
                                 console.log(response.data);
@@ -32,8 +39,18 @@ function SearchID(props) {
                                 console.error(error);
                             });
                     }
+
                 })
+
         }
+
+    }
+    const hpChange=()=>{
+        axios.get('/login/hpChange?uhp='+uhp)
+        .then(res=>{
+            alert("휴대폰번호가 변경되었습니다")
+            navi('/')
+        })
     }
 
     const codeChk = () => {
@@ -47,29 +64,23 @@ function SearchID(props) {
                 }
             })
     }
-    const SearchID =()=>{
-        if(chk==false){
-            alert("인증을 먼저 진행해주세요")
-        } else {
-            alert("휴대폰번호로 등록된 ID는 "+uemail+" 입니다")
-        }
-    }
+    
     return (
-        <div className='SearchID_div1'>
-            휴대전화<br/>
-            <input type="text" className="SearchID_textbox" placeholder="휴대폰번호" required value={uhp}
-                   onChange={(e) => {
-                       setUhp(e.target.value)
-                   }}/><br/>
+        <div className='Taltae_div1'>
+            새로운 휴대전화<br/>
+            <input type="text" className="Taltae_textbox" placeholder="휴대폰번호" value={uhp} required
+                   onChange={(e) =>{
+                    setUhp(e.target.value)
+                    }}/><br/>
             <button type="button" onClick={sms}>전화 인증</button>
             <br/>
-            <input type="text" className="SearchID_textbox" placeholder="인증코드"
+            <input type="text" className="Taltae_textbox" placeholder="인증코드"
                    onChange={(e) => setCode(e.target.value)}/><br/>
             <button type="button" onClick={codeChk}>인증확인</button>
             <br/>
-            <button onClick={SearchID}>ID조회</button>
+            <button onClick={hpChange}>번호변경</button>
         </div>
     );
 }
 
-export default SearchID;
+export default HpChange;

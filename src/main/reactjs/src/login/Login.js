@@ -11,7 +11,7 @@ function Login(props) {
 
     const [uemail, setUemail] = useState('');
     const [upass, setUpass] = useState('');
-    const [saveemail, setSaveemail] = useState(true);
+    const [saveemail, setSaveemail] = useState(false);
     const navi = useNavigate();
     const emailRef = useRef();
 
@@ -35,16 +35,23 @@ function Login(props) {
     useEffect(() => {
         if (localStorage.uemail != null) {
             setUemail(localStorage.uemail);
+            setSaveemail(true);
         }
     }, []);
 
     const sign = () => {
         navi("/login/sign")
     }
+    const searchID = () => {
+        navi("/login/searchID")
+    }
+    const searchPass = () => {
+        navi("/login/searchPass")
+    }
     console.log(saveemail)
 
     const toggle = () => {
-        setSaveemail(prevsaveemail => (prevsaveemail === true ? false : true));
+        setSaveemail(prevsaveemail => (prevsaveemail === false ? true : false));
     }
 
     return (
@@ -61,13 +68,16 @@ function Login(props) {
                     <div className={'Login_div3'}>
                         <FormControlLabel
                             control={
-                                <Switch ref={emailRef} onChange={toggle} defaultChecked />
+                                localStorage.uemail != null ? 
+                                <Switch ref={emailRef} onChange={toggle} defaultChecked/>
+                                :
+                                <Switch ref={emailRef} onChange={toggle}/>
                             }
                             label="이메일저장"
                         />
                         <span>
-                            {/*<span className={''} type={'button'} onClick={sign}>ID찾기</span> /*/}
-                            {/*<span className={''} type={'button'} onClick={sign}>PASS찾기</span> /*/}
+                            <span className={''} type={'button'} onClick={searchID}>ID찾기</span> /
+                            <span className={''} type={'button'} onClick={searchPass}>PASS찾기</span> /
                             <span className={''} type={'button'} onClick={sign}>회원가입</span>
                         </span>
                     </div>

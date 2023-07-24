@@ -190,8 +190,8 @@ public class LoginController {
 
     @GetMapping("/unumHpchk")
     public int unumHpchk(int unum, String uhp) {
-        UserDto udto = loginMapper.getUserUhp(uhp);
-        if (udto.getUnum() != unum) { //번호랑 로그인한unum이랑 같지않은경우
+        UserDto udto = loginMapper.getUser(unum);
+        if (!udto.getUhp().equals(uhp)) { //hp비교
             return 0;
         } else {
             return 1;
@@ -215,14 +215,55 @@ public class LoginController {
     public boolean passChk(HttpSession session, String upass){
         int unum = (int) session.getAttribute("unum");
         UserDto udto = loginMapper.getUser(unum);
-        if(upass==udto.getUpass()){
+        System.out.println(udto.getUpass());
+        String pass = loginMapper.passChk(upass);
+        System.out.println(pass);
+        if(pass.equals(udto.getUpass())){
             return true;
         } else {
             return false;
         }
 
     }
+    @GetMapping("/passChange")
+    public void passChange(HttpSession session, String upass){
+        int unum = (int) session.getAttribute("unum");
+        loginService.passChange(unum, upass);
+    }
+    @GetMapping("/hpChange")
+    public void hpChange(HttpSession session, String uhp){
+        System.out.println(uhp);
+        int unum = (int) session.getAttribute("unum");
+        loginService.hpChange(unum, uhp);
+    }
+    @GetMapping("/getUserUhp")
+    public String getUserUhp(String uhp){
+        int n = loginMapper.getUserUhpCnt(uhp);
+        if(n==0){
+            return "no";
+        } else {
+            UserDto udto = loginMapper.getUserUhp(uhp);
+            String uemail = udto.getUemail();
+            return uemail;
+        }
 
+    }
+    @GetMapping("/searchPass")
+    public boolean searchPass(String uhp, String uemail){
+        UserDto dto = loginMapper.getUserUhp(uhp);
+        String email = dto.getUemail();
+        if(!email.equals(uemail)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    @GetMapping("/passChange2")
+    public void passChange2(String upass, String uemail){
+       UserDto udto = loginMapper.getUserData(uemail);
+       int unum = udto.getUnum();
+       loginService.passChange(unum, upass);
+    }
 
 
 
@@ -293,7 +334,7 @@ public class LoginController {
         bodyJson.put("content", "["+code+"]"); // Mandatory(필수), 기본 메시지 내용,
         // SMS: 최대 80byte, LMS, MMS: 최대
         // 2000byte
-        bodyJson.put("messages", toArr); // Mandatory(필수), 아래 항목들 참조 (messages.XXX), 최대 1,000개
+        bodyJson.put("messages", toArr); // Mandatory(필수), 아래 항목들 참조 (messages.xxx), 최대 1,000개
 
         // String body = bodyJson.toJSONString();
         String body = bodyJson.toString();

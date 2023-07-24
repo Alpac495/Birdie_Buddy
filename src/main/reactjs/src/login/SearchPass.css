@@ -1,0 +1,23 @@
+.SearchPass_div1{
+    display: flex;
+    /*width: 22.5rem;*/
+    padding: 7rem 1rem 15rem 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+.SearchPass_div2{
+    /*text-align: center;*/
+}
+.SearchPass_textbox{
+    text-align: center;
+    display: inline-flex;
+    width: 20rem;
+    height: 2.9rem;
+    padding: 0.5rem 4rem 0.5rem 4rem;
+    align-items: center;
+    gap: 2.65631rem;
+
+    border-radius: 0.125rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background-color: RGB(238, 250, 234);
+}
