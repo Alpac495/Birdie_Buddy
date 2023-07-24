@@ -1,18 +1,11 @@
 import "./MypageSetting.css";
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import AnnouncementIcon from '@mui/icons-material/Announcement';
-import EditIcon from '@mui/icons-material/Edit';
-import PeopleIcon from '@mui/icons-material/People';
-import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import JoinIcon from"../image/icon_join.svg";
+import JoinIcon from"../image/icon_flaghole.svg";
 import BuddyIcon from "../image/icon_mybuddy.svg";
 import YangdoIcon from "../image/icon_yangdo.svg";
-import MoveIcon from "../image/vector.svg";
 import BuddyStory from "../image/icon_buddystory.svg";
 import {useNavigate, useParams} from "react-router-dom";
-import Header from "../header/Header";
 
 const MypageSetting = () => {
 
@@ -25,7 +18,6 @@ const MypageSetting = () => {
 
     return (
         <div className="mypagesetting">
-            <div className="header"><Header/></div>
             <div className="MPScontent-area">
                 <div className="MPSlist-item-group-subtitle">
                     <div className="MPSsubtitle">
@@ -76,11 +68,7 @@ const MypageSetting = () => {
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="MPSlabel1" onClick={()=>navi('/login/taltae')}>회원탈퇴</div>
-                </div>
-                <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="MPSlabel1" onClick={()=>navi('/login/passchange')} >비밀번호 변경</div>
+                    <div className="MPSlabel1" onClick={()=>navi('/login/account')} >내 정보 변경</div>
                 </div>
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">
@@ -90,14 +78,14 @@ const MypageSetting = () => {
 
             </div>
 
-            <img className="vector-icon" alt="" src={MoveIcon} />
-            <img className="vector-icon1" alt="" src={MoveIcon} />
-            <img className="vector-icon2" alt="" src={MoveIcon}/>
-            <img className="vector-icon3" alt="" src={MoveIcon} />
-            <img className="vector-icon4" alt="" src={MoveIcon}/>
-            <img className="vector-icon5" alt="" src={MoveIcon} />
-            <img className="vector-icon6" alt="" src={MoveIcon} />
-            <img className="vector-icon7" alt="" src={MoveIcon} />
+            <img className="vector-icon" alt="" src="/vector.svg" />
+            <img className="vector-icon1" alt="" src="/vector1.svg" />
+            <img className="vector-icon2" alt="" src="/vector2.svg" />
+            <img className="vector-icon3" alt="" src="/vector3.svg" />
+            <img className="vector-icon4" alt="" src="/vector4.svg" />
+            <img className="vector-icon5" alt="" src="/vector5.svg" />
+            <img className="vector-icon6" alt="" src="/vector6.svg" />
+            <img className="vector-icon7" alt="" src="/vector7.svg" />
 
         </div>
     );

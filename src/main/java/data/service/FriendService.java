@@ -35,16 +35,8 @@ public class FriendService implements FriendServiceInter {
     public int checkBuddy(int unum, int funum) {
         Map<String, Object> map = new HashMap<>();
         map.put("unum", unum);
-        map.put("jnum", funum);
+        map.put("funum", funum);
         return friendMapper.checkBuddy(map);
-    }
-
-    @Override
-    public int checkingBuddy(int unum, int funum) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("unum", unum);
-        map.put("jnum", funum);
-        return friendMapper.checkingBuddy(map);
     }
 
     @Override
@@ -61,7 +53,7 @@ public class FriendService implements FriendServiceInter {
     public int friendCancel1(int unum, int funum) {
         Map<String, Object> map = new HashMap<>();
         map.put("unum", unum);
-        map.put("jnum", funum);
+        map.put("funum", funum);
         return friendMapper.friendCancel1(map);
     }
 
@@ -69,7 +61,7 @@ public class FriendService implements FriendServiceInter {
     public int friendCancel2(int unum, int funum) {
         Map<String, Object> map = new HashMap<>();
         map.put("unum", unum);
-        map.put("jnum", funum);
+        map.put("funum", funum);
         return friendMapper.friendCancel2(map);
     }
 
@@ -77,7 +69,7 @@ public class FriendService implements FriendServiceInter {
     public int acceptFriend1(int unum, int funum) {
         Map<String, Object> map = new HashMap<>();
         map.put("unum", unum);
-        map.put("jnum", funum);
+        map.put("funum", funum);
         return friendMapper.acceptFriend1(map);
     }
 
@@ -85,7 +77,17 @@ public class FriendService implements FriendServiceInter {
     public int acceptFriend2(int unum, int funum) {
         Map<String, Object> map = new HashMap<>();
         map.put("unum", unum);
-        map.put("jnum", funum);
+        map.put("funum", funum);
         return friendMapper.acceptFriend2(map);
+    }
+
+    @Override
+    public List<UserDto> getUserList(int unum) {
+        return friendMapper.getUserList(unum);
+    }
+
+    @Override
+    public List<FriendDto> getRequestCheck(int unum) {
+        return friendMapper.getRequestCheck(unum);
     }
 }

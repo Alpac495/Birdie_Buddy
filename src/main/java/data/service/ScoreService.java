@@ -1,7 +1,6 @@
 package data.service;
 
 import data.dto.ScoreDto;
-import data.mapper.LoginMapper;
 import data.mapper.ScoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

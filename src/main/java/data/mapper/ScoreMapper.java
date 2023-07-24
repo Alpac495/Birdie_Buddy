@@ -3,7 +3,10 @@ package data.mapper;
 import data.dto.GolfjangScoreDto;
 import data.dto.RankingDto;
 import data.dto.ScoreDto;
+import data.dto.UserDto;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -20,5 +23,5 @@ public interface ScoreMapper {
     public void saveRankingInsert(Map<String, Object> map);
     public void saveRankingUpdate(Map<String, Object> map);
     public List<RankingDto> getRanklist();
-
+    public List<UserDto> listUserWithPaging(@Param("offset") int offset, @Param("size") int size);
 }

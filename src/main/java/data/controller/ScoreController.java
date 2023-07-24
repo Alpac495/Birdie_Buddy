@@ -102,4 +102,12 @@ public class ScoreController {
         return loginMapper.getUser(unum);
     }
 
+    @GetMapping("/listUser")
+    public List<UserDto> listUser(int page, int size) {
+        System.out.println("스크롤");
+        int offset = (page - 1) * size;
+        List<UserDto> list = scoreMapper.listUserWithPaging(offset, size);
+        return list;
+    }
+
 }
