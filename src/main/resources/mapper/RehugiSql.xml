@@ -30,10 +30,6 @@
         DELETE FROM rehugi WHERE rhnum = #{rhnum} OR ref = #{rhnum}
     </delete>
 
-<!--    <select id="getCommentsByHnum" resultType="data.dto.RehugiDto">-->
-<!--        SELECT * FROM rehugi re inner join user u ON re.unum = u.unum WHERE re.hnum = #{hnum} ORDER BY re.rhwriteday ASC-->
-<!--    </select>-->
-
     <select id="getAllCommentsWithReplies" resultType="data.dto.RehugiDto">
         SELECT * FROM rehugi re inner join user u ON re.unum = u.unum WHERE re.hnum = #{hnum} ORDER BY re.rhwriteday ASC
     </select>

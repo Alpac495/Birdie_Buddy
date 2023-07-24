@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, Sign, Taltae} from "./login";
+import {HpChange, KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, Sign, Taltae} from "./login";
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
@@ -27,6 +27,8 @@ import ChatRoom from "./chatbot/ChatRoom";
 import MyHugiList from "./hugi/MyHugiList";
 import MyHugiRowList from "./hugi/MyHugiRowList";
 import NCloudChatRoomAdmin from "./chatbot/NCloudChatRoomAdmin";
+import AccountSetting from './mypage/AccountSetting';
+import RankListS from './ranking/RankListS';
 
 
 function RouteMain(props) {
@@ -84,8 +86,10 @@ function RouteMain(props) {
                     <Route path="ncallback" element={<NaverCallBack/>}/>
                     <Route path="taltae" element={<Taltae/>}/>
                     <Route path="passchange" element={<PassChange/>}/>
+                    <Route path="hpchange" element={<HpChange/>}/>
                     <Route path="searchID" element={<SearchID/>}/>
                     <Route path="searchPass" element={<SearchPass/>}/>
+                    <Route path="account" element={<AccountSetting/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >
@@ -100,6 +104,7 @@ function RouteMain(props) {
                 <Route path={'/score'} >
                     <Route path="form" element={<RankForm/>}/>
                     <Route path="list" element={<RankList/>}/>
+                    <Route path="listS" element={<RankListS/>}/>
                 </Route>
 
                 <Route path={'/chating'} >
