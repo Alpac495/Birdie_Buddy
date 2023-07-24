@@ -55,8 +55,7 @@ function RouteMain(props) {
 
                 <Route path={'/friend'} >
                     <Route path="list" element={<Friend/>}/>
-                    <Route path="list/:unum" element={<Friend/>}/>
-                    <Route path="requestlist/:unum" element={<FriendRequest/>}/>
+                    <Route path="requestlist" element={<FriendRequest/>}/>
                     <Route path="detail" element={<FriendDetail/>}/>
                     <Route path="detail/:funum" element={<FriendDetail/>}/>
                     <Route path="search" element={<FriendSearch/>}/>

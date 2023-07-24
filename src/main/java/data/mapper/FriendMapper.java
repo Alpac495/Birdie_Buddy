@@ -1,7 +1,6 @@
 package data.mapper;
 
 import data.dto.FriendDto;
-import data.dto.JoinmemberDto;
 import data.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 

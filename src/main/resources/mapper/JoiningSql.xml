@@ -8,13 +8,13 @@
         jp2age=#{jp2age},jp2gender=#{jp2gender},jp2tasu=#{jp2tasu},jucount=#{jucount} where jnum=#{jnum}
      </update>
     <select id="getJoiningList" resultType="JoiningDto">
-        select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn order by jnum desc
+        select *,(select uphoto from user where unum=jn.unum) as uphoto,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn order by jnum desc
     </select>
     <select id="getMakeJoinList" parameterType="int" resultType="JoiningDto">
-        select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.unum=#{unum} order by jn.jnum desc
+        select *,(select uphoto from user where unum=jn.unum) as uphoto,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.unum=#{unum} order by jn.jnum desc
     </select>
     <select id="getRequestJoinList" parameterType="int" resultType="JoiningDto">
-        select *,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.jnum IN (SELECT jnum FROM joinmember  WHERE unum = #{unum}) order by jn.jnum desc
+        select *,(select uphoto from user where unum=jn.unum) as uphoto,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.jnum IN (SELECT jnum FROM joinmember  WHERE unum = #{unum}) order by jn.jnum desc
     </select>
     <select id="detailPage" parameterType="int" resultType="JoiningDto">
         select *, (select sum(jm.jcount) from joinmember jm where j.jnum=jm.jnum and jm.jaccept=1) as jmcount, (select sum(jm.jcount) from joinmember jm where j.jnum = jm.jnum and jm.jaccept=0) as smcount from joining j inner join user u on j.unum = u.unum where j.jnum=#{jnum}

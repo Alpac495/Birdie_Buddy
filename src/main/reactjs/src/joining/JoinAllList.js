@@ -1,13 +1,16 @@
 import "./JoinList.css";
-import {JoinFullRounded} from "@mui/icons-material";
 import iconFlag from "../image/icon_flaghole.svg"
 import Header from "../header/Header";
 import React, { useState, useEffect, useCallback } from 'react';
 import Axios from 'axios';
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import Profile from "../image/user60.png";
+
 
 
 const JoinAllList = () => {
+    const url = process.env.REACT_APP_PROFILE;
+    // eslint-disable-next-line no-unused-vars
     const [unum, setUnum]=useState('');
     const unumchk=()=>{
         Axios.get("/login/unumChk")
@@ -101,7 +104,9 @@ const JoinAllList = () => {
                     <div className="JEjlist-wrapper">
                     {
                         data.map &&
+                        // eslint-disable-next-line array-callback-return
                         data.filter((val)=>{
+                            // eslint-disable-next-line eqeqeq
                             if(searchTerm == ""){
                                 return val
                             }else if(val.gname.includes(searchTerm)){
@@ -110,8 +115,8 @@ const JoinAllList = () => {
                                 return val
                             }
                         }).map((item,idx) =>
-                            <NavLink to={`/joining/detail/${item.jnum}/${unum}`} className='nav-style'>
-
+                            <NavLink to={`/joining/detail/${item.jnum}`} className='nav-style'>
+                                {calculateDday(item.jjoinday) < 0 ? null :
                                 <div className="JEjlist" key={idx}>
                                     <div className="JEjlist-inner">
                                         <div className="JEinstance-child" />
@@ -129,9 +134,9 @@ const JoinAllList = () => {
                                             src={iconFlag} />
                                         <div className="JEdiv5">{4-item.jmcount-item.jucount === 0 ? "꽉 찼어요!" : `${4-item.jmcount-item.jucount}자리 비었어요!`}</div>
                                     </div>
-                                    <div className="JEavatar-user-60">
-                                        <div className="JErectangle" />
-                                        <div className="JErectangle1" />
+                                    <div>
+                                        {item.uphoto == null ? <img className="JEavatar-user-60" alt="" src={Profile} /> :
+                                        <img className="JEavatar-user-60" src={`${url}${item.uphoto}`} alt={''}/>}
                                     </div>
                                     <div className="JErectangle-parent">
                                         <div className="JEgroup-child" />
@@ -140,7 +145,7 @@ const JoinAllList = () => {
 
                                 </div>
 
-                            </NavLink>
+                        }</NavLink>
                         )}
                     </div>
                 </div>

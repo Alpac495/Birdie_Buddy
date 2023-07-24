@@ -88,7 +88,6 @@ public class FriendService implements FriendServiceInter {
 
     @Override
     public List<FriendDto> getRequestCheck(int unum) {
-        // TODO Auto-generated method stub
         return friendMapper.getRequestCheck(unum);
     }
 }

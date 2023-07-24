@@ -6,6 +6,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 
 const FriendSearch = () => {
+    const url = process.env.REACT_APP_PROFILE;
     const [searchTerm, setSearchTerm] = useState("");
     const now = new Date();
     const year = now.getFullYear();
@@ -94,7 +95,8 @@ const FriendSearch = () => {
                 }).map((item, idx) => (
                     <div className="AFitem-2" key={idx}>
                     <Link to={`/friend/detail/${item.unum}`} style={{ color: 'black' }}>
-                        <img className="AFjduphoto-icon" alt="" src={Profile} />
+                        {item.uphoto == null ? <img className="AFjduphoto-icon" alt="" src={Profile} /> :
+                        <img className="AFjduphoto-icon" src={`${url}${item.uphoto}`} alt={''}/>}                        
                     </Link>
                     <div className="AFdiv1">{item.ugender} / {year - (parseInt(item.uage.substring(0, 4), 10))}세</div>
                     <div className="AFdiv2">{item.unickname}</div>

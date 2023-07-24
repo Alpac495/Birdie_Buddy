@@ -2,39 +2,35 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./FriendRequest.css";
 import {Link, NavLink, useParams} from 'react-router-dom';
+import Profile from "../image/user60.png";
+
 function FriendRequest(props) {
-    const {unum}=useParams('');
-    const [funum, setFunum]=useState(0);
-    console.log(unum,funum)
+    const url = process.env.REACT_APP_PROFILE;
+    const [unum, setUnum]=useState('');
+    const [funum, setFunum]=useState('');
+    const [data,setData]=useState('');
+    const now = new Date();
+    const year = now.getFullYear();
+    
     const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
-                setFunum(res.data);
+        Axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+            setFunum(res.data);
                 const url="/friend/requestlist?unum="+(res.data);
                 Axios.get(url)
                     .then(res=>{
                         setData(res.data);
                         console.log(res.data)
                     })
-            }
-            )
+        });
     }
     useEffect(() => {
         unumchk()
     }, [])
-    const [data,setData]=useState('');
-    const list=useCallback(()=>{
-        const url="/friend/requestlist?unum="+(unum);
-        Axios.get(url)
-            .then(res=>{
-                setData(res.data);
-                console.log(res.data)
-            })
-    },[]);
 
-    useEffect(()=>{
-        list();
-    },[list])
+
+
 
     const onAcceptEvent = (unum) => {
         const confirmed = window.confirm('신청을 수락하시겠습니까?');
@@ -61,12 +57,12 @@ function FriendRequest(props) {
             <h4>버디 요청 : {data.length}명</h4>
 
             <div className="FLtab">
-                <NavLink to={`/friend/list/${unum}`}>
+                <NavLink to={`/friend/list`}>
                 <div className="frframe">
                     <div className="FLdiv">버디 리스트</div>
                 </div>
                 </NavLink>
-                <NavLink to={`/friend/requestlist/${unum}`}>
+                <NavLink to={`/friend/requestlist`}>
                 <div className="FRframe">
                     <div className="FLdiv">버디 요청</div>
                 </div>
@@ -82,12 +78,13 @@ function FriendRequest(props) {
                         <div className="flistprofile">
                                 <div className="flistprofile1">
                                     <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
-                                    <img className="FLphoto-icon" alt="" src="/jduphoto@2x.png" />
+                                    {item.uphoto == null ? <img className="FLphoto-icon" alt="" src={Profile} /> :
+                                    <img className="FLphoto-icon" src={`${url}${item.uphoto}`} alt={''}/>}
                                     </Link>
                                     <div className="FLdiv3">
                                       <span className="FLtxt">
-                                        <p className="FLp">{item.uname}({item.unickname})</p>
-                                        <p className="FLp1">{item.ugender} /{item.uage}</p>
+                                        <p className="FLp">{item.unickname}</p>
+                                        <p className="FLp1">{item.ugender} /{year - (parseInt(item.uage.substring(0, 4), 10))}세</p>
                                       </span>
                                     </div>
 

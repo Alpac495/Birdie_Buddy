@@ -1,6 +1,5 @@
 package data.service;
 
-import data.dto.GolfjangDto;
 import data.dto.JoiningDto;
 import data.dto.JoinmemberDto;
 import data.mapper.JoiningMapper;

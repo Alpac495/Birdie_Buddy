@@ -1,7 +1,6 @@
 package data.controller;
 
 import data.dto.FriendDto;
-import data.dto.JoinmemberDto;
 import data.dto.UserDto;
 import data.mapper.FriendMapper;
 import data.service.FriendService;

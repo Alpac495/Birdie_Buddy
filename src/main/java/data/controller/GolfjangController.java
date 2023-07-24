@@ -1,6 +1,5 @@
 package data.controller;
 
-import data.dto.FriendDto;
 import data.dto.GolfjangDto;
 import data.mapper.GolfjangMapper;
 import data.service.GolfjangService;
@@ -21,11 +20,11 @@ public class GolfjangController {
     @Autowired
     private NcpObjectStorageService storageService;
 
-    private String bucketName="bit701-bucket-111";
+    private String bucketName = "bit701-bucket-111";
 
     String photo;
 
-    String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+    String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
 
     @Autowired
     GolfjangMapper golfjangMapper;
@@ -34,12 +33,10 @@ public class GolfjangController {
     GolfjangService golfjangService;
 
     @GetMapping("/list")
-    public List<GolfjangDto> list()
-    {
+    public List<GolfjangDto> list() {
         System.out.println("test");
-        List<GolfjangDto> list= golfjangService.getGolfjangList();
+        List<GolfjangDto> list = golfjangService.getGolfjangList();
         return list;
     }
-
 
 }

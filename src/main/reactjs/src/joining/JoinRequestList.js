@@ -1,13 +1,18 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-unused-vars */
 import "./JoinList.css";
-import {JoinFullRounded} from "@mui/icons-material";
 import iconFlag from "../image/icon_flaghole.svg"
 import Header from "../header/Header";
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import Profile from "../image/user60.png";
+
 
 
 const JoinRequestList = () => {
+    const url = process.env.REACT_APP_PROFILE;
     const [unum, setUnum]=useState('');
     const [data, setData] = useState([]);
     const unumchk=()=>{
@@ -120,9 +125,9 @@ const JoinRequestList = () => {
                                             src={iconFlag} />
                                         <div className="JEdiv5">{4-item.jmcount-item.jucount === 0 ? "꽉 찼어요!" : `${4-item.jmcount-item.jucount}자리 비었어요!`}</div>
                                     </div>
-                                    <div className="JEavatar-user-60">
-                                        <div className="JErectangle" />
-                                        <div className="JErectangle1" />
+                                    <div>
+                                        {item.uphoto == null ? <img className="JEavatar-user-60" alt="" src={Profile} /> :
+                                        <img className="JEavatar-user-60" src={`${url}${item.uphoto}`} alt={''}/>}
                                     </div>
                                     <div className="JErectangle-parent">
                                         <div className="JEgroup-child" />
