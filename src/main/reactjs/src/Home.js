@@ -69,7 +69,10 @@ function Home(props) {
 
             <ul> friend
                 <li>
-                    <NavLink to={`/friend/list/${unum}`}>친구목록</NavLink>
+                    <NavLink to={`/friend/list`}>친구목록</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/friend/search`}>전체사용자목록</NavLink>
                 </li>
             </ul>
 
@@ -86,7 +89,7 @@ function Home(props) {
 
             <ul> joining
                 <li>
-                    <NavLink to={`/joining/list/${unum}`}>조인list</NavLink>
+                    <NavLink to={`/joining/alllist`}>조인list</NavLink>
                 </li>
                 <li>
                     <NavLink to={'/joining/form'}>조인폼</NavLink>
@@ -131,9 +134,12 @@ function Home(props) {
                     <NavLink to={'/score/list'}>랭킹리스트</NavLink>
                 </li>
             </ul>
-            <ul>chatbot
+            <ul>chating room
                 <li>
-                    <NavLink to={'/chating'}>chating room</NavLink>
+                    <NavLink to={`/chating/${unum}`}>chating room</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/chating/0`}>Admin chating room</NavLink>
                 </li>
             </ul>
             <ul>main

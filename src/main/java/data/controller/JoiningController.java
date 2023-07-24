@@ -1,12 +1,9 @@
 package data.controller;
 
-import data.dto.FriendDto;
 import data.dto.JoiningDto;
 import data.dto.JoinmemberDto;
 import data.mapper.JoiningMapper;
 import data.service.JoiningService;
-import data.service.JoinmemberService;
-import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +13,6 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/joining")
 public class JoiningController {
-
-    @Autowired
-    private NcpObjectStorageService storageService;
-
-    private String bucketName = "bit701-bucket-111";
 
     String photo;
 
@@ -48,17 +40,20 @@ public class JoiningController {
         return list;
     }
 
-    @GetMapping("/myjoinlist")
-    public List<JoiningDto> myJoinlist(int unum) {
-        List<JoiningDto> myjoinlist = joiningService.getMyJoinList(unum);
-        System.out.println("myjoinlist>>" + unum);
-        return myjoinlist;
+    @GetMapping("/makejoinlist")
+    public List<JoiningDto> makeJoinlist(int unum) {
+        List<JoiningDto> makejoinlist = joiningService.getMakeJoinList(unum);
+        return makejoinlist;
+    }
+
+    @GetMapping("/requestjoinlist")
+    public List<JoiningDto> requestJoinlist(int unum) {
+        List<JoiningDto> requestjoinlist = joiningService.getRequestJoinList(unum);
+        return requestjoinlist;
     }
 
     @GetMapping("/detail")
     public JoiningDto detailPage(int jnum) {
-        System.out.println("detail>>" + jnum);
-
         return joiningService.detailPage(jnum);
     }
 

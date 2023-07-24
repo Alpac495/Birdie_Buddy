@@ -25,14 +25,6 @@ body {
     align-items: center;
     width: 8.81rem;
 }
-.jduphoto-icon {
-    position: absolute;
-    top: 21.94rem;
-    left: 1.13rem;
-    width: 4.19rem;
-    height: 4.25rem;
-    object-fit: cover;
-}
 .JDlw {
     position: relative;
     font-weight: 600;
@@ -339,14 +331,6 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     font-size: 1rem;
-}
-.JDdiv9 {
-    top: 26.58%;
-    left: 0;
-    letter-spacing: -0.01em;
-    background: linear-gradient(202.17deg, #03c75a, #85c644);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .JDdiv10,

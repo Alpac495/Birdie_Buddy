@@ -10,8 +10,8 @@ function Taltae(props) {
     const [chk, setChk] = useState(false);
     const navi = useNavigate();
 
-    const unumchk= async ()=>{
-        await axios.get("/login/unumChk?unum=" + unum)
+    const unumchk=()=>{
+        axios.get("/login/unumChk")
             .then(res=>{
                 console.log(res.data)
                 setUnum(res.data)
@@ -27,10 +27,11 @@ function Taltae(props) {
             alert("휴대폰번호 11자리를 입력해 주세요")
             setUhp('');
         } else {
-            axios.get("/login/hpchk?unum="+unum+"&uhp="+uhp)
+            axios.get("/login/unumHpchk?unum="+unum+"&uhp="+uhp)
                 .then(res=>{
                     if(res.data==0){
                         alert("회원정보와 휴대폰번호가 일치하지 않습니다")
+                        setUhp('');
                     } else {
                         axios.get("/login/smsSend?uhp="+uhp)
                             .then(res=>{

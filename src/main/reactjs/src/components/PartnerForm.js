@@ -17,11 +17,12 @@ const PartnerForm = ( props ) => {
         setJp1tasu(e.currentTarget.value);
     }
 
-    const submitEvent =()=>{
+    const onSubmitEvent =()=>{
         props.propFunction(jp1gender,jp1age,jp1tasu)
     }
 
     return (
+        <form onSubmit={onSubmitEvent}>
         <div className="PFpartnerform">
             <div className="PFdetail-view">
                 <div className="PFaction-bar-contextual">
@@ -43,7 +44,7 @@ const PartnerForm = ( props ) => {
                             <input type="radio" name="pgender" required className="PFdiv" value='남' onChange={genderSelectHandler}/>남자
                         </label>
                         <label className="PFradio-with-label">
-                            <input type="radio" name="pgender" required className="PFdiv2" value='여' onChange={genderSelectHandler}/>여자
+                            <input type="radio" name="pgender" className="PFdiv2" value='여' onChange={genderSelectHandler}/>여자
                         </label>
                     </div>
                 </div>
@@ -63,11 +64,12 @@ const PartnerForm = ( props ) => {
             <div className="PFcta-button-1">
                 <div className="PFround-button-icon">
                     <div className="PFcentered">
-                        <Button className="PFlabel1" onClick={submitEvent}>동반자 정보 저장</Button>
+                        <Button className="PFlabel1" type='submit'>동반자 정보 저장</Button>
                     </div>
                 </div>
             </div>
         </div>
+        </form>
     );
 };
 

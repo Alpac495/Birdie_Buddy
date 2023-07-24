@@ -13,4 +13,7 @@ public class FriendDto {
     private String uname;
     private String ugender;
     private String uage;
+    private String unickname;
+    private String uphoto;
+    private int frequest;
 }

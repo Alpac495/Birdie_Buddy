@@ -61,4 +61,20 @@ public class LoginService implements LoginServiceInter {
         return loginMapper.cntHpCode(map);
     }
 
+    @Override
+    public void passChange(int unum, String upass) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("upass", upass);
+        loginMapper.passChange(map);
+    }
+
+    @Override
+    public void hpChange(int unum, String uhp) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("uhp", uhp);
+        loginMapper.hpChange(map);
+    }
+
 }
