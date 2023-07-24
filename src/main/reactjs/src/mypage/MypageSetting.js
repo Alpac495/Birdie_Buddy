@@ -6,15 +6,25 @@ import BuddyIcon from "../image/icon_mybuddy.svg";
 import YangdoIcon from "../image/icon_yangdo.svg";
 import BuddyStory from "../image/icon_buddystory.svg";
 import {useNavigate, useParams} from "react-router-dom";
+import ModalAccount from "./MypageAccount";
+import { useState } from "react";
 
 const MypageSetting = () => {
 
     const {unum} = useParams();
     const navi = useNavigate();
+    const [upass, setUpass]=useState('');
 
     const onMyYangdo=()=>{
         navi(`/mypage/myyangdo/${unum}/1`);
     }
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     return (
         <div className="mypagesetting">
@@ -68,7 +78,13 @@ const MypageSetting = () => {
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
-                    <div className="MPSlabel1" onClick={()=>navi('/login/account')} >내 정보 변경</div>
+                    <div className="MPSlabel1" onClick={openModal} >내 정보 변경</div>
+                    <ModalAccount open={modalOpen} close={closeModal} header="비밀번호 입력">
+                    <input className={'inputtext'} type={'password'} onChange={(e) =>
+                        setUpass(e.target.value)
+                    }/>
+                </ModalAccount>
+
                 </div>
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">
