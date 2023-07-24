@@ -54,10 +54,17 @@ public class HugiController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error2: " + e.getMessage());
         }
     }
+//    @GetMapping("/list")
+//    public List<HugiDto> list() {
+//        System.out.println("list>>");
+//        return hugiService.getAllHugis();
+//    }
     @GetMapping("/list")
-    public List<HugiDto> list() {
-        System.out.println("list>>");
-        return hugiService.getAllHugis();
+    public List<HugiDto> hugilist(int page, int size) {
+        System.out.println("스크롤");
+        int offset = (page - 1) * size;
+        List<HugiDto> list = hugiMapper.listHugiWithPaging(offset, size);
+        return list;
     }
     @GetMapping("/mylist/{unum}")
     public List<HugiDto> getHugiListByUnum(@PathVariable int unum) {
@@ -143,6 +150,15 @@ public class HugiController {
 //        System.out.println("unickname =>>" +unickname);
         if (unickname != null) {
             return ResponseEntity.ok(unickname);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/getUserPhoto")
+    public ResponseEntity<String> getUserPhotoUrl(int unum) {
+        String uphoto = hugiMapper.getUserPhotoUrl(unum);
+        if (uphoto != null) {
+            return ResponseEntity.ok(uphoto);
         } else {
             return ResponseEntity.notFound().build();
         }

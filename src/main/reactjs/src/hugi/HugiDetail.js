@@ -12,16 +12,21 @@ import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 import ListIcon from '@mui/icons-material/List';
 import EditIcon from "@mui/icons-material/Edit";
+import Profile from "../image/user60.png";
 
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
     const url = process.env.REACT_APP_HUGI;
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
+
     const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
     const navi = useNavigate();
 
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [showLike, setShowLike] = useState(props.showLike || false);
     const [unum, setUnum] = useState('');
+    const [uphoto,setUphoto]=useState('');
     const [userNum,setUserNum]=useState('');
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
@@ -46,7 +51,11 @@ function HugiDetail(props) {
         navi(`/hugi/modify/${hnum}`);
     }
     const handleClickAvatar  = () =>{
-        navi(`/mypage/mypage/${unum}`);
+        if (unum === 0) {
+            alert('로그인을 먼저 해주세요!');
+        } else {
+            navi(`/mypage/mypage/${unum}`);
+        }
     };
 
     const generateShortURL  = (longUrl) => {
@@ -217,8 +226,10 @@ function HugiDetail(props) {
                 const sortedComments = sortComments(res.data);
                 setComments(sortedComments);
                 res.data.forEach((comment) => {
+                    fetchCommentUserPhoto(comment.unum, comment); // 댓글 작성자의 프로필 사진 정보 가져오기
                     if (comment.comments) {
                         comment.comments.forEach((reply) => {
+                            fetchReplyUserPhoto(reply.unum, reply); // 대댓글 작성자의 프로필 사진 정보 가져오기
                         });
                     }
                 });
@@ -244,7 +255,50 @@ function HugiDetail(props) {
             }
         }
     };
+    const fetchUserPhoto = (unum) => {
+        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+            .then((res) => {
+                const userPhoto = res.data;
+                setUphoto(userPhoto);
+            })
+            .catch((error) => {
+                console.log('Error fetching user photo:', error);
+            });
+    };
+    useEffect(() => {
+        if (unum) {
+            fetchUserPhoto(unum);
+        }
+    }, [unum]);
+    // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
+    const fetchCommentUserPhoto = (unum, comment) => {
+        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+            .then((res) => {
+                const userPhoto = res.data;
+                // comment 객체에 댓글 작성자의 프로필 사진 정보 추가
+                comment.uphoto = userPhoto;
+                // state 업데이트 등의 작업을 수행할 수 있습니다.
+                setComments((prevComments) => [...prevComments]); // 댓글 정보가 추가된 새로운 배열로 state 업데이트
+            })
+            .catch((error) => {
+                console.log('Error fetching comment user photo:', error);
+            });
+    };
 
+// 대댓글 작성자의 프로필 사진 정보를 가져오는 함수
+    const fetchReplyUserPhoto = (unum,reply) => {
+        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+            .then((res) => {
+                const userPhoto = res.data;
+                // reply 객체에 대댓글 작성자의 프로필 사진 정보 추가
+                reply.uphoto = userPhoto;
+                // state 업데이트 등의 작업을 수행할 수 있습니다.
+                setComments((prevComments) => [...prevComments]); // 대댓글 정보가 추가된 새로운 배열로 state 업데이트
+            })
+            .catch((error) => {
+                console.log('Error fetching reply user photo:', error);
+            });
+    };
     const sortComments = (comments) => {
         const sorted = [];
         const commentMap = {};
@@ -288,6 +342,7 @@ function HugiDetail(props) {
                     rhnum: rhnum,
                     hnum: hnum,
                     unum: unum,
+                    uphoto:uphoto,
                     rhcontent: rhcontent,
                     rhwriteday: formattedDate,
                     ref: null,
@@ -315,6 +370,7 @@ function HugiDetail(props) {
         const newReply = {
             hnum: hnum,
             unum: unum,
+            uphoto:uphoto,
             rhcontent: replyContent,
             ref: comment.rhnum,
             step: comment.step + 1,
@@ -358,6 +414,7 @@ function HugiDetail(props) {
         Axios.get(`/hugi/detail/${hnum}`)
             .then((res) => {
                 setPostUserNickname(res.data.unickname);
+                setUphoto(res.data.uphoto);
                 setHwriteday(res.data.hwriteday);
                 setHphoto(res.data.hphoto);
                 setHcontent(res.data.hcontent);
@@ -384,18 +441,15 @@ function HugiDetail(props) {
         setShowLike(likeStatus === "true");
     }, [hnum]); // hnum이 변경될 때마다 실행
 
-    // // 마지막에 componentWillUnmount 등록
-    // useEffect(() => {
-    //     return () => {
-    //         // 컴포넌트가 unmount 되기 전에 localStorage에서 좋아요 상태 삭제
-    //         localStorage.removeItem(`likeStatus_${hnum}`);
-    //     };
-    // }, [hnum]);
 
     return (
         <div className="list_detail">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={''} src='' onClick={handleClickAvatar}/>
+                {uphoto !== null ? (
+                    <Avatar className="list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar}/>
+                ):(
+                    <Avatar className="list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                )}
                 <span className="spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
             </div>
             &nbsp;
@@ -455,7 +509,11 @@ function HugiDetail(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
+                  {comment.uphoto == null ? (
+                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                  ):(
+                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                  )}
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -506,7 +564,11 @@ function HugiDetail(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
+                                  {reply.uphoto == null ? (
+                                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                                  ):(
+                                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                                  )}
                                   <b className="ReplyNickname" onClick={handleClickAvatar}>
                                       {reply.unickname}:
                                   </b>

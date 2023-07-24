@@ -19,5 +19,5 @@ public class RehugiDto {
     private int step;
     private int depth;
     private String unickname;
-
+    private String uphoto;
 }
