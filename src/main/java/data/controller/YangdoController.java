@@ -2,10 +2,8 @@ package data.controller;
 
 import data.dto.YangdoDto;
 import data.service.YangdoService;
-import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +15,6 @@ import java.util.Vector;
 @RequestMapping("/yangdo")
 public class YangdoController {
 
-    @Autowired
-    private NcpObjectStorageService storageService;
 
     @Autowired
     private YangdoService yangdoService;

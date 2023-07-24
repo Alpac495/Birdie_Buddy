@@ -30,10 +30,11 @@ const PartnerForm2 = (props) => {
         setJp2tasu(e.currentTarget.value);
     }
 
-    const submitEvent =()=>{
+    const onSubmitEvent =()=>{
         props.propFunction(jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu)
     }
     return (
+        <form onSubmit={onSubmitEvent}>
         <div className="PF2partnerform2">
             <div className="PF2frame-parent">
                 <div className="PF2detail-view">
@@ -51,7 +52,7 @@ const PartnerForm2 = (props) => {
                         <div className="PF2div">성별</div>
                         <div className="PF2div1">
                             <label className="PF2radio-with-label">
-                                <input type="radio" name="pgender" className="PF2div2" value='남' onChange={genderSelectHandler}/>남자
+                                <input type="radio" name="pgender" required className="PF2div2" value='남' onChange={genderSelectHandler}/>남자
                             </label>
                             <label className="PF2radio-with-label">
                                 <input type="radio" name="pgender" className="PF2div2" value='여' onChange={genderSelectHandler}/>여자
@@ -63,12 +64,12 @@ const PartnerForm2 = (props) => {
                             <div className="PF2frame1">
                                 <div className="PF2tasu">
                                     <div className="PF2div4">나이</div>
-                                    <input type="number" className="PF2text-field" placeholder="나이입력" value={jp1age} onChange={ageinputHandler}/>
+                                    <input type="number" className="PF2text-field" required placeholder="나이입력" value={jp1age} onChange={ageinputHandler}/>
 
                                 </div>
                             </div>
                             <div className="PF2div4">평균 타수</div>
-                            <input type="number" className="PF2text-field" placeholder="평균타수 숫자로 입력" value={jp1tasu} onChange={tasuinputHandler}/>
+                            <input type="number" className="PF2text-field" required placeholder="평균타수 숫자로 입력" value={jp1tasu} onChange={tasuinputHandler}/>
 
                         </div>
                     </div>
@@ -79,10 +80,10 @@ const PartnerForm2 = (props) => {
                         <div className="PF2div">성별</div>
                         <div className="PF2div1">
                             <label className="PF2radio-with-label">
-                                <input type="radio" name="pgender" className="PF2div2" value='남' onChange={genderSelectHandler2}/>남자
+                                <input type="radio" name="p2gender" className="PF2div2" required value='남' onChange={genderSelectHandler2}/>남자
                             </label>
                             <label className="PF2radio-with-label">
-                                <input type="radio" name="pgender" className="PF2div2" value='여' onChange={genderSelectHandler2}/>여자
+                                <input type="radio" name="p2gender" className="PF2div2" value='여' onChange={genderSelectHandler2}/>여자
                             </label>
                         </div>
                     </div>
@@ -91,12 +92,12 @@ const PartnerForm2 = (props) => {
                             <div className="PF2frame1">
                                 <div className="PF2tasu">
                                     나이
-                                    <input  className="PF2text-field" type="number" placeholder="나이 숫자로 입력" value={jp2age} onChange={ageinputHandler2}/>
+                                    <input  className="PF2text-field" type="number" required placeholder="나이 숫자로 입력" value={jp2age} onChange={ageinputHandler2}/>
 
                                 </div>
                             </div>
                             <div className="PF2div4">평균 타수</div>
-                            <input className="PF2text-field" type="number" placeholder="평균 타수 숫자로 입력" value={jp2tasu} onChange={tasuinputHandler2}/>
+                            <input className="PF2text-field" type="number" required placeholder="평균 타수 숫자로 입력" value={jp2tasu} onChange={tasuinputHandler2}/>
 
                         </div>
                     </div>
@@ -104,12 +105,13 @@ const PartnerForm2 = (props) => {
                 <div className="PF2cta-button-1">
                     <div className="PF2round-button-icon">
                         <div className="PF2centered">
-                            <Button className="PF2label2" onClick={submitEvent}>동반자 정보 저장</Button>
+                            <Button className="PF2label2" type='submit'>동반자 정보 저장</Button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </form>
     );
 };
 

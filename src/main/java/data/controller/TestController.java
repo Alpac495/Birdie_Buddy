@@ -1,6 +1,5 @@
 package data.controller;
 
-import lombok.AllArgsConstructor;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

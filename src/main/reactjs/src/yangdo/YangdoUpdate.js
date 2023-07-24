@@ -108,7 +108,7 @@ function YangdoUpdate(props) {
                             {
                                 data.map &&
                                 data.filter((val)=>{
-                                    if(searchTerm == ""){
+                                    if(searchTerm === ""){
                                         return val
                                     }else if(val.gname.includes(searchTerm)){
                                         return val

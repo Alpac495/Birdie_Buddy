@@ -3,7 +3,6 @@ package data.service;
 import data.dto.YangdoDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface YangdoServiceInter {
 
