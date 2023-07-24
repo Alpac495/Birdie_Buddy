@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './Hugi.css';
 import Axios from 'axios';
-import {useNavigate, Link, useParams} from 'react-router-dom';
-import HugiRowList from './HugiRowList';
+import {useNavigate,useParams} from 'react-router-dom';
 import MyHugiRowList from "./MyHugiRowList";
 
 
@@ -36,14 +35,6 @@ function MyHugiList(props) {
         getUser();
         refreshHugiData2();
     }, [unum]); // unum이 변경되면 해당 unum에 대한 데이터를 다시 가져옴
-
-// unum이 변경되면 사용자의 후기 데이터 갱신
-//     useEffect(() => {
-//         if(unum) {
-//             refreshHugiData2();
-//         }
-//     },[unum]);
-
 
     const getUser = () => {
         Axios.get(`/hugi/getUser?unum=${unum}`)
@@ -142,7 +133,7 @@ function MyHugiList(props) {
                     null
                 )}
             </div>
-            {userNum !==0 && (
+            {userNum !== 0 && (
                 <details className="details_Timeline">
                     <summary style={{backgroundColor:"RGB(252 243 168)"}}>게시물 작성하기</summary>
                     <div className="timeline" style={{
