@@ -27,6 +27,7 @@ import ChatRoom from "./chatbot/ChatRoom";
 import MyHugiList from "./hugi/MyHugiList";
 import MyHugiRowList from "./hugi/MyHugiRowList";
 import AccountSetting from './mypage/AccountSetting';
+import RankListS from './ranking/RankListS';
 
 
 function RouteMain(props) {
@@ -102,6 +103,7 @@ function RouteMain(props) {
                 <Route path={'/score'} >
                     <Route path="form" element={<RankForm/>}/>
                     <Route path="list" element={<RankList/>}/>
+                    <Route path="listS" element={<RankListS/>}/>
                 </Route>
 
                 <Route path="/chating" element={<NCloudChatRoomList />} />

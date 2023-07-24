@@ -1,16 +1,9 @@
 import "./MypageSetting.css";
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import AnnouncementIcon from '@mui/icons-material/Announcement';
-import EditIcon from '@mui/icons-material/Edit';
-import PeopleIcon from '@mui/icons-material/People';
-import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import JoinIcon from"../image/icon_flaghole.svg";
 import BuddyIcon from "../image/icon_mybuddy.svg";
 import YangdoIcon from "../image/icon_yangdo.svg";
-import RateReviewIcon from '@mui/icons-material/RateReview';
-import PersonIcon from '@mui/icons-material/Person';
 import BuddyStory from "../image/icon_buddystory.svg";
 import {useNavigate, useParams} from "react-router-dom";
 

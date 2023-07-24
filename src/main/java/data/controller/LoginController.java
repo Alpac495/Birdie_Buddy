@@ -334,7 +334,7 @@ public class LoginController {
         bodyJson.put("content", "["+code+"]"); // Mandatory(필수), 기본 메시지 내용,
         // SMS: 최대 80byte, LMS, MMS: 최대
         // 2000byte
-        bodyJson.put("messages", toArr); // Mandatory(필수), 아래 항목들 참조 (messages.XXX), 최대 1,000개
+        bodyJson.put("messages", toArr); // Mandatory(필수), 아래 항목들 참조 (messages.xxx), 최대 1,000개
 
         // String body = bodyJson.toJSONString();
         String body = bodyJson.toString();
