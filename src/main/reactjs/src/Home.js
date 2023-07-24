@@ -131,9 +131,12 @@ function Home(props) {
                     <NavLink to={'/score/list'}>랭킹리스트</NavLink>
                 </li>
             </ul>
-            <ul>chatbot
+            <ul>chating room
                 <li>
-                    <NavLink to={'/chating'}>chating room</NavLink>
+                    <NavLink to={`/chating/${unum}`}>chating room</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/chating/0`}>Admin chating room</NavLink>
                 </li>
             </ul>
             <ul>main
