@@ -1,6 +1,5 @@
 package data.mapper;
 
-import data.dto.JoiningDto;
 import data.dto.JoinmemberDto;
 import org.apache.ibatis.annotations.Mapper;
 

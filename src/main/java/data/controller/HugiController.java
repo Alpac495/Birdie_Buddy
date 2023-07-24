@@ -7,17 +7,11 @@ import data.service.HugiService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")

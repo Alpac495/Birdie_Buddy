@@ -1,39 +1,35 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
 import "./JoinList.css";
-import {JoinFullRounded} from "@mui/icons-material";
 import iconFlag from "../image/icon_flaghole.svg"
 import Header from "../header/Header";
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import Profile from "../image/user60.png";
 
 
-const JoinList = () => {
-    // const [unum, setUnum]=useState(0);
-    // const unumchk=()=>{
-    //     Axios.get("/login/unumChk?unum="+unum)
-    //         .then(res=>{
-    //             setUnum(res.data);
-    //         })
-    // }
-    // useEffect(() => {
-    //     unumchk()
-    // }, [])
-    const {unum} = useParams('');
+const JoinMakeList = () => {
+    const url = process.env.REACT_APP_PROFILE;
+    const [unum, setUnum]=useState('');
     const [data, setData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const list = useCallback(() => {
-        const url = "/joining/list";
-        Axios.get(url)
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+            const url = "/joining/makejoinlist?unum="+res.data;
+            Axios.get(url)
             .then(res => {
                 setData(res.data);
-                // console.log(res.data);
             });
-    }, []);
-
+        });
+    }
     useEffect(() => {
-        list();
-    }, [list]);
+        unumchk()
+    }, [])
+    
+    const [searchTerm, setSearchTerm] = useState("");
 
     // D-day 계산 함수
     const calculateDday = jjoinday => {
@@ -43,8 +39,14 @@ const JoinList = () => {
         const dDay = Math.ceil(timeDiff / (1000 * 3600 * 24));
         return dDay;
     };
+    const alljoinClick = () => {
+        window.location.replace(`/joining/alllist`)
+    };
     const myjoinClick = () => {
-        window.location.replace(`/joining/mylist/${unum}`)
+        window.location.replace(`/joining/makelist`)
+    };
+    const requestjoinClick = () => {
+        window.location.replace(`/joining/requestlist`)
     };
     const joinformClick = () =>{
         window.location.replace(`/joining/form`)
@@ -60,7 +62,7 @@ const JoinList = () => {
                         <div className="JEapp-bar-top">
                             <div className="JEactions">
                                 <div className="btn1_wrapper">
-                                    <button type='button' onClick={joinformClick}>
+                                    <button type='button' className="btn btn-sm btn-outline-success" onClick={joinformClick}>
                                         <b className="JLb">조인만들기</b>
                                     </button>
                                 </div>
@@ -76,20 +78,19 @@ const JoinList = () => {
                     </div>
                     <div className="JEsegmented-control">
                         <div className="JEsegmented-control1">
+                            <div className="JEframe1">
+                                <div className="JEdiv1" onClick={alljoinClick}>전체</div>
+                            </div>
                             <div className="JEframe">
-                                <div className="JEdiv1">전체</div>
+                                <div className="JEdiv1" onClick={myjoinClick}>모집</div>
                             </div>
                             <div className="JEframe1">
-                                <div className="JEdiv1">모집</div>
-                            </div>
-                            <div className="JEframe1">
-                                <div className="JEdiv1">신청</div>
+                                <div className="JEdiv1" onClick={requestjoinClick}>신청</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div className="JEjlist-parent">
                 <div className="JEjlist">
                     <div className="JEjlist-wrapper">
@@ -104,7 +105,7 @@ const JoinList = () => {
                                 return val
                             }
                         }).map((item,idx) =>
-                            <NavLink to={`/joining/detail/${item.jnum}/${unum}`} className='nav-style'>
+                            <NavLink to={`/joining/detail/${item.jnum}`} className='nav-style'>
 
                                 <div className="JEjlist" key={idx}>
                                     <div className="JEjlist-inner">
@@ -112,7 +113,7 @@ const JoinList = () => {
                                     </div>
                                     <div className="JEdiv4">
                                         <p className="JEp">{item.jjoinday} {item.jtime}</p>
-                                        {<p className="JLp2">#조인 확정</p>}
+                                        
                                         <p className="JEp1"><span className="JEspan">{item.gname}</span></p>
                                         <p className="JEp1"><span className="JEspan1">그린피 ￦{item.jprice}</span></p>
                                     </div>
@@ -121,11 +122,11 @@ const JoinList = () => {
                                             className="emoji-flag-in-hole"
                                             alt=""
                                             src={iconFlag} />
-                                        <div className="JEdiv5">{3 - item.jmcount === 0 ? "꽉 찼어요!" : `${3 - item.jmcount}자리 비었어요!`}</div>
+                                        <div className="JEdiv5">{4-item.jmcount-item.jucount === 0 ? "꽉 찼어요!" : `${4-item.jmcount-item.jucount}자리 비었어요!`}</div>
                                     </div>
-                                    <div className="JEavatar-user-60">
-                                        <div className="JErectangle" />
-                                        <div className="JErectangle1" />
+                                    <div>
+                                        {item.uphoto == null ? <img className="JEavatar-user-60" alt="" src={Profile} /> :
+                                        <img className="JEavatar-user-60" src={`${url}${item.uphoto}`} alt={''}/>}
                                     </div>
                                     <div className="JErectangle-parent">
                                         <div className="JEgroup-child" />
@@ -139,8 +140,8 @@ const JoinList = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
     );
 };
 
-export default JoinList;
+export default JoinMakeList;
