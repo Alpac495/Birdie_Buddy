@@ -1,95 +1,181 @@
-//결제 api
+import Axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Modal from '../components/Modal';
 
-import { useEffect, useRef, useState } from "react";
-import { loadPaymentWidget, PaymentWidgetInstance } from "@tosspayments/payment-widget-sdk";
-import { nanoid } from "nanoid";
-import "./MypagePay.css"
+function MyYangdoUpdate(props) {
+    // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+    const [modalOpen, setModalOpen] = useState(false);
 
-const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
-const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
-const MypageUpdate = () => {
-    const paymentWidgetRef = useRef(null);
-    const paymentMethodsWidgetRef = useRef(null);
-    const [price, setPrice] = useState(50000);
+    const [data,setData]=useState('');
+    const [searchTerm, setSearchTerm] = useState("");
 
-    useEffect(() => {
-        (async () => {
-            const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
+    const navi = useNavigate();
+    const {ynum,currentPage} = useParams();
 
-            const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
-                "#payment-widget",
-                price
-            );
+    const [yangdoData,setYangdoData] = useState('');
 
-            paymentWidgetRef.current = paymentWidget;
-            paymentMethodsWidgetRef.current = paymentMethodsWidget;
-        })();
-    }, []);
+    const getData=()=>{
+        const detailUrl=`/yangdo/detail?num=${ynum}&currentPage=${currentPage}`;
+        Axios.get(detailUrl)
+            .then(res=>{
+                setYangdoData(res.data);
+            })
+    }
 
-    useEffect(() => {
-        const paymentMethodsWidget = paymentMethodsWidgetRef.current;
+    useEffect(()=>{
+        getData();
+    },[]);
 
-        if (paymentMethodsWidget == null) {
-            return;
+    const list=useCallback(()=>{
+        const url="/golfjang/list";
+        Axios.get(url)
+            .then(res=>{
+                setData(res.data);
+                console.log(res.data)
+            })
+    },[]);
+
+    useEffect(()=>{
+        list();
+    },[list]);
+
+    const selectGolfjang=(e)=>{
+        const selectedValue = e.target.innerText;
+        setYangdoData({
+            ...yangdoData,
+            "yplace":selectedValue
+        });
+        {closeModal()}
+    }
+
+    // submit 이벤트 발생시 호출함수
+    const onSubmitEvent=(e)=>{
+
+        // 기본 이벤트를 무효화(action 호출 막기 위해서)
+        e.preventDefault();
+
+        if (!yangdoData.yplace) {
+            alert("골프장을 입력해주세요.")
+        }else if(!yangdoData.yprice) {
+            alert("가격을 입력해주세요.")
+        }else if(isNaN(yangdoData.yprice)){
+            alert("숫자로만 가격을 입력해주세요.")
+        }else if(!yangdoData.yday) {
+            alert("예약 날짜를 입력해주세요.")
+        }else if(!yangdoData.ysubject) {
+            alert("예약 시간을 입력해주세요.")
+        }else {
+
+            const url = "/yangdo/update";
+            Axios.post(url, yangdoData)
+                .then(res => {
+
+                    // 상세 페이지로 이동
+                    navi(`/mypage/myyangdodetail/${ynum}/${currentPage}`);
+                });
         }
+    }
 
-        paymentMethodsWidget.updateAmount(
-            price,
-            paymentMethodsWidget.UPDATE_REASON.COUPON
-        );
-    }, [price]);
+    const goBack = () => {
+        navi(-1);
+    }
 
     return (
-        <div className="mypagepay">
+        <div>
 
-                <div className="cta-header-1">
-                    <div className="headline">🌤️ Sunny</div>
-                    <div className="subtitle">Enjoy your day!</div>
-                    <div className="spacer">
-                        <div className="x16" />
+            <React.Fragment>
+                <Modal open={modalOpen} close={closeModal} header="골프장 목록">
+                    <div>
+                        <input style={{marginLeft:'20px'}}
+                               type="text"
+                               placeholder="검색"
+                               onChange={(e) => {
+                                   setSearchTerm(e.target.value);
+                               }}/>
+                        <br/><br/>
+                        <ul>
+                            {
+                                data.map &&
+                                data.filter((val)=>{
+                                    if(searchTerm == ""){
+                                        return val
+                                    }else if(val.gname.includes(searchTerm)){
+                                        return val
+                                    }
+                                }).map((item,idx) =>
+                                    <span onClick={selectGolfjang}><li>{item.gname}</li></span>
+                                )}
+                        </ul>
                     </div>
-                    <img
-                        className="rounded-end-piece"
-                        alt=""
-                        src="/rounded-end-piece.svg"
-                    />
-                </div>
+                </Modal>
+            </React.Fragment>
 
-
-            <h1>주문서</h1>
-            <div id="payment-widget" />
             <div>
-                <input
-                    type="checkbox"
-                    onChange={(event) => {
-                        setPrice(event.target.checked ? price - 5000 : price + 5000);
-                    }}
+                <b>골프장 : </b>
+                <input type='text'
+                       value={yangdoData.yplace}
+                       onClick={openModal}
+                       onChange={
+                           (e)=> setYangdoData({
+                               ...yangdoData,
+                               "yplace":e.target.value
+                           })}
                 />
-                <label>5,000원 할인 쿠폰 적용</label>
-            </div>
-            <button
-                onClick={async () => {
-                    const paymentWidget = paymentWidgetRef.current;
+                <br/>
 
-                    try {
-                        await paymentWidget?.requestPayment({
-                            orderId: nanoid(),
-                            orderName: "토스 티셔츠 외 2건",
-                            customerName: "김토스",
-                            customerEmail: "customer123@gmail.com",
-                            successUrl: `${window.location.origin}/success`,
-                            failUrl: `${window.location.origin}/fail`,
-                        });
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }}
-            >
-                결제하기
-            </button>
-            <div className="title3">Dashboard</div>
+                <b>가격 : </b>
+                <input type='text'
+                       value={yangdoData.yprice}
+                       onChange={
+                           (e)=> setYangdoData({
+                               ...yangdoData,
+                               "yprice":e.target.value
+                           })}/>
+                <br/>
+
+                <b>예약날짜 : </b>
+                <input type='date'
+                       value={yangdoData.yday}
+                       onChange={
+                           (e)=> setYangdoData({
+                               ...yangdoData,
+                               "yday":e.target.value
+                           })}/>
+                <br/>
+
+                <b>시간 : </b>
+                <input type='time'
+                       value={yangdoData.ysubject}
+                       onChange={
+                           (e)=> setYangdoData({
+                               ...yangdoData,
+                               "ysubject":e.target.value
+                           })}/>
+                <br/>
+
+                <b>내용 : </b>
+                <textarea value={yangdoData.ycontent}
+                          onChange={
+                              (e)=>setYangdoData({
+                                  ...yangdoData,
+                                  "ycontent":e.target.value
+                              })}></textarea>
+                <br/>
+
+                <button type='submit' onClick={onSubmitEvent}>수정</button>
+                <button type='button' onClick={goBack}>취소</button>
+
+            </div>
         </div>
     );
 }
-export default MypageUpdate;
+
+export default MyYangdoUpdate;

@@ -2,9 +2,6 @@ package data.mapper;
 
 import data.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -38,4 +35,6 @@ public interface LoginMapper {
     public void updatePhoto(Map<String, Object> map);
 
     public String getRtasu(int unum);
+    public UserDto getUserUhp(String uhp);
+    public void taltae(int unum);
 }

@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
-public class JoiningService implements JoiningServiceInter{
+public class JoiningService implements JoiningServiceInter {
 
     @Autowired
     private JoiningMapper joiningMapper;
@@ -22,9 +21,15 @@ public class JoiningService implements JoiningServiceInter{
     }
 
     @Override
+    public void updateJoin(JoiningDto dto) {
+        joiningMapper.updateJoin(dto);
+    }
+
+    @Override
     public List<JoiningDto> getJoiningList() {
         return joiningMapper.getJoiningList();
     }
+
     @Override
     public List<JoiningDto> getMyJoinList(int unum) {
         return joiningMapper.getMyJoinList(unum);
@@ -34,6 +39,7 @@ public class JoiningService implements JoiningServiceInter{
     public JoiningDto detailPage(int jnum) {
         return joiningMapper.detailPage(jnum);
     }
+
     @Override
     public int joinCancel(int jnum) {
         return joiningMapper.joinCancel(jnum);

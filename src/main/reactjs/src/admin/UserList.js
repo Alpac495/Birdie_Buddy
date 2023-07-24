@@ -1,22 +1,27 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import Axios from "axios";
 import "./UserList.css";
 import {Link, NavLink} from 'react-router-dom';
+import axios from 'axios';
 function UserList(props) {
     const [searchTerm, setSearchTerm] = useState("");
     
     const [data,setData]=useState('');
     const list=useCallback(()=>{
         const url="/admin/userlist";
-        Axios.get(url)
+        axios.get(url)
             .then(res=>{
                 setData(res.data);
             })
     },[]);
-
+    const  addBlackList=(unum)=>{
+        axios.get('/admin/addBlackList?unum='+unum)
+        
+    }
     useEffect(()=>{
         list();
-    },[list])
+    },[list, addBlackList])
+
+
 
 
 
@@ -59,7 +64,7 @@ function UserList(props) {
                         <div className="flist-child" />
                         <div className="flistprofile">
                                 <div className="flistprofile1">
-                                    <Link to={`/friend/detail/${item.funum}`} className="FDMoveLink">
+                                    <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
                                     <img className="FLphoto-icon" alt="" src="/jduphoto@2x.png" />
                                     </Link>
                                     <div className="FLdiv3">
@@ -71,7 +76,7 @@ function UserList(props) {
 
                                     <div className="FLrectangle-parent">
                                         <div className="FLgroup-child" />
-                                        <div className="FLdiv4">블랙</div>
+                                            <div className="FLdiv4" onClick={(e)=>addBlackList(item.unum)}>차단하기</div>                                        
                                     </div>
                                 </div>
                         </div>

@@ -33,4 +33,5 @@ public class JoiningDto {
     private String jp2gender;
     private String jp2age;
     private String jp2tasu;
+    private int jucount;
 }

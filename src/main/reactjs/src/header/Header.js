@@ -30,6 +30,8 @@ function Header(props) {
         navigate('/'); // 페이지 이동
     }
 
+    // const getUserData()=
+
     const list = () => (
         <Box
             role="presentation"

@@ -4,3 +4,7 @@ export {default as Logintest} from './Logintest';
 export {default as KaKaoCallBack} from './KaKaoCallBack';
 export {default as NaverCallBack} from './NaverCallBack';
 export {default as Naver} from './Naver';
+export {default as Taltae} from './Taltae';
+export {default as PassChange} from './PassChange';
+export {default as SearchID} from './SearchID';
+export {default as SearchPass} from './SearchPass';

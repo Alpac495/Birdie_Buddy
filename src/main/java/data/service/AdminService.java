@@ -16,7 +16,6 @@ public class AdminService implements AdminServiceInter {
 
     @Override
     public List<UserDto> getUserList() {
-        // TODO Auto-generated method stub
         return adminMapper.getUserList();
     }
 
