@@ -28,4 +28,7 @@
     <select id="getRanklist" resultType="RankingDto">
         select * from ranking order by rtasu asc
     </select>
+    <select id="listUserWithPaging" parameterType="int" resultType="UserDto">
+        SELECT * FROM user ORDER BY unum asc LIMIT #{offset}, #{size}
+    </select>
 </mapper>

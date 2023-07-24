@@ -13,4 +13,6 @@ public interface LoginServiceInter {
     public void insertCode(String uhp, String code);
 
     public int cntHpCode(String uhp, String code);
+    public void passChange(int unum, String upass);
+    public void hpChange(int unum, String uhp);
 }
