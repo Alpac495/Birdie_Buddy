@@ -26,6 +26,7 @@ import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
 import ChatRoom from "./chatbot/ChatRoom";
 import MyHugiList from "./hugi/MyHugiList";
 import MyHugiRowList from "./hugi/MyHugiRowList";
+import NCloudChatRoomAdmin from "./chatbot/NCloudChatRoomAdmin";
 
 
 function RouteMain(props) {
@@ -101,9 +102,11 @@ function RouteMain(props) {
                     <Route path="list" element={<RankList/>}/>
                 </Route>
 
-                <Route path="/chating" element={<NCloudChatRoomList />} />
-                <Route path="/chating/room/:channelId" element={<ChatRoom />} />
-
+                <Route path={'/chating'} >
+                    <Route path="/chating/:unum" element={<NCloudChatRoomList />} />
+                    <Route path="/chating/0" element={<NCloudChatRoomAdmin />} />
+                    <Route path="/chating/room/:channelId" element={<ChatRoom />} />
+                </Route>
 
                 <Route path={'/main'}>
                     <Route path='main' element={<Main/>}/>

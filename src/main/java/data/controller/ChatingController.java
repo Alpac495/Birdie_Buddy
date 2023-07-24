@@ -1,14 +1,12 @@
 package data.controller;
 
+import data.dto.UserDto;
 import data.mapper.ChatingMapper;
 import data.service.ChatingService;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -30,5 +28,10 @@ public class ChatingController {
     @Autowired
     private ChatingService chatingService;
 
+    @GetMapping("/getuserinfo")
+    public UserDto getUserInfoForChating(int unum) {
+        System.out.println("unum : "+unum);
+        return chatingService.selectChatingRoom(unum);
+    }
 
 }
