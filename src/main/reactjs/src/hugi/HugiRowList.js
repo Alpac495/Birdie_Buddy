@@ -99,7 +99,8 @@ function HugiRowList(props) {
         if (navigator.share)// navigator.share() API를 지원하는 경우
            {
             navigator.share({
-                title: '링크를 확인하세요!',
+                title: '버디버디',
+                text:'버디버디 라운딩 후기입니다.',
                 url: url,
             })
                 .then(() => {
