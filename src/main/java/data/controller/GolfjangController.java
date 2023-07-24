@@ -16,10 +16,9 @@ import java.util.List;
 @RequestMapping("/golfjang")
 public class GolfjangController {
 
-
     String photo;
 
-    String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+    String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
 
     @Autowired
     GolfjangMapper golfjangMapper;
@@ -28,12 +27,10 @@ public class GolfjangController {
     GolfjangService golfjangService;
 
     @GetMapping("/list")
-    public List<GolfjangDto> list()
-    {
+    public List<GolfjangDto> list() {
         System.out.println("test");
-        List<GolfjangDto> list= golfjangService.getGolfjangList();
+        List<GolfjangDto> list = golfjangService.getGolfjangList();
         return list;
     }
-
 
 }

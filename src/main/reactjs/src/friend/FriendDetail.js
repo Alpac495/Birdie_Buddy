@@ -7,20 +7,32 @@ import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
 
 function FriendDetail(props) {
-    const [unum, setUnum]=useState(0);
+    const [unum, setUnum]=useState('');
+    const [dto,setDto]=useState('');
+    const {funum}=useParams('');
+    const [checkbuddy, setCheckbuddy]=useState('');
+    const [requestcheck,setRequestCheck]=useState([]);
     const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
+        Axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+            const url = "/friend/checkbuddy?unum="+(res.data)+"&funum="+(funum);
+            console.log(res.data)
+            Axios.get(url)
+                .then(res=>{
+                    setCheckbuddy(res.data)
+                });
+            const frurl="/friend/requestcheck?unum="+res.data;
+            Axios.get(frurl)
             .then(res=>{
-                setUnum(res.data);
+                setRequestCheck(res.data)
             })
+        });
     }
     useEffect(() => {
         unumchk()
     }, [])
-    const [dto,setDto]=useState('');
-    const {funum}=useParams('');
-    const [checkbuddy, setCheckbuddy]=useState('');
-    const [checkingbuddy, setCheckingbuddy]=useState('');
+    
 
     const selectData=useCallback(()=>{
         const url=`/friend/detail?funum=${funum}`;
@@ -37,30 +49,6 @@ function FriendDetail(props) {
     useEffect(()=>{
             selectData();
     },[selectData]);
-
-    const checkBuddy=useCallback(()=>{
-        const url = "/friend/checkbuddy?unum="+(unum)+"&funum="+(funum);
-        Axios.get(url)
-            .then(res=>{
-                setCheckbuddy(res.data)
-            });
-    })
-
-    useEffect(()=>{
-        checkBuddy();
-    },[checkBuddy]);
-
-    const checkingBuddy=useCallback(()=>{
-        const url = "/friend/checkingbuddy?unum="+(unum)+"&funum="+(funum);
-        Axios.get(url)
-            .then(res=>{
-                setCheckingbuddy(res.data)
-            });
-    })
-
-    useEffect(()=>{
-        checkingBuddy();
-    },[checkingBuddy]);
 
     const onRequestFriendEvent=(e)=>{
         e.preventDefault();
@@ -98,6 +86,20 @@ function FriendDetail(props) {
         }
     };
 
+    const onAcceptEvent = () => {
+        const confirmed = window.confirm('신청을 수락하시겠습니까?');
+            if (confirmed) {
+                Axios.get(`/friend/acceptfriend/${unum}&${funum}`)
+                    .then(res => {
+                        alert("버디 추가 완료. 버디 리스트에서 확인하세요.");
+                        window.location.replace(`/friend/detail/${funum}`);
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    });
+            }
+    };
+
 
     return (
         <div className="FDprofile">
@@ -130,7 +132,14 @@ function FriendDetail(props) {
                     className="FDicon-user-cirlce-add"
                     alt="" src={FDicon1} />
             </div>
-            ) : checkingbuddy === 1 ? (
+            ) : requestcheck.some((friend) => friend.funum == funum && friend.frequest == 2) ? (
+                <div className="FDparent" onClick={onAcceptEvent}>
+                <div className="FDdiv5">버디 요청 수락</div>
+                <img
+                    className="FDicon-user-cirlce-add"
+                    alt="" src={FDicon1} />
+                </div>
+            ) : requestcheck.some((friend) => friend.funum == funum && friend.frequest == 1) ? (
                 <div className="FDparent" onClick={onFriendCancelEvent}>
                 <div className="FDdiv5">버디 요청 취소</div>
                 <img

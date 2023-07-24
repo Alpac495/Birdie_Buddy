@@ -1,5 +1,5 @@
-import "./Joining.css";
-import React, {useCallback, useEffect, useState} from 'react';
+import "./JoinForm.css";
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import Modal from '../components/Modal';
@@ -22,7 +22,7 @@ const JoinForm = (props) => {
     const [jp2gender, setJp2gender] = useState("");
     const [jp2age, setJp2age] = useState("");
     const [jp2tasu, setJp2tasu] = useState("");
-    const [jucount, setJucount] = useState("");
+    const [jucount, setJucount] = useState("1");
 
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
     const [modalOpen, setModalOpen] = useState(false);
@@ -65,7 +65,18 @@ const JoinForm = (props) => {
 
     const onSubmitEvent=(e)=>{
         e.preventDefault();
-        Axios.post("/joining/insert",{unum,jcontent,jjoinday,gname,jprice, jtime, jage, jp1gender, jp1age, jp1tasu, jp2gender, jp2age, jp2tasu, jucount})
+        // 동반자 없음이 선택되어 있을 경우 값에 빈 문자열("") 할당
+        const jp1genderValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp1gender;
+        const jp1ageValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp1age;
+        const jp1tasuValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp1tasu;
+        const jp2genderValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp2gender;
+        const jp2ageValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp2age;
+        const jp2tasuValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp2tasu;
+        const jucountValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "1" : jucount;
+        Axios.post("/joining/insert",{
+            unum,jcontent,jjoinday,gname,jprice, jtime, jage, 
+            jp1gender: jp1genderValue, jp1age: jp1ageValue, jp1tasu: jp1tasuValue,
+             jp2gender: jp2genderValue, jp2age: jp2ageValue, jp2tasu: jp2tasuValue, jucount: jucountValue})
             .then(res=>{
                 // onMakerEvent()
                 alert("정상적으로 생성되었습니다")
@@ -82,6 +93,7 @@ const JoinForm = (props) => {
     //동반자 모달
     const [isPartnerForm2Open, setPartnerForm2Open] = useState(false);
     const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
+    const noPartnerInputRef = useRef(null);
 
     const openPartnerForm2 = useCallback(() => {
         setPartnerForm2Open(true);
@@ -89,6 +101,9 @@ const JoinForm = (props) => {
 
     const closePartnerForm2 = useCallback(() => {
         setPartnerForm2Open(false);
+        if (noPartnerInputRef.current) {
+            noPartnerInputRef.current.checked = true;
+        }
     }, []);
 
     const openPartnerForm = useCallback(() => {
@@ -97,6 +112,9 @@ const JoinForm = (props) => {
 
     const closePartnerForm = useCallback(() => {
         setPartnerFormOpen(false);
+        if (noPartnerInputRef.current) {
+            noPartnerInputRef.current.checked = true;
+        }
     }, []);
 
     const partnerone = (jp1gender,jp1age,jp1tasu) => {
@@ -174,7 +192,7 @@ const JoinForm = (props) => {
                         {/*<input className="jforminput" type="text"  required placeholder="원하는 조인 멤버의 연령대를 입력하세요"*/}
                         {/*       value={jage} onChange={(e)=>setJage(e.target.value)} maxLength minLength />*/}
                         <select className="jforminput" required onChange={(e)=>setJage(e.target.value)}>
-                            <option disabled hidden selected>원하는 연령대를 선택하세요</option>
+                            <option disabled hidden selected value="">원하는 연령대를 선택하세요</option>
                             <option value={"연령무관"}>연령무관</option>
                             <option value={"20대만"}>20대만</option>
                             <option value={"30대만"}>30대만</option>
@@ -200,7 +218,7 @@ const JoinForm = (props) => {
             <div className="joinform-child" />
                 <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
                 <label className="jradio-button-setonon">
-                    <input type='radio' name='partner' className="jdiv31"/>동반자 없음
+                    <input type='radio' name='partner' className="jdiv31" ref={noPartnerInputRef} required/>동반자 없음
                 </label>
                 <label className="jradio-button-setoffon" onClick={openPartnerForm2}>
                     <input type='radio' name='partner' className="jdiv31"/>동반자 2명

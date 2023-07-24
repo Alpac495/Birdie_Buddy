@@ -3,13 +3,17 @@
     <select id="getFriendList" parameterType="int" resultType="FriendDto">
         select *, (select ugender from user where unum=friend.funum) as ugender,
                (select uage from user where unum=friend.funum) as uage,
-               (select uname from user where unum=friend.funum) as uname
+               (select uname from user where unum=friend.funum) as uname,
+               (select unickname from user where unum=friend.funum) as unickname,
+               (select uphoto from user where unum=friend.funum) as uphoto
         from friend where unum=#{unum} and faccept=1 order by fnum
     </select>
     <select id="getRequestList" parameterType="int" resultType="FriendDto">
         select *, (select ugender from user where unum=friend.funum) as ugender,
                (select uage from user where unum=friend.unum) as uage,
-               (select uname from user where unum=friend.unum) as uname
+               (select uname from user where unum=friend.unum) as uname,
+               (select unickname from user where unum=friend.funum) as unickname,
+               (select uphoto from user where unum=friend.funum) as uphoto
         from friend where funum=#{unum} and faccept=0 order by fnum
     </select>
     <select id="detailPage" parameterType="int" resultType="UserDto">
@@ -18,16 +22,13 @@
     <select id="checkBuddy" parameterType="Map" resultType="int">
         select count(unum) from friend where unum=#{unum} and funum=#{funum} and faccept=1
     </select>
-    <select id="checkingBuddy" parameterType="Map" resultType="int">
-        select count(unum) from friend where unum=#{unum} and funum=#{funum} and faccept=0
-    </select>
     <insert id="requestFriend1" parameterType="FriendDto">
-        INSERT INTO friend (unum, funum, faccept)
-        VALUES (#{unum}, #{funum}, 0)
+        INSERT INTO friend (unum, funum, faccept, frequest)
+        VALUES (#{unum}, #{funum}, 0, 1)
     </insert>
     <insert id="requestFriend2" parameterType="FriendDto">
-        INSERT INTO friend (unum, funum, faccept)
-        VALUES (#{funum}, #{unum}, 0)
+        INSERT INTO friend (unum, funum, faccept, frequest)
+        VALUES (#{funum}, #{unum}, 0, 2)
     </insert>
     <delete id="friendCancel1" parameterType="Map">
         delete from friend where unum=#{unum} and funum=#{funum}
@@ -41,4 +42,10 @@
     <update id="acceptFriend2" parameterType="Map">
         update friend set faccept=1 where unum=#{funum} and funum=#{unum}
     </update>
+    <select id="getUserList" resultType="UserDto">
+        select * from user where ublacklist=0 and unum!=1 and unum!=#{unum}
+    </select>
+    <select id="getRequestCheck" parameterType="int" resultType="FriendDto">
+        SELECT * FROM friend where unum=#{unum} and faccept=0;
+    </select>
 </mapper>
