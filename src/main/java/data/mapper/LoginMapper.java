@@ -37,4 +37,8 @@ public interface LoginMapper {
     public String getRtasu(int unum);
     public UserDto getUserUhp(String uhp);
     public void taltae(int unum);
+    public String passChk(String upass);
+    public void passChange(Map<String, Object> map);
+    public void hpChange(Map<String, Object> map);
+    public int getUserUhpCnt(String uhp);
 }

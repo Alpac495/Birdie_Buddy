@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.ChatingMapper">
-    <select id="selectChatingRoom" parameterType="int" resultType="String">
-        select unickname from user where unum=#{unum}
+    <select id="selectChatingRoom" parameterType="int" resultType="UserDto">
+        select * from user where unum=#{unum}
     </select>
 </mapper>

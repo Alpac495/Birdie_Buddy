@@ -3,7 +3,7 @@ package data.mapper;
 import data.dto.HugiDto;
 import data.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+
 
 import java.util.List;
 

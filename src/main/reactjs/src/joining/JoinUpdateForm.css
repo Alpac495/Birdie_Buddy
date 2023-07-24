@@ -18,6 +18,8 @@ body {
     font-weight: 500;
     font-size: 15px;
     color: red;
+    top: 30.5rem;
+    text-align: center;
 }
 .jforminput {
     border: 0;
@@ -127,7 +129,7 @@ body {
 .updatejdiv7,
 .joinupdateform-child {
     position: absolute;
-    top: 38.5rem;
+    top: 35.5rem;
     height: 2.5rem;
 }
 .joinupdateform-child {
@@ -174,7 +176,7 @@ body {
 }
 .juradio-button-setonon {
     position: absolute;
-    top: calc(50% + 166.5px);
+    top: calc(50% + 116.5px);
     left: calc(50% - 163px);
     display: flex;
     flex-direction: row;
@@ -186,7 +188,7 @@ body {
 .juradio-button-setoffon,
 .juradio-button-setoffon1 {
     position: absolute;
-    top: calc(50% + 166.5px);
+    top: calc(50% + 116.5px);
     left: calc(50% + 62.5px);
     display: flex;
     flex-direction: row;

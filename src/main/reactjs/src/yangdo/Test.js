@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
-import Axios from "axios";
-import Modal from '../components/Modal';
-import "./YangdoDetail.css";
+import { Modal } from '@mui/material';
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function YangdoDetail(props) {
-
+function MyYangdoDetail(props) {
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -64,26 +62,24 @@ function YangdoDetail(props) {
             <b>골프장 : {dto.yplace}</b><br/>
             <b>작성자 : {dto.unickname}</b><br/>
             <b>작성일 : {dto.ywriteday}</b><br/>
-            <b>가격 : {dto.yprice.toLocaleString()}원</b><br/>
+            <b>가격 : {dto.yprice}원</b><br/>
             <b>예약 일정 : {dto.yday}</b><br/>
             <b>예약 시간 : {dto.ysubject}</b><br/>
             <b>상세 내용 : {dto.ycontent}</b><br/>
 
-            <button type='button' onClick={()=>navi(`/yangdo/form`)}>글쓰기</button>
-            <br/>
-            <button type='button' onClick={()=>navi(`/yangdo/list/${currentPage}`)}>닫기</button>
+            <button type='button' onClick={()=>navi(`/mypage/myyangdo/${unum}/${currentPage}`)}>목록</button>
             <br/>
 
             {
-                unum !=null && unum==dto.unum?
-                    <button type='button' onClick={()=>navi(`/yangdo/update/${dto.ynum}/${currentPage}`)}>
+                unum !=null && unum===dto.unum?
+                    <button type='button' onClick={()=>navi(`/mypage/update/${dto.ynum}/${currentPage}`)}>
                         수정</button> :''
             }
 
             <br/>
 
             {
-                unum !=null && unum==dto.unum?
+                unum !=null && unum===dto.unum?
                 <button type='button'
                     onClick={()=>{
                         const url=`/yangdo/delete?num=${dto.ynum}`;
@@ -91,7 +87,7 @@ function YangdoDetail(props) {
                         .then(res=>{
                             // 목록으로 이동
                             alert("마감 / 삭제하시겠습니까?");
-                            navi(`/yangdo/list/${currentPage}`);
+                            navi(`/mypage/myyangdo/${unum}/${currentPage}`);
                         })
                 }}>마감 / 삭제</button>:
                 <button type='button' onClick={openModal}>양도 신청</button>
@@ -100,4 +96,4 @@ function YangdoDetail(props) {
     );
 }
 
-export default YangdoDetail;
+export default MyYangdoDetail;

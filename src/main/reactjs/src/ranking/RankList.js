@@ -1,10 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import "../header/Header.css";
 import Header from "../header/Header";
 import Axios from "axios";
 import "./RankingList.css";
-import Footer from "../footer/Footer";
-import { Link } from "react-router-dom";
 import gold from "../images/gold-medal.png";
 import silver from "../images/silver-medal.png";
 import bronze from "../images/bronze-medal.png";
@@ -12,9 +11,7 @@ import user from "../images/default_golf.png";
 
 function RankList(props) {
     const [unum, setUnum] = useState(0);
-    const [data, setData] = useState([]);
     const [newList, setNewList] = useState([]); // 업데이트된 리스트를 저장하기 위해 useState를 사용합니다.
-    const url = process.env.REACT_APP_PROFILE;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 

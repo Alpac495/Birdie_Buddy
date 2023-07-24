@@ -11,8 +11,8 @@ body {
     letter-spacing: -0.01em;
     font-weight: 500;
 }
-.flframe,
-.FLframe {
+.frframe,
+.FRframe {
     position: absolute;
     border-radius: 2px;
     overflow: hidden;
@@ -23,7 +23,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-.flframe {
+.frframe {
     width: calc(100% - 178px);
     top: -0.06rem;
     right: 11.19rem;
@@ -32,7 +32,7 @@ body {
     border: 1px solid transparent;
     height: 3.25rem;
 }
-.FLframe {
+.FRframe {
     width: calc(100% - 180px);
     top: 0;
     right: 0;

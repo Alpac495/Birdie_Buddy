@@ -1,12 +1,16 @@
+/* eslint-disable eqeqeq */
 import "./JoinDetail.css";
 import {useCallback, useEffect, useState} from "react";
 import Axios from "axios";
-import {useNavigate, useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
+import Profile from "../image/user60.png";
 
 const JoinDetail = () => {
-    const {unum,jnum} = useParams('');
+    const url = process.env.REACT_APP_PROFILE;
+    const [unum, setUnum]=useState('');
+    const {jnum} = useParams('');
     const [dto,setDto]=useState({});
     const now = new Date();
     const year = now.getFullYear();
@@ -17,12 +21,22 @@ const JoinDetail = () => {
     const [jp1age, setJp1age] = useState("");
     const [jp1tasu, setJp1tasu] = useState("");
     const [jcount, setJcount] = useState(1);
-    const writerunum=unum;
-    const navi=useNavigate();
+    const writerunum=unum; 
+
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+        });
+    }
+    useEffect(() => {
+        unumchk()
+    }, [])
 
     //동반자 모달
     const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
 
+    // eslint-disable-next-line no-unused-vars
     const openPartnerForm = useCallback(() => {
         setPartnerFormOpen(true);
     }, []);
@@ -38,7 +52,7 @@ const JoinDetail = () => {
         setPartnerFormOpen(false);
         Axios.post("/joinmember/joinGaip", {unum, jnum, jp1gender, jp1age, jp1tasu, jcount})
                 .then(res => {
-                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
+                    window.location.replace(`/joining/detail/${jnum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -52,6 +66,7 @@ const JoinDetail = () => {
                 setConfirm(res.data);
                 console.log(res.data);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -65,6 +80,7 @@ const JoinDetail = () => {
                 setSub(res.data);
                 console.log(res.data);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -79,6 +95,7 @@ const JoinDetail = () => {
         }).then(res=>{
             setDto(res.data);
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
@@ -104,7 +121,7 @@ const JoinDetail = () => {
 
     const onGaipEvent=(e)=>{
         e.preventDefault();
-        if(3 - dto.jmcount === 0){
+        if(4 - dto.jmcount - dto.jucount === 0){
             alert("빈자리가 없습니다")
         }else{
         const confirmed = window.confirm('동반자가 있습니까? 있을경우 확인을, 없을경우 취소를 눌러주세요');
@@ -114,7 +131,7 @@ const JoinDetail = () => {
         }else{
             Axios.post("/joinmember/joinGaip", {unum, jnum, jcount})
                 .then(res => {
-                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
+                    window.location.replace(`/joining/detail/${jnum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -129,7 +146,7 @@ const JoinDetail = () => {
             Axios.delete(`/joinmember/joinCancel/${unum}&${jnum}`)
                 .then(res => {
                     alert("정상적으로 취소되었습니다");
-                    window.location.replace(`/joining/detail/${jnum}/${unum}`)
+                    window.location.replace(`/joining/detail/${jnum}`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -152,7 +169,8 @@ const JoinDetail = () => {
     };
 
     const onAcceptEvent = (unum) => {
-        if (dto.jmcount + confirm == 4) {
+        // eslint-disable-next-line eqeqeq
+        if (4 - dto.jucount - dto.jmcount == 0) {
             alert("빈자리가 없습니다")
         }else {
             const confirmed = window.confirm('신청을 수락하시겠습니까?');
@@ -190,7 +208,7 @@ const JoinDetail = () => {
                     </div> : (
                     <div className="JDuser">
                         <div className="JDavatar">
-                            <div className="JDlw">LW</div>
+                            <div className="JDlw">동</div>
                         </div>
                         <div className="esther-howard"><b>모집자 동반인1</b><br/>
                             {dto.jp1gender} / {dto.jp1age}세 / {dto.jp1tasu}타
@@ -198,7 +216,7 @@ const JoinDetail = () => {
                     </div>)}
                     {dto.jucount != 3 ? null : (<div className="JDuser">
                         <div className="JDavatar">
-                            <div className="JDlw">LW</div>
+                            <div className="JDlw">동</div>
                         </div>
                         <div className="esther-howard"><b>모집자 동반인2</b><br/>
                             {dto.jp2gender} / {dto.jp2age}세 / {dto.jp2tasu}타
@@ -206,14 +224,16 @@ const JoinDetail = () => {
                     </div>)}                                        
                 </div>
             </div>
-            <img className="jduphoto-icon" alt="" src="/jduphoto@2x.png" />
             <div className="JDconfirmgroup">
                 <div className="JDframe">
                     {confirm.map && confirm.map((item, idx) => (
                         <div className="JDuser">
+                            <NavLink to={`/friend/detail/${item.unum}`} className='nav-style'>
                             <div className="JDavatar">
-                                <div className="JDlw">LW</div>
-                            </div>
+                                {/* <div className="JDlw">LW</div> */}
+                                {item.uphoto == null ? <img className="JDlw" alt="" src={Profile} /> :
+                                <img className="JDlw" src={`${url}${item.uphoto}`} alt={''}/>}
+                            </div></NavLink>
                             {item.jcount == 1 ? <div className="esther-howard"><b>{item.unickname}</b>
                                 <div style={{display:'none'}}>{item.unum}</div>
                                 <br/>
@@ -260,9 +280,11 @@ const JoinDetail = () => {
                 <div className="JDframe1">
                     {sub.map && sub.map((item, idx) => (
                         <div className="JDuser">
+                            <NavLink to={`/friend/detail/${item.unum}`} className='nav-style'>
                             <div className="JDavatar">
-                                <div className="JDlw">LW</div>
-                            </div> 
+                                {item.uphoto == null ? <img className="JDlw" alt="" src={Profile} /> :
+                                <img className="JDlw" src={`${url}${item.uphoto}`} alt={''}/>}
+                            </div> </NavLink>
                             {item.jp1gender == null ? <div className="esther-howard"><b>{item.unickname}</b>
                                 <div style={{display:'none'}}>{item.unum}</div>&nbsp;&nbsp;
                                 {dto.unum == unum ? (
@@ -355,8 +377,10 @@ const JoinDetail = () => {
 
 
             <div className="JDflistprofile">
+            <NavLink to={`/friend/detail/${dto.unum}`} className='nav-style'>
                 <div className="JDflistprofile1">
-                    <img className="jduphoto-icon" alt="" src="/jduphoto@2x.png" />
+                    {dto.uphoto == null ? <img className="jduphoto-icon" alt="" src={Profile} /> :
+                        <img className="jduphoto-icon" src={`${url}${dto.uphoto}`} alt={''}/>}
                     <div className="JDdiv11">
             <span className="JDtxt">
               <p className="JDp4">{dto.unickname} (모집자)</p>
@@ -367,7 +391,7 @@ const JoinDetail = () => {
                         <div className="JDgroup-child" />
                         <div className="JDdiv12">채팅하기</div>
                     </div>
-                </div>
+                </div></NavLink>
             </div>            
             {isPartnerFormOpen && (
                 <PortalPopup
