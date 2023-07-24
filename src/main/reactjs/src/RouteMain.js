@@ -5,7 +5,6 @@ import {KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, S
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
-import JoinList from "./joining/JoinList";
 import Mypage from "./mypage/Mypage";
 import Main from "./Main";
 import RankForm from "./ranking/RankForm";
@@ -16,7 +15,7 @@ import MypageSetting from "./mypage/MypageSetting";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList, HugiModify} from "./hugi";
 import HugiRowList from "./hugi/HugiRowList";
-import {JoinAllList, JoinListMine, JoinMakeList, JoinRequestList, JoinUpdateForm} from "./joining";
+import {JoinAllList, JoinMakeList, JoinRequestList, JoinUpdateForm} from "./joining";
 import MypagePay from "./mypage/MypagePay";
 import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
 import Test from './yangdo/Test';
@@ -74,7 +73,6 @@ function RouteMain(props) {
                     <Route path={"requestlist"} element={<JoinRequestList/>}/>
                     <Route path={"form"} element={<JoinForm/>}/>
                     <Route path={"updateform/:jnum/:unum"} element={<JoinUpdateForm/>}/>
-                    <Route path={"detail"} element={<JoinDetail/>}/>
                     <Route path={"detail/:jnum"} element={<JoinDetail/>}/>
                 </Route>
 
