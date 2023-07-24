@@ -115,7 +115,7 @@ function YangdoDetail(props) {
                 <div className="YEgreenstroke">
                     <div className="YEframe-parent">
                         <div className="YEwrapper">
-                            <div className="YEdiv">#{dto.yplace}</div>
+                            <div className="YEdiv">{dto.yplace}</div>
                         </div>
                         <div className="YEframe-group">
                             <div className="YElabel-wrapper">
