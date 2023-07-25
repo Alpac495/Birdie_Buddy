@@ -35,7 +35,7 @@ const NCloudChatRoomList = () => {
                 customField: 'json',
             });
             
-            const filter = { state: true , members:res2.data.uemail };
+            const filter = { state: true};
             const sort = { created_at: -1 };
             const option = { offset: 0, per_page: 100 };
             const channels = await chat.getChannels(filter, sort, option);
@@ -80,7 +80,7 @@ const NCloudChatRoomList = () => {
     const handleChannelSelect = async (channelId) => {
         setSelectedChannel(channelId);
         if (nc) {           
-        navigate(`/chating/room/${channelId}`);
+        navigate(`/chating/room/${channelId}/${unum}`);
         }
     };
 
@@ -91,7 +91,7 @@ const NCloudChatRoomList = () => {
                 setChannels([...channels, { node: newchannel }]);
                 // await nc.subscribe(newchannel.node.id);
                 // await nc.addUsers(newchannel.node.id, ['1234','1234']);
-                await navigate(`/chating/room/${newchannel.id}`);
+                await navigate(`/chating/room/${newchannel.id}/${unum}`);
             } catch (error) {
                 console.error('Error creating and subscribing channel:', error);
             }

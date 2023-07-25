@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Axios from "axios";
 import "./Friend.css";
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import Profile from "../image/user60.png";
 import * as ncloudchat from 'ncloudchat';
 
@@ -15,6 +15,7 @@ function Friend(props) {
     const [unickname, setUnickname] = useState('');
     const [uemail, setUemail] = useState('');
     const [nc, setNc] = useState('');
+    const navi=useNavigate();
 
     const unumchk = async () => {
         try {
@@ -67,9 +68,23 @@ function Friend(props) {
     
     console.log(unum)
 
-    const onChatEvent = () => {
-        const newchannel = nc.createChannel({ type: 'PRIVATE', name: unickname});
+    const onChatEvent = async (cunum) => {
+        if (nc) {
+            try {
+        const newchannel = await nc.createChannel({ type: 'PRIVATE', name: String(unum)+" "+String(cunum)});
+        const chatid = newchannel.id;
+        Axios.post("/chating/insertchatid",{unum,cunum,chatid})
+            .then(res=>{
+                // onMakerEvent()
+                alert("정상적으로 생성되었습니다")
+                //목록으로 이동
+                navi(`/chating/room/${chatid}/${unum}`);
+            })
+        } catch (error) {
+            console.error('Error creating and subscribing channel:', error);
+        }
     }
+    };
 
     return (
         <div className="friend">
@@ -109,7 +124,7 @@ function Friend(props) {
 
                                     <div className="FLrectangle-parent">
                                         <div className="FLgroup-child" />
-                                        <div className="FLdiv4" onClick={onChatEvent}>채팅하기</div>
+                                        <div className="FLdiv4" onClick={onChatEvent.bind(null, item.funum)}>채팅하기</div>
                                     </div>
                                 </div>
                         </div>
