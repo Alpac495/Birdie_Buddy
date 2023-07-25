@@ -21,4 +21,11 @@ public class ChatingService implements ChatingServiceInter {
     public void insertchatid(ChatroomDto cdto) {
         chatingMapper.insertchatid(cdto);
     }
+
+    @Override
+    public String getChatInfo(int unum1, int unum2) {
+        return chatingMapper.getChatInfo(unum1,unum2);
+    }
+
+
 }

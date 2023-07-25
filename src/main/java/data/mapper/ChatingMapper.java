@@ -12,4 +12,6 @@ public interface ChatingMapper {
     public UserDto selectChatingRoom(int unum);
 
     public void insertchatid(ChatroomDto cdto);
+
+    public String getChatInfo(int unum1, int unum2);
 }
