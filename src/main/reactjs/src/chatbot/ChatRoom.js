@@ -47,7 +47,7 @@ function ChatRoom() {
             });
             await chat.addUsers(channelId, [res2.data.uemail, res3.data.uemail]);
             // const existingChannelId = channelId;
-            await chat.subscribe(channelId);
+            await chat.subscribe(channelId,);
             const fetchedMessages = await fetchChannelMessages(chat, channelId);
             setMessages(fetchedMessages);
         } catch (error) {

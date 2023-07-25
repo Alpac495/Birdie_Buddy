@@ -5,6 +5,9 @@ import data.dto.UserDto;
 import data.mapper.ChatingMapper;
 import data.service.ChatingService;
 import naver.cloud.NcpObjectStorageService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +47,13 @@ public class ChatingController {
 
     @GetMapping("/getchatinfo")
     public String getChatInfo(@RequestParam int unum1, @RequestParam int unum2) {
-        return chatingService.getChatInfo(unum1,unum2);
+        return chatingService.getChatInfo(unum1, unum2);
+    }
+
+    @GetMapping("/list")
+    public List<ChatroomDto> list() {
+        List<ChatroomDto> list = chatingService.getList();
+        return list;
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -28,9 +29,14 @@ public class ChatingService implements ChatingServiceInter {
     @Override
     public String getChatInfo(int unum1, int unum2) {
         Map<String, Object> map = new HashMap<>();
-        map.put("unum1",unum1);
-        map.put("unum2",unum2);
+        map.put("unum1", unum1);
+        map.put("unum2", unum2);
         return chatingMapper.getChatInfo(map);
+    }
+
+    @Override
+    public List<ChatroomDto> getList() {
+        return chatingMapper.getList();
     }
 
 }

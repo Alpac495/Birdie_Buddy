@@ -71,7 +71,7 @@ function Friend(props) {
     const onChatEvent = async (cunum) => {
         if (nc) {
             try {
-        const newchannel = await nc.createChannel({ type: 'PRIVATE', name: String(unum)+" "+String(cunum)});
+        const newchannel = await nc.createChannel({ type: 'PRIVATE', name: String(unum)+String(cunum),customField: String(cunum)});
         const chatid = newchannel.id;
         Axios.post("/chating/insertchatid",{unum,cunum,chatid})
             .then(res=>{
