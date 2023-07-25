@@ -3,6 +3,7 @@ package data.mapper;
 import data.dto.HugiDto;
 import data.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 
 import java.util.List;
@@ -22,5 +23,6 @@ public interface HugiMapper {
     public String getNickname(int unum);
     public List<HugiDto> getHugiListByUnum(int unum);
     public HugiDto getHugiByHnum(int hnum);
-
+    public String getUserPhotoUrl(int unum);
+    public List<HugiDto> listHugiWithPaging(@Param("offset") int offset, @Param("size") int size);
 }

@@ -106,7 +106,7 @@ function HugiModify(props) {
            <br/>
             <div className="input-group">
                 {/* 기존 후기 내용 */}
-                <textarea className="form-control" style={{ width: '80%',height:'90px', resize: 'none' }} value={hcontent} onChange={(e) => setHcontent(e.target.value)} >{hcontent}</textarea>
+                <textarea className="form-control" style={{ width: '80%',height:'90px', resize: 'none',fontSize:'12px'}} value={hcontent} onChange={(e) => setHcontent(e.target.value)} >{hcontent}</textarea>
                 {/* 파일 업로드 */}
                 <br />
                 {/* 수정 취소 및 수정 제출 버튼 */}
