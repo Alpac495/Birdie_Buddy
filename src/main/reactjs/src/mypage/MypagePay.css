@@ -1,315 +1,171 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 body {
     margin: 0;
     line-height: normal;
 }
-
-.headline {
-    line-height: 57px;
+.header{
+    width: 100%;
+    height: 100px;
 }
-.headline,
-.subtitle,
-.x16 {
+.AFchevron-left-icon {
     position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
 }
-.subtitle {
-    font-size: 16px;
-    letter-spacing: 0.15px;
-    line-height: 24px;
+.AFlabel {
+    position: relative;
+    letter-spacing: 1px;
+    line-height: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
 }
-.x16 {
-    width: 16px;
-    height: 16px;
-}
-.spacer {
+.AFicon-buttons-text-button-i {
+    position: absolute;
+    top: calc(50% - 18px);
+    left: 0;
+    width: 6.88rem;
+    height: 2.25rem;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    padding: 0.38rem 0.75rem;
+    box-sizing: border-box;
+    align-items: center;
     justify-content: flex-start;
+    gap: 0.75rem;
 }
-.rounded-end-piece {
-    align-self: stretch;
+.AFlabel1 {
     position: relative;
-    max-width: 100%;
-    overflow: hidden;
-    height: 40px;
+    letter-spacing: 1px;
+    line-height: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.75rem;
+    height: 1rem;
     flex-shrink: 0;
 }
-.cta-header-1 {
-    align-self: stretch;
-    background-color: #121212;
+.AFicon-buttons-text-button-i1 {
+    position: absolute;
+    top: calc(50% - 18px);
+    right: 0;
+    width: 7.5rem;
+    height: 2.25rem;
     display: flex;
-    flex-direction: column;
-    padding: 24px 0 0;
+    flex-direction: row;
+    padding: 0.38rem 0.75rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+}
+.AFstep-dots-icon {
+    position: absolute;
+    top: calc(50% - 4px);
+    left: calc(50% - 28px);
+    width: 3.5rem;
+    height: 0.5rem;
+}
+.AFmobile-steps {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    height: 3rem;
+    color: #1554f6;
+}
+.AFdiv {
+    position: relative;
+    margin-top: 3rem;
+    /*position: absolute;*/
+    /*top: 3.44rem;*/
+    /*left: calc(50% - 98px);*/
+    font-size: 1.25rem;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+}
+.AFdiv1,
+.AFdiv2,
+.AFyou {
+    position: absolute;
+    line-height: 1.5rem;
+}
+.AFyou {
+    width: calc(100% - 32px);
+    top: 5.38rem;
+    left: 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.15px;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
-.title {
-    align-self: stretch;
-    letter-spacing: 0.44px;
-    line-height: 28px;
-    color: rgba(0, 0, 0, 0.87);
+.AFdiv1,
+.AFdiv2 {
+    width: calc(100% - 16px);
+    top: calc(50% + 38.67px);
+    left: 0.5rem;
+    font-weight: 500;
+    display: inline-block;
 }
-.div,
-.subtitle1,
-.title {
-    position: relative;
+.AFdiv2 {
+    top: calc(50% + 15.67px);
+    font-size: 1rem;
+    line-height: 1.38rem;
+    font-weight: 600;
+    font-family: Inter;
 }
-.subtitle1 {
-    align-self: stretch;
-    letter-spacing: 0.15px;
-    line-height: 24px;
-}
-.div {
-    letter-spacing: 0.4px;
-    line-height: 16px;
-}
-.x {
+.AFjduphoto-icon {
     position: absolute;
-    width: calc(100% - 19px);
-    right: 19px;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
+    top: 1.25rem;
+    left: calc(50% - 34px);
+    border-radius: 4px;
+    width: 4.25rem;
+    height: 4.25rem;
+    object-fit: cover;
 }
-.grid-y-child,
-.grid-y-child1 {
-    align-self: stretch;
-    position: relative;
-    background-color: #dadce0;
-    height: 1px;
-}
-.grid-y-child1 {
-    height: 2px;
-}
-.grid-y {
-    position: absolute;
-    height: calc(100% - 22px);
-    width: calc(100% - 30px);
-    top: 0;
-    right: 30px;
-    bottom: 22px;
-    left: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    padding: 8px 0 0;
-    box-sizing: border-box;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-.axis-grid-2,
-.y {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.y {
-    height: calc(100% - 16px);
-    bottom: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    text-align: right;
-}
-.axis-grid-2 {
-    height: 100%;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-}
-.bar-1-icon {
+.AFitem-2 {
     align-self: stretch;
     flex: 1;
     position: relative;
-    border-radius: 2px;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
-}
-.chart1 {
-    position: absolute;
-    height: calc(100% - 32px);
-    width: calc(100% - 30px);
-    top: 8px;
-    right: 30px;
-    bottom: 24px;
-    left: 0;
-    display: flex;
-    flex-direction: row;
-    padding: 0 2px;
-    box-sizing: border-box;
-    align-items: flex-end;
-    justify-content: flex-start;
-    gap: 16px;
-}
-.chart {
-    align-self: stretch;
-    position: relative;
-    height: 160px;
-    font-size: 12px;
-}
-.dashboard-card-kpi-3 {
-    align-self: stretch;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
-    display: flex;
-    flex-direction: column;
-    padding: 24px 24px 16px;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-.title1,
-.value {
-    align-self: stretch;
-    position: relative;
-    letter-spacing: 0.44px;
-    line-height: 28px;
-}
-.value {
-    font-size: 34px;
-    letter-spacing: 0.25px;
-    line-height: 40px;
-    color: rgba(0, 0, 0, 0.87);
-}
-.dashboard-card-kpi-6 {
-    align-self: stretch;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 8px;
-}
-.chart-icon {
-    position: absolute;
-    height: calc(100% - 32px);
-    width: calc(100% - 24.67px);
-    top: 8px;
-    right: 25.67px;
-    bottom: 24px;
-    left: -1px;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
-}
-.chart2 {
-    align-self: stretch;
-    position: relative;
-    height: 260px;
-    font-size: 12px;
-}
-.color-icon {
-    position: relative;
-    border-radius: 2px;
-    width: 12px;
-    height: 2px;
-}
-.chart-label,
-.row-1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 4px;
-}
-.row-1 {
-    align-items: flex-start;
-    gap: 24px;
-}
-.chart-legend {
-    align-self: stretch;
-    padding: 16px 0 0;
-    gap: 8px;
-    font-size: 12px;
-}
-.chart-legend,
-.content-scroll-area,
-.iot-app {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-.iot-app {
-    align-self: stretch;
-    padding: 12px;
-    gap: 16px;
-    text-align: left;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.6);
-}
-.content-scroll-area {
-    position: absolute;
-    height: calc(100% - 164px);
-    width: 100%;
-    top: 56px;
-    right: 0;
-    bottom: 108px;
-    left: 0;
+    border-radius: 16px;
     background-color: #f1f3f4;
-    overflow-y: auto;
-    gap: 8px;
 }
-.search-icon {
-    position: relative;
-    border-radius: 40px;
-    width: 40px;
-    height: 40px;
-}
-.actions {
-    position: absolute;
-    right: 8px;
-    bottom: 8px;
-    overflow: hidden;
+.AFitem-grid-tiles-3x3,
+.AFrow-1 {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
+    gap: 0.5rem;
 }
-.title3 {
+.AFrow-1 {
+    align-self: stretch;
+    flex: 1;
+    flex-direction: row;
+}
+.AFitem-grid-tiles-3x3 {
     position: absolute;
-    bottom: 17px;
-    left: 72px;
-    letter-spacing: 0.15px;
-    font-weight: 500;
+    height: calc(100% - 190px);
+    width: calc(100% - 32px);
+    top: 7.88rem;
+    right: 1rem;
+    bottom: 4rem;
+    left: 1rem;
+    background-color: #fff;
+    flex-direction: column;
 }
-.nav-menu-icon {
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    border-radius: 40px;
-    width: 40px;
-    height: 40px;
-}
-.app-bar-regular {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    right: 0;
-    left: 0;
-    background-color: #121212;
-    height: 56px;
-    text-align: left;
-    font-size: 20px;
-}
-.mypagepay {
+.AFallfriendlist {
     position: relative;
-    background-color: #f1f3f4;
+    background-color: #fff;
     width: 100%;
-    height: 1252px;
-    overflow: hidden;
+    height: 40rem;
     text-align: center;
-    font-size: 48px;
-    color: #fff;
+    font-size: 0.88rem;
+    color: rgba(0, 0, 0, 0.6);
     font-family: Roboto;
 }

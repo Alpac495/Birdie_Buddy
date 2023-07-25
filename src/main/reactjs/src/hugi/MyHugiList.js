@@ -12,6 +12,7 @@ function MyHugiList(props) {
     const [hphoto, setHphoto] = useState('');
     const [hcontent, setHcontent] = useState('');
     const [hlike, setHlike] = useState('');
+    const [uphoto,setUphoto]=useState('');
     const [Unickname, setUnickname] = useState();
     const [myHugiData, setMyHugiData] = useState([]);
     const [loading, setLoading] = useState(true); // 로딩 상태 추가
@@ -53,6 +54,7 @@ function MyHugiList(props) {
         try {
             const res = await Axios.get(`/hugi/mylist/${unum}`);
             setMyHugiData(res.data);
+            setUphoto(res.data.uphoto);
         } catch (error) {
             console.log(error);
         }
@@ -84,6 +86,7 @@ function MyHugiList(props) {
         const dataToSend = {
             unum: unum,
             Unickname: Unickname,
+            uphoto:uphoto,
             hlike: 0,
             hcontent: hcontent,
             hphoto: hphoto || '',
@@ -178,6 +181,7 @@ function MyHugiList(props) {
                                 hnum={rowData.hnum}
                                 unum={rowData.unum}
                                 Unickname={rowData.Unickname}
+                                uphoto={rowData.uphoto}
                                 hcontent={rowData.hcontent}
                                 hphoto={rowData.hphoto}
                                 hwriteday={rowData.hwriteday}

@@ -11,8 +11,8 @@ body {
     letter-spacing: -0.01em;
     font-weight: 500;
 }
-.flframe,
-.FLframe {
+.bflframe,
+.bFLframe {
     position: absolute;
     border-radius: 2px;
     overflow: hidden;
@@ -23,21 +23,21 @@ body {
     align-items: center;
     justify-content: center;
 }
-.flframe {
+.bflframe {
     width: calc(100% - 178px);
     top: -0.06rem;
     right: 11.19rem;
     left: -0.06rem;
-    background-color: #ebebf0;
+    background-color: #fff;
     border: 1px solid transparent;
     height: 3.25rem;
 }
-.FLframe {
+.bFLframe {
     width: calc(100% - 180px);
     top: 0;
     right: 0;
     left: 11.25rem;
-    background-color: #fff;
+    background-color: #ebebf0;
     height: 3.13rem;
 }
 .FLtab {

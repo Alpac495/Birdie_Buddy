@@ -39,9 +39,7 @@ public class HugiService implements HugiServiceInter
         // unum을 사용하여 사용자 정보 가져오기
         int unum = hdto.getUnum();
         UserDto userDto = getUserDto(unum);
-        String uname = userDto.getUname();
         String unickname = userDto.getUnickname();
-
         // HugiDto에 사용자 정보 설정
 
         hdto.setUnickname(unickname);
@@ -77,9 +75,10 @@ public class HugiService implements HugiServiceInter
         int unum = hugiDto.getUnum();
         UserDto userDto = getUserDto(unum);
         String unickname = userDto.getUnickname();
+        String uphoto=userDto.getUphoto();
         // HugiDto에 사용자 정보 설정
         hugiDto.setUnickname(unickname);
-
+        hugiDto.setUphoto(uphoto);
         return hugiDto;
     }
 

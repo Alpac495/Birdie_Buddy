@@ -4,10 +4,16 @@
         select count(*) from hugi
     </select>
     <select id="getAllHugis" resultType="HugiDto">
-        SELECT h.*,u.unickname
+        SELECT h.*,u.unickname , u.uphoto
         FROM hugi h
                  INNER JOIN user u ON h.unum = u.unum
         ORDER BY h.hwriteday DESC
+    </select>
+    <select id="listHugiWithPaging" parameterType="int" resultType="HugiDto">
+        SELECT h.*,u.unickname , u.uphoto
+        FROM hugi h
+                 INNER JOIN user u ON h.unum = u.unum
+        ORDER BY h.hwriteday DESC LIMIT #{offset}, #{size}
     </select>
     <insert id="insertHugi" parameterType="HugiDto">
         insert into hugi (hcontent, hphoto, hwriteday, hlike, unum)
@@ -43,15 +49,18 @@
     <select id="getNickname" parameterType="int" resultType="String">
         select unickname from user where unum=#{unum}
     </select>
+    <select id="getUserPhotoUrl" parameterType="int" resultType="String">
+        SELECT uphoto FROM user WHERE unum = #{unum}
+    </select>
     <select id="getHugiListByUnum" resultType="HugiDto">
-        SELECT h.*, u.unickname
+        SELECT h.*, u.unickname , u.uphoto
         FROM hugi h
                  INNER JOIN user u ON h.unum = u.unum
         WHERE h.unum = #{unum}
         ORDER BY h.hwriteday DESC;
     </select>
     <select id="getHugiByHnum" parameterType="int" resultType="HugiDto">
-        SELECT h.*, u.unickname
+        SELECT h.*, u.unickname , u.uphoto
         FROM hugi h
                  INNER JOIN user u ON h.unum = u.unum
         WHERE h.hnum = #{hnum}

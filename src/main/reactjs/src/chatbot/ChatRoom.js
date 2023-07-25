@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
 import {useParams} from "react-router-dom";
+import Axios from 'axios';
 function ChatRoom() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
     const { channelId } = useParams();
-    useEffect(() => {
-        const initializeChat = async () => {
+    const [unum, setUnum]=useState('');
+    const [data, setData] = useState('');
+    
+    const unumchk = async () => {
+        try {
+            const res1 = await Axios.get("/login/unumChk");
+            setUnum(res1.data);
+    
+            const url = "/chating/getuserinfo?unum=" + res1.data;
+            const res2 = await Axios.get(url);
+            setData(res2.data);
+            
+    
             const chat = new ncloudchat.Chat();
             await chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
             setNc(chat);
-            chat.bind('onMessageReceived', function (channel, message) {
+    
+            chat.bind('onMessageReceived', async function (channel, message) {
                 setMessages((prevMessages) => {
                     const isDuplicate = prevMessages.some((prevMessage) => prevMessage.message_id === message.message_id);
                     if (isDuplicate) {
@@ -20,19 +33,28 @@ function ChatRoom() {
                     return [message, ...prevMessages];
                 });
             });
+    
             await chat.connect({
-                id: 'guest@company',
-                name: 'Guest',
+                id: res2.data.uemail,
+                name: res2.data.unickname,
                 profile: 'https://image_url',
                 customField: 'json',
             });
-            const existingChannelId = channelId;
-            await chat.subscribe(existingChannelId);
+            await chat.addUsers(channelId, [res2.data.uemail,'park','Admin']);
+            // const existingChannelId = channelId;
+            await chat.subscribe(channelId);
             const fetchedMessages = await fetchChannelMessages(chat, channelId);
             setMessages(fetchedMessages);
-        };
-        initializeChat();
+        } catch (error) {
+            // Handle any errors that might occur during the asynchronous operations
+            console.error("Error occurred: ", error);
+        }
+    };
+    
+    useEffect(() => {
+        unumchk();
     }, []);
+    
     const fetchChannelMessages = async (chat, channelId) => {
         try {
             // 필터와 정렬 옵션 설정
@@ -87,12 +109,13 @@ function ChatRoom() {
             }
         }
     };
+    console.log(messages)
     return (
         <div>
-            <div className="chat-messages" id="chat-messages" style={{ width: '500px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
+            <div className="chat-messages" id="chat-messages" style={{ width: '360px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
                 {messages.slice().reverse().map((message) => (
-                    <div key={message.id} style={{ textAlign: message.sender.id === 'guest@company' ? 'right' : 'left', margin: '10px' }}>
-                        <div style={{ backgroundColor: message.sender.id === 'guest@company' ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
+                    <div key={message.id} style={{ textAlign: message.sender.name == data.unickname ? 'right' : 'left', margin: '10px' }}>
+                        <div style={{ backgroundColor: message.sender.name == data.unickname ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
                             <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>{message.sender.name}</div>
                             <div>{message.content}</div>
                             <div style={{ fontSize: '12px', color: 'gray' }}>{new Date(message.created_at).toLocaleString()}</div>

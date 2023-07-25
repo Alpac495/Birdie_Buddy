@@ -1,30 +1,24 @@
-.NForm_div1{
+.nform_wrap{
+    width: 100%;
+    height: 100vh;
+    background-color: #F8F5F0;
     display: flex;
-    /*width: 22.5rem;*/
-    padding: 7rem 1rem 1rem 1rem;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    border: 2px solid black;
+    flex-direction: column;
+    
+}.nform_subject{
+    width: 75%;
+    height: 50px;
+    text-align: center;
+    border: none;
 }
-.NForm_textbox{
-    display: inline-flex;
-    width: 20rem;
-    height: 2.9rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-
-    border-radius: 0.125rem;
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    background-color: RGB(238, 250, 234);
-}
-.NForm_textarea{
-    display: inline-flex;
-    width: 20rem;
-    height: 20rem;
-    padding: 1rem 1rem 1rem 1rem;
-    overflow: auto;
-    resize: none;
-
-    border-radius: 0.125rem;
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    background-color: RGB(238, 250, 234);
+.nform_txt{
+    width: 75%;
+    height: 300px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
 }

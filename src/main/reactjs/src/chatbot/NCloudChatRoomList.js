@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 
@@ -8,48 +7,39 @@ const NCloudChatRoomList = () => {
     const [channels, setChannels] = useState([]);
     const [data, setData] = useState('');
     const [selectedChannel, setSelectedChannel] = useState(null);
-    const [nc, setNc] = useState(null);
+    const [nc, setNc] = useState('');
     const navigate = useNavigate();
     const [unum, setUnum] = useState('');
     const [unickname, setUnickname] = useState('');
     const [uemail, setUemail] = useState('');
-    console.log("uemail:"+uemail);
-    console.log("unickname:"+unickname);
-    const unumchk=()=>{
-        axios.get("/login/unumChk")
-            .then(res=> {
-                setUnum(res.data);
-                const url="/chating/getuserinfo?unum="+res.data;
-                Axios.get(url)
-                    .then(res=>{
-                        setData(res.data);
-                        setUnickname(res.data.unickname);
-                        setUemail(res.data.uemail);
-                        console.log(res.data)
-                    })
-            });
-    }
-    useEffect(() => {
-        unumchk()
-    }, [])
-
-    useEffect(() => {
-    // 채팅방 초기화 및 목록 가져오는 함수
-    const initializeChatAndFetchChannels = async () => {
+    
+    const unumchk = async () => {
         try {
+            const res1 = await Axios.get("/login/unumChk");
+            setUnum(res1.data);
+    
+            const url = "/chating/getuserinfo?unum=" + res1.data;
+            const res2 = await Axios.get(url);
+            setData(res2.data);
+            setUnickname(res2.data.unickname);
+            setUemail(res2.data.uemail);
+            
             const chat = new ncloudchat.Chat();
-            await chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
+            chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
             setNc(chat);
-
+            
             await chat.connect({
-                id: uemail,
-                name: unickname,
+                id: res2.data.uemail,
+                name: res2.data.unickname,
                 profile: 'https://image_url',
                 customField: 'json',
             });
-
-            const channels = await chat.getChannels({}, { created_at: -1 }, { offset: 0, per_page: 100 });
-
+            
+            const filter = { state: true , members:res2.data.uemail };
+            const sort = { created_at: -1 };
+            const option = { offset: 0, per_page: 100 };
+            const channels = await chat.getChannels(filter, sort, option);
+            console.log(res2.data.uemail)
             // 각 채팅방의 마지막 메시지 가져오기
             const updatedChannels = await Promise.all(
                 channels.edges.map(async (channel) => {
@@ -57,16 +47,20 @@ const NCloudChatRoomList = () => {
                     return { ...channel, node: { ...channel.node, lastMessage } };
                 })
             );
-
+            
             setChannels(updatedChannels);
         } catch (error) {
-            console.error('Error fetching chat room list:', error);
+            // Handle any errors that might occur during the asynchronous operations
+            console.error("Error occurred: ", error);
         }
-    };
-
-
-        initializeChatAndFetchChannels()
+    }
+    
+    useEffect(() => {
+        unumchk()
     }, [])
+    console.log("uemail:"+uemail);
+    console.log("unickname:"+unickname);
+   
 
     // 마지막 메시지 가져오는 함수
     const getLastMessage = async (chat, channelId) => {
@@ -85,18 +79,19 @@ const NCloudChatRoomList = () => {
 
     const handleChannelSelect = async (channelId) => {
         setSelectedChannel(channelId);
-        if (nc) {
-            await nc.disconnect();
-        }
+        if (nc) {           
         navigate(`/chating/room/${channelId}`);
+        }
     };
 
     const handleCreateChannel = async () => {
         if (nc) {
             try {
-                const channel = await nc.createChannel({ type: 'PUBLIC', name: 'New Channel', customField: 'customField' });
-                await channel.subscribe(channel.id);
-                setChannels([...channels, { node: channel }]);
+                const newchannel = await nc.createChannel({ type: 'PRIVATE', name: unickname});                
+                setChannels([...channels, { node: newchannel }]);
+                // await nc.subscribe(newchannel.node.id);
+                // await nc.addUsers(newchannel.node.id, ['1234','1234']);
+                await navigate(`/chating/room/${newchannel.id}`);
             } catch (error) {
                 console.error('Error creating and subscribing channel:', error);
             }
@@ -109,7 +104,7 @@ const NCloudChatRoomList = () => {
             <ul>
                 {channels.map((channel) => (
                     <li key={channel.node.id} >
-                        <div style={{width:'360px',height:'80px',border:'1px solid black'}}>
+                        <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
                             <div onClick={() => handleChannelSelect(channel.node.id)}>
                                 {channel.node.name}
                             </div>

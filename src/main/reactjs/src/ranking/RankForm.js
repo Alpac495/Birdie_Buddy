@@ -121,9 +121,10 @@ const RankForm = () => {
             <div>
                 <Header/>
             </div>
-            <button className="select_golf" onClick={openModal}>골프장선택</button>{gname}
+            <button className="select_golf" onClick={openModal}>골프장선택</button>
+            <div className="selected_golfname">{gname}</div>
             <Modal open={modalOpen} close={closeModal} header="골프장 선택">
-                <div>
+                <div >
                     <input style={{marginLeft: '20px'}}
                            type="text"
                            placeholder="검색"
@@ -135,7 +136,7 @@ const RankForm = () => {
                         {
                             data.map &&
                             data.filter((val) => {
-                                if (searchTerm == "") {
+                                if (searchTerm === "") {
                                     return val
                                 } else if (val.gname.includes(searchTerm)) {
                                     return val

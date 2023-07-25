@@ -18,11 +18,14 @@ import Alert from '@mui/material/Alert';
 import EditIcon from '@mui/icons-material/Edit';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
-
+import Profile from "../image/user60.png";
 function MyHugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
+
     const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
     const navi = useNavigate();
     const [open, setOpen] = React.useState(false);
@@ -30,7 +33,7 @@ function MyHugiRowList(props) {
     const [showLike, setShowLike] = useState(props.showLike || false);
 
     const [unum, setUnum]=useState('');
-    const [userNum,setUserNum]=useState('');
+    const [uphoto,setUphoto]=useState('');
     const [rhnum, setRhnum] = useState(null);
     const [rhcontent, setRhcontent] = useState('');
     const [comments, setComments] = useState([]);
@@ -53,6 +56,7 @@ function MyHugiRowList(props) {
             navi(`/hugi/modify/${hnum}`, {
                 hnum: hnum,
                 unum: unum,
+                uphoto:uphoto,
                 hlike: hlike,
                 postUserNickname: postUserNickname,
                 hcontent: hcontent,
@@ -60,6 +64,11 @@ function MyHugiRowList(props) {
                 hwriteday: hwriteday,
             });
         }
+    };
+    // 클릭 이벤트 핸들러
+    const handleClickShare = () => {
+        const longUrl = `http://devster.kr/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        generateShortURL(longUrl);
     };
     const generateShortURL  = (longUrl) => {
 
@@ -89,12 +98,13 @@ function MyHugiRowList(props) {
     const shareShortenedURL = (url) => {
         if (navigator.share) {
             navigator.share({
-                title: '링크를 확인하세요!',
+                title: '버디버디',
+                text:'버디버디 라운딩 후기입니다.',
                 url: url,
             })
                 .then(() => {
                     console.log('URL 공유 성공!');
-                    setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
+                    // setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
                 })
                 .catch((error) => {
                     console.error('URL 공유 중 오류 발생:', error);
@@ -117,11 +127,7 @@ function MyHugiRowList(props) {
                 console.error('클립보드 복사 중 오류 발생:', error);
             });
     };
-    // 클릭 이벤트 핸들러
-    const handleClickShare = () => {
-        const longUrl = `http://devster.kr/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
-        generateShortURL(longUrl);
-    };
+
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
@@ -133,9 +139,7 @@ function MyHugiRowList(props) {
             //setSnackbarOpen(false); // Snackbar를 표시하고 나서 상태를 다시 false로 변경
         }
     }, [snackbarOpen]);
-    const handleClickAvatar  = () =>{
-        navi(`/mypage/mypage/${unum}`);
-    };
+
     const unumchk=()=>{
         Axios.get("/login/unumChk")
             .then(res=> {
@@ -153,9 +157,15 @@ function MyHugiRowList(props) {
             setOpen(true);
         }
     };
-
     const handleClose = () => {
         setOpen(false);
+    };
+    const handleClickAvatar  = () =>{
+        if (unum === 0) {
+            alert('로그인을 먼저 해주세요!');
+        } else {
+            navi(`/mypage/mypage/${unum}`);
+        }
     };
     const handleClickLikeOn = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
@@ -244,11 +254,11 @@ function MyHugiRowList(props) {
                 setComments(sortedComments);
 
                 res.data.forEach((comment) => {
-                    // fetchUserNickname(comment.unum, comment); // 댓글 작성자의 unickname 가져오기
-
+                    fetchCommentUserPhoto(comment.unum, comment); // 댓글 작성자의 프로필 사진 정보 가져오기
                     if (comment.comments) {
                         comment.comments.forEach((reply) => {
-                            // fetchUserNickname(reply.unum, reply); // 대댓글 작성자의 unickname 가져오기
+                            fetchReplyUserPhoto(reply.unum, reply); // 대댓글 작성자의 프로필 사진 정보 가져오기
+
                         });
                     }
                 });
@@ -276,6 +286,50 @@ function MyHugiRowList(props) {
             }
         }
     };
+    const fetchUserPhoto = (unum) => {
+        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+            .then((res) => {
+                const userPhoto = res.data;
+                setUphoto(userPhoto);
+            })
+            .catch((error) => {
+                console.log('Error fetching user photo:', error);
+            });
+    };
+    useEffect(() => {
+        if (unum) {
+            fetchUserPhoto(unum);
+        }
+    }, [unum]);
+    // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
+    const fetchCommentUserPhoto = (unum, comment) => {
+        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+            .then((res) => {
+                const userPhoto = res.data;
+                // comment 객체에 댓글 작성자의 프로필 사진 정보 추가
+                comment.uphoto = userPhoto;
+                // state 업데이트 등의 작업을 수행할 수 있습니다.
+                setComments((prevComments) => [...prevComments]); // 댓글 정보가 추가된 새로운 배열로 state 업데이트
+            })
+            .catch((error) => {
+                console.log('Error fetching comment user photo:', error);
+            });
+    };
+
+// 대댓글 작성자의 프로필 사진 정보를 가져오는 함수
+    const fetchReplyUserPhoto = (unum,reply) => {
+        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+            .then((res) => {
+                const userPhoto = res.data;
+                // reply 객체에 대댓글 작성자의 프로필 사진 정보 추가
+                reply.uphoto = userPhoto;
+                // state 업데이트 등의 작업을 수행할 수 있습니다.
+                setComments((prevComments) => [...prevComments]); // 대댓글 정보가 추가된 새로운 배열로 state 업데이트
+            })
+            .catch((error) => {
+                console.log('Error fetching reply user photo:', error);
+            });
+    };
     const handleClickDetail = () => {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
@@ -289,12 +343,13 @@ function MyHugiRowList(props) {
                 hphoto: hphoto,
                 hcontent: hcontent,
                 hwriteday: formattedDate,
+                uphoto:props.uphoto,
                 Unickname: props.Unickname // Unickname 매개변수를 사용합니다.
                 // 여기에 다른 데이터도 추가할 수 있습니다.
 
             });
             fetchPostUserNickname(unum); // fetchPostUserNickname 함수에 unum 전달
-            console.log("unum>>"+unum);
+            // console.log("unum>>"+unum);
         }
     };
     const sortComments = (comments) => {
@@ -341,6 +396,7 @@ function MyHugiRowList(props) {
                     rhnum: rhnum,
                     hnum: hnum,
                     unum: unum,
+                    uphoto:uphoto,
                     rhcontent: rhcontent,
                     rhwriteday: formattedDate,
                     ref: null,
@@ -368,6 +424,7 @@ function MyHugiRowList(props) {
         const newReply = {
             hnum: hnum,
             unum: unum,
+            uphoto:uphoto,
             rhcontent: replyContent,
             ref: comment.rhnum,
             step: comment.step + 1,
@@ -422,7 +479,11 @@ function MyHugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                <Avatar className="list_avatar" alt={''} src='' onClick={handleClickAvatar}/>
+                {uphoto == null ? (
+                    <Avatar className="list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                ):(
+                    <Avatar className="list_avatar" alt={''} src={`${image1}${uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                )}
                 <span className="spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
             </div>
             &nbsp;
@@ -458,7 +519,11 @@ function MyHugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        <Avatar className="list_avatar_Comment1" alt={''} src='' onClick={handleClickAvatar}/>
+                        {props.uphoto == null ? (
+                        <Avatar className="list_avatar_Comment1" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                        ):(
+                        <Avatar className="list_avatar_Comment1" alt={''} src={`${image1}${props.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                        )}
                         <span className="spanCommentList" onClick={handleClickAvatar}>
                         {postUserNickname}
                       </span>
@@ -503,7 +568,11 @@ function MyHugiRowList(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
-                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
+                  {comment.uphoto == null ? (
+                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                  ):(
+                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                  )}
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
@@ -554,7 +623,11 @@ function MyHugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  <Avatar className="list_avatar_Comment2" alt={''} src='' onClick={handleClickAvatar}/>
+                                  {reply.uphoto == null ? (
+                                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                                  ):(
+                                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                                  )}
                                   <b className="ReplyNickname" onClick={handleClickAvatar}>
                                       {reply.unickname}:
                                   </b>
