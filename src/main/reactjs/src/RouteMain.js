@@ -29,7 +29,6 @@ import FriendSearch from './friend/FriendSearch';
 import NCloudChatRoomAdmin from "./chatbot/NCloudChatRoomAdmin";
 import AccountSetting from './mypage/AccountSetting';
 import RankListS from './ranking/RankListS';
-import Payment from "./payment/Payment";
 
 
 function RouteMain(props) {
@@ -37,8 +36,6 @@ function RouteMain(props) {
         <div>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-
-                <Route path="payment" element={<Payment/>}/>
 
                 <Route path={'/admin'} >
                     <Route path="userlist" element={<UserList/>}/>

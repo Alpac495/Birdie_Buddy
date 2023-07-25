@@ -4,7 +4,8 @@ import Axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
 import InfiniteScroll from "react-infinite-scroll-component";
-import axios from "axios";
+import logo from "../images/logo.png";
+import Footer from "../footer/Footer";
 
 function HugiList(props) {
     const [unum, setUnum] = useState('');
@@ -24,14 +25,14 @@ function HugiList(props) {
     //무한스크롤
     const fetchMoreData = () => {
         setLoading(true);
-        Axios.get(`/hugi/list?page=${page}&size=10`) // 페이지 당 3개의 아이템을 요청하도록 수정
+        Axios.get(`/hugi/list?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
             .then((res) => {
                 setHugiData((prevItems) => [...prevItems, ...res.data]);
                 setPage((prevPage) => prevPage + 1);
-                setLoading(false);
                 setUnickname(res.data.Unickname);
                 setUserNum(res.data.unum);
                 setUphoto(res.data.uphoto);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("데이터를 더 가져오는 중 오류 발생:", error);
@@ -125,10 +126,11 @@ function HugiList(props) {
 
         try {
             await Axios.post('/hugi/insert', dataToSend);
-            navi("/hugi/list");
             setHphoto('');
             setHcontent('');
+            setLoading(true); // 로딩 상태를 true로 설정하여 다시 데이터를 불러올 수 있도록 함
             fetchMoreData();
+            window.location.reload(); // 페이지 새로고침
         } catch (error) {
             console.log(error);
         }
@@ -149,8 +151,9 @@ function HugiList(props) {
         setSelectedFileName(fileName); // 파일명 상태 업데이트
     };
     const onclickLoad = () => {
-
-    }
+        window.scrollTo({top: 0, behavior: "smooth" });
+       fetchMoreData();
+    };
     return (
         <div className="hugi">
             <div className="hugi_header">
@@ -213,7 +216,7 @@ function HugiList(props) {
                 ) : (
                     null
                 )}
-                endMessage={null}
+                endMessage={<Footer />} // Display Footer when the end is reached
             >
                 <div className="timeline">
                     {hugiData &&
@@ -233,24 +236,9 @@ function HugiList(props) {
                                 fetchMoreData={fetchMoreData}
                             />
                         ))}
-                    {hugiData.length > 0 && !loading && (
-                        // hugiData.map((hugiData) => (
-                        //     <HugiRowList
-                        //         key={hugiData.hnum}
-                        //         hnum={hugiData.hnum}
-                        //         unum={hugiData.unum}
-                        //         Unickname={hugiData.Unickname}
-                        //         uphoto={hugiData.uphoto}
-                        //         hcontent={hugiData.hcontent}
-                        //         hphoto={hugiData.hphoto}
-                        //         hlike={hugiData.hlike}
-                        //         hwriteday={hugiData.hwriteday}
-                        //         // refreshHugiData={refreshHugiData}
-                        //         getUser={getUser}
-                        //         fetchMoreData={fetchMoreData}
-                        //     />
-                        // ))
-                        <button type="button" className={onclickLoad} style={{width:"100px",height:"20px",marginLeft:"100px",border:"1px solid gray"}}>최상단으로</button>
+                    {hugiData.length > 0 &&(
+                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
+                    <Footer/>
                     )}
                 </div>
             </InfiniteScroll>
