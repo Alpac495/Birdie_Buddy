@@ -19,4 +19,5 @@ public class JoinmemberDto {
     private String jp1age;
     private String jp1tasu;
     private int jcount;
+    private int rtasu;
 }

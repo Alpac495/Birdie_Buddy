@@ -12,6 +12,8 @@ function FriendDetail(props) {
     const {funum}=useParams('');
     const [checkbuddy, setCheckbuddy]=useState('');
     const [requestcheck,setRequestCheck]=useState([]);
+    const [stasu, setStasu] = useState('');
+
     const unumchk=()=>{
         Axios.get("/login/unumChk")
         .then(res=> {
@@ -27,6 +29,10 @@ function FriendDetail(props) {
             .then(res=>{
                 setRequestCheck(res.data)
             })
+            Axios.get("/login/getRtasu?unum=" + funum)
+                            .then(res => {
+                                setStasu(res.data);
+                            })
         });
     }
     useEffect(() => {
@@ -112,7 +118,14 @@ function FriendDetail(props) {
             <div className="FDdiv2">
         <span className="FDtxt">
           <p className="FDp">{dto.uage} {dto.ugender==="1"?"남자":"여자"}</p>
-          <p className="FDp">골프경력 1년 평균타수 89타</p>
+          <p className="FDp">골프경력 {dto.ucareer} /&nbsp; 
+          {
+            stasu == null || stasu == '' || stasu == 0?
+            <span> 입력된 타수 정보가 없습니다</span>:
+            <span>
+              평균타수 {stasu}타
+            </span>
+          }</p>
         </span>
             </div>
             <div className="FDdiv3">{dto.ucontent}</div>

@@ -77,7 +77,8 @@ body {
     height: 2.5rem;
 }
 .JEactions,
-.JEtitle {
+.JEtitle,
+.JEtitle1 {
     position: absolute;
 }
 .JEactions {
@@ -90,12 +91,22 @@ body {
     justify-content: flex-start;
 }
 .JEtitle {
-    width: 60%;
+    width: 50%;
     bottom: 1.06rem;
     left: 1.25rem;
     letter-spacing: 0.15px;
     font-weight: 300;
     border: none;
+    font-size: 70%;
+}
+.JEtitle1 {
+    width: 20%;
+    height: 65%;
+    bottom: 0.5rem;
+    left: 10.25rem;
+    letter-spacing: 0.15px;
+    font-weight: 300;
+    /* border: none; */
     font-size: 80%;
 }
 .JEapp-bar-top {
