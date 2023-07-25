@@ -22,7 +22,7 @@ const NCloudChatRoomAdmin = () => {
                     customField: 'json',
                 });
 
-                const channels = await chat.getChannels({}, { created_at: -1 }, { offset: 0, per_page: 100 });
+                const channels = await chat.getChannels({}, { created_at: -1 }, { offset: 0, per_page: 10 });
 
                 // 각 채팅방의 마지막 메시지 가져오기
                 const updatedChannels = await Promise.all(

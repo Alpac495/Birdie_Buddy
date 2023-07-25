@@ -21,14 +21,19 @@ const JoinDetail = () => {
     const [jp1age, setJp1age] = useState("");
     const [jp1tasu, setJp1tasu] = useState("");
     const [jcount, setJcount] = useState(1);
+    const [stasu, setStasu] = useState('');
     const writerunum=unum; 
 
     const unumchk=()=>{
         Axios.get("/login/unumChk")
         .then(res=> {
             setUnum(res.data);
+            Axios.get("/login/getRtasu?unum=" + res.data)
+                            .then(res => {
+                                setStasu(res.data);
         });
-    }
+    })}
+
     useEffect(() => {
         unumchk()
     }, [])
@@ -237,12 +242,12 @@ const JoinDetail = () => {
                             {item.jcount == 1 ? <div className="esther-howard"><b>{item.unickname}</b>
                                 <div style={{display:'none'}}>{item.unum}</div>
                                 <br/>
-                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
+                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / {item.rtasu}타
                             </div> : (                                 
                             <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반인/{item.jp1gender}/{item.jp1age}세/{item.jp1tasu}타)
                                 <div style={{display:'none'}}>{item.unum}</div>
                                 <br/>
-                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
+                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / {item.rtasu}타
                             </div>)}
                         </div>
                     ))}
@@ -253,7 +258,7 @@ const JoinDetail = () => {
             <div className="JDdiv0">
           <div className="JDtxt">
             <span>{`모집자 동반인( 총 `}</span>
-            <span className="JDspan1">{dto.jucount}</span>
+            <span className="JDspan1">{dto.jucount-1}</span>
             <span>{` 명) `}</span>
           </div>
                 </div>
@@ -294,7 +299,7 @@ const JoinDetail = () => {
                                 )}
 
                                 <br/>
-                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / 타수
+                                {year - (parseInt(item.uage.substring(0, 4), 10))}세 / {item.ugender} / {item.rtasu}타
                             </div> : (                                 
                             <div className="esther-howard"><b>{item.unickname}</b>&nbsp;(동반인/{item.jp1gender}/{item.jp1age}세/{item.jp1tasu}타)
                                 <div style={{display:'none'}}>{item.unum}</div>&nbsp;&nbsp;
@@ -384,7 +389,7 @@ const JoinDetail = () => {
                     <div className="JDdiv11">
             <span className="JDtxt">
               <p className="JDp4">{dto.unickname} (모집자)</p>
-              <p className="JDp5">{dto.ugender} / {year - (dto.uage && parseInt(dto.uage.substring(0, 4), 10))}세 / 타수</p>
+              <p className="JDp5">{dto.ugender} / {year - (dto.uage && parseInt(dto.uage.substring(0, 4), 10))}세 / {stasu}타</p>
             </span>
                     </div>
                     <div className="JDrectangle-parent">

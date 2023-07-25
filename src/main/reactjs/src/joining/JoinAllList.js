@@ -75,11 +75,11 @@ const JoinAllList = () => {
                             </div>
                             <input className="JEtitle"
                                    type="text"
-                                   placeholder="골프장명 또는 날짜로 검색"
+                                   placeholder="골프장명 또는 날짜로"
                                    onChange={(e) => {
                                        setSearchTerm(e.target.value);
                                    }}/>
-
+                            <button type="button" className="JEtitle1 btn btn-sm btn-success">검색</button>
                         </div>
                     </div>
                     <div className="JEsegmented-control">
