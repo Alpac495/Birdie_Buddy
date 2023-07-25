@@ -154,10 +154,14 @@ public class YangdoController {
     @GetMapping("list2")
     public List<YangdoDto> list2(@RequestParam(defaultValue = "") String keyword, int page, int size) {
         System.out.println("스크롤");
-        System.out.println(keyword);
         int offset = (page - 1) * size;
         //List<YangdoDto> list = yangdoMapper.getPagingListScroll(keyword, offset, size);
         List<YangdoDto> list = yangdoMapper.getPagingListScroll(offset, size);
         return list;
+    }
+    @GetMapping("/list3")
+    public List<YangdoDto> list3(@RequestParam(defaultValue = "") String keyword){
+        System.out.println(keyword);
+        List<YangdoDto> list = 
     }
 }
