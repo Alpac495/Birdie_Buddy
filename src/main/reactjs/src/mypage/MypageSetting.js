@@ -25,6 +25,9 @@ const MypageSetting = () => {
     const closeModal = () => {
         setModalOpen(false);
     };
+    const passchk=()=>{
+        
+    }
 
     return (
         <div className="mypagesetting">
@@ -79,7 +82,7 @@ const MypageSetting = () => {
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src="/info.svg" />
                     <div className="MPSlabel1" onClick={openModal} >내 정보 변경</div>
-                    <ModalAccount open={modalOpen} close={closeModal} header="비밀번호 입력">
+                    <ModalAccount open={modalOpen} passchk={passchk} close={closeModal} header="비밀번호 입력">
                     <input className={'inputtext'} type={'password'} onChange={(e) =>
                         setUpass(e.target.value)
                     }/>

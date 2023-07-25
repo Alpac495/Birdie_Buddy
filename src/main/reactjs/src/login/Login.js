@@ -29,6 +29,7 @@ function Login(props) {
                     navi("/");
                 } else {
                     alert("로그인 실패")
+                    setUpass('');
                 }
             })
     }

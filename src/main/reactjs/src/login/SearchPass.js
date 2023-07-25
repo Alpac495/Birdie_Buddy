@@ -1,5 +1,5 @@
-import React, {useRef, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import React, { useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './SearchPass.css';
 
@@ -15,6 +15,7 @@ function SearchPass(props) {
     const navi = useNavigate();
     const uemailRef = useRef(null);
     const hpRef = useRef(null);
+    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{1,16}$/;
 
     const sms = () => {
         if (uhp.length != 11) {
@@ -69,16 +70,19 @@ function SearchPass(props) {
                 })
         }
     }
-    const passChnage =()=>{
-        if(newpass!=newpass2){
+    const passChnage = () => {
+        if (newpass != newpass2) {
             alert("새로운 비밀번호가 일치하지 않습니다")
             return;
+        } else if (!regex.test(newpass)) {
+            alert("비밀번호는 16자리 이하로 영어/숫자를 포함해야 합니다.");
+            return;
         }
-        axios.get('/login/passChange2?upass='+newpass+"&uemail="+uemail)
-            .then(res=>{
+        axios.get('/login/passChange2?upass=' + newpass + "&uemail=" + uemail)
+            .then(res => {
                 alert("비밀번호가 변경 완료되었습니다. 새로운 비밀번호로 로그인 해주세요")
                 axios.get('/login/logout')
-                    .then(res=>{
+                    .then(res => {
                         navi('/')
                     })
             })
@@ -87,43 +91,43 @@ function SearchPass(props) {
 
     return (
         <div className='SearchPass_div1'>
-            휴대전화<br/>
+            휴대전화<br />
             <input type="text" className="SearchPass_textbox" ref={hpRef} placeholder="휴대폰번호" required value={uhp}
-                   onChange={(e) => {
-                       setUhp(e.target.value)
-                   }}/><br/>
+                onChange={(e) => {
+                    setUhp(e.target.value)
+                }} /><br />
             <button type="button" onClick={sms}>전화 인증</button>
-            <br/>
+            <br />
             <input type="text" className="SearchPass_textbox" placeholder="인증코드"
-                   onChange={(e) => setCode(e.target.value)}/><br/>
+                onChange={(e) => setCode(e.target.value)} /><br />
             <button type="button" onClick={codeChk}>인증확인</button>
-            <br/>
+            <br />
             <input type="text" className="SearchPass_textbox" placeholder="ID입력" ref={uemailRef} value={uemail}
-                   onChange={(e) => {
-                       setUemail(e.target.value)
-                   }}/><br/>
+                onChange={(e) => {
+                    setUemail(e.target.value)
+                }} /><br />
             <button onClick={SearchPass}>새로운 Pass 발급</button>
-            <br/>
+            <br />
             {
                 chk2 ?
                     <>
                         <input type="password" className="SearchPass_textbox" placeholder="새로운 비밀번호"
-                               onChange={(e) => {
-                                   setNewpass(e.target.value)
-                               }}
-                               value={newpass}/>
-                        <br/>
+                            onChange={(e) => {
+                                setNewpass(e.target.value)
+                            }}
+                            value={newpass} />
+                        <br />
                         <input type={"password"} className={'SearchPass_textbox'} placeholder="비밀번호 확인"
-                               onChange={(e) => {
-                                   setNewpass2(e.target.value)
-                               }}
-                               value={newpass2}/>
+                            onChange={(e) => {
+                                setNewpass2(e.target.value)
+                            }}
+                            value={newpass2} />
                         {
-                            newpass == '' ? <div></div> : newpass != '' && newpass != newpass2 ?
+                            newpass == '' ? <div>16자리 이하로 영어/숫자를 포함해야 합니다</div> : newpass != '' && newpass != newpass2 ?
                                 <div>비밀번호가 일치하지 않습니다</div> :
                                 <>
                                     <div>비밀번호가 일치합니다</div>
-                                    <br/>
+                                    <br />
                                 </>
                         }
                         <button onClick={passChnage}>비밀번호 변경</button>
