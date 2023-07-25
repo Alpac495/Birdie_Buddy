@@ -6,4 +6,7 @@
     <insert id="insertchatid" parameterType="ChatroomDto">
         insert into chatroom (unum,cunum,chatid) values (#{unum},#{cunum},#{chatid})
     </insert>
+    <select id="getChatInfo" parameterType="map" resultType="string">
+        select chatid from chatroom where (unum=#{unum1} and cunum=#{unum2}) or (unum=#{unum2} and cunum=#{unum1})
+    </select>
 </mapper>

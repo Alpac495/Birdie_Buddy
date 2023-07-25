@@ -42,4 +42,9 @@ public class ChatingController {
 
     }
 
+    @GetMapping("/getchatinfo")
+    public String getChatInfo(@RequestParam int unum1, @RequestParam int unum2) {
+        return chatingService.getChatInfo(unum1,unum2);
+    }
+
 }
