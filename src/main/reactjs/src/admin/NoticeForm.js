@@ -17,12 +17,12 @@ function NoticeForm(props) {
 
 
     return (
-        <div className='NForm_div1'>
-            <input className='NForm_textbox' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} />
+        <div className='nform_wrap'>
+            <input className='nform_subject' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} />
             <br/>
-            <textarea className='NForm_textarea' placeholder='내용' onChange={(e) => setNcontent(e.target.value)}>
+            <textarea className='nform_txt' placeholder='내용' onChange={(e) => setNcontent(e.target.value)}>
             </textarea>
-            <br/>
+            
             <button type='button' onClick={submit}>작성</button>
         </div>
     );

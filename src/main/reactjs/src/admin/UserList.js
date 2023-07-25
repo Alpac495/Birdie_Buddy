@@ -36,12 +36,12 @@ function UserList(props) {
                    }}/>
 
             <div className="FLtab">
-                <NavLink to={`/admin/userlist`}>
+                <NavLink to={`/admin/userlist`} style={{color:'black'}}>
                     <div className="flframe">
                         <div className="FLdiv">전체 사용자 리스트</div>
                     </div>
                 </NavLink>
-                <NavLink to={`/admin/blacklist`}>
+                <NavLink to={`/admin/blacklist`} style={{color:'black'}}>
                     <div className="FLframe">
                         <div className="FLdiv">블랙리스트</div>
                     </div>

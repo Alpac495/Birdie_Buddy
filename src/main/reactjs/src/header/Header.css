@@ -10,31 +10,35 @@
     justify-content: space-around;
     font-size: 1.88rem;
     font-family: 'Zen Dots';
-    background-color: #ffffff; /* 원하는 배경 색상을 지정 (선택 사항) */
+    background-color: #F8F5F0; /* 원하는 배경 색상을 지정 (선택 사항) */
     z-index: 999; /* 다른 요소들보다 앞에 오도록 z-index 설정 */
   }
-.side_profile{
-    width: 50px;
-    height: 50px;
+  .header_menuicon{
+    position: absolute;
+    top: 0;
+    left: 10px;
+    /* 48685E */
 }
-.side_profile img{
+
+
+.side_profile{
     width: 100%;
+    height: 50px;
+    display: flex;
+}
+.side_profile div:first-child{
+    width: 40%;
     height: 100%;
     border-radius: 50px;
 }
-
-.mlogo{
-    width: 70%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    justify-content: center;
+.side_profile div img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-left: 10px;
 }
-.header_menuicon{
-    width: 15%;
-    align-items: center;
-    position: relative;
-    bottom: 8px;
-}
-.header_usermenu{
-    visibility: hidden;
+.side_profile div:last-child{
+    width: 60%;
+    height: 100%;
+    line-height: 50px;
 }
