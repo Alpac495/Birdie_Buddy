@@ -81,7 +81,7 @@ const JoinForm = (props) => {
                 // onMakerEvent()
                 alert("정상적으로 생성되었습니다")
                 //목록으로 이동
-                navi(`/joining/list/${unum}`)
+                navi(`/joining/alllist`)
             })
     }
 

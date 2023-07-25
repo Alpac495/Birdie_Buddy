@@ -6,9 +6,10 @@ function ChatRoom() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
-    const { channelId } = useParams();
+    const { cunum, channelId } = useParams();
     const [unum, setUnum]=useState('');
     const [data, setData] = useState('');
+    const [data2, setData2] = useState('');
     
     const unumchk = async () => {
         try {
@@ -18,6 +19,10 @@ function ChatRoom() {
             const url = "/chating/getuserinfo?unum=" + res1.data;
             const res2 = await Axios.get(url);
             setData(res2.data);
+
+            const url2 = "/chating/getuserinfo?unum=" + cunum;
+            const res3 = await Axios.get(url2);
+            setData2(res3.data);
             
     
             const chat = new ncloudchat.Chat();
@@ -40,7 +45,7 @@ function ChatRoom() {
                 profile: 'https://image_url',
                 customField: 'json',
             });
-            await chat.addUsers(channelId, [res2.data.uemail,'park']);
+            await chat.addUsers(channelId, [res2.data.uemail, res3.data.uemail]);
             // const existingChannelId = channelId;
             await chat.subscribe(channelId);
             const fetchedMessages = await fetchChannelMessages(chat, channelId);
