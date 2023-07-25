@@ -40,7 +40,7 @@ function ChatRoom() {
                 profile: 'https://image_url',
                 customField: 'json',
             });
-            await chat.addUsers(channelId, [res2.data.uemail,'park','Admin']);
+            await chat.addUsers(channelId, [res2.data.uemail,'park']);
             // const existingChannelId = channelId;
             await chat.subscribe(channelId);
             const fetchedMessages = await fetchChannelMessages(chat, channelId);
@@ -113,7 +113,8 @@ function ChatRoom() {
     return (
         <div>
             <div className="chat-messages" id="chat-messages" style={{ width: '360px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
-                {messages.slice().reverse().map((message) => (
+                {messages.map &&
+                messages.slice().reverse().map((message) => (
                     <div key={message.id} style={{ textAlign: message.sender.name == data.unickname ? 'right' : 'left', margin: '10px' }}>
                         <div style={{ backgroundColor: message.sender.name == data.unickname ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
                             <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>{message.sender.name}</div>

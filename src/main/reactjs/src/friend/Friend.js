@@ -3,31 +3,73 @@ import Axios from "axios";
 import "./Friend.css";
 import {Link, NavLink} from 'react-router-dom';
 import Profile from "../image/user60.png";
+import * as ncloudchat from 'ncloudchat';
 
 function Friend(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [unum, setUnum]=useState('');
     const [data,setData]=useState('');
+    const [userdata,setUserData]=useState('');
     const now = new Date();
     const year = now.getFullYear();
+    const [unickname, setUnickname] = useState('');
+    const [uemail, setUemail] = useState('');
+    const [nc, setNc] = useState('');
 
-    const unumchk=()=>{
-        Axios.get("/login/unumChk")
-        .then(res=> {
-            setUnum(res.data);
-            const url="/friend/list?unum="+(res.data);
-                Axios.get(url)
-                    .then(res=>{
-                        setData(res.data);
-                        console.log(res.data)
-                    })
-        });
-    }
+    const unumchk = async () => {
+        try {
+            // Step 1: Get data from "/login/unumChk" endpoint
+            const res1 = await Axios.get("/login/unumChk");
+            const unum = res1.data;
+            setUnum(unum);
+    
+            // Step 2: Get data from "/friend/list" endpoint using the unum
+            const friendListUrl = `/friend/list?unum=${unum}`;
+            const res2 = await Axios.get(friendListUrl);
+            setData(res2.data);
+            console.log(res2.data);
+    
+            // Step 3: Get user info from "/chating/getuserinfo" using the unum
+            const getUserInfoUrl = `/chating/getuserinfo?unum=${unum}`;
+            const res3 = await Axios.get(getUserInfoUrl);
+            const userInfo = res3.data;
+            setUserData(userInfo);
+            setUnickname(userInfo.unickname);
+            setUemail(userInfo.uemail);
+    
+            // Step 4: Initialize and connect to ncloudchat.Chat
+            const chat = new ncloudchat.Chat();
+            chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
+            setNc(chat);
+    
+            await chat.connect({
+                id: res3.data.uemail,
+                name: res3.data.unickname,
+                profile: 'https://image_url',
+                customField: 'json',
+            });
+    
+            // Step 5: Get channels using user's email and other filters
+            const filter = { state: true, members: res3.data.uemail };
+            const sort = { created_at: -1 };
+            const option = { offset: 0, per_page: 100 };
+            const channels = await chat.getChannels(filter, sort, option);
+        } catch (error) {
+            // Handle any errors that might occur during the process
+            console.error(error);
+        }
+    };
+    
     useEffect(() => {
-        unumchk()
-    }, [])
+        unumchk();
+    }, []);
+    
     
     console.log(unum)
+
+    const onChatEvent = () => {
+        const newchannel = nc.createChannel({ type: 'PRIVATE', name: unickname});
+    }
 
     return (
         <div className="friend">
@@ -67,7 +109,7 @@ function Friend(props) {
 
                                     <div className="FLrectangle-parent">
                                         <div className="FLgroup-child" />
-                                        <div className="FLdiv4">채팅하기</div>
+                                        <div className="FLdiv4" onClick={onChatEvent}>채팅하기</div>
                                     </div>
                                 </div>
                         </div>

@@ -102,7 +102,8 @@ const NCloudChatRoomList = () => {
         <div>
             <h2>Chat Room List</h2>
             <ul>
-                {channels.map((channel) => (
+                {channels.map &&
+                channels.map((channel) => (
                     <li key={channel.node.id} >
                         <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
                             <div onClick={() => handleChannelSelect(channel.node.id)}>

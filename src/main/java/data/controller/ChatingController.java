@@ -1,5 +1,6 @@
 package data.controller;
 
+import data.dto.ChatroomDto;
 import data.dto.UserDto;
 import data.mapper.ChatingMapper;
 import data.service.ChatingService;
@@ -30,8 +31,15 @@ public class ChatingController {
 
     @GetMapping("/getuserinfo")
     public UserDto getUserInfoForChating(int unum) {
-        System.out.println("unum : "+unum);
+        System.out.println("unum : " + unum);
         return chatingService.selectChatingRoom(unum);
+    }
+
+    @PostMapping("/insertchatid")
+    public void insert(@RequestBody ChatroomDto cdto) {
+        System.out.println("cdto>>" + cdto);
+        chatingService.insertchatid(cdto);
+
     }
 
 }

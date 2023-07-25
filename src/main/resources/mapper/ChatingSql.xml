@@ -3,4 +3,7 @@
     <select id="selectChatingRoom" parameterType="int" resultType="UserDto">
         select * from user where unum=#{unum}
     </select>
+    <insert id="insertchatid" parameterType="ChatroomDto">
+        insert into chatroom (unum,cunum,chatid) values (#{unum},#{cunum},#{chatid})
+    </insert>
 </mapper>
