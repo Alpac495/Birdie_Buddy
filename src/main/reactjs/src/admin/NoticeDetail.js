@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Header from "../header/Header";
 
 function NoticeDetail(props) {
     const [data,setData]=useState([]);
@@ -19,6 +20,7 @@ function NoticeDetail(props) {
     
     return (
         <div className='NForm_div1'>
+            <Header/>
             <div className='NForm_textbox'>{data.nsubject}</div>
                 {data.nwriteday}
             <pre className='NForm_textarea'>{data.ncontent}</pre>

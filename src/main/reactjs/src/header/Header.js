@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemText } from '@mui/material';
 import "./Header.css";
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from "../image/logo_main.svg";
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {NavLink, useNavigate} from "react-router-dom";
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import EditIcon from '@mui/icons-material/Edit';
@@ -12,7 +10,7 @@ import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStati
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
-import no from "../images/nooooo.jpg"
+import no from "../images/logo.png"
 
 
 function Header(props) {
@@ -40,7 +38,7 @@ function Header(props) {
         >
             <List>
                 <div className='side_profile'>
-                    <img alt='' src={no}/><div>김똘똘 님</div>
+                    <div><img alt='' src={no}/></div><div>김똘똘 님</div>
                 </div>
             </List>
             <Divider style={{height:'2px'}}/>
@@ -85,7 +83,9 @@ function Header(props) {
     return (
         <div className="header_wrap">
             <div className="header_menuicon" onClick={toggleDrawer(true)}>
-                <MenuIcon />
+                <MenuIcon style={{color:'#1F4337'}} />
+
+              
             </div>
             <Drawer
                 anchor={'left'}
@@ -95,14 +95,16 @@ function Header(props) {
             >
                 {list()}
             </Drawer>
-
-
-            <img className="mlogo" alt="" src={logo} onClick={handleClick}/>
-
-
-            <div className="header_usermenu">
-                <AccountCircleOutlinedIcon />
+            <div className='header_logo'>
+                <img alt="" src={no} onClick={handleClick}/>
             </div>
+            
+
+
+            
+
+
+           
         </div>
     );
 }

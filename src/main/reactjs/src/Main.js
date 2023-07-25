@@ -79,10 +79,6 @@ function Main(props) {
                 <div className={'main_reviewwrap'}>
                     <Reviewslider/>
                 </div>
-
-                <hr style={{height:'3px', backgroundColor:'lightgray', marginTop:'50px'}}/>
-
-
             </div>
                 <Footer/>
         </div>
