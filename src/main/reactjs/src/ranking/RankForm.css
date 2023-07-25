@@ -10,11 +10,19 @@
 }
 .select_golf{
     margin-left: 15px;
+    margin-top: 15px;
     margin-bottom: 10px;
     background-color: rgba(0, 0, 0, 0);
     color: aliceblue;
     font-weight: bolder;
     font-size: 16px;
+}
+.selected_golfname{
+    margin-left: 35px;
+    margin-bottom: 5px;
+    color: aliceblue;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
 }
 .scoretable{
     width: 21rem;

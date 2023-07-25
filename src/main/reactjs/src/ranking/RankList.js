@@ -8,12 +8,19 @@ import gold from "../images/gold-medal.png";
 import silver from "../images/silver-medal.png";
 import bronze from "../images/bronze-medal.png";
 import user from "../images/default_golf.png";
+import Footer from "../footer/Footer";
 
 function RankList(props) {
     const [unum, setUnum] = useState(0);
     const [newList, setNewList] = useState([]); // 업데이트된 리스트를 저장하기 위해 useState를 사용합니다.
+    const url = process.env.REACT_APP_PROFILE;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
+
+    useEffect(() => {
+        unumchk();
+        getList();
+    }, []);
 
     const unumchk = () => {
         Axios.get("/login/unumChk?unum=" + unum)
@@ -21,11 +28,14 @@ function RankList(props) {
                 setUnum(res.data);
             })
     }
-    
-    useEffect(() => {
-        unumchk();
-        getList();
-    }, []);
+
+    function scrollToUnumItem(unum) {
+        alert(unum);
+        const unumItem = document.querySelector(`[data-unum="${unum}"]`);
+        if (unumItem) {
+          unumItem.scrollIntoView({ behavior: "smooth" });
+        }
+    }
 
     const getList = () => {
         Axios.get("/score/list")
@@ -39,12 +49,14 @@ function RankList(props) {
                             return { ...item, unickname, uphoto };
                         })
                 );
+
                 Promise.all(fetchUserPromises)
                     .then(updatedList => {
                         setNewList(updatedList); // newList 상태를 업데이트합니다.
                     })
-            })
-    }
+                    
+            });
+    };
 
     return (
         <div className='rankingList_wrap'>
@@ -54,12 +66,22 @@ function RankList(props) {
             {/* <div>
                 <Link to="/score/form">스코어 입력</Link>
             </div> */}
-
+            
             <div className='ranking_List'>
+                <div className='ranking_search'>
+                    <div style={{visibility:'hidden'}} >dd</div>
+                    <div>
+                        <button type='button' onClick={() => scrollToUnumItem(unum)}>
+                            내 순위 조회
+                        </button>
+                    </div>
+                </div>
                 
                 {newList.map((item, idx) => (
+
                     <div className='ranking_wrap'> 
-                        <div className={`ranking_mem rank${idx + 1}`} key={idx}  style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../images/default_golf.png)`, backgroundSize:'cover'}}>
+                        <div className={`ranking_mem rank${idx + 1}`} key={idx}  style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../images/default_golf.png)`, backgroundSize:'cover'}}
+                        data-unum={item.unum}>
                             
                         <div
                             className="overlay"
@@ -111,6 +133,7 @@ function RankList(props) {
                 ))}
              
             </div>
+            <Footer/>
         </div>
     );
 }

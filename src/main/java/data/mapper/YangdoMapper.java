@@ -2,6 +2,7 @@ package data.mapper;
 
 import data.dto.YangdoDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -17,5 +18,7 @@ public interface YangdoMapper {
     public void updateYangdo(YangdoDto dto);
     public List<YangdoDto> MyYangdoList(Map<String, Integer> map);
     public int getMyCount(int num);
+    public List<YangdoDto> getPagingListScroll(@Param("offset") int offset, @Param("size") int size);
+    // public List<YangdoDto> getPagingListScroll(@Param("keyword") String keyword, @Param("offset") int offset, @Param("size") int size);
 
 }

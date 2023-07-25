@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Sign.css";
 import logo from "../image/logo_main.svg"
 
@@ -13,7 +13,7 @@ function Sign(props) {
     const [unickname, setUnickname] = useState('');
     const [uage, setUage] = useState('');
     const [uhp, setUhp] = useState('');
-    const [ugender, setUgender] = useState("남");
+    const [ugender, setUgender] = useState('');
     const [ucareer, setUcareer] = useState('');
     const [code, setCode] = useState('');
 
@@ -30,14 +30,15 @@ function Sign(props) {
     const [imsihp, setImsihp] = useState('0');
     const [imsinick, setImsinick] = useState('0');
     const [change, setChange] = useState('0');
+    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/;
 
     const location = useLocation();
-    const userInfo = {...location.state};
+    const userInfo = { ...location.state };
 
     useEffect(() => {
         if (userInfo.unickname) {
             console.log("sdf:", userInfo)
-            const {uemail, uname, unickname, ugender, uhp, uage} = userInfo;
+            const { uemail, uname, unickname, ugender, uhp, uage } = userInfo;
             setChange('1');
             if (uemail) {
                 setUemail(uemail)
@@ -54,7 +55,7 @@ function Sign(props) {
                 setUnickname(unickname);
             }
             ;
-            if (ugender == "M" || "Male" ) {
+            if (ugender == "M" || "Male") {
                 setUgender("남");
             } else {
                 setUgender("여");
@@ -73,31 +74,27 @@ function Sign(props) {
         if (imsiEmail != 1) {
             alert("이메일 중복 확인을 진행해주세요");
             return;
-        } else {
-            if (upass != upassok) {
-                alert("비밀번호가 일치하지 않습니다")
-                return;
-            } else {
-                if (imsihp != 1) {
-                    alert("휴대폰 인증을 진행해주세요");
-                    return;
-                } else {
-                    if (imsinick != 1) {
-                        alert("닉네임 중복확인을 진행해주세요")
-                        return;
-                    }
-                    axios.post("/login/sign", {uemail, upass, uname, unickname, uage, ugender, uhp, ucareer})
-                        .then(res => {
-                            alert("회원가입 성공. 메인페이지로 이동");
-                            navi("/")
-                        })
-                }
-            }
+        } else if (!regex.test(upass)) {
+            alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자를 포함해야 합니다.");
+            return;
+        } else if (upass != upassok) {
+            alert("비밀번호가 일치하지 않습니다")
+            return;
+        } else if (imsihp != 1) {
+            alert("휴대폰 인증을 진행해주세요");
+            return;
+        } else if (imsinick != 1) {
+            alert("닉네임 중복확인을 진행해주세요")
+            return;
         }
-
+        axios.post("/login/sign", { uemail, upass, uname, unickname, uage, ugender, uhp, ucareer })
+            .then(res => {
+                alert("회원가입 성공. 메인페이지로 이동");
+                navi("/")
+            })
     }
     const emailchk = () => {
-        if (uemail=='') {
+        if (uemail == '') {
             alert("ID를 확인해주세요");
             return;
         } else {
@@ -181,66 +178,67 @@ function Sign(props) {
 
     return (
         <div className={'Sign_div1'}>
-            <img src={logo} alt={''}/>
+            <img src={logo} alt={''} />
             <div className={'Sign_div2'}>
                 <form onSubmit={ouSubmitEvent}>
-                    아이디<br/>
+                    아이디<br />
                     <input type={"text"} className={'Sign_textbox'} required ref={emailRef}
-                           onChange={(e) => {
-                               setUemail(e.target.value)
-                               setImsiEmail('0');
-                           }}
-                           value={uemail}/><br/>
+                        onChange={(e) => {
+                            setUemail(e.target.value)
+                            setImsiEmail('0');
+                        }}
+                        value={uemail} /><br />
+                    <div>ID는 최소 5자리 이상이여야 합니다.</div> 
                     <button type='button' onClick={emailchk}>중복확인</button>
-                    <br/><br/>
+                    <br /><br />
 
-                    비밀번호<br/>
+                    비밀번호<br />
                     <input type={"password"} className={'Sign_textbox'} required onChange={(e) => setUpass(e.target.value)}
-                           value={upass}/><br/><br/>
+                        value={upass} /><br /><br />
 
-                    비밀번호 확인<br/>
+                    비밀번호 확인<br />
                     <input type={"password"} className={'Sign_textbox'} required onChange={(e) => setUpassok(e.target.value)}
-                           value={upassok}/>
+                        value={upassok} />
                     {
-                        upass == '' ? <div></div> : upass != '' && upass != upassok ? <div>비밀번호가 일치하지 않습니다</div> :
+                        upass == '' ? <div>비밀번호는 8자리 이상, 16자리 이하로 영어/숫자를 포함해야 합니다</div> : upass != '' && upass != upassok ? <div>비밀번호가 일치하지 않습니다</div> :
                             <div>비밀번호가 일치합니다</div>
                     }
-                    <br/>
+                    <br />
 
 
-                    이름<br/>
+                    이름<br />
                     <input type={"text"} className={'Sign_textbox'} required onChange={(e) => setUname(e.target.value)}
-                           value={uname} ref={nameRef}/><br/><br/>
+                        value={uname} ref={nameRef} /><br /><br />
                     <div>
-                            <div>
-                                휴대전화<br/>
-                                <input type="text" className="Sign_textbox" placeholder="" required ref={hpRef} value={uhp}
-                                       onChange={(e) => {
-                                           setUhp(e.target.value)
-                                           setImsihp('0');
-                                       }}/><br/>
-                                <button type="button" onClick={sms}>전화 인증</button>
-                                <br/>
-                                <input type="text" className="Sign_textbox" placeholder="인증코드쓰는곳" ref={codeRef}
-                                       onChange={(e) => setCode(e.target.value)}/><br/>
-                                <button type="button" onClick={codeChk}>인증확인</button>
-                            </div>
+                        <div>
+                            휴대전화<br />
+                            <input type="text" className="Sign_textbox" placeholder="" required ref={hpRef} value={uhp}
+                                onChange={(e) => {
+                                    setUhp(e.target.value)
+                                    setImsihp('0');
+                                }} /><br />
+                            <button type="button" onClick={sms}>전화 인증</button>
+                            <br />
+                            <input type="text" className="Sign_textbox" placeholder="인증코드쓰는곳" ref={codeRef}
+                                onChange={(e) => setCode(e.target.value)} /><br />
+                            <button type="button" onClick={codeChk}>인증확인</button>
+                        </div>
                     </div>
-                    <br/>
-                    <br/>
-                    닉네임<br/>
+                    <br />
+                    <br />
+                    닉네임<br />
                     <input type={"text"} ref={nicknameRef} className={'Sign_textbox'} required onChange={(e) => {
                         setUnickname(e.target.value);
                         setImsinick('0');
 
                     }}
-                           value={unickname}/><br/>
+                        value={unickname} /><br />
                     <button type={'button'} onClick={nickchk}>닉네임 중복확인</button>
-                    <br/><br/>
+                    <br /><br />
 
 
                     <select required onChange={(e) => setUcareer(e.target.value)} value={ucareer}>
-                        <option hidden>경력</option>
+                        <option hidden value={''}>경력</option>
                         <option value={"1년 미만"}>1년 미만</option>
                         <option value={"1~3년"}>1~3년</option>
                         <option value={"4~6년"}>4~6년</option>
@@ -248,13 +246,13 @@ function Sign(props) {
                         <option value={"10년 이상"}>10년이상</option>
                     </select>
 
-                    <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage}/>
+                    <input type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage} />
 
                     <select required onChange={(e) => setUgender(e.target.value)} value={ugender}>
-                        <option hidden>성별</option>
+                        <option value={''} hidden>성별</option>
                         <option value={"남"}>남</option>
                         <option value={"여"}>여</option>
-                    </select><br/><br/>
+                    </select><br /><br />
                     <button type={'submit'}>가입</button>
                 </form>
             </div>
