@@ -3,6 +3,8 @@ package data.service;
 import data.dto.ChatroomDto;
 import data.dto.UserDto;
 
+import java.util.Map;
+
 public interface ChatingServiceInter {
 
     public UserDto selectChatingRoom(int num);
