@@ -46,4 +46,10 @@
     <select id="getMyCount" parameterType="int" resultType="int">
         select count(*) from yangdo where unum=#{unum}
     </select>
+
+    <select id="getPagingListScroll" parameterType="int" resultType="YangdoDto">
+        select * ,(select unickname from user where unum=yangdo.unum) as unickname,
+               (select uhp from user where unum=yangdo.unum) as uhp
+        from yangdo order by yday asc, ysubject asc limit #{offset},#{size}
+    </select>
 </mapper>

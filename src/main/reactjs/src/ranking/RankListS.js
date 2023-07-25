@@ -23,6 +23,7 @@ function RankListS(props) {
     useEffect(() => {
         fetchMoreData();
     }, []);
+    
     return (
         <div>
             <InfiniteScroll
@@ -40,12 +41,11 @@ function RankListS(props) {
                         {item.unum}
                     </div>
                 ))}
-                {/* {loading && <h4>로딩시에 잠깐 출력되는 글자</h4>} */}
-                {items.length > 0 && !loading && (
+                {/* {items.length > 0 && !loading && (
                     <div style={{ border: "3px solid black", height: "100px" }}>
                         끝
                     </div>
-                )}
+                )} */}
             </InfiniteScroll>
         </div>
     );
