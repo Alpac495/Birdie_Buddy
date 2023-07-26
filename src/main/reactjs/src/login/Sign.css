@@ -21,3 +21,303 @@
     border: 1px solid rgba(255, 255, 255, 0.10);
     background-color: RGB(238, 250, 234);
 }
+
+
+
+.MSgroup-child {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #48685e;
+    height: 2.5rem;
+  }
+  .MSdiv {
+    position: absolute;
+    width: calc(100% - 205px);
+    top: 0.31rem;
+    left: 6.35rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.94rem;
+  }
+  .MSrectangle-parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 75.31rem;
+    right: 1rem;
+    left: 1rem;
+    height: 2.5rem;
+  }
+  .MSdiv1,
+  .MSname {
+    position: absolute;
+  }
+  .MSdiv1 {
+    width: calc(100% - 172px);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    height: 1.88rem;
+  }
+  .MSname {
+    top: 0.53rem;
+    left: 0.38rem;
+    line-height: 1.5rem;
+    display: inline-block;
+    width: 15.81rem;
+    opacity: 0.5;
+  }
+  .MSname-wrapper,
+  .MSparent {
+    position: absolute;
+    left: 0;
+  }
+  .MSname-wrapper {
+    width: 100%;
+    top: 2.19rem;
+    right: 0;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #ebf0f2;
+    box-sizing: border-box;
+    height: 2.5rem;
+    overflow: hidden;
+    font-size: 0.81rem;
+    border: none;
+    outline: none;
+  }
+  .MSparent {
+    top: 21.5rem;
+  }
+  .MScontainer,
+  .MSgroup,
+  .MSparent {
+    width: 100%;
+    right: 0;
+    height: 4.69rem;
+  }
+  .MSgroup {
+    position: absolute;
+    top: 27.44rem;
+    left: 0;
+  }
+  .MScontainer {
+    top: 33.38rem;
+  }
+  .MScontainer,
+  .MSdiv7,
+  .MSgroup-div {
+    position: absolute;
+    left: 0;
+  }
+  .MSgroup-div {
+    width: 100%;
+    top: 39.31rem;
+    right: 0;
+    height: 4.69rem;
+  }
+  .MSdiv7 {
+    width: calc(100% - 172px);
+    top: 0;
+    font-size: 1.06rem;
+    display: flex;
+    align-items: center;
+    height: 1.88rem;
+  }
+  .MSframe-div,
+  .MSgroup-item {
+    position: absolute;
+    top: 0;
+    border-radius: 3px;
+    height: 2.5rem;
+  }
+  .MSframe-div {
+    width: calc(100% - 86px);
+    right: 5.38rem;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ebf0f2;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: none;
+    outline: none;
+  }
+  .MSgroup-item {
+    right: 0;
+    background-color: #48685e;
+    width: 4.38rem;
+  }
+  .MSdiv9 {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.44rem;
+    font-size: 0.63rem;
+    line-height: 1.5rem;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    width: 3.56rem;
+    height: 1.5rem;
+  }
+  .MSframe-group,
+  .MSframe-parent,
+  .MSparent1 {
+    position: absolute;
+    width: 100%;
+    top: 2.19rem;
+    right: 0;
+    left: 0;
+    height: 2.5rem;
+  }
+  .MSframe-group,
+  .MSparent1 {
+    top: 5rem;
+  }
+  .MSparent1 {
+    top: 52.38rem;
+    height: 7.5rem;
+    font-size: 0.81rem;
+  }
+  .MSnick-name {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.38rem;
+    line-height: 1.5rem;
+    display: inline-block;
+    width: 13.69rem;
+    opacity: 0.5;
+  }
+  .MSframe-container {
+    position: absolute;
+    width: 100%;
+    top: 2.19rem;
+    right: 0;
+    left: 0;
+    height: 2.5rem;
+    font-size: 0.81rem;
+  }
+  .MSgroup-child1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #f8f5f0;
+    width: 20.5rem;
+    height: 1.06rem;
+  }
+  .MSdiv14 {
+    position: absolute;
+    top: 0.33rem;
+    left: 0.19rem;
+    line-height: 1.5rem;
+    display: flex;
+    align-items: center;
+    width: 14.69rem;
+    height: 0.8rem;
+  }
+  .MSrectangle-group {
+    position: absolute;
+    top: 4.81rem;
+    left: 0;
+    width: 20.5rem;
+    height: 1.06rem;
+    font-size: 0.5rem;
+  }
+  .MSparent2 {
+    position: absolute;
+    width: 100%;
+    top: 45.25rem;
+    right: 0;
+    left: 0;
+    height: 5.88rem;
+  }
+  .MSrectangle-container {
+    position: absolute;
+    top: 4.88rem;
+    left: 0;
+    width: 20.5rem;
+    height: 1.06rem;
+    font-size: 0.5rem;
+  }
+  .MSgroup-child3,
+  .MSparent3 {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    left: 0;
+  }
+  .MSparent3 {
+    top: 14.31rem;
+    height: 5.94rem;
+  }
+  .MSgroup-child3 {
+    top: 0;
+    background-color: #f8f5f0;
+    height: 1.06rem;
+  }
+  .MSdiv18 {
+    position: absolute;
+    width: calc(100% - 93px);
+    top: 0.13rem;
+    left: 0.19rem;
+    line-height: 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 0.8rem;
+  }
+  .MSrectangle-parent1 {
+    top: 4.88rem;
+    height: 1.06rem;
+    font-size: 0.5rem;
+  }
+  .MSparent4,
+  .MSparent5,
+  .MSrectangle-parent1 {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    left: 0;
+  }
+  .MSparent4 {
+    top: 7.13rem;
+    height: 5.94rem;
+  }
+  .MSparent5 {
+    top: 0;
+    height: 5.88rem;
+  }
+  .MSgroup-parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 12.94rem;
+    right: 1rem;
+    left: 1rem;
+    height: 59.88rem;
+    text-align: left;
+    font-size: 1.06rem;
+    color: #000;
+  }
+  .MSicon {
+    position: absolute;
+    top: 2.06rem;
+    left: calc(50% - 176px);
+    width: 22rem;
+    height: 8.38rem;
+    object-fit: cover;
+  }
+  .MSmember {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 81.25rem;
+    overflow: hidden;
+    text-align: center;
+    font-size: 0.94rem;
+    color: #fff;
+    font-family: Inter;
+  }

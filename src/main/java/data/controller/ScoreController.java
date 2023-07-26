@@ -78,7 +78,7 @@ public class ScoreController {
         int sum = scoreMapper.stasuSum(unum);
         System.out.println("sum:"+sum);
 
-        int avg = (sum/count)+72;
+        int avg = (sum/count);
         System.out.println("avg:"+avg);
 
         if(scoreMapper.getRankCount(unum)==0){
