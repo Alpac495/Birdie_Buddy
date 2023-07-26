@@ -154,8 +154,8 @@ public class HugiController {
         }
     }
 
-    @GetMapping("/getUser")
-    public ResponseEntity<String> getUser(@RequestParam int unum) {
+    @GetMapping("/getUser/{unum}")
+    public ResponseEntity<String> getUser(@PathVariable int unum) {
         String unickname = hugiMapper.getNickname(unum);
 //        System.out.println("unickname =>>" +unickname);
         if (unickname != null) {
@@ -164,8 +164,8 @@ public class HugiController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/getUserPhoto")
-    public ResponseEntity<String> getUserPhotoUrl(int unum) {
+    @GetMapping("/getUserPhoto/{unum}")
+    public ResponseEntity<String> getUserPhotoUrl(@PathVariable int unum) {
         String uphoto = hugiMapper.getUserPhotoUrl(unum);
         if (uphoto != null) {
             return ResponseEntity.ok(uphoto);

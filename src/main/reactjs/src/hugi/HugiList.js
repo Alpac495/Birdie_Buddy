@@ -57,13 +57,12 @@ function HugiList(props) {
 // 컴포넌트 마운트 시 후기 데이터와 유저 정보 가져오기
     useEffect(() => {
         // refreshHugiData();
-
         getUser();
     }, []);
 
 
     const getUser = () => {
-        Axios.get(`/hugi/getUser?unum=${unum}`)
+        Axios.get(`/hugi/getUser/${unum}`)
             .then((res) => {
                 //console.log("unum>>"+unum);// Success!
                 setUnickname(res.data.unickname);
@@ -182,9 +181,9 @@ function HugiList(props) {
                         {/*<input type="file" className="form-control" onChange={onUploadEvent}/>*/}
                         <img alt="" src={`${url}${hphoto}`} style={{width: '50%', margin: '10px 100px'}}/>
                         <div className="filebox">
-                            <input className="upload-name" value={selectedFileName || "첨부파일"} placeholder="첨부파일"
+                            <input className="upload-name" style={{width:"65%"}} value={selectedFileName || "첨부파일"} placeholder="첨부파일"
                                    readOnly/>
-                            <label htmlFor="file">파일찾기</label>
+                            <label htmlFor="file" style={{width:"35%"}}>파일찾기</label>
                             <input type="file" id="file" onChange={(e) => {
                                 onUploadEvent(e);
                                 onFileChange(e);
@@ -236,7 +235,7 @@ function HugiList(props) {
                                 fetchMoreData={fetchMoreData}
                             />
                         ))}
-                    {hugiData.length > 0 &&(
+                    {hugiData.length > 0 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
                     <Footer/>
                     )}

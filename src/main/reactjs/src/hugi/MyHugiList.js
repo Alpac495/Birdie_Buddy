@@ -61,7 +61,7 @@ function MyHugiList(props) {
     }, [unum]); // unum이 변경되면 해당 unum에 대한 데이터를 다시 가져옴
 
     const getUser = () => {
-        Axios.get(`/hugi/getUser?unum=${unum}`)
+        Axios.get(`/hugi/getUser/${unum}`)
             .then((res) => {
                 //console.log("unum>>"+unum);// Success!
                 setUnickname(res.data);
@@ -160,11 +160,6 @@ function MyHugiList(props) {
                         AllHugis
                     </button>
                 </div>
-                {loading ? ( // 로딩 상태에 따른 메시지 표시
-                    <div className="spinner-border text-primary" style={{marginLeft:"30px"}}></div>
-                ) : (
-                    null
-                )}
             </div>
             {userNum !== 0 && (
                 <details className="details_Timeline">
@@ -229,7 +224,7 @@ function MyHugiList(props) {
                                 fetchMoreData={fetchMoreData}
                             />
                         ))}
-                    {myHugiData.length > 0 && loading && (
+                    {myHugiData.length > 0 && !loading && (
                         //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
                         <Footer/>
                     )}
