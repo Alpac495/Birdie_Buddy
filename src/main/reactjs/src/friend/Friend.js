@@ -87,15 +87,17 @@ function Friend(props) {
                 console.log("chatid:"+chatid);
                 if (chatid) {
                     // chatid != null 일 경우
+                    await nc.disconnect();
                     navi(`/chating/room/${chatid}/${unum}`);
                 } else {
                     // chatid == null 일 경우
-                    const newchannel = await nc.createChannel({ type: 'PRIVATE', name: String(unum) + " " + String(cunum)});
+                    const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum)});
                     const newChatId = newchannel.id;
                     await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
 
                     alert("정상적으로 생성되었습니다");
                     // 채팅방으로 이동
+                    await nc.disconnect();
                     navi(`/chating/room/${newChatId}/${cunum}`);
                 }
             } catch (error) {

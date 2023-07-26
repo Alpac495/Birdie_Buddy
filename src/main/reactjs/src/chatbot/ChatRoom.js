@@ -45,9 +45,11 @@ function ChatRoom() {
                 profile: 'https://image_url',
                 customField: 'json',
             });
-            await chat.addUsers(channelId, [res2.data.uemail, res3.data.uemail]);
+
+            await chat.subscribe(channelId);
+            // await chat.addUsers(channelId, [res2.data.uemail, res3.data.uemail]);
             // const existingChannelId = channelId;
-            await chat.subscribe(channelId,);
+            
             const fetchedMessages = await fetchChannelMessages(chat, channelId);
             setMessages(fetchedMessages);
         } catch (error) {
@@ -102,6 +104,7 @@ function ChatRoom() {
                 if (!nc) {
                     throw new Error('Chat is not initialized');
                 }
+                // await nc.subscribe(channelId);
                 const response = await nc.sendMessage(channelId, {
                     type: 'text',
                     message: userInput,

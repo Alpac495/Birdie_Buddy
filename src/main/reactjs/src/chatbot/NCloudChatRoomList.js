@@ -40,14 +40,14 @@ const NCloudChatRoomList = () => {
             const channelIds = channelRes.data; // I assume the response data is an array of channel IDs
 
             // Get the last message for each channel
-            const updatedChannels = await Promise.all(
-                channelIds.map(async (channelId) => {
-                    const lastMessage = await getLastMessage(chat, channelId);
-                    return { node: { id: channelId, lastMessage } }; // Assuming you want to keep the same structure
-                })
-            );
+            // const updatedChannels = await Promise.all(
+            //     channelIds.map(async (channelId) => {
+            //         const lastMessage = await getLastMessage(chat, channelId);
+            //         return { node: { id: channelId, lastMessage } }; // Assuming you want to keep the same structure
+            //     })
+            // );
 
-            setChannels(updatedChannels);
+            setChannels(channelIds);
         } catch (error) {
             // Handle any errors that might occur during the asynchronous operations
             console.error("Error occurred: ", error);
@@ -81,7 +81,8 @@ const NCloudChatRoomList = () => {
 
     const handleChannelSelect = async (channelId) => {
         setSelectedChannel(channelId);
-        if (nc) {           
+        if (nc) {
+        await nc.disconnect();           
         navigate(`/chating/room/${channelId}/${unum}`);
         }
     };
@@ -102,7 +103,26 @@ const NCloudChatRoomList = () => {
 
     return (
         <div>
-            
+            <h2>Chat Room List</h2>
+            <ul>
+                {channels.map &&
+                channels.map((channel) => (
+                    <li  >
+                        <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
+                            <div onClick={() => handleChannelSelect(channel.chatid)}>
+                                {channel.unum}&{channel.cunum}
+                            </div>
+                            {/* {channel.node.lastMessage && (
+                                <div>
+                                    <p>Last Message: {channel.node.lastMessage.content}</p>
+                                    <p>Sender: {channel.node.lastMessage.sender.name}</p>
+                                </div>
+                            )} */}
+                        </div>
+                    </li>
+                ))}
+            </ul>
+            <button type={"button"} onClick={handleCreateChannel}>채널생성</button>
         </div>
     );
 };
