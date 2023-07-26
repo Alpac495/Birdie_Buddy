@@ -29,8 +29,8 @@ public class ChatingService implements ChatingServiceInter {
     @Override
     public String getChatInfo(int unum1, int unum2) {
         Map<String, Object> map = new HashMap<>();
-        map.put("unum1",unum1);
-        map.put("unum2",unum2);
+        map.put("unum1", unum1);
+        map.put("unum2", unum2);
         return chatingMapper.getChatInfo(map);
     }
 
