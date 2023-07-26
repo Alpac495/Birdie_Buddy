@@ -68,22 +68,40 @@ function Friend(props) {
     
     console.log(unum)
 
+    const getChatInfo = async (unum, cunum) => {
+        try {
+            console.log("getChatInfo");
+            console.log("unum1: "+unum);
+            console.log("unum2: "+cunum);
+            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const onChatEvent = async (cunum) => {
         if (nc) {
             try {
-        const newchannel = await nc.createChannel({ type: 'PRIVATE', name: String(unum)+" "+String(cunum)});
-        const chatid = newchannel.id;
-        Axios.post("/chating/insertchatid",{unum,cunum,chatid})
-            .then(res=>{
-                // onMakerEvent()
-                alert("정상적으로 생성되었습니다")
-                //목록으로 이동
-                navi(`/chating/room/${chatid}/${unum}`);
-            })
-        } catch (error) {
-            console.error('Error creating and subscribing channel:', error);
+                const chatid = await getChatInfo(unum, cunum);
+                console.log("chatid:"+chatid);
+                if (chatid) {
+                    // chatid != null 일 경우
+                    navi(`/chating/room/${chatid}/${unum}`);
+                } else {
+                    // chatid == null 일 경우
+                    const newchannel = await nc.createChannel({ type: 'PRIVATE', name: String(unum) + " " + String(cunum)});
+                    const newChatId = newchannel.id;
+                    await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
+
+                    alert("정상적으로 생성되었습니다");
+                    // 채팅방으로 이동
+                    navi(`/chating/room/${newChatId}/${cunum}`);
+                }
+            } catch (error) {
+                console.error('Error creating and subscribing channel:', error);
+            }
         }
-    }
     };
 
     return (
