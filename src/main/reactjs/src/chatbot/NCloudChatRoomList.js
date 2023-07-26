@@ -12,42 +12,41 @@ const NCloudChatRoomList = () => {
     const [unum, setUnum] = useState('');
     const [unickname, setUnickname] = useState('');
     const [uemail, setUemail] = useState('');
-    
+
     const unumchk = async () => {
         try {
             const res1 = await Axios.get("/login/unumChk");
             setUnum(res1.data);
-    
+
             const url = "/chating/getuserinfo?unum=" + res1.data;
             const res2 = await Axios.get(url);
             setData(res2.data);
             setUnickname(res2.data.unickname);
             setUemail(res2.data.uemail);
-            
+
             const chat = new ncloudchat.Chat();
             chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
             setNc(chat);
-            
+
             await chat.connect({
                 id: res2.data.uemail,
                 name: res2.data.unickname,
                 profile: 'https://image_url',
                 customField: 'json',
             });
-            
-            const filter = { state: true};
-            const sort = { created_at: -1 };
-            const option = { offset: 0, per_page: 100 };
-            const channels = await chat.getChannels(filter, sort, option);
-            console.log(res2.data.uemail)
-            // 각 채팅방의 마지막 메시지 가져오기
+
+            // Get channels using axios.get
+            const channelRes = await Axios.get(`/chating/getchatroom?unum=${res2.data.unum}`);
+            const channelIds = channelRes.data; // I assume the response data is an array of channel IDs
+
+            // Get the last message for each channel
             const updatedChannels = await Promise.all(
-                channels.edges.map(async (channel) => {
-                    const lastMessage = await getLastMessage(chat, channel.node.id);
-                    return { ...channel, node: { ...channel.node, lastMessage } };
+                channelIds.map(async (channelId) => {
+                    const lastMessage = await getLastMessage(chat, channelId);
+                    return { node: { id: channelId, lastMessage } }; // Assuming you want to keep the same structure
                 })
             );
-            
+
             setChannels(updatedChannels);
         } catch (error) {
             // Handle any errors that might occur during the asynchronous operations

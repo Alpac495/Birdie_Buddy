@@ -14,4 +14,7 @@ public interface ChatingServiceInter {
 
     public String getChatInfo(int unum1, int unum2);
 
+    public List<ChatroomDto> getChatRoomList(int unum);
+
+
 }
