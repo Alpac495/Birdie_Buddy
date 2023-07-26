@@ -9,7 +9,4 @@
     <select id="getChatInfo" parameterType="map" resultType="string">
         select chatid from chatroom where (unum=#{unum1} and cunum=#{unum2}) or (unum=#{unum2} and cunum=#{unum1})
     </select>
-    <select id="geList" resultType="ChatroomDto">
-        select * from chatroom
-    </select>
 </mapper>

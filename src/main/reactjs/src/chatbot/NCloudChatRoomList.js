@@ -5,8 +5,7 @@ import Axios from "axios";
 
 const NCloudChatRoomList = () => {
     const [channels, setChannels] = useState([]);
-    const [data, setData] = useState('');
-    const [listdata, setListdata] = useState('');    
+    const [data, setData] = useState('');  
     const [selectedChannel, setSelectedChannel] = useState(null);
     const [nc, setNc] = useState('');
     const navigate = useNavigate();
@@ -63,18 +62,7 @@ const NCloudChatRoomList = () => {
     console.log("unickname:"+unickname);
     console.log(channels)
 
-    const list = useCallback(() => {
-        const url = "/chating/list";
-        Axios.get(url)
-            .then(res => {
-                setListdata(res.data);
-                // console.log(res.data);
-            });
-    }, []);
 
-    useEffect(() => {
-        list();
-    }, [list]);
 
 
     // 마지막 메시지 가져오는 함수
@@ -115,27 +103,7 @@ const NCloudChatRoomList = () => {
 
     return (
         <div>
-            <h2>Chat Room List</h2>
-            <ul>
-                {listdata.map &&
-                listdata.map((item,idx) => (
-                    item.unum == unum ? 
-                    <li  >
-                        <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
-                            <div onClick={() => handleChannelSelect(item.chatid)}>
-                                {item.unum}
-                            </div>
-                            {/* {item.node.lastMessage && (
-                                <div>
-                                    <p>Last Message: {channel.node.lastMessage.content}</p>
-                                    <p>Sender: {channel.node.lastMessage.sender.name}</p>
-                                </div>
-                            )} */}
-                        </div>
-                    </li>: null
-                ))} 
-            </ul>
-            <button type={"button"} onClick={handleCreateChannel}>채널생성</button>
+            
         </div>
     );
 };

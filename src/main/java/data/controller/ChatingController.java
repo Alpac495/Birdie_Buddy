@@ -4,23 +4,16 @@ import data.dto.ChatroomDto;
 import data.dto.UserDto;
 import data.mapper.ChatingMapper;
 import data.service.ChatingService;
-import naver.cloud.NcpObjectStorageService;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/chating")
 public class ChatingController {
-
-    @Autowired
-    private NcpObjectStorageService storageService;
-
-    private String bucketName = "bit701-bucket-111";
 
     String photo;
 
@@ -49,11 +42,4 @@ public class ChatingController {
     public String getChatInfo(@RequestParam int unum1, @RequestParam int unum2) {
         return chatingService.getChatInfo(unum1, unum2);
     }
-
-    @GetMapping("/list")
-    public List<ChatroomDto> list() {
-        List<ChatroomDto> list = chatingService.getList();
-        return list;
-    }
-
 }

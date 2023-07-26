@@ -34,9 +34,4 @@ public class ChatingService implements ChatingServiceInter {
         return chatingMapper.getChatInfo(map);
     }
 
-    @Override
-    public List<ChatroomDto> getList() {
-        return chatingMapper.getList();
-    }
-
 }
