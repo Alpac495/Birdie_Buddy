@@ -47,7 +47,6 @@ public class MainController {
 
       if(unum == 0){
           List<UserDto> ualist = mainMapper.getAllUserList();
-          System.out.println(ualist);
 
           List<Object> combinedList = new ArrayList<>();
           combinedList.addAll(ualist);
@@ -55,15 +54,12 @@ public class MainController {
           return combinedList;
       }else{
           List<FriendDto> flist = mainMapper.getFriendList(unum);
-          System.out.println(flist);
           List<UserDto> ulist = mainMapper.getUserList(unum);
-          System.out.println(ulist);
+          
 
           List<Object> combinedList = new ArrayList<>();
           combinedList.addAll(flist);
           combinedList.addAll(ulist);
-
-          System.out.println(combinedList);
           return combinedList;
       }
     }
@@ -71,9 +67,9 @@ public class MainController {
     @GetMapping("/hugi")
     public List<HugiDto> getHugiList(){
 
-      
+      List<HugiDto> list = mainMapper.getHugiList();
 
-      return mainMapper.getHugiList();
+      return list;
     }
 
 

@@ -44,6 +44,8 @@
     align-items: center;
     margin-left: 10px;
     box-shadow: 2px 2px 4px lightgrey;
+    color: black;
+    text-decoration: none;
 }
 .rec_info{
     width: 60%;
