@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/chating")
@@ -44,7 +46,14 @@ public class ChatingController {
 
     @GetMapping("/getchatinfo")
     public String getChatInfo(@RequestParam int unum1, @RequestParam int unum2) {
+        System.out.println("unum1:"+unum1);
+        System.out.println("unum2:"+unum2);
         return chatingService.getChatInfo(unum1,unum2);
+    }
+
+    @GetMapping("/getchatroom")
+    public List<ChatroomDto> getChatRoomList(@RequestParam int unum){
+        return chatingService.getChatRoomList(unum);
     }
 
 }
