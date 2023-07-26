@@ -1,99 +1,30 @@
-import { Modal } from '@mui/material';
-import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import "./Test.css";
+const IDSearch2 = () => {
+  return (
+    <div className="IS2idsearch2">
+      <div className="IS2idsearch2-child" />
+      <div className="IS2parent">
+        <div className="IS2div">아이디 찾기</div>
+        <img className="IS2icon-arrow-left" alt="" src="화살표 아이콘" />
+      </div>
+      <div className="IS2idsearch2-item" />
+      <img className="IS2birdie-buddy" alt="" src="하단 로고" />
+      <div className="IS2rectangle-parent">
+        <div className="IS2group-child" />
+        <div className="IS2div1">로그인 하기</div>
+      </div>
+      <div className="IS2rectangle-group">
+        <div className="IS2group-item" />
+        <div className="IS2div2">비밀번호 찾기</div>
+      </div>
+      <div className="IS2div3">
+        회원님의 정보로 아래와 같은 가입내역이 있습니다.
+      </div>
+      <div className="IS2id">버디버디 ID</div>
+      <div className="IS2div4">아이디</div>
+      <div className="IS2div5">가입일자 : 2022.08.30</div>
+    </div>
+  );
+};
 
-function MyYangdoDetail(props) {
-    // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const openModal = () => {
-        setModalOpen(true);
-    };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
-    const [dto,setDto] = useState({});
-    const {ynum, currentPage} = useParams();
-
-    const navi = useNavigate();
-
-    const [unum, setUnum]=useState(0);
-    const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
-                setUnum(res.data);
-            })
-    }
-    useEffect(() => {
-        unumchk()
-    }, [])
-
-    const selectData=()=>{
-        const url = `/yangdo/detail?num=${ynum}`;
-        Axios.get(url)
-            .then(res=>{
-                setDto(res.data);
-            })
-    }
-
-    useEffect(()=>{
-        selectData();
-    },[]);
-
-    return (
-        <div>
-
-            <React.Fragment>
-                <Modal open={modalOpen} close={closeModal} header="양도 문의">
-                    <div>
-                        <h5>[{dto.yplace}]</h5>
-                        <p>담당자 : {dto.unickname}</p>
-                        <p>연락처 : {dto.uhp}</p>
-                        <p>
-                            전화 문의를 통해 자세한 정보
-                            확인 바랍니다.
-                        </p>
-                    </div>
-                </Modal>
-            </React.Fragment>
-
-            <b>골프장 : {dto.yplace}</b><br/>
-            <b>작성자 : {dto.unickname}</b><br/>
-            <b>작성일 : {dto.ywriteday}</b><br/>
-            <b>가격 : {dto.yprice}원</b><br/>
-            <b>예약 일정 : {dto.yday}</b><br/>
-            <b>예약 시간 : {dto.ysubject}</b><br/>
-            <b>상세 내용 : {dto.ycontent}</b><br/>
-
-            <button type='button' onClick={()=>navi(`/mypage/myyangdo/${unum}/${currentPage}`)}>목록</button>
-            <br/>
-
-            {
-                unum !=null && unum===dto.unum?
-                    <button type='button' onClick={()=>navi(`/mypage/update/${dto.ynum}/${currentPage}`)}>
-                        수정</button> :''
-            }
-
-            <br/>
-
-            {
-                unum !=null && unum===dto.unum?
-                <button type='button'
-                    onClick={()=>{
-                        const url=`/yangdo/delete?num=${dto.ynum}`;
-                        Axios.delete(url)
-                        .then(res=>{
-                            // 목록으로 이동
-                            alert("마감 / 삭제하시겠습니까?");
-                            navi(`/mypage/myyangdo/${unum}/${currentPage}`);
-                        })
-                }}>마감 / 삭제</button>:
-                <button type='button' onClick={openModal}>양도 신청</button>
-            }
-        </div>
-    );
-}
-
-export default MyYangdoDetail;
+export default IDSearch2;

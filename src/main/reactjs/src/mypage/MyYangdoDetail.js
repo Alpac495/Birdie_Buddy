@@ -161,7 +161,6 @@ function MyYangdoDetail(props) {
                 <div className="YEframe-container">
                     <div className="YEgroup">
                         <div className="YEdiv2">양도자 정보</div>
-                        <div className="YEdiv3">신고하기</div>
                     </div>
                     <div className="YEflistprofile">
                         <div className="YEflistprofile1">
@@ -185,11 +184,9 @@ function MyYangdoDetail(props) {
                     </div>
                 </div>
                 <div className="YEgraylbtn-parent">
-                    <div className="YEgraylbtn">
-                        <div className="YEgraylbtn-child" />
-                        <div className="YEdiv6">
-                            <button type='button' onClick={()=>navi(`/mypage/myyangdo/${unum}/${currentPage}`)}>닫기</button>
-                        </div>
+                    <div className="YEgraylbtn">    
+                        <button type='button' className="YEgraylbtn-child"
+                            onClick={()=>navi(`/mypage/myyangdo/${unum}/${currentPage}`)}>닫기</button>       
                     </div>
                     <div className="YEpopupbtn">
                         
