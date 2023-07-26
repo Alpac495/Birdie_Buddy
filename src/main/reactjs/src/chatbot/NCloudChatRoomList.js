@@ -96,6 +96,7 @@ const NCloudChatRoomList = () => {
     const handleChannelSelect = async (channelId) => {
         setSelectedChannel(channelId);
         if (nc) {
+        await nc.subscribe(channelId);
         await nc.disconnect();           
         navigate(`/chating/room/${channelId}/${unum}`);
         }
@@ -126,12 +127,6 @@ const NCloudChatRoomList = () => {
                             <div onClick={() => handleChannelSelect(channel.chatid)}>
                                 {channel.unum}&{channel.cunum}의 채팅방
                             </div>
-                            {/* {channel.node.lastMessage && (
-                                <div>
-                                    <p>Last Message: {channel.node.lastMessage.content}</p>
-                                    <p>Sender: {channel.node.lastMessage.sender.name}</p>
-                                </div>
-                            )} */}
                         </div>
                     </li>
                 ))}

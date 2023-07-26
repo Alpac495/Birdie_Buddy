@@ -2,10 +2,11 @@
 import "./JoinDetail.css";
 import {useCallback, useEffect, useState} from "react";
 import Axios from "axios";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 import Profile from "../image/user60.png";
+import * as ncloudchat from 'ncloudchat';
 
 const JoinDetail = () => {
     const url = process.env.REACT_APP_PROFILE;
@@ -22,21 +23,40 @@ const JoinDetail = () => {
     const [jp1tasu, setJp1tasu] = useState("");
     const [jcount, setJcount] = useState(1);
     const [stasu, setStasu] = useState('');
-    const writerunum=unum; 
+    const writerunum=unum;
+    const [nc,setNc] = useState('');
+    const navi=useNavigate();
 
-    const unumchk=()=>{
+
+    const unumchk = async () => {
         Axios.get("/login/unumChk")
-        .then(res=> {
-            setUnum(res.data);
-            Axios.get("/login/getRtasu?unum=" + res.data)
-                            .then(res => {
-                                setStasu(res.data);
-        });
-    })}
+            .then(async res => {
+                setUnum(res.data);
+                Axios.get("/login/getRtasu?unum=" + res.data)
+                    .then(res => {
+                        setStasu(res.data);
+                    });
+
+                // 여기서 UserInfo를 가져오고 채팅을 초기화합니다.
+                const getUserInfourl = `/chating/getuserinfo?unum=${res.data}`;
+                const res2 = await Axios.get(getUserInfourl);
+
+                const chat = new ncloudchat.Chat();
+                chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
+                setNc(chat);
+
+                await chat.connect({
+                    id: res2.data.uemail,
+                    name: res2.data.unickname,
+                    profile: 'https://image_url',
+                    customField: 'json',
+                });
+            })
+    }
 
     useEffect(() => {
         unumchk()
-    }, [])
+    }, []);
 
     //동반자 모달
     const [isPartnerFormOpen, setPartnerFormOpen] = useState(false);
@@ -195,8 +215,61 @@ const JoinDetail = () => {
         window.location.replace(`/joining/updateform/${jnum}/${unum}`);
     }
 
-    
+    const getChatInfo = async (unum, cunum) => {
+        try {
+            console.log("getChatInfo");
+            console.log("unum1: "+unum);
+            console.log("unum2: "+cunum);
+            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
+    const onChatEvent = async (cunum) => {
+        if (nc) {
+            try {
+                const chatid = await getChatInfo(unum, cunum);
+                console.log("chatid:"+chatid);
+                if (chatid) {
+                    // chatid != null 일 경우
+                    await nc.disconnect();
+                    navi(`/chating/room/${chatid}/${unum}`);
+                } else {
+                    // chatid == null 일 경우
+                    const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum)});
+                    const newChatId = newchannel.id;
+                    await nc.subscribe(newChatId);
+
+                    await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
+
+                    alert("정상적으로 생성되었습니다");
+                    // 채팅방으로 이동
+                    await nc.disconnect();
+                    navi(`/chating/room/${newChatId}/${cunum}`);
+                }
+            } catch (error) {
+                console.error('Error creating and subscribing channel:', error);
+            }
+        }
+    };
+
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+
+        window.addEventListener('beforeunload', disconnectChat);
+
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
 
     return (
         <div className="joindetail">
@@ -377,26 +450,23 @@ const JoinDetail = () => {
                 </div>
             </div>
 
-
-
-
-
             <div className="JDflistprofile">
-            <NavLink to={`/friend/detail/${dto.unum}`} className='nav-style'>
-                <div className="JDflistprofile1">
-                    {dto.uphoto == null ? <img className="jduphoto-icon" alt="" src={Profile} /> :
+                <NavLink to={`/friend/detail/${dto.unum}`} className='nav-style'>
+                    <div className="JDflistprofile1">
+                        {dto.uphoto == null ? <img className="jduphoto-icon" alt="" src={Profile} /> :
                         <img className="jduphoto-icon" src={`${url}${dto.uphoto}`} alt={''}/>}
-                    <div className="JDdiv11">
-            <span className="JDtxt">
-              <p className="JDp4">{dto.unickname} (모집자)</p>
-              <p className="JDp5">{dto.ugender} / {year - (dto.uage && parseInt(dto.uage.substring(0, 4), 10))}세 / {stasu}타</p>
-            </span>
+                        <div className="JDdiv11">
+                            <span className="JDtxt">
+                                <p className="JDp4">{dto.unickname} (모집자)</p>
+                                <p className="JDp5">{dto.ugender} / {year - (dto.uage && parseInt(dto.uage.substring(0, 4), 10))}세 / {stasu}타</p>
+                            </span>
+                        </div>
                     </div>
-                    <div className="JDrectangle-parent">
-                        <div className="JDgroup-child" />
-                        <div className="JDdiv12">채팅하기</div>
-                    </div>
-                </div></NavLink>
+                </NavLink>
+                <div className="JDrectangle-parent">
+                    <div className="JDgroup-child" />
+                    <div className="JDdiv12" onClick={onChatEvent.bind(null, dto.unum)}>채팅하기</div>
+                </div>
             </div>            
             {isPartnerFormOpen && (
                 <PortalPopup
