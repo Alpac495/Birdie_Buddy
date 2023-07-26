@@ -14,18 +14,8 @@ import Header from "./header/Header";
 import Axios from "axios";
 
 function Main(props) {
-    const [joinReco, setJoinReco]=useState([]);
     const [bestHugi, setBestHugi]=useState([]);
     const [notice, setNotice]=useState([]);
-    const [friendReco, setFriendReco]=useState([]);
-
-    /*const getRecoJoin=()=>{
-        Axios.get("/joining/list")
-            .then(res=>{
-                res.data
-            })
-    }*/
-
 
     return (
         <div className={'mainpage'}>
