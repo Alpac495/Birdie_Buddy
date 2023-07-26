@@ -4,10 +4,43 @@ body {
     margin: 0;
     line-height: normal;
 }
-.header{
-    width: 100%;
-    height: 100px;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
+
+body {
+    margin: 0;
+    line-height: normal;
 }
+
+/* 화면 너비가 1024px 이상인 경우 */
+@media (min-width: 1024px) {
+    .AFitem-grid-tiles-3x3 {
+        
+        display: grid;
+        grid-template-columns: repeat(9, 1fr); /* 한 줄에 6개씩 출력되도록 grid 너비를 설정합니다. */
+        gap: 2rem; /* 간격을 조정합니다. */
+    }
+}
+
+@media(max-width : 1023px){
+    .AFitem-grid-tiles-3x3 {
+        
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* 한 줄에 6개씩 출력되도록 grid 너비를 설정합니다. */
+        gap: 1.5rem; /* 간격을 조정합니다. */
+    }
+}
+
+/* 화면 너비가 1024px 미만인 경우 */
+@media (max-width: 800px) {
+    .AFitem-grid-tiles-3x3 {
+        
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 기본값인 한 줄에 3개씩 grid 너비를 설정합니다. */
+        gap: 1rem; /* 간격을 조정합니다. */
+    }
+}
+
 .AFchevron-left-icon {
     position: relative;
     width: 1.5rem;
@@ -148,7 +181,7 @@ body {
     flex: 1;
     position: relative;
     border-radius: 16px;
-    background-color: #f1f3f4;
+    background-color: #fff;
     min-width: 100px;
     height: 180px;
     display: flex;
@@ -175,19 +208,20 @@ body {
     right: 1rem;
     bottom: 4rem;
     left: 1rem;
-    background-color: #fff;
+    background-color: #f8f5f0;
     max-width: 360px;
+    /*
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px; /* Adjust this value to control the gap between items */
+    gap: 16px;  Adjust this value to control the gap between items */
 }
 .AFallfriendlist {
     position: relative;
-    background-color: #fff;
+    background-color: #f8f5f0;
     width: 100%;
     height: 40rem;
     text-align: center;
     font-size: 0.88rem;
     color: rgba(0, 0, 0, 0.6);
-    font-family: Roboto;
+    font-family: Inter;
 }

@@ -19,6 +19,8 @@ public interface YangdoMapper {
     public List<YangdoDto> MyYangdoList(Map<String, Integer> map);
     public int getMyCount(int num);
     public List<YangdoDto> getPagingListScroll(@Param("offset") int offset, @Param("size") int size);
-    // public List<YangdoDto> getPagingListScroll(@Param("keyword") String keyword, @Param("offset") int offset, @Param("size") int size);
+    public List<YangdoDto> getPagingListScrollSearch(String keyword);
+    public List<YangdoDto> getPagingMyListScroll(@Param("unum") int unum, @Param("offset") int offset, @Param("size") int size);
+    public List<YangdoDto> getPagingMyListScrollSearch(@Param("unum") int unum, @Param("keyword") String keyword);
 
 }
