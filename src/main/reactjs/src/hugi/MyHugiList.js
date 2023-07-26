@@ -24,6 +24,9 @@ function MyHugiList(props) {
 
     const [page, setPage] = useState(1);
     //무한스크롤
+    useEffect(() => {
+        fetchMoreData();
+    }, []);
     const fetchMoreData = () => {
         setLoading(true);
         Axios.get(`/hugi/mylist/${unum}?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
@@ -40,9 +43,7 @@ function MyHugiList(props) {
                 setLoading(false);
             });
     };
-    useEffect(() => {
-        fetchMoreData();
-    }, []);
+
 
 // unum 유무 확인 후 설정하는 함수
     const unumchk=()=>{
