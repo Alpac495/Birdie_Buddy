@@ -3,4 +3,13 @@
     <select id="selectChatingRoom" parameterType="int" resultType="UserDto">
         select * from user where unum=#{unum}
     </select>
+    <insert id="insertchatid" parameterType="ChatroomDto">
+        insert into chatroom (unum,cunum,chatid) values (#{unum},#{cunum},#{chatid})
+    </insert>
+    <select id="getChatInfo" parameterType="map" resultType="string">
+        select chatid from chatroom where (unum=#{unum1} and cunum=#{unum2}) or (unum=#{unum2} and cunum=#{unum1})
+    </select>
+    <select id="getChatRoomList" parameterType="int" resultType="ChatroomDto">
+        select * from chatroom where (unum=#{unum}) or (cunum=#{unum})
+    </select>
 </mapper>
