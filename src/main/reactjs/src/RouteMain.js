@@ -110,7 +110,7 @@ function RouteMain(props) {
                 <Route path={'/chating'} >
                     <Route path="/chating/:unum" element={<NCloudChatRoomList />} />
                     <Route path="/chating/0" element={<NCloudChatRoomAdmin />} />
-                    <Route path="/chating/room/:channelId" element={<ChatRoom />} />
+                    <Route path="/chating/room/:channelId/:cunum" element={<ChatRoom />} />
                 </Route>
 
                 <Route path={'/main'}>
