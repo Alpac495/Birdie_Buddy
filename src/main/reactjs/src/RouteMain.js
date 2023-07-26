@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {HpChange, KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, Sign, Taltae} from "./login";
+import {HpChange, KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, SearchPass2, Sign, Taltae} from "./login";
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
@@ -47,11 +47,10 @@ function RouteMain(props) {
 
                 <Route path={'yangdo'}>
                     <Route path="list" element={<YangdoList/>}/>
-                    <Route path="list/:currentPage" element={<YangdoList/>}/>
                     <Route path="detail" element={<YangdoDetail/>}/>
-                    <Route path="detail/:ynum/:currentPage" element={<YangdoDetail/>}/>
+                    <Route path="detail/:ynum" element={<YangdoDetail/>}/>
                     <Route path="form" element={<YangdoForm/>}/>
-                    <Route path="update/:ynum/:currentPage" element={<YangdoUpdate/>}/>
+                    <Route path="update/:ynum" element={<YangdoUpdate/>}/>
                     <Route path="test" element={<Test/>}/>
                 </Route>
 
@@ -89,6 +88,7 @@ function RouteMain(props) {
                     <Route path="hpchange" element={<HpChange/>}/>
                     <Route path="searchID" element={<SearchID/>}/>
                     <Route path="searchPass" element={<SearchPass/>}/>
+                    <Route path="searchPass2" element={<SearchPass2/>}/>
                     <Route path="account" element={<AccountSetting/>}/>
                 </Route>
 
@@ -96,9 +96,9 @@ function RouteMain(props) {
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
                     <Route path="setting/:unum" element={<MypageSetting/>}/>
-                    <Route path="myyangdo/:unum/:currentPage" element={<MyYangdo/>}/>
-                    <Route path="myyangdodetail/:ynum/:currentPage" element={<MyYangdoDetail/>}/>
-                    <Route path="update/:ynum/:currentPage" element={<MyYangdoUpdate/>}/>
+                    <Route path="myyangdo/:unum" element={<MyYangdo/>}/>
+                    <Route path="myyangdodetail/:ynum/" element={<MyYangdoDetail/>}/>
+                    <Route path="update/:ynum/" element={<MyYangdoUpdate/>}/>
                 </Route>
 
                 <Route path={'/score'} >
