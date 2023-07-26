@@ -15,6 +15,13 @@
                  INNER JOIN user u ON h.unum = u.unum
         ORDER BY h.hwriteday DESC LIMIT #{offset}, #{size}
     </select>
+    <select id="listmyHugiWithPaging" parameterType="int" resultType="HugiDto">
+        SELECT h.*, u.unickname , u.uphoto
+        FROM hugi h
+                 INNER JOIN user u ON h.unum = u.unum
+        WHERE h.unum = #{unum}
+        ORDER BY h.hwriteday DESC LIMIT #{offset}, #{size}
+    </select>
     <insert id="insertHugi" parameterType="HugiDto">
         insert into hugi (hcontent, hphoto, hwriteday, hlike, unum)
         values (#{hcontent}, #{hphoto}, now(), 0, #{unum})
