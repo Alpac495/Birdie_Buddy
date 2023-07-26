@@ -270,7 +270,7 @@ function MyHugiRowList(props) {
     const fetchPostUserNickname = async (unum) => {
         if (unum) {
             try {
-                const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
+                const res = await Axios.get(`/hugi/getUser/${unum}`);
                 const Unickname = res.data;
 
                 if (Unickname) {
@@ -287,13 +287,13 @@ function MyHugiRowList(props) {
         }
     };
     const fetchUserPhoto = (unum) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 setUphoto(userPhoto);
             })
             .catch((error) => {
-                console.log('Error fetching user photo:', error);
+                //console.log('Error fetching user photo:', error);
             });
     };
     useEffect(() => {
@@ -303,7 +303,7 @@ function MyHugiRowList(props) {
     }, [unum]);
     // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchCommentUserPhoto = (unum, comment) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // comment 객체에 댓글 작성자의 프로필 사진 정보 추가
@@ -312,13 +312,13 @@ function MyHugiRowList(props) {
                 setComments((prevComments) => [...prevComments]); // 댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-                console.log('Error fetching comment user photo:', error);
+               // console.log('Error fetching comment user photo:', error);
             });
     };
 
 // 대댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchReplyUserPhoto = (unum,reply) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // reply 객체에 대댓글 작성자의 프로필 사진 정보 추가
@@ -327,7 +327,7 @@ function MyHugiRowList(props) {
                 setComments((prevComments) => [...prevComments]); // 대댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-                console.log('Error fetching reply user photo:', error);
+                //console.log('Error fetching reply user photo:', error);
             });
     };
     const handleClickDetail = () => {
@@ -389,7 +389,7 @@ function MyHugiRowList(props) {
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
         try {
-            const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
+            const res = await Axios.get(`/hugi/getUser/${unum}`);
             const userNickname = res.data;
             if (userNickname) {
                 const newComment = {
@@ -479,10 +479,10 @@ function MyHugiRowList(props) {
     return (
         <div className="list">
             <div className="list_header">
-                {uphoto == null ? (
-                    <Avatar className="list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                {props.uphoto !== null ? (
+                    <Avatar className="list_avatar" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar}/>
                 ):(
-                    <Avatar className="list_avatar" alt={''} src={`${image1}${uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                    <Avatar className="list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
                 )}
                 <span className="spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
             </div>
@@ -519,10 +519,10 @@ function MyHugiRowList(props) {
             >
                 <DialogTitle id="alert-dialog-title">
                     <div className="Dialog_Title">
-                        {props.uphoto == null ? (
-                        <Avatar className="list_avatar_Comment1" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                        {props.uphoto !== null ? (
+                        <Avatar className="list_avatar_Comment1" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar}/>
                         ):(
-                        <Avatar className="list_avatar_Comment1" alt={''} src={`${image1}${props.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                        <Avatar className="list_avatar_Comment1" alt={''} src={Profile}  onClick={handleClickAvatar}/>
                         )}
                         <span className="spanCommentList" onClick={handleClickAvatar}>
                         {postUserNickname}
@@ -568,10 +568,10 @@ function MyHugiRowList(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div>
                   <span className="Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
-                  {comment.uphoto == null ? (
-                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                  {comment.uphoto !== null ? (
+                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`} onClick={handleClickAvatar}/>
                   ):(
-                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
                   )}
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
@@ -623,10 +623,10 @@ function MyHugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="Comment_Reply_List">
-                                  {reply.uphoto == null ? (
-                                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                                  {reply.uphoto !== null ? (
+                                      <Avatar className="list_avatar_Comment2" alt={''}  src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickAvatar}/>
                                   ):(
-                                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
                                   )}
                                   <b className="ReplyNickname" onClick={handleClickAvatar}>
                                       {reply.unickname}:

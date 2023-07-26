@@ -21,57 +21,57 @@ import java.util.List;
 @RequestMapping("/main")
 public class MainController {
 
-    @Autowired
-    private NcpObjectStorageService storageService;
+  @Autowired
+  private NcpObjectStorageService storageService;
 
-    private String bucketName="bit701-bucket-111";
+  private String bucketName = "bit701-bucket-111";
 
-    String photo;
+  String photo;
 
-    String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
+  String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
 
-    @Autowired
-    MainMapper mainMapper;
+  @Autowired
+  MainMapper mainMapper;
 
-    @Autowired
-    JoiningMapper joiningMapper;
+  @Autowired
+  JoiningMapper joiningMapper;
 
-    @GetMapping("/reco")
-    public List<JoiningDto> getRecoList(){
+  // @GetMapping("/reco")
+  // public List<JoiningDto> getRecoList(){
 
-      return joiningMapper.getJoiningList();
+  // return joiningMapper.getlistWithPaging();
+  // }
+
+  @GetMapping("/combine")
+  public List<Object> getCombinedList(int unum) {
+
+    if (unum == 0) {
+      List<UserDto> ualist = mainMapper.getAllUserList();
+      System.out.println(ualist);
+
+      List<Object> combinedList = new ArrayList<>();
+      combinedList.addAll(ualist);
+
+      return combinedList;
+    } else {
+      List<FriendDto> flist = mainMapper.getFriendList(unum);
+      System.out.println(flist);
+      List<UserDto> ulist = mainMapper.getUserList(unum);
+      System.out.println(ulist);
+
+      List<Object> combinedList = new ArrayList<>();
+      combinedList.addAll(flist);
+      combinedList.addAll(ulist);
+
+      System.out.println(combinedList);
+      return combinedList;
     }
+  }
 
-    @GetMapping("/combine")
-    public List<Object> getCombinedList(int unum){
+  @GetMapping("/hugi")
+  public List<HugiDto> getHugiList() {
 
-      if(unum == 0){
-          List<UserDto> ualist = mainMapper.getAllUserList();
-
-          List<Object> combinedList = new ArrayList<>();
-          combinedList.addAll(ualist);
-
-          return combinedList;
-      }else{
-          List<FriendDto> flist = mainMapper.getFriendList(unum);
-          List<UserDto> ulist = mainMapper.getUserList(unum);
-          
-
-          List<Object> combinedList = new ArrayList<>();
-          combinedList.addAll(flist);
-          combinedList.addAll(ulist);
-          return combinedList;
-      }
-    }
-
-    @GetMapping("/hugi")
-    public List<HugiDto> getHugiList(){
-
-      List<HugiDto> list = mainMapper.getHugiList();
-
-      return list;
-    }
-
-
+    return mainMapper.getHugiList();
+  }
 
 }

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c5ef6a25.css",
-    "main.js": "/static/js/main.c4db997a.js",
+    "main.css": "/static/css/main.5e2de3e1.css",
+    "main.js": "/static/js/main.e71368b4.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_ranking.jpg": "/static/media/golf_ranking.61722abbaf185e6f0068.jpg",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
@@ -30,12 +30,12 @@
     "static/media/icon_yangdo.svg": "/static/media/icon_yangdo.527296a35396680a1a82a44b268c50c9.svg",
     "static/media/icon_time.svg": "/static/media/icon_time.ccecdf81d8e8293bf45d815b18307609.svg",
     "static/media/icon_card.svg": "/static/media/icon_card.b5c6e916843a189821e4029c0bc67691.svg",
-    "main.c5ef6a25.css.map": "/static/css/main.c5ef6a25.css.map",
-    "main.c4db997a.js.map": "/static/js/main.c4db997a.js.map",
+    "main.5e2de3e1.css.map": "/static/css/main.5e2de3e1.css.map",
+    "main.e71368b4.js.map": "/static/js/main.e71368b4.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5ef6a25.css",
-    "static/js/main.c4db997a.js"
+    "static/css/main.5e2de3e1.css",
+    "static/js/main.e71368b4.js"
   ]
 }

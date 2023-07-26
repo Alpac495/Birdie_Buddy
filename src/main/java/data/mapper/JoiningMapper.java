@@ -3,6 +3,7 @@ package data.mapper;
 import data.dto.JoiningDto;
 import data.dto.JoinmemberDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ public interface JoiningMapper {
 
     public void updateJoin(JoiningDto dto);
 
-    public List<JoiningDto> getJoiningList();
-
+//    public List<JoiningDto> getJoiningList();
+    public List<JoiningDto> getlistWithPaging(@Param("offset") int offset, @Param("size") int size);
     public List<JoiningDto> getMakeJoinList(int unum);
 
     public List<JoiningDto> getRequestJoinList(int unum);

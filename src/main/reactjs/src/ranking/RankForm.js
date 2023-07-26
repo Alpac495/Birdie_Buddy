@@ -1,7 +1,7 @@
 import "./RankForm.css";
 import "../header/Header.css";
 import Header from "../header/Header";
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Modal from '../components/Modal';
 import axios from "axios";
@@ -22,9 +22,9 @@ const RankForm = () => {
                 setData(res.data);
             });
     };
-    const unumchk=()=>{
-        axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
+    const unumchk = () => {
+        axios.get("/login/unumChk?unum=" + unum)
+            .then(res => {
                 console.log(res.data)
                 setUnum(res.data);
             })
@@ -44,7 +44,7 @@ const RankForm = () => {
     const selectGolfjang = (e, idx) => {
         console.log(idx)
         setGname(e.target.innerText);
-        setGnum(idx+1)
+        setGnum(idx + 1)
         axios.get('/score/getGpar?gnum=' + (idx + 1))
             .then(res => {
                 console.log(res.data)
@@ -57,6 +57,7 @@ const RankForm = () => {
                     }
                 }
                 setP(updatedP);
+                setS(updatedP);
                 console.log(updatedP)
             })
         {
@@ -65,15 +66,15 @@ const RankForm = () => {
     }
 
     const saveScore = () => {
-        if(gnum==''){
+        if (gnum == '') {
             alert("골프장을 선택해 주세요")
             return;
         }
-        axios.post('/score/saveScore', {s, unum, gnum})
+        axios.post('/score/saveScore', { s, unum, gnum })
             .then(res => {
-                alert("일단 성공")
+                alert("일단 성공. 나중에 이동시킬것.")
             })
-            .catch(error=>{
+            .catch(error => {
                 console.log(error);
             })
     }
@@ -115,23 +116,41 @@ const RankForm = () => {
         }
         setN(prevN => prevN + 1);
     };
+    const score2 = () => {
+        if (n > 0 && n <= 18) {
+            const score =  s[n - 1] - p[n - 1];
+            return score === -6 ? "피닉스(Phoenix)"
+            : score === -5 ? "오스트리치(Ostrich)"
+            : score === -4 ? "콘도르(Condor)"
+            : score === -3 ? "알바트로스(Albatross)"
+            : score === -2 ? "이글(Eagle)"
+            : score === -1 ? "버디(Birdie)"
+            : score === 0 ? "파(Par)"
+            : score === 1 ? "보기(Bogey)"
+            : score === 2 ? "더블 보기(Double bogey)"
+            : score === 3 ? "트리플 보기(Triple bogey)"
+            : score === 4 ? "쿼드러플 보기(Quaaruple bogey)"
+            : score
+        }
+        return 0; // Return 0 if n is out of bounds (not between 1 and 18)
+    };
 
     return (
         <div className="rankform">
             <div>
-                <Header/>
+                <Header />
             </div>
             <button className="select_golf" onClick={openModal}>골프장선택</button>
             <div className="selected_golfname">{gname}</div>
             <Modal open={modalOpen} close={closeModal} header="골프장 선택">
                 <div >
-                    <input style={{marginLeft: '20px'}}
-                           type="text"
-                           placeholder="검색"
-                           onChange={(e) => {
-                               setSearchTerm(e.target.value);
-                           }}/>
-                    <br/><br/>
+                    <input style={{ marginLeft: '20px' }}
+                        type="text"
+                        placeholder="검색"
+                        onChange={(e) => {
+                            setSearchTerm(e.target.value);
+                        }} />
+                    <br /><br />
                     <ul>
                         {
                             data.map &&
@@ -144,72 +163,73 @@ const RankForm = () => {
                             }).slice(0, 5).map((item, idx) =>
                                 <span onClick={(e) => {
                                     selectGolfjang(e, idx)
-                                }}><li>{item.gname}</li><br/></span>
+                                }}><li>{item.gname}</li><br /></span>
                             )}
                     </ul>
                 </div>
             </Modal>
             <table className={'scoretable'}>
                 <tbody>
-                <tr>
-                    <td className={'firsttd'}>HOLE</td>
-                    {h.slice(0, 9).map((hole, index) => (
-                        
-<td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
-                            {hole}
-                        </td>
-                    ))}
-                </tr>
-                <tr>
-                    <td className={'firsttd'}>PAR</td>
-                    {p.slice(0, 9).map((par, index) => (
-                        
-                    <td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
-                            {par}
-                        </td>
-                    ))}
-                </tr>
-                <tr>
-                    <td className={'firsttd'}>SCORE</td>
-                    {s.slice(0, 9).map((score, index) => (
-                        
-                        <td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
-                            {score}
-                        </td>
-                    ))}
-                </tr>
+                    <tr>
+                        <td className={'firsttd'}>HOLE</td>
+                        {h.slice(0, 9).map((hole, index) => (
+
+                            <td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
+                                {hole}
+                            </td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td className={'firsttd'}>PAR</td>
+                        {p.slice(0, 9).map((par, index) => (
+
+                            <td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
+                                {par}
+                            </td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td className={'firsttd'}>SCORE</td>
+                        {s.slice(0, 9).map((score, index) => (
+
+                            <td key={index} className={n === index + 1 ? 'tdbg numpad' : 'numpad'}>
+                                {score}
+                            </td>
+                        ))}
+                    </tr>
                 </tbody>
             </table>
-            <br/>
+            <br />
             <table className={'scoretable'}>
                 <tbody>
-                <tr>
-                    <td className={'firsttd'}>HOLE</td>
-                    {h.slice(9, 18).map((hole, index) => (
-                        <td key={index} className={n === index + 10 ? 'tdbg' : ''}>
-                            {hole}
-                        </td>
-                    ))}
-                </tr>
-                <tr>
-                    <td className={'firsttd'}>PAR</td>
-                    {p.slice(9, 18).map((par, index) => (
-                        <td key={index} className={n === index + 10 ? 'tdbg' : ''}>
-                            {par}
-                        </td>
-                    ))}
-                </tr>
-                <tr>
-                    <td className={'firsttd'}>SCORE</td>
-                    {s.slice(9, 18).map((score, index) => (
-                        <td key={index} className={n === index + 10 ? 'tdbg' : ''}>
-                            {score}
-                        </td>
-                    ))}
-                </tr>
+                    <tr>
+                        <td className={'firsttd'}>HOLE</td>
+                        {h.slice(9, 18).map((hole, index) => (
+                            <td key={index} className={n === index + 10 ? 'tdbg' : ''}>
+                                {hole}
+                            </td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td className={'firsttd'}>PAR</td>
+                        {p.slice(9, 18).map((par, index) => (
+                            <td key={index} className={n === index + 10 ? 'tdbg' : ''}>
+                                {par}
+                            </td>
+                        ))}
+                    </tr>
+                    <tr>
+                        <td className={'firsttd'}>SCORE</td>
+                        {s.slice(9, 18).map((score, index) => (
+                            <td key={index} className={n === index + 10 ? 'tdbg' : ''}>
+                                {score}
+                            </td>
+                        ))}
+                    </tr>
                 </tbody>
             </table>
-            <hr style={{height: '3px', backgroundColor: 'rgba(0, 0, 0, 0)', margin: '10px 0'}}/>
+            <h1>{score2()}</h1>
+            <hr style={{ height: '3px', backgroundColor: 'rgba(0, 0, 0, 0)', margin: '10px 0' }} />
             <div className={'ranking_btnwrap'}>
                 <div className={'ranking_hole'}>
                     <button onClick={minusHole}>

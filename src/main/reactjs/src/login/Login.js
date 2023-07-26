@@ -1,19 +1,46 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import './Login.css';
 import Naver from "./Naver";
 import Kakao from "./Kakao"
 import logo from "../image/logo_main.svg"
-import {FormControlLabel, Switch} from "@mui/material";
+import { FormControlLabel, Switch } from "@mui/material";
+
 
 function Login(props) {
-
     const [uemail, setUemail] = useState('');
     const [upass, setUpass] = useState('');
     const [saveemail, setSaveemail] = useState(false);
     const navi = useNavigate();
     const emailRef = useRef();
+
+
+    //kakao
+    const CLIENT_ID = "e1c40d8c3604fc88b3261a8776aa4d52";
+    const REDIRECT_URI = "http://localhost:3000/login/kcallback";
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
+    const kakaoLogin = () => window.location.href = kakaoURL;
+
+    //naver
+    useEffect(() => {
+        const naverLogin = new window.naver.LoginWithNaverId({
+            clientId: 'AmX1zvlO8VFKoSiQZoaz',
+            callbackUrl: 'http://localhost:3000/login/ncallback',
+            isPopup: false,
+            loginButton: { color: 'green', type: 3, height: 40 },
+        });
+        naverLogin.init();
+    }, []);
+
+    const handleNaverLogin = () => {
+        if (document &&
+            document?.querySelector("#naverIdLogin")?.firstChild &&
+            window !== undefined) {
+            const loginBtn = document.getElementById("naverIdLogin")?.firstChild;
+            loginBtn.click();
+        }
+    }
 
     const ouSubmitEvent = (e) => {
         e.preventDefault();
@@ -56,43 +83,52 @@ function Login(props) {
     }
 
     return (
-        <div className={'Login_div1'}>
-            <img src={logo} alt={''}/>
-            <div className={'Login_div2'}>
-                <form onSubmit={ouSubmitEvent}>
-                    <input className={'Login_greenbox'} type={'text'} required placeholder='ID'
-                           onChange={(e) => setUemail(e.target.value)}
-                           value={uemail}/><br/><br/>
-                    <input className={'Login_greenbox'} type={'password'} required placeholder='Pass'
-                           onChange={(e) => setUpass(e.target.value)}
-                           value={upass}/><br/>
-                    <div className={'Login_div3'}>
-                        <FormControlLabel
-                            control={
-                                localStorage.uemail != null ? 
-                                <Switch ref={emailRef} onChange={toggle} defaultChecked/>
-                                :
-                                <Switch ref={emailRef} onChange={toggle}/>
-                            }
-                            label="이메일저장"
-                        />
-                        <span>
-                            <span className={''} type={'button'} onClick={searchID}>ID찾기</span> /
-                            <span className={''} type={'button'} onClick={searchPass}>PASS찾기</span> /
-                            <span className={''} type={'button'} onClick={sign}>회원가입</span>
-                        </span>
-                    </div>
-                    <button className={'Login_greenbox Login_loginbtn'} type={'submit'} onClick={ouSubmitEvent}>
-                        로그인
-                    </button>
-                </form>
-                <br/>
-                <div style={{display: 'flex'}}>
-                    <Kakao/><Naver/>
+        <div className="LGlogin">
+            <div className="LGyour-id-wrapper">
+                <input className={'LGyour-id'} type={'text'} required placeholder='ID'
+                    onChange={(e) => setUemail(e.target.value)}
+                    value={uemail} />
+            </div>
+            <div className="LGyour-password-wrapper">
+                <input className={'LGyour-password'} type={'password'} required placeholder='Pass'
+                    onChange={(e) => setUpass(e.target.value)}
+                    value={upass} />
+            </div>
+            <FormControlLabel
+                className="LGlogin-child"
+                control={
+                    localStorage.uemail != null ?
+                        <Switch ref={emailRef} onChange={toggle} defaultChecked />
+                        :
+                        <Switch ref={emailRef} onChange={toggle} />
+                }
+            /><div className="LGdiv">아이디 저장</div>
+            <div className="LGwrapper">
+                <div onClick={ouSubmitEvent} className="LGdiv1">로그인</div>
+            </div>
+            <div className="LGlogin-inner">
+                <div className="LGparent" onClick={handleNaverLogin}>
+                    <div id="naverIdLogin" style={{ display: 'none' }}></div>
+                    <div className="LGdiv2">네이버 로그인</div>
+                    <img className="LGicon-naver" alt="" src="" />
+                </div>
+            </div>
+            <img className="LGicon" alt="" src="" />
+            <div className="LGgroup">
+                <div onClick={searchPass} className="LGdiv3">비밀번호 찾기</div>
+                <div onClick={searchID} className="LGdiv4">아이디 찾기</div>
+                <div onClick={sign} className="LGdiv5">회원가입</div>
+                <div className="LGgroup-child" />
+                <div className="LGgroup-item" />
+            </div>
+            <div className="LGgroup-div">
+                <div className="LGcontainer" onClick={kakaoLogin}>
+                    <div className="LGdiv2" >카카오 로그인</div>
+                    <img className="LGicon-kakao" alt="" src="" />
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Login;

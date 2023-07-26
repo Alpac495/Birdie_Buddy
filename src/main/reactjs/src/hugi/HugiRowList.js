@@ -286,7 +286,7 @@ function HugiRowList(props) {
     const fetchPostUserNickname = async (unum) => {
         if (unum) {
             try {
-                const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
+                const res = await Axios.get(`/hugi/getUser/${unum}`);
                 const Unickname = res.data;
 
                 if (Unickname) {
@@ -303,18 +303,18 @@ function HugiRowList(props) {
         }
     };
     const fetchUserPhoto = (unum) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 setUphoto(userPhoto);
             })
             .catch((error) => {
-                console.log('Error fetching user photo:', error);
+               // console.log('Error fetching user photo:', error);
             });
     };
 // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchCommentUserPhoto = (unum, comment) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // comment 객체에 댓글 작성자의 프로필 사진 정보 추가
@@ -323,13 +323,13 @@ function HugiRowList(props) {
                 setComments((prevComments) => [...prevComments]); // 댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-                console.log('Error fetching comment user photo:', error);
+                //console.log('Error fetching comment user photo:', error);
             });
     };
 
 // 대댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchReplyUserPhoto = (unum,reply) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // reply 객체에 대댓글 작성자의 프로필 사진 정보 추가
@@ -338,7 +338,7 @@ function HugiRowList(props) {
                 setComments((prevComments) => [...prevComments]); // 대댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-                console.log('Error fetching reply user photo:', error);
+               // console.log('Error fetching reply user photo:', error);
             });
     };
     // handleClickDetail 함수: 게시물 상세 페이지 이동 이벤트 처리 함수
@@ -404,7 +404,7 @@ function HugiRowList(props) {
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
         try {
-            const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
+            const res = await Axios.get(`/hugi/getUser/${unum}`);
             const userNickname = res.data;
             if (userNickname) {
                 const newComment = {
