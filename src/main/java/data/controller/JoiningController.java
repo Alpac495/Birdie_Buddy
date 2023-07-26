@@ -2,6 +2,7 @@ package data.controller;
 
 import data.dto.JoiningDto;
 import data.dto.JoinmemberDto;
+import data.dto.UserDto;
 import data.mapper.JoiningMapper;
 import data.service.JoiningService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,18 @@ public class JoiningController {
         joiningService.updateJoin(dto);
     }
 
+//    @GetMapping("/list")
+//    public List<JoiningDto> list() {
+//        List<JoiningDto> list = joiningService.getJoiningList();
+//        return list;
+//    }
     @GetMapping("/list")
-    public List<JoiningDto> list() {
-        List<JoiningDto> list = joiningService.getJoiningList();
+    public List<JoiningDto> list(int page, int size) {
+        System.out.println("스크롤>>");
+        int offset = (page - 1) * size;
+        List<JoiningDto> list = joiningMapper.getlistWithPaging(offset, size);
         return list;
     }
-
     @GetMapping("/makejoinlist")
     public List<JoiningDto> makeJoinlist(int unum) {
         List<JoiningDto> makejoinlist = joiningService.getMakeJoinList(unum);

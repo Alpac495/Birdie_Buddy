@@ -6,9 +6,10 @@ function ChatRoom() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
-    const { channelId } = useParams();
+    const { cunum, channelId } = useParams();
     const [unum, setUnum]=useState('');
     const [data, setData] = useState('');
+    const [data2, setData2] = useState('');
     
     const unumchk = async () => {
         try {
@@ -18,6 +19,10 @@ function ChatRoom() {
             const url = "/chating/getuserinfo?unum=" + res1.data;
             const res2 = await Axios.get(url);
             setData(res2.data);
+
+            const url2 = "/chating/getuserinfo?unum=" + cunum;
+            const res3 = await Axios.get(url2);
+            setData2(res3.data);
             
     
             const chat = new ncloudchat.Chat();
@@ -40,9 +45,11 @@ function ChatRoom() {
                 profile: 'https://image_url',
                 customField: 'json',
             });
-            await chat.addUsers(channelId, [res2.data.uemail,'park','Admin']);
-            // const existingChannelId = channelId;
+
             await chat.subscribe(channelId);
+            // await chat.addUsers(channelId, [res2.data.uemail, res3.data.uemail]);
+            // const existingChannelId = channelId;
+            
             const fetchedMessages = await fetchChannelMessages(chat, channelId);
             setMessages(fetchedMessages);
         } catch (error) {
@@ -54,6 +61,22 @@ function ChatRoom() {
     useEffect(() => {
         unumchk();
     }, []);
+
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+    
+        window.addEventListener('beforeunload', disconnectChat);
+    
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
     
     const fetchChannelMessages = async (chat, channelId) => {
         try {
@@ -97,6 +120,7 @@ function ChatRoom() {
                 if (!nc) {
                     throw new Error('Chat is not initialized');
                 }
+                // await nc.subscribe(channelId);
                 const response = await nc.sendMessage(channelId, {
                     type: 'text',
                     message: userInput,
@@ -110,10 +134,25 @@ function ChatRoom() {
         }
     };
     console.log(messages)
+
+    const handleLeaveChat = async () => {
+        if (!nc) {
+            console.error('Chat is not initialized');
+            return;
+        }
+        try {
+            await nc.unsubscribe(channelId);
+            // 여기서 필요한 다른 처리를 할 수 있습니다.
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <div>
             <div className="chat-messages" id="chat-messages" style={{ width: '360px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
-                {messages.slice().reverse().map((message) => (
+                {messages.map &&
+                messages.slice().reverse().map((message) => (
                     <div key={message.id} style={{ textAlign: message.sender.name == data.unickname ? 'right' : 'left', margin: '10px' }}>
                         <div style={{ backgroundColor: message.sender.name == data.unickname ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
                             <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>{message.sender.name}</div>
@@ -131,6 +170,8 @@ function ChatRoom() {
                     onChange={handleUserInput}
                 />
                 <button type="submit">Send</button>
+                <button onClick={handleLeaveChat}>채팅방 나가기</button>
+
             </form>
         </div>
     );

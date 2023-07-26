@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash"
 import Axios from "axios";
 import "./YangdoList.css";
+import axios from 'axios';
 
 function YangdoList(props) {
     const [items, setItems] = useState([]);
@@ -13,7 +14,7 @@ function YangdoList(props) {
     const fetchMoreData = () => {
         setLoading(true);
         Axios
-            .get(`/yangdo/list2?page=${page}&size=5`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+            .get(`/yangdo/list2?page=${page}&size=7`) // size=페이지 당 n개의 아이템을 요청하도록 수정
             .then((res) => {
                 setItems((prevItems) => [...prevItems, ...res.data]);
                 setPage((prevPage) => prevPage + 1);
@@ -24,9 +25,9 @@ function YangdoList(props) {
                 setLoading(false);
             });
     }
-    const [unum, setUnum] = useState(0);
+    const [unum, setUnum] = useState('');
     const unumchk = () => {
-        Axios.get("/login/unumChk?unum=" + unum)
+        Axios.get("/login/unumChk")
             .then(res => {
                 setUnum(res.data);
             })
@@ -37,10 +38,7 @@ function YangdoList(props) {
         unumchk()
     }, []);
 
-    const { currentPage } = useParams();
-    console.log({ currentPage });
 
-    
 
     const navi = useNavigate();
 
@@ -59,14 +57,36 @@ function YangdoList(props) {
             alert("로그인을 해주세요");
             return; // 이동을 막기 위해 함수 실행을 중단
         } else {
-            navi(`/yangdo/detail/${ynum}/${currentPage}`);
+            navi(`/yangdo/detail/${ynum}`);
+        }
+    }
+    const search = () => {
+        axios.get("/yangdo/searchList?keyword=" + keyword)
+            .then(res => {
+                setItems(res.data);
+                setPage((prevPage) => prevPage + 1);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                setLoading(false);
+            });
+    }
+    const mylist = () => {
+        if (unum == 0) {
+            alert("로그인을 해주세요");
+            return; // 이동을 막기 위해 함수 실행을 중단
+        } else {
+            navi(`/mypage/myyangdo/${unum}`)
         }
     }
 
+
     return (
         <div>
-            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>
-            <br/>
+            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>&nbsp;
+            <button type='button' onClick={mylist}>내 양도</button>
+            <br />
 
             <div>
                 <input
@@ -75,7 +95,7 @@ function YangdoList(props) {
                     value={keyword}
                     onChange={(e) => {
                         setKeyword(e.target.value);
-                    }} />
+                    }} /><button onClick={search}>검색</button>
                 <br /><br />
                 <InfiniteScroll
                     dataLength={items.length}
@@ -85,24 +105,24 @@ function YangdoList(props) {
                     endMessage={null}
                 >
                     {
-                    items &&
-                    items.map((row, idx) =>
-                        <div style={{border:'2px solid black', width:'200px'}}>
-                            <b onClick={(e) => {
-                                e.preventDefault();
-                                onDetailEvent(row.ynum);
-                            }}>{row.yplace}
-                            </b><br />
+                        items &&
+                        items.map((row, idx) =>
+                            <div style={{ border: '2px solid black', width: '200px' }}>
+                                <b onClick={(e) => {
+                                    e.preventDefault();
+                                    onDetailEvent(row.ynum);
+                                }}>{row.yplace}
+                                </b><br />
 
-                            <b>{row.yday}</b><br />
-                            <b>{row.ysubject}</b><br />
-                            <b>{row.yprice}원</b><br />
-                            <b>{row.unickname}</b><br />
-                        </div>
-                    )
-                }
+                                <b>{row.yday}</b><br />
+                                <b>{row.ysubject}</b><br />
+                                <b>{row.yprice}원</b><br />
+                                <b>{row.unickname}</b><br />
+                            </div>
+                        )
+                    }
                 </InfiniteScroll>
-           
+
             </div>
         </div>
     );

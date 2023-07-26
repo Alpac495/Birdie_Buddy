@@ -23,4 +23,6 @@ public class YangdoDto {
     private String uage;
     private String uphoto;
     private String ugender;
+
+    private String keyword;
 }
