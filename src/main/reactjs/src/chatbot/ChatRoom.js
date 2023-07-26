@@ -61,6 +61,22 @@ function ChatRoom() {
     useEffect(() => {
         unumchk();
     }, []);
+
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+    
+        window.addEventListener('beforeunload', disconnectChat);
+    
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
     
     const fetchChannelMessages = async (chat, channelId) => {
         try {
@@ -118,6 +134,20 @@ function ChatRoom() {
         }
     };
     console.log(messages)
+
+    const handleLeaveChat = async () => {
+        if (!nc) {
+            console.error('Chat is not initialized');
+            return;
+        }
+        try {
+            await nc.unsubscribe(channelId);
+            // 여기서 필요한 다른 처리를 할 수 있습니다.
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <div>
             <div className="chat-messages" id="chat-messages" style={{ width: '360px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
@@ -140,6 +170,8 @@ function ChatRoom() {
                     onChange={handleUserInput}
                 />
                 <button type="submit">Send</button>
+                <button onClick={handleLeaveChat}>채팅방 나가기</button>
+
             </form>
         </div>
     );

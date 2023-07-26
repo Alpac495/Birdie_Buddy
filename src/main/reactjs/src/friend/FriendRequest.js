@@ -40,7 +40,7 @@ function FriendRequest(props) {
                 Axios.get(`/friend/acceptfriend/${unum}&${funum}`)
                     .then(res => {
                         alert("버디 추가 완료. 버디 리스트에서 확인하세요.");
-                        window.location.replace(`/friend/requestlist/${unum}`);
+                        window.location.replace(`/friend/requestlist`);
                     })
                     .catch(err => {
                         console.log(err.message);

@@ -61,7 +61,21 @@ const NCloudChatRoomList = () => {
     console.log("unickname:"+unickname);
     console.log(channels)
 
-
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+    
+        window.addEventListener('beforeunload', disconnectChat);
+    
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
 
 
     // 마지막 메시지 가져오는 함수
@@ -82,6 +96,7 @@ const NCloudChatRoomList = () => {
     const handleChannelSelect = async (channelId) => {
         setSelectedChannel(channelId);
         if (nc) {
+        await nc.subscribe(channelId);
         await nc.disconnect();           
         navigate(`/chating/room/${channelId}/${unum}`);
         }
@@ -110,14 +125,8 @@ const NCloudChatRoomList = () => {
                     <li  >
                         <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
                             <div onClick={() => handleChannelSelect(channel.chatid)}>
-                                {channel.unum}&{channel.cunum}
+                                {channel.unum}&{channel.cunum}의 채팅방
                             </div>
-                            {/* {channel.node.lastMessage && (
-                                <div>
-                                    <p>Last Message: {channel.node.lastMessage.content}</p>
-                                    <p>Sender: {channel.node.lastMessage.sender.name}</p>
-                                </div>
-                            )} */}
                         </div>
                     </li>
                 ))}

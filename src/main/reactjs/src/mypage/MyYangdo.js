@@ -1,125 +1,104 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
-import Axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
 
 function MyYangdo(props) {
-
-    // const [unum, setUnum] = useState(0);
-    // const unumchk = () => {
-    //     Axios.get("/login/unumChk?unum=" + unum)
-    //         .then(res => {
-    //             setUnum(res.data);
-    //         })
-    // }
-
-    // useEffect(() => {
-    //     unumchk()
-    // }, [])
-
-    const {unum} = useParams();
-
-    const [data, setData] = useState([]);
-
-    const { currentPage } = useParams();
-    console.log({ currentPage });
-
-    const [searchTerm, setSearchTerm] = useState("");
-
+    const [unum, setUnum] = useState('');
+    const [keyword, setKeyword] = useState('');
+    const [items, setItems] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const navi = useNavigate();
-
-    // 페이징 처리에 필요한 데이터 가져오기
-    const list = () => {
-
-        // controller로 데이터를 보내는 과정
-        const url = "/yangdo/myyangdo?unum=" + unum + "&currentPage=" + (currentPage == null ? 1 : currentPage);
-
-        Axios.get(url)
+    const fetchMoreData = () => {//수정
+        axios.get("/login/unumChk")
             .then(res => {
-                setData(res.data);
-                console.log("test:" + res.data.length)
+                setUnum(res.data);
+                setLoading(true);
+                axios
+                    .get(`/yangdo/myyangdoList?unum=${res.data}&page=${page}&size=3`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .then((res) => {
+                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        console.log(items);
+                        console.log(res.data);
+                        setPage((prevPage) => prevPage + 1);
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                        setLoading(false);
+                    });
             })
     }
 
+
     useEffect(() => {
-        list();
-    }, [currentPage]);   // currentPage가 변경될 때 마다 호출
+        fetchMoreData()
+    }, []);
 
     const onDetailEvent = (ynum) => {
-        navi(`/mypage/myyangdodetail/${ynum}/${currentPage}`);
+        navi(`/mypage/myyangdodetail/${ynum}`);
     }
-
+    const search = () => {
+        axios.get("/yangdo/myyangdoListSearch?unum="+unum+"&keyword=" + keyword)
+            .then(res => {
+                setItems(res.data);
+                setPage((prevPage) => prevPage + 1);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                setLoading(false);
+            });
+    }
+    const allList = () => {
+        navi(`/yangdo/list`)
+    }
+    const onWriteButtonEvent = () => {
+        navi("/yangdo/form");
+    }
     return (
         <div>
-            <h5>총 {data.totalCount}개</h5>
-
+            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>&nbsp;
+            <button type='button' onClick={allList}>양도 전체</button>
+            <br />
             <div>
                 <input
                     type="text"
                     placeholder="검색"
+                    value={keyword}
                     onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                    }} 
-                />
+                        setKeyword(e.target.value);
+                    }} /><button onClick={search}>검색</button>
 
-                <br/><br/>
-                {
-                    data.list && unum != 0 &&
-                    data.list.filter((val) => {
-                        if (searchTerm == "") {
-                            return val
-                        } else if (val.yplace.includes(searchTerm)) {
-                            return val
-                        }
-                    }).map((row, idx) =>
-                    
-                    <div>
-                        <b onClick={(e)=>{
-                            e.preventDefault();
-                            onDetailEvent(row.ynum);
-                        }}>{row.yplace}</b><br/>
-                        
-                        <b>{row.yday}</b><br />
-                        <b>{row.ysubject}</b><br />
-                        <b>{row.yprice.toLocaleString()}원</b><br />
-                        <b>{row.unickname}</b><br />
-                    </div>
-                    )
-                }
+                <br /><br />
+                <InfiniteScroll
+                    dataLength={items.length}
+                    next={fetchMoreData}
+                    hasMore={true}
+                    loader={<h4>마지막</h4>}
+                    endMessage={null}
+                >
+                    {
+                        items &&
+                        items.map((row, idx) =>
+                            <div style={{ border: '2px solid black', width: '200px' }}>
+                                <b onClick={(e) => {
+                                    e.preventDefault();
+                                    onDetailEvent(row.ynum);
+                                }}>{row.yplace}
+                                </b><br />
+
+                                <b>{row.yday}</b><br />
+                                <b>{row.ysubject}</b><br />
+                                <b>{row.yprice}원</b><br />
+                                <b>{row.unickname}</b><br />
+                            </div>
+                        )
+                    }
+                </InfiniteScroll>
             </div>
-
-            <div style={{ width: '800px', textAlign: 'center' }}>
-
-                {/* 페이징 처리 */}
-                {
-                    // 이전
-                    data.startPage > 1 ?
-                        <Link to={`/mypage/myyangdo/${unum}/${data.startPage - 1}`}
-                            style={{ textDecoration: 'none', marginRight: '10px', cursor: 'pointer' }}>이전</Link> : ''
-                }
-
-                {
-                    data.parr &&
-                    data.parr.map((pno, i) =>
-
-                        <NavLink to={`/mypage/myyangdo/${unum}/${pno}`} style={{ textDecoration: 'none' }}>
-                            <b style={{
-                                marginRight: '10px',
-                                color: pno == currentPage ? '#58FAAC' : 'black'
-                            }}>{pno}</b>
-                        </NavLink>
-                    )
-                }
-
-                {
-                    // 다음 
-                    data.endPage < data.totalPage ?
-                        <Link to={`/mypage/myyangdo/${unum}/${data.endPage + 1}`}
-                            style={{ textDecoration: 'none', cursor: 'pointer' }}>다음</Link> : ''
-                }
-
-            </div>
-         </div>
+        </div>
     );
 }
-
 export default MyYangdo;

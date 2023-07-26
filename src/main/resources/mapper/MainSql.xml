@@ -1,0 +1,37 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.MainMapper">
+
+    <select id="getFriendList" parameterType="int" resultType="FriendDto">
+         SELECT *,
+               (SELECT ugender FROM user WHERE unum = friend.funum) AS ugender,
+               (SELECT uage FROM user WHERE unum = friend.funum) AS uage,
+               (SELECT uname FROM user WHERE unum = friend.funum) AS uname,
+               (SELECT unickname FROM user WHERE unum = friend.funum) AS unickname,
+               (SELECT uphoto FROM user WHERE unum = friend.funum) AS uphoto
+        FROM friend
+        WHERE (unum = #{unum} AND faccept = 1)
+        OR (funum = #{unum} AND faccept = 0)
+        ORDER BY fnum;
+    </select>
+
+    <select id="getUserList" parameterType="int" resultType="UserDto">
+        SELECT u.*, s.stasu
+        FROM user u
+        LEFT JOIN score s ON u.unum = s.unum
+        WHERE u.ublacklist = 0 AND u.unum != 1 AND u.unum = #{unum};
+    </select>
+
+    <select id="getAllUserList" resultType="UserDto">
+        SELECT u.*, r.rtasu
+        FROM user u
+        LEFT JOIN ranking r ON u.unum = r.unum
+        WHERE u.ublacklist = 0 AND u.unum != 1;
+    </select>
+
+    <select id="getHugiList" resultType="HugiDto">
+        SELECT h.*,u.unickname , u.uphoto
+        FROM hugi h
+        INNER JOIN user u ON h.unum = u.unum
+        ORDER BY h.hlike DESC
+    </select>
+</mapper>

@@ -13,7 +13,7 @@ function PassChange(props) {
     const [newpass, setNewpass] = useState('');
     const [imsipass, setImsipass] = useState('');
     const [upassok, setUpassok] = useState('');
-    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{1,16}$/;
+    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
     const navi = useNavigate();
     const getUserInfo = () => {
         axios.get("/login/getUserInfo")
@@ -43,7 +43,7 @@ function PassChange(props) {
             alert("새로운 비밀번호가 일치하지 않습니다")
             return;
         } else if (!regex.test(upass)) {
-            alert("비밀번호는 16자리 이하로 영어/숫자를 포함해야 합니다.");
+            alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
             return;
         } else {
             if (!chk) {

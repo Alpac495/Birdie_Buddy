@@ -1,4 +1,5 @@
-.list {
+
+.HG_list {
     max-width:360px;
     max-height:100%;
     background-color: white;
@@ -6,7 +7,7 @@
     margin-bottom: 25px;
     padding: 3px;
 }
-.list_detail{
+.HG_list_detail{
     max-width:360px;
     max-height:100%;
     background-color: white;
@@ -14,19 +15,19 @@
     margin:auto;
     padding: 5px;
 }
-.list_image {
+.HG_list_image {
     width: 100%;
     height: auto; /* 원하는 크기로 조정하세요 */
     object-fit: cover;
     cursor: pointer;
 }
-.list_detailimage {
+.HG_list_detailimage {
     width: 100%;
     height: auto; /* 원하는 크기로 조정하세요 */
     object-fit: cover;
 
 }
-.list_text {
+.HG_list_text {
     height:100%;
     font-weight: normal;
     text-align: left;
@@ -34,19 +35,19 @@
     white-space: pre-wrap;
     font-size: 13px;
 }
-.list_header {
+.HG_list_header {
     display: flex;
     align-items: center;
     padding: 12px 12px;
 }
-.list_avatar {
+.HG_list_avatar {
     margin-right:5px;
     margin-top: 5px;
     width: 30px;
     height: 30px;
     cursor: pointer;
 }
-.list_avatar_Comment1 {
+.HG_list_avatar_Comment1 {
     position: relative;
     bottom: 20px;
     right:20px;
@@ -54,7 +55,7 @@
     height: 30px;
     cursor: pointer;
 }
-.list_avatar_Comment2 {
+.HG_list_avatar_Comment2 {
     position: relative;
     bottom:5px;
     left:10px;
@@ -62,7 +63,7 @@
     height: 25px;
     cursor: pointer;
 }
-.list_avatar_Reply {
+.HG_list_avatar_Reply {
     position: relative;
     top:5px;
     right:5px;
@@ -71,7 +72,7 @@
     cursor: pointer;
 
 }
-.primary_button {
+.HG_button {
     background-color: RGB(137 225 164);
     border-radius: 4px;
     color: black;
@@ -80,7 +81,7 @@
     font-size: 12px;
     text-align: center;
 }
-.primary_button_Comment {
+.HG_button_Comment {
     background-color: RGB(137 225 164);
     border-radius: 4px;
     color: black;
@@ -91,7 +92,8 @@
     width: 30%;
     borderRadius: 5px;
 }
-.primary_button_Reply {
+.HG_button_Reply {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     background-color: RGB(137 225 164);
     color: black;
     padding: 5px 5px;
@@ -100,71 +102,75 @@
     text-align: center;
     border-radius: 5px;
     width:33%;
-    height:31px;
+    height:40px;
     resize:none;
 }
-.CommentAlert{
+
+.HG_CommentAlert{
+    font-size:12px;
     margin-top: 5px;
     margin-left: 12px;
     color: red;
 }
-.ReplyAlert{
+.HG_ReplyAlert{
+    font-size:12px;
     margin-bottom: 5px;
     margin-left: 15px;
     color:red;
 }
 
-.Icons{
+.HG_Icons{
     cursor: pointer;
     margin-left: 20px;
     display: flex;
 }
-.IconsZone{
+.HG_IconsZone{
     width: 100%;
     margin-bottom: 10px;
     margin-left: 5px;
 }
-.Click_ReplyForm{
+.HG_Click_ReplyForm{
     position:relative;
-    left:48px;
-    bottom: 32px;
+    left:34px;
+    bottom: 43px;
     cursor:pointer;
     color:blue;
     text-decoration: none;
     font-size: 12px;
 }
-.Comment_Reply_List{
+.HG_Comment_Reply_List{
     margin-left: 10px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
-.spanRhwriteday{
+.HG_spanRhwriteday{
     position: relative;
-    left: 38px;
-    bottom: 33px;
+    left: 23px;
+    bottom: 44px;
     font-size: 7px;
 }
-.preComment{
+.HG_preComment{
     width: 100%;
     height: 100%;
     border: 1px solid lightgray;
     border-radius: 5px;
 
 }
-.preRhcontent{
+.HG_preRhcontent{
     position: relative;
     width:100px;
     height: 100%;
-    bottom: 38px;
-    left: 120px;
+    bottom: 37px;
+    left: 142px;
     font-size: 14px;
     white-space: pre-wrap;
     word-break: break-all;
     overflow: auto;
 
 }
-.preReplyRhcontent{
+.HG_preReplyRhcontent{
     position: relative;
     bottom: 47px;
-    left: 120px;
+    left: 130px;
     width:80px;
     height: 100%;
     font-size: 13px;
@@ -173,10 +179,10 @@
     overflow: auto;
 
 }
-.detail_preReplyRhcontent{
+.HG_detail_preReplyRhcontent{
     position: relative;
     bottom: 47px;
-    left: 120px;
+    left: 135px;
     width:100px;
     height: 100%;
     font-size: 13px;
@@ -184,60 +190,61 @@
     word-break: break-all;
     overflow: auto;
 }
-.spanWriteday{
+.HG_spanWriteday{
     marginLeft: 10px;
     color: gray;
 }
-.spanCommentList{
+.HG_spanCommentList{
     position: relative;
     bottom:58px;
     left: 23px;
     font-size:18px;
     font-weight: bold;
+
 }
 
-.spanName{
+.HG_spanName{
     position: relative;
     left:5px;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
 }
-.Delete_Icon{
+.HG_Delete_Icon{
     position: relative;
-    bottom: 47px;
-    left:80px;
+    bottom: 62px;
+    left:60px;
     font-size: 15px;
     zoom: 0.7;
     cursor: pointer;
 }
-.Dialog_div{
+.HG_Dialog_div{
     width: 100%;
     max-width: 360px;
     height: 550px;
     overflow-x: hidden;
-
 }
-.Dialog_Title{
+.HG_Dialog_Title{
     margin-top: 20px;
     padding: 20px 20px;
     width: 250px;
     height:40px;
 }
 
-.Dialog_Foot_div{
+.HG_Dialog_Foot_div{
     width: 100%;
     position: relative;
     top: 10px;
     right: 10px;
 }
-.ReplyNickname{
+.HG_ReplyNickname{
     position: relative;
     bottom:30px;
     left:60px;
     cursor: pointer;
 }
-.details_Reply{
+.HG_details_Reply{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     border: 1px solid lightgrey;
     border-radius: 5px;
     position: relative;
@@ -246,9 +253,10 @@
     width: 225px;
     height: 100%;
 }
-.details_Reply > summary{
+.HG_details_Reply > summary{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: relative;
-    width:70px;
+    width:100px;
     left: 10px;
     bottom: 10px;
     background-color:RGB(137 225 164);
@@ -261,7 +269,8 @@
     border-radius: 5px;
 }
 
-.detail_details_Reply{
+.HG_detail_details_Reply{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     border: 1px solid lightgrey;
     border-radius: 5px;
     position: relative;
@@ -270,9 +279,9 @@
     width: 320px;
     height: 100%;
 }
-.detail_details_Reply > summary{
+.HG_detail_details_Reply > summary{
     position: relative;
-    width:70px;
+    width:100px;
     left: 10px;
     bottom: 10px;
     background-color:RGB(137 225 164);
@@ -284,8 +293,11 @@
     margin-top: 20px;
     border-radius: 5px;
 }
-
-.Commentname{
+.HG_Comments{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    max-height: 100%;
+}
+.HG_Commentname{
     position: relative;
     width: 100px;
     height:20px;
@@ -295,7 +307,7 @@
     font-size: 14px;
     cursor: pointer;
 }
-.NoComments{
+.HG_NoComments{
     font-size: 12px;
     text-align: center;
     margin-top: 10px;
