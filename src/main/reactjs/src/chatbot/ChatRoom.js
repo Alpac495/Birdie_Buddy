@@ -61,6 +61,22 @@ function ChatRoom() {
     useEffect(() => {
         unumchk();
     }, []);
+
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+    
+        window.addEventListener('beforeunload', disconnectChat);
+    
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
     
     const fetchChannelMessages = async (chat, channelId) => {
         try {

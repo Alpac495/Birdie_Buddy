@@ -61,7 +61,21 @@ const NCloudChatRoomList = () => {
     console.log("unickname:"+unickname);
     console.log(channels)
 
-
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+    
+        window.addEventListener('beforeunload', disconnectChat);
+    
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
 
 
     // 마지막 메시지 가져오는 함수
