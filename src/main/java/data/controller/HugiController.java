@@ -59,18 +59,28 @@ public class HugiController {
 //        System.out.println("list>>");
 //        return hugiService.getAllHugis();
 //    }
+//    @GetMapping("/mylist/{unum}")
+//    public List<HugiDto> getHugiListByUnum(@PathVariable int unum) {
+//        // unum 값을 기반으로 해당 사용자의 후기 데이터를 조회합니다.
+//        return hugiService.getHugiListByUnum(unum);
+//    }
     @GetMapping("/list")
     public List<HugiDto> hugilist(int page, int size) {
-        System.out.println("스크롤");
+        System.out.println("스크롤>>");
         int offset = (page - 1) * size;
         List<HugiDto> list = hugiMapper.listHugiWithPaging(offset, size);
         return list;
     }
     @GetMapping("/mylist/{unum}")
-    public List<HugiDto> getHugiListByUnum(@PathVariable int unum) {
-        // unum 값을 기반으로 해당 사용자의 후기 데이터를 조회합니다.
-        return hugiService.getHugiListByUnum(unum);
+    public List<HugiDto> myhugilist(@PathVariable int unum, int page, int size) {
+        System.out.println("스크롤>>");
+        int offset = (page - 1) * size;
+        List<HugiDto> list = hugiMapper.listmyHugiWithPaging(unum, offset, size);
+        return list;
     }
+
+
+
     @PostMapping("/like/{hnum}")
     public ResponseEntity<String> addLike(@PathVariable int hnum) {
         try {
@@ -144,8 +154,8 @@ public class HugiController {
         }
     }
 
-    @GetMapping("/getUser")
-    public ResponseEntity<String> getUser(int unum) {
+    @GetMapping("/getUser/{unum}")
+    public ResponseEntity<String> getUser(@PathVariable int unum) {
         String unickname = hugiMapper.getNickname(unum);
 //        System.out.println("unickname =>>" +unickname);
         if (unickname != null) {
@@ -154,8 +164,8 @@ public class HugiController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/getUserPhoto")
-    public ResponseEntity<String> getUserPhotoUrl(int unum) {
+    @GetMapping("/getUserPhoto/{unum}")
+    public ResponseEntity<String> getUserPhotoUrl(@PathVariable int unum) {
         String uphoto = hugiMapper.getUserPhotoUrl(unum);
         if (uphoto != null) {
             return ResponseEntity.ok(uphoto);

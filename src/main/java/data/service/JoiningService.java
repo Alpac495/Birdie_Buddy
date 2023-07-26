@@ -24,10 +24,10 @@ public class JoiningService implements JoiningServiceInter {
         joiningMapper.updateJoin(dto);
     }
 
-    @Override
-    public List<JoiningDto> getJoiningList() {
-        return joiningMapper.getJoiningList();
-    }
+//    @Override
+//    public List<JoiningDto> getJoiningList() {
+//        return joiningMapper.getJoiningList();
+//    }
 
     @Override
     public List<JoiningDto> getMakeJoinList(int unum) {

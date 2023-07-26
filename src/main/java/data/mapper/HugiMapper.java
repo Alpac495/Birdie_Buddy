@@ -25,4 +25,5 @@ public interface HugiMapper {
     public HugiDto getHugiByHnum(int hnum);
     public String getUserPhotoUrl(int unum);
     public List<HugiDto> listHugiWithPaging(@Param("offset") int offset, @Param("size") int size);
+    public List<HugiDto> listmyHugiWithPaging(int unum, @Param("offset") int offset, @Param("size") int size);
 }
