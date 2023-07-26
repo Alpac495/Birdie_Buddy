@@ -9,11 +9,11 @@
         from friend where unum=#{unum} and faccept=1 order by fnum
     </select>
     <select id="getRequestList" parameterType="int" resultType="FriendDto">
-        select *, (select ugender from user where unum=friend.funum) as ugender,
+        select *, (select ugender from user where unum=friend.unum) as ugender,
                (select uage from user where unum=friend.unum) as uage,
                (select uname from user where unum=friend.unum) as uname,
-               (select unickname from user where unum=friend.funum) as unickname,
-               (select uphoto from user where unum=friend.funum) as uphoto
+               (select unickname from user where unum=friend.unum) as unickname,
+               (select uphoto from user where unum=friend.unum) as uphoto
         from friend where funum=#{unum} and faccept=0 order by fnum
     </select>
     <select id="detailPage" parameterType="int" resultType="UserDto">

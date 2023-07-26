@@ -124,7 +124,7 @@ const NCloudChatRoomList = () => {
                     <li  >
                         <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
                             <div onClick={() => handleChannelSelect(channel.chatid)}>
-                                {channel.unum}&{channel.cunum}
+                                {channel.unum}&{channel.cunum}의 채팅방
                             </div>
                             {/* {channel.node.lastMessage && (
                                 <div>
