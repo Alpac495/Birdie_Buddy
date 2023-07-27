@@ -56,7 +56,7 @@ function Blacklist(props) {
                     }
                 }).map((item,idx)=>
 
-                    <div className="flist">
+                    <div className="ulist">
                         <div className="flist-child" />
                         <div className="flistprofile">
                                 <div className="flistprofile1">

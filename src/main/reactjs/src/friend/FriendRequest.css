@@ -45,6 +45,9 @@ body {
     right: 0;
     left: 0;
 }
+.FLtab,.friendlist {
+    position: relative;
+}
 .FLtab {
     position: absolute;
     top: 6.19rem;
@@ -169,10 +172,19 @@ body {
     cursor: pointer;
 }
 .flist {
-    top: 9.31rem;
+    /* top: 9.31rem; */
 }
 .flist1 {
     top: 14.56rem;
+}
+.friendlist{
+    position: relative;
+    top: 10rem;
+    width: 100%;
+    right: 0;
+    left: 0;
+    max-height: 100%;
+    overflow: hidden;
 }
 .friend {
     position: relative;

@@ -1,7 +1,12 @@
 package data.dto;
 
 import lombok.Data;
+
+import java.sql.Timestamp;
+
 import org.apache.ibatis.type.Alias;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Data
 @Alias("UserDto")
@@ -20,7 +25,8 @@ public class UserDto {
     private String ubgphoto;
     private int ureport;
     private int ublacklist;
-
+    @JsonFormat(pattern = "yyyy.MM.dd", timezone = "Asia/Seoul")
+    private Timestamp ugaipday;
 
     private String uhp;
     private String code;

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import Axios from 'axios';
+import './ChatRoom.css';
+import SendIcon from "../image/icon_yangdo.svg";
 function ChatRoom() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
@@ -163,7 +165,10 @@ function ChatRoom() {
     };
 
     return (
-        <div>
+        <>
+      <div className="chatdetail">
+        <div className="parent">
+          <div className="div3"><div>
             <div className="chat-messages" id="chat-messages" style={{ width: '360px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
                 {messages.map &&
                 messages.slice().reverse().map((message) => (
@@ -176,7 +181,7 @@ function ChatRoom() {
                     </div>
                 ))}
             </div>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Type your message"
@@ -186,8 +191,41 @@ function ChatRoom() {
                 <button type="submit">Send</button>
                 <button onClick={handleLeaveChat}>채팅방 나가기</button>
 
-            </form>
+            </form> */}
+        </div></div>
+          <div className="flist-line" />
         </div>
+        <input className="email" type="text" placeholder="Enter your name" />
+        <div className="cta-button-1">
+          <div className="round-button-icon" >
+            <div className="centered">
+              <div className="label">채팅방 종료하기</div>
+            </div>
+          </div>
+        </div>
+        <div className="logo-end">
+          <div className="newlogo">
+            <div className="newlogo">
+              <div className="instance-child" />
+              <img className="icon" alt="" src="/icon.svg" />
+            </div>
+          </div>
+          <img className="icon1" alt="" src={SendIcon} />
+        </div>
+      </div>
+      {/* {isPopupModalOpen && (
+        <PortalPopup
+          overlayColor="rgba(113, 113, 113, 0.3)"
+          placement="Centered"
+          onOutsideClick={closePopupModal}
+        >
+          <PopupModal onClose={closePopupModal} />
+        </PortalPopup>
+      )} */}
+    </>
+
+
+        
     );
 }
 export default ChatRoom;

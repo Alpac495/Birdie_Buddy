@@ -5,6 +5,7 @@ import Axios from "axios";
 import "./FriendRequest.css";
 import {Link, NavLink, useParams} from 'react-router-dom';
 import Profile from "../image/user60.png";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function FriendRequest(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -13,22 +14,39 @@ function FriendRequest(props) {
     const [data,setData]=useState('');
     const now = new Date();
     const year = now.getFullYear();
+    const [items, setItems] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     
-    const unumchk=()=>{
+    const fetchMoreData=()=>{
         Axios.get("/login/unumChk")
         .then(res=> {
             setUnum(res.data);
             setFunum(res.data);
-                const url="/friend/requestlist?unum="+(res.data);
-                Axios.get(url)
-                    .then(res=>{
-                        setData(res.data);
-                        console.log(res.data)
+            setLoading(true);
+                Axios
+                    .get(`/friend/pagingrequestlist?unum=${res.data}&page=${page}&size=10`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .then((res) => {
+                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        console.log(items);
+                        console.log(res.data);
+                        setPage((prevPage) => prevPage + 1);
+                        setLoading(false);
                     })
+                    .catch((error) => {
+                        console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                        setLoading(false);
+                    });
+                // const url="/friend/requestlist?unum="+(res.data);
+                // Axios.get(url)
+                //     .then(res=>{
+                //         setData(res.data);
+                //         console.log(res.data)
+                //     })
         });
     }
     useEffect(() => {
-        unumchk()
+        fetchMoreData()
     }, [])
 
 
@@ -56,7 +74,7 @@ function FriendRequest(props) {
 
     return (
         <div className="friend">
-            <h4>버디 요청 : {data.length}명</h4>
+            <h4>버디 요청 : {items.length}명</h4>
 
             <div className="FLtab">
                 <NavLink to={`/friend/list`}>
@@ -70,10 +88,17 @@ function FriendRequest(props) {
                 </div>
                 </NavLink>
             </div>
-
+            <div className='friendlist'>
+            <InfiniteScroll
+                    dataLength={items.length}
+                    next={fetchMoreData}
+                    hasMore={items.length>0}
+                    loader={<h4>마지막</h4>}
+                    endMessage={null}
+                >
             {
-                data.map &&
-                data.map((item,idx)=>
+                items.map &&
+                items.map((item,idx)=>
 
                     <div className="flist">
                         <div className="flist-child" />
@@ -100,8 +125,8 @@ function FriendRequest(props) {
                     </div>
                  )
             }
-
-        </div>
+            </InfiniteScroll>
+        </div></div>
     );
 }
 

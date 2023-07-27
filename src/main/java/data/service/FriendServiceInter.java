@@ -26,7 +26,5 @@ public interface FriendServiceInter {
 
     public int acceptFriend2(int unum, int funum);
 
-    public List<UserDto> getUserList(int unum);
-
     public List<FriendDto> getRequestCheck(int unum);
 }

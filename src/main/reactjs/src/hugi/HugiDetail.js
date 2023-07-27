@@ -444,37 +444,37 @@ function HugiDetail(props) {
 
 
     return (
-        <div className="list_detail">
-            <div className="list_header">
+        <div className="HG_list_detail">
+            <div className="HG_list_header">
                 {uphoto !== null ? (
-                    <Avatar className="list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar}/>
                 ):(
-                    <Avatar className="list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
                 )}
-                <span className="spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
+                <span className="HG_spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
             </div>
             &nbsp;
-            <span className="spanWriteday">{hwriteday}</span>
-            <img className="list_detailimage" src={`${url}${hphoto}`} alt="" value={hphoto}/>
-            <h6 className="list_text">
+            <span className="HG_spanWriteday">{hwriteday}</span>
+            <img className="HG_list_detailimage" src={`${url}${hphoto}`} alt="" value={hphoto}/>
+            <h6 className="HG_list_text">
                 &nbsp;
                 {hcontent}
             </h6>
             <hr/>
-            <div className="IconsZone">
+            <div className="HG_IconsZone">
                 {unumchk && parseInt(unum)!== 0 &&
                     (showLike ? (
-                    <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{color: "red"}}/>
+                    <FavoriteSharp onClick={handleClickLikeOff} className="HG_Icons" style={{color: "red"}}/>
                 ) : (
-                    <FavoriteBorder onClick={handleClickLikeOn} className="Icons" style={{color: "red"}}/>
+                    <FavoriteBorder onClick={handleClickLikeOn} className="HG_Icons" style={{color: "red"}}/>
                 ))}
-                <ShareIcon onClick={handleClickShare} className="Icons"/>
-                <ListIcon onClick={handleClickList} className="Icons"/>
+                <ShareIcon onClick={handleClickShare} className="HG_Icons"/>
+                <ListIcon onClick={handleClickList} className="HG_Icons"/>
                 {unum  === userNum  && (
-                    <DeleteIcon onClick={handleClickDelete} className="Icons"/>
+                    <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
                 {unum  === userNum && (
-                    <EditIcon onClick={handleClickModify} className="Icons"/>
+                    <EditIcon onClick={handleClickModify} className="HG_Icons"/>
                 )}
             </div>
 
@@ -493,7 +493,7 @@ function HugiDetail(props) {
                   value={rhcontent}
                   onChange={handleCommentChange}
               ></textarea>
-                    <button type="button" className="primary_button_Comment" onClick={handleCommentSubmit}>
+                    <button type="button" className="HG_button_Comment" onClick={handleCommentSubmit}>
                         댓글 작성
                     </button>
                 </div>
@@ -501,42 +501,42 @@ function HugiDetail(props) {
 
             {commentError && (
                 <div>
-                    <p className="CommentAlert">댓글을 입력해주세요.</p>
+                    <p className="HG_CommentAlert">댓글을 입력해주세요.</p>
                 </div>
             )}
-            <pre className="preComment">
+            <pre className="HG_preComment">
   {comments && comments.length > 0 ? (
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
-              <div>
-                  <span className="Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
+              <div className="HG_Comments">
+                  <span className="HG_Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
                   {comment.uphoto == null ? (
-                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
                   ):(
-                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar}/>
                   )}
-                  <pre className="preRhcontent">{comment.rhcontent}</pre>
+                  <pre className="HG_preRhcontent">{comment.rhcontent}</pre>
                   <br/>
-                  <span className="spanRhwriteday">{comment.rhwriteday}</span>
+                  <span className="HG_spanRhwriteday">{comment.rhwriteday}</span>
                   {unumchk && parseInt(unum) !== 0 && (
-                      <a className="Click_ReplyForm" onClick={() => toggleReplyForm(comment.rhnum)}>
+                      <a className="HG_Click_ReplyForm" onClick={() => toggleReplyForm(comment.rhnum)}>
                           {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
                       </a>
                   )}
                   {parseInt(comment.unum) === parseInt(unum) && (
                       <DeleteIcon
-                          className="Delete_Icon"
+                          className="HG_Delete_Icon"
                           onClick={() => handleClickDeleteComment(comment.rhnum)}
                       />
                   )}
               </div>
               {openReplyForm === comment.rhnum && unum && (
-                  <div className="input-group" style={{width: '230px', marginBottom: "30px"}}>
+                  <div className="input-group" style={{width:"320px",marginLeft:"10px"}}>
             <textarea
                 className="form-control"
                 style={{
                     width: '67%',
-                    height: '30px',
+                    height: '40px',
                     border: '1px solid lightgray',
                     fontSize: '12px',
                     resize: 'none',
@@ -547,7 +547,7 @@ function HugiDetail(props) {
             ></textarea>
                       <button
                           type="button"
-                          className="primary_button_Reply"
+                          className="HG_button_Reply"
                           onClick={() => submitReply(comment)}
                       >
                           대댓글 작성
@@ -556,30 +556,30 @@ function HugiDetail(props) {
               )}
               {replyError && comment.rhnum === errorCommentId && (
                   <div>
-                      <p className="ReplyAlert">대댓글을 입력해주세요.</p>
+                      <p className="HG_ReplyAlert">대댓글을 입력해주세요.</p>
                   </div>
               )}
               {comment.comments && comment.comments.length > 0 && (
-                  <details className="detail_details_Reply">
+                  <details className="HG_detail_details_Reply">
                       <summary>댓글보기</summary>
                       {comment.comments &&
                           comment.comments.map((reply) => (
-                              <div key={reply.rhnum} className="Comment_Reply_List">
+                              <div key={reply.rhnum} className="HG_Comment_Reply_List">
                                   {reply.uphoto == null ? (
-                                      <Avatar className="list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
                                   ):(
-                                      <Avatar className="list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar}/>
                                   )}
-                                  <b className="ReplyNickname" onClick={handleClickAvatar}>
+                                  <b className="HG_ReplyNickname" onClick={handleClickAvatar}>
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;
-                                  <pre className="detail_preReplyRhcontent">{reply.rhcontent}</pre>
+                                  <pre className="HG_detail_preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br/>
-                                  <span className="spanRhwriteday">{reply.rhwriteday}</span>
+                                  <span className="HG_spanRhwriteday">{reply.rhwriteday}</span>
                                   {parseInt(reply.unum) === parseInt(unum) && (
                                       <DeleteIcon
-                                          className="Delete_Icon"
+                                          className="HG_Delete_Icon"
                                           onClick={() => handleClickDeleteComment(reply.rhnum)}
                                       />
                                   )}
@@ -590,7 +590,7 @@ function HugiDetail(props) {
           </div>
       ))
   ) : (
-      <p className="NoComments">댓글이 없습니다.</p>
+      <p className="HG_NoComments">댓글이 없습니다.</p>
   )}
 </pre>
 
