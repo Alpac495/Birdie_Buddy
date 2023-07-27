@@ -137,8 +137,8 @@ const JoinForm = (props) => {
 
     
     return (
-        <div className="joinform">
-
+        <div className="JFjoinform">
+            
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="Modal heading">
                     <div>
@@ -167,31 +167,32 @@ const JoinForm = (props) => {
             </React.Fragment>
             <form onSubmit={onSubmitEvent}>
             <div className="jregister" />
-            <div className="frame-parent">
-                <div className="frame-group">
-                    <div className="jparent">
-                        <div className="jdiv">
-                           골프장검색</div>
-                        <input className="jforminput" type="search" placeholder="골프장을 검색하세요                          🔎" onClick={openModal}
+            
+                
+                    <div className="JFframe">
+                        <div className="JFdiv1">
+                        <div className="JFdiv2">골프장검색</div>
+                        </div>
+                        <input className="JFemail" type="search" placeholder="골프장을 검색하세요                          🔎" onClick={openModal}
                                value={gname} onChange={(e)=>setGname(e.target.value)} required maxLength minLength />
                     </div>
-                    <div className="jparent">
-                        <div className="jdiv">날짜</div>
-                        <input className="jforminput1" type="date" placeholder="조인 날짜를 입력하세요"
+                    <div className="JFframe1">
+                        <div className="JFdiv1">날짜</div>
+                        <input className="JFemail" type="date" placeholder="조인 날짜를 입력하세요"
                                value={jjoinday} onChange={(e)=>setJoinday(e.target.value)} required maxLength minLength />
                     </div>
-                    <div className="jparent">
-                        <div className="jdiv">시간</div>
-                        <input className="jforminput1" type="time" placeholder={"조인 시간을 입력하세요"}
+                    <div className="JFframe2">
+                        <div className="JFdiv1">시간</div>
+                        <input className="JFemail" type="time" placeholder={"조인 시간을 입력하세요"}
                                value={jtime} onChange={(e)=>setJtime(e.target.value)} required maxLength minLength />
                     </div>
-                </div>
-                <div className="frame-container">
-                    <div className="jparent">
-                        <div className="jdiv">연령대</div>
+                
+                
+                    <div className="JFframe3">
+                        <div className="JFdiv1">연령대</div>
                         {/*<input className="jforminput" type="text"  required placeholder="원하는 조인 멤버의 연령대를 입력하세요"*/}
                         {/*       value={jage} onChange={(e)=>setJage(e.target.value)} maxLength minLength />*/}
-                        <select className="jforminput" required onChange={(e)=>setJage(e.target.value)}>
+                        <select className="JFemail" required onChange={(e)=>setJage(e.target.value)}>
                             <option disabled hidden selected value="">원하는 연령대를 선택하세요</option>
                             <option value={"연령무관"}>연령무관</option>
                             <option value={"20대만"}>20대만</option>
@@ -202,21 +203,21 @@ const JoinForm = (props) => {
                             <option value={jage} hidden></option>
                         </select>
                     </div>
-                    <div className="jparent1">
+                    <div className="JFframe4">
 
-                        <div className="jdiv">그린피 (단위 원)</div>
-                        <input className="jforminput1" type="number"  required step={10000} placeholder={"ex) 150000"}
+                        <div className="JFdiv1">그린피 (단위 원)</div>
+                        <input className="JFemail2" type="number"  required step={10000} placeholder={"ex) 150000"}
                                value={jprice} onChange={(e)=>setJprice(e.target.value)} maxLength minLength />
                     </div>
-                    <div className="jparent2">
-                        <div className="jdiv">조인설명</div>
-                        <input className="jforminput5" type="text"  required placeholder="조인에 대한 간단한 설명을 입력하세요"
+                    <div className="JFframe5">
+                        <div className="JFdiv1">조인설명</div>
+                        <input className="JFemail" type="text"  required placeholder="조인에 대한 간단한 설명을 입력하세요"
                                value={jcontent} onChange={(e)=>setJcontent(e.target.value)} maxLength minLength />
                     </div>
-                </div>
-            </div>
-            <div className="joinform-child" />
-                <div className="jdiv7"><button type='submit'>조인 만들기</button></div>
+                
+            
+            
+                <div className="JFgreenlbtn"><button type='submit'>조인 만들기</button></div>
                 <label className="jradio-button-setonon">
                     <input type='radio' name='partner' className="jdiv31" ref={noPartnerInputRef} required/>동반자 없음
                 </label>
