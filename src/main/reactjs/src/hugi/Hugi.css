@@ -1,5 +1,3 @@
-/* Add any global styles here */
-
 /* Use the Inter font for the entire page */
 body {
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
@@ -9,19 +7,22 @@ body {
   }
 /* 헤더 스타일 업데이트 */
 .HG_hugi_header {
-    /* 기존 헤더 스타일 */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #fafafa;
-    border-top: 1px solid lightgray;
-  }
-  
-  .HG_hugi_headerWrapper {
-    /* 기존 헤더 래퍼 스타일 */
+    position: sticky;
+    top: 0;
     max-width: 360px;
-    margin: 0 auto;
+    margin:auto;
+    z-index: 99;
+    background-color: #fafafa;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    object-fit: contain;
+    border-bottom: 1px solid lightgray;
+
+}
+.HG_hugi_headerWrapper {
+    max-width: 360px;
+    margin:auto;
     width: 100%;
     padding: 0px;
     display: flex;
@@ -54,13 +55,52 @@ body {
   
   .HG_timeline::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
-  }
-  
-  /* Update the icon styles to use Font Awesome icons */
-  .HG_icon {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 24px;
+}
+
+/*.button {*/
+/*    font-size: 14px;*/
+/*    line-height: 18px;*/
+/*    cursor: pointer;*/
+/*    border: 1px solid transparent;*/
+/*}*/
+
+.HG_button_hugis{
+    background-color: RGB(137 225 164);
+    color: black;
+    padding: 5px 9px;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 2px;
+}
+/*.text_button {*/
+/*    color: #0095f6;*/
+/*    font-weight: 600;*/
+/*    line-height: 28px;*/
+/*    background-color: RGB(137 225 164);*/
+/*}*/
+/*.hugi_signUp {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    margin: 28px 0;*/
+/*    row-gap: 15px;*/
+/*}*/
+.HG_details_Timeline{
+    position: fixed;
+    z-index:99;
+    width:350px;
+    margin:auto;
+}
+.HG_details_Timeline > summary {
+    position: fixed;
+    z-index: 99;
+    width:350px;
+    text-align: center;
+    margin:auto;
+    padding:10px 10px;
+    border-radius: 5px;
+    background-color:RGB(137 225 164);
     cursor: pointer;
   }
   
