@@ -16,4 +16,6 @@ public interface ChatingMapper {
     public String getChatInfo(Map<String, Object> map);
 
     public List<ChatroomDto> getChatRoomList(int unum);
+
+    public void deletechatid(Map<String, Object> map);
 }

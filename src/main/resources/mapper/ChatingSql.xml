@@ -12,4 +12,10 @@
     <select id="getChatRoomList" parameterType="int" resultType="ChatroomDto">
         select * from chatroom where (unum=#{unum}) or (cunum=#{unum})
     </select>
+    <update id="deletechatid" parameterType="map">
+        UPDATE chatroom
+        SET unum = CASE WHEN unum = #{unum} THEN null ELSE unum END,
+            cunum = CASE WHEN cunum = #{unum} THEN null ELSE cunum END
+        WHERE chatid = #{chatid};
+    </update>
 </mapper>

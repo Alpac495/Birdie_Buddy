@@ -66,13 +66,15 @@
     height: 1.88rem;
   }
   .MSname {
-    top: 0.53rem;
+    top: 0.55rem;
     left: 0.38rem;
     line-height: 1.5rem;
     display: inline-block;
-    width: 15.81rem;
-    opacity: 0.5;
+    width: 19.5rem;
+    border:none;
+    outline: none;
   }
+
   .MSname-wrapper,
   .MSparent {
     position: absolute;
@@ -84,12 +86,11 @@
     right: 0;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #ebf0f2;
+    border: 1px solid #D9D9D9;
     box-sizing: border-box;
     height: 2.5rem;
     overflow: hidden;
     font-size: 0.81rem;
-    border: none;
     outline: none;
   }
   .MSparent {
@@ -142,10 +143,9 @@
     right: 5.38rem;
     left: 0;
     background-color: #fff;
-    border: 1px solid #ebf0f2;
+    border: 1px solid #D9D9D9;
     box-sizing: border-box;
     overflow: hidden;
-    border: none;
     outline: none;
   }
   .MSgroup-item {
@@ -157,7 +157,7 @@
     position: absolute;
     top: 0.5rem;
     right: 0.44rem;
-    font-size: 0.63rem;
+    font-size: 0.75rem;
     line-height: 1.5rem;
     color: #fff;
     text-align: center;
@@ -191,7 +191,8 @@
     line-height: 1.5rem;
     display: inline-block;
     width: 13.69rem;
-    opacity: 0.5;
+    border: none;
+    outline: none;
   }
   .MSframe-container {
     position: absolute;
@@ -212,7 +213,7 @@
   }
   .MSdiv14 {
     position: absolute;
-    top: 0.33rem;
+    top: 0.35rem;
     left: 0.19rem;
     line-height: 1.5rem;
     display: flex;
@@ -263,7 +264,7 @@
   .MSdiv18 {
     position: absolute;
     width: calc(100% - 93px);
-    top: 0.13rem;
+    top: 0.3rem;
     left: 0.19rem;
     line-height: 1.5rem;
     display: flex;

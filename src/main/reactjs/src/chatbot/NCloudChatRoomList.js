@@ -125,7 +125,10 @@ const NCloudChatRoomList = () => {
                     <li  >
                         <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
                             <div onClick={() => handleChannelSelect(channel.chatid)}>
-                                {channel.unum}&{channel.cunum}의 채팅방
+                                {channel.unum === 0 || channel.cunum
+                                    ?"(상대방이 나간 채팅방입니다)"
+                                    :`${channel.unum}&${channel.cunum} 님의 채팅방`
+                                }
                             </div>
                         </div>
                     </li>

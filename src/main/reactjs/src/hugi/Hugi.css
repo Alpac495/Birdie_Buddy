@@ -1,27 +1,42 @@
-/* Add the Google Fonts import here if you haven't already */
-/* Add any other global styles you might have */
-
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif; /* Use the Inter font for the entire page */
-    background-color: #f8f5f0; /* Set the background color to #f8f5f0 */
+.timeline {
+    margin: 10px auto;
+    padding: 10px;
+    overflow-y: auto;
+    max-width: 360px;
+    max-height:100%;
+}
+.timeline::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
-/* Update the header styles */
+body {
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+}
+.HG_hugi1{
+    color: #262626;
+    font-size: 14px;
+    line-height: 18px;
+    overflow:auto;
+}
+.HG_hugi1::-webkit-scrollbar{
+    display: none;
+}
 .HG_hugi_header {
     position: sticky;
     top: 0;
     max-width: 360px;
-    margin: auto;
+    margin:auto;
     z-index: 9999;
-    background-color: #ffffff; /* Set the header background color to white */
+    background-color: #fafafa;
     height: 65px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
-}
+    object-fit: contain;
+    border-bottom: 1px solid lightgray;
 
+}
 .HG_hugi_headerWrapper {
     max-width: 360px;
     margin: 0 auto;
@@ -29,69 +44,138 @@ body {
     padding: 0 20px;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Adjust alignment to resemble Threads */
-    flex-direction: column; /* Change to a vertical layout */
+    justify-content: space-between;
 }
-
+.HG_hugi_headerButtons {
+    display: flex;
+    column-gap: 15px;
+}
 .HG_hugi2 {
-    background-color: #ffffff; /* Set the background color to white */
+    background-color: #fafafa;
+    /*min-height: 100vh;*/
     max-width: 360px;
     max-height: 100%;
-    padding: 10px; /* Increase padding for better spacing */
-    border: 1px solid lightgray; /* Add a light gray border */
+    padding: 4px;
+    border: 0px solid lightgrey;
     margin: auto;
+    overflow-y:auto ;
+}
+.HG_hugi2::-webkit-scrollbar{
+    display: none;
+}
+.HG_timeline {
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 360px;
+    min-height: 170px;
+    max-height:100%;
     overflow-y: auto;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+.HG_timeline::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
-/* Update the button styles to match Threads */
-.HG_button,
-.HG_button_hugis,
-.my_HG_button,
-.my_HG_button_hugis {
-    background-color: #0095f6;
-    color: #ffffff; /* Set the text color to white */
-    padding: 8px 16px; /* Increase padding for larger buttons */
-    font-weight: bold;
-    font-size: 14px; /* Increase font size for larger buttons */
+/*.button {*/
+/*    font-size: 14px;*/
+/*    line-height: 18px;*/
+/*    cursor: pointer;*/
+/*    border: 1px solid transparent;*/
+/*}*/
+.HG_button {
+    background-color: RGB(137 225 164);
+    color: black;
+    padding: 5px 9px;
+    font-weight: 500;
+    font-size: 12px;
     text-align: center;
-    border-radius: 999px; /* Use a large border-radius for circular buttons */
+    border-radius: 5px;
+}
+.HG_button_hugis{
+    background-color: RGB(137 225 164);
+    color: black;
+    padding: 5px 9px;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 2px;
+}
+/*.text_button {*/
+/*    color: #0095f6;*/
+/*    font-weight: 600;*/
+/*    line-height: 28px;*/
+/*    background-color: RGB(137 225 164);*/
+/*}*/
+/*.hugi_signUp {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    margin: 28px 0;*/
+/*    row-gap: 15px;*/
+/*}*/
+.HG_details_Timeline > summary {
+    max-width:360px;
+    text-align: center;
+    margin:auto;
+    padding:10px 10px;
+    border-radius: 5px;
+    background-color:RGB(137 225 164);
+    border:0px solid black;
     cursor: pointer;
-    border: none; /* Remove the border for a cleaner look */
+    font-weight: bold;
+    color: black;
 }
 
-/* Update the file upload styles */
+/*.CommentNickname{*/
+/*    position: relative;*/
+/*    top:5px;*/
+/*    left:5px;*/
+/*}*/
 .filebox .upload-name {
     display: inline-block;
     height: 40px;
     padding: 0 10px;
     vertical-align: middle;
-    border: 1px solid #0095f6; /* Use the blue color for the border */
+    border: 1px solid #dddddd;
     width: 70%;
-    color: #000000; /* Set the text color to black */
-}
+    color: black;
 
+}
 .filebox label {
     display: inline-block;
     padding: 10px 20px;
-    color: #ffffff; /* Set the text color to white */
+    color: black;
     vertical-align: middle;
-    background-color: #0095f6; /* Use the blue color for the background */
+    background-color: RGB(137 225 164);
     cursor: pointer;
-    width: 30%;
+    width:30%;
     height: 40px;
     font-weight: bold;
 }
-
-/* Update the timeline styles */
-.timeline {
-    margin: 10px auto;
-    padding: 10px;
-    overflow-y: auto;
-    max-width: 360px;
-    max-height: 100%;
-    background-color: #ffffff; /* Set the background color to white */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }
 
-/* Update any other styles as needed to match the Threads app */
+.my_HG_button {
+    background-color: RGB(252 243 168);
+    color: black;
+    padding: 5px 9px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+}
+.my_HG_button_hugis{
+    background-color: RGB(252 243 168);
+    color: black;
+    padding: 5px 9px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 2px;
+}

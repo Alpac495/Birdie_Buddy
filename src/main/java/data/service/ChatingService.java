@@ -39,4 +39,12 @@ public class ChatingService implements ChatingServiceInter {
         return chatingMapper.getChatRoomList(unum);
     }
 
+    @Override
+    public void deletechatid(int unum, String chatid) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("unum", unum);
+        map.put("chatid",chatid);
+        chatingMapper.deletechatid(map);
+    }
+
 }

@@ -198,7 +198,7 @@ function YangdoDetail(props) {
                 <div className="YEgraylbtn-parent">
                     <div className="YEgraylbtn">
                         <button type='button' className="YEgraylbtn-child"
-                            onClick={()=>navi(`/yangdo/list/${currentPage}`)}>닫기</button>   
+                            onClick={()=>navi(`/yangdo/list`)}>닫기</button>   
                     </div>
                     <div className="YEpopupbtn">
                         

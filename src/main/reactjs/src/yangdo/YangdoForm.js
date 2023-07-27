@@ -79,7 +79,7 @@ function YangdoForm(props) {
                 .then(res => {
 
                     // 목록으로 이동
-                    navi("/yangdo/list/1")
+                    navi("/yangdo/list")
                 });
         }
     }
