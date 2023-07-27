@@ -2,7 +2,7 @@
 <mapper namespace="data.mapper.LoginMapper">
     <insert id="signUser" parameterType="UserDto">
         insert into user (uemail, upass, uname, unickname, uage, ugender, uhp, ucareer, ugaipday) values (#{uemail}, sha2(#{upass},256),
-        #{uname}, #{unickname}, #{uage}, #{ugender}, #{uhp}, #{ucareer}, #{now()})
+        #{uname}, #{unickname}, #{uage}, #{ugender}, #{uhp}, #{ucareer}, now())
     </insert>
     <select id="loginok" parameterType="Map" resultType="int">
         select count(*) from user where uemail=#{uemail} and upass=sha2(#{upass}, 256)

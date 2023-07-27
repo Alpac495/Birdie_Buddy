@@ -214,7 +214,7 @@ function Sign(props) {
                         <div className="MSdiv7">휴대폰 인증</div>
                         <div className="MSframe-parent">
                             <div className="MSframe-div">
-                                <input type="text" className="MSnick-name" placeholder="숫자로만 입력해 주세요." 
+                                <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" className="MSnick-name" placeholder="숫자로만 입력해 주세요." 
                                     required ref={hpRef} value={uhp}
                                     onChange={(e) => {
                                         setUhp(e.target.value)

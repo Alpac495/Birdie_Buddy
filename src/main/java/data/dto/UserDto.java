@@ -2,6 +2,7 @@ package data.dto;
 
 import lombok.Data;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias;
@@ -26,7 +27,7 @@ public class UserDto {
     private int ureport;
     private int ublacklist;
     @JsonFormat(pattern = "yyyy.MM.dd", timezone = "Asia/Seoul")
-    private Timestamp ugaipday;
+    private Date ugaipday;
 
 
 

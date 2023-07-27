@@ -18,7 +18,7 @@ function SID1(props) {
                 <div className="IS1div2">휴대폰 번호</div>
                 <div className="IS1rectangle-group">
                     <div className="IS1group-item" />
-                    <input type="text" className="IS1div3" placeholder="휴대폰번호" required value={props.uhp}
+                    <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" className="IS1div3" placeholder="휴대폰번호" required value={props.uhp}
                        onChange={(e) => {
                            props.setUhp(e.target.value)
                        }}/>

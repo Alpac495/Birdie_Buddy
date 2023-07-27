@@ -164,10 +164,9 @@ function Mypage(props) {
                 <div className="FDdiv">
                     <div className="FDchild" />
                 </div>
-                {
-                    ubgphoto == '' || null ? <div className="FDbackprofile" ></div> :
-                        <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
-                }
+
+                <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+
                 <div className="FDinfobox" />
                 <div className="FDmainprofile"><img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
 
@@ -190,8 +189,8 @@ function Mypage(props) {
                                         평균타수 {stasu}타
                                         <EditIcon fontSize="small" onClick={openBg} />
                                         <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
-                                            <img className='imsiphoto' src={`${url}${imsibgphoto}`} alt=''/>
-                                            <input className={'inputfile'} type={'file'} ref={bgphotoRef} onChange={onUploadEventBg}/>
+                                            <img className='imsiphoto' src={`${url}${imsibgphoto}`} alt='' />
+                                            <input className={'inputfile'} type={'file'} ref={bgphotoRef} onChange={onUploadEventBg} />
                                         </ModalBgphoto>
                                     </span>
                             }
