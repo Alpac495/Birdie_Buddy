@@ -44,6 +44,13 @@ public class LoginService implements LoginServiceInter {
         map.put("unum", unum);
         loginMapper.updatePhoto(map);
     }
+    @Override
+    public void updateBgPhoto(String ubgphoto, int unum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("ubgphoto", ubgphoto);
+        map.put("unum", unum);
+        loginMapper.updateBgPhoto(map);
+    }
 
     @Override
     public void insertCode(String uhp, String code) {
@@ -76,5 +83,7 @@ public class LoginService implements LoginServiceInter {
         map.put("uhp", uhp);
         loginMapper.hpChange(map);
     }
+
+    
 
 }

@@ -28,6 +28,8 @@ public class UserDto {
     @JsonFormat(pattern = "yyyy.MM.dd", timezone = "Asia/Seoul")
     private Timestamp ugaipday;
 
+
+
     private String uhp;
     private String code;
     private int rtasu;

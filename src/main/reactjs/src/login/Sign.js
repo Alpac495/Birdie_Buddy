@@ -15,6 +15,8 @@ function Sign(props) {
     const [ugender, setUgender] = useState('');
     const [ucareer, setUcareer] = useState('');
     const [code, setCode] = useState('');
+    const [chk, setChk] = useState(false);
+    const [chk2, setChk2] = useState(false);
     const navi = useNavigate();
     const emailRef = useRef(null);
     const hpRef = useRef(null);
@@ -86,6 +88,8 @@ function Sign(props) {
             })
     }
     const emailchk = () => {
+        setChk(true);
+        setChk2(false);
         if (uemail == '') {
             alert("아이디를 입력해 주세요.");
             return;
@@ -97,6 +101,7 @@ function Sign(props) {
                 .then(res => {
                     if (res.data == 1) {
                         //alert("아이디 중복")
+                        setChk2(true);
                         setUemail('');
                     } else {
                         //alert("중복체크완료")
@@ -261,7 +266,8 @@ function Sign(props) {
                         <div className="MSrectangle-container">
                             <div className="MSgroup-child1" />
                             {
-                                upass == '' || upass != upassok ?
+                                upassok == ''?<div></div>:
+                                upass != upassok ?
                                     <div className="MSdiv14" style={{color:'#ED4C5C'}}>비밀번호가 일치하지 않습니다.</div>
                                     :
                                     <div className="MSdiv14" style={{color:'#449714'}}>비밀번호가 일치합니다.</div>
@@ -306,6 +312,8 @@ function Sign(props) {
                         <div className="MSrectangle-group">
                             <div className="MSgroup-child1" />
                             {
+                                !chk?<div></div>:
+                                chk2?<div className="MSdiv14" style={{color:'#ED4C5C'}}>중복된 아이디 입니다</div>:
                                 imsiEmail==0?<div className="MSdiv14" style={{color:'#ED4C5C'}}>아이디는 최소 5자리 이상이어야 합니다.</div>
                                 :
                                 <div className="MSdiv14" style={{color:'#449714'}}>사용 가능한 아이디입니다.</div>

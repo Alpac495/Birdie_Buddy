@@ -1,8 +1,8 @@
 import React from 'react';
-import './MypageUpdatePhoto.css';
+import './MypageUpdateBgphoto.css';
 
-function MypageUpdatePhoto(props) {
-    const { open, close, header, changePhoto } = props;
+function MypageUpdateBgphoto(props) {
+    const { open, close, header, changebgphoto } = props;
 
     return (
         // 모달이 열릴때 openModal 클래스가 생성된다.
@@ -17,7 +17,7 @@ function MypageUpdatePhoto(props) {
                     </header>
                     <main>{props.children}</main>
                     <footer>
-                        <button onClick={changePhoto}>
+                        <button onClick={changebgphoto}>
                             저장
                         </button>
                     </footer>
@@ -25,6 +25,6 @@ function MypageUpdatePhoto(props) {
             ) : null}
         </div>
     );
-};
+}
 
-export default MypageUpdatePhoto;
+export default MypageUpdateBgphoto;

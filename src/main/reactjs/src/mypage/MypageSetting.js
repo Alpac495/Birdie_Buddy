@@ -16,7 +16,7 @@ const MypageSetting = () => {
     const [upass, setUpass]=useState('');
 
     const onMyYangdo=()=>{
-        navi(`/mypage/myyangdo/${unum}/1`);
+        navi(`/mypage/myyangdo/${unum}`);
     }
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => {
