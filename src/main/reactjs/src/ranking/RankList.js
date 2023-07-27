@@ -9,10 +9,13 @@ import silver from "../images/silver-medal.png";
 import bronze from "../images/bronze-medal.png";
 import user from "../images/default_golf.png";
 import Footer from "../footer/Footer";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function RankList(props) {
     const [unum, setUnum] = useState(0);
-    const [newList, setNewList] = useState([]); // 업데이트된 리스트를 저장하기 위해 useState를 사용합니다.
+    const [list, setList] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const url = process.env.REACT_APP_PROFILE;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
@@ -33,30 +36,22 @@ function RankList(props) {
         alert(unum);
         const unumItem = document.querySelector(`[data-unum="${unum}"]`);
         if (unumItem) {
-          unumItem.scrollIntoView({ behavior: "smooth" });
+            unumItem.scrollIntoView({ behavior: "smooth" });
         }
     }
 
     const getList = () => {
-        Axios.get("/score/list")
+        Axios.get(`/score/list?page=${page}&size=7`)
             .then(res => {
-                const list = res.data;
-                const fetchUserPromises = list.map(item =>
-                    Axios.get('/score/getuser?unum=' + item.unum)
-                        .then(res => {
-                            const unickname = res.data.unickname;
-                            let uphoto = res.data.uphoto;
-                            return { ...item, unickname, uphoto };
-                        })
-                );
-
-                Promise.all(fetchUserPromises)
-                    .then(updatedList => {
-                        setNewList(updatedList); // newList 상태를 업데이트합니다.
-                    })
-                    
+                setList((prevItems) => [...prevItems, ...res.data]);
+                setPage((prevPage) => prevPage + 1);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                setLoading(false);
             });
-    };
+    }
 
     return (
         <div className='rankingList_wrap'>
@@ -66,74 +61,83 @@ function RankList(props) {
             {/* <div>
                 <Link to="/score/form">스코어 입력</Link>
             </div> */}
-            
+
             <div className='ranking_List'>
                 <div className='ranking_search'>
-                    <div style={{visibility:'hidden'}} >dd</div>
+                    <div style={{ visibility: 'hidden' }} >dd</div>
                     <div>
                         <button type='button' onClick={() => scrollToUnumItem(unum)}>
                             내 순위 조회
                         </button>
                     </div>
                 </div>
-                
-                {newList.map((item, idx) => (
+                <InfiniteScroll
+                    dataLength={list.length}
+                    next={getList}
+                    hasMore={true}
+                    loader={null}
+                    endMessage={null}
+                >
+                    {
+                        list &&
+                        list.map((item, idx) => (
 
-                    <div className='ranking_wrap'> 
-                        <div className={`ranking_mem rank${idx + 1}`} key={idx}  style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../images/default_golf.png)`, backgroundSize:'cover'}}
-                        data-unum={item.unum}>
-                            
-                        <div
-                            className="overlay"
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                backgroundColor: 'rgba(0, 0, 0, 0.7)', // 배경 색상과 투명도 조절
-                            }}
-                        />
-                            
-                            {item.uphoto != null ? (
-                                <div className='ranking_profile'>
-                                <img alt='프로필 사진' src={`${image1}${item.uphoto}${image2}`} />
+                            <div className='ranking_wrap'>
+                                <div className={`ranking_mem rank${idx + 1}`} key={idx} style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../images/default_golf.png)`, backgroundSize: 'cover' }}
+                                    data-unum={item.unum}>
+
+                                    <div
+                                        className="overlay"
+                                        style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            width: '100%',
+                                            height: '100%',
+                                            backgroundColor: 'rgba(0, 0, 0, 0.7)', // 배경 색상과 투명도 조절
+                                        }}
+                                    />
+
+                                    {item.uphoto != null ? (
+                                        <div className='ranking_profile'>
+                                            <img alt='프로필 사진' src={`${image1}${item.uphoto}${image2}`} />
+                                        </div>
+                                    ) : (
+                                        <div className='ranking_profile'>
+                                            <img alt='프로필 사진' src={user} />
+                                        </div>
+                                    )}
+
+
+                                    <div className='ranking_mid'>
+                                        <div className='ranking_nickname'>{item.unickname} 님</div>
+
+                                        <div className='ranking_tasu'>{item.rtasu} 타</div>
+                                    </div>
+
+
+                                    <div>
+                                        <div className='ranking_place'>
+                                            {idx + 1 === 1 ? <img alt='' src={gold} /> :
+                                                idx + 1 === 2 ? <img alt='' src={silver} /> :
+                                                    idx + 1 === 3 ? <img alt='' src={bronze} /> :
+                                                        <span>{`${idx + 1}th`}</span>}
+                                        </div>
+                                    </div>
+
+
+                                    <div className='ranking_neck'></div>
+
+
+
+
                                 </div>
-                            ) : (
-                                <div className='ranking_profile'>
-                                <img alt='프로필 사진' src={user} />
-                                </div>
-                            )}
-
-
-                            <div className='ranking_mid'>
-                                <div className='ranking_nickname'>{item.unickname} 님</div> 
-
-                                <div className='ranking_tasu'>{item.rtasu} 타</div>
                             </div>
+                        ))}
+                </InfiniteScroll>
 
-
-                            <div>
-                            <div className='ranking_place'>
-                                {idx + 1 === 1 ? <img alt='' src={gold}/> :
-                                idx + 1 === 2 ? <img alt='' src={silver}/> :
-                                idx + 1 === 3 ? <img alt='' src={bronze}/> :
-                                <span>{`${idx + 1}th`}</span>}
-                            </div>
-                            </div>
-
-
-                            <div className='ranking_neck'></div> 
-                            
-                            
-                            
-                            
-                        </div>
-                    </div>    
-                ))}
-             
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }

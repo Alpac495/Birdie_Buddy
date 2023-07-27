@@ -228,7 +228,6 @@ const RankForm = () => {
                     </tr>
                 </tbody>
             </table>
-            <h1>{score2()}</h1>
             <hr style={{ height: '3px', backgroundColor: 'rgba(0, 0, 0, 0)', margin: '10px 0' }} />
             <div className={'ranking_btnwrap'}>
                 <div className={'ranking_hole'}>

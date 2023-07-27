@@ -9,6 +9,7 @@ public interface LoginServiceInter {
     public void updateNick(String unickname, int unum);
 
     public void updatePhoto(String uphoto, int unum);
+    public void updateBgPhoto(String ubgphoto, int unum);
 
     public void insertCode(String uhp, String code);
 

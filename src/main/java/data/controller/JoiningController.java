@@ -2,7 +2,6 @@ package data.controller;
 
 import data.dto.JoiningDto;
 import data.dto.JoinmemberDto;
-import data.dto.UserDto;
 import data.mapper.JoiningMapper;
 import data.service.JoiningService;
 import org.springframework.beans.factory.annotation.Autowired;
