@@ -5,7 +5,7 @@ body {
     line-height: normal;
 }
 
-.FLdiv {
+.ULdiv {
     flex: 1;
     position: relative;
     letter-spacing: -0.01em;
@@ -40,12 +40,12 @@ body {
     background-color: #ebebf0;
     height: 3.13rem;
 }
-.FLtab {
+.ULtab {
     width: 100%;
     right: 0;
     left: 0;
 }
-.FLtab {
+.ULtab {
     position: absolute;
     top: 6.19rem;
     height: 3.13rem;
@@ -53,11 +53,11 @@ body {
     font-size: 0.94rem;
 }
 
-.FLdiv2 {
+.ULdiv2 {
     position: absolute;
     top: 0;
 }
-.FLdiv2 {
+.ULdiv2 {
     left: 0;
     letter-spacing: -0.01em;
     background: linear-gradient(202.17deg, #03c75a, #85c644);
@@ -65,7 +65,7 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.flist-child {
+.ulist-child {
     position: absolute;
     width: calc(100% + 1px);
     top: 5.22rem;
@@ -75,26 +75,26 @@ body {
     box-sizing: border-box;
     height: 0.06rem;
 }
-.FLphoto-icon {
+.ULphoto-icon {
     position: relative;
     width: 3.69rem;
     height: 3.63rem;
     object-fit: cover;
 }
-.FLp,
-.FLp1 {
+.ULp,
+.ULp1 {
     margin: 0;
     font-weight: 600;
 }
-.FLp1 {
+.ULp1 {
     font-weight: 300;
     color: #636363;
 }
-.FLtxt {
+.ULtxt {
     line-break: anywhere;
     width: 100%;
 }
-.FLdiv3 {
+.ULdiv3 {
     position: relative;
     line-height: 150%;
     display: flex;
@@ -102,7 +102,7 @@ body {
     width: 9.5rem;
     flex-shrink: 0;
 }
-.FLgroup-child {
+.ULgroup-child {
     position: absolute;
     top: 0.06rem;
     right: 0;
@@ -113,12 +113,12 @@ body {
     width: 3.75rem;
     height: 1.53rem;
 }
-.FLdiv4,
-.FLrectangle-parent {
+.ULdiv4,
+.ULrectangle-parent {
     width: 3.75rem;
     height: 1.63rem;
 }
-.FLdiv4 {
+.ULdiv4 {
     position: absolute;
     top: 0;
     right: 0;
@@ -128,18 +128,18 @@ body {
     align-items: center;
     justify-content: center;
 }
-.FLrectangle-parent {
+.ULrectangle-parent {
     position: relative;
     text-align: center;
     font-size: 0.75rem;
     color: #fff;
 }
-.flistprofile,
-.flistprofile1 {
+.ulistprofile,
+.ulistprofile1 {
     display: flex;
     flex-direction: row;
 }
-.flistprofile1 {
+.ulistprofile1 {
     align-self: stretch;
     border-radius: 8px;
     background-color: #fff;
@@ -149,7 +149,7 @@ body {
     justify-content: center;
     gap: 1.63rem;
 }
-.flistprofile {
+.ulistprofile {
     position: absolute;
     top: 0;
     left: calc(50% - 180px);
@@ -158,34 +158,37 @@ body {
     justify-content: flex-start;
 }
 .ulist,
-.flist1 {
+.ulist1 {
     position: relative;
     width: 100%;
     right: 0;
     left: 0;
     height: 5.25rem;
 }
-.FDMoveLink{
+.UDMoveLink{
     cursor: pointer;
 }
 .ulist {
-    top: 9.31rem;
+    /* top: 9.31rem; */
 }
-.flist1 {
+.ulist1 {
     top: 14.56rem;
 }
+.alluserlist,
+.adminuserlist {
+    position: absolute;
+}
 .alluserlist {
-    position: relative;
-    background-color: #fff;
+    background-color: #f8f5f0;
     width: 100%;
-    height: 50rem;
-    overflow: auto;
+    height: 100%;
     text-align: left;
     font-size: 1rem;
     color: #000;
     font-family: Inter;
 }
-.usersearch {
+.usersearch,
+.ULsearch {
     position: absolute;
     overflow: hidden;
     border: 1px solid black;
@@ -197,4 +200,21 @@ body {
     left: 3.44rem;
     max-width: 100%;
     height: 2.31rem;
+}
+.ULsearch {
+    top: 3rem;
+    left: 16.2rem;
+    font-size: 1rem;
+    letter-spacing: 0.15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 37px;
+}
+.adminuserlist{
+    top: 10rem;
+    width: 100%;
+    right: 0;
+    left: 0;
+    height: auto;
 }

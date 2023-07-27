@@ -31,7 +31,7 @@ function Friend(props) {
             // Step 2: Get data from "/friend/list" endpoint using the unum
             setLoading(true);
                 Axios
-                    .get(`/friend/paginglist?unum=${res1.data}&page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .get(`/friend/paginglist?unum=${res1.data}&page=${page}&size=7`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
                         setItems((prevItems) => [...prevItems, ...res.data]);
                         console.log(items);
@@ -169,8 +169,6 @@ function Friend(props) {
                 items.map((item,idx)=>
 
                     <div className="flist">
-                        <div className="flist-child" />
-                        <div className="flistprofile">
                                 <div className="flistprofile1">
                                     <Link to={`/friend/detail/${item.funum}`} className="FDMoveLink">
                                     {item.uphoto == null ? <img className="FLphoto-icon" alt="" src={Profile} /> :
@@ -187,8 +185,7 @@ function Friend(props) {
                                         <div className="FLgroup-child" />
                                         <div className="FLdiv4" onClick={onChatEvent.bind(null, item.funum)}>채팅하기</div>
                                     </div>
-                                </div>
-                        </div>
+                                </div>                        
                     </div>
                  )
             }

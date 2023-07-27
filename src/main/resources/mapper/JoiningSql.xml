@@ -13,6 +13,10 @@
     <select id="getlistWithPaging" parameterType="int" resultType="JoiningDto">
         select *,(select uphoto from user where unum=jn.unum) as uphoto,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn order by jnum desc LIMIT #{offset}, #{size}
     </select>
+    <select id="getJoinListScrollSearch" parameterType="Map" resultType="JoiningDto">
+        select *,(select uphoto from user where unum=jn.unum) as uphoto,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount from joining jn where (gname LIKE CONCAT('%', #{keyword}, '%') OR jjoinday LIKE CONCAT('%', #{keyword}, '%')) order by jnum desc 
+            
+    </select>
     <select id="getMakeJoinList" parameterType="int" resultType="JoiningDto">
         select *,(select uphoto from user where unum=jn.unum) as uphoto,(select sum(jm.jcount) from joinmember jm where jn.jnum = jm.jnum and jm.jaccept=1) as jmcount, IFNULL((select jaccept from joinmember jm where jn.jnum = jm.jnum and jm.unum=#{unum}),2) as jaccept from joining jn WHERE jn.unum=#{unum} order by jn.jnum desc
     </select>

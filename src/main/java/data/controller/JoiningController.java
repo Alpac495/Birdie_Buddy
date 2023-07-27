@@ -34,11 +34,11 @@ public class JoiningController {
         joiningService.updateJoin(dto);
     }
 
-//    @GetMapping("/list")
-//    public List<JoiningDto> list() {
-//        List<JoiningDto> list = joiningService.getJoiningList();
-//        return list;
-//    }
+    // @GetMapping("/list")
+    // public List<JoiningDto> list() {
+    // List<JoiningDto> list = joiningService.getJoiningList();
+    // return list;
+    // }
     @GetMapping("/list")
     public List<JoiningDto> list(int page, int size) {
         System.out.println("스크롤>>");
@@ -46,6 +46,14 @@ public class JoiningController {
         List<JoiningDto> list = joiningMapper.getlistWithPaging(offset, size);
         return list;
     }
+
+    @GetMapping("/searchlist")
+    public List<JoiningDto> joinsearchlist(@RequestParam(defaultValue = "") String keyword) {
+        System.out.println(keyword);
+        List<JoiningDto> list = joiningMapper.getJoinListScrollSearch(keyword);
+        return list;
+    }
+
     @GetMapping("/makejoinlist")
     public List<JoiningDto> makeJoinlist(int unum) {
         List<JoiningDto> makejoinlist = joiningService.getMakeJoinList(unum);
