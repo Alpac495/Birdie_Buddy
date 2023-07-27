@@ -1,18 +1,9 @@
+
+body {
 @import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
-
-.timeline {
-    margin: 10px auto;
-    padding: 10px;
-    overflow-y: auto;
-    max-width: 360px;
-    max-height:100%;
 }
-.timeline::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리, 오페라, 엣지 */
-}
-
 .HG_hugi1{
     color: #262626;
     font-size: 14px;
@@ -27,9 +18,9 @@
     top: 0;
     max-width: 360px;
     margin:auto;
-    z-index: 9999;
+    z-index: 99;
     background-color: #fafafa;
-    height: 65px;
+    height: 90px;
     display: flex;
     align-items: center;
     object-fit: contain;
@@ -38,7 +29,7 @@
 }
 .HG_hugi_headerWrapper {
     max-width: 360px;
-    margin: 0 auto;
+    margin:auto;
     width: 100%;
     padding: 0 20px;
     display: flex;
@@ -80,15 +71,7 @@
 /*    cursor: pointer;*/
 /*    border: 1px solid transparent;*/
 /*}*/
-.HG_button {
-    background-color: RGB(137 225 164);
-    color: black;
-    padding: 5px 9px;
-    font-weight: 500;
-    font-size: 12px;
-    text-align: center;
-    border-radius: 5px;
-}
+
 .HG_button_hugis{
     background-color: RGB(137 225 164);
     color: black;
@@ -111,14 +94,21 @@
 /*    margin: 28px 0;*/
 /*    row-gap: 15px;*/
 /*}*/
+.HG_details_Timeline{
+    position: fixed;
+    z-index:99;
+    width:350px;
+    margin:auto;
+}
 .HG_details_Timeline > summary {
-    max-width:360px;
+    position: fixed;
+    z-index: 99;
+    width:350px;
     text-align: center;
     margin:auto;
     padding:10px 10px;
     border-radius: 5px;
     background-color:RGB(137 225 164);
-    border:0px solid black;
     cursor: pointer;
     font-weight: bold;
     color: black;

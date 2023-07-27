@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+.CDdiv3 {
+    position: absolute;
+    width: calc(100% - 34px);
+    top: 0.02rem;
+    left: 1.06rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-end;
+    height: 30.63rem;
+  }
+  .CDflist-line {
+    width: calc(100% + 1px);
+    top: -0.03rem;
+    right: -0.03rem;
+    left: -0.03rem;
+    border-top: 1px solid #ebebeb;
+    box-sizing: border-box;
+    height: 0.06rem;
+  }
+  .CDemail,
+  .CDflist-line,
+  .CDparent {
+    position: absolute;
+  }
+  .CDparent {
+    width: 100%;
+    top: 10.41rem;
+    right: 0;
+    left: 0;
+    height: 30.65rem;
+  }
+  .CDemail {
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+    width: calc(100% - 86px);
+    right: 4.44rem;
+    bottom: 1.13rem;
+    left: 0.94rem;
+    border-radius: 3px;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5rem 0.75rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .CDemail:focus {
+    outline: 0;
+  }
+  .CDlabel {
+    position: relative;
+    letter-spacing: 0.15px;
+    line-height: 0.94rem;
+    font-weight: 500;
+  }
+  .CDcentered {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: calc(50% - 48px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .CDround-button-icon {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: 2px;
+    background-color: #fff;
+    border: 1px solid #0b4648;
+    cursor: pointer;
+  }
+  .CDcta-button-1 {
+    position: absolute;
+    width: 100%;
+    top: 6.56rem;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #f8f5f0;
+    height: 3.75rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.63rem 1rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #204337;
+  }
+  .CDchatdetail-child {
+    position: absolute;
+    right: 1.06rem;
+    bottom: 1.19rem;
+    background-color: #d9d9d9;
+    width: 3rem;
+    height: 2rem;
+  }
+  .CDchatdetail {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 46.13rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 0.88rem;
+    color: #000;
+    font-family: Inter;
+  }
+  

@@ -57,7 +57,7 @@
     left: 1rem;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #EBF0F2;
+    border: 1px solid #D9D9D9;
     box-sizing: border-box;
     height: 3.13rem;
     overflow: hidden;
@@ -84,7 +84,7 @@
     left: 1rem;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #EBF0F2;
+    border: 1px solid #D9D9D9;
     box-sizing: border-box;
     height: 3.13rem;
     overflow: hidden;
@@ -106,8 +106,8 @@
   }
   .LGdiv {
     position: absolute;
-    top: 27.63rem;
-    left: 2.88rem;
+    top: 27.6rem;
+    left: 3.1rem;
     font-size: 0.81rem;
     color: #484848;
     width: 5.26rem;

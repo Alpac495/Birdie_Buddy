@@ -514,17 +514,7 @@ function HugiRowList(props) {
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
-
-            <div id="demo" className="carousel slide" data-bs-ride="carousel">
-
-
-                <div className="carousel-indicators HG_list_image">
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" className="active"></button>
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-                </div>
-
-
+            <div id="demo" className="carousel slide HG_list_image" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img src={`${URL}${hphoto}`} alt="" className ="d-block w-100" value={hphoto} onClick={handleClickDetail}/>
@@ -536,7 +526,6 @@ function HugiRowList(props) {
                         <img src={`${URL}${hphoto}`} alt="" className="d-block w-100" value={hphoto} onClick={handleClickDetail}/>
                     </div>
                 </div>
-
                 <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon"></span>
                 </button>

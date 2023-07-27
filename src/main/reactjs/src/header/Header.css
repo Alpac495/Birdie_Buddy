@@ -15,6 +15,7 @@
   }
   .header_menuicon{
     position: absolute;
+    z-index: 100;
     top: 0;
     left: 10px;
     /* 48685E */

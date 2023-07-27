@@ -2,6 +2,7 @@ import "./Sign.css";
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import memberlogo from "../image/memberlogo.svg";
 
 function Sign(props) {
     const [uemail, setUemail] = useState('');
@@ -63,42 +64,42 @@ function Sign(props) {
     const ouSubmitEvent = (e) => {
         e.preventDefault();
         if (imsiEmail != 1) {
-            alert("이메일 중복 확인을 진행해주세요");
+            alert("이메일 중복 확인해 주세요.");
             return;
         } else if (!regex.test(upass)) {
             alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
             return;
         } else if (upass != upassok) {
-            alert("비밀번호가 일치하지 않습니다")
+            alert("비밀번호가 일치하지 않습니다.")
             return;
         } else if (imsihp != 1) {
-            alert("휴대폰 인증을 진행해주세요");
+            alert("휴대폰 인증을 진행해 주세요.");
             return;
         } else if (imsinick != 1) {
-            alert("닉네임 중복확인을 진행해주세요")
+            alert("닉네임 중복 확인을 진행해 주세요.")
             return;
         }
         axios.post("/login/sign", { uemail, upass, uname, unickname, uage, ugender, uhp, ucareer })
             .then(res => {
-                alert("회원가입 성공. 메인페이지로 이동");
+                alert("환영합니다! 가입이 완료되었습니다.");
                 navi("/")
             })
     }
     const emailchk = () => {
         if (uemail == '') {
-            alert("ID를 확인해주세요");
+            alert("아이디를 입력해 주세요.");
             return;
         } else if(uemail.length<5){
-            alert("ID는 5자 이상이여야 합니다");
+            //alert("아이디는 5자 이상이어야 합니다.");
             return;
         } else {
             axios.get(`/login/emailchk?uemail=${uemail}`)
                 .then(res => {
                     if (res.data == 1) {
-                        alert("아이디 중복")
+                        //alert("아이디 중복")
                         setUemail('');
                     } else {
-                        alert("중복체크완료")
+                        //alert("중복체크완료")
                         // emailRef.current.disabled = true
                         setImsiEmail('1')
                     }
@@ -107,16 +108,16 @@ function Sign(props) {
     }
     const nickchk = () => {
         if (unickname == '') {
-            alert("닉네임은 비워둘수 없습니다");
+            alert("닉네임을 입력해 주세요.");
             return;
         } else {
             axios.get(`/login/nickchk?unickname=${unickname}`)
                 .then(res => {
                     if (res.data == 1) {
-                        alert("닉네임 중복")
+                        //alert("닉네임 중복")
                         setUnickname('');
                     } else {
-                        alert("중복체크완료")
+                        //alert("중복체크완료")
                         //nicknameRef.current.disabled = true
                         setImsinick('1')
                     }
@@ -125,17 +126,17 @@ function Sign(props) {
     }
     const sms = () => {
         if (uhp.length != 11) {
-            alert("휴대폰번호 11자리를 입력해 주세요")
+            alert("휴대폰번호 11자리를 입력해 주세요.")
             setUhp('');
         } else {
             axios.get('/login/hpchk?uhp=' + uhp)
                 .then(res => {
                     if (res.data == 1) {
-                        alert("이미 등록된 번호입니다")
+                        alert("이미 등록된 번호입니다.")
                         hpRef.current.disabled = null
                         setUhp('');
                     } else {
-                        alert("코드발송")
+                        alert("인증 번호를 발송했습니다.")
                         axios.get('/login/smsSend?uhp=' + uhp)
                             .then(response => {
                                 console.log(response.data);
@@ -170,46 +171,59 @@ function Sign(props) {
                 <div className="MSgroup-parent">
                     <div className="MSparent">
                         <div className="MSdiv1">이름</div>
-                        <input type={"text"} className="MSname-wrapper" placeholder="Name" required onChange={(e) => setUname(e.target.value)}
-                            value={uname} ref={nameRef} />
+                        <div className="MSname-wrapper">
+                            <input type={"text"} className="MSname" placeholder="" required onChange={(e) => setUname(e.target.value)}
+                                value={uname} ref={nameRef} />
+                        </div>
                     </div>
                     <div className="MSgroup">
                         <div className="MSdiv1">생년월일</div>
-                        <input className="MSname-wrapper" type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage} />
+                        <div className="MSname-wrapper">
+                            <input className="MSname" type={"date"} required onChange={(e) => setUage(e.target.value)} value={uage} />
+                        </div>
                     </div>
                     <div className="MScontainer">
                         <div className="MSdiv1">성별</div>
-                        <select className="MSname-wrapper" required onChange={(e) => setUgender(e.target.value)} value={ugender}>
-                            <option value={''} hidden>성별</option>
-                            <option value={"남"}>남</option>
-                            <option value={"여"}>여</option>
-                        </select>
+                        <div className="MSname-wrapper">
+                            <select className="MSname" required onChange={(e) => setUgender(e.target.value)} value={ugender}>
+                                <option value={''} hidden>성별</option>
+                                <option value={"남"}>남</option>
+                                <option value={"여"}>여</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="MSgroup-div">
                         <div className="MSdiv1">골프 경력</div>
-                        <select className="MSname-wrapper" required onChange={(e) => setUcareer(e.target.value)} value={ucareer}>
-                            <option hidden value={''}>경력</option>
-                            <option value={"1년 미만"}>1년 미만</option>
-                            <option value={"1~3년"}>1~3년</option>
-                            <option value={"4~6년"}>4~6년</option>
-                            <option value={"7~9년"}>7~9년</option>
-                            <option value={"10년 이상"}>10년이상</option>
-                        </select>
+                        <div className="MSname-wrapper">
+                            <select className="MSname" required onChange={(e) => setUcareer(e.target.value)} value={ucareer}>
+                                <option hidden value={''}>경력</option>
+                                <option value={"1년 미만"}>1년 미만</option>
+                                <option value={"1~3년"}>1~3년</option>
+                                <option value={"4~6년"}>4~6년</option>
+                                <option value={"7~9년"}>7~9년</option>
+                                <option value={"10년 이상"}>10년이상</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="MSparent1">
                         <div className="MSdiv7">휴대폰 인증</div>
                         <div className="MSframe-parent">
-                            <input type="text" className="MSframe-div" placeholder="HP" required ref={hpRef} value={uhp}
-                                onChange={(e) => {
-                                    setUhp(e.target.value)
-                                    setImsihp('0');
-                                }} />
+                            <div className="MSframe-div">
+                                <input type="text" className="MSnick-name" placeholder="숫자로만 입력해 주세요." 
+                                    required ref={hpRef} value={uhp}
+                                    onChange={(e) => {
+                                        setUhp(e.target.value)
+                                        setImsihp('0');
+                                    }} />
+                            </div>
                             <button className="MSgroup-item" type="button" onClick={sms}></button>
-                            <div className="MSdiv9" onClick={sms}>인증 번호</div>
+                            <div className="MSdiv9" onClick={sms}>발송</div>
                         </div>
                         <div className="MSframe-group">
-                            <input type="text" className="MSframe-div" placeholder="Code" ref={codeRef}
-                                onChange={(e) => setCode(e.target.value)} />
+                            <div className="MSframe-div">
+                                <input type="text" className="MSnick-name" placeholder="인증 번호를 입력하세요." ref={codeRef}
+                                    onChange={(e) => setCode(e.target.value)} />
+                            </div>
                             <button type="button" className="MSgroup-item" onClick={codeChk}></button>
                             <div className="MSdiv9" onClick={codeChk}>확인</div>
                         </div>
@@ -217,50 +231,59 @@ function Sign(props) {
                     <div className="MSparent2">
                         <div className="MSdiv1">닉네임</div>
                         <div className="MSframe-container">
-                            <input className="MSframe-div" type={"text"} ref={nicknameRef} placeholder="Nickname" required onChange={(e) => {
-                                setUnickname(e.target.value);
-                                setImsinick('0');
-                            }}
-                                value={unickname} />
+                            <div className="MSframe-div">
+                                <input className="MSnick-name" type={"text"} ref={nicknameRef} placeholder="닉네임을 입력해 주세요." 
+                                required onChange={(e) => {
+                                    setUnickname(e.target.value);
+                                    setImsinick('0');
+                                }}
+                                    value={unickname} />
+                            </div>
                             <div className="MSgroup-item" />
                             <div className="MSdiv9" onClick={nickchk}>중복 확인</div>
                         </div>
                         <div className="MSrectangle-group">
                             <div className="MSgroup-child1" />
                             {
-                                imsinick==0?<div className="MSdiv14">중복확인을 진행해주세요</div>
+                                imsinick==0?<div className="MSdiv14" style={{color:'#ED4C5C'}}></div>
                                 :
-                                <div className="MSdiv14">사용 가능한 닉네임 입니다</div>
+                                <div className="MSdiv14" style={{color:'#449714'}}>사용 가능한 닉네임입니다.</div>
                             }
                             
                         </div>
                     </div>
                     <div className="MSparent3">
-                        <div className="MSdiv1">비밀번호 확인</div>
-                        <input type={"password"} className="MSname-wrapper" placeholder="Pass" required onChange={(e) => setUpassok(e.target.value)} value={upassok} />
+                        <div className="MSdiv1">비밀번호 재확인</div>
+                        <div className="MSname-wrapper">
+                            <input type={"password"} className="MSname" placeholder="비밀번호를 한 번 더 입력해 주세요." 
+                            required onChange={(e) => setUpassok(e.target.value)} value={upassok} />
+                        </div>
                         <div className="MSrectangle-container">
                             <div className="MSgroup-child1" />
                             {
                                 upass == '' || upass != upassok ?
-                                    <div className="MSdiv14">비밀번호가 일치하지 않습니다</div>
+                                    <div className="MSdiv14" style={{color:'#ED4C5C'}}>비밀번호가 일치하지 않습니다.</div>
                                     :
-                                    <div className="MSdiv14">비밀번호가 일치합니다</div>
+                                    <div className="MSdiv14" style={{color:'#449714'}}>비밀번호가 일치합니다.</div>
                             }
                         </div>
                     </div>
                     <div className="MSparent4">
                         <div className="MSdiv1">비밀번호</div>
-                        <input type={"password"} className="MSname-wrapper" placeholder="Pass" required onChange={(e) => setUpass(e.target.value)} value={upass} />
+                        <div className="MSname-wrapper">
+                            <input type={"password"} className="MSname" 
+                            placeholder="비밀번호를 입력해 주세요." required onChange={(e) => setUpass(e.target.value)} value={upass} />
+                        </div>
                         <div className="MSrectangle-parent1">
                             <div className="MSgroup-child3" />
                             <div className="MSdiv18">
                                 {
                                     upass==''?
-                                    <span>영문/숫자/특수문자 조합으로 8~16자, 대소문자 구분</span>
+                                    <span></span>
                                     :!regex.test(upass)?
-                                    <span>실패</span>
+                                    <span style={{color:'#ED4C5C'}}>영문/숫자/특수문자 조합으로 8~16자, 대소문자 구분</span>
                                     :
-                                    <span>성공</span>
+                                    <span></span>
                                 }
                             </div>
                         </div>
@@ -268,27 +291,30 @@ function Sign(props) {
                     <div className="MSparent5">
                         <div className="MSdiv1">아이디</div>
                         <div className="MSframe-container">
-                            <input type={"text"} className="MSframe-div" placeholder="ID" required ref={emailRef}
-                                onChange={(e) => {
-                                    setUemail(e.target.value)
-                                    setImsiEmail('0');
-                                }}
-                                value={uemail} />
+                            <div className="MSframe-div">
+                                <input type={"text"} className="MSnick-name" placeholder="아이디를 입력해 주세요." 
+                                required ref={emailRef}
+                                    onChange={(e) => {
+                                        setUemail(e.target.value)
+                                        setImsiEmail('0');
+                                    }}
+                                    value={uemail} />
+                                </div>
                             <button className="MSgroup-item" type='button' onClick={emailchk}></button>
                             <div className="MSdiv9" onClick={emailchk}>중복 확인</div>
                         </div>
                         <div className="MSrectangle-group">
                             <div className="MSgroup-child1" />
                             {
-                                imsiEmail==0?<div className="MSdiv14">ID는 최소 5자리 이상이여야 합니다.</div>
+                                imsiEmail==0?<div className="MSdiv14" style={{color:'#ED4C5C'}}>아이디는 최소 5자리 이상이어야 합니다.</div>
                                 :
-                                <div className="MSdiv14">사용가능한 ID  입니다</div>
+                                <div className="MSdiv14" style={{color:'#449714'}}>사용 가능한 아이디입니다.</div>
                             }
                             
                         </div>
                     </div>
                 </div>
-                <img className="MSicon" alt="" src="/5@2x.png" />
+                <img className="MSicon" alt="" src={memberlogo} />
             </div>
         </form>
     );

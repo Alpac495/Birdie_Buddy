@@ -6,6 +6,7 @@ import HugiRowList from './HugiRowList';
 import InfiniteScroll from "react-infinite-scroll-component";
 import logo from "../images/logo.png";
 import Footer from "../footer/Footer";
+import Header from "../header/Header";
 
 function HugiList(props) {
     const [unum, setUnum] = useState('');
@@ -91,20 +92,23 @@ function HugiList(props) {
 //     };
 
 
-// 파일 업로드 이벤트 핸들러 (async/await 사용)
+// 이전 코드에서 수정한 부분 (onUploadEvent 함수)
     const onUploadEvent = async (e) => {
+        const files = Array.from(e.target.files); // 선택된 파일들을 배열로 변환
         const uploadFiles = new FormData();
 
-        // 여러 파일을 선택한 경우, files 배열에서 모든 파일을 FormData에 추가합니다.
-        for (let i = 0; i < e.target.files.length; i++) {
-            uploadFiles.append('upload', e.target.files[i]);
-            console.log("선택한 파일명: ", e.target.files[i].name); // 선택한 파일명 출력
-        }
+        // 선택된 파일들을 FormData에 추가
+        files.forEach((file, index) => {
+            uploadFiles.append(`upload${index}`, file); // 서버에서도 배열을 처리할 수 있도록 upload0, upload1, ... 형식으로 추가
+        });
 
         try {
             const res = await Axios.post('/hugi/upload', uploadFiles);
-            const firstFileUrl = res.data[0]; // 첫 번째 파일의 URL을 가져옴
-            setHphoto(firstFileUrl); // hphoto에 첫 번째 파일 URL을 설정
+            setHphoto(res.data); // 서버로부터 받아온 사진 URL을 단일 문자열로 설정
+
+            // 파일 이름 출력을 위해 선택된 파일 이름들을 저장
+            const selectedFileNames = files.map((file) => file.name);
+            console.log("선택된 파일 이름들:", selectedFileNames);
         } catch (error) {
             console.log(error);
         }
@@ -119,28 +123,52 @@ function HugiList(props) {
             alert('글을 입력해주세요.');
             return;
         }
-
+        if (selectedFiles.length === 0) {
+            alert('파일을 선택해주세요.');
+            return;
+        }
         const dataToSend = {
             unum: unum,
             Unickname: Unickname,
             uphoto: uphoto,
             hlike: hlike,
             hcontent: hcontent,
-            hphoto: hphoto || '',
+            hphoto: hphoto || [],
             hwriteday: formattedDate,
         };
 
         try {
+            // 여러 파일 업로드 처리
+            const uploadFiles = new FormData();
+            selectedFiles.forEach((file) => uploadFiles.append('upload', file));
+            const res = await Axios.post('/hugi/upload', uploadFiles);
+            dataToSend.hphoto = res.data; // 서버로부터 받아온 여러 파일의 URL을 dataToSend에 설정
+
             await Axios.post('/hugi/insert', dataToSend);
-            setHphoto('');
             setHcontent('');
+            setSelectedFiles([]); // 파일 선택 초기화
+            setSelectedPreviews([]); // 파일 미리보기 초기화
             setLoading(true); // 로딩 상태를 true로 설정하여 다시 데이터를 불러올 수 있도록 함
             window.location.reload(); // 페이지 새로고침
         } catch (error) {
             console.log(error);
         }
     };
+// 파일 선택 시 파일 정보와 미리보기 이미지 업데이트 함수
+    const onFileChange = (e) => {
+        const files = e.target.files;
+        const fileArray = Array.from(files).map((file) => {
+            const previewUrl = URL.createObjectURL(file);
+            return { file, previewUrl };
+        });
 
+        // Limit the number of selected files to 6
+        const maxFiles = 6;
+        const selectedFilesLimited = fileArray.slice(0, maxFiles);
+
+        setSelectedFiles(selectedFilesLimited.map((file) => file.file));
+        setSelectedPreviews(selectedFilesLimited.map((file) => file.previewUrl));
+    };
     // 홈 버튼 클릭 이벤트 핸들러
     const homeButton = () => {
         navi('/');
@@ -150,20 +178,6 @@ function HugiList(props) {
         navi(`/hugi/list/${unum}`);
     };
 
-    // 파일 선택 시 파일 정보와 미리보기 이미지 업데이트 함수
-    const onFileChange = (e) => {
-        const files = e.target.files;
-        const fileArray = Array.from(files).map((file) => {
-            const fileName = file.name;
-            const previewUrl = URL.createObjectURL(file);
-            return { file, fileName, previewUrl };
-        });
-
-        setSelectedFiles(fileArray.map((file) => file.fileName)); // 파일명 배열로 업데이트
-        setSelectedPreviews(fileArray.map((file) => file.previewUrl)); // 미리보기 이미지 URL 배열로 업데이트
-        setHphoto(fileArray.length > 0 ? fileArray[0].previewUrl : ''); // 첫 번째 이미지의 URL을 hphoto에 저장
-        onUploadEvent(e); // 파일 업로드 이벤트 호출
-    };
     const onclickLoad = () => {
         window.scrollTo({top: 0, behavior: "smooth" });
        fetchMoreData();
@@ -172,25 +186,21 @@ function HugiList(props) {
         <div className="HG_hugi1">
             <div className="HG_hugi_header">
                 <div className="HG_hugi_headerWrapper">
-                    <button type="button" alt="" className="HG_button" onClick={homeButton}>
-                        Home
-                    </button>
-                    <button type="button" alt="" className="HG_button_hugis" onClick={Myhugis}>
-                        MyHugis
-                    </button>
+                    <Header/>
                 </div>
             </div>
             <div className="HG_hugi2">
             {unum !== 0 && (
                 <details className="HG_details_Timeline">
                     <summary>게시물 작성하기</summary>
-                    <div className="HG_timeline" style={{
+                    <div style={{
+                        zIndex:'99',
+                        background:'white',
                         border: '1px solid lightgrey',
                         borderRadius: '5px',
                         width: '100%',
                         height: '50%',
-                        marginTop: '5px',
-                        marginBottom: '5px',
+                        marginTop:'38px',
                         padding: '10px'
                     }}>
                         {/*alt="" src={`${url}${hphoto}`}*/}
