@@ -4,6 +4,7 @@ import Profile from "../image/user60.png";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const FriendSearch = () => {
     const url = process.env.REACT_APP_PROFILE;
@@ -14,16 +15,34 @@ const FriendSearch = () => {
     const [data,setData]=useState('');
     const [myfrienddata,setMyfriendData]=useState([]);
     const [requestcheck,setRequestCheck]=useState([]);
+    const [items, setItems] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [keyword, setKeyword] = useState('');
     
-    const unumchk=()=>{
+    const fetchMoreData=()=>{
         Axios.get("/login/unumChk")
         .then(res=> {
             setUnum(res.data);
-            const url="/friend/friendsearch?unum="+res.data;
-            Axios.get(url)
-            .then(res=>{
-                setData(res.data);
-            })
+            setLoading(true);
+                Axios
+                    .get(`/friend/friendsearch?unum=${res.data}&page=${page}&size=12`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .then((res) => {
+                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        console.log(items);
+                        console.log(res.data);
+                        setPage((prevPage) => prevPage + 1);
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                        setLoading(false);
+                    });
+            // const url="/friend/friendsearch?unum="+res.data;
+            // Axios.get(url)
+            // .then(res=>{
+            //     setData(res.data);
+            // })
             const furl="/friend/list?unum="+res.data;
             Axios.get(furl)
             .then(res=>{
@@ -37,8 +56,21 @@ const FriendSearch = () => {
         });
     }
     useEffect(() => {
-        unumchk()
+        fetchMoreData()
     }, [])    
+
+    const search = () => {
+        Axios.get("/friend/friendsearchlist?unum="+unum+"&keyword=" + keyword)
+            .then(res => {
+                setItems(res.data);
+                setPage((prevPage) => prevPage + 1);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                setLoading(false);
+            });
+    }
 
     const onRequestFriendEvent=(funum)=>{
         const confirmed = window.confirm('버디 요청을 하시겠습니까?');
@@ -76,17 +108,25 @@ const FriendSearch = () => {
     return (
         <div className="AFallfriendlist">
             <Header/>
-            <div className="AFdiv">골프버디를 찾아보세요!</div>
+            {/* <div className="AFdiv">골프버디를 찾아보세요!</div> */}
             <input className="AFyou"
                    type="text"
-                   placeholder="골프버디를 찾아보세요"
-                   onChange={(e) => {
-                       setSearchTerm(e.target.value);
-                   }}/>
+                   placeholder="골프버디를 찾아보세요!"
+                   value={keyword}
+                    onChange={(e) => {
+                        setKeyword(e.target.value);
+                    }}/><button className="AFsearch btn btn-sm btn-outline-success" onClick={search}>검색</button>
+                    <InfiniteScroll
+                    dataLength={items.length}
+                    next={fetchMoreData}
+                    hasMore={true}
+                    loader={<h4>마지막</h4>}
+                    endMessage={null}
+                >
             <div className="AFitem-grid-tiles-3x3">
             {
-                data.map &&
-                data.filter((val) => {
+                items.map &&
+                items.filter((val) => {
                     if (searchTerm === "") {
                     return val;
                     } else if (val.ugender.includes(searchTerm) || val.unickname.includes(searchTerm)) {
@@ -113,7 +153,7 @@ const FriendSearch = () => {
                 ))
                 }
 
-            </div>
+            </div></InfiniteScroll>
         </div>
     );
 };

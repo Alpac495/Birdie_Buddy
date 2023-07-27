@@ -157,7 +157,7 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
 }
-.flist,
+.ulist,
 .flist1 {
     position: relative;
     width: 100%;
@@ -168,13 +168,13 @@ body {
 .FDMoveLink{
     cursor: pointer;
 }
-.flist {
+.ulist {
     top: 9.31rem;
 }
 .flist1 {
     top: 14.56rem;
 }
-.friend {
+.alluserlist {
     position: relative;
     background-color: #fff;
     width: 100%;
