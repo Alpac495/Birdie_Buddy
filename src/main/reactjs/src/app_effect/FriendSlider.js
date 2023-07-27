@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import no from '../images/person1.jpg';
 import user from "../images/default_golf.png";
 import './FriendSlider.css';
 import AddIcon from '@mui/icons-material/Add';
@@ -15,16 +14,7 @@ const SimpleSlider = () => {
     const [data,setData]=useState('');
     const [fdata,setFdata]=useState('');
 
-    // useEffect(() => {
-    //     unumchk();
-    //     Axios.get('/main/combine?unum=' + unum)
-    //         .then(res => {
-    //             setFriendReco(res.data);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching data:', error);
-    //         });
-    // }, [unum]); 
+    
 
     const unumchk=()=>{
         Axios.get("/login/unumChk")

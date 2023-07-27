@@ -19,7 +19,13 @@
     left: 10px;
     /* 48685E */
 }
-
+.side_go_login{
+    margin-left: 15px;
+}
+.side_login{
+    color: black;
+    text-decoration: none;
+}
 
 .side_profile{
     width: 100%;
