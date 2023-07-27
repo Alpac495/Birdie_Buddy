@@ -66,4 +66,10 @@ public class MainController {
   public List<NoticeDto> getNoticeList(){
     return mainMapper.getNoticeList();
   }
+
+  @GetMapping("/userdata")
+  public List<UserDto> getLoginUser(int unum){
+
+    return mainMapper.getLoginUser(unum);
+  }
 }

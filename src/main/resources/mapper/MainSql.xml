@@ -45,4 +45,8 @@
     <select id="getNoticeList" resultType="NoticeDto">
         select * from notice limit 6
     </select>
+
+    <select id="getLoginUser" resultType="UserDto">
+        select * from user where unum = #{unum}
+    </select>
 </mapper>
