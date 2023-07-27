@@ -5,16 +5,77 @@ body {
     margin: 0;
     line-height: normal;
 }
+.JEElogo-end {
+    align-self: stretch;
+    position: relative;
+  }
+  
 .header{
     width: 100%;
 }
-.btn1_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+.JEEgroup-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  background-color: #48685e;
+  width: 4.38rem;
+  height: 2.5rem;
 }
-
+.JEEdiv {
+  position: relative;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.19rem;
+  color: #fff;
+  font-size: 80%;
+}
+.JEEemail,
+.JEErectangle-group {
+  position: absolute;
+  top: 0;
+  height: 2.5rem;
+}
+.JEErectangle-group {
+  left: 16.25rem;
+  width: 4.38rem;
+}
+.JEEemail {
+  border: 1px solid #d9d9d9;
+  font-family: Roboto;
+  font-size: 1rem;
+  background-color: #fff;
+  left: 0;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 15.88rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 0.75rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+.JEEemail:focus {
+  outline: 0;
+}
+.JEEgroup-parent {
+  align-self: stretch;
+  position: relative;
+  height: 2.5rem;
+}
+.JEEinstance-child{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #f8f5f0;
+}
 .JElogo-ex-child {
     height: 100%;
     width: 100%;
@@ -101,13 +162,13 @@ body {
 }
 .JEtitle1 {
     width: 20%;
-    height: 65%;
+    height: 60%;
     bottom: 0.5rem;
     left: 10.25rem;
     letter-spacing: 0.15px;
     font-weight: 300;
     /* border: none; */
-    font-size: 80%;
+    font-size: 30%;
 }
 .JEapp-bar-top {
     position: absolute;
@@ -346,6 +407,7 @@ body {
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 16px;
+    background-color: #f8f5f0;
 }
 .JEjlist-parent,
 .JEjoinlistreact {
@@ -364,7 +426,7 @@ body {
 }
 .JEjoinlistreact {
     position: relative;
-    background-color: #fff;
+    background-color: #f8f5f0;
     flex-direction: column;
     padding: 0.94rem;
     box-sizing: border-box;
