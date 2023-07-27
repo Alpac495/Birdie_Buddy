@@ -237,16 +237,14 @@ public class LoginController {
         loginService.hpChange(unum, uhp);
     }
     @GetMapping("/getUserUhp")
-    public String getUserUhp(String uhp){
+    public UserDto getUserUhp(String uhp){
         int n = loginMapper.getUserUhpCnt(uhp);
         if(n==0){
-            return "no";
+            return null;
         } else {
             UserDto udto = loginMapper.getUserUhp(uhp);
-            String uemail = udto.getUemail();
-            return uemail;
+            return udto;
         }
-
     }
     @GetMapping("/searchPass")
     public boolean searchPass(String uhp, String uemail){
@@ -261,6 +259,7 @@ public class LoginController {
     @GetMapping("/passChange2")
     public void passChange2(String upass, String uemail){
        UserDto udto = loginMapper.getUserData(uemail);
+       System.out.println(udto);
        int unum = udto.getUnum();
        loginService.passChange(unum, upass);
     }

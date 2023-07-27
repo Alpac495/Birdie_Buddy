@@ -22,4 +22,463 @@
     background-color: RGB(238, 250, 234);
 }
 
-
+.PC1passwordsearch1-child {
+    position: absolute;
+    width: 100%;
+    top: 6.25rem;
+    right: 0;
+    left: 0;
+    background-color: #0b4648;
+    height: 3.13rem;
+  }
+  .PC1div {
+    position: absolute;
+    top: 0;
+    left: 1.75rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    width: 11.19rem;
+    height: 1.56rem;
+  }
+  .PC1icon-arrow-left,
+  .PC1parent {
+    position: absolute;
+    top: 0.22rem;
+    left: -0.09rem;
+    width: 1.13rem;
+    height: 1.09rem;
+  }
+  .PC1parent {
+    top: 7.06rem;
+    left: 1.19rem;
+    width: 12.94rem;
+    height: 1.56rem;
+    font-size: 1.06rem;
+    color: #fff;
+  }
+  .PC1span {
+    color: #449714;
+  }
+  .PC1span1 {
+    color: #000;
+  }
+  .PC1p {
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+  .PC1p1 {
+    margin: 0;
+  }
+  .PC1txt {
+    line-break: anywhere;
+    width: 100%;
+  }
+  .PC1div1,
+  .PC1div2 {
+    position: absolute;
+    top: 13.63rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    width: 20.5rem;
+    height: 3.13rem;
+  }
+  .PC1div2 {
+    top: 10.94rem;
+    font-size: 1.38rem;
+    color: #449714;
+    height: 2.5rem;
+  }
+  .PC1group-child {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #48685e;
+    height: 2.19rem;
+  }
+  .PC1div3 {
+    position: absolute;
+    width: calc(100% - 173px);
+    top: 0.44rem;
+    left: 5.38rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25rem;
+  }
+  .PC1rectangle-parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 37rem;
+    right: 1rem;
+    left: 1rem;
+    height: 2.19rem;
+    text-align: center;
+    color: #fff;
+  }
+  .PC1birdie-buddy,
+  .PC1div4,
+  .PC1div5 {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .PC1birdie-buddy {
+    top: 45.44rem;
+    left: calc(50% - 43px);
+    letter-spacing: -0.01em;
+    font-family: "Abhaya Libre ExtraBold";
+    color: #b9b9b9;
+    text-align: center;
+    width: 5.5rem;
+    height: 0.94rem;
+  }
+  .PC1div4,
+  .PC1div5 {
+    top: 0;
+    left: calc(50% + 18.5px);
+    width: 6.25rem;
+    height: 1.88rem;
+  }
+  .PC1div5 {
+    left: calc(50% - 118.5px);
+    width: 8.13rem;
+  }
+  .PC1group-item {
+    position: absolute;
+    top: 0.59rem;
+    left: calc(50% + 15px);
+    border-right: 1px solid #b9b9b9;
+    box-sizing: border-box;
+    width: 0.06rem;
+    height: 0.69rem;
+  }
+  .PC1group {
+    position: absolute;
+    top: 40.13rem;
+    left: calc(50% - 164px);
+    width: 14.81rem;
+    height: 1.88rem;
+    text-align: center;
+    font-size: 0.69rem;
+    color: #484848;
+  }
+  .PC1div6,
+  .PC1group-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .PC1div6 {
+    width: calc(100% - 170px);
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+  }
+  .PC1group-inner {
+    width: calc(100% - 86px);
+    right: 5.38rem;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    height: 2.5rem;
+  }
+  .PC1div7 {
+    position: absolute;
+    width: calc(100% - 112px);
+    top: 0.69rem;
+    left: 0.63rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    height: 1.19rem;
+    border: none;
+    outline: none;
+  }
+  .PC1rectangle-div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 3px;
+    background-color: #48685e;
+    width: 4.38rem;
+    height: 2.5rem;
+  }
+  .PC1div8 {
+    position: absolute;
+    top: 0.56rem;
+    right: 0.19rem;
+    font-size: 0.81rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.06rem;
+    height: 1.38rem;
+  }
+  .PC1rectangle-group {
+    position: absolute;
+    width: 100%;
+    top: 1.44rem;
+    right: 0;
+    left: 0;
+    height: 2.5rem;
+    font-size: 0.75rem;
+    color: #636363;
+  }
+  .PC1container {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 19.25rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+  }
+  .PC1div9 {
+    position: absolute;
+    width: calc(100% - 233px);
+    top: 0;
+    left: 0;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+  }
+  .PC1group-div,
+  .PC1parent1 {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 24.13rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+  }
+  .PC1parent1 {
+    top: 29.94rem;
+  }
+  .PC1passwordsearch1 {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 50rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 0.81rem;
+    color: #000;
+    font-family: Inter;
+  }
+  
+  .PC2li {
+    margin-bottom: 0.4rem;
+    font-size: 0.66rem;
+  }
+  .PC2ul {
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+  .PC2div {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 21.5rem;
+    left: 1rem;
+    font-size: inherit;
+    letter-spacing: -0.01em;
+    font-family: inherit;
+    color: #484848;
+    display: flex;
+    align-items: center;
+    height: 4.63rem;
+  }
+  .PC2group-child {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #48685e;
+    height: 2.19rem;
+  }
+  .PC2div1 {
+    position: absolute;
+    width: calc(100% - 193px);
+    top: 0.44rem;
+    left: 6.06rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25rem;
+  }
+  .PC2rectangle-parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 27.06rem;
+    right: 1rem;
+    left: 1rem;
+    height: 2.19rem;
+    text-align: center;
+  }
+  .PC2group-item {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    height: 2.5rem;
+  }
+  .PC2div2 {
+    position: absolute;
+    width: calc(100% - 98px);
+    top: 0.69rem;
+    left: 0.63rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    height: 1.19rem;
+  }
+  .PC2div3,
+  .PC2rectangle-group {
+    position: absolute;
+    left: 0;
+  }
+  .PC2rectangle-group {
+    width: 100%;
+    top: 1.44rem;
+    right: 0;
+    height: 2.5rem;
+  }
+  .PC2div3 {
+    width: calc(100% - 233px);
+    top: 0;
+    font-size: 0.81rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    color: #000;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+  }
+  .PC2group-parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 11.25rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+    font-size: 0.75rem;
+    color: rgba(126, 126, 126, 0.8);
+  }
+  .PC2div4 {
+    position: absolute;
+    width: calc(100% - 233px);
+    top: 0;
+    left: 0;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+  }
+  .PC2rectangle-container {
+    position: absolute;
+    width: 100%;
+    top: 1.44rem;
+    right: 0;
+    left: 0;
+    height: 2.5rem;
+    font-size: 0.75rem;
+    color: rgba(126, 126, 126, 0.8);
+  }
+  .PC2parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 16.44rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+    color: #000;
+  }
+  .PC2birdie-buddy {
+    position: absolute;
+    top: 32.69rem;
+    left: calc(50% - 44px);
+    letter-spacing: -0.01em;
+    font-family: "Abhaya Libre ExtraBold";
+    color: #b9b9b9;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.5rem;
+    height: 0.94rem;
+  }
+  .PC2passwordsearch2-child {
+    position: absolute;
+    width: 100%;
+    top: 6.25rem;
+    right: 0;
+    left: 0;
+    background-color: #0b4648;
+    height: 3.13rem;
+  }
+  .PC2div6 {
+    position: absolute;
+    width: calc(100% - 28px);
+    top: 0;
+    left: 1.75rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.56rem;
+  }
+  .PC2icon-arrow-left {
+    position: absolute;
+    top: 0.22rem;
+    left: -0.09rem;
+    width: 1.13rem;
+    height: 1.09rem;
+  }
+  .PC2group {
+    position: absolute;
+    width: calc(100% - 152px);
+    top: 7.06rem;
+    right: 8.25rem;
+    left: 1.25rem;
+    height: 1.56rem;
+    font-size: 1.06rem;
+  }
+  .PC2passwordsearch2 {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 50rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 0.81rem;
+    color: #fff;
+    font-family: Inter;
+  }
+  

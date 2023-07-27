@@ -23,6 +23,7 @@ export default class SimpleSlider extends Component {
             .then(res => {
                 // 서버에서 받아온 데이터로 상태 업데이트
                 this.setState({ joinReco: res.data });
+                console.log(res.data);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
