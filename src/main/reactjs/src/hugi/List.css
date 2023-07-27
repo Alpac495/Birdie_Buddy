@@ -170,8 +170,8 @@
 .HG_preReplyRhcontent{
     position: relative;
     bottom: 47px;
-    left: 130px;
-    width:80px;
+    left: 135px;
+    width:70px;
     height: 100%;
     font-size: 13px;
     white-space: pre-wrap;
@@ -243,7 +243,7 @@
 .HG_ReplyNickname{
     position: relative;
     bottom:30px;
-    left:60px;
+    left:50px;
     cursor: pointer;
 }
 .HG_details_Reply{
@@ -304,8 +304,8 @@
     position: relative;
     width: 100px;
     height:20px;
-    top:20px;
-    left:60px;
+    top:25px;
+    left:55px;
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
