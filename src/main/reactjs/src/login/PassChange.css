@@ -1,14 +1,16 @@
-.PassChange_div1{
+.PassChange_div1 {
     display: flex;
     /*width: 22.5rem;*/
     padding: 7rem 1rem 15rem 1rem;
     flex-direction: column;
     align-items: center;
 }
-.PassChange_div2{
+
+.PassChange_div2 {
     /*text-align: center;*/
 }
-.PassChange_textbox{
+
+.PassChange_textbox {
     text-align: center;
     display: inline-flex;
     width: 20rem;
@@ -20,4 +22,229 @@
     border-radius: 0.125rem;
     border: 1px solid rgba(255, 255, 255, 0.10);
     background-color: RGB(238, 250, 234);
+}
+
+.PCli {
+    margin-bottom: 0.4rem;
+    font-size: 0.66rem;
+}
+
+.PCul {
+    margin: 0;
+    padding-left: 1.36rem;
+}
+
+.PCdiv {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 26.69rem;
+    left: 1rem;
+    font-size: inherit;
+    letter-spacing: -0.01em;
+    font-family: inherit;
+    color: #484848;
+    display: flex;
+    align-items: center;
+    height: 4.63rem;
+}
+
+.PCgroup-child {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #48685e;
+    height: 2.19rem;
+}
+
+.PCdiv1 {
+    position: absolute;
+    width: calc(100% - 193px);
+    top: 0.44rem;
+    left: 6.06rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25rem;
+}
+
+.PCrectangle-parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 32.25rem;
+    right: 1rem;
+    left: 1rem;
+    height: 2.19rem;
+    text-align: center;
+}
+
+.PCgroup-item {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    height: 2.5rem;
+}
+
+.PCdiv2 {
+    position: absolute;
+    width: calc(100% - 98px);
+    top: 0.69rem;
+    left: 0.63rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    height: 1.19rem;
+    border: none;
+    outline: none;
+}
+
+.PCdiv3,
+.PCrectangle-group {
+    position: absolute;
+    left: 0;
+}
+
+.PCrectangle-group {
+    width: 100%;
+    top: 1.44rem;
+    right: 0;
+    height: 2.5rem;
+}
+
+.PCdiv3 {
+    width: calc(100% - 233px);
+    top: 0;
+    font-size: 0.81rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    color: #000;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+}
+
+.PCgroup-parent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 16.44rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+    font-size: 0.75rem;
+    color: rgba(126, 126, 126, 0.8);
+}
+
+.PCdiv4 {
+    position: absolute;
+    width: calc(100% - 233px);
+    top: 0;
+    left: 0;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+}
+
+.PCrectangle-container {
+    position: absolute;
+    width: 100%;
+    top: 1.44rem;
+    right: 0;
+    left: 0;
+    height: 2.5rem;
+    font-size: 0.75rem;
+    color: rgba(126, 126, 126, 0.8);
+}
+
+.PCgroup,
+.PCparent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 11.25rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+    color: #000;
+}
+
+.PCgroup {
+    top: 21.63rem;
+}
+
+.PCbirdie-buddy {
+    position: absolute;
+    top: 37.88rem;
+    left: calc(50% - 44px);
+    letter-spacing: -0.01em;
+    font-family: "Abhaya Libre ExtraBold";
+    color: #b9b9b9;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.5rem;
+    height: 0.94rem;
+}
+
+.PCpasswordchange-child {
+    position: absolute;
+    width: 100%;
+    top: 6.25rem;
+    right: 0;
+    left: 0;
+    background-color: #0b4648;
+    height: 3.13rem;
+}
+
+.PCdiv8 {
+    position: absolute;
+    width: calc(100% - 28px);
+    top: 0;
+    left: 1.75rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.56rem;
+}
+
+.PCicon-arrow-left {
+    position: absolute;
+    top: 0.22rem;
+    left: -0.09rem;
+    width: 1.13rem;
+    height: 1.09rem;
+}
+
+.PCcontainer {
+    position: absolute;
+    width: calc(100% - 152px);
+    top: 7.06rem;
+    right: 8.25rem;
+    left: 1.25rem;
+    height: 1.56rem;
+    font-size: 1.06rem;
+}
+
+.PCpasswordchange {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 50rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 0.81rem;
+    color: #fff;
+    font-family: Inter;
 }

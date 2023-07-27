@@ -104,32 +104,22 @@ public class HugiController {
     }
 
     @PostMapping("/upload")
-    public List<String> photoUpload(@RequestParam("upload") List<MultipartFile> uploads) {
-        List<String> uploadFiles = new ArrayList<>();
-        for (MultipartFile upload : uploads) {
-            try {
-                if (hphoto != null) {
-                    // 이전 사진 삭제
-                    storageService.deleteFile(bucketName, "hugi", hphoto);
-                }
-
-                // 업로드된 파일의 클라우드 URL 저장
-                String cloudUrl = storageService.uploadFile(bucketName, "hugi", upload);
-                uploadFiles.add(cloudUrl);
-
-                // 업로드된 파일의 원본 파일명 출력
-                System.out.println("업로드된 파일명: " + upload.getOriginalFilename());
-            } catch (Exception e) {
-                e.printStackTrace();
-                // 업로드에 실패한 경우 해당 파일의 URL은 리스트에 추가되지 않음
-            }
+    public String photoUpload(MultipartFile upload)
+    {
+        System.out.println("upload>>"+upload.getOriginalFilename());
+        if(hphoto!=null) {
+            //이전 사진 삭제
+            storageService.deleteFile(bucketName, "hugi", hphoto);
         }
+        hphoto=storageService.uploadFile(bucketName, "hugi", upload);
 
-        return uploadFiles;
+        return hphoto;
     }
+
     @PostMapping("/insert")
     public void insert(@RequestBody HugiDto hdto) {
         System.out.println("hdto>>" + hdto);
+        hdto.setHphoto(hphoto);
         hugiService.insertHugi(hdto);
         hphoto = null;
     }

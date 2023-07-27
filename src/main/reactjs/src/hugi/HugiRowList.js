@@ -478,6 +478,12 @@ function HugiRowList(props) {
         }
         setReplyContent('');
     };
+    const getFirstImage = (hphoto) => {
+        if (Array.isArray(hphoto) && hphoto.length > 0) {
+            return hphoto[0]; // 배열의 첫 번째 이미지 URL 반환
+        }
+        return hphoto; // 배열이 아니라면 그대로 반환
+    };
     // useEffect를 이용하여 초기 데이터 로딩
     useEffect(() => {
         getComments();
@@ -508,7 +514,25 @@ function HugiRowList(props) {
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
-            <img className="HG_list_image" src={`${URL}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
+            <div id="demo" className="carousel slide HG_list_image" data-bs-ride="carousel">
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                        <img src={`${URL}${hphoto}`} alt="" className ="d-block w-100" value={hphoto} onClick={handleClickDetail}/>
+                    </div>
+                    <div className="carousel-item">
+                        <img src={`${URL}${hphoto}`} alt="" className="d-block w-100" value={hphoto} onClick={handleClickDetail}/>
+                    </div>
+                    <div className="carousel-item">
+                        <img src={`${URL}${hphoto}`} alt="" className="d-block w-100" value={hphoto} onClick={handleClickDetail}/>
+                    </div>
+                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon"></span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                    <span className="carousel-control-next-icon"></span>
+                </button>
+            </div>
             <h6 className="HG_list_text">
                 &nbsp;
                 {hcontent}

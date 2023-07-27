@@ -1,36 +1,19 @@
-.timeline {
-    margin: 10px auto;
-    padding: 10px;
-    overflow-y: auto;
-    max-width: 360px;
-    max-height:100%;
-}
-.timeline::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리, 오페라, 엣지 */
-}
-
+/* Use the Inter font for the entire page */
 body {
-@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
-}
-.HG_hugi1{
-    color: #262626;
-    font-size: 14px;
-    line-height: 18px;
-    overflow:auto;
-}
-.HG_hugi1::-webkit-scrollbar{
-    display: none;
-}
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f5f0;
+  }
+/* 헤더 스타일 업데이트 */
 .HG_hugi_header {
     position: sticky;
     top: 0;
     max-width: 360px;
     margin:auto;
-    z-index: 9999;
+    z-index: 99;
     background-color: #fafafa;
-    height: 65px;
+    height: 90px;
     display: flex;
     align-items: center;
     object-fit: contain;
@@ -39,39 +22,38 @@ body {
 }
 .HG_hugi_headerWrapper {
     max-width: 360px;
-    margin: 0 auto;
+    margin:auto;
     width: 100%;
-    padding: 0 20px;
+    padding: 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.HG_hugi_headerButtons {
-    display: flex;
-    column-gap: 15px;
-}
-.HG_hugi2 {
+  }
+  .HG_hugi2 {
     background-color: #fafafa;
-    /*min-height: 100vh;*/
     max-width: 360px;
-    max-height: 100%;
+    max-height: calc(100% - 65px); /* Subtract header height from max-height */
     padding: 4px;
     border: 0px solid lightgrey;
     margin: auto;
-    overflow-y:auto ;
-}
-.HG_hugi2::-webkit-scrollbar{
+    overflow-y: auto;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .HG_hugi2::-webkit-scrollbar {
     display: none;
-}
-.HG_timeline {
+  }
+  
+  .HG_timeline {
     margin: 10px auto;
     padding: 10px;
     max-width: 360px;
     min-height: 170px;
-    max-height:100%;
+    max-height: 100%;
     overflow-y: auto;
-}
-.HG_timeline::-webkit-scrollbar {
+  }
+  
+  .HG_timeline::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
@@ -81,15 +63,7 @@ body {
 /*    cursor: pointer;*/
 /*    border: 1px solid transparent;*/
 /*}*/
-.HG_button {
-    background-color: RGB(137 225 164);
-    color: black;
-    padding: 5px 9px;
-    font-weight: 500;
-    font-size: 12px;
-    text-align: center;
-    border-radius: 5px;
-}
+
 .HG_button_hugis{
     background-color: RGB(137 225 164);
     color: black;
@@ -112,25 +86,57 @@ body {
 /*    margin: 28px 0;*/
 /*    row-gap: 15px;*/
 /*}*/
+.HG_details_Timeline{
+    position: fixed;
+    z-index:99;
+    width:350px;
+    margin:auto;
+}
 .HG_details_Timeline > summary {
-    max-width:360px;
+    position: fixed;
+    z-index: 99;
+    width:350px;
     text-align: center;
     margin:auto;
     padding:10px 10px;
     border-radius: 5px;
     background-color:RGB(137 225 164);
-    border:0px solid black;
     cursor: pointer;
-    font-weight: bold;
-    color: black;
-}
-
-/*.CommentNickname{*/
-/*    position: relative;*/
-/*    top:5px;*/
-/*    left:5px;*/
-/*}*/
-.filebox .upload-name {
+  }
+  
+  /* Add tab container for the buttons */
+  .HG_tab_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;
+  }
+  
+  /* Update the icon buttons to have a circular background and adjust colors */
+  .HG_button,
+  .HG_button_hugis,
+  .my_HG_button,
+  .my_HG_button_hugis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #89e1a4;
+    color: #48685E;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    width: 40px;
+    height: 40px;
+  }
+  
+  
+  
+  .filebox .upload-name {
     display: inline-block;
     height: 40px;
     padding: 0 10px;
@@ -160,22 +166,16 @@ body {
     border: 0;
 }
 
-.my_HG_button {
-    background-color: RGB(252 243 168);
-    color: black;
-    padding: 5px 9px;
-    font-weight: bold;
-    font-size: 12px;
-    text-align: center;
-    border-radius: 5px;
-}
-.my_HG_button_hugis{
-    background-color: RGB(252 243 168);
-    color: black;
-    padding: 5px 9px;
-    font-weight: bold;
-    font-size: 12px;
-    text-align: center;
-    border-radius: 5px;
-    margin-left: 2px;
-}
+  
+  /* Update the timeline styles */
+  .timeline {
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 360px;
+    max-height: 100%;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Other styles... */
+  

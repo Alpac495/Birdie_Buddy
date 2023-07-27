@@ -158,6 +158,13 @@ public class LoginController {
         return uphoto;
     }
 
+    @GetMapping("/updateBgPhoto")
+    public String updateBgPhoto(String ubgphoto, int unum) {
+        System.out.println(ubgphoto + "," + unum);
+        loginService.updateBgPhoto(ubgphoto, unum);
+        return ubgphoto;
+    }
+
     //    @GetMapping("/unumChk")
 //    public int unumChk(HttpSession session, int unum) {
 //        System.out.println("unumChk:" + unum);
@@ -264,6 +271,8 @@ public class LoginController {
        loginService.passChange(unum, upass);
     }
 
+    
+
 
 
 
@@ -275,7 +284,7 @@ public class LoginController {
     @GetMapping("/smsSend")
     public String smsSend(String uhp) throws Exception {
         System.out.println("uhp:" + uhp);
-        String CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        String CHARACTERS = "0123456789";
         int LENGTH = 6;
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(LENGTH);

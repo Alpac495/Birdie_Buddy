@@ -13,7 +13,7 @@
         select * from user where ublacklist=1 order by ureport desc;
     </select>
     <insert id="noticeWrite" parameterType="NoticeDto">
-        insert into notice (nsubject, ncontent, nwriteday) values (#{nsubject}, #{ncontent}, now())
+        insert into notice (nsubject, ncontent, nphoto, ncate,nwriteday) values (#{nsubject}, #{ncontent}, #{nphoto}, #{ncate} now())
     </insert>
     <select id="noticeList" resultType="NoticeDto">
         select * from notice;

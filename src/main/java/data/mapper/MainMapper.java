@@ -21,4 +21,5 @@ public interface MainMapper {
     public List<HugiDto> getHugiList();
     public List<JoiningDto> getRecoList();
     public List<NoticeDto> getNoticeList();
+    public List<UserDto> getLoginUser(int unum);
 }

@@ -52,10 +52,10 @@ function Login(props) {
             .then(res => {
                 console.log(res.data)
                 if (res.data !== 0) {
-                    alert("로그인 성공")
+                    //alert("로그인 성공")
                     navi("/");
                 } else {
-                    alert("로그인 실패")
+                    alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.")
                     setUpass('');
                 }
             })

@@ -25,66 +25,84 @@ function PassChange(props) {
         getUserInfo();
     }, [])
 
-
-    const passChk = () => {
+    const passChnage = () => {
         axios.get('/login/passChk?upass=' + upass)
             .then(res => {
                 console.log(res.data);
-                if (res.data) {
-                    alert("인증 성공")
-                    setChk(true);
-                } else {
+                if (!res.data) {
                     alert("현재 비밀번호가 일치하지 않습니다")
+                    return;
+                } else if (newpass != imsipass) {
+                    alert("새로운 비밀번호가 일치하지 않습니다")
+                    return;
+                } else if (!regex.test(newpass)) {
+                    alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
+                    return;
+                } else {
+                    axios.get('/login/passChange?upass=' + newpass)
+                        .then(res => {
+                            alert("비밀번호가 변경 완료되었습니다. 새로운 비밀번호로 로그인 해주세요")
+                            axios.get('/login/logout')
+                                .then(res => {
+                                    navi('/')
+                                })
+                        })
                 }
+
             })
-    }
-    const passChnage = () => {
-        if (newpass != imsipass) {
-            alert("새로운 비밀번호가 일치하지 않습니다")
-            return;
-        } else if (!regex.test(upass)) {
-            alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
-            return;
-        } else {
-            if (!chk) {
-                alert("현재 비밀번호 인증을 진행해주세요")
-                return;
-            }
-        }
-        axios.get('/login/passChange?upass=' + newpass)
-            .then(res => {
-                alert("비밀번호가 변경 완료되었습니다. 새로운 비밀번호로 로그인 해주세요")
-                axios.get('/login/logout')
-                    .then(res => {
-                        navi('/')
-                    })
-            })
+
     }
 
 
 
 
     return (
-        <div className='PassChange_div1'>
-            현재비밀번호<br />
-            <input type="text" className="PassChange_textbox" placeholder="현재 비밀번호" required
-                onChange={(e) => {
-                    setUpass(e.target.value)
-                }} />
-            <button type="button" onClick={passChk}>비밀번호확인</button>
-            <br />
-            새로운 비밀번호<br />
-            <input type={"password"} className={'PassChange_textbox'} required onChange={(e) => setNewpass(e.target.value)}
-                value={newpass} /><br /><br />
-
-            비밀번호 확인<br />
-            <input type={"password"} className={'PassChange_textbox'} required onChange={(e) => setImsipass(e.target.value)}
-                value={imsipass} />
-            {
-                newpass == '' ? <div>16자리 이하로 영어/숫자를 포함해야 합니다</div> : newpass != '' && newpass != imsipass ? <div>비밀번호가 일치하지 않습니다</div> :
-                    <div>비밀번호가 일치합니다</div>
-            }
-            <button onClick={passChnage}>비밀번호변경</button>
+        <div className="PCpasswordchange">
+            <div className="PCdiv">
+                <ul className="PCul">
+                    <li className="PCli">
+                        회원님의 비밀번호는 운영자도 알 수 없도록 암호화 되어 있습니다
+                    </li>
+                    <li className="PCli">따라서 새로운 비밀번호를 등록하셔야 합니다</li>
+                    <li className="PCli">영문/숫자/특수문자 조합으로 8~16자, 대소문자 구분</li>
+                </ul>
+            </div>
+            <div className="PCrectangle-parent">
+                <div className="PCgroup-child" onClick={passChnage} />
+                <div className="PCdiv1" onClick={passChnage}>비밀번호 변경하기</div>
+            </div>
+            <div className="PCgroup-parent">
+                <div className="PCrectangle-group">
+                    <div className="PCgroup-item" />
+                    <input type={"password"} className="PCdiv2" required placeholder='새로운 비밀번호를 입력하세요.' onChange={(e) => setNewpass(e.target.value)}
+                        value={newpass} />
+                </div>
+                <div className="PCdiv3">새로운 비밀번호</div>
+            </div>
+            <div className="PCparent">
+                <div className="PCdiv4">현재 비밀번호</div>
+                <div className="PCrectangle-container">
+                    <div className="PCgroup-item" />
+                    <input type="text" className="PCdiv2" placeholder="현재 비밀번호를 입력하세요." required
+                        onChange={(e) => {
+                            setUpass(e.target.value)
+                        }} />
+                </div>
+            </div>
+            <div className="PCgroup">
+                <div className="PCdiv4">비밀번호 재확인</div>
+                <div className="PCrectangle-container">
+                    <div className="PCgroup-item" />
+                    <input type={"password"} className="PCdiv2" placeholder="새로운 비밀번호를 한번 더 입력하세요." required onChange={(e) => setImsipass(e.target.value)}
+                        value={imsipass} />
+                </div>
+            </div>
+            <img className="PCbirdie-buddy" alt="" src={''} />
+            <div className="PCpasswordchange-child" />
+            <div className="PCcontainer">
+                <div className="PCdiv8">비밀번호 변경</div>
+                <img className="PCicon-arrow-left" alt="" src={''} />
+            </div>
         </div>
     );
 }

@@ -10,6 +10,7 @@ import FDicon1 from "../image/icon_addbuddy.svg";
 import ModalNick from "./MypageUpdateNickname"
 import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
+import ModalBgphoto from "./MypageUpdateBgphoto"
 import Axios from "axios";
 import {NavLink} from "react-router-dom";
 
@@ -22,7 +23,7 @@ function Mypage(props) {
     const [imsiCon, setImsiCon] = useState('');
     const [unickname, setUnickname] = useState('');
     const [imsiNick, setImsiNick] = useState('');
-    const [unum, setUnum]=useState('');
+    const [unum, setUnum] = useState('');
     const [uphoto, setUphoto] = useState('');
     const [imsiphoto, setImsiphoto] = useState('');
     const [ubgphoto, setUbgphoto] = useState('');
@@ -31,6 +32,7 @@ function Mypage(props) {
     const conRef = useRef();
     const nickRef = useRef();
     const photoRef = useRef();
+    const bgphotoRef = useRef();
 
     const unumchk = () => {
         axios.get("/login/unumChk")
@@ -83,6 +85,14 @@ function Mypage(props) {
             })
         setPhotoOpen(false);
     }
+    const changebgphoto = () => {
+        axios.get(`/login/updateBgPhoto?ubgphoto=${imsibgphoto}&unum=${unum}`)
+            .then(res => {
+                console.log(res.data)
+                setUbgphoto(res.data);
+            })
+        setBgOpen(false);
+    }
 
     const [nickOpen, setNickOpen] = useState(false);
     const openNick = () => {
@@ -108,6 +118,14 @@ function Mypage(props) {
         setPhotoOpen(false);
     };
 
+    const [bgOpen, setBgOpen] = useState(false);
+    const openBg = () => {
+        setBgOpen(true);
+    };
+    const closeBg = () => {
+        setBgOpen(false);
+    };
+
     const onUploadEvent = (e) => {
         const uploadFile = new FormData();
         uploadFile.append('upload', e.target.files[0]);
@@ -120,84 +138,111 @@ function Mypage(props) {
                 console.log(error);
             });
     };
+    const onUploadEventBg = (e) => {
+        const uploadFile = new FormData();
+        uploadFile.append('upload', e.target.files[0]);
+        Axios.post('/login/upload', uploadFile)
+            .then((res) => {
+                console.log(res.data);
+                setImsibgphoto(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     useEffect(() => {
         unumchk()
     }, [])
-    return (
+    if (unum == '') {
+        return (
+            <>
+            </>
+        )
+    } else {
+        return (
 
-        <div className="FDprofile">
-            <div className="FDdiv">
-                <div className="FDchild"/>
-            </div>
-            <div className="FDbackprofile"></div>
-            <div className="FDinfobox"/>
-            <div className="FDmainprofile"><img alt='error' style={{borderRadius:'11%'}} src={`${image1}${uphoto}${image2}`} />
+            <div className="FDprofile">
+                <div className="FDdiv">
+                    <div className="FDchild" />
+                </div>
 
-                <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto}/>
-                <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto}  header="사진 변경">
-                    <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''}/>
-                    <input className={'inputfile'} type={'file'}  ref={photoRef} onChange={onUploadEvent}/>
-                </ModalPhoto>
-            </div>
+                <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+
+                <div className="FDinfobox" />
+                <div className="FDmainprofile"><img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
+
+                    <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto} />
+                    <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
+                        <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
+                        <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
+                    </ModalPhoto>
+                </div>
 
 
-            <div className="FDdiv2">
-        <span className="FDtxt">
-          <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
-          <p className="FDp">골프경력 {dto.ucareer} / 
-          {
-            stasu == null || stasu == '' || stasu == 0?
-            <span> 입력된 타수 정보가 없습니다</span>:
-            <span>
-              평균타수 {stasu}타
-            </span>
-          }
-          </p>
-        </span>
-            </div>
-            <div className="FDdiv3">
-                {
-                    ucontent===null?<div>자기소개를 입력해 주세요.</div>
-                        :
-                        ucontent
-                }
-                &nbsp;
-                <EditIcon fontSize="small" onClick={openCon}/>
-                <ModalCon open={conOpen} close={closeCon} changeCon={changeCon}  header="자기소개 변경">
-                    <input className={'inputtext'} type={'text'}  value={imsiCon} onChange={(e) =>
-                      setImsiCon(e.target.value)
-                    } ref={conRef}/>
-                </ModalCon>
-            </div>
-            <div className="FDdiv4">{unickname}&nbsp;
-                <EditIcon fontSize="small" onClick={openNick}/>
-                <ModalNick open={nickOpen} close={closeNick} chnageNick={chnageNick} header="닉네임 변경">
-                    <input className={'inputtext'} type={'text'}  value={imsiNick} onChange={(e) =>
-                        setImsiNick(e.target.value)
-                    } ref={nickRef}/>
-                </ModalNick>
-            </div>
-            <NavLink to={`/chating/${unum}`}>
+                <div className="FDdiv2">
+                    <span className="FDtxt">
+                        <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
+                        <p className="FDp">골프경력 {dto.ucareer} /
+                            {
+                                stasu == null || stasu == '' || stasu == 0 ?
+                                    <span> 입력된 타수 정보가 없습니다</span> :
+                                    <span>
+                                        평균타수 {stasu}타
+                                        <EditIcon fontSize="small" onClick={openBg} />
+                                        <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
+                                            <img className='imsiphoto' src={`${url}${imsibgphoto}`} alt='' />
+                                            <input className={'inputfile'} type={'file'} ref={bgphotoRef} onChange={onUploadEventBg} />
+                                        </ModalBgphoto>
+                                    </span>
+                            }
+                        </p>
+                    </span>
+                </div>
+                <div className="FDdiv3">
+                    {
+                        ucontent === null ? <div>자기소개를 입력해 주세요.</div>
+                            :
+                            ucontent
+                    }
+                    &nbsp;
+                    <EditIcon fontSize="small" onClick={openCon} />
+                    <ModalCon open={conOpen} close={closeCon} changeCon={changeCon} header="자기소개 변경">
+                        <input className={'inputtext'} type={'text'} value={imsiCon} onChange={(e) =>
+                            setImsiCon(e.target.value)
+                        } ref={conRef} />
+                    </ModalCon>
+                </div>
+                <div className="FDdiv4">{unickname}&nbsp;
+                    <EditIcon fontSize="small" onClick={openNick} />
+                    <ModalNick open={nickOpen} close={closeNick} chnageNick={chnageNick} header="닉네임 변경">
+                        <input className={'inputtext'} type={'text'} value={imsiNick} onChange={(e) =>
+                            setImsiNick(e.target.value)
+                        } ref={nickRef} />
+                    </ModalNick>
+                </div>
+                <NavLink to={`/chating/${unum}`}>
             <div className="FDicon-message-parent">
                 <img className="FDicon-message" alt="" src={FDicon2}/>
                 <div className="FDdiv5">TEXT2</div>
             </div>
             </NavLink>
-            <div className="FDicon-camera-parent">
-                <img className="FDicon-camera" alt="" src={FDicon3}/>
-                <div className="FDdiv5">TEXT3</div>
-            </div>
+                <div className="FDicon-camera-parent">
+                    <img className="FDicon-camera" alt="" src={FDicon3} />
+                    <div className="FDdiv5">TEXT3</div>
+                </div>
 
-            <div className="FDparent" >
-                <div className="FDdiv5">TEXT1</div>
-                <img
-                    className="FDicon-user-cirlce-add"
-                    alt="" src={FDicon1}/>
-            </div>
+                <div className="FDparent" >
+                    <div className="FDdiv5">TEXT1</div>
+                    <img
+                        className="FDicon-user-cirlce-add"
+                        alt="" src={FDicon1} />
+                </div>
 
-        </div >
-    );
+            </div >
+        );
+    }
 }
+
 
 export default Mypage;
