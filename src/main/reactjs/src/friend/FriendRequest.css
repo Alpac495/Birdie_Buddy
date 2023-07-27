@@ -45,9 +45,7 @@ body {
     right: 0;
     left: 0;
 }
-.FLtab,.friendlist {
-    position: relative;
-}
+
 .FLtab {
     position: absolute;
     top: 6.19rem;
@@ -151,6 +149,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1.63rem;
+    height: auto;
 }
 .flistprofile {
     position: absolute;
@@ -177,23 +176,24 @@ body {
 .flist1 {
     top: 14.56rem;
 }
-.friendlist{
-    position: relative;
-    top: 10rem;
-    width: 100%;
-    right: 0;
-    left: 0;
-    max-height: 100%;
-    overflow: hidden;
+.friendrequest,.friendrequestlist{
+    position: absolute;
 }
-.friend {
-    position: relative;
-    background-color: #fff;
+.friendrequest {
+    background-color: #f8f5f0;
     width: 100%;
-    height: 50rem;
-    overflow: hidden;
+    height: 100%;
     text-align: left;
     font-size: 1rem;
     color: #000;
     font-family: Inter;
 }
+.friendrequestlist {
+    top: 10rem;
+    width: 100%;
+    right: 0;
+    left: 0;
+    height: auto;
+    overflow: hidden;
+}
+

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,30 +35,60 @@ public class AdminContoller {
         List<UserDto> list = adminService.getUserList();
         return list;
     }
+
+    @GetMapping("/getuserlist")
+    public List<UserDto> alluserlist(int page, int size) {
+        System.out.println("스크롤");
+        int offset = (page - 1) * size;
+        List<UserDto> list = adminMapper.getAllUserList(offset, size);
+        return list;
+    }
+
+    @GetMapping("/usersearchlist")
+    public List<UserDto> usersearchlist(@RequestParam(defaultValue = "") String keyword) {
+        System.out.println(keyword);
+        List<UserDto> list = adminMapper.getAllUserListScrollSearch(keyword);
+        return list;
+    }
+
     @GetMapping("/addBlackList")
-    public void addBlackList(int unum){
+    public void addBlackList(int unum) {
         adminMapper.addBlackList(unum);
     }
+
     @GetMapping("/removeBlackList")
-    public void removeBlackList(int unum){
+    public void removeBlackList(int unum) {
         adminMapper.removeBlackList(unum);
     }
+
     @GetMapping("/getBlackList")
-    public List<UserDto> getBlackList() {
-        List<UserDto> getBlackList = adminMapper.getBlackList();
-        return getBlackList;
+    public List<UserDto> blacklist(int page, int size) {
+        System.out.println("스크롤");
+        int offset = (page - 1) * size;
+        List<UserDto> list = adminMapper.getBlackUserList(offset, size);
+        return list;
     }
+
+    @GetMapping("/blacksearchlist")
+    public List<UserDto> blacksearchlist(@RequestParam(defaultValue = "") String keyword) {
+        System.out.println(keyword);
+        List<UserDto> list = adminMapper.getBlackUserListScrollSearch(keyword);
+        return list;
+    }
+
     @PostMapping("/noticeWrite")
-    public void noticeWrite(@RequestBody NoticeDto dto){
+    public void noticeWrite(@RequestBody NoticeDto dto) {
         adminMapper.noticeWrite(dto);
     }
+
     @GetMapping("/noticeList")
-    public List<NoticeDto> noticeList(){
+    public List<NoticeDto> noticeList() {
         List<NoticeDto> list = adminMapper.noticeList();
         return list;
     }
+
     @GetMapping("/noticeDetail")
-    public NoticeDto noticeDetail(int nnum){
+    public NoticeDto noticeDetail(int nnum) {
         NoticeDto dto = adminMapper.noticeDetail(nnum);
         return dto;
     }

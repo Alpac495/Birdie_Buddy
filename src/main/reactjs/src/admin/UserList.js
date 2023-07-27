@@ -1,89 +1,118 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import "./UserList.css";
 import {Link, NavLink} from 'react-router-dom';
-import axios from 'axios';
+import Axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Profile from "../image/user60.png";
 function UserList(props) {
-    const [searchTerm, setSearchTerm] = useState("");
-    
+    const url = process.env.REACT_APP_PROFILE;
+    const [searchTerm, setSearchTerm] = useState("");    
     const [data,setData]=useState('');
-    const list=useCallback(()=>{
-        const url="/admin/userlist";
-        axios.get(url)
-            .then(res=>{
-                setData(res.data);
-            })
-    },[]);
+    const [items, setItems] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [keyword, setKeyword] = useState('');
+
+    const fetchMoreData=()=>{
+        setLoading(true);
+                Axios
+                    .get(`/admin/getuserlist?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .then((res) => {
+                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        console.log(items);
+                        console.log(res.data);
+                        setPage((prevPage) => prevPage + 1);
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                        setLoading(false);
+                    });
+    };
     const  addBlackList=(unum)=>{
-        axios.get('/admin/addBlackList?unum='+unum)
+        Axios.get('/admin/addBlackList?unum='+unum)
         
     }
     useEffect(()=>{
-        list();
-    },[list, addBlackList])
+        fetchMoreData();
+    },[])
 
-
+    const search = () => {
+        Axios.get("/admin/usersearchlist?keyword=" + keyword)
+            .then(res => {
+                setItems(res.data);
+                setPage((prevPage) => prevPage + 1);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                setLoading(false);
+            });
+    }
 
 
 
     return (
         <div className="alluserlist">
-            <h4>전체 사용자 : {data.length}명</h4>
+            {/* <h4>전체 사용자 : {items.length}명</h4> */}
             <input className="usersearch"
                    type="text"
-                   placeholder="이름 또는 닉네임으로 검색"
-                   onChange={(e) => {
-                       setSearchTerm(e.target.value);
-                   }}/>
-
-            <div className="FLtab">
+                   placeholder="이름 또는 닉네임으로 "
+                   value={keyword}
+                    onChange={(e) => {
+                        setKeyword(e.target.value);
+                    }}/>
+                <button className="ULsearch btn btn-sm btn-outline-success" onClick={search}>검색</button>
+                
+            <div className="ULtab">
                 <NavLink to={`/admin/userlist`} style={{color:'black'}}>
-                    <div className="flframe">
-                        <div className="FLdiv">전체 사용자 리스트</div>
+                    <div className="bflframe">
+                        <div className="ULdiv">전체 사용자 리스트</div>
                     </div>
                 </NavLink>
                 <NavLink to={`/admin/blacklist`} style={{color:'black'}}>
-                    <div className="FLframe">
-                        <div className="FLdiv">블랙리스트</div>
+                    <div className="bFLframe">
+                        <div className="ULdiv">블랙리스트</div>
                     </div>
                 </NavLink>
             </div>
-
+            <div className='adminuserlist'>
+            <InfiniteScroll
+                    dataLength={items.length}
+                    next={fetchMoreData}
+                    hasMore={true}
+                    loader={<h4>마지막</h4>}
+                    endMessage={null}
+                >
             {
-                data.map &&
-                data.filter((val)=>{
-                    if(searchTerm == ""){
-                        return val
-                    }else if(val.uname.includes(searchTerm)){
-                        return val
-                    }else if(val.unickname.includes(searchTerm)){
-                        return val
-                    }
-                }).map((item,idx)=>
+                items.map &&
+                items.map((item,idx)=>
 
                     <div className="ulist">
-                        <div className="flist-child" />
-                        <div className="flistprofile">
-                                <div className="flistprofile1">
-                                    <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
-                                    <img className="FLphoto-icon" alt="" src="/jduphoto@2x.png" />
+                        <div className="ulistprofile">
+                                <div className="ulistprofile1">
+                                <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
+                                    {item.uphoto == null ? <img className="FLphoto-icon" alt="" src={Profile} /> :
+                                    <img className="FLphoto-icon" src={`${url}${item.uphoto}`} alt={''}/>}
                                     </Link>
-                                    <div className="FLdiv3">
-                                      <span className="FLtxt">
-                                        <p className="FLp">{item.uname}({item.unickname})</p>
-                                        <p className="FLp1">{item.ugender} / {item.uage}</p>
+                                    <div className="ULdiv3">
+                                      <span className="ULtxt">
+                                        <p className="ULp">{item.uname}({item.unickname}) </p>
+                                        <p className="ULp1">신고 : {item.ureport}회</p>
                                       </span>
                                     </div>
 
-                                    <div className="FLrectangle-parent">
-                                        <div className="FLgroup-child" />
-                                            <div className="FLdiv4" onClick={(e)=>addBlackList(item.unum)}>차단하기</div>                                        
+                                    <div className="ULrectangle-parent">
+                                        <div className="ULgroup-child" />
+                                            <div className="ULdiv4" onClick={(e)=>addBlackList(item.unum)}>차단하기</div>                                        
                                     </div>
                                 </div>
                         </div>
                     </div>
                  )
             }
-
+            </InfiniteScroll>
+            </div>
         </div>
     );
 }

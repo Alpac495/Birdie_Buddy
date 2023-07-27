@@ -73,7 +73,7 @@ function FriendRequest(props) {
 
 
     return (
-        <div className="friend">
+        <div className="friendrequest">
             <h4>버디 요청 : {items.length}명</h4>
 
             <div className="FLtab">
@@ -88,7 +88,7 @@ function FriendRequest(props) {
                 </div>
                 </NavLink>
             </div>
-            <div className='friendlist'>
+            <div className='friendrequestlist'>
             <InfiniteScroll
                     dataLength={items.length}
                     next={fetchMoreData}
@@ -101,8 +101,6 @@ function FriendRequest(props) {
                 items.map((item,idx)=>
 
                     <div className="flist">
-                        <div className="flist-child" />
-                        <div className="flistprofile">
                                 <div className="flistprofile1">
                                     <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
                                     {item.uphoto == null ? <img className="FLphoto-icon" alt="" src={Profile} /> :
@@ -121,8 +119,7 @@ function FriendRequest(props) {
                                         : (<button type='button' className="FLdiv4" onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>)}
                                     </div>
                                 </div>
-                        </div>
-                    </div>
+                        </div>                    
                  )
             }
             </InfiniteScroll>

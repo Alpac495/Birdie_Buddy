@@ -3,14 +3,25 @@
     <select id="getUserList" resultType="UserDto">
         select * from user where ublacklist=0 and unum!=1 order by ureport desc;
     </select>
+    <select id="getAllUserList" resultType="UserDto">
+        select * from user where ublacklist=0 and unum!=1 order by ureport desc LIMIT #{offset}, #{size}
+    </select>
+    <select id="getAllUserListScrollSearch" parameterType="Map" resultType="UserDto">
+        select * from user where ublacklist=0 and unum!=1 and (unickname LIKE CONCAT('%', #{keyword}, '%')
+            OR uname LIKE CONCAT('%', #{keyword}, '%')) order by ureport desc
+    </select>
     <update id="addBlackList" parameterType="int">
         update user set ublacklist=ublacklist+1 where unum=#{unum}
     </update>
     <update id="removeBlackList" parameterType="int">
         update user set ublacklist=ublacklist-1 and ureport=0 where unum=#{unum}
     </update>
-    <select id="getBlackList" resultType="UserDto">
+    <select id="getBlackUserList" resultType="UserDto">
         select * from user where ublacklist=1 order by ureport desc;
+    </select>
+    <select id="getBlackUserListScrollSearch" parameterType="Map" resultType="UserDto">
+        select * from user where ublacklist=1 and (unickname LIKE CONCAT('%', #{keyword}, '%')
+            OR uname LIKE CONCAT('%', #{keyword}, '%')) order by ureport desc
     </select>
     <insert id="noticeWrite" parameterType="NoticeDto">
         insert into notice (nsubject, ncontent, nwriteday) values (#{nsubject}, #{ncontent}, now())

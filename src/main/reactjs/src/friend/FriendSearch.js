@@ -38,11 +38,6 @@ const FriendSearch = () => {
                         console.error("데이터를 더 가져오는 중 오류 발생:", error);
                         setLoading(false);
                     });
-            // const url="/friend/friendsearch?unum="+res.data;
-            // Axios.get(url)
-            // .then(res=>{
-            //     setData(res.data);
-            // })
             const furl="/friend/list?unum="+res.data;
             Axios.get(furl)
             .then(res=>{
