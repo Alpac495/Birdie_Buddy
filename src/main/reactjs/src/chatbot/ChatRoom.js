@@ -1,10 +1,13 @@
+import iconSend from "../image/icon_yangdo.svg";
+import "./ChatRoom.css";
 import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import Axios from 'axios';
-import './ChatRoom.css';
-import SendIcon from "../image/icon_yangdo.svg";
-function ChatRoom() {
+import Header from "../header/Header";
+
+
+const ChatRoom = () => {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
@@ -18,7 +21,7 @@ function ChatRoom() {
         try {
             const res1 = await Axios.get("/login/unumChk");
             setUnum(res1.data);
-    
+
             const url = "/chating/getuserinfo?unum=" + res1.data;
             const res2 = await Axios.get(url);
             setData(res2.data);
@@ -26,22 +29,22 @@ function ChatRoom() {
             const url2 = "/chating/getuserinfo?unum=" + cunum;
             const res3 = await Axios.get(url2);
             setData2(res3.data);
-            
-    
+
+
             const chat = new ncloudchat.Chat();
             await chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
             setNc(chat);
-    
+
             chat.bind('onMessageReceived', async function (channel, message) {
                 setMessages((prevMessages) => {
                     const isDuplicate = prevMessages.some((prevMessage) => prevMessage.message_id === message.message_id);
                     if (isDuplicate) {
                         return prevMessages;
                     }
-                    return [message, ...prevMessages];
+                    return [...prevMessages, message];
                 });
             });
-    
+
             await chat.connect({
                 id: res2.data.uemail,
                 name: res2.data.unickname,
@@ -52,7 +55,7 @@ function ChatRoom() {
             await chat.subscribe(channelId);
             // await chat.addUsers(channelId, [res2.data.uemail, res3.data.uemail]);
             // const existingChannelId = channelId;
-            
+
             const fetchedMessages = await fetchChannelMessages(chat, channelId);
             setMessages(fetchedMessages);
         } catch (error) {
@@ -60,7 +63,7 @@ function ChatRoom() {
             console.error("Error occurred: ", error);
         }
     };
-    
+
     useEffect(() => {
         unumchk();
     }, []);
@@ -71,21 +74,21 @@ function ChatRoom() {
                 await nc.disconnect();
             }
         };
-    
+
         window.addEventListener('beforeunload', disconnectChat);
-    
+
         // When component unmounts, disconnect
         return () => {
             window.removeEventListener('beforeunload', disconnectChat);
             disconnectChat();
         };
     }, [nc]);
-    
+
     const fetchChannelMessages = async (chat, channelId) => {
         try {
             // 필터와 정렬 옵션 설정
             const filter = { channel_id: channelId };
-            const sort = { created_at: -1 };
+            const sort = { created_at: 1 };
             let offset = 0;
             const per_page = 100; // 한 번에 가져올 대화 개수
             let allMessages = [];
@@ -136,7 +139,6 @@ function ChatRoom() {
             }
         }
     };
-    console.log(messages)
 
     const handleLeaveChat = async () => {
         if (!nc) {
@@ -166,66 +168,38 @@ function ChatRoom() {
 
     return (
         <>
-      <div className="chatdetail">
-        <div className="parent">
-          <div className="div3"><div>
-            <div className="chat-messages" id="chat-messages" style={{ width: '360px', height: '500px', border: '1px solid #ccc', borderRadius: '4px', overflow: 'auto' }}>
-                {messages.map &&
-                messages.slice().reverse().map((message) => (
-                    <div key={message.id} style={{ textAlign: message.sender.name == data.unickname ? 'right' : 'left', margin: '10px' }}>
-                        <div style={{ backgroundColor: message.sender.name == data.unickname ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
-                            <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>{message.sender.name}</div>
-                            <div>{message.content}</div>
-                            <div style={{ fontSize: '12px', color: 'gray' }}>{new Date(message.created_at).toLocaleString()}</div>
+            <div className="CDchatdetail">
+                <Header/>
+                <div className="CDparent">
+                    <div className="CDdiv3">
+                        <div id="chat-messages">
+                            {messages.map((message, index) => (
+                                <div key={index} style={{ textAlign: message.sender.name === data.unickname ? 'right' : 'left' }}>
+                                    <div style={{ backgroundColor: message.sender.name === data.unickname ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
+                                        <strong>{message.sender.name}</strong>
+                                        <div>{message.content}</div>
+                                        <div style={{ fontSize: '12px', color: 'gray' }}>{new Date(message.created_at).toLocaleString()}</div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                ))}
+                    <div className="CDflist-line" />
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <input className="CDemail" type="text" placeholder="Enter your message" value={userInput} onChange={handleUserInput} />
+                    <button type="submit" className="CDchatdetail-child">보내기</button>
+                </form>
+                <button className="CDcta-button-1" onClick={handleLeaveChat}>
+                    <div className="CDround-button-icon">
+                        <div className="CDcentered">
+                            <div className="label">채팅방 종료하기</div>
+                        </div>
+                    </div>
+                </button>
             </div>
-            {/* <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Type your message"
-                    value={userInput}
-                    onChange={handleUserInput}
-                />
-                <button type="submit">Send</button>
-                <button onClick={handleLeaveChat}>채팅방 나가기</button>
-
-            </form> */}
-        </div></div>
-          <div className="flist-line" />
-        </div>
-        <input className="email" type="text" placeholder="Enter your name" />
-        <div className="cta-button-1">
-          <div className="round-button-icon" >
-            <div className="centered">
-              <div className="label">채팅방 종료하기</div>
-            </div>
-          </div>
-        </div>
-        <div className="logo-end">
-          <div className="newlogo">
-            <div className="newlogo">
-              <div className="instance-child" />
-              <img className="icon" alt="" src="/icon.svg" />
-            </div>
-          </div>
-          <img className="icon1" alt="" src={SendIcon} />
-        </div>
-      </div>
-      {/* {isPopupModalOpen && (
-        <PortalPopup
-          overlayColor="rgba(113, 113, 113, 0.3)"
-          placement="Centered"
-          onOutsideClick={closePopupModal}
-        >
-          <PopupModal onClose={closePopupModal} />
-        </PortalPopup>
-      )} */}
-    </>
-
-
-        
+        </>
     );
-}
+};
+
 export default ChatRoom;
