@@ -4,160 +4,6 @@ body {
     margin: 0;
     line-height: normal;
 }
-.jdiv,
-.jforminput {
-    align-self: stretch;
-}
-.jdiv {
-    position: relative;
-    font-weight: 500;
-
-}
-.jforminput {
-    border: 0;
-    font-family: Roboto;
-    font-size: 1rem;
-    background-color: #eefaea;
-    border-radius: 6px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    padding: 1rem 0.75rem;
-    align-items: center;
-    justify-content: flex-start;
-}
-.jforminput:focus {
-    outline: 0;
-}
-.jparent {
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.35rem;
-}
-.jforminput1 {
-    border: 0;
-    font-family: Roboto;
-    font-size: 1rem;
-    background-color: #eefaea;
-    border-radius: 6px;
-    overflow: hidden;
-    flex-direction: row;
-    padding: 1rem 0.75rem;
-    align-items: center;
-    outline: 0;
-}
-.jforminput1,
-.jforminput5,
-.frame-group,
-.jparent1 {
-    align-self: stretch;
-    display: flex;
-    justify-content: flex-start;
-}
-.frame-group {
-    height: 17.06rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.13rem;
-}
-.jforminput5,
-.jparent1 {
-    font-family: Roboto;
-}
-.jparent1 {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.38rem;
-}
-.jforminput5 {
-    border: 0;
-    font-size: 1rem;
-    background-color: #eefaea;
-    border-radius: 6px;
-    height: 3.81rem;
-    overflow: hidden;
-    flex-shrink: 0;
-    flex-direction: row;
-    padding: 1rem 0.75rem;
-    box-sizing: border-box;
-    align-items: center;
-    outline: 0;
-}
-.frame-container,
-.frame-parent,
-.jparent2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-.jparent2 {
-    align-self: stretch;
-    height: 5.56rem;
-    align-items: flex-start;
-    gap: 0.38rem;
-}
-.frame-container,
-.frame-parent {
-    gap: 1.13rem;
-}
-.frame-container {
-    align-self: stretch;
-    height: 17.63rem;
-    padding: 0 0 5.19rem;
-    box-sizing: border-box;
-    align-items: flex-start;
-}
-.frame-parent {
-    position: absolute;
-    width: calc(100% - 34px);
-    top: 6.69rem;
-    right: 1.06rem;
-    left: 1.06rem;
-    align-items: center;
-}
-.jdiv7,
-.joinform-child {
-    position: absolute;
-    top: 47.5rem;
-    height: 2.5rem;
-}
-.joinform-child {
-    width: calc(100% - 34px);
-    right: 1.06rem;
-    left: 1.06rem;
-    border-radius: 2px;
-    background-color: #89e1a4;
-}
-.jdiv7 {
-    left: calc(50% - 62px);
-    font-size: 0.94rem;
-    font-weight: 600;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 7.69rem;
-}
-
-.jcheckbox-icon {
-    position: absolute;
-    top: -0.12rem;
-    left: -0.31rem;
-    border-radius: 5px;
-    width: 1.88rem;
-    height: 1.88rem;
-    cursor: pointer;
-}
-.jdiv17 {
-    position: absolute;
-    top: 0.13rem;
-    left: -2rem;
-    line-height: 1.25rem;
-    width: 1.5rem;
-}
 .jdiv31,
 .jradio9 {
     position: relative;
@@ -168,7 +14,7 @@ body {
 }
 .jradio-button-setonon {
     position: absolute;
-    top: calc(50% + 296.5px);
+    top: calc(50% + 320px);
     left: calc(50% - 163px);
     display: flex;
     flex-direction: row;
@@ -180,7 +26,7 @@ body {
 .jradio-button-setoffon,
 .jradio-button-setoffon1 {
     position: absolute;
-    top: calc(50% + 296.5px);
+    top: calc(50% + 320px);
     left: calc(50% + 62.5px);
     display: flex;
     flex-direction: row;
@@ -192,20 +38,168 @@ body {
 .jradio-button-setoffon1 {
     left: calc(50% - 46px);
 }
-
-.joinform {
+.JFregister {
+    position: absolute;
+    height: 6.25%;
+    top: 15.13%;
+    bottom: 78.62%;
+    left: calc(50% - 114px);
+    width: 9.75rem;
+  }
+  .JFgreenlbtn-child {
+    margin: auto;
     position: relative;
-    background-color: #fff;
+    border-radius: 2px;
+    background-color: #48685e;
+    border: 1px solid #0b4648;
+    box-sizing: border-box;
+    width: 326px;
+    height: 2.5rem;
+  }
+  .JFdiv,
+  .JFgreenlbtn {
+    position: absolute;
+    display: flex;
+  }
+  .JFgreenlbtn {
+    width: calc(100% - 34px);
+    right: 1.06rem;
+    bottom: 1.81rem;
+    left: 1.06rem;
+    border-radius: 3px;
+    background-color: #48685e;
+    border: 1px solid #0b4648;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .JFdiv {
+    top: 47.88rem;
+    left: calc(50% - 59.33px);
+    font-size: 0.94rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 7.69rem;
+    height: 2.5rem;
+  }
+  .JFdiv2,
+  .JFlogo-end {
+    position: absolute;
+    top: 0;
+  }
+  .JFlogo-end {
+    left: 0.06rem;
+    width: 22.5rem;
+    height: 6.25rem;
+    display: none;
+  }
+  .JFdiv2 {
     width: 100%;
-    height: 51.31rem;
+    left: 0;
+    font-weight: 500;
+    display: inline-block;
+  }
+  .JFdiv1 {
+    position: relative;
+    width: 20.38rem;
+    height: 1.38rem;
+  }
+  .JFemail {
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+    align-self: stretch;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0.75rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .JFemail2:focus,
+  .JFemail:focus {
+    outline: 0;
+  }
+  .JFframe {
+    position: absolute;
+    top: 7.5rem;
+    left: calc(50% - 163px);
+    width: 20.38rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.38rem;
+  }
+  .JFemail2,
+  .JFframe,
+  .JFframe1 {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .JFframe1 {
+    position: absolute;
+    top: 13.69rem;
+    left: calc(50% - 163px);
+    width: 20.38rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.38rem;
+  }
+  .JFemail2 {
+    border: 1px solid #d9d9d9;
+    font-family: Roboto;
+    font-size: 1rem;
+    background-color: #fff;
+    align-self: stretch;
+    border-radius: 3px;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 1rem 0.75rem;
+    align-items: center;
+  }
+  .JFframe2,
+  .JFframe3,
+  .JFframe4,
+  .JFframe5 {
+    position: absolute;
+    top: 19.88rem;
+    left: calc(50% - 163px);
+    width: 20.38rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.38rem;
+  }
+  .JFframe3,
+  .JFframe4,
+  .JFframe5 {
+    top: 26.06rem;
+  }
+  .JFframe4,
+  .JFframe5 {
+    top: 32.25rem;
+  }
+  .JFframe5 {
+    top: 38.44rem;
+  }
+  .JFjoinform {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 48.94rem;
     overflow: hidden;
     text-align: left;
     font-size: 1.13rem;
-    color: #292d32;
+    color: #204337;
     font-family: Inter;
-}
-@media screen and (max-width: 960px) {
-    .div7 {
-        font-size: 0.88rem;
+  }
+  @media screen and (max-width: 960px) {
+    .div2 {
+      font-size: 0.88rem;
     }
-}
+  }
+  
