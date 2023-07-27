@@ -9,7 +9,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import logo from "../images/logo.png";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import Header from "../header/Header";
 
 function HugiList(props) {
     const [unum, setUnum] = useState('');
