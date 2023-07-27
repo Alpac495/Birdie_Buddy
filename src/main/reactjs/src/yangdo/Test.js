@@ -1,30 +1,42 @@
 import "./Test.css";
-const IDSearch2 = () => {
+const PasswordSearch2 = () => {
   return (
-    <div className="IS2idsearch2">
-      <div className="IS2idsearch2-child" />
-      <div className="IS2parent">
-        <div className="IS2div">아이디 찾기</div>
-        <img className="IS2icon-arrow-left" alt="" src="화살표 아이콘" />
+    <div className="PC3passwordsearch2">
+      <div className="PC3div">
+        <ul className="PC3ul">
+          <li className="PC3li">
+            회원님의 비밀번호는 운영자도 알 수 없도록 암호화 되어 있습니다.
+          </li>
+          <li className="PC3li">따라서 새로운 비밀번호를 등록하셔야 합니다.</li>
+          <li className="PC3li">영문/숫자/특수문자 조합으로 8~16자, 대소문자 구분</li>
+        </ul>
       </div>
-      <div className="IS2idsearch2-item" />
-      <img className="IS2birdie-buddy" alt="" src="하단 로고" />
-      <div className="IS2rectangle-parent">
-        <div className="IS2group-child" />
-        <div className="IS2div1">로그인 하기</div>
+      <div className="PC3rectangle-parent">
+        <div className="PC3group-child" />
+        <div className="PC3div1">비밀번호 변경하기</div>
       </div>
-      <div className="IS2rectangle-group">
-        <div className="IS2group-item" />
-        <div className="IS2div2">비밀번호 찾기</div>
+      <div className="PC3group-parent">
+        <div className="PC3rectangle-group">
+          <div className="PC3group-item" />
+          <div className="PC3div2">새로운 비밀번호를 입력하세요.</div>
+        </div>
+        <div className="PC3div3">새로운 비밀번호</div>
       </div>
-      <div className="IS2div3">
-        회원님의 정보로 아래와 같은 가입내역이 있습니다.
+      <div className="PC3parent">
+        <div className="PC3div4">비밀번호 재확인</div>
+        <div className="PC3rectangle-container">
+          <div className="PC3group-item" />
+          <div className="PC3div2">새로운 비밀번호를 한번 더 입력하세요.</div>
+        </div>
       </div>
-      <div className="IS2id">버디버디 ID</div>
-      <div className="IS2div4">아이디</div>
-      <div className="IS2div5">가입일자 : 2022.08.30</div>
+      <div className="PC3birdie-buddy">Birdie Buddy</div>
+      <div className="PC3passwordsearch2-child" />
+      <div className="PC3group">
+        <div className="PC3div6">비밀번호 변경</div>
+        <img className="PC3icon-arrow-left" alt="" src="/-icon-arrow-left.svg" />
+      </div>
     </div>
   );
 };
 
-export default IDSearch2;
+export default PasswordSearch2;

@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import './Login.css';
-import Naver from "./Naver";
-import Kakao from "./Kakao"
-import logo from "../image/logo_main.svg"
 import { FormControlLabel, Switch } from "@mui/material";
+import kakaoicon from "../image/kakao.svg";
+import navericon from "../image/naver.svg";
+import mainlogo from "../image/mainlogo.svg";
 
 
 function Login(props) {
@@ -90,7 +90,7 @@ function Login(props) {
                     value={uemail} />
             </div>
             <div className="LGyour-password-wrapper">
-                <input className={'LGyour-password'} type={'password'} required placeholder='Pass'
+                <input className={'LGyour-password'} type={'password'} required placeholder='Password'
                     onChange={(e) => setUpass(e.target.value)}
                     value={upass} />
             </div>
@@ -110,10 +110,10 @@ function Login(props) {
                 <div className="LGparent" onClick={handleNaverLogin}>
                     <div id="naverIdLogin" style={{ display: 'none' }}></div>
                     <div className="LGdiv2">네이버 로그인</div>
-                    <img className="LGicon-naver" alt="" src="" />
+                    <img className="LGicon-naver" alt="" src={navericon} />
                 </div>
             </div>
-            <img className="LGicon" alt="" src="" />
+            <img className="LGicon" alt="" src={mainlogo} />
             <div className="LGgroup">
                 <div onClick={searchPass} className="LGdiv3">비밀번호 찾기</div>
                 <div onClick={searchID} className="LGdiv4">아이디 찾기</div>
@@ -124,7 +124,7 @@ function Login(props) {
             <div className="LGgroup-div">
                 <div className="LGcontainer" onClick={kakaoLogin}>
                     <div className="LGdiv2" >카카오 로그인</div>
-                    <img className="LGicon-kakao" alt="" src="" />
+                    <img className="LGicon-kakao" alt="" src={kakaoicon} />
                 </div>
             </div>
         </div>
