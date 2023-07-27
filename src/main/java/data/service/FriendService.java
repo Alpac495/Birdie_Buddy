@@ -82,11 +82,6 @@ public class FriendService implements FriendServiceInter {
     }
 
     @Override
-    public List<UserDto> getUserList(int unum) {
-        return friendMapper.getUserList(unum);
-    }
-
-    @Override
     public List<FriendDto> getRequestCheck(int unum) {
         return friendMapper.getRequestCheck(unum);
     }

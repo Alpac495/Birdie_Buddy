@@ -11,10 +11,8 @@ import FriendSlider from "./app_effect/FriendSlider";
 import NoticeSlider from "./app_effect/NoticeSlider";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
-import Axios from "axios";
 
 function Main(props) {
-    const [bestHugi, setBestHugi]=useState([]);
     const [notice, setNotice]=useState([]);
 
     return (

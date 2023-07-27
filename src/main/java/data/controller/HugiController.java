@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -103,17 +104,29 @@ public class HugiController {
     }
 
     @PostMapping("/upload")
-    public String photoUpload(@RequestParam("upload") MultipartFile upload) {
-        System.out.println("hphotoUpload>>" + upload.getOriginalFilename());
-        if (hphoto != null) {
-            //이전 사진 삭제
-            storageService.deleteFile(bucketName, "hugi", hphoto);
+    public List<String> photoUpload(@RequestParam("upload") List<MultipartFile> uploads) {
+        List<String> uploadFiles = new ArrayList<>();
+        for (MultipartFile upload : uploads) {
+            try {
+                if (hphoto != null) {
+                    // 이전 사진 삭제
+                    storageService.deleteFile(bucketName, "hugi", hphoto);
+                }
+
+                // 업로드된 파일의 클라우드 URL 저장
+                String cloudUrl = storageService.uploadFile(bucketName, "hugi", upload);
+                uploadFiles.add(cloudUrl);
+
+                // 업로드된 파일의 원본 파일명 출력
+                System.out.println("업로드된 파일명: " + upload.getOriginalFilename());
+            } catch (Exception e) {
+                e.printStackTrace();
+                // 업로드에 실패한 경우 해당 파일의 URL은 리스트에 추가되지 않음
+            }
         }
-        hphoto = storageService.uploadFile(bucketName, "hugi", upload);
 
-        return hphoto;
+        return uploadFiles;
     }
-
     @PostMapping("/insert")
     public void insert(@RequestBody HugiDto hdto) {
         System.out.println("hdto>>" + hdto);

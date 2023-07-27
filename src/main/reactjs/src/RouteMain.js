@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Home from "./Home";
-import {HpChange, KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, SearchPass2, Sign, Taltae} from "./login";
+import {HpChange, KaKaoCallBack, Login, NaverCallBack, PassChange, SearchID, SearchPass, Sign, Taltae} from "./login";
 import {Friend, FriendRequest} from "./friend";
 import FriendDetail from "./friend/FriendDetail";
 import JoinForm from "./joining/JoinForm";
@@ -88,7 +88,6 @@ function RouteMain(props) {
                     <Route path="hpchange" element={<HpChange/>}/>
                     <Route path="searchID" element={<SearchID/>}/>
                     <Route path="searchPass" element={<SearchPass/>}/>
-                    <Route path="searchPass2" element={<SearchPass2/>}/>
                     <Route path="account" element={<AccountSetting/>}/>
                 </Route>
 
