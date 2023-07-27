@@ -147,6 +147,7 @@
     left: 23px;
     bottom: 44px;
     font-size: 7px;
+    
 }
 .HG_preComment{
     width: 100%;
@@ -209,6 +210,8 @@
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    font-size: 16px; /* Adjust font size for better readability */
+    font-weight: bold;
 }
 .HG_Delete_Icon{
     position: relative;
