@@ -72,27 +72,26 @@ const JoinAllList = () => {
     return (
         <div className="JEjoinlistreact">
 
-            <div className="JEElogo-end">
+            <div className="JEjoinheader">
                 <div className="header"><Header/></div>
-                
-                    <div className="JEEnewlogo">
-                        <div className="JEEgroup-parent">
-                            <div className="JEErectangle-group">
-                                <div className="JEEgroup-child"/>
-                                <div className="JEEdiv">
+                <div className="JEjtap">
+                    <div className="JEyangdo-bar">
+                        <div className="JEapp-bar-top">
+                            <div className="JEactions">
+                                <div className="btn1_wrapper">
 
                                     <button type='button' className="btn btn-sm btn-outline-success" onClick={joinformClick}>
-                                        <div className="JEEdiv">조인만들기</div>
+                                        <b className="JLb">조인만들기</b>
                                     </button>
                                 </div>
                             </div>
-                            <input className="JEEemail"
+                            <input className="JEtitle"
                                    type="text"
                                    placeholder="골프장명 또는 날짜로"
                                    onChange={(e) => {
                                        setSearchTerm(e.target.value);
                                    }}/>
-                            <button type="button" className="JEtitle1 btn">검색</button>
+                            <button type="button" className="JEtitle1 btn btn-sm btn-success">검색</button>
                         </div>
                     </div>
                     <div className="JEsegmented-control">
@@ -108,7 +107,7 @@ const JoinAllList = () => {
                             </div>
                         </div>
                     </div>
-                
+                </div>
             </div>
             <div className="JEjlist-parent">
                 <div className="JEjlist">
