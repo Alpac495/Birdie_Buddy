@@ -31,10 +31,28 @@ public class FriendController {
         return list;
     }
 
+    @GetMapping("/paginglist")
+    public List<FriendDto> paginglist(int unum, int page, int size) {
+        System.out.println("스크롤");
+        int offset = (page - 1) * size;
+        List<FriendDto> list = friendMapper.getFriendListWithPaging(unum, offset, size);
+        System.out.println(unum);
+        return list;
+    }
+
     @GetMapping("/requestlist")
     public List<FriendDto> requestlist(int unum) {
         List<FriendDto> requestlist = friendService.getRequestList(unum);
         return requestlist;
+    }
+
+    @GetMapping("/pagingrequestlist")
+    public List<FriendDto> pagingrequestlist(int unum, int page, int size) {
+        System.out.println("스크롤");
+        int offset = (page - 1) * size;
+        List<FriendDto> list = friendMapper.getRequestListWithPaging(unum, offset, size);
+        System.out.println(unum);
+        return list;
     }
 
     @GetMapping("/detail")
@@ -80,8 +98,17 @@ public class FriendController {
     }
 
     @GetMapping("/friendsearch")
-    public List<UserDto> alluserlist(int unum) {
-        List<UserDto> list = friendService.getUserList(unum);
+    public List<UserDto> alluserlist(int unum, int page, int size) {
+        System.out.println("스크롤");
+        int offset = (page - 1) * size;
+        List<UserDto> list = friendMapper.getUserList(unum, offset, size);
+        return list;
+    }
+
+    @GetMapping("/friendsearchlist")
+    public List<UserDto> friendsearchlist(int unum, @RequestParam(defaultValue = "") String keyword) {
+        System.out.println(keyword);
+        List<UserDto> list = friendMapper.getUserListScrollSearch(unum, keyword);
         return list;
     }
 

@@ -4,6 +4,7 @@ import "./Friend.css";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 import Profile from "../image/user60.png";
 import * as ncloudchat from 'ncloudchat';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Friend(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -16,8 +17,11 @@ function Friend(props) {
     const [uemail, setUemail] = useState('');
     const [nc, setNc] = useState('');
     const navi=useNavigate();
+    const [items, setItems] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
 
-    const unumchk = async () => {
+    const fetchMoreData = async () => {
         try {
             // Step 1: Get data from "/login/unumChk" endpoint
             const res1 = await Axios.get("/login/unumChk");
@@ -25,10 +29,24 @@ function Friend(props) {
             setUnum(unum);
     
             // Step 2: Get data from "/friend/list" endpoint using the unum
-            const friendListUrl = `/friend/list?unum=${unum}`;
-            const res2 = await Axios.get(friendListUrl);
-            setData(res2.data);
-            console.log(res2.data);
+            setLoading(true);
+                Axios
+                    .get(`/friend/paginglist?unum=${res1.data}&page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .then((res) => {
+                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        console.log(items);
+                        console.log(res.data);
+                        setPage((prevPage) => prevPage + 1);
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                        setLoading(false);
+                    });
+            // const friendListUrl = `/friend/list?unum=${unum}`;
+            // const res2 = await Axios.get(friendListUrl);
+            // setData(res2.data);
+            // console.log(res2.data);
     
             // Step 3: Get user info from "/chating/getuserinfo" using the unum
             const getUserInfoUrl = `/chating/getuserinfo?unum=${unum}`;
@@ -62,7 +80,7 @@ function Friend(props) {
     };
     
     useEffect(() => {
-        unumchk();
+        fetchMoreData();
     }, []);
     
     
@@ -124,7 +142,7 @@ function Friend(props) {
 
     return (
         <div className="friend">
-            <h4>마이 버디 : {data.length}명</h4>
+            <h4>마이 버디 : {items.length}명</h4>
 
             <div className="FLtab">
                 <NavLink to={`/friend/list`}>
@@ -138,10 +156,17 @@ function Friend(props) {
                     </div>
                 </NavLink>
             </div>
-
+            <div className='friendlist'>
+            <InfiniteScroll
+                    dataLength={items.length}
+                    next={fetchMoreData}
+                    hasMore={items.length>0}
+                    loader={<h4>마지막</h4>}
+                    endMessage={null}
+                >
             {
-                data.map &&
-                data.map((item,idx)=>
+                items.map &&
+                items.map((item,idx)=>
 
                     <div className="flist">
                         <div className="flist-child" />
@@ -167,7 +192,8 @@ function Friend(props) {
                     </div>
                  )
             }
-
+        </InfiniteScroll>
+        </div>
         </div>
     );
 }
