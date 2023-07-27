@@ -241,7 +241,7 @@ function HugiDetail(props) {
     const fetchPostUserNickname = async (unum) => {
         if (unum) {
             try {
-                const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
+                const res = await Axios.get(`/hugi/getUser/${unum}`);
                 const Unickname = res.data;
                 if (Unickname) {
                     setPostUserNickname(Unickname);
@@ -250,19 +250,19 @@ function HugiDetail(props) {
                 if (error.response && error.response.status === 404) {
                     // 404 오류 처리
                 } else {
-                    console.log('오류가 발생했습니다.', error.message);
+                 console.log('오류가 발생했습니다.', error.message);
                 }
             }
         }
     };
     const fetchUserPhoto = (unum) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 setUphoto(userPhoto);
             })
             .catch((error) => {
-                console.log('Error fetching user photo:', error);
+               // console.log('Error fetching user photo:', error);
             });
     };
     useEffect(() => {
@@ -272,7 +272,7 @@ function HugiDetail(props) {
     }, [unum]);
     // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchCommentUserPhoto = (unum, comment) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // comment 객체에 댓글 작성자의 프로필 사진 정보 추가
@@ -281,13 +281,13 @@ function HugiDetail(props) {
                 setComments((prevComments) => [...prevComments]); // 댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-                console.log('Error fetching comment user photo:', error);
+               // console.log('Error fetching comment user photo:', error);
             });
     };
 
 // 대댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchReplyUserPhoto = (unum,reply) => {
-        Axios.get(`/hugi/getUserPhoto?unum=${unum}`)
+        Axios.get(`/hugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // reply 객체에 대댓글 작성자의 프로필 사진 정보 추가
@@ -296,9 +296,10 @@ function HugiDetail(props) {
                 setComments((prevComments) => [...prevComments]); // 대댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-                console.log('Error fetching reply user photo:', error);
+                //console.log('Error fetching reply user photo:', error);
             });
     };
+
     const sortComments = (comments) => {
         const sorted = [];
         const commentMap = {};
@@ -335,7 +336,7 @@ function HugiDetail(props) {
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
         try {
-            const res = await Axios.get(`/hugi/getUser?unum=${unum}`);
+            const res = await Axios.get(`/hugi/getUser/${unum}`);
             const userNickname = res.data;
             if (userNickname) {
                 const newComment = {
@@ -461,7 +462,7 @@ function HugiDetail(props) {
             </h6>
             <hr/>
             <div className="IconsZone">
-                {unumchk &&
+                {unumchk && parseInt(unum)!== 0 &&
                     (showLike ? (
                     <FavoriteSharp onClick={handleClickLikeOff} className="Icons" style={{color: "red"}}/>
                 ) : (
@@ -477,7 +478,7 @@ function HugiDetail(props) {
                 )}
             </div>
 
-            {unumchk && (
+            {unumchk && parseInt(unum) !== 0 && (
                 <div className="input-group">
               <textarea
                   className="form-control"
@@ -517,7 +518,7 @@ function HugiDetail(props) {
                   <pre className="preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="spanRhwriteday">{comment.rhwriteday}</span>
-                  {unumchk && (
+                  {unumchk && parseInt(unum) !== 0 && (
                       <a className="Click_ReplyForm" onClick={() => toggleReplyForm(comment.rhnum)}>
                           {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
                       </a>

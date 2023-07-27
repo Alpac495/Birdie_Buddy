@@ -33,8 +33,7 @@
     </select>
 
     <update id="updateYangdo" parameterType="YangdoDto">
-        update yangdo set ycontent=#{ycontent}, yprice=#{yprice}, yplace=#{yplace},
-                          yday=#{yday}, ysubject=#{ysubject} where ynum=#{ynum}
+        update yangdo set ycontent=#{ycontent}, yprice=#{yprice}, yplace=#{yplace}, yday=#{yday}, ysubject=#{ysubject} where ynum=#{ynum}
     </update>
 
     <select id="MyYangdoList" parameterType="Map" resultType="YangdoDto">
@@ -50,6 +49,37 @@
     <select id="getPagingListScroll" parameterType="int" resultType="YangdoDto">
         select * ,(select unickname from user where unum=yangdo.unum) as unickname,
                (select uhp from user where unum=yangdo.unum) as uhp
-        from yangdo order by yday asc, ysubject asc limit #{offset},#{size}
+        from yangdo
+        order by yday asc, ysubject asc
+        limit #{offset},#{size}
+    </select>
+    <select id="getPagingListScrollSearch" parameterType="String" resultType="YangdoDto">
+        select *,
+           (select unickname from user where unum=yangdo.unum) as unickname,
+           (select uhp from user where unum=yangdo.unum) as uhp
+        from yangdo
+        where yday like concat('%', #{keyword}, '%')
+            or yplace like concat('%', #{keyword}, '%')
+            or (select unickname from user where unum=yangdo.unum) like concat('%', #{keyword}, '%')
+        order by yday asc, ysubject asc
+    </select>
+    <select id="getPagingMyListScroll" parameterType="int" resultType="YangdoDto">
+        SELECT *,
+            (SELECT unickname FROM user WHERE unum = yangdo.unum) AS unickname,
+            (SELECT uhp FROM user WHERE unum = yangdo.unum) AS uhp
+        FROM yangdo
+        WHERE unum = #{unum}
+        ORDER BY yday ASC, ysubject ASC
+        LIMIT #{offset}, #{size};
+    </select>
+    <select id="getPagingMyListScrollSearch" parameterType="Map" resultType="YangdoDto">
+        SELECT *,
+            (SELECT unickname FROM user WHERE unum=yangdo.unum) AS unickname,
+            (SELECT uhp FROM user WHERE unum=yangdo.unum) AS uhp
+        FROM yangdo
+        WHERE (yday LIKE CONCAT('%', #{keyword}, '%')
+            OR yplace LIKE CONCAT('%', #{keyword}, '%'))
+            AND unum = #{unum}
+        ORDER BY yday ASC, ysubject ASC;
     </select>
 </mapper>
