@@ -126,7 +126,7 @@ function Sign(props) {
     }
     const sms = () => {
         if (uhp.length != 11) {
-            alert("휴대폰번호 11자리를 입력해 주세요.")
+            alert("휴대폰 번호 11자리를 입력해 주세요.")
             setUhp('');
         } else {
             axios.get('/login/hpchk?uhp=' + uhp)

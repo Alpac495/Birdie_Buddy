@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './SearchPass.css';
+import Back from "../image/Back.svg";
+import hidelogo from "../image/hidelogo.svg";
 
 function SearchPass(props) {
     const [uhp, setUhp] = useState('');
@@ -24,10 +26,10 @@ function SearchPass(props) {
             axios.get("/login/getUserUhp?uhp=" + uhp)
                 .then(res => {
                     if (res.data == "no") {
-                        alert("가입된 정보가 없습니다")
+                        alert("입력한 휴대폰 번호로 가입된 아이디가 없습니다.")
                         setUhp('');
                     } else {
-                        alert("코드발송")
+                        alert("인증 번호를 발송했습니다.")
                         axios.get('/login/smsSend?uhp=' + uhp)
                             .then(response => {
                                 console.log(response.data);
@@ -44,34 +46,34 @@ function SearchPass(props) {
         axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
-                    alert("인증 성공")
+                    alert("인증 되었습니다.")
                     setChk(true);
                 } else {
-                    alert("코드가 일치하지 않습니다")
+                    alert("인증 번호가 일치하지 않습니다.")
                 }
             })
     }
     const SearchPass = () => {
         if (chk == false || uemail == '') {
-            alert("인증을 먼저 진행해주세요")
+            alert("휴대폰 번호 인증을 해주세요.")
         } else {
             axios.get("/login/searchPass?uhp=" + uhp + "&uemail=" + uemail)
                 .then(res => {
                     if (res.data) {
-                        alert("새로운 비밀번호를 입력해 주세요")
+                        alert("확인되었습니다.")
                         setChk2(true);
                         uemailRef.current.disabled = true
                         hpRef.current.disable = true
 
                     } else {
-                        alert("입력하신 휴대폰번호에 등록된 ID와 입력하신 ID가 일치하지 않습니다")
+                        alert("입력한 휴대폰 번호로 가입된 아이디가 아닙니다.")
                     }
                 })
         }
     }
     const passChnage = () => {
         if (newpass != newpass2) {
-            alert("새로운 비밀번호가 일치하지 않습니다")
+            alert("새로운 비밀번호가 일치하지 않습니다.")
             return;
         } else if (!regex.test(newpass)) {
             alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
@@ -79,7 +81,7 @@ function SearchPass(props) {
         }
         axios.get('/login/passChange2?upass=' + newpass + "&uemail=" + uemail)
             .then(res => {
-                alert("비밀번호가 변경 완료되었습니다. 새로운 비밀번호로 로그인 해주세요")
+                alert("비밀번호가 변경되었습니다. \n새로운 비밀번호로 로그인해 주세요.")
                 axios.get('/login/logout')
                     .then(res => {
                         navi('/')
@@ -92,7 +94,7 @@ function SearchPass(props) {
                 <div className="PC1passwordsearch1-child" />
                 <div className="PC1parent">
                     <div className="PC1div">비밀번호 찾기</div>
-                    <img className="PC1icon-arrow-left" alt="" src="화살표 아이콘" />
+                    <img className="PC1icon-arrow-left" alt="" src={Back} />
                 </div>
                 <div className="PC1div1">
                     <span className="PC1txt">
@@ -114,7 +116,7 @@ function SearchPass(props) {
                     <div className="PC1group-child"onClick={SearchPass}/>
                     <div className="PC1div3"onClick={SearchPass}>다음</div>
                 </div>
-                <img className="PC1birdie-buddy" alt="" src="하단 로고" />
+                <img className="PC1birdie-buddy" alt="" src={hidelogo} />
                 <div className="PC1group">
                     <div className="PC1div4" onClick={() => { navi('/login/searchID') }}>{`아이디 찾기 ->`}</div>
                     <div className="PC1div5">아이디를 잊으셨나요?</div>
@@ -197,11 +199,11 @@ function SearchPass(props) {
                             value={newpass2} />
                     </div>
                 </div>
-                <img className="PC2birdie-buddy" alt="" src="하단 로고" />
+                <img className="PC2birdie-buddy" alt="" src={hidelogo} />
                 <div className="PC2passwordsearch2-child" />
                 <div className="PC2group">
                     <div className="PC2div6">비밀번호 변경</div>
-                    <img className="PC2icon-arrow-left" alt="" src="화살표" />
+                    <img className="PC2icon-arrow-left" alt="" src={Back} />
                 </div>
             </div>
         )

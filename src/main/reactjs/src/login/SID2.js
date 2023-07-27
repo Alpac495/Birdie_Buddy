@@ -1,5 +1,7 @@
 import React from 'react';
 import './SID2.css';
+import Back from "../image/Back.svg";
+import hidelogo from "../image/hidelogo.svg";
 
 function SID2({data, navi}) {
     return (
@@ -7,10 +9,10 @@ function SID2({data, navi}) {
             <div className="IS2idsearch2-child" />
             <div className="IS2parent">
                 <div className="IS2div">아이디 찾기</div>
-                <img className="IS2icon-arrow-left" alt="" src="화살표 아이콘" />
+                <img className="IS2icon-arrow-left" alt="" src={Back} />
             </div>
             <div className="IS2idsearch2-item" />
-            <img className="IS2birdie-buddy" alt="" src="하단 로고" />
+            <img className="IS2birdie-buddy" alt="" src={hidelogo} />
             <div className="IS2rectangle-parent">
                 <div className="IS2group-child" onClick={()=>{navi('/login/login')}}/>
                 <div className="IS2div1" onClick={()=>{navi('/login/login')}}>로그인 하기</div>
