@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './Hugi.css';
+import iconBack from '../image/Back.svg';
+import iconMyhugi from '../image/icon_myinfo.svg';
 import Axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
 import InfiniteScroll from "react-infinite-scroll-component";
 import logo from "../images/logo.png";
+import Header from "../header/Header";
 import Footer from "../footer/Footer";
 
 function HugiList(props) {
@@ -160,13 +163,14 @@ function HugiList(props) {
     };
     return (
         <div className="HG_hugi1">
+            {/* <Header/> */}
             <div className="HG_hugi_header">
                 <div className="HG_hugi_headerWrapper">
                     <button type="button" alt="" className="HG_button" onClick={homeButton}>
-                        Home
+                        <img alt='' src={iconBack}/>
                     </button>
                     <button type="button" alt="" className="HG_button_hugis" onClick={Myhugis}>
-                        MyHugis
+                        <img alt='' src={iconMyhugi}/>
                     </button>
                 </div>
             </div>

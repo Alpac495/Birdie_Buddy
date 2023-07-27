@@ -147,6 +147,7 @@
     left: 23px;
     bottom: 44px;
     font-size: 7px;
+    
 }
 .HG_preComment{
     width: 100%;
@@ -191,7 +192,8 @@
     overflow: auto;
 }
 .HG_spanWriteday{
-    marginLeft: 10px;
+    float: right;
+    margin-right: 10px; /* 더 적절한 간격으로 조정하세요 */
     color: gray;
 }
 .HG_spanCommentList{
@@ -209,6 +211,8 @@
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    font-size: 16px; /* Adjust font size for better readability */
+    font-weight: bold;
 }
 .HG_Delete_Icon{
     position: relative;
