@@ -27,7 +27,7 @@ function MyYangdoUpdate(props) {
         const detailUrl=`/yangdo/detail?num=${ynum}&currentPage=${currentPage}`;
         Axios.get(detailUrl)
             .then(res=>{
-                setYangdoData(res.data);
+                setYangdoData(res.data); 
             })
     }
 
