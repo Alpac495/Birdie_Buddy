@@ -6,6 +6,7 @@ import data.dto.NoticeDto;
 import data.dto.UserDto;
 import data.mapper.AdminMapper;
 import data.service.AdminService;
+import naver.cloud.NcpObjectStorageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,11 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/admin")
 public class AdminContoller {
+
+    private NcpObjectStorageService storageService;
+    private String bucketName = "bit701-bucket-111/birdiebuddy";
+    
     String photo;
 
     String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
@@ -91,5 +97,18 @@ public class AdminContoller {
     public NoticeDto noticeDetail(int nnum) {
         NoticeDto dto = adminMapper.noticeDetail(nnum);
         return dto;
+    }
+
+    @PostMapping("/upload")
+    public String photoUpload(MultipartFile upload)
+    {
+        System.out.println("upload>>"+upload.getOriginalFilename());
+        if(photo!=null) {
+            //이전 사진 삭제
+            storageService.deleteFile(bucketName, "notice", photo);
+        }
+        photo=storageService.uploadFile(bucketName, "notice", upload);
+
+        return photo;
     }
 }
