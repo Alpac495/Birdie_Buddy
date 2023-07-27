@@ -17,10 +17,11 @@ function HugiList(props) {
     const [Unickname, setUnickname] = useState();
     const [hugiData, setHugiData] = useState([]);
     const [loading, setLoading] = useState(true); // 로딩 상태 추가
-    const [selectedFileName, setSelectedFileName] = useState('');
+    // const [selectedFileName, setSelectedFileName] = useState('');
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
     const [selectedFiles, setSelectedFiles] = useState([]);
+    const [selectedPreviews, setSelectedPreviews] = useState([]);
     const [page, setPage] = useState(1);
     //무한스크롤
     useEffect(() => {
@@ -102,12 +103,12 @@ function HugiList(props) {
 
         try {
             const res = await Axios.post('/hugi/upload', uploadFiles);
-            setHphoto(res.data);
+            const firstFileUrl = res.data[0]; // 첫 번째 파일의 URL을 가져옴
+            setHphoto(firstFileUrl); // hphoto에 첫 번째 파일 URL을 설정
         } catch (error) {
             console.log(error);
         }
     };
-
 // 게시물 작성 이벤트 핸들러 (async/await 사용)
     const onSubmitEvent = async (e) => {
         e.preventDefault();
@@ -149,10 +150,19 @@ function HugiList(props) {
         navi(`/hugi/list/${unum}`);
     };
 
-    // 파일 선택 시 파일명 업데이트 함수
+    // 파일 선택 시 파일 정보와 미리보기 이미지 업데이트 함수
     const onFileChange = (e) => {
-        const fileName = e.target.value.split('\\').pop(); // 파일명 추출
-        setSelectedFileName(fileName); // 파일명 상태 업데이트
+        const files = e.target.files;
+        const fileArray = Array.from(files).map((file) => {
+            const fileName = file.name;
+            const previewUrl = URL.createObjectURL(file);
+            return { file, fileName, previewUrl };
+        });
+
+        setSelectedFiles(fileArray.map((file) => file.fileName)); // 파일명 배열로 업데이트
+        setSelectedPreviews(fileArray.map((file) => file.previewUrl)); // 미리보기 이미지 URL 배열로 업데이트
+        setHphoto(fileArray.length > 0 ? fileArray[0].previewUrl : ''); // 첫 번째 이미지의 URL을 hphoto에 저장
+        onUploadEvent(e); // 파일 업로드 이벤트 호출
     };
     const onclickLoad = () => {
         window.scrollTo({top: 0, behavior: "smooth" });
@@ -183,10 +193,14 @@ function HugiList(props) {
                         marginBottom: '5px',
                         padding: '10px'
                     }}>
+                        {/*alt="" src={`${url}${hphoto}`}*/}
+
                         {/*<input type="file" className="form-control" onChange={onUploadEvent}/>*/}
-                        <img alt="" src={`${url}${hphoto}`} style={{width: '50%', margin: '10px 100px'}}/>
+                        {selectedPreviews.map((previewUrl, index) => (
+                        <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '150px',height:'150px',margin:"5px 5px",float:"left"}}/>
+                        ))}
                         <div className="filebox">
-                            <input className="upload-name" style={{width:"65%"}} value={selectedFileName || "첨부파일"} placeholder="첨부파일"
+                            <input className="upload-name" style={{width:"65%"}} value={selectedFiles || "첨부파일"} placeholder="첨부파일"
                                    readOnly/>
                             <label htmlFor="file" style={{width:"35%"}}>파일찾기</label>
                             <input type="file" id="file" multiple="multiple" onChange={(e) => {

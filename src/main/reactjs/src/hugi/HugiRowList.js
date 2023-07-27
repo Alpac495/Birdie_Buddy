@@ -478,6 +478,12 @@ function HugiRowList(props) {
         }
         setReplyContent('');
     };
+    const getFirstImage = (hphoto) => {
+        if (Array.isArray(hphoto) && hphoto.length > 0) {
+            return hphoto[0]; // 배열의 첫 번째 이미지 URL 반환
+        }
+        return hphoto; // 배열이 아니라면 그대로 반환
+    };
     // useEffect를 이용하여 초기 데이터 로딩
     useEffect(() => {
         getComments();
@@ -508,7 +514,7 @@ function HugiRowList(props) {
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
-            <img className="HG_list_image" src={`${URL}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
+            <img className="HG_list_image" src={`${URL}${getFirstImage(hphoto)}`} alt="" value={hphoto} onClick={handleClickDetail}/>
             <h6 className="HG_list_text">
                 &nbsp;
                 {hcontent}
