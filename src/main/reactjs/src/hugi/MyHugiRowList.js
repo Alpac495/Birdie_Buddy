@@ -160,11 +160,11 @@ function MyHugiRowList(props) {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleClickAvatar  = () =>{
+    const handleClickAvatar  = (funum) =>{
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
         } else {
-            navi(`/mypage/mypage/${unum}`);
+            navi(`/friend/detail/${funum}`);
         }
     };
     const handleClickLikeOn = () => {
@@ -258,7 +258,6 @@ function MyHugiRowList(props) {
                     if (comment.comments) {
                         comment.comments.forEach((reply) => {
                             fetchReplyUserPhoto(reply.unum, reply); // 대댓글 작성자의 프로필 사진 정보 가져오기
-
                         });
                     }
                 });
@@ -480,11 +479,11 @@ function MyHugiRowList(props) {
         <div className="HG_list">
             <div className="HG_list_header">
                 {props.uphoto !== null ? (
-                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,props.unum)}/>
                 ):(
-                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,props.unum)}/>
                 )}
-                <span className="HG_spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
+                <span className="HG_spanName" onClick={handleClickAvatar.bind(null,props.unum)}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
@@ -520,11 +519,11 @@ function MyHugiRowList(props) {
                 <DialogTitle id="alert-dialog-title">
                     <div className="HG_Dialog_Title">
                         {props.uphoto !== null ? (
-                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar}/>
+                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,props.unum)}/>
                         ):(
-                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={Profile}  onClick={handleClickAvatar}/>
+                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={Profile}  onClick={handleClickAvatar.bind(null,props.unum)}/>
                         )}
-                        <span className="HG_spanCommentList" onClick={handleClickAvatar}>
+                        <span className="HG_spanCommentList" onClick={handleClickAvatar.bind(null,props.unum)}>
                         {postUserNickname}
                       </span>
                     </div>
@@ -567,11 +566,11 @@ function MyHugiRowList(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div className="HG_Comments">
-                  <span className="HG_Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
+                  <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}:</span>
                   {comment.uphoto !== null ? (
-                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`} onClick={handleClickAvatar}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   ):(
-                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   )}
                   <pre className="HG_preRhcontent">{comment.rhcontent}</pre>
                   <br/>
@@ -624,11 +623,11 @@ function MyHugiRowList(props) {
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="HG_Comment_Reply_List">
                                   {reply.uphoto !== null ? (
-                                      <Avatar className="HG_list_avatar_Comment2" alt={''}  src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickAvatar}/>
+                                      <Avatar className="HG_list_avatar_Comment2" alt={''}  src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   ):(
-                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   )}
-                                  <b className="HG_ReplyNickname" onClick={handleClickAvatar}>
+                                  <b className="HG_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;

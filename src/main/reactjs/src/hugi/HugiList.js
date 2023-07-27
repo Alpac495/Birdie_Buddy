@@ -184,7 +184,6 @@ function HugiList(props) {
     };
     return (
         <div className="HG_hugi1">
-
             <div className="HG_hugi_header">
                 <div className="HG_hugi_headerWrapper">
                     <Header/>
@@ -211,7 +210,7 @@ function HugiList(props) {
                         <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '150px',height:'150px',margin:"5px 5px",float:"left"}}/>
                         ))}
                         <div className="filebox">
-                            <input className="upload-name" style={{width:"65%"}} value={selectedFiles || "첨부파일"} placeholder="첨부파일"
+                            <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }} value={selectedFiles || "첨부파일"} placeholder="첨부파일"
                                    readOnly/>
                             <label htmlFor="file" style={{width:"35%"}}>파일찾기</label>
                             <input type="file" id="file" multiple="multiple" onChange={(e) => {
@@ -223,11 +222,11 @@ function HugiList(props) {
                         <div className="input-group">
             <textarea
                 className="form-control"
-                style={{width: '80%', resize: "none"}}
+                style={{width: '80%', resize: "none",backgroundColor:"#fafafa"}}
                 value={hcontent}
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>
-                            <button type="submit" className="HG_button" style={{width: '20%'}}
+                            <button type="submit" className="HG_button" style={{width: '20%',height:"62px"}}
                                     onClick={onSubmitEvent}>
                                 작성
                             </button>

@@ -2,7 +2,7 @@
 .HG_list {
     max-width:360px;
     max-height:100%;
-    background-color: white;
+    background-color: #fafafa;
     border: 1px solid lightgray;
     margin-bottom: 25px;
     padding: 3px;
@@ -16,14 +16,24 @@
     padding: 5px;
 }
 .HG_list_image {
-    width: 100%;
-    height: auto; /* 원하는 크기로 조정하세요 */
+    max-width: 100%;
+    max-height: 300px;
+    min-width: 200px;
+    min-height: 150px;
+    text-align: center;
+    margin:auto;
+    padding:5px;
     object-fit: cover;
     cursor: pointer;
 }
 .HG_list_detailimage {
-    width: 100%;
-    height: auto; /* 원하는 크기로 조정하세요 */
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 200px;
+    min-height: 150px;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
     object-fit: cover;
 
 }
@@ -159,8 +169,8 @@
     position: relative;
     width:100px;
     height: 100%;
-    bottom: 37px;
-    left: 142px;
+    bottom: 33px;
+    left: 130px;
     font-size: 14px;
     white-space: pre-wrap;
     word-break: break-all;
@@ -169,8 +179,8 @@
 }
 .HG_preReplyRhcontent{
     position: relative;
-    bottom: 47px;
-    left: 135px;
+    bottom: 46px;
+    left: 120px;
     width:70px;
     height: 100%;
     font-size: 13px;
@@ -182,7 +192,7 @@
 .HG_detail_preReplyRhcontent{
     position: relative;
     bottom: 47px;
-    left: 135px;
+    left: 130px;
     width:100px;
     height: 100%;
     font-size: 13px;
