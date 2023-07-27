@@ -1,10 +1,10 @@
 import React, {Component, useState} from 'react';
 import Slider from 'react-slick';
-import no from '../images/golf_hugi.jpg';
 import "./Review.css";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import Axios from 'axios';
-import user from "../images/default_golf.png";
+import de_hugi from "../images/default_hugi.png";
+import user from "../images/default_golf.png"
 
 export default class SimpleSlider extends Component {
 
@@ -47,6 +47,7 @@ export default class SimpleSlider extends Component {
         const { reviewList, isClickedList } = this.state;
         const image1 = process.env.REACT_APP_IMAGE1PROFILE;
         const image2 = process.env.REACT_APP_IMAGE87;
+        const hugipic = process.env.REACT_APP_HUGI;
         
 
 
@@ -58,6 +59,8 @@ export default class SimpleSlider extends Component {
             swipeToSlide: true,
             autoplay: true,
             autoplaySpeed: 3000,
+            prevArrow: null, // 이전 화살표를 감춥니다.
+            nextArrow: null, // 다음 화살표를 감춥니다.
         };
 
         return (
@@ -69,9 +72,9 @@ export default class SimpleSlider extends Component {
 
 
                                 {item.hphoto !== '' ? (
-                                <img className={'review_img'} alt="프로필 사진" src={`${image1}${item.hphoto}${image2}`} onClick={() => this.handleTouchStart(idx)} />
+                                <img className={'review_img'} alt="프로필 사진" src={`${hugipic}${item.hphoto}`} onClick={() => this.handleTouchStart(idx)} />
                             ) : (
-                                <img className={'review_img'} alt="프로필 사진" src={user} onClick={() => this.handleTouchStart(idx)} />
+                                <img className={'review_img'} alt="프로필 사진" src={de_hugi} onClick={() => this.handleTouchStart(idx)} />
                             )}
 
                                
