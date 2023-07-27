@@ -39,10 +39,10 @@
     display: flex !important;
     border: 1px lightgrey solid;
     border-radius: 5px;
-    width: 240px !important;
+    width: 230px !important;
     height: 120px;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 15px;
     box-shadow: 2px 2px 4px lightgrey;
     color: black;
     text-decoration: none;
@@ -59,10 +59,10 @@
     width: 75px;
     height: 75px;
     border-radius: 5px;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 .main_joinreco div span{
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .main_reviewtxt{
     margin-bottom: 8px;
