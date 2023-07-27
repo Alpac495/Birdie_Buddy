@@ -52,4 +52,8 @@ public class ChatingController {
         return chatingService.getChatRoomList(unum);
     }
 
+    @GetMapping("/unsubchatid")
+    public void deletechatid(@RequestParam int unum,@RequestParam String chatid){
+    chatingService.deletechatid(unum,chatid);
+    }
 }

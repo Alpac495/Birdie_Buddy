@@ -16,5 +16,5 @@ public interface ChatingServiceInter {
 
     public List<ChatroomDto> getChatRoomList(int unum);
 
-
+    public void deletechatid(int unum, String chatid);
 }

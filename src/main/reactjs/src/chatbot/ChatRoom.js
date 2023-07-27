@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
-import {useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import Axios from 'axios';
 function ChatRoom() {
     const [messages, setMessages] = useState([]);
@@ -10,7 +10,8 @@ function ChatRoom() {
     const [unum, setUnum]=useState('');
     const [data, setData] = useState('');
     const [data2, setData2] = useState('');
-    
+    const navi=useNavigate();
+
     const unumchk = async () => {
         try {
             const res1 = await Axios.get("/login/unumChk");
@@ -140,9 +141,22 @@ function ChatRoom() {
             console.error('Chat is not initialized');
             return;
         }
+        const userConfirmed = window.confirm('정말 채팅방을 나가시겠습니까?');
+        if (!userConfirmed) {
+            // 사용자가 취소를 눌렀을 경우 함수를 종료합니다.
+            return;
+        }
         try {
+            await Axios.get(`/chating/unsubchatid?unum=${unum}&chatid=${channelId}`);
+            const message = `${unum} 님이 나가셨습니다`;
+            await nc.sendMessage(channelId, {
+                name: "Admin",
+                type: "text",
+                message,
+            });
+
+            navi(`/chating/${unum}`);
             await nc.unsubscribe(channelId);
-            // 여기서 필요한 다른 처리를 할 수 있습니다.
         } catch (error) {
             console.error('Error:', error);
         }
