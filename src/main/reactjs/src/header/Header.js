@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemText } from '@mui/material';
 import "./Header.css";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -11,16 +11,37 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
 import no from "../images/logo.png"
+import user from "../images/default_golf.png"
+import Axios from 'axios';
 
 
 function Header(props) {
     const navigate = useNavigate();
 
     const [sideBar, setSideBar] = useState(false);
+    const [userData, setUserData]=useState([]);
+    const [unum, setUnum] = useState(0);
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
 
     const toggleDrawer = (open) => (event) => {
         setSideBar(open);
     };
+
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+            const url="/main/userdata?unum="+res.data;
+            Axios.get(url)
+            .then(res=>{
+                setUserData(res.data);
+            })
+        });
+    }
+    useEffect(() => {
+        unumchk();
+    }, []);
 
     function handleClick() {
         // 페이지 이동을 처리하는 로직 작성
@@ -37,16 +58,36 @@ function Header(props) {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                <div className='side_profile'>
-                    <div><img alt='' src={no}/></div><div>김똘똘 님</div>
+            {unum === 0 ? (
+                <div className="side_profile">
+                    <div className='side_go_login'>
+                        <NavLink to="/login" className={'side_login'}>로그인해 주세요</NavLink>
+                    </div>
                 </div>
+            ) : (
+                // unum이 0이 아닌 경우에는 userData에 따라 유저 정보를 표시
+                userData && userData.length > 0 ? (
+                    userData.map((item, idx) => (
+                        <div key={idx} className="side_profile">
+                            <div>
+                            {item.uphoto != null ? (
+                                <img alt="프로필 사진" src={`${image1}${item.uphoto}${image2}`} />
+                                ) : (
+                                <img alt="프로필 사진" src={user} />
+                            )}
+                            </div>
+                            <div>{item.uname}</div>
+                        </div>
+                    ))
+                ) : null
+            )}
+                
             </List>
             <Divider style={{height:'2px'}}/>
             <List>
-                <h6 style={{ marginLeft: '15px' }}>여기는 중요부</h6>
                 {[
-                    { text: '공지사항', path: '/notice', icon: <AnnouncementIcon />, marginLeft: '20px' },
-                    { text: '스코어 작성', path: '/score/form', icon: <EditIcon />,marginLeft: '20px' }
+                    { text: '공지사항', path: '/notice', icon: <AnnouncementIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
+                    { text: '스코어 작성', path: '/score/form', icon: <EditIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' }
                 ].map(({ text, path, icon, marginLeft }) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={NavLink} to={path} activeClassName="active">
@@ -61,11 +102,11 @@ function Header(props) {
             <Divider style={{height:'2px'}} />
             <List>
                 {[
-                    { text: '조인', path: '/joining/list', icon: <PeopleIcon />, marginLeft: '20px' },
-                    { text: '양도', path: '/yangdo/list', icon: <TransferWithinAStationIcon />, marginLeft: '20px' },
-                    { text: '랭킹', path: '/score/list', icon: <TrendingUpIcon />, marginLeft: '20px' },
-                    { text: '후기', path: '/hugi/list', icon: <RateReviewIcon />, marginLeft: '20px' },
-                    { text: '마이페이지', path: '/mypage/main', icon: <PersonIcon />, marginLeft: '20px' }
+                    { text: '조인', path: '/joining/list', icon: <PeopleIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
+                    { text: '양도', path: '/yangdo/list', icon: <TransferWithinAStationIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
+                    { text: '랭킹', path: '/score/list', icon: <TrendingUpIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
+                    { text: '후기', path: '/hugi/list', icon: <RateReviewIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
+                    { text: '마이페이지', path: '/mypage/main', icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'}
                 ].map(({ text, path, icon, marginLeft }) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={NavLink} to={path} activeClassName="active">
@@ -91,7 +132,9 @@ function Header(props) {
                 anchor={'left'}
                 open={sideBar}
                 onClose={toggleDrawer(false)}
-                PaperProps={{ style: { width: '200px' } }}
+                PaperProps={{ style: { width: '200px',
+                                    backgroundColor: '#F8F5F0',
+                                                    } }}
             >
                 {list()}
             </Drawer>

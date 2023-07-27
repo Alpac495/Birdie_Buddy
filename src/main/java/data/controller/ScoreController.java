@@ -90,8 +90,9 @@ public class ScoreController {
         return "요청이 성공적으로 처리되었습니다.";
     }
     @GetMapping("/list")
-    public List<RankingDto> getRanklist(){
-        List<RankingDto> list = scoreMapper.getRanklist();
+    public List<RankingDto> getRanklist(int page, int size){
+        int offset = (page - 1) * size;
+        List<RankingDto> list = scoreMapper.getRanklist(offset, size);
         System.out.println(list);
         return list;
     }

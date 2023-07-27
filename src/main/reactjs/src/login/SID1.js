@@ -1,5 +1,7 @@
 import React from 'react';
 import './SID1.css';
+import Back from "../image/Back.svg";
+import hidelogo from "../image/hidelogo.svg";
 
 function SID1(props) {
     return (
@@ -8,17 +10,17 @@ function SID1(props) {
                 <div className="IS1group-child" onClick={props.codeChk}/>
                 <div className="IS1div" onClick={props.codeChk}>다음</div>
             </div>
-            <img className="IS1birdie-buddy" alt="" src="하단 로고" />
+            <img className="IS1birdie-buddy" alt="" src={hidelogo} />
             <div className="IS1idsearch1-child" />
             <div className="IS1parent">
                 <div className="IS1div1">아이디 찾기</div>
-                <img className="IS1icon-arrow-left" alt="" src="화살표 아이콘" />
+                <img className="IS1icon-arrow-left" alt="" src={Back} />
             </div>
             <div className="IS1group">
                 <div className="IS1div2">휴대폰 번호</div>
                 <div className="IS1rectangle-group">
                     <div className="IS1group-item" />
-                    <input type="text" className="IS1div3" placeholder="휴대폰번호" required value={props.uhp}
+                    <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" className="IS1div3" placeholder="휴대폰번호" required value={props.uhp}
                        onChange={(e) => {
                            props.setUhp(e.target.value)
                        }}/>

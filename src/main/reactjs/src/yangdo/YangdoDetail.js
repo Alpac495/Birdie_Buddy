@@ -3,11 +3,12 @@ import {useNavigate, useParams} from "react-router-dom";
 import Axios from "axios";
 import Modal from '../components/Modal';
 import "./YangdoDetail.css";
-import ProfileImg from "../image/user60.png";
+import ProfileImg from "../image/noprofile60.svg";
 import TimeIcon from "../image/icon_time.svg";
 import CardIcon from "../image/icon_card.svg";
 import TextIcon from "../image/icon_text.svg";
 import SettingIcon from "../image/icon_setting.svg";
+import * as ncloudchat from 'ncloudchat';
 
 function YangdoDetail(props) {
 
@@ -29,16 +30,91 @@ function YangdoDetail(props) {
     const photourl1 = process.env.REACT_APP_IMAGE1PROFILE;
     const photourl2 = process.env.REACT_APP_IMAGE60;
 
+    const [data,setData] = useState('')
+
     const [unum, setUnum]=useState(0);
-    const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
-            .then(res=>{
-                setUnum(res.data);
+
+    const [nc, setNc] = useState(null);
+
+    const unumchk= async ()=>{
+        try {
+            const res = await Axios.get("/login/unumChk?unum="+unum)
+            setUnum(res.data)
+
+            const res2 = await Axios.get("/chating/getuserinfo?unum="+res.data)
+            setData(res2.data);
+
+            const chat = new ncloudchat.Chat();
+            await chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
+            setNc(chat);
+
+            await chat.connect({
+                id: res2.data.uemail,
+                name: res2.data.unickname,
+                profile: 'https://image_url',
+                customField: 'json',
             })
+        } catch (error){
+            console.error("error occurred: ",error)
+        }
     }
     useEffect(() => {
         unumchk()
     }, [])
+
+    const getChatInfo = async (unum, cunum) => {
+        try {
+            console.log("getChatInfo");
+            console.log("unum1: "+unum);
+            console.log("unum2: "+cunum);
+            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+
+        window.addEventListener('beforeunload', disconnectChat);
+
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
+
+    const onChatEvent = async (cunum) => {
+        if (nc) {
+            try {
+                const chatid = await getChatInfo(unum, cunum);
+                console.log("chatid:"+chatid);
+                if (chatid) {
+                    // chatid != null 일 경우
+                    await nc.disconnect();
+                    navi(`/chating/room/${chatid}/${unum}`);
+                } else {
+                    // chatid == null 일 경우
+                    const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum)});
+                    const newChatId = newchannel.id;
+                    await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
+
+                    alert("정상적으로 생성되었습니다");
+                    // 채팅방으로 이동
+                    await nc.disconnect();
+                    navi(`/chating/room/${newChatId}/${cunum}`);
+                }
+            } catch (error) {
+                console.error('Error creating and subscribing channel:', error);
+            }
+        }
+    };
 
     useEffect(() => {
         // API 요청 등을 통해 데이터를 가져오고 설정하는 로직
@@ -190,7 +266,7 @@ function YangdoDetail(props) {
                             </div>
                             <div className="YErectangle-parent">
                                 <div className="YEgroup-item" />
-                                <div className="YEdiv5">채팅하기</div>
+                                <div className="YEdiv5" onClick={onChatEvent.bind(null,dto.unum)}>채팅하기</div>
                             </div>
                         </div>
                     </div>

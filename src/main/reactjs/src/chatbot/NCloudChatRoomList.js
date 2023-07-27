@@ -12,6 +12,7 @@ const NCloudChatRoomList = () => {
     const [unum, setUnum] = useState('');
     const [unickname, setUnickname] = useState('');
     const [uemail, setUemail] = useState('');
+    const [admin,setAdmin] = useState('1');
 
     const unumchk = async () => {
         try {
@@ -105,10 +106,9 @@ const NCloudChatRoomList = () => {
     const handleCreateChannel = async () => {
         if (nc) {
             try {
-                const newchannel = await nc.createChannel({ type: 'PRIVATE', name: unickname});                
+                const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
                 setChannels([...channels, { node: newchannel }]);
-                // await nc.subscribe(newchannel.node.id);
-                // await nc.addUsers(newchannel.node.id, ['1234','1234']);
+                await Axios.post("/chating/insertchatid",{unum,cunum: "1",chatid: newchannel.id});
                 await navigate(`/chating/room/${newchannel.id}/${unum}`);
             } catch (error) {
                 console.error('Error creating and subscribing channel:', error);
@@ -125,8 +125,10 @@ const NCloudChatRoomList = () => {
                     <li  >
                         <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
                             <div onClick={() => handleChannelSelect(channel.chatid)}>
-                                {channel.unum === 0 || channel.cunum
-                                    ?"(상대방이 나간 채팅방입니다)"
+                                {channel.unum === 0 || channel.cunum === 0
+                                    ?"(상대방이 나간 채팅방입니다)":
+                                    channel.unum === 1 || channel.cunum === 1
+                                    ?"관리자 채팅방"
                                     :`${channel.unum}&${channel.cunum} 님의 채팅방`
                                 }
                             </div>
@@ -134,7 +136,7 @@ const NCloudChatRoomList = () => {
                     </li>
                 ))}
             </ul>
-            <button type={"button"} onClick={handleCreateChannel}>채널생성</button>
+            <button type={"button"} onClick={handleCreateChannel}>관리자와의 채팅</button>
         </div>
     );
 };

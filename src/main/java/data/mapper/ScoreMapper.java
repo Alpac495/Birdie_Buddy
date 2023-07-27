@@ -22,6 +22,6 @@ public interface ScoreMapper {
     public int getRankCount(int unum);//랭킹테이블에 있는지 없는지
     public void saveRankingInsert(Map<String, Object> map);
     public void saveRankingUpdate(Map<String, Object> map);
-    public List<RankingDto> getRanklist();
+    public List<RankingDto> getRanklist(@Param("offset") int offset, @Param("size") int size);
     public List<UserDto> listUserWithPaging(@Param("offset") int offset, @Param("size") int size);
 }

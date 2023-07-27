@@ -46,6 +46,10 @@ function HpChange(props) {
 
     }
     const hpChange=()=>{
+        if(!chk){
+            alert("휴대폰 인증을 진행해주세요.")
+            return;
+        }
         axios.get('/login/hpChange?uhp='+uhp)
         .then(res=>{
             alert("휴대폰번호가 변경되었습니다")
@@ -66,21 +70,43 @@ function HpChange(props) {
     }
     
     return (
-        <div className='Taltae_div1'>
-            새로운 휴대전화<br/>
-            <input type="text" className="Taltae_textbox" placeholder="휴대폰번호" value={uhp} required
+        <div className="CCphonenumberchange">
+          <div className="CCrectangle-parent">
+            <div className="CCgroup-child" onClick={hpChange} />
+            <div className="CCdiv" onClick={hpChange}>휴대폰 번호 변경하기</div>
+          </div>
+          <img className="CCbirdie-buddy" alt="" src={''} />
+          <div className="CCphonenumberchange-child" />
+          <div className="CCphonenumberchange-item" />
+          <div className="CCparent">
+            <div className="CCdiv1">휴대폰 번호 변경</div>
+            <img className="CCicon-arrow-left" alt="" src={''} />
+          </div>
+          <div className="CCgroup">
+            <div className="CCdiv2">새로운 휴대폰 번호</div>
+            <div className="CCrectangle-group">
+              <div className="CCgroup-item" />
+              <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" className="CCdiv3" placeholder="공백 또는 ‘-’ 없이 숫자로 입력해주세요." value={uhp} required
                    onChange={(e) =>{
                     setUhp(e.target.value)
-                    }}/><br/>
-            <button type="button" onClick={sms}>전화 인증</button>
-            <br/>
-            <input type="text" className="Taltae_textbox" placeholder="인증코드"
-                   onChange={(e) => setCode(e.target.value)}/><br/>
-            <button type="button" onClick={codeChk}>인증확인</button>
-            <br/>
-            <button onClick={hpChange}>번호변경</button>
+                    }}/>
+              <div className="CCgroup-inner" onClick={sms} />
+              <div className="CCdiv4" onClick={sms}>발송</div>
+            </div>
+          </div>
+          <div className="CCcontainer">
+            <div className="CCdiv5">인증 번호</div>
+            <div className="CCrectangle-group">
+              <div className="CCgroup-item" />
+              <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" className="CCdiv3" placeholder="인증 번호를 입력하세요."
+                   onChange={(e) => setCode(e.target.value)}/>
+              <div className="CCgroup-inner" onClick={codeChk} />
+              <div className="CCdiv4" onClick={codeChk}>확인</div>
+            </div>
+          </div>
+          <div className="CCdiv8">변경할 휴대폰 번호 인증을 해주세요.</div>
         </div>
-    );
-}
+      );
+    };
 
 export default HpChange;

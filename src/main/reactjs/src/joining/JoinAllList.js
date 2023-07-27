@@ -12,6 +12,7 @@ import Footer from "../footer/Footer";
 
 const JoinAllList = () => {
     const url = process.env.REACT_APP_PROFILE;
+    const [keyword, setKeyword] = useState('');
     // eslint-disable-next-line no-unused-vars
     const [unum, setUnum]=useState('');
     const unumchk=()=>{
@@ -47,6 +48,19 @@ const JoinAllList = () => {
     useEffect(() => {
         list();
     }, []);
+
+    const search = () => {
+        Axios.get("/joining/searchlist?keyword=" + keyword)
+            .then(res => {
+                setData(res.data);
+                setPage((prevPage) => prevPage + 1);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                setLoading(false);
+            });
+    }
 
     // D-day 계산 함수
     const calculateDday = jjoinday => {
@@ -88,10 +102,11 @@ const JoinAllList = () => {
                             <input className="JEtitle"
                                    type="text"
                                    placeholder="골프장명 또는 날짜로"
-                                   onChange={(e) => {
-                                       setSearchTerm(e.target.value);
-                                   }}/>
-                            <button type="button" className="JEtitle1 btn btn-sm btn-success">검색</button>
+                                   value={keyword}
+                                    onChange={(e) => {
+                                        setKeyword(e.target.value);
+                                    }}/>
+                            <button type="button" className="JEtitle1 btn btn-sm btn-success" onClick={search}>검색</button>
                         </div>
                     </div>
                     <div className="JEsegmented-control">
