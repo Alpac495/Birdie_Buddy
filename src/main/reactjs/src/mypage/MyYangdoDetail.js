@@ -186,7 +186,7 @@ function MyYangdoDetail(props) {
                 <div className="YEgraylbtn-parent">
                     <div className="YEgraylbtn">    
                         <button type='button' className="YEgraylbtn-child"
-                            onClick={()=>navi(`/mypage/myyangdo/${unum}/${currentPage}`)}>닫기</button>       
+                            onClick={()=>navi(`/mypage/myyangdo/${unum}`)}>닫기</button>       
                     </div>
                     <div className="YEpopupbtn">
                         
@@ -199,7 +199,7 @@ function MyYangdoDetail(props) {
                                         Axios.delete(url)
                                         .then((res)=>{
                                             // 목록으로 이동
-                                            navi(`/mypage/myyangdo/${unum}/${currentPage}`);
+                                            navi(`/mypage/myyangdo/${unum}`);
                                         })
                                     }}>마감 / 삭제</button>:
                             <button type='button' className="YEframe" onClick={openModal}>양도 신청</button>

@@ -26,7 +26,7 @@ function YangdoUpdate(props) {
     const [yangdoData,setYangdoData] = useState('');
 
     const getData=()=>{
-        const detailUrl=`/yangdo/detail?num=${ynum}&currentPage=${currentPage}`;
+        const detailUrl=`/yangdo/detail?num=${ynum}`;
         Axios.get(detailUrl)
             .then(res=>{
                 setYangdoData(res.data);
@@ -82,7 +82,7 @@ function YangdoUpdate(props) {
                 .then(res => {
 
                     // 상세 페이지로 이동
-                    navi(`/yangdo/detail/${ynum}/${currentPage}`);
+                    navi(`/yangdo/detail/${ynum}`);
                 });
         }
    }
