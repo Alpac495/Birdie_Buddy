@@ -20,9 +20,12 @@ function HugiList(props) {
     const [selectedFileName, setSelectedFileName] = useState('');
     const url = process.env.REACT_APP_HUGI;
     const navi = useNavigate();
-
+    const [selectedFiles, setSelectedFiles] = useState([]);
     const [page, setPage] = useState(1);
     //무한스크롤
+    useEffect(() => {
+        fetchMoreData();
+    }, []);
     const fetchMoreData = () => {
         setLoading(true);
         Axios.get(`/hugi/list?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
@@ -30,8 +33,8 @@ function HugiList(props) {
                 setHugiData((prevItems) => [...prevItems, ...res.data]);
                 setPage((prevPage) => prevPage + 1);
                 setUnickname(res.data.Unickname);
-                setUserNum(res.data.unum);
                 setUphoto(res.data.uphoto);
+                setUserNum(res.data.unum);
                 setLoading(false);
             })
             .catch((error) => {
@@ -39,9 +42,7 @@ function HugiList(props) {
                 setLoading(false);
             });
     };
-    useEffect(() => {
-        fetchMoreData();
-    }, []);
+
 
 // unum 유무 확인 후 설정하는 함수
     const unumchk = () => {
@@ -67,7 +68,6 @@ function HugiList(props) {
                 //console.log("unum>>"+unum);// Success!
                 setUnickname(res.data.unickname);
                 setUserNum(res.data.unum);
-                fetchMoreData(res.data);
                 setLoading(false); // 요청이 완료되면 로딩 상태 변경
             })
             .catch((error) => {
@@ -92,10 +92,16 @@ function HugiList(props) {
 
 // 파일 업로드 이벤트 핸들러 (async/await 사용)
     const onUploadEvent = async (e) => {
-        const uploadFile = new FormData();
-        uploadFile.append('upload', e.target.files[0]);
+        const uploadFiles = new FormData();
+
+        // 여러 파일을 선택한 경우, files 배열에서 모든 파일을 FormData에 추가합니다.
+        for (let i = 0; i < e.target.files.length; i++) {
+            uploadFiles.append('upload', e.target.files[i]);
+            console.log("선택한 파일명: ", e.target.files[i].name); // 선택한 파일명 출력
+        }
+
         try {
-            const res = await Axios.post('/hugi/upload', uploadFile);
+            const res = await Axios.post('/hugi/upload', uploadFiles);
             setHphoto(res.data);
         } catch (error) {
             console.log(error);
@@ -128,7 +134,6 @@ function HugiList(props) {
             setHphoto('');
             setHcontent('');
             setLoading(true); // 로딩 상태를 true로 설정하여 다시 데이터를 불러올 수 있도록 함
-            fetchMoreData();
             window.location.reload(); // 페이지 새로고침
         } catch (error) {
             console.log(error);
@@ -154,22 +159,22 @@ function HugiList(props) {
        fetchMoreData();
     };
     return (
-        <div className="hugi">
-            <div className="hugi_header">
-                <div className="hugi__headerWrapper">
-                    <button type="button" alt="" className="primary_button" onClick={homeButton}>
+        <div className="HG_hugi1">
+            <div className="HG_hugi_header">
+                <div className="HG_hugi_headerWrapper">
+                    <button type="button" alt="" className="HG_button" onClick={homeButton}>
                         Home
                     </button>
-                    <button type="button" alt="" className="primary_button_hugis" onClick={Myhugis}>
+                    <button type="button" alt="" className="HG_button_hugis" onClick={Myhugis}>
                         MyHugis
                     </button>
                 </div>
-
             </div>
+            <div className="HG_hugi2">
             {unum !== 0 && (
-                <details className="details_Timeline">
+                <details className="HG_details_Timeline">
                     <summary>게시물 작성하기</summary>
-                    <div className="timeline" style={{
+                    <div className="HG_timeline" style={{
                         border: '1px solid lightgrey',
                         borderRadius: '5px',
                         width: '100%',
@@ -184,7 +189,7 @@ function HugiList(props) {
                             <input className="upload-name" style={{width:"65%"}} value={selectedFileName || "첨부파일"} placeholder="첨부파일"
                                    readOnly/>
                             <label htmlFor="file" style={{width:"35%"}}>파일찾기</label>
-                            <input type="file" id="file" onChange={(e) => {
+                            <input type="file" id="file" multiple="multiple" onChange={(e) => {
                                 onUploadEvent(e);
                                 onFileChange(e);
                             }}/>
@@ -197,7 +202,7 @@ function HugiList(props) {
                 value={hcontent}
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>
-                            <button type="submit" className="primary_button" style={{width: '20%'}}
+                            <button type="submit" className="HG_button" style={{width: '20%'}}
                                     onClick={onSubmitEvent}>
                                 작성
                             </button>
@@ -209,7 +214,7 @@ function HugiList(props) {
             <InfiniteScroll
                 dataLength={hugiData.length}
                 next={fetchMoreData}
-                hasMore={true}
+                hasMore={hugiData.length > 0}
                 loader={loading ? ( // 로딩 상태에 따른 메시지 표시
                     <div className="spinner-border text-primary" style={{marginLeft: "140px", overflow: "none"}}></div>
                 ) : (
@@ -217,7 +222,7 @@ function HugiList(props) {
                 )}
                 endMessage={<Footer />} // Display Footer when the end is reached
             >
-                <div className="timeline">
+                <div className="HG_timeline">
                     {hugiData &&
                         hugiData.map((hugiData) => (
                             <HugiRowList
@@ -241,6 +246,7 @@ function HugiList(props) {
                     )}
                 </div>
             </InfiniteScroll>
+        </div>
         </div>
     );
 }
