@@ -34,4 +34,15 @@
         INNER JOIN user u ON h.unum = u.unum
         ORDER BY h.hlike DESC
     </select>
+
+    <select id="getRecoList" resultType="JoiningDto">
+        SELECT *, 
+        (SELECT uphoto FROM user WHERE unum = jn.unum) AS uphoto,
+        (SELECT SUM(jm.jcount) FROM joinmember jm WHERE jn.jnum = jm.jnum AND jm.jaccept = 1) AS jmcount
+        FROM joining jn;
+    </select>
+
+    <select id="getNoticeList" resultType="NoticeDto">
+        select * from notice limit 6
+    </select>
 </mapper>

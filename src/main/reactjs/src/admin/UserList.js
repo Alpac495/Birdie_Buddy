@@ -26,7 +26,7 @@ function UserList(props) {
 
 
     return (
-        <div className="friend">
+        <div className="alluserlist">
             <h4>전체 사용자 : {data.length}명</h4>
             <input className="usersearch"
                    type="text"
@@ -60,7 +60,7 @@ function UserList(props) {
                     }
                 }).map((item,idx)=>
 
-                    <div className="flist">
+                    <div className="ulist">
                         <div className="flist-child" />
                         <div className="flistprofile">
                                 <div className="flistprofile1">

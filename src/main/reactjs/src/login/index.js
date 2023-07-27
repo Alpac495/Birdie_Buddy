@@ -8,5 +8,4 @@ export {default as Taltae} from './Taltae';
 export {default as PassChange} from './PassChange';
 export {default as SearchID} from './SearchID';
 export {default as SearchPass} from './SearchPass';
-export {default as SearchPass2} from './SearchPass2';
 export {default as HpChange} from './HpChange';

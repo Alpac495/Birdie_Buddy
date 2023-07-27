@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import "./NoticeSlider.css";
+import Axios  from 'axios';
 
 
 export default class SimpleSlider extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            noticeList: []
+        };
+    }
+
+    componentDidMount() {
+        Axios.get('/main/notice')
+            .then(res => {
+                // 서버에서 받아온 데이터로 상태 업데이트
+                this.setState({ noticeList: res.data });
+                console.log(res.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+
     render() {
+        const {noticeList} = this.state;
+
         const settings = {
             infinite: true,
             speed: 1000,
@@ -17,11 +40,11 @@ export default class SimpleSlider extends Component {
         return (
             <div className="notice_slider">
                 <Slider {...settings}>
-                    <div>스타크래프트 1.16.1 다운로드</div>
-                    <div>워크래프트3 1.16.1 다운로드</div>
-                    <div>에이지오브미쏠로지 1.16.1 다운로드</div>
-                    <div>라이즈오브네이션즈 1.16.1 다운로드</div>
-                    <div>라이즈오브레전드 1.16.1 다운로드</div>
+                    {
+                        noticeList.map((itme, idx)=>(
+                            <div key={idx}>{itme.nsubject}</div>
+                        ))
+                    }
                 </Slider>
             </div>
         );
