@@ -33,6 +33,7 @@ public interface LoginMapper {
     public void updateNick(Map<String, Object> map);
 
     public void updatePhoto(Map<String, Object> map);
+    public void updateBgPhoto(Map<String, Object> map);
 
     public String getRtasu(int unum);
     public UserDto getUserUhp(String uhp);

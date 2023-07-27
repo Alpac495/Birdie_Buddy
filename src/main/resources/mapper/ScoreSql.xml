@@ -25,8 +25,11 @@
     <update id="saveRankingUpdate" parameterType="Map">
         update ranking set rtasu=#{avg} where unum=#{unum}
     </update>
-    <select id="getRanklist" resultType="RankingDto">
-        select * from ranking order by rtasu asc
+    <select id="getRanklist" parameterType="int" resultType="RankingDto">
+        SELECT r.*, u.unickname, u.uphoto
+        FROM ranking r
+        INNER JOIN user u ON r.unum = u.unum
+        order by rtasu asc LIMIT #{offset}, #{size}
     </select>
     <select id="listUserWithPaging" parameterType="int" resultType="UserDto">
         SELECT * FROM user ORDER BY unum asc LIMIT #{offset}, #{size}

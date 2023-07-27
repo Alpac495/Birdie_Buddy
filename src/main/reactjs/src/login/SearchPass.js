@@ -124,7 +124,7 @@ function SearchPass(props) {
                     <div className="PC1div6">휴대폰 번호</div>
                     <div className="PC1rectangle-group">
                         <div className="PC1group-inner" />
-                        <input type="text" className="PC1div7" ref={hpRef} placeholder="공백 또는 ‘-’ 없이 숫자로 입력해주세요" required value={uhp}
+                        <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" className="PC1div7" ref={hpRef} placeholder="공백 또는 ‘-’ 없이 숫자로 입력해주세요" required value={uhp}
                             onChange={(e) => {
                                 setUhp(e.target.value)
                             }} />

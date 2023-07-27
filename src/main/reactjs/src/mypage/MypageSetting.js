@@ -5,9 +5,12 @@ import JoinIcon from"../image/icon_flaghole.svg";
 import BuddyIcon from "../image/icon_mybuddy.svg";
 import YangdoIcon from "../image/icon_yangdo.svg";
 import BuddyStory from "../image/icon_buddystory.svg";
+import SettingIcon from "../image/icon_setting.svg";
+import MoveIcon from "../image/vector.svg";
 import {useNavigate, useParams} from "react-router-dom";
 import ModalAccount from "./MypageAccount";
 import { useState } from "react";
+import Header from "../header/Header";
 
 const MypageSetting = () => {
 
@@ -16,7 +19,7 @@ const MypageSetting = () => {
     const [upass, setUpass]=useState('');
 
     const onMyYangdo=()=>{
-        navi(`/mypage/myyangdo/${unum}/1`);
+        navi(`/mypage/myyangdo/${unum}`);
     }
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => {
@@ -31,12 +34,15 @@ const MypageSetting = () => {
 
     return (
         <div className="mypagesetting">
+            <Header/>
             <div className="MPScontent-area">
+                
                 <div className="MPSlist-item-group-subtitle">
                     <div className="MPSsubtitle">
                         <div className="MPSlabel">General</div>
                     </div>
                 </div>
+                
                 <div className="MPSsingle-line-item">
                     <AccountCircleOutlinedIcon/>
                     <div className="MPSlabel1">마이 프로필</div>
@@ -80,7 +86,7 @@ const MypageSetting = () => {
                     </div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src="/info.svg" />
+                    <img className="account-icon" alt="" src={SettingIcon} />
                     <div className="MPSlabel1" onClick={openModal} >내 정보 변경</div>
                     <ModalAccount open={modalOpen} passchk={passchk} close={closeModal} header="비밀번호 입력">
                     <input className={'inputtext'} type={'password'} onChange={(e) =>
@@ -88,6 +94,18 @@ const MypageSetting = () => {
                     }/>
                 </ModalAccount>
 
+                </div>
+                <div className="MPSsingle-line-item">
+                    <img className="account-icon" alt="" src={BuddyStory} />
+                    <div className="MPSlabel1">회원탈퇴</div>
+                </div>
+                <div className="MPSsingle-line-item">
+                    <img className="account-icon" alt="" src={BuddyStory} />
+                    <div className="MPSlabel1">비밀번호 변경</div>
+                </div>
+                <div className="MPSsingle-line-item">
+                    <img className="account-icon" alt="" src={BuddyStory} />
+                    <div className="MPSlabel1">휴대폰번호 변경</div>
                 </div>
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">
@@ -97,14 +115,14 @@ const MypageSetting = () => {
 
             </div>
 
-            <img className="vector-icon" alt="" src="/vector.svg" />
-            <img className="vector-icon1" alt="" src="/vector1.svg" />
-            <img className="vector-icon2" alt="" src="/vector2.svg" />
-            <img className="vector-icon3" alt="" src="/vector3.svg" />
-            <img className="vector-icon4" alt="" src="/vector4.svg" />
-            <img className="vector-icon5" alt="" src="/vector5.svg" />
-            <img className="vector-icon6" alt="" src="/vector6.svg" />
-            <img className="vector-icon7" alt="" src="/vector7.svg" />
+            <img className="vector-icon" alt="" src={MoveIcon} />
+            <img className="vector-icon1" alt="" src={MoveIcon} />
+            <img className="vector-icon2" alt="" src={MoveIcon} />
+            <img className="vector-icon3" alt="" src={MoveIcon} />
+            <img className="vector-icon4" alt="" src={MoveIcon} />
+            <img className="vector-icon5" alt="" src={MoveIcon} />
+            <img className="vector-icon6" alt="" src={MoveIcon} />
+            <img className="vector-icon7" alt="" src={MoveIcon} />
 
         </div>
     );
