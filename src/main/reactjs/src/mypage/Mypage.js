@@ -11,6 +11,7 @@ import ModalNick from "./MypageUpdateNickname"
 import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
 import Axios from "axios";
+import {NavLink} from "react-router-dom";
 
 function Mypage(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -53,6 +54,7 @@ function Mypage(props) {
                             })
                     })
             })
+
     }
 
     const changeCon = () => {
@@ -176,10 +178,12 @@ function Mypage(props) {
                     } ref={nickRef}/>
                 </ModalNick>
             </div>
+            <NavLink to={`/chating/${unum}`}>
             <div className="FDicon-message-parent">
                 <img className="FDicon-message" alt="" src={FDicon2}/>
                 <div className="FDdiv5">TEXT2</div>
             </div>
+            </NavLink>
             <div className="FDicon-camera-parent">
                 <img className="FDicon-camera" alt="" src={FDicon3}/>
                 <div className="FDdiv5">TEXT3</div>
