@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+
+.CLnewlogo,
+.CLtitle {
+  position: relative;
+}
+.CLnewlogo {
+  width: 22.5rem;
+  height: 6.25rem;
+}
+.CLtitle {
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+.CLlabel,
+.CLsubtitle,
+.CLtext {
+  display: flex;
+  align-items: center;
+}
+.CLsubtitle {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 0 0 1rem;
+  justify-content: flex-start;
+}
+.CLlabel,
+.CLtext {
+  position: absolute;
+  width: calc(100% - 128px);
+  top: calc(50% + 1px);
+  left: 4.5rem;
+  letter-spacing: 0.25px;
+  line-height: 1.25rem;
+}
+.CLlabel {
+  top: calc(50% - 24px);
+  font-size: 1rem;
+  letter-spacing: 0.44px;
+  line-height: 1.75rem;
+  color: rgba(0, 0, 0, 0.87);
+}
+.CLavatar-icon {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.CLtwo-line-item {
+  align-self: stretch;
+  position: relative;
+  height: 4.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.CLstacked-content,
+.CLtwo-lines-list-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.CLtwo-lines-list-avatar {
+  align-self: stretch;
+  background-color: #fff;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 0 0 0.5rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+.CLstacked-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 0 0;
+  gap: 0.5rem;
+}
+.CLchatlist {
+  position: relative;
+  background-color: #f8f5f0;
+  width: 100%;
+  height: 45.88rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 0 1.25rem;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  font-size: 0.88rem;
+  color: #204337;
+  font-family: Roboto;
+}

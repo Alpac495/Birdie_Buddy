@@ -52,12 +52,19 @@ function NoticeList(props) {
             <div className='header'>
                 <Header/>
             </div>
+            <div className='notice_header'>
+                    Notice    
+            </div>
             <div className='notice_list'>
+                
                 {data && 
                     data.map((item, idx) => (
                         <div key={idx} className='notice_bucket'>
                             <div className='notice_head'>
-                                <div className='notice_num'>{idx+1}</div>
+                                <div className='notice_writeday'>{formatDate(item.nwriteday)}</div>
+                                <div className='notice_cate'>
+                                    {item.ncate}
+                                </div>
                                 <div
                                     className='notice_subject'
                                     onClick={() => noticeDetail(item.nnum)}
@@ -66,7 +73,7 @@ function NoticeList(props) {
                                 </div>
                             </div>
                             <div className='notice_foot'>
-                                <div className='notice_writeday'>{formatDate(item.nwriteday)}</div>
+                                
                             </div>
                         </div>
                     ))

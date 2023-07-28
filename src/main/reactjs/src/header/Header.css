@@ -2,7 +2,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     height: 100px;
     text-align: center;
     align-items: center;
@@ -11,7 +10,7 @@
     font-size: 1.88rem;
     font-family: 'Zen Dots';
     background-color: #F8F5F0; /* 원하는 배경 색상을 지정 (선택 사항) */
-    z-index: 999; /* 다른 요소들보다 앞에 오도록 z-index 설정 */
+     z-index: 99; /*다른 요소들보다 앞에 오도록 z-index 설정 */
   }
   .header_menuicon{
     position: absolute;

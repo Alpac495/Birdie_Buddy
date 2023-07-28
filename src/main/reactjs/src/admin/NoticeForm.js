@@ -6,13 +6,27 @@ import { useNavigate } from 'react-router-dom';
 function NoticeForm(props) {
     const [nsubject, setNsubject]=useState('');
     const [ncontent, setNcontent]=useState('');
-    const [nphoto, setNphoto]=useState('');
+    const [nphoto, setNphoto]=useState(null);
     const [ncate, setNcate]=useState('');
     const navi = useNavigate();
+    const url = process.env.REACT_APP_NOTICE;
 
 
     const handleSelectChange = (e) => {
         setNcate(e.target.value); // 선택한 값으로 ncate 상태 업데이트
+    };
+
+    const onUploadEvent = (e) => {
+        const uploadFile = new FormData();
+        uploadFile.append('upload', e.target.files[0]);
+        axios.post('/admin/upload', uploadFile)
+            .then((res) => {
+                console.log(res.data);
+                setNphoto(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     const submit=()=>{
@@ -28,7 +42,7 @@ function NoticeForm(props) {
         <div className='nform_wrap'>
 
             <select value={ncate} onChange={handleSelectChange}>
-                <option disabled selected value="">선택하세요</option>
+                <option selected value="선택하세요">선택하세요</option>
                 <option value="이벤트">이벤트</option>
                 <option value="공지사항">공지사항</option>
                 <option value="블랙리스트">블랙리스트</option>
@@ -36,9 +50,12 @@ function NoticeForm(props) {
             
             <input className='nform_subject' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} />
             <br/>
-            <textarea className='nform_txt' placeholder='내용' onChange={(e) => setNcontent(e.target.value)}>
+            <div className='nform_txt'>
+            <img alt='' src={`${url}${nphoto}`}/>
+            <textarea  placeholder='내용' onChange={(e) => setNcontent(e.target.value)}>
             </textarea>
-            <input type='file' onChange={(e)=>setNphoto(e.target.value)}/>
+            </div>
+            <input type='file' onChange={onUploadEvent}/>
             
             <button type='button' onClick={submit}>작성</button>
         </div>

@@ -24,10 +24,10 @@
             OR uname LIKE CONCAT('%', #{keyword}, '%')) order by ureport desc
     </select>
     <insert id="noticeWrite" parameterType="NoticeDto">
-        insert into notice (nsubject, ncontent, nphoto, ncate, nwriteday) values (#{nsubject}, #{ncontent}, #{nphoto}, #{ncate} now())
+        insert into notice (nsubject, ncontent, nphoto, ncate, nwriteday) values (#{nsubject}, #{ncontent}, #{nphoto}, #{ncate}, now())
     </insert>
     <select id="noticeList" resultType="NoticeDto">
-        select * from notice;
+        select * from notice order by nnum desc;
     </select>
     <select id="noticeDetail" parameterType="int" resultType="NoticeDto">
         select * from notice where nnum=#{nnum}
