@@ -26,12 +26,14 @@ const PartnerForm = ( props ) => {
         <div className="PFpartnerform">
             <div className="PFdetail-view">
                 <div className="PFaction-bar-contextual">
-                    <div className="PFfavorite">
-                        <CloseIcon color="white" className="PFicon1"/>
-                    </div>
-                </div>
-                    <div className="PFtitle">동반자 정보 입력
-
+                   <div className="PFactions">
+                        <div className="PFfavorite">
+                            <CloseIcon color="white" className="PFicon"/>
+                        </div>
+                   </div>
+                
+                    <div className="PFtitle">동반자 정보 입력</div>
+                    
                 </div>
             </div>
 
@@ -64,7 +66,7 @@ const PartnerForm = ( props ) => {
             <div className="PFcta-button-1">
                 <div className="PFround-button-icon">
                     <div className="PFcentered">
-                        <Button className="PFlabel1" type='submit'>동반자 정보 저장</Button>
+                        <Button className="PFcentered" type='submit'>동반자 정보 저장</Button>
                     </div>
                 </div>
             </div>

@@ -94,7 +94,7 @@ function RouteMain(props) {
                 <Route path={'/mypage'} >
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
-                    <Route path="setting/:unum" element={<MypageSetting/>}/>
+                    <Route path="setting" element={<MypageSetting/>}/>
                     <Route path="myyangdo/:unum" element={<MyYangdo/>}/>
                     <Route path="myyangdodetail/:ynum/" element={<MyYangdoDetail/>}/>
                     <Route path="update/:ynum/" element={<MyYangdoUpdate/>}/>
