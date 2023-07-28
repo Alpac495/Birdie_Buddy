@@ -3,6 +3,7 @@ package data.service;
 import data.dto.ChatroomDto;
 import data.dto.UserDto;
 import data.mapper.ChatingMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class ChatingService implements ChatingServiceInter {
 
     @Autowired

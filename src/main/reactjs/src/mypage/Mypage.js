@@ -33,6 +33,7 @@ function Mypage(props) {
     const nickRef = useRef();
     const photoRef = useRef();
     const bgphotoRef = useRef();
+    const [reportReason, setReportReason] = useState('');
 
     const unumchk = () => {
         axios.get("/login/unumChk")
