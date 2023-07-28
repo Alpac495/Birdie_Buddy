@@ -11,7 +11,7 @@
     </select>
     <insert id="newReport" parameterType="ReportDto">
         insert into report (unum, runum, reason, rwriteday)
-        values (#{unum},#{runum},#{reason},#{rwriteday})
+        values (#{unum},#{runum},#{reason},now())
     </insert>
     <select id="getCountByRunum" parameterType="int" resultType="int">
         select count(*) from report where runum={#runum}

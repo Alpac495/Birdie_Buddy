@@ -2,11 +2,13 @@ package data.service;
 
 import data.dto.ReportDto;
 import data.mapper.ReportMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ReportService implements ReportServiceInter{
     private ReportMapper reportMapper;
 

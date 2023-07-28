@@ -41,6 +41,7 @@ public class ReportController {
 
     @PostMapping("/newReport")
     public void newReport(@RequestBody ReportDto rdto){
+        System.out.println("컨트롤러 rdto : "+rdto);
         reportService.newReport(rdto);
     }
 

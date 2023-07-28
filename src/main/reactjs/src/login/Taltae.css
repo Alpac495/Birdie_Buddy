@@ -1,14 +1,16 @@
-.Taltae_div1{
+.Taltae_div1 {
     display: flex;
     /*width: 22.5rem;*/
     padding: 7rem 1rem 15rem 1rem;
     flex-direction: column;
     align-items: center;
 }
-.Taltae_div2{
+
+.Taltae_div2 {
     /*text-align: center;*/
 }
-.Taltae_textbox{
+
+.Taltae_textbox {
     text-align: center;
     display: inline-flex;
     width: 20rem;
@@ -20,4 +22,293 @@
     border-radius: 0.125rem;
     border: 1px solid rgba(255, 255, 255, 0.10);
     background-color: RGB(238, 250, 234);
+}
+
+.MDspan {
+    color: rgba(72, 72, 72, 0.79);
+}
+
+.MDspan1 {
+    color: #ed4c5c;
+}
+
+.MDli {
+    margin-bottom: 1rem;
+    font-size: 0.74rem;
+}
+
+.MDul {
+    margin: 0;
+    padding-left: 1.31rem;
+}
+
+.MDdiv {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 15.75rem;
+    left: 1rem;
+    font-size: inherit;
+    letter-spacing: -0.01em;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    height: 9.88rem;
+    color: rgba(72, 72, 72, 0.79);
+}
+
+.MDgroup-child {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #0b4648;
+    height: 3.13rem;
+}
+
+.MDdiv1 {
+    position: absolute;
+    top: 0.81rem;
+    left: 1.06rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    width: 10.38rem;
+    height: 1.56rem;
+}
+
+.MDrectangle-parent {
+    position: absolute;
+    width: 100%;
+    top: 6.25rem;
+    right: 0;
+    left: 0;
+    height: 3.13rem;
+    font-size: 1.06rem;
+    color: #fff;
+}
+
+.MDb,
+.MDgroup-item {
+    position: absolute;
+    height: 2.5rem;
+}
+
+.MDb {
+    width: calc(100% - 155px);
+    top: 11.31rem;
+    left: 4.94rem;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.MDgroup-item {
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: #48685e;
+}
+
+.MDdiv2 {
+    position: absolute;
+    width: calc(100% - 193px);
+    top: 0.5rem;
+    left: 6.06rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.43rem;
+}
+
+.MDrectangle-group {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 43.19rem;
+    right: 1rem;
+    left: 1rem;
+    height: 2.5rem;
+    text-align: center;
+    color: #fff;
+}
+
+.MDicon-close-outline {
+    position: absolute;
+    height: 3.13%;
+    top: 13.18%;
+    right: 1rem;
+    bottom: 83.7%;
+    max-height: 100%;
+    width: 1.56rem;
+}
+
+.MDdiv3,
+.MDgroup-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.MDdiv3 {
+    width: calc(100% - 170px);
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+}
+
+.MDgroup-inner {
+    width: calc(100% - 86px);
+    right: 5.38rem;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    height: 2.5rem;
+}
+
+.MDdiv4 {
+    position: absolute;
+    width: calc(100% - 112px);
+    top: 0.69rem;
+    left: 0.63rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    height: 1.19rem;
+}
+
+.MDrectangle-div {
+    position: absolute;
+    width: calc(100% - 258px);
+    top: 0;
+    right: 0;
+    left: 16.13rem;
+    border-radius: 3px;
+    background-color: #48685e;
+    height: 2.5rem;
+}
+
+.MDdiv5 {
+    position: absolute;
+    width: calc(100% - 263px);
+    top: 0.56rem;
+    left: 16.25rem;
+    font-size: 0.81rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.38rem;
+}
+
+.MDrectangle-container {
+    position: absolute;
+    width: 100%;
+    top: 1.44rem;
+    right: 0;
+    left: 0;
+    height: 2.5rem;
+    font-size: 0.75rem;
+    color: rgba(126, 126, 126, 0.8);
+}
+
+.MDparent {
+    width: calc(100% - 32px);
+    top: 27.56rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+}
+
+.MDdiv6,
+.MDgroup,
+.MDparent {
+    position: absolute;
+}
+
+.MDdiv6 {
+    width: calc(100% - 233px);
+    top: 0;
+    left: 0;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.13rem;
+}
+
+.MDgroup {
+    width: calc(100% - 32px);
+    top: 32.75rem;
+    right: 1rem;
+    left: 1rem;
+    height: 3.94rem;
+}
+
+.MDbirdie-buddy,
+.MDdiv9 {
+    position: absolute;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+}
+
+.MDbirdie-buddy {
+    top: 49.13rem;
+    left: calc(50% - 44px);
+    font-family: "Abhaya Libre ExtraBold";
+    color: #b9b9b9;
+    text-align: center;
+    justify-content: center;
+    width: 5.5rem;
+    height: 0.94rem;
+}
+
+.MDdiv9 {
+    top: 0;
+    left: 1.69rem;
+    width: 18.81rem;
+    height: 1.5rem;
+}
+
+.MDicon-check-circle {
+    position: absolute;
+    top: 0.13rem;
+    left: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.MDcontainer {
+    position: absolute;
+    top: 38.56rem;
+    left: 1rem;
+    width: 20.5rem;
+    height: 1.5rem;
+    font-size: 0.88rem;
+}
+
+.MDmemberdelete {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 53.13rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 0.81rem;
+    color: #000;
+    font-family: Inter;
 }

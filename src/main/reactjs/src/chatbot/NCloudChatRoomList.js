@@ -5,7 +5,7 @@ import Axios from "axios";
 
 const NCloudChatRoomList = () => {
     const [channels, setChannels] = useState([]);
-    const [data, setData] = useState('');  
+    const [data, setData] = useState('');
     const [selectedChannel, setSelectedChannel] = useState(null);
     const [nc, setNc] = useState('');
     const navigate = useNavigate();
@@ -13,6 +13,7 @@ const NCloudChatRoomList = () => {
     const [unickname, setUnickname] = useState('');
     const [uemail, setUemail] = useState('');
     const [admin,setAdmin] = useState('1');
+    const [lastMessages, setLastMessages] = useState({});  // Add state for last messages
 
     const unumchk = async () => {
         try {
@@ -36,31 +37,27 @@ const NCloudChatRoomList = () => {
                 customField: 'json',
             });
 
-            // Get channels using axios.get
             const channelRes = await Axios.get(`/chating/getchatroom?unum=${res2.data.unum}`);
-            const channelIds = channelRes.data; // I assume the response data is an array of channel IDs
+            const channelIds = channelRes.data;
 
-            // Get the last message for each channel
-            // const updatedChannels = await Promise.all(
-            //     channelIds.map(async (channelId) => {
-            //         const lastMessage = await getLastMessage(chat, channelId);
-            //         return { node: { id: channelId, lastMessage } }; // Assuming you want to keep the same structure
-            //     })
-            // );
+            // Add fetching of last messages for channels
+            const messages = {};
 
+            for (const channel of channelIds) {
+                const lastMessage = await getLastMessage(chat, channel);
+                messages[channel.chatid] = lastMessage;
+            }
+
+            setLastMessages(messages);
             setChannels(channelIds);
         } catch (error) {
-            // Handle any errors that might occur during the asynchronous operations
             console.error("Error occurred: ", error);
         }
     }
-    
+
     useEffect(() => {
         unumchk()
     }, [])
-    console.log("uemail:"+uemail);
-    console.log("unickname:"+unickname);
-    console.log(channels)
 
     useEffect(() => {
         const disconnectChat = async () => {
@@ -68,21 +65,18 @@ const NCloudChatRoomList = () => {
                 await nc.disconnect();
             }
         };
-    
+
         window.addEventListener('beforeunload', disconnectChat);
-    
-        // When component unmounts, disconnect
+
         return () => {
             window.removeEventListener('beforeunload', disconnectChat);
             disconnectChat();
         };
     }, [nc]);
 
-
-    // 마지막 메시지 가져오는 함수
-    const getLastMessage = async (chat, channelId) => {
+    const getLastMessage = async (chat, channel) => {
         try {
-            const filter = { channel_id: channelId };
+            const filter = { channel_id: channel.chatid };
             const sort = { created_at: -1 };
             const option = { offset: 0, per_page: 1 };
             const channelMessages = await chat.getMessages(filter, sort, option);
@@ -97,19 +91,25 @@ const NCloudChatRoomList = () => {
     const handleChannelSelect = async (channelId) => {
         setSelectedChannel(channelId);
         if (nc) {
-        await nc.subscribe(channelId);
-        await nc.disconnect();           
-        navigate(`/chating/room/${channelId}/${unum}`);
+            await nc.subscribe(channelId);
+            await nc.disconnect();
+            navigate(`/chating/room/${channelId}/${unum}`);
         }
     };
 
     const handleCreateChannel = async () => {
         if (nc) {
             try {
-                const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
-                setChannels([...channels, { node: newchannel }]);
-                await Axios.post("/chating/insertchatid",{unum,cunum: "1",chatid: newchannel.id});
-                await navigate(`/chating/room/${newchannel.id}/${unum}`);
+                const chatid = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=1`)
+                if(chatid){
+                    await nc.disconnect();
+                    navigate(`/chating/room/${chatid}/${unum}`);
+                }else {
+                    const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
+                    setChannels([...channels, { node: newchannel }]);
+                    await Axios.post("/chating/insertchatid",{unum,cunum: "1",chatid: newchannel.id});
+                    await navigate(`/chating/room/${newchannel.id}/${unum}`);
+                }
             } catch (error) {
                 console.error('Error creating and subscribing channel:', error);
             }
@@ -121,20 +121,26 @@ const NCloudChatRoomList = () => {
             <h2>Chat Room List</h2>
             <ul>
                 {channels.map &&
-                channels.map((channel) => (
-                    <li  >
-                        <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
-                            <div onClick={() => handleChannelSelect(channel.chatid)}>
-                                {channel.unum === 0 || channel.cunum === 0
-                                    ?"(상대방이 나간 채팅방입니다)":
-                                    channel.unum === 1 || channel.cunum === 1
-                                    ?"관리자 채팅방"
-                                    :`${channel.unum}&${channel.cunum} 님의 채팅방`
-                                }
+                    channels.map((channel) => (
+                        <li  >
+                            <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
+                                <div onClick={() => handleChannelSelect(channel.chatid)}>
+                                    {channel.unum === 0 || channel.cunum === 0
+                                        ?"(상대방이 나간 채팅방입니다)":
+                                        channel.unum === 1 || channel.cunum === 1
+                                            ?"관리자 채팅방"
+                                            :`${channel.unum}&${channel.cunum} 님의 채팅방`
+                                    }
+                                    {lastMessages[channel.chatid] && (
+                                        <>
+                                            <p>마지막 메시지: {lastMessages[channel.chatid].content}</p>
+                                            <p>보낸 사람: {lastMessages[channel.chatid].sender.name}</p>
+                                        </>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                ))}
+                        </li>
+                    ))}
             </ul>
             <button type={"button"} onClick={handleCreateChannel}>관리자와의 채팅</button>
         </div>

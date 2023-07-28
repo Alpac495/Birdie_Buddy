@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.5567e472.css",
-    "main.js": "/static/js/main.020c35c8.js",
+    "main.css": "/static/css/main.4d83961e.css",
+    "main.js": "/static/js/main.423b3888.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_ranking.jpg": "/static/media/golf_ranking.61722abbaf185e6f0068.jpg",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
@@ -23,23 +23,25 @@
     "static/media/icon_text.svg": "/static/media/icon_text.d6ab6ad01865c003bcbf09b9a7189750.svg",
     "index.html": "/index.html",
     "static/media/icon_flaghole.svg": "/static/media/icon_flaghole.96de7e54c8fb622f1b616972d76d62d7.svg",
+    "static/media/xxx.svg": "/static/media/xxx.22777d727e259fb008ad06124514971b.svg",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/noprofile60.svg": "/static/media/noprofile60.fc39a930bdb27c9d2627b38bf49249ca.svg",
     "static/media/kakao.svg": "/static/media/kakao.6b2062a60f156b34b3c6593a13a85b0d.svg",
     "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
     "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
+    "static/media/check.svg": "/static/media/check.1edefb0d00b51f54fcf5e0372de22b9a.svg",
     "static/media/icon_yangdo.svg": "/static/media/icon_yangdo.527296a35396680a1a82a44b268c50c9.svg",
     "static/media/icon_time.svg": "/static/media/icon_time.ccecdf81d8e8293bf45d815b18307609.svg",
     "static/media/icon_card.svg": "/static/media/icon_card.b5c6e916843a189821e4029c0bc67691.svg",
     "static/media/Back.svg": "/static/media/Back.fd37b3bcab978ede06f2d8ce9f11175c.svg",
     "static/media/vector.svg": "/static/media/vector.67aba9d35993a21023d7d63b15a29497.svg",
     "static/media/naver.svg": "/static/media/naver.77d845a3af265652b9702150dfaf02d7.svg",
-    "main.5567e472.css.map": "/static/css/main.5567e472.css.map",
-    "main.020c35c8.js.map": "/static/js/main.020c35c8.js.map",
+    "main.4d83961e.css.map": "/static/css/main.4d83961e.css.map",
+    "main.423b3888.js.map": "/static/js/main.423b3888.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5567e472.css",
-    "static/js/main.020c35c8.js"
+    "static/css/main.4d83961e.css",
+    "static/js/main.423b3888.js"
   ]
 }

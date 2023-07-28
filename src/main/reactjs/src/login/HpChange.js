@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './HpChange.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Back from "../image/Back.svg";
+import hidelogo from "../image/hidelogo.svg";
 
 function HpChange(props) {
     const [uhp, setUhp] = useState('');
@@ -21,16 +23,16 @@ function HpChange(props) {
     },[])
     const sms = () => {
         if (uhp.length != 11) {
-            alert("휴대폰번호 11자리를 입력해 주세요")
+            alert("휴대폰 번호 11자리를 입력해 주세요.")
             setUhp('');
         } else {
             axios.get('/login/hpchk?uhp=' + uhp)
                 .then(res => {
                     if (res.data == 1) {
-                        alert("이미 등록된 번호입니다")
+                        alert("이미 등록된 번호입니다.")
                         setUhp('');
                     } else {
-                        alert("코드발송")
+                        alert("인증 번호를 발송했습니다.")
                         axios.get('/login/smsSend?uhp=' + uhp)
                             .then(response => {
                                 console.log(response.data);
@@ -47,12 +49,12 @@ function HpChange(props) {
     }
     const hpChange=()=>{
         if(!chk){
-            alert("휴대폰 인증을 진행해주세요.")
+            alert("휴대폰 인증을 진행해 주세요.")
             return;
         }
         axios.get('/login/hpChange?uhp='+uhp)
         .then(res=>{
-            alert("휴대폰번호가 변경되었습니다")
+            alert("휴대폰 번호가 변경되었습니다.")
             navi('/')
         })
     }
@@ -61,10 +63,10 @@ function HpChange(props) {
         axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
-                    alert("인증 성공")
+                    alert("인증되었습니다.")
                     setChk(true);
                 } else {
-                    alert("코드가 일치하지 않습니다")
+                    alert("인증 번호가 다릅니다.")
                 }
             })
     }
@@ -75,18 +77,19 @@ function HpChange(props) {
             <div className="CCgroup-child" onClick={hpChange} />
             <div className="CCdiv" onClick={hpChange}>휴대폰 번호 변경하기</div>
           </div>
-          <img className="CCbirdie-buddy" alt="" src={''} />
+          <img className="CCbirdie-buddy" alt="" src={hidelogo} />
           <div className="CCphonenumberchange-child" />
           <div className="CCphonenumberchange-item" />
           <div className="CCparent">
             <div className="CCdiv1">휴대폰 번호 변경</div>
-            <img className="CCicon-arrow-left" alt="" src={''} />
+            <img className="CCicon-arrow-left" alt="" src={Back} />
           </div>
           <div className="CCgroup">
             <div className="CCdiv2">새로운 휴대폰 번호</div>
             <div className="CCrectangle-group">
               <div className="CCgroup-item" />
-              <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" className="CCdiv3" placeholder="공백 또는 ‘-’ 없이 숫자로 입력해주세요." value={uhp} required
+              <input type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+              className="CCdiv3" placeholder="공백 또는 ‘-’ 없이 숫자로 입력해주세요." value={uhp} required
                    onChange={(e) =>{
                     setUhp(e.target.value)
                     }}/>

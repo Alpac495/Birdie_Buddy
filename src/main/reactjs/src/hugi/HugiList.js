@@ -226,7 +226,7 @@ function HugiList(props) {
                 value={hcontent}
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>
-                            <button type="submit" className="HG_button" style={{width: '20%',height:"62px"}}
+                            <button type="submit" className="HG_submit" style={{width: '20%',height:"62px"}}
                                     onClick={onSubmitEvent}>
                                 작성
                             </button>

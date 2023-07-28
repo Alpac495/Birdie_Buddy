@@ -1,18 +1,20 @@
 
 .HG_list {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     max-width:360px;
     max-height:100%;
     background-color: #fafafa;
     border: 1px solid lightgray;
-    margin-bottom: 25px;
+    margin:30px auto;
     padding: 3px;
 }
 .HG_list_detail{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     max-width:360px;
     max-height:100%;
-    background-color: white;
+    background-color: #fafafa;
     border: 1px solid lightgray;
-    margin:auto;
+    margin:100px auto;
     padding: 5px;
 }
 .HG_list_image {
@@ -38,6 +40,7 @@
 
 }
 .HG_list_text {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     height:100%;
     font-weight: normal;
     text-align: left;
@@ -59,42 +62,44 @@
 }
 .HG_list_avatar_Comment1 {
     position: relative;
-    bottom: 20px;
-    right:20px;
+    bottom: 30px;
+    right:25px;
     width: 30px;
     height: 30px;
     cursor: pointer;
 }
 .HG_list_avatar_Comment2 {
     position: relative;
-    bottom:5px;
-    left:10px;
+    bottom:15px;
+    left:5px;
     width: 25px;
     height: 25px;
     cursor: pointer;
 }
 .HG_list_avatar_Reply {
     position: relative;
-    top:5px;
-    right:5px;
+    bottom:8px;
+    right:15px;
     width: 25px;
     height: 25px;
     cursor: pointer;
 
 }
 .HG_button {
-    background-color: RGB(137 225 164);
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    background-color:#48685E ;
     border-radius: 4px;
-    color: black;
+    color: #eefaea ;
     padding: 5px 9px;
     font-weight: 600;
     font-size: 12px;
     text-align: center;
 }
 .HG_button_Comment {
-    background-color: RGB(137 225 164);
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    background-color:#48685E ;
+    color: #eefaea ;
     border-radius: 4px;
-    color: black;
     padding: 5px 9px;
     font-weight: 600;
     font-size: 11px;
@@ -103,8 +108,8 @@
 }
 .HG_button_Reply {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    background-color: RGB(137 225 164);
-    color: black;
+    background-color:#48685E ;
+    color: #eefaea ;
     padding: 5px 5px;
     font-weight: 600;
     font-size: 12px;
@@ -140,8 +145,8 @@
 }
 .HG_Click_ReplyForm{
     position:relative;
-    left:34px;
-    bottom: 43px;
+    left:60px;
+    bottom: 60px;
     cursor:pointer;
     color:blue;
     text-decoration: none;
@@ -150,13 +155,27 @@
 .HG_Comment_Reply_List{
     margin-left: 10px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    padding: 10px;
+    max-height: 85px;
+    overflow: hidden;
 }
 .HG_spanRhwriteday{
     position: relative;
-    left: 23px;
-    bottom: 44px;
+    left: 50px;
+    bottom: 60px;
     font-size: 7px;
-    
+}
+.HG_spanReplyRhwriteday{
+    position: relative;
+    left: 35px;
+    bottom:75px;
+    font-size: 7px;
+}
+.HG_detail_spanReplyRhwriteday{
+    position: relative;
+    left: 50px;
+    bottom:80px;
+    font-size: 7px;
 }
 .HG_preComment{
     width: 100%;
@@ -166,12 +185,13 @@
 
 }
 .HG_preRhcontent{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: relative;
-    width:100px;
+    width:185px;
     height: 100%;
-    bottom: 33px;
-    left: 130px;
-    font-size: 14px;
+    bottom: 30px;
+    left: 50px;
+    font-size: 12px;
     white-space: pre-wrap;
     word-break: break-all;
     overflow: auto;
@@ -179,9 +199,9 @@
 }
 .HG_preReplyRhcontent{
     position: relative;
-    bottom: 46px;
-    left: 120px;
-    width:70px;
+    bottom: 45px;
+    left: 35px;
+    width:150px;
     height: 100%;
     font-size: 13px;
     white-space: pre-wrap;
@@ -190,10 +210,11 @@
 
 }
 .HG_detail_preReplyRhcontent{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: relative;
-    bottom: 47px;
-    left: 130px;
-    width:100px;
+    bottom: 50px;
+    left: 50px;
+    width:190px;
     height: 100%;
     font-size: 13px;
     white-space: pre-wrap;
@@ -207,7 +228,7 @@
 }
 .HG_spanCommentList{
     position: relative;
-    bottom:58px;
+    bottom:68px;
     left: 23px;
     font-size:18px;
     font-weight: bold;
@@ -215,18 +236,33 @@
 }
 
 .HG_spanName{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: relative;
     left:5px;
-    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     font-size: 16px; /* Adjust font size for better readability */
-    font-weight: bold;
 }
 .HG_Delete_Icon{
     position: relative;
-    bottom: 62px;
+    bottom: 87px;
+    left:100px;
+    font-size: 15px;
+    zoom: 0.7;
+    cursor: pointer;
+}
+.HG_ReplyDelete_Icon{
+    position: relative;
+    bottom: 107px;
     left:60px;
+    font-size: 15px;
+    zoom: 0.7;
+    cursor: pointer;
+}
+.HG_detail_Delete_Icon{
+    position: relative;
+    bottom: 113px;
+    left:100px;
     font-size: 15px;
     zoom: 0.7;
     cursor: pointer;
@@ -251,8 +287,19 @@
     right: 10px;
 }
 .HG_ReplyNickname{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 13px;
     position: relative;
-    bottom:30px;
+    bottom:45px;
+    left:35px;
+    cursor: pointer;
+}
+.HG_detail_ReplyNickname{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    position: relative;
+    bottom:50px;
     left:50px;
     cursor: pointer;
 }
@@ -272,10 +319,10 @@
     width:100px;
     left: 10px;
     bottom: 10px;
-    background-color:RGB(137 225 164);
+    background-color:#48685E ;
     cursor: pointer;
     font-weight: bold;
-    color: black;
+    color:#eefaea ;
     text-align: center;
     padding:5px 5px;
     margin-top: 20px;
@@ -297,10 +344,10 @@
     width:100px;
     left: 10px;
     bottom: 10px;
-    background-color:RGB(137 225 164);
+    background-color:#48685E ;
     cursor: pointer;
     font-weight: bold;
-    color: black;
+    color:#eefaea ;
     text-align: center;
     padding:5px 5px;
     margin-top: 20px;
@@ -308,16 +355,19 @@
 }
 .HG_Comments{
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    max-height: 100%;
+    max-height: 100px;
+    padding: 10px;
+    overflow: hidden;
 }
 .HG_Commentname{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: relative;
     width: 100px;
     height:20px;
-    top:25px;
-    left:55px;
+    top:8px;
+    left:50px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
 }
 .HG_NoComments{
@@ -325,3 +375,5 @@
     text-align: center;
     margin-top: 10px;
 }
+
+
