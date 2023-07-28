@@ -2,7 +2,7 @@ import { Modal } from '@mui/material';
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import ProfileImg from "../image/noprofile60.svg";
+import ProfileImg from "../image/user60.png";
 import TimeIcon from "../image/icon_time.svg";
 import CardIcon from "../image/icon_card.svg";
 import TextIcon from "../image/icon_text.svg";
