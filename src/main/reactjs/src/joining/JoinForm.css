@@ -116,7 +116,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    padding: 1rem 0.75rem;
+    padding: 1rem 0.3rem;
     align-items: center;
     justify-content: flex-start;
   }
@@ -186,11 +186,45 @@ body {
   .JFframe5 {
     top: 38.44rem;
   }
+  .JFlbtn-child,
+  .JFdiv21 {
+    position: absolute;
+    height: 100%;
+    top: 0;
+  }
+  .JFlbtn-child {
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+    background-color: #48685e;
+  }
+  .JFdiv21 {
+    width: 37.73%;
+    left: 31.8%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .JFlbtn {
+    position: absolute;
+    bottom: 1rem;
+    left: calc(50% - 163px);
+    width: 20.38rem;
+    height: 2.5rem;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.94rem;
+    color: #fff;
+  }
+
   .JFjoinform {
     position: relative;
     background-color: #f8f5f0;
     width: 100%;
-    height: 48.94rem;
+    height: 52rem;
     overflow: hidden;
     text-align: left;
     font-size: 1.13rem;

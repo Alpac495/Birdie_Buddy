@@ -322,7 +322,7 @@ function Sign(props) {
                         </div>
                     </div>
                 </div>
-                <img className="MSicon" alt="" src={memberlogo} />
+                <img className="MSicon" alt="" onClick={()=>navi('/')}src={memberlogo} />
             </div>
         </form>
     );

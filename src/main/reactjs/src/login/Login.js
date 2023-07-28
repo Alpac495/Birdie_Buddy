@@ -113,7 +113,7 @@ function Login(props) {
                     <img className="LGicon-naver" alt="" src={navericon} />
                 </div>
             </div>
-            <img className="LGicon" alt="" src={mainlogo} />
+            <img className="LGicon" alt="" src={mainlogo} onClick={()=>navi('/')}/>
             <div className="LGgroup">
                 <div onClick={searchPass} className="LGdiv3">비밀번호 찾기</div>
                 <div onClick={searchID} className="LGdiv4">아이디 찾기</div>

@@ -222,6 +222,7 @@ body {
 }
 .PF2partnerform2 {
     position: relative;
+    top : 50px;
     border-radius: 2px;
     background-color: #fff;
     border: 1px solid #e2e2e2;
@@ -239,4 +240,5 @@ body {
     font-size: 0.94rem;
     color: #292d32;
     font-family: Roboto;
+    z-index: 9999;
 }
