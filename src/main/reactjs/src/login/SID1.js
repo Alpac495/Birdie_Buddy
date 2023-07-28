@@ -8,13 +8,13 @@ function SID1(props) {
         <div className="IS1idsearch1">
             <div className="IS1rectangle-parent">
                 <div className="IS1group-child" onClick={props.codeChk}/>
-                <div className="IS1div" onClick={props.codeChk}>다음</div>
+                <div className="IS1div" onClick={props.nextbtn}>다음</div>
             </div>
             <img className="IS1birdie-buddy" alt="" src={hidelogo} />
             <div className="IS1idsearch1-child" />
             <div className="IS1parent">
                 <div className="IS1div1">아이디 찾기</div>
-                <img className="IS1icon-arrow-left" alt="" src={Back} />
+                <img className="IS1icon-arrow-left" onClick={()=>props.navi('/login/login')} alt="" src={Back} />
             </div>
             <div className="IS1group">
                 <div className="IS1div2">휴대폰 번호</div>
