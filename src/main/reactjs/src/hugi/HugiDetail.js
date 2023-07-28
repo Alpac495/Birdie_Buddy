@@ -50,11 +50,11 @@ function HugiDetail(props) {
     const handleClickModify = () =>{
         navi(`/hugi/modify/${hnum}`);
     }
-    const handleClickAvatar  = () =>{
+    const handleClickAvatar  = (funum) =>{
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
         } else {
-            navi(`/mypage/mypage/${unum}`);
+            navi(`/friend/detail/${funum}`);
         }
     };
 
@@ -168,7 +168,7 @@ function HugiDetail(props) {
             });
     };
     const handleClickDelete = () => {
-        if (parseInt(props.unum) === parseInt(unum)) {
+        if (parseInt(unum) === parseInt(userNum)) {
             const confirmed = window.confirm('정말 삭제하시겠습니까?');
             if (confirmed) {
                 deleteAllComments()
@@ -447,15 +447,17 @@ function HugiDetail(props) {
         <div className="HG_list_detail">
             <div className="HG_list_header">
                 {uphoto !== null ? (
-                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar.bind(null,unum)}/>
                 ):(
-                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,unum)}/>
                 )}
-                <span className="HG_spanName" onClick={handleClickAvatar}>{postUserNickname}</span>
+                <span className="HG_spanName" onClick={handleClickAvatar.bind(null,unum)}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
+            <div style={{textAlign:"center"}}>
             <img className="HG_list_detailimage" src={`${url}${hphoto}`} alt="" value={hphoto}/>
+            </div>
             <h6 className="HG_list_text">
                 &nbsp;
                 {hcontent}
@@ -470,10 +472,10 @@ function HugiDetail(props) {
                 ))}
                 <ShareIcon onClick={handleClickShare} className="HG_Icons"/>
                 <ListIcon onClick={handleClickList} className="HG_Icons"/>
-                {unum  === userNum  && (
+                {unum === userNum  && (
                     <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
-                {unum  === userNum && (
+                {unum === userNum && (
                     <EditIcon onClick={handleClickModify} className="HG_Icons"/>
                 )}
             </div>
@@ -509,11 +511,11 @@ function HugiDetail(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div className="HG_Comments">
-                  <span className="HG_Commentname" onClick={handleClickAvatar}>{comment.unickname}:</span>
+                  <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}:</span>
                   {comment.uphoto == null ? (
-                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   ):(
-                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   )}
                   <pre className="HG_preRhcontent">{comment.rhcontent}</pre>
                   <br/>
@@ -566,11 +568,11 @@ function HugiDetail(props) {
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="HG_Comment_Reply_List">
                                   {reply.uphoto == null ? (
-                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar}/>
+                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   ):(
-                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar}/>
+                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   )}
-                                  <b className="HG_ReplyNickname" onClick={handleClickAvatar}>
+                                  <b className="HG_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
                                       {reply.unickname}:
                                   </b>
                                   &nbsp;
