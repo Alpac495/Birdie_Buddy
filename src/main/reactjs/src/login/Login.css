@@ -138,6 +138,7 @@
     overflow: hidden;
     font-size: 1.13rem;
     color: #fff;
+    cursor: pointer;
   }
   .LGdiv2 {
     top: 0.88rem;
@@ -170,6 +171,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-sizing: border-box;
     overflow: hidden;
+    cursor: pointer;
   }
   .LGlogin-inner {
     width: calc(100% - 32px);
@@ -198,6 +200,7 @@
     justify-content: center;
     width: 5.63rem;
     height: 1.88rem;
+    cursor: pointer;
   }
   .LGdiv4,
   .LGdiv5 {
@@ -251,6 +254,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-sizing: border-box;
     overflow: hidden;
+    cursor: pointer;
   }
   .LGgroup-div {
     width: calc(100% - 32px);
