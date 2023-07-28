@@ -67,12 +67,12 @@ function UserList(props) {
                 
             <div className="ULtab">
                 <NavLink to={`/admin/userlist`} style={{color:'black'}}>
-                    <div className="bflframe">
+                    <div className="uflframe">
                         <div className="ULdiv">전체 사용자 리스트</div>
                     </div>
                 </NavLink>
                 <NavLink to={`/admin/blacklist`} style={{color:'black'}}>
-                    <div className="bFLframe">
+                    <div className="uFLframe">
                         <div className="ULdiv">블랙리스트</div>
                     </div>
                 </NavLink>

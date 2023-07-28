@@ -22,6 +22,7 @@ body {
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
+    color: black;
 }
 .flframe {
     width: calc(100% - 178px);
