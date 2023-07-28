@@ -266,10 +266,10 @@ function HugiDetail(props) {
             });
     };
     useEffect(() => {
-        if (unum) {
+        if (unum === '') {
             fetchUserPhoto(unum);
         }
-    }, [unum]);
+    }, [uphoto,unum]);
     // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchCommentUserPhoto = (unum, comment) => {
         Axios.get(`/hugi/getUserPhoto/${unum}`)
