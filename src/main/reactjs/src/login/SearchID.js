@@ -14,6 +14,7 @@ function SearchID(props) {
     const [data, setData] = useState('');
     const [uemail, setUemail] = useState('');
     const [chk, setChk] = useState(false);
+    const [chk2, setChk2] = useState(false);
     const navi = useNavigate();
 
     const sms = () => {
@@ -50,15 +51,23 @@ function SearchID(props) {
             .then(res => {
                 if (res.data) {
                     alert("인증 되었습니다.")
-                    setChk(true);
+                    setChk2(true);
                 } else {
                     alert("인증 번호가 일치하지 않습니다.")
                 }
             })
     }
+    const nextbtn=()=>{
+        if(chk2){
+            setChk(true);
+        } else {
+            alert("인증을 먼저 진행해 주세요.")
+        }
+        
+    }
     if (!chk) {
         return (
-            <SID1 uhp={uhp} setUhp={setUhp} code={code} setCode={setCode} sms={sms} codeChk={codeChk} navi={navi} />
+            <SID1 uhp={uhp} setUhp={setUhp} code={code} setCode={setCode} sms={sms} codeChk={codeChk} navi={navi} nextbtn={nextbtn}/>
         )
     } else {
         return (

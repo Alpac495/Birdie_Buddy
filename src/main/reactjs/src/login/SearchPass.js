@@ -11,6 +11,7 @@ function SearchPass(props) {
     const [uemail, setUemail] = useState('');
     const [chk, setChk] = useState(false);
     const [chk2, setChk2] = useState(false);
+    const [chk3, setChk3] = useState(false);
     const [newpass, setNewpass] = useState('');
     const [newpass2, setNewpass2] = useState('');
     const navi = useNavigate();
@@ -61,15 +62,22 @@ function SearchPass(props) {
                 .then(res => {
                     if (res.data) {
                         alert("확인되었습니다.")
-                        setChk2(true);
+                        setChk3(true);
                         uemailRef.current.disabled = true
                         hpRef.current.disable = true
-
                     } else {
                         alert("입력한 휴대폰 번호로 가입된 아이디가 아닙니다.")
                     }
                 })
         }
+    }
+    const nextbtn =()=>{
+        if(chk){
+            setChk2(true);
+        } else {
+            alert("인증을 먼저 진행해주세요.")
+        }
+        
     }
     const passChnage = () => {
         if (newpass != newpass2) {
@@ -94,7 +102,7 @@ function SearchPass(props) {
                 <div className="PC1passwordsearch1-child" />
                 <div className="PC1parent">
                     <div className="PC1div">비밀번호 찾기</div>
-                    <img className="PC1icon-arrow-left" alt="" src={Back} />
+                    <img className="PC1icon-arrow-left" onClick={()=>navi('/login/login')} alt="" src={Back} />
                 </div>
                 <div className="PC1div1">
                     <span className="PC1txt">
@@ -113,8 +121,8 @@ function SearchPass(props) {
                 </div>
                 <div className="PC1div2">비밀번호를 잊으셨나요?</div>
                 <div className="PC1rectangle-parent">
-                    <div className="PC1group-child"onClick={SearchPass}/>
-                    <div className="PC1div3"onClick={SearchPass}>다음</div>
+                    <div className="PC1group-child"onClick={nextbtn}/>
+                    <div className="PC1div3"onClick={nextbtn}>다음</div>
                 </div>
                 <img className="PC1birdie-buddy" alt="" src={hidelogo} />
                 <div className="PC1group">
@@ -203,7 +211,7 @@ function SearchPass(props) {
                 <div className="PC2passwordsearch2-child" />
                 <div className="PC2group">
                     <div className="PC2div6">비밀번호 변경</div>
-                    <img className="PC2icon-arrow-left" alt="" src={Back} />
+                    <img className="PC2icon-arrow-left" alt="" onClick={()=>navi('/login/login')} src={Back} />
                 </div>
             </div>
         )

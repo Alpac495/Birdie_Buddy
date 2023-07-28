@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './HpChange.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Back from "../image/Back.svg";
+import hidelogo from "../image/hidelogo.svg";
 
 function HpChange(props) {
     const [uhp, setUhp] = useState('');
@@ -75,12 +77,12 @@ function HpChange(props) {
             <div className="CCgroup-child" onClick={hpChange} />
             <div className="CCdiv" onClick={hpChange}>휴대폰 번호 변경하기</div>
           </div>
-          <img className="CCbirdie-buddy" alt="" src={''} />
+          <img className="CCbirdie-buddy" alt="" src={hidelogo} />
           <div className="CCphonenumberchange-child" />
           <div className="CCphonenumberchange-item" />
           <div className="CCparent">
             <div className="CCdiv1">휴대폰 번호 변경</div>
-            <img className="CCicon-arrow-left" alt="" src={''} />
+            <img className="CCicon-arrow-left" alt="" src={Back} />
           </div>
           <div className="CCgroup">
             <div className="CCdiv2">새로운 휴대폰 번호</div>
