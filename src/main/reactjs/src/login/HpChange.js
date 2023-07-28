@@ -82,7 +82,7 @@ function HpChange(props) {
           <div className="CCphonenumberchange-item" />
           <div className="CCparent">
             <div className="CCdiv1">휴대폰 번호 변경</div>
-            <img className="CCicon-arrow-left" alt="" src={Back} />
+            <img className="CCicon-arrow-left" onClick={()=>navi('/mypage/setting')} alt="" src={Back} />
           </div>
           <div className="CCgroup">
             <div className="CCdiv2">새로운 휴대폰 번호</div>
