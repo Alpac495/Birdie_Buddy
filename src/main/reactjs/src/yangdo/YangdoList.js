@@ -5,6 +5,8 @@ import _ from "lodash"
 import Axios from "axios";
 import "./YangdoList.css";
 import axios from 'axios';
+import pen from "../image/pen.svg";
+import search from "../image/search.svg";
 
 function YangdoList(props) {
     const [items, setItems] = useState([]);
@@ -83,47 +85,61 @@ function YangdoList(props) {
 
 
     return (
-        <div>
-            <button type='button' onClick={onWriteButtonEvent}>글쓰기</button>&nbsp;
-            <button type='button' onClick={mylist}>내 양도</button>
-            <br />
-
-            <div>
-                <input
-                    type="text"
-                    placeholder="검색"
-                    value={keyword}
-                    onChange={(e) => {
-                        setKeyword(e.target.value);
-                    }} /><button onClick={search}>검색</button>
-                <br /><br />
-                <InfiniteScroll
-                    dataLength={items.length}
-                    next={fetchMoreData}
-                    hasMore={true}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
-                >
-                    {
-                        items &&
-                        items.map((row, idx) =>
-                            <div style={{ border: '2px solid black', width: '200px' }}>
-                                <b onClick={(e) => {
-                                    e.preventDefault();
-                                    onDetailEvent(row.ynum);
-                                }}>{row.yplace}
-                                </b><br />
-
-                                <b>{row.yday}</b><br />
-                                <b>{row.ysubject}</b><br />
-                                <b>{row.yprice}원</b><br />
-                                <b>{row.unickname}</b><br />
+        <div className="YLyangdolist">
+            <div className="YLyangdolist-child" />
+            <InfiniteScroll
+                dataLength={items.length}
+                next={fetchMoreData}
+                hasMore={true}
+                loader={null}
+                endMessage={null}
+            >
+                {
+                    items &&
+                    items.map((row, idx) =>
+                            <div className="YLgroup-parent">
+                                <div className="YLrectangle-parent">
+                                    <div className="YLgroup-child" />
+                                    <div className="YLdiv" onClick={(e) => {
+                                        e.preventDefault();
+                                        onDetailEvent(row.ynum);
+                                    }}>{row.yplace}</div>
+                                    <div className="YLdiv1">{row.yprice}원</div>
+                                    <div className="YLam">{row.ysubject}</div>
+                                </div>
+                                <div className="YLrectangle-group">
+                                    <div className="YLgroup-item" />
+                                    <img className="YLgroup-inner" alt="" src="/group-154.svg" />
+                                    <div className="YLdiv2">{row.unickname}</div>
+                                    <div className="YLdiv3">작성일 : {row.yday}</div>
+                                </div>
+                                <div className="YLrectangle-container">
+                                    <div className="YLrectangle-div" />
+                                    <div className="YLdiv4">23.07</div>
+                                    <div className="YLdiv5">27</div>
+                                </div>
                             </div>
-                        )
-                    }
-                </InfiniteScroll>
+                    )
+                }
+            </InfiniteScroll>
 
+            <div className="YLgroup-div">
+                <div className="YLgroup-child1" onClick={mylist} />
+                <div className="YLdiv6" onClick={mylist}>마이 양도</div>
             </div>
+            <div className="YLrectangle-parent1">
+                <div className="YLgroup-child2" onClick={onWriteButtonEvent} />
+                <img className="YLicon-pencil-thin" onClick={onWriteButtonEvent} alt="" src={pen} />
+            </div>
+            <input
+                type="text"
+                placeholder="검색"
+                value={keyword}
+                onChange={(e) => {
+                    setKeyword(e.target.value);
+                }}
+                className="YLdiv7" />
+            <img className="YLicon-search" onClick={search} alt="" src={search} />
         </div>
     );
 }

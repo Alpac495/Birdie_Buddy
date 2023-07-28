@@ -8,7 +8,6 @@ import PortalPopup from "../components/PortalPopup";
 import PartnerForm2 from "../components/PartnerForm2";
 import Header from "../header/Header";
 
-
 const JoinForm = (props) => {
 
     const [jcontent,setJcontent]=useState('');
@@ -216,9 +215,7 @@ const JoinForm = (props) => {
                                value={jcontent} onChange={(e)=>setJcontent(e.target.value)} maxLength minLength />
                     </div>
                 
-            
-            
-                <div className="JFgreenlbtn"><button type='submit'>조인 만들기</button></div>
+           
                 <label className="jradio-button-setonon">
                     <input type='radio' name='partner' className="jdiv31" ref={noPartnerInputRef} required/>동반자 없음
                 </label>
@@ -228,6 +225,11 @@ const JoinForm = (props) => {
                 <label className="jradio-button-setoffon1" onClick={openPartnerForm}>
                     <input type='radio' name='partner' className="jdiv31"/>동반자 1명
                 </label>
+
+            <div className="JFlbtn">
+                    <div className="JFlbtn-child" />               
+                <div className="JFdiv21"><button type='submit'>조인 만들기</button></div>
+            </div>        
 
                 <input type='hidden' value={jp1gender}/>
                 <input type='hidden' value={jp1age}/>

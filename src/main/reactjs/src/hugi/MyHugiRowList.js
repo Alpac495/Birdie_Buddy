@@ -566,7 +566,7 @@ function MyHugiRowList(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div className="HG_Comments">
-                  <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}:</span>
+                  <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}</span>
                   {comment.uphoto !== null ? (
                       <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   ):(
@@ -623,17 +623,17 @@ function MyHugiRowList(props) {
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="HG_Comment_Reply_List">
                                   {reply.uphoto !== null ? (
-                                      <Avatar className="HG_list_avatar_Comment2" alt={''}  src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,reply.unum)}/>
+                                      <Avatar className="HG_list_avatar_Reply" alt={''}  src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   ):(
-                                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,reply.unum)}/>
+                                      <Avatar className="HG_list_avatar_Reply" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   )}
                                   <b className="HG_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
-                                      {reply.unickname}:
+                                      {reply.unickname}
                                   </b>
                                   &nbsp;
                                   <pre className="HG_preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br/>
-                                  <span className="HG_spanRhwriteday">{reply.rhwriteday}</span>
+                                  <span className="HG_spanReplyRhwriteday">{reply.rhwriteday}</span>
                                   {parseInt(reply.unum) === parseInt(unum) && (
                                       <DeleteIcon
                                           className="HG_Delete_Icon"

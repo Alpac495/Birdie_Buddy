@@ -28,6 +28,7 @@ import MyHugiRowList from "./hugi/MyHugiRowList";
 import FriendSearch from './friend/FriendSearch';
 import NCloudChatRoomAdmin from "./chatbot/NCloudChatRoomAdmin";
 import RankListS from './ranking/RankListS';
+import Report from "./admin/Report";
 
 
 function RouteMain(props) {
@@ -42,6 +43,7 @@ function RouteMain(props) {
                     <Route path="NoticeForm" element={<NoticeForm/>}/>
                     <Route path="NoticeList" element={<NoticeList/>}/>
                     <Route path="NoticeDetail/:nnum" element={<NoticeDetail/>}/>
+                    <Route path="Report" element={<Report/>}/>
                 </Route>
 
                 <Route path={'yangdo'}>
@@ -92,7 +94,7 @@ function RouteMain(props) {
                 <Route path={'/mypage'} >
                     <Route path="mypage/:unum" element={<Mypage/>}/>
                     <Route path="update" element={<MypageUpdate/>}/>
-                    <Route path="setting/:unum" element={<MypageSetting/>}/>
+                    <Route path="setting" element={<MypageSetting/>}/>
                     <Route path="myyangdo/:unum" element={<MyYangdo/>}/>
                     <Route path="myyangdodetail/:ynum/" element={<MyYangdoDetail/>}/>
                     <Route path="update/:ynum/" element={<MyYangdoUpdate/>}/>

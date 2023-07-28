@@ -3,6 +3,8 @@ import Axios from 'axios';
 import Button from '@mui/material/Button';
 import {useNavigate, useParams} from "react-router-dom";
 import "./Hugi.css";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 function HugiModify(props) {
     const { hnum } = useParams();
     // const [hnum,setHnum]=useState('');
@@ -94,29 +96,33 @@ function HugiModify(props) {
     }, [hnum]);
 
     return (
-        <div className="timeline" style={{ border: '1px solid gray', width: '100%', height: '50%', marginTop: '5px', marginBottom: '5px' }}>
+        <div>
+        <Header/>
+        <div className="timeline" style={{ border: '0px solid gray', width: '100%', height:'100%',margin:'100px auto',textAlign:"center"}}>
             {/* 이미지 미리보기 */}
-            {hphoto && <img alt="" src={`${process.env.REACT_APP_HUGI}${hphoto}`} value={hphoto} style={{ width: '50%', margin: '10px 100px' }}/>}
+            {hphoto && <img alt="" src={`${process.env.REACT_APP_HUGI}${hphoto}`} value={hphoto} style={{ width: '50%'}}/>}
             <br/>
             <div className="filebox">
                 <input className="upload-name" value={selectedFileName || "첨부파일"} placeholder="첨부파일" readOnly />
-                <label htmlFor="file">파일찾기</label>
+                <label htmlFor="file" style={{textAlign:"center"}}>파일찾기</label>
                 <input type="file" id="file" onChange={(e) => { onUploadEvent(e); onFileChange(e); }} />
             </div>
            <br/>
             <div className="input-group">
                 {/* 기존 후기 내용 */}
-                <textarea className="form-control" style={{ width: '80%',height:'90px', resize: 'none',fontSize:'12px'}} value={hcontent} onChange={(e) => setHcontent(e.target.value)} >{hcontent}</textarea>
+                <textarea className="form-control" style={{ width: '80%',height:'150px', resize: 'none',fontSize:'12px'}} value={hcontent} onChange={(e) => setHcontent(e.target.value)} >{hcontent}</textarea>
                 {/* 파일 업로드 */}
                 <br />
                 {/* 수정 취소 및 수정 제출 버튼 */}
-                <button type="submit" className="primary_button" onClick={onSubmitEdit}>
+                <button type="submit" className="HG_modify" onClick={onSubmitEdit}>
                     수정하기
                 </button>
                 <Button type="button"  autoFocus onClick={handleClcikList}>
                     취소
                 </Button>
             </div>
+        </div>
+            <Footer/>
         </div>
     );
 }
