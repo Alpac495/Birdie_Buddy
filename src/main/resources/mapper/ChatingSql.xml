@@ -10,7 +10,7 @@
         select chatid from chatroom where (unum=#{unum1} and cunum=#{unum2}) or (unum=#{unum2} and cunum=#{unum1})
     </select>
     <select id="getChatRoomList" parameterType="int" resultType="ChatroomDto">
-        select * from chatroom where (unum=#{unum}) or (cunum=#{unum})
+        select *,(select uphoto from user u where u.unum=c.unum) as uphoto,(select uphoto from user u where u.unum=c.cunum) as cuphoto,(select unickname from user u where u.unum=c.unum) as unickname,(select unickname from user u where u.unum=c.cunum) as cunickname from chatroom c where (unum=#{unum}) or (cunum=#{cunum})
     </select>
     <update id="deletechatid" parameterType="map">
         UPDATE chatroom

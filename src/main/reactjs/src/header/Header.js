@@ -102,7 +102,7 @@ function Header(props) {
             <Divider style={{height:'2px'}} />
             <List>
                 {[
-                    { text: '조인', path: '/joining/list', icon: <PeopleIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
+                    { text: '조인', path: '/joining/alllist', icon: <PeopleIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
                     { text: '양도', path: '/yangdo/list', icon: <TransferWithinAStationIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '랭킹', path: '/score/list', icon: <TrendingUpIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '후기', path: '/hugi/list', icon: <RateReviewIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
