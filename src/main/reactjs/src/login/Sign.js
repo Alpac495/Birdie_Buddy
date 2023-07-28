@@ -157,12 +157,12 @@ function Sign(props) {
         axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
-                    alert("인증 성공")
+                    alert("인증되었습니다.")
                     hpRef.current.disabled = true;
                     codeRef.current.disabled = true;
                     setImsihp('1');
                 } else {
-                    alert("인증 실패")
+                    alert("인증 번호가 다릅니다.")
                 }
             })
     }
@@ -177,7 +177,7 @@ function Sign(props) {
                     <div className="MSparent">
                         <div className="MSdiv1">이름</div>
                         <div className="MSname-wrapper">
-                            <input type={"text"} className="MSname" placeholder="" required onChange={(e) => setUname(e.target.value)}
+                            <input type={"text"} className="MSname" placeholder="이름을 입력해 주세요." required onChange={(e) => setUname(e.target.value)}
                                 value={uname} ref={nameRef} />
                         </div>
                     </div>
