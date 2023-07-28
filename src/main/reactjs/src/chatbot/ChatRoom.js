@@ -145,7 +145,7 @@ const ChatRoom = () => {
             console.error('Chat is not initialized');
             return;
         }
-        const userConfirmed = window.confirm('정말 채팅방을 나가시겠습니까?');
+        const userConfirmed = window.confirm('확인을 누를 경우 모든 채팅 내용이 삭제됩니다. 채팅방을 유지하고 싶을 경우 취소를 눌러주세요');
         if (!userConfirmed) {
             // 사용자가 취소를 눌렀을 경우 함수를 종료합니다.
             return;
@@ -166,15 +166,18 @@ const ChatRoom = () => {
         }
     };
 
+    const handleGoChatList = ()=> {
+        window.location.replace(`/chating/${unum}`)
+    };
+
     return (
         <>
             <div className="CDchatdetail">
                 <Header/>
                 <div className="CDparent">
-                    <div className="CDdiv3">
-                        <div id="chat-messages">
-                            {messages.map((message, index) => (
-                                <div key={index} style={{ textAlign: message.sender.name === data.unickname ? 'right' : 'left' }}>
+                    <div className="CDdiv3" id='chat-messages'>
+                            {messages.map &&messages.map((message, index) => (
+                                <div key={index} style={{ textAlign: message.sender.name === data.unickname ? 'right' : 'left', margin: '10px' }}>
                                     <div style={{ backgroundColor: message.sender.name === data.unickname ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
                                         <strong>{message.sender.name}</strong>
                                         <div>{message.content}</div>
@@ -191,13 +194,12 @@ const ChatRoom = () => {
                     <button type="submit" className="CDchatdetail-child">보내기</button>
                 </form>
                 <button className="CDcta-button-1" onClick={handleLeaveChat}>
-                    <div className="CDround-button-icon">
-                        <div className="CDcentered">
-                            <div className="label">채팅방 종료하기</div>
-                        </div>
-                    </div>
+                    채팅 종료
                 </button>
-            </div>
+                <button className="CDcta-button-2" onClick={handleGoChatList}>
+                    목록으로
+                </button>
+            
         </>
     );
 };

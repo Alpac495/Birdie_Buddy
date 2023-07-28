@@ -5,7 +5,12 @@ body {
 }
 .CDdiv3 {
   font-weight: 600;
-  height: 30.63rem;
+  height: 100%;
+  width: 360px;
+  height: 500px; 
+  border: 1px solid #ccc; 
+  border-Radius: 4px;
+  overflow: auto;
 }
 .CDflist-line {
   width: calc(100% + 1px);
@@ -61,7 +66,17 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: right;
+  justify-content: flex-start;
+}
+.CDcentered2 {
+  position: absolute;
+  top: calc(50% - 8px);
+  left: calc(50% - 48px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
   justify-content: flex-start;
 }
 .CDround-button-icon {
@@ -73,23 +88,43 @@ body {
   border: 1px solid #0b4648;
   cursor: pointer;
 }
+.CDround-button-icon2 {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #0b4648;
+  cursor: pointer;
+  left: 100;
+}
 .CDcta-button-1 {
   position: absolute;
-  width: 100%;
-  top: 6.56rem;
-  right: 0;
-  left: 0;
+  width: 80px;  
+  height: 30px;
+  top: 8rem;
+  left: 17.5rem;
   border-radius: 3px;
-  background-color: #f8f5f0;
-  height: 3.75rem;
-  display: flex;
-  flex-direction: column;
-  padding: 0.63rem 1rem;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
+  background-color: #48685e;
+  font-size: 12px;
   text-align: center;
-  color: #204337;
+  color: #f8f5f0;
+  border: 1px solid #48685e;
+  cursor: pointer;
+}
+.CDcta-button-2 {
+  position: absolute;
+  width: 80px;  
+  height: 30px;
+  top: 8rem;
+  left: 0.1rem;
+  border-radius: 3px;
+  background-color: #48685e;
+  font-size: 12px;
+  text-align: center;
+  color: #f8f5f0;
+  border: 1px solid #48685e;
+  cursor: pointer;
 }
 .CDchatdetail-child {
   position: absolute;
@@ -98,6 +133,8 @@ body {
   background-color: #d9d9d9;
   width: 3rem;
   height: 2rem;
+  font-size: 10px;
+  font-weight: 700;
 }
 .CDchatdetail {
   position: relative;
