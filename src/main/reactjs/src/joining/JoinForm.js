@@ -6,6 +6,7 @@ import Modal from '../components/Modal';
 import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 import PartnerForm2 from "../components/PartnerForm2";
+import Header from "../header/Header";
 
 
 const JoinForm = (props) => {
@@ -138,9 +139,9 @@ const JoinForm = (props) => {
     
     return (
         <div className="JFjoinform">
-            
+            <div className="header"><Header/></div>
             <React.Fragment>
-                <Modal open={modalOpen} close={closeModal} header="Modal heading">
+                <Modal open={modalOpen} close={closeModal} header="골프장 검색">
                     <div>
                         <input style={{marginLeft:'50px'}}
                             type="text"

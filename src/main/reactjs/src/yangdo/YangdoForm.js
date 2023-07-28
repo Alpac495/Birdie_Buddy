@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import Axios from "axios";
 import Modal from "../components/Modal";
 import "./YangdoForm.css";
+import Header from '../header/Header';
 
 function YangdoForm(props) {
 
@@ -90,7 +91,7 @@ function YangdoForm(props) {
 
     return (
         <div className="yangdoform">
-
+            <div className="header"><Header/></div>
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>

@@ -10,4 +10,8 @@ public class ChatroomDto {
     private int unum;
     private int cunum;
     private String chatid;
+    private String uphoto;
+    private String unickname;
+    private String cuphoto;
+    private String cunickname;
 }
