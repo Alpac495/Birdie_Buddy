@@ -194,7 +194,7 @@ function MyHugiList(props) {
             <div className="HG_hugi2">
             {userNum !== 0 && (
                 <details className="HG_details_Timeline">
-                    <summary style={{backgroundColor:"RGB(252 243 168)"}}>게시물 작성하기</summary>
+                    <summary style={{backgroundColor:"#48685E",color:"#204337"}}>게시물 작성하기</summary>
                     <div style={{
                         zIndex:'99',
                         background:'white',
@@ -212,7 +212,7 @@ function MyHugiList(props) {
                         <div className="filebox">
                             <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }}
                                    value={selectedFiles || "첨부파일"} placeholder="첨부파일" readOnly/>
-                            <label htmlFor="file" style={{width:"35%",backgroundColor:"RGB(252 243 168)"}}>파일찾기</label>
+                            <label htmlFor="file" style={{width:"35%",backgroundColor:"#48685E"}}>파일찾기</label>
                             <input type="file" id="file" multiple="multiple" onChange={(e) => { onUploadEvent(e); onFileChange(e); }} />
                         </div>
                         <br/>

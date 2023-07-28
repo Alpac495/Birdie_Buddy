@@ -12,7 +12,7 @@ body {
     max-width: 360px;
     margin:auto;
     z-index: 99;
-    background-color: #fafafa;
+    background-color: #F8F5F0 ;
     height: 90px;
     display: flex;
     align-items: center;
@@ -30,7 +30,7 @@ body {
     justify-content: space-between;
   }
   .HG_hugi2 {
-    background-color: #fafafa;
+    background-color: #F8F5F0 ;
     max-width: 360px;
     max-height: calc(100% - 65px); /* Subtract header height from max-height */
     padding: 4px;
@@ -60,7 +60,7 @@ body {
     padding: 10px;
     max-width: 360px;
     max-height: 100%;
-    background-color: #ffffff;
+    background-color: #F8F5F0 ;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .HG_timeline::-webkit-scrollbar {
@@ -75,16 +75,16 @@ body {
 /*    border: 1px solid transparent;*/
 /*}*/
 
-.HG_button_hugis{
-    background-color: RGB(137 225 164);
-    color: black;
-    padding: 5px 9px;
-    font-weight: 500;
-    font-size: 12px;
-    text-align: center;
-    border-radius: 5px;
-    margin-left: 2px;
-}
+/*.HG_button_hugis{*/
+/*    background-color: #48685E ;*/
+/*    color: #204337 ;*/
+/*    padding: 5px 9px;*/
+/*    font-weight: 500;*/
+/*    font-size: 12px;*/
+/*    text-align: center;*/
+/*    border-radius: 5px;*/
+/*    margin-left: 2px;*/
+/*}*/
 /*.text_button {*/
 /*    color: #0095f6;*/
 /*    font-weight: 600;*/
@@ -98,12 +98,14 @@ body {
 /*    row-gap: 15px;*/
 /*}*/
 .HG_details_Timeline{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: fixed;
     z-index:99;
     width:350px;
     margin:auto;
 }
 .HG_details_Timeline > summary {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: fixed;
     z-index: 99;
     width:350px;
@@ -111,7 +113,8 @@ body {
     margin:auto;
     padding:10px 10px;
     border-radius: 5px;
-    background-color:RGB(137 225 164);
+    background-color:#48685E ;
+    color:#eefaea ;
     cursor: pointer;
   }
   
@@ -129,13 +132,14 @@ body {
   }
   
   /* Update the icon buttons to have a circular background and adjust colors */
-  .HG_button,
+    .HG_submit,
+    .HG_button,
   .HG_button_hugis {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #89e1a4;
-    color: #48685E;
+    background-color: #48685E ;
+    color: #eefaea ;
     border-radius: 5%;
     cursor: pointer;
     border: none;
@@ -148,16 +152,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: RGB(252 243 168);
-    /*color: #48685E;*/
+    background-color: #48685E ;
+    color: #eefaea;
     border-radius: 5%;
     cursor: pointer;
     border: none;
     width: 40px;
     height: 40px;
 }
-  
-  
+.HG_modify{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #48685E ;
+    color: #eefaea;
+    border-radius: 5%;
+    cursor: pointer;
+}
+  .filebox{
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
   .filebox .upload-name {
     display: inline-block;
     height: 40px;
@@ -171,13 +185,13 @@ body {
 .filebox label {
     display: inline-block;
     padding: 10px 20px;
-    color: black;
+    color: #eefaea ;
     vertical-align: middle;
-    background-color: RGB(137 225 164);
+    background-color: #48685E ;
     cursor: pointer;
     width:30%;
     height: 40px;
-    font-weight: bold;
+
 }
 .filebox input[type="file"] {
     position: absolute;
