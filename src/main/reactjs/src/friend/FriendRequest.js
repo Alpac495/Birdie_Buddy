@@ -6,6 +6,7 @@ import "./FriendRequest.css";
 import {Link, NavLink, useParams} from 'react-router-dom';
 import Profile from "../image/user60.png";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Header from '../header/Header';
 
 function FriendRequest(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -74,8 +75,7 @@ function FriendRequest(props) {
 
     return (
         <div className="friendrequest">
-            <h4>버디 요청 : {items.length}명</h4>
-
+            <div className="header"><Header/></div>
             <div className="FLtab">
                 <NavLink to={`/friend/list`}>
                 <div className="frframe">
