@@ -4,8 +4,6 @@ import Axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
 import InfiniteScroll from "react-infinite-scroll-component";
-import logo from "../images/logo.png";
-import Footer from "../footer/Footer";
 import Header from "../header/Header";
 
 function HugiList(props) {
@@ -183,9 +181,9 @@ function HugiList(props) {
         navi(`/hugi/list/${unum}`);
     };
 
-    const onclickLoad = () => {
-        window.scrollTo({top: 0, behavior: "smooth" });
-       fetchMoreData();
+    // Scroll to Top function
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     return (
         <div className="HG_hugi1">
@@ -206,13 +204,14 @@ function HugiList(props) {
                         width: '100%',
                         height: '50%',
                         marginTop:'38px',
-                        padding: '10px'
+                        padding: '10px',
+                        textAlign:'center'
                     }}>
                         {/*alt="" src={`${url}${hphoto}`}*/}
 
                         {/*<input type="file" className="form-control" onChange={onUploadEvent}/>*/}
                         {selectedPreviews.map((previewUrl, index) => (
-                        <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '150px',height:'150px',margin:"5px 5px",float:"left"}}/>
+                        <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '200px',height:'200px',margin:"auto"}}/>
                         ))}
                         <div className="filebox">
                             <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }} value={selectedFileName || "첨부파일"} placeholder="첨부파일"
@@ -253,7 +252,9 @@ function HugiList(props) {
                     hugiData.length === 0 && !loading ? (
                         <div className="HG_footer-message">작성된 게시물이 없습니다</div>
                     ) : (
-                        <Footer />
+                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>
                     )
                 } // Display Footer when the end is reached
             >
@@ -277,7 +278,9 @@ function HugiList(props) {
                         ))}
                     {hugiData.length > 0 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <Footer/>
+                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                            Scroll to Top
+                        </div>
                     )}
                 </div>
             </InfiniteScroll>

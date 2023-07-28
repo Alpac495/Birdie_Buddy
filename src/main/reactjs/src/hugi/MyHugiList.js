@@ -184,9 +184,8 @@ function MyHugiList(props) {
     //     const fileName = e.target.value.split('\\').pop(); // 파일명 추출
     //     setSelectedFileName(fileName); // 파일명 상태 업데이트
     // };
-    const onclickLoad = () => {
-        window.scrollTo({top: 0, behavior: "smooth" });
-        fetchMoreData();
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     return (
         <div className="HG_hugi1">
@@ -249,7 +248,9 @@ function MyHugiList(props) {
                     myHugiData.length === 0 && !loading ? (
                         <div className="HG_footer-message">작성된 게시물이 없습니다</div>
                     ) : (
-                        <Footer />
+                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                            Scroll to Top
+                        </div>
                     )
                 } // Display Footer when the end is reached
             >
@@ -271,7 +272,9 @@ function MyHugiList(props) {
                         ))}
                     {myHugiData.length > 0 && !loading && (
                         //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                        <Footer/>
+                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                            Scroll to Top
+                        </div>
                     )}
                 </div>
             </InfiniteScroll>

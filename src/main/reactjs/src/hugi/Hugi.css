@@ -209,4 +209,9 @@ body {
     height:40px;
     padding: 10px;
 }
-  
+.HG_scroll-to-top-button{
+    color:#48685E;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+}
