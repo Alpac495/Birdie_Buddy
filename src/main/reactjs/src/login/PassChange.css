@@ -97,7 +97,7 @@
 
 .PCdiv2 {
     position: absolute;
-    width: calc(100% - 98px);
+    width: calc(100% - 20px);
     top: 0.69rem;
     left: 0.63rem;
     letter-spacing: -0.01em;

@@ -47,7 +47,7 @@ body {
 }
 .ULtab {
     position: absolute;
-    top: 6.19rem;
+    top: 10.19rem;
     height: 3.13rem;
     text-align: center;
     font-size: 0.94rem;
@@ -195,14 +195,14 @@ body {
 }
 .usersearch {
     width: calc(100% - 105px);
-    top: 3rem;
+    top: 7rem;
     right: 6.38rem;
     left: 3.44rem;
     max-width: 100%;
     height: 2.31rem;
 }
 .ULsearch {
-    top: 3rem;
+    top: 7rem;
     left: 16.2rem;
     font-size: 1rem;
     letter-spacing: 0.15px;
@@ -212,7 +212,7 @@ body {
     height: 37px;
 }
 .adminuserlist{
-    top: 10rem;
+    top: 14rem;
     width: 100%;
     right: 0;
     left: 0;

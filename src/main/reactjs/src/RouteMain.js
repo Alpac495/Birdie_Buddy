@@ -27,7 +27,6 @@ import MyHugiList from "./hugi/MyHugiList";
 import MyHugiRowList from "./hugi/MyHugiRowList";
 import FriendSearch from './friend/FriendSearch';
 import NCloudChatRoomAdmin from "./chatbot/NCloudChatRoomAdmin";
-import AccountSetting from './mypage/AccountSetting';
 import RankListS from './ranking/RankListS';
 
 
@@ -88,7 +87,6 @@ function RouteMain(props) {
                     <Route path="hpchange" element={<HpChange/>}/>
                     <Route path="searchID" element={<SearchID/>}/>
                     <Route path="searchPass" element={<SearchPass/>}/>
-                    <Route path="account" element={<AccountSetting/>}/>
                 </Route>
 
                 <Route path={'/mypage'} >

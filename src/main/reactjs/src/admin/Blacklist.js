@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link, NavLink } from 'react-router-dom';
+import Header from '../header/Header';
 import Profile from "../image/user60.png";
 
 function Blacklist(props) {
@@ -52,7 +53,7 @@ function Blacklist(props) {
     }
     return (
         <div className="alluserlist">
-            {/* <h4>차단된 사용자 : {items.length}명</h4> */}
+            <div className="header"><Header/></div>
             <input className="usersearch"
                    type="text"
                    placeholder="이름 또는 닉네임으로 "

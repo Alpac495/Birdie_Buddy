@@ -4,6 +4,12 @@ body {
     margin: 0;
     line-height: normal;
 }
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
 .YEyangdodetailend-child {
     position: absolute;
     top: 1rem;
@@ -287,8 +293,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    
     color: #204337;
+    cursor: pointer;
 }
 .YErectangle-parent {
     position: relative;

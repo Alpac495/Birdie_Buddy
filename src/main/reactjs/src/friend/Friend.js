@@ -5,6 +5,7 @@ import {Link, NavLink, useNavigate} from 'react-router-dom';
 import Profile from "../image/user60.png";
 import * as ncloudchat from 'ncloudchat';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Header from '../header/Header';
 
 function Friend(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -141,9 +142,8 @@ function Friend(props) {
     };
 
     return (
-        <div className="friend">
-            <h4>마이 버디 : {items.length}명</h4>
-
+        <div className="friend">            
+            <div className="header"><Header/></div>
             <div className="FLtab">
                 <NavLink to={`/friend/list`}>
                     <div className="flframe">

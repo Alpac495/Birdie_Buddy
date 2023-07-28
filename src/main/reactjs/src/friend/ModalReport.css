@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+.SGdiv,
+.SGdiv1 {
+    position: relative;
+}
+.SGdiv {
+    align-self: stretch;
+    line-height: 150%;
+}
+.SGdiv1 {
+    flex: 1;
+    line-height: 1.5rem;
+    opacity: 0.5;
+}
+.SGframe1,
+.SGsingogroup,
+.SGtext-field {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+}
+.SGtext-field {
+    align-self: stretch;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 2px solid #d9d9d9;
+    flex-direction: row;
+    padding: 0.75rem 1rem;
+    align-items: center;
+    color: #000;
+}
+.SGframe1,
+.SGsingogroup {
+    align-items: flex-start;
+}
+.SGframe1 {
+    align-self: stretch;
+    flex-direction: row;
+}
+.SGsingogroup {
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.SGframe,
+.SGlabel {
+    position: absolute;
+}
+.SGframe {
+    top: 3.1rem;
+    left: calc(50% - 158.5px);
+    width: 19.81rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.SGlabel {
+    top: 0;
+    left: 7.81rem;
+    font-size: 1.13rem;
+    letter-spacing: 0.15px;
+    line-height: 1.5rem;
+    font-weight: 600;
+    color: #204337;
+    text-align: center;
+    display: inline-block;
+    width: 4.19rem;
+    height: 2.48rem;
+}
+.SGsingoinfo {
+    position: relative;
+    width: 19.81rem;
+    height: 18.91rem;
+}
+.SGdiv6 {
+    flex: 1;
+    position: relative;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+}
+.SGflframe,
+.SGframe3 {
+    position: absolute;
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.63rem 0.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+.SGflframe {
+    height: 104%;
+    width: 50.64%;
+    top: -2%;
+    right: 49.68%;
+    bottom: -2%;
+    left: -0.32%;
+    background-color: #ebf0f2;
+    border: 1px solid transparent;
+}
+.SGframe3 {
+    height: 100%;
+    width: 50%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    background-color: #fff;
+}
+.SGpopupbtn {
+    align-self: stretch;
+    position: relative;
+    height: 3.13rem;
+    text-align: center;
+    color: #000;
+}
+.SGsingoform {
+    position: relative;
+    border-radius: 2px;
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    box-sizing: border-box;
+    width: 100%;
+    height: 26.56rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.94rem;
+    text-align: left;
+    font-size: 0.94rem;
+    color: #52525c;
+    font-family: Inter;
+}

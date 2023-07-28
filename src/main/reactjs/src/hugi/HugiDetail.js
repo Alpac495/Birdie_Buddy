@@ -13,6 +13,8 @@ import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 import ListIcon from '@mui/icons-material/List';
 import EditIcon from "@mui/icons-material/Edit";
 import Profile from "../image/user60.png";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
@@ -444,6 +446,8 @@ function HugiDetail(props) {
 
 
     return (
+        <div>
+        <Header/>
         <div className="HG_list_detail">
             <div className="HG_list_header">
                 {uphoto !== null ? (
@@ -511,7 +515,7 @@ function HugiDetail(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div className="HG_Comments">
-                  <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}:</span>
+                  <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}</span>
                   {comment.uphoto == null ? (
                       <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   ):(
@@ -573,12 +577,12 @@ function HugiDetail(props) {
                                       <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   )}
                                   <b className="HG_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
-                                      {reply.unickname}:
+                                      {reply.unickname}
                                   </b>
                                   &nbsp;
                                   <pre className="HG_detail_preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br/>
-                                  <span className="HG_spanRhwriteday">{reply.rhwriteday}</span>
+                                  <span className="HG_spanReplyRhwriteday">{reply.rhwriteday}</span>
                                   {parseInt(reply.unum) === parseInt(unum) && (
                                       <DeleteIcon
                                           className="HG_Delete_Icon"
@@ -595,7 +599,7 @@ function HugiDetail(props) {
       <p className="HG_NoComments">댓글이 없습니다.</p>
   )}
 </pre>
-
+<Footer/>
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
@@ -628,6 +632,7 @@ function HugiDetail(props) {
                     URL이 복사되었습니다!
                 </Alert>
             </Snackbar>
+        </div>
         </div>
     );
 }

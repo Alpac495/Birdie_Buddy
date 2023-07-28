@@ -4,6 +4,7 @@ import {Link, NavLink} from 'react-router-dom';
 import Axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Profile from "../image/user60.png";
+import Header from '../header/Header';
 function UserList(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [searchTerm, setSearchTerm] = useState("");    
@@ -54,7 +55,7 @@ function UserList(props) {
 
     return (
         <div className="alluserlist">
-            {/* <h4>전체 사용자 : {items.length}명</h4> */}
+            <div className="header"><Header/></div>
             <input className="usersearch"
                    type="text"
                    placeholder="이름 또는 닉네임으로 "

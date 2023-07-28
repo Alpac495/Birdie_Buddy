@@ -6,6 +6,7 @@ import * as ncloudchat from 'ncloudchat';
 import FDicon1 from "../image/icon_addbuddy.svg";
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
+import ModalReport from "./ModalReport";
 
 function FriendDetail(props) {
     const [unum, setUnum]=useState('');
@@ -16,6 +17,8 @@ function FriendDetail(props) {
     const [stasu, setStasu] = useState('');
     const [nc, setNc] = useState('');
     const navi=useNavigate();
+    const [reportModalOpen, setReportModalOpen] = useState(false);
+    const [reportReason, setReportReason] = useState('');
 
     const unumchk = async () => {
         const res1 = await Axios.get("/login/unumChk");
@@ -175,6 +178,34 @@ function FriendDetail(props) {
         };
     }, [nc]);
 
+    const handleReportSubmit = async () => {
+        // axios를 사용하여 신고 사유를 서버에 전송합니다.
+        try {
+            console.log("신고자 : "+unum);
+            console.log("피 신고자 : "+dto.unum);
+
+            const response = await Axios.post('/report/newReport', {
+                unum : unum,
+                runum : dto.unum,
+                reason: reportReason
+            });
+            console.log("신고 응답"+response.data);  // 서버로부터의 응답 확인
+
+            handleClose();  // 신고가 완료되면 모달을 닫습니다.
+        } catch (error) {
+            console.error(error);  // 에러 처리
+        }
+    };
+
+    const handleReportClick = () => {
+        setReportModalOpen(true);
+    };
+
+    const handleClose = () => {
+        setReportModalOpen(false);
+        setReportReason('');  // 모달을 닫을 때 신고 사유 초기화
+    };
+
     return (
         <div className="FDprofile">
             <div className="FDdiv">
@@ -203,8 +234,35 @@ function FriendDetail(props) {
                 <div className="FDdiv5" onClick={onChatEvent.bind(null, funum)}>버디채팅</div>
             </div>
             <div className="FDicon-camera-parent">
-                <img className="FDicon-camera" alt="" src={FDicon3} />
-                <div className="FDdiv5">버디스토리</div>
+                <button onClick={handleReportClick}>신고하기</button>
+                {reportModalOpen &&
+                    <ModalReport
+                        reporterNickname={unum}
+                        reportedNickname={dto.unum}
+                        reportReason={reportReason}
+                        setReportReason={setReportReason}
+                        reportUser={handleReportSubmit}
+                        handleClose={handleClose}
+                    />
+                }
+                {/*<div className="FDicon-camera-parent">*/}
+                {/*    <img className="FDicon-camera" alt="" src={FDicon3} />*/}
+                {/*    <div className="FDdiv5">버디스토리</div>*/}
+                {/*</div>*/}
+            {/*  기능 확인을 위해 임시로 위치 조정  */}
+            </div>
+            <div>
+                <button onClick={handleReportClick}>신고하기</button>
+                {reportModalOpen &&
+                    <ModalReport
+                        reporterNickname={unum}
+                        reportedNickname={dto.unum}
+                        reportReason={reportReason}
+                        setReportReason={setReportReason}
+                        reportUser={handleReportSubmit}
+                        handleClose={handleClose}
+                    />
+                }
             </div>
             {checkbuddy === 1 ? (
             <div className="FDparent" onClick={onFriendCancelEvent}>
