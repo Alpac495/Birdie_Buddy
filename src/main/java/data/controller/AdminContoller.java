@@ -23,8 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/admin")
 public class AdminContoller {
 
+    @Autowired
     private NcpObjectStorageService storageService;
-    private String bucketName = "bit701-bucket-111/birdiebuddy";
+    
+    private String bucketName = "bit701-bucket-111";
     
     String photo;
 
@@ -102,13 +104,16 @@ public class AdminContoller {
     @PostMapping("/upload")
     public String photoUpload(MultipartFile upload)
     {
+
+        
         System.out.println("upload>>"+upload.getOriginalFilename());
         if(photo!=null) {
             //이전 사진 삭제
             storageService.deleteFile(bucketName, "notice", photo);
         }
-        photo=storageService.uploadFile(bucketName, "notice", upload);
+        photo=storageService.uploadFile(bucketName, "birdiebuddy/notice", upload);
 
+        System.out.println(photo);
         return photo;
     }
 }
