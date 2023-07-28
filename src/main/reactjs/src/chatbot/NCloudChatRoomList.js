@@ -2,8 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
+import "./NCloudChatRoomList.css";
+import Header from '../header/Header';
 
 const NCloudChatRoomList = () => {
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
     const [channels, setChannels] = useState([]);
     const [data, setData] = useState('');
     const [selectedChannel, setSelectedChannel] = useState(null);
@@ -117,34 +121,67 @@ const NCloudChatRoomList = () => {
     };
 
     return (
-        <div>
-            <h2>Chat Room List</h2>
-            <ul>
-                {channels.map &&
-                    channels.map((channel) => (
-                        <li  >
-                            <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
-                                <div onClick={() => handleChannelSelect(channel.chatid)}>
-                                    {channel.unum === 0 || channel.cunum === 0
-                                        ?"(상대방이 나간 채팅방입니다)":
-                                        channel.unum === 1 || channel.cunum === 1
-                                            ?"관리자 채팅방"
-                                            :`${channel.unum}&${channel.cunum} 님의 채팅방`
-                                    }
-                                    {lastMessages[channel.chatid] && (
-                                        <>
-                                            <p>마지막 메시지: {lastMessages[channel.chatid].content}</p>
-                                            <p>보낸 사람: {lastMessages[channel.chatid].sender.name}</p>
-                                        </>
-                                    )}
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-            </ul>
-            <button type={"button"} onClick={handleCreateChannel}>관리자와의 채팅</button>
+        <div className="CLchatlist">
+      <div className="CLstacked-content">
+        <div className="CLnewlogo" ><Header/></div>
+        <div className="CLsubtitle">
+          <div className="CLtitle">채팅목록 <button type={"button"} onClick={handleCreateChannel} style={{marginLeft:'160px',border:'1px solid black'}}>관리자와의 채팅</button></div>
         </div>
-    );
+        {channels.map &&
+            channels.map((channel) => (
+        <div className="CLtwo-lines-list-avatar" onClick={() => handleChannelSelect(channel.chatid)}>
+          <div className="CLtwo-line-item">
+            <div className="CLtext">            
+            {lastMessages[channel.chatid] && (
+                <>
+                  <p>{lastMessages[channel.chatid].sender.name}의 메세지 : {lastMessages[channel.chatid].content}</p>
+                </>
+            )}
+            </div>
+            <div className="CLlabel">{channel.unum === 0 || channel.cunum === 0
+                ?"(상대방이 나간 채팅방입니다)":
+                channel.unum === 1 || channel.cunum === 1
+                    ?"관리자 채팅방"
+                    : channel.unum == unum ? channel.cunickname : channel.unickname
+            }</div>
+            {channel.unum == unum ?
+            <img className="CLavatar-icon" alt="" src={`${image1}${channel.cuphoto}${image2}`} />
+            :<img className="CLavatar-icon" alt="" src={`${image1}${channel.uphoto}${image2}`} />}
+          </div>
+        </div>
+        ))}
+      </div>
+    </div>
+  );
 };
+        // <div>
+        //     <h2>Chat Room List</h2>
+        //     <ul>
+        //         {channels.map &&
+        //             channels.map((channel) => (
+        //                 <li  >
+        //                     <div style={{width:'300px',height:'80px',border:'1px solid black'}}>
+        //                         <div onClick={() => handleChannelSelect(channel.chatid)}>
+        //                             {channel.unum === 0 || channel.cunum === 0
+        //                                 ?"(상대방이 나간 채팅방입니다)":
+        //                                 channel.unum === 1 || channel.cunum === 1
+        //                                     ?"관리자 채팅방"
+        //                                     :`${channel.unum}&${channel.cunum} 님의 채팅방`
+        //                             }
+        //                             {lastMessages[channel.chatid] && (
+        //                                 <>
+        //                                     <p>마지막 메시지: {lastMessages[channel.chatid].content}</p>
+        //                                     <p>보낸 사람: {lastMessages[channel.chatid].sender.name}</p>
+        //                                 </>
+        //                             )}
+        //                         </div>
+        //                     </div>
+        //                 </li>
+        //             ))}
+        //     </ul>
+        //     
+        // </div>
+//     );
+// };
 
 export default NCloudChatRoomList;

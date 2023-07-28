@@ -15,7 +15,7 @@ function MypageUpdateBgphoto(props) {
                             &times;
                         </button>
                     </header>
-                    <main>{props.children}</main>
+                    <mumain>{props.children}</mumain>
                     <footer>
                         <button onClick={changebgphoto}>
                             저장

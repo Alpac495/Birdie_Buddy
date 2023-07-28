@@ -138,9 +138,9 @@ const JoinForm = (props) => {
     
     return (
         <div className="JFjoinform">
-            <Header/>
+            <div className="header"><Header/></div>
             <React.Fragment>
-                <Modal open={modalOpen} close={closeModal} header="Modal heading">
+                <Modal open={modalOpen} close={closeModal} header="골프장 검색">
                     <div>
                         <input style={{marginLeft:'50px'}}
                             type="text"
