@@ -47,7 +47,6 @@ function HugiRowList(props) {
 
     const [shortenedURL, setShortenedURL] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
-    console.log(funum)
 
     // handleClickModify 함수: 게시물 수정 클릭 이벤트 처리 함수
     const handleClickModify = (hnum) =>{
@@ -515,19 +514,7 @@ function HugiRowList(props) {
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
-            <div id="demo" className="carousel slide HG_list_image" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src={`${URL}${hphoto}`} alt="" className ="HG_list_image" value={hphoto} onClick={handleClickDetail}/>
-                    </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon"></span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                    <span className="carousel-control-next-icon"></span>
-                </button>
-            </div>
+               <img src={`${URL}${hphoto}`} alt="" className ="HG_list_image" value={hphoto} onClick={handleClickDetail}/>
             <h6 className="HG_list_text">
                 &nbsp;
                 {hcontent}

@@ -450,12 +450,12 @@ function HugiDetail(props) {
         <Header/>
         <div className="HG_list_detail">
             <div className="HG_list_header">
-                {uphoto !== null ? (
-                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar.bind(null,unum)}/>
+                {uphoto == null ? (
+                    <Avatar className="HG_list_avatar" alt={''}  src={Profile} onClick={handleClickAvatar.bind(null,userNum)}/>
                 ):(
-                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,unum)}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar.bind(null,userNum)}/>
                 )}
-                <span className="HG_spanName" onClick={handleClickAvatar.bind(null,unum)}>{postUserNickname}</span>
+                <span className="HG_spanName" onClick={handleClickAvatar.bind(null,userNum)}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
@@ -599,7 +599,6 @@ function HugiDetail(props) {
       <p className="HG_NoComments">댓글이 없습니다.</p>
   )}
 </pre>
-<Footer/>
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
