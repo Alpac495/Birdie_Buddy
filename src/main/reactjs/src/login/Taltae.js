@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import './Taltae.css';
 import xxx from "../image/xxx.svg";
 import checknomal from "../image/check.svg";
-// import checkok from "../image/checkok.svg";
+import checkok from "../image/checkok.svg";
 import hidelogo from "../image/hidelogo.svg";
 
 function Taltae(props) {
@@ -12,7 +12,12 @@ function Taltae(props) {
     const [code, setCode] = useState('');
     const [unum, setUnum] = useState('');
     const [chk, setChk] = useState(false);
+    const [chk2, setChk2] = useState(false);
     const navi = useNavigate();
+
+    const chkClick = () => {
+        setChk2((prevChk2) => !prevChk2);
+    };
 
     const unumchk = () => {
         axios.get("/login/unumChk")
@@ -60,16 +65,17 @@ function Taltae(props) {
     const taltae = () => {
         if (chk == false) {
             alert("인증을 먼저 진행해주세요")
+            return;
+        } else if (!chk2) {
+            alert("약관에 동의해 주세요")
+        } else if (window.confirm("회원탈퇴를 진행하시겠습니까?")) {
+            axios.get('/login/taltae?unum=' + unum)
+                .then(res => {
+                    alert("탈퇴완료")
+                    navi("/")
+                })
         } else {
-            if (window.confirm("회원탈퇴를 진행하시겠습니까?")) {
-                axios.get('/login/taltae?unum=' + unum)
-                    .then(res => {
-                        alert("탈퇴완료")
-                        navi("/")
-                    })
-            } else {
-                alert("취소")
-            }
+            alert("취소")
         }
     }
     return (
@@ -103,30 +109,35 @@ function Taltae(props) {
             </div>
             <b className="TTb">회원 탈퇴 주의 사항</b>
             <div className="TTrectangle-group">
-                <div className="TTgroup-item" />
-                <div className="TTdiv2">탈퇴하기</div>
+                <div className="TTgroup-item" onClick={taltae}/>
+                <div className="TTdiv2" onClick={taltae}>탈퇴하기</div>
             </div>
             <img
                 className="TTicon-close-outline"
                 alt=""
                 src={xxx}
+                onClick={()=>navi('/mypage/setting')}
             />
             <div className="TTparent">
                 <div className="TTdiv3">인증 휴대폰 번호</div>
                 <div className="TTrectangle-container">
                     <div className="TTgroup-inner" />
-                    <div className="TTdiv4">공백 또는 ‘-’ 없이 숫자로 입력해주세요.</div>
-                    <div className="TTrectangle-div" />
-                    <div className="TTdiv5">발송</div>
+                    <input type="text" className="TTdiv4" placeholder="공백 또는 ‘-’ 없이 숫자로 입력해주세요." required
+                        onChange={(e) => {
+                            setUhp(e.target.value)
+                        }} />
+                    <div className="TTrectangle-div" onClick={sms} />
+                    <div className="TTdiv5" onClick={sms}>발송</div>
                 </div>
             </div>
             <div className="TTgroup">
-                <div className="TTdiv6">인증 번호</div>
+                <div className="TTdiv6">인증 번호{chk2 ? "1" : "2"}</div>
                 <div className="TTrectangle-container">
                     <div className="TTgroup-inner" />
-                    <div className="TTdiv4">인증 번호를 입력하세요.</div>
-                    <div className="TTrectangle-div" />
-                    <div className="TTdiv5">확인</div>
+                    <input type="text" className="TTdiv4" placeholder="인증코드인증 번호를 입력하세요."
+                        onChange={(e) => setCode(e.target.value)} />
+                    <div className="TTrectangle-div" onClick={codeChk} />
+                    <div className="TTdiv5" onClick={codeChk}>확인</div>
                 </div>
             </div>
             <img
@@ -138,11 +149,23 @@ function Taltae(props) {
                 <div className="TTdiv9">
                     위 내용을 모두 확인하였으며, 이에 동의합니다.
                 </div>
-                <img
-                    className="TTicon-check-circle"
-                    alt=""
-                    src={checknomal}
-                />
+                {
+                    !chk2 ?
+                        <img
+                            className="TTicon-check-circle"
+                            alt=""
+                            src={checknomal}
+                            onClick={chkClick}
+                        />
+                        :
+                        <img
+                            className="TTicon-check-circle"
+                            alt=""
+                            src={checkok}
+                            onClick={chkClick}
+                        />
+                }
+
             </div>
         </div>
     );
