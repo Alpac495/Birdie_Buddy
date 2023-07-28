@@ -201,5 +201,12 @@ body {
     overflow: hidden;
     border: 0;
 }
-
+.HG_footer-message{
+    color:#48685E;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    height:40px;
+    padding: 10px;
+}
   

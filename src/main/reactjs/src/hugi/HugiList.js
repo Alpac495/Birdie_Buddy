@@ -23,6 +23,7 @@ function HugiList(props) {
     const navi = useNavigate();
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedPreviews, setSelectedPreviews] = useState([]);
+    const [selectedFileName, setSelectedFileName] = useState([]);
     const [page, setPage] = useState(1);
     //무한스크롤
     useEffect(() => {
@@ -108,9 +109,9 @@ function HugiList(props) {
 
             // 파일 이름 출력을 위해 선택된 파일 이름들을 저장
             const selectedFileNames = files.map((file) => file.name);
-            console.log("선택된 파일 이름들:", selectedFileNames);
+            // console.log("선택된 파일 이름들:", selectedFileNames);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 // 게시물 작성 이벤트 핸들러 (async/await 사용)
@@ -151,7 +152,7 @@ function HugiList(props) {
             setLoading(true); // 로딩 상태를 true로 설정하여 다시 데이터를 불러올 수 있도록 함
             window.location.reload(); // 페이지 새로고침
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 // 파일 선택 시 파일 정보와 미리보기 이미지 업데이트 함수
@@ -159,7 +160,7 @@ function HugiList(props) {
         const files = e.target.files;
         const fileArray = Array.from(files).map((file) => {
             const previewUrl = URL.createObjectURL(file);
-            return { file, previewUrl };
+            return { file, previewUrl, name: file.name }; // Include the name of each file in the fileArray
         });
 
         // Limit the number of selected files to 6
@@ -168,6 +169,10 @@ function HugiList(props) {
 
         setSelectedFiles(selectedFilesLimited.map((file) => file.file));
         setSelectedPreviews(selectedFilesLimited.map((file) => file.previewUrl));
+
+        // Set the selected file names
+        const selectedFileNames = selectedFilesLimited.map((file) => file.name);
+        setSelectedFileName(selectedFileNames.join(", ")); // Join the names with a comma and update the state
     };
     // 홈 버튼 클릭 이벤트 핸들러
     const homeButton = () => {
@@ -210,7 +215,7 @@ function HugiList(props) {
                         <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '150px',height:'150px',margin:"5px 5px",float:"left"}}/>
                         ))}
                         <div className="filebox">
-                            <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }} value={selectedFiles || "첨부파일"} placeholder="첨부파일"
+                            <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }} value={selectedFileName || "첨부파일"} placeholder="첨부파일"
                                    readOnly/>
                             <label htmlFor="file" style={{width:"35%"}}>파일찾기</label>
                             <input type="file" id="file" multiple="multiple" onChange={(e) => {
@@ -244,7 +249,13 @@ function HugiList(props) {
                 ) : (
                     null
                 )}
-                endMessage={<Footer />} // Display Footer when the end is reached
+                endMessage={// Display Footer when the end is reached
+                    hugiData.length === 0 && !loading ? (
+                        <div className="HG_footer-message">작성된 게시물이 없습니다</div>
+                    ) : (
+                        <Footer />
+                    )
+                } // Display Footer when the end is reached
             >
                 <div className="HG_timeline">
                     {hugiData &&
