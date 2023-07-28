@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9fccf00a.css",
-    "main.js": "/static/js/main.14a05228.js",
+    "main.css": "/static/css/main.11b14671.css",
+    "main.js": "/static/js/main.ce27aca6.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_ranking.jpg": "/static/media/golf_ranking.61722abbaf185e6f0068.jpg",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
@@ -9,11 +9,11 @@
     "static/media/golf_ad.jpg": "/static/media/golf_ad.d61cf15fb63d8b304b63.jpg",
     "static/media/bronze-medal.png": "/static/media/bronze-medal.b042076e2a4f3ac51d53.png",
     "static/media/silver-medal.png": "/static/media/silver-medal.2ef932430b675267f9df.png",
-    "static/media/person1.jpg": "/static/media/person1.739b90d7df88cdb96d4d.jpg",
     "static/media/gold-medal.png": "/static/media/gold-medal.b884151fbb05c35b57f3.png",
     "static/media/naverbtn.png": "/static/media/naverbtn.50f997a4772f912cd966.png",
     "static/media/mainlogo.svg": "/static/media/mainlogo.1650e8d293be6ef49e6ba288466b8486.svg",
     "static/media/memberlogo.svg": "/static/media/memberlogo.b17dcf47c4c488b1818d7fd3012e0836.svg",
+    "static/media/hidelogo.svg": "/static/media/hidelogo.26ec26acc273d11cb56ae9386c8de1f8.svg",
     "static/media/icon_addbuddy.svg": "/static/media/icon_addbuddy.e77cff188677a87141d5d053840ec766.svg",
     "static/media/icon_setting.svg": "/static/media/icon_setting.2fe9f65656abdce215b849e8d6221959.svg",
     "static/media/icon_mybuddy.svg": "/static/media/icon_mybuddy.aaaecfa7583c9c85e8c7c0a34dbb1413.svg",
@@ -24,19 +24,23 @@
     "index.html": "/index.html",
     "static/media/icon_flaghole.svg": "/static/media/icon_flaghole.96de7e54c8fb622f1b616972d76d62d7.svg",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/noprofile60.svg": "/static/media/noprofile60.fc39a930bdb27c9d2627b38bf49249ca.svg",
     "static/media/kakao.svg": "/static/media/kakao.6b2062a60f156b34b3c6593a13a85b0d.svg",
     "static/media/icon_buddystory.svg": "/static/media/icon_buddystory.f9735f9a73c57ce24c4131c42c252292.svg",
     "static/media/icon_buddychat.svg": "/static/media/icon_buddychat.46715861696160a941a74e154f9ef4d4.svg",
+    "static/media/icon_myinfo.svg": "/static/media/icon_myinfo.4c05f2e374de07107be95c7c0570e550.svg",
     "static/media/icon_yangdo.svg": "/static/media/icon_yangdo.527296a35396680a1a82a44b268c50c9.svg",
     "static/media/icon_time.svg": "/static/media/icon_time.ccecdf81d8e8293bf45d815b18307609.svg",
     "static/media/icon_card.svg": "/static/media/icon_card.b5c6e916843a189821e4029c0bc67691.svg",
+    "static/media/Back.svg": "/static/media/Back.fd37b3bcab978ede06f2d8ce9f11175c.svg",
+    "static/media/vector.svg": "/static/media/vector.67aba9d35993a21023d7d63b15a29497.svg",
     "static/media/naver.svg": "/static/media/naver.77d845a3af265652b9702150dfaf02d7.svg",
-    "main.9fccf00a.css.map": "/static/css/main.9fccf00a.css.map",
-    "main.14a05228.js.map": "/static/js/main.14a05228.js.map",
+    "main.11b14671.css.map": "/static/css/main.11b14671.css.map",
+    "main.ce27aca6.js.map": "/static/js/main.ce27aca6.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9fccf00a.css",
-    "static/js/main.14a05228.js"
+    "static/css/main.11b14671.css",
+    "static/js/main.ce27aca6.js"
   ]
 }
