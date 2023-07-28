@@ -104,7 +104,7 @@ function PassChange(props) {
             <div className="PCpasswordchange-child" />
             <div className="PCcontainer">
                 <div className="PCdiv8">비밀번호 변경</div>
-                <img className="PCicon-arrow-left" alt="" src={Back} />
+                <img className="PCicon-arrow-left" onClick={()=>navi("/mypage/setting/")}alt="" src={Back} />
             </div>
         </div>
     );
