@@ -164,6 +164,7 @@
     display: inline-block;
     width: 3.56rem;
     height: 1.5rem;
+    cursor: pointer;
   }
   .MSframe-group,
   .MSframe-parent,

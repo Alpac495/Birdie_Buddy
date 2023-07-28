@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './PassChange.css';
 import { useNavigate } from 'react-router-dom';
+import Back from "../image/Back.svg";
+import hidelogo from "../image/hidelogo.svg";
 
 function PassChange(props) {
     const [data, setData] = useState([]);
@@ -30,10 +32,10 @@ function PassChange(props) {
             .then(res => {
                 console.log(res.data);
                 if (!res.data) {
-                    alert("현재 비밀번호가 일치하지 않습니다")
+                    alert("현재 비밀번호가 일치하지 않습니다.")
                     return;
                 } else if (newpass != imsipass) {
-                    alert("새로운 비밀번호가 일치하지 않습니다")
+                    alert("새로운 비밀번호가 일치하지 않습니다.")
                     return;
                 } else if (!regex.test(newpass)) {
                     alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
@@ -41,10 +43,10 @@ function PassChange(props) {
                 } else {
                     axios.get('/login/passChange?upass=' + newpass)
                         .then(res => {
-                            alert("비밀번호가 변경 완료되었습니다. 새로운 비밀번호로 로그인 해주세요")
+                            alert("비밀번호가 변경되었습니다. \n새로운 비밀번호로 로그인해 주세요.")
                             axios.get('/login/logout')
                                 .then(res => {
-                                    navi('/')
+                                    navi('/login/login')
                                 })
                         })
                 }
@@ -74,7 +76,8 @@ function PassChange(props) {
             <div className="PCgroup-parent">
                 <div className="PCrectangle-group">
                     <div className="PCgroup-item" />
-                    <input type={"password"} className="PCdiv2" required placeholder='새로운 비밀번호를 입력하세요.' onChange={(e) => setNewpass(e.target.value)}
+                    <input type={"password"} className="PCdiv2" required 
+                    placeholder='새로운 비밀번호를 입력하세요.' onChange={(e) => setNewpass(e.target.value)}
                         value={newpass} />
                 </div>
                 <div className="PCdiv3">새로운 비밀번호</div>
@@ -83,7 +86,7 @@ function PassChange(props) {
                 <div className="PCdiv4">현재 비밀번호</div>
                 <div className="PCrectangle-container">
                     <div className="PCgroup-item" />
-                    <input type="text" className="PCdiv2" placeholder="현재 비밀번호를 입력하세요." required
+                    <input type={"password"} className="PCdiv2" placeholder="현재 비밀번호를 입력하세요." required
                         onChange={(e) => {
                             setUpass(e.target.value)
                         }} />
@@ -97,11 +100,11 @@ function PassChange(props) {
                         value={imsipass} />
                 </div>
             </div>
-            <img className="PCbirdie-buddy" alt="" src={''} />
+            <img className="PCbirdie-buddy" alt="" src={hidelogo} />
             <div className="PCpasswordchange-child" />
             <div className="PCcontainer">
                 <div className="PCdiv8">비밀번호 변경</div>
-                <img className="PCicon-arrow-left" alt="" src={''} />
+                <img className="PCicon-arrow-left" alt="" src={Back} />
             </div>
         </div>
     );

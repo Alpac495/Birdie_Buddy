@@ -203,7 +203,7 @@ function YangdoDetail(props) {
                                         unum !==null && unum===dto.unum?
                                         <label className='YElabelUp'
                                             onClick={()=>
-                                                navi(`/yangdo/update/${dto.ynum}/${currentPage}`)
+                                                navi(`/yangdo/update/${dto.ynum}`)
                                             }
                                         >
                                             <div className="YEdiv1">수정</div>
