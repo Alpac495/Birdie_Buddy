@@ -74,6 +74,8 @@
   align-items: center;
   width: 17.13rem;
   height: 1.56rem;
+  border: none;
+  outline: none;
 }
 .Ylicon-search {
   position: absolute;
@@ -112,7 +114,7 @@
   height: 20%;
   top: 66.67%;
   font-size: 0.75rem;
-  display: flex;
+  /* display: flex; */
   align-items: center;
 }
 .Ylam {
@@ -228,6 +230,7 @@
   position: relative;
   width: 20.13rem;
   height: 7.5rem;
+  margin-bottom: 1rem;
 }
 .Ylblacklistmodalveticalframe {
   position: absolute;

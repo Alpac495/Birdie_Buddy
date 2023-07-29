@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../header/Header";
+import _ from "lodash"
 
 function HugiList(props) {
     const [unum, setUnum] = useState('');
@@ -31,7 +32,8 @@ function HugiList(props) {
         setLoading(true);
         Axios.get(`/hugi/list?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
             .then((res) => {
-                setHugiData((prevItems) => [...prevItems, ...res.data]);
+                const newData = _.uniqBy([...hugiData, ...res.data], 'hnum');
+                setHugiData(newData);
                 setPage((prevPage) => prevPage + 1);
                 setUnickname(res.data.Unickname);
                 setUphoto(res.data.uphoto);

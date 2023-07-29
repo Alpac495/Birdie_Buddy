@@ -5,6 +5,7 @@ import Axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Profile from "../image/user60.png";
 import Header from '../header/Header';
+import _ from "lodash"
 function UserList(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [searchTerm, setSearchTerm] = useState("");    
@@ -19,9 +20,8 @@ function UserList(props) {
                 Axios
                     .get(`/admin/getuserlist?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
-                        setItems((prevItems) => [...prevItems, ...res.data]);
-                        console.log(items);
-                        console.log(res.data);
+                        const newData = _.uniqBy([...items, ...res.data], 'unum');
+                        setItems(newData);
                         setPage((prevPage) => prevPage + 1);
                         setLoading(false);
                     })
