@@ -190,7 +190,7 @@
 .HG_preRhcontent{
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: relative;
-    width:185px;
+    width:189px;
     height: 100%;
     bottom: 30px;
     left: 50px;
@@ -212,12 +212,24 @@
     overflow: auto;
 
 }
+.HG_detail_preRhcontent{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    position: relative;
+    width:240px;
+    height: 100%;
+    bottom: 30px;
+    left: 50px;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow: auto;
+}
 .HG_detail_preReplyRhcontent{
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     position: relative;
     bottom: 50px;
     left: 50px;
-    width:190px;
+    width:220px;
     height: 100%;
     font-size: 13px;
     white-space: pre-wrap;

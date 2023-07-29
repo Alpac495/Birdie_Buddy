@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './NoticeForm.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -6,11 +6,12 @@ import Header from "../header/Header";
 
 function NoticeForm(props) {
     const [nsubject, setNsubject]=useState('');
-    const [ncontent, setNcontent]=useState('');
+    const [ncontent, setNcontent] = useState('');
     const [nphoto, setNphoto]=useState(null);
     const [ncate, setNcate]=useState('');
     const navi = useNavigate();
     const url = process.env.REACT_APP_NOTICE;
+    
     
 
     const handleSelectChange = (e) => {
@@ -36,13 +37,6 @@ function NoticeForm(props) {
             navi("/admin/noticelist")
         })
     }
-    const isValidImageUrl = (url) => {
-        const img = new Image();
-        img.src = url;
-        return img.complete && img.naturalWidth !== 0;
-      };
-
-
 
     return (
         <div className='nform_wrap'>
@@ -71,9 +65,9 @@ function NoticeForm(props) {
             <h5>내용</h5>
             <div className='nform_txt'>
             
-            <textarea placeholder='내용' onChange={(e) => setNcontent(e.target.value)}>
-            {nphoto && isValidImageUrl(url + nphoto) ? <img alt='' src={`${url}${nphoto}`}/> : null}
-            </textarea>
+                {nphoto != null ? <img alt='' src={`${url}${nphoto}`}/> : null}
+                <textarea  placeholder='내용' onChange={(e) => setNcontent(e.target.value)}> 
+            </textarea> 
             </div>
             
             <div>

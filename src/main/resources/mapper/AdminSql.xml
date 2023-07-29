@@ -32,4 +32,10 @@
     <select id="noticeDetail" parameterType="int" resultType="NoticeDto">
         select * from notice where nnum=#{nnum}
     </select>
+    <delete id="deleteNotice" parameterType="int"> 
+        delete from notice where nnum=#{nnum}
+    </delete>
+    <update id="updateNotice" parameterType="int">
+        update notice set nsubject=#{nsubject}, ncontent=#{ncontent}, ncate=#{ncate}, nphoto=#{nphoto}, nwriteday=#{nwriteday}  where nnum=#{nnum}
+    </update>
 </mapper>
