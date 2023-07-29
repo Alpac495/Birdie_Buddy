@@ -1,48 +1,227 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
 body {
-    margin: 0;
-    line-height: normal;
+  margin: 0;
+  line-height: normal;
 }
-
-.PF2favorite {
-    position: relative;
-    border-radius: 40px;
-    width: 2.5rem;
-    height: 2.5rem;
+.PF2title {
+  position: absolute;
+  bottom: 1.06rem;
+  left: 4.5rem;
+  letter-spacing: 0.15px;
+  font-weight: 500;
 }
-.PF2icon1 {
-    height: 60%;
-    width: 60%;
-    top: 20%;
-    right: 20%;
-    bottom: 20%;
-    left: 20%;
+.PF2action-bar-contextual {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #0b4648;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
 }
-
-.PF2actions,
-.PF2icon1,
+.PF2detail-view {
+  position: relative;
+  border-radius: 2px;
+  width: 22.5rem;
+  height: 3.5rem;
+  font-size: 1.25rem;
+  color: #fff;
+}
+.PF2label {
+  position: relative;
+  font-size: 1.13rem;
+  letter-spacing: 0.15px;
+  line-height: 1.5rem;
+  font-weight: 500;
+  font-family: Roboto;
+  text-align: center;
+}
+.PF2div {
+  align-self: stretch;
+  line-height: 150%;
+  color: #52525c;
+}
+.PF2div,
+.PF2div2,
+.PF2radio1 {
+  position: relative;
+}
+.PF2radio1 {
+  border-radius: 100px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(46, 46, 66, 0.08);
+  border: 3px solid #48685e;
+  box-sizing: border-box;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.PF2div2 {
+  line-height: 1.25rem;
+}
+.PF2radio-with-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.38rem;
+}
+.PF2radio2 {
+  position: relative;
+  border-radius: 100px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(46, 46, 66, 0.08);
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.PF2div1,
+.PF2radio {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.PF2div1 {
+  width: 17.5rem;
+  flex-direction: row;
+  gap: 1rem;
+  color: #000;
+}
+.PF2radio {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 158.5px);
+  width: 19.81rem;
+  height: 5.86rem;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.PF2div4,
+.PF2div5 {
+  position: relative;
+}
+.PF2div4 {
+  align-self: stretch;
+  line-height: 150%;
+}
+.PF2div5 {
+  flex: 1;
+  line-height: 1.5rem;
+  opacity: 0.5;
+}
+.PF2text-field {
+  border-radius: 3px;
+  background-color: #fff;
+  border: 2px solid #ebf0f2;
+  overflow: hidden;
+  display: flex;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  color: #000;
+}
+.PF2frame1,
+.PF2text-field {
+  align-self: stretch;
+  flex-direction: row;
+}
+.PF2frame,
+.PF2frame1,
+.PF2tasu {
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.PF2tasu {
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.PF2frame {
+  position: absolute;
+  top: 5.69rem;
+  left: calc(50% - 158.5px);
+  width: 19.81rem;
+  height: 10.38rem;
+  flex-direction: row;
+  color: #52525c;
+}
+.PF2partnerinfo {
+  width: 19.81rem;
+  height: 16.06rem;
+  font-family: Inter;
+}
+.PF2icon,
+.PF2label2,
+.PF2partnerinfo {
+  position: relative;
+}
+.PF2icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: none;
+}
+.PF2label2 {
+  letter-spacing: 0.15px;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+.PF2centered {
+  position: absolute;
+  top: calc(50% - 13px);
+  left: calc(50% - 57.5px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+.PF2partnerform2,
+.PF2round-button-icon {
+  position: relative;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.PF2round-button-icon {
+  border-radius: 3px;
+  border: 2px solid #0b4648;
+  width: 20.13rem;
+  height: 3.5rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #204337;
+}
+.PF2partnerform2 {
+  border-radius: 2px;
+  border: 1px solid #e2e2e2;
+  width: 100%;
+  height: 42.75rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.94rem;
+  text-align: left;
+  font-size: 0.94rem;
+  color: #292d32;
+  font-family: Roboto;
+}
 .PF2title {
     position: absolute;
-}
-.PF2actions {
-    right: 0.5rem;
-    bottom: 0.5rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
-.PF2title {
     bottom: 1.06rem;
     left: 4.5rem;
     letter-spacing: 0.15px;
     font-weight: 500;
-    color: white;
-}
-
-.PF2action-bar-contextual {
+  }
+  .PF2action-bar-contextual {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -50,47 +229,56 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #292d32;
+    background-color: #0b4648;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
-}
-.PF2detail-view {
+  }
+  .PF2detail-view {
     position: relative;
     border-radius: 2px;
     width: 22.5rem;
     height: 3.5rem;
+    font-size: 1.25rem;
     color: #fff;
-}
-
-.PF2div {
+  }
+  .PF2label {
+    position: relative;
+    font-size: 1.13rem;
+    letter-spacing: 0.15px;
+    line-height: 1.5rem;
+    font-weight: 500;
+    font-family: Roboto;
+    text-align: center;
+  }
+  .PF2div {
     align-self: stretch;
     line-height: 150%;
     color: #52525c;
-}
-.PF2div,
-.PF2div2,
-.PF2radio1 {
+  }
+  .PF2div,
+  .PF2div2,
+  .PF2radio1 {
     position: relative;
-}
-.PF2radio1 {
+  }
+  .PF2radio1 {
     border-radius: 100px;
     background-color: #fff;
     box-shadow: 0 3px 5px rgba(46, 46, 66, 0.08);
-    border: 3px solid #32d5ad;
+    border: 3px solid #48685e;
     box-sizing: border-box;
     width: 1.25rem;
     height: 1.25rem;
-}
-.PF2div2 {
+  }
+  .PF2div2 {
     line-height: 1.25rem;
-}
-.PF2radio-with-label {
+  }
+  .PF2radio-with-label {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     gap: 0.38rem;
-}
-.PF2radio2 {
+  }
+  .PF2radio2 {
     position: relative;
     border-radius: 100px;
     background-color: #fff;
@@ -99,20 +287,20 @@ body {
     box-sizing: border-box;
     width: 1.25rem;
     height: 1.25rem;
-}
-.PF2div1,
-.PF2radio {
+  }
+  .PF2div1,
+  .PF2radio {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-}
-.PF2div1 {
+  }
+  .PF2div1 {
     width: 17.5rem;
     flex-direction: row;
     gap: 1rem;
     color: #000;
-}
-.PF2radio {
+  }
+  .PF2radio {
     position: absolute;
     top: 0;
     left: calc(50% - 158.5px);
@@ -121,76 +309,79 @@ body {
     overflow: hidden;
     flex-direction: column;
     gap: 0.5rem;
-}
-.PF2div4,
-.PF2div5 {
+  }
+  .PF2div4,
+  .PF2div5 {
     position: relative;
-}
-.PF2div4 {
+  }
+  .PF2div4 {
     align-self: stretch;
     line-height: 150%;
-}
-.PF2div5 {
+  }
+  .PF2div5 {
     flex: 1;
     line-height: 1.5rem;
     opacity: 0.5;
-}
-.PF2text-field {
-    border-radius: 8px;
+  }
+  .PF2text-field {
+    border-radius: 3px;
     background-color: #fff;
-    border: 2px solid #e2e2e2;
+    border: 2px solid #ebf0f2;
     overflow: hidden;
     display: flex;
-    padding: 0.75rem 0.75rem;
+    padding: 0.75rem 1rem;
     align-items: center;
     justify-content: flex-start;
     color: #000;
-}
-.PF2frame1,
-.PF2text-field {
+  }
+  .PF2frame1,
+  .PF2text-field {
     align-self: stretch;
     flex-direction: row;
-}
-.PF2frame,
-.PF2frame1,
-.PF2tasu {
+  }
+  .PF2frame,
+  .PF2frame1,
+  .PF2tasu {
     overflow: hidden;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-}
-.PF2tasu {
+  }
+  .PF2tasu {
     flex: 1;
     flex-direction: column;
-    gap: 0.2rem;
-}
-.PF2frame {
+    gap: 0.5rem;
+  }
+  .PF2frame {
     position: absolute;
     top: 5.69rem;
     left: calc(50% - 158.5px);
     width: 19.81rem;
+    height: 10.38rem;
     flex-direction: row;
     color: #52525c;
-}
-.PF2partnerinfo {
-    position: relative;
+  }
+  .PF2partnerinfo {
     width: 19.81rem;
-    height: 15.5rem;
+    height: 16.06rem;
     font-family: Inter;
-}
-.PF2label1 {
-    font-size: 1.13rem;
-    font-family: Roboto;
-    text-align: center;
-}
-.PF2label1,
-.PF2label2 {
+  }
+  .PF2icon,
+  .PF2label2,
+  .PF2partnerinfo {
     position: relative;
+  }
+  .PF2icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: none;
+  }
+  .PF2label2 {
     letter-spacing: 0.15px;
     line-height: 1.5rem;
     font-weight: 500;
-}
-.PF2centered {
+  }
+  .PF2centered {
     position: absolute;
     top: calc(50% - 13px);
     left: calc(50% - 57.5px);
@@ -199,46 +390,80 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-}
-.PF2round-button-icon {
+    gap: 0.5rem;
+  }
+  .PF2partnerform2,
+  .PF2round-button-icon {
     position: relative;
-    border-radius: 2px;
     background-color: #fff;
-    border: 2px solid #292d32;
     box-sizing: border-box;
+  }
+  .PF2round-button-icon {
+    border-radius: 3px;
+    border: 2px solid #0b4648;
     width: 20.13rem;
     height: 3.5rem;
-}
-.PF2cta-button-1,
-.PF2frame-parent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    text-align: center;
+    font-size: 1rem;
+    color: #204337;
+  }
 
-.PF2frame-parent {
-    justify-content: flex-start;
-    gap: 0.94rem;
-}
-.PF2partnerform2 {
+
+.PTclose-clear {
     position: relative;
-    top : 50px;
-    border-radius: 2px;
-    background-color: #fff;
-    border: 1px solid #e2e2e2;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    border-radius: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .PTactions,
+  .PTtitle {
+    position: absolute;
+  }
+  .PTactions {
+    right: 0.5rem;
+    bottom: 0.5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0 1.5rem 1.5rem;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .PTtitle {
+    bottom: 1rem;
+    left: 0.88rem;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+  }
+ 
+  .PF2partnerform2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+    border: 1px solid #e2e2e2;
+    width: 100%;
+    height: 42.75rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.94rem;
     text-align: left;
     font-size: 0.94rem;
     color: #292d32;
     font-family: Roboto;
-    z-index: 9999;
-}
+    animation: slideDown 0.5s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+    transform: translateY(-100%);
+    }
+    to {
+    transform: translateY(0);
+    }
+  }
+ 
+   

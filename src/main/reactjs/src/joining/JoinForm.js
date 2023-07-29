@@ -142,7 +142,7 @@ const JoinForm = (props) => {
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 검색">
                     <div>
-                        <input style={{marginLeft:'50px'}}
+                        <input style={{width:'290px',height:'35px'}}
                             type="text"
                             placeholder="검색"
                             onChange={(e) => {
@@ -244,6 +244,7 @@ const JoinForm = (props) => {
                     overlayColor="rgba(113, 113, 113, 0.3)"
                     placement="Centered"
                     onOutsideClick={closePartnerForm2}
+                    
                 >
                     <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo}/>
                 </PortalPopup>

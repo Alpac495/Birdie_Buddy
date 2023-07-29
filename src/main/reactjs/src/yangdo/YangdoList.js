@@ -93,7 +93,6 @@ function YangdoList(props) {
     let prevMonthYear = "";
     let prevDay = "";
     return (
-
         <div className="Ylyangdolist">
             <div className="Ylyangdolist-child" />
             <div className="Ylrectangle-parent">
@@ -168,6 +167,8 @@ function YangdoList(props) {
                 </InfiniteScroll>
             </div>
         </div>
+      </div>
+    </div>
     );
 };
 

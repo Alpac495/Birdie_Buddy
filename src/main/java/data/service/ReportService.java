@@ -23,8 +23,8 @@ public class ReportService implements ReportServiceInter{
     }
 
     @Override
-    public List<ReportDto> getReport(int runum) {
-        return reportMapper.getReport(runum);
+    public List<ReportDto> getReport(int runum, int limit, int offset) {
+        return reportMapper.getReport(runum, limit, offset);
     }
 
     @Override
@@ -35,5 +35,10 @@ public class ReportService implements ReportServiceInter{
     @Override
     public int getCountByRunum(int runum) {
         return reportMapper.getCountByRunum(runum);
+    }
+
+    @Override
+    public void blacklistUser(int unum) {
+        reportMapper.blacklistUser(unum);
     }
 }

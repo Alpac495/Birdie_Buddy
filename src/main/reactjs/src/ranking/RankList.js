@@ -54,7 +54,9 @@ function RankList(props) {
                 setLoading(false);
             });
     }
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     return (
         <div className='rankingList_wrap'>
             <div className='header'>
@@ -77,8 +79,14 @@ function RankList(props) {
                     dataLength={list.length}
                     next={getList}
                     hasMore={true}
-                    loader={null}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "140px", overflow: "none"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={<div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}}  onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>}
                 >
                     {
                         list &&
@@ -136,10 +144,13 @@ function RankList(props) {
                                 </div>
                             </div>
                         ))}
+                    {list.length > 0 && !loading && (
+                        <div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}} onClick={scrollToTop}>
+                            Scroll to Top
+                        </div>
+                    )}
                 </InfiniteScroll>
-
             </div>
-            <Footer />
         </div>
     );
 }
