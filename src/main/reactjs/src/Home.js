@@ -138,9 +138,6 @@ function Home(props) {
                 <li>
                     <NavLink to={`/chating/${unum}`}>chating room</NavLink>
                 </li>
-                <li>
-                    <NavLink to={`/chating/0`}>Admin chating room</NavLink>
-                </li>
             </ul>
             <ul>main
                 <li>

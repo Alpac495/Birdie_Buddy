@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import "./UserList.css";
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Profile from "../image/user60.png";
 import Header from '../header/Header';
+
 function UserList(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [searchTerm, setSearchTerm] = useState("");    
@@ -51,7 +52,11 @@ function UserList(props) {
             });
     }
 
+    const navigate = useNavigate();
 
+    const handleReportCheckClick = (unum) => {
+        navigate(`/admin/report/${unum}`);
+    };
 
     return (
         <div className="alluserlist">
@@ -105,8 +110,7 @@ function UserList(props) {
 
                                     <div className="ULrectangle-parent">
                                         <div className="ULgroup-child" />
-                                            <div className="ULdiv4" onClick={(e)=>addBlackList(item.unum)}>차단하기</div>                                        
-                                    </div>
+                                        <div className="ULdiv4" onClick={() => handleReportCheckClick(item.unum)}>신고 내역 확인</div>                                    </div>
                                 </div>
                         </div>
                     </div>

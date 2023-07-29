@@ -1,0 +1,163 @@
+.DLgroup-child {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #0b4648;
+    height: 3.13rem;
+}
+.DLdiv,
+.DLwrapper {
+    position: absolute;
+    width: 11.19rem;
+    height: 1.56rem;
+}
+.DLdiv {
+    top: 0;
+    left: 0;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.DLwrapper {
+    top: 0.81rem;
+    left: 1rem;
+}
+.DLrectangle-parent {
+    position: absolute;
+    width: 100%;
+    top: 6.25rem;
+    right: 0;
+    left: 0;
+    height: 3.13rem;
+    text-align: left;
+    font-size: 1.06rem;
+    color: #fff;
+}
+.DLdiv1,
+.DLdiv2,
+.DLdiv3,
+.DLdiv4 {
+    position: absolute;
+    top: 0;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 1.56rem;
+}
+.DLdiv1 {
+    width: calc(100% - 288px);
+    left: 0;
+    text-align: left;
+}
+.DLdiv2,
+.DLdiv3,
+.DLdiv4 {
+    width: calc(100% - 248px);
+    left: 2.81rem;
+    justify-content: center;
+}
+.DLdiv3,
+.DLdiv4 {
+    left: 8.44rem;
+}
+.DLdiv4 {
+    width: calc(100% - 238px);
+    left: 14.88rem;
+}
+.DLgroup-item {
+    position: absolute;
+    width: calc(100% + 1px);
+    top: 2.16rem;
+    right: -0.03rem;
+    left: -0.03rem;
+    border-top: 1px solid #000;
+    box-sizing: border-box;
+    height: 0.06rem;
+}
+.DLparent {
+    position: absolute;
+    width: calc(100% - 32px);
+    top: 12.88rem;
+    right: 1rem;
+    left: 1rem;
+    height: 2.19rem;
+    font-size: 0.81rem;
+}
+.DLdiv5,
+.DLdiv6,
+.DLdiv7,
+.DLdiv8 {
+    position: absolute;
+    top: 0;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+}
+.DLdiv5 {
+    width: calc(100% - 294px);
+    left: 0.38rem;
+    text-align: left;
+}
+.DLdiv6,
+.DLdiv7,
+.DLdiv8 {
+    width: calc(100% - 248px);
+    left: 2.81rem;
+    justify-content: center;
+}
+.DLdiv7,
+.DLdiv8 {
+    left: 8.44rem;
+}
+.DLdiv8 {
+    width: calc(100% - 238px);
+    left: 14.88rem;
+}
+.DLgroup-inner {
+    width: calc(100% + 1px);
+    top: 2.47rem;
+    right: -0.03rem;
+    left: -0.03rem;
+    border-top: 1px solid #b9b9b9;
+    box-sizing: border-box;
+    height: 0.06rem;
+}
+.DLdiv9,
+.DLgroup,
+.DLgroup-inner {
+    position: absolute;
+}
+.DLgroup {
+    width: calc(100% - 32px);
+    top: 15.06rem;
+    right: 1rem;
+    left: 1rem;
+    height: 2.5rem;
+    color: #292d32;
+}
+.DLdiv9 {
+    top: 43.75rem;
+    left: calc(50% - 164px);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20.5rem;
+    height: 1.88rem;
+}
+.DLdecllist {
+    position: relative;
+    background-color: #f8f5f0;
+    width: 100%;
+    height: 50rem;
+    overflow: hidden;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #000;
+    font-family: Inter;
+}
