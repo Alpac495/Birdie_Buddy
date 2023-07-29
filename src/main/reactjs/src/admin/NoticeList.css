@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
 .header{
     width: 100%;
     height: 100px;
@@ -6,6 +7,7 @@
     width: 100%;
     height: 100%;
     background-color: #F8F5F0;
+    font-family: 'Inter';
     
 }
 .notice_header{
@@ -16,55 +18,35 @@
     line-height: 50px;
     padding-left: 20px;
 }
-.notice_list{
-    text-align: center;
-    border-top: 1px #1F4337 solid;
-    border-bottom: 1px #1F4337 solid;
-}
-.notice_bucket{
+.notice_table{
     width: 90%;
-    height: 50px;
-    margin: 10px auto;
-    display: flex;
-    border-bottom: 1px lightgray solid;
-    
-}
-.notice_color{
-    background-color: yellowgreen;
-    width: 5px;
-    height: 100%;
-}
-.notice_head{
-    width: 60%;
-    display: flex;
-    align-self: flex-end;
-    justify-content: space-around;
-}
-.notice_writeday{
-    width: 100px;
-    display: flex;
-    align-self: flex-end;
-    font-size: 12px;
-}
-.notice_cate{
-    width: 100px;
-    font-size: 12px;
-    display: flex;
-    align-self: flex-end;
-}
-.notice_subject{
-    width: 200px;
-    font-size: 20px;
-    font-weight: bolder;
+    text-align: center;
     margin: 0 auto;
-    display: flex;
-    align-self: flex-end;
-    justify-content: center;
+    font-size: 14px;
 }
-.notice_foot{
-    width: 10%;
+.notice_writeBtn{
+    position: absolute;
+    background-color: #1F4337;
+    border-radius: 4px;
+    width: 21px;
+    height: 21px;
+    right: 25px;
+    margin-top: 15px;
     display: flex;
-    justify-content: flex-end;
-    
+    justify-content: center;
+    align-items: center;
+}
+.notice_table thead{
+    border-bottom: 2px black solid ;
+
+}
+
+.notice_table tr{
+    height: 50px;
+}
+.notice_table td{
+    border-bottom: 2px lightgray solid ;
+    height: 10px;
+    font-size: 12px;
 }
 

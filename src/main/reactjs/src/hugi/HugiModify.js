@@ -35,7 +35,7 @@ function HugiModify(props) {
             const res = await Axios.post('/hugi/upload', uploadFile);
             setHphoto(res.data);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 
@@ -69,7 +69,7 @@ function HugiModify(props) {
             await Axios.post('/hugi/update', dataToUpdate);
             navi('/hugi/list');
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
     const handleClcikList = () => {
@@ -88,7 +88,7 @@ function HugiModify(props) {
                 setPostUserNickname(data.postUserNickname);
                 setHwriteday(data.hwriteday);
             } catch (error) {
-                console.log(error);
+                // console.log(error);
             }
         };
 
@@ -98,29 +98,30 @@ function HugiModify(props) {
     return (
         <div>
         <Header/>
-        <div className="timeline" style={{ border: '0px solid gray', width: '100%', height:'100%',margin:'100px auto',textAlign:"center"}}>
+        <div style={{ border: '0px solid gray', width: '100%', height:'100%',margin:'100px auto',textAlign:"center",padding:"10px"}}>
             {/* 이미지 미리보기 */}
-            {hphoto && <img alt="" src={`${process.env.REACT_APP_HUGI}${hphoto}`} value={hphoto} style={{ width: '50%'}}/>}
-            <br/>
+            {hphoto &&
+                <img alt="" src={`${process.env.REACT_APP_HUGI}${hphoto}`} value={hphoto} style={{ width: '50%'}}/>}
+            <br/><br/>
             <div className="filebox">
-                <input className="upload-name" value={selectedFileName || "첨부파일"} placeholder="첨부파일" readOnly />
-                <label htmlFor="file" style={{textAlign:"center"}}>파일찾기</label>
+                <input className="upload-name" style={{width:"78%"}} value={selectedFileName || "첨부파일"} placeholder="첨부파일" readOnly />
+                <label htmlFor="file" style={{textAlign:"center",padding:"10px",fontSize:"13px",width:"22%"}}>파일찾기</label>
                 <input type="file" id="file" onChange={(e) => { onUploadEvent(e); onFileChange(e); }} />
             </div>
            <br/>
             <div className="input-group">
                 {/* 기존 후기 내용 */}
-                <textarea className="form-control" style={{ width: '80%',height:'150px', resize: 'none',fontSize:'12px'}} value={hcontent} onChange={(e) => setHcontent(e.target.value)} >{hcontent}</textarea>
+                <textarea className="form-control" style={{ width: '60%',height:'80px', resize: 'none',fontSize:'12px'}} value={hcontent} onChange={(e) => setHcontent(e.target.value)} >{hcontent}</textarea>
                 {/* 파일 업로드 */}
                 <br />
                 {/* 수정 취소 및 수정 제출 버튼 */}
-                <button type="submit" className="HG_modify" onClick={onSubmitEdit}>
+                <button type="submit" className="HG_modify" style={{width:"22%" ,padding:"10px",fontSize:"13px"}} onClick={onSubmitEdit}>
                     수정하기
                 </button>
-                <Button type="button"  autoFocus onClick={handleClcikList}>
+            </div><br/>
+                <button type="button" className="HG_modify"style={{width:"50px",height:"30px",marginRight:"10px",fontSize:"13px"}} autoFocus onClick={handleClcikList}>
                     취소
-                </Button>
-            </div>
+                </button>
         </div>
             <Footer/>
         </div>

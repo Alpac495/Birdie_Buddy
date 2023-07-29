@@ -3,90 +3,95 @@ body {
     margin: 0;
     line-height: normal;
 }
-
-.SGdiv,
-.SGdiv1 {
-    position: relative;
+.SGtitle {
+    position: absolute;
+    bottom: 1.06rem;
+    left: calc(50% - 37px);
+    letter-spacing: 0.15px;
+    font-weight: 500;
 }
-.SGdiv {
+.SGsingobar {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0b4648;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
+}
+.SGsingoformbar {
+    border-radius: 2px;
+    width: 22.5rem;
+    height: 3.5rem;
+    font-size: 1.25rem;
+    font-family: Roboto;
+}
+.SGdiv,
+.SGdiv1,
+.SGsingoformbar {
+    position: relative;
+  }
+  .SGdiv {
     align-self: stretch;
     line-height: 150%;
-}
-.SGdiv1 {
+  }
+  .SGdiv1 {
     flex: 1;
     line-height: 1.5rem;
     opacity: 0.5;
 }
-.SGframe1,
-.SGsingogroup,
 .SGtext-field {
-    overflow: hidden;
-    display: flex;
-    justify-content: flex-start;
-}
-.SGtext-field {
-    align-self: stretch;
     border-radius: 3px;
     background-color: #fff;
     border: 2px solid #d9d9d9;
-    flex-direction: row;
+    overflow: hidden;
+    display: flex;
     padding: 0.75rem 1rem;
     align-items: center;
+    justify-content: flex-start;
     color: #000;
 }
 .SGframe1,
-.SGsingogroup {
-    align-items: flex-start;
-}
-.SGframe1 {
+.SGtext-field {
     align-self: stretch;
     flex-direction: row;
+}
+.SGframe,
+.SGframe1,
+.SGsingogroup {
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 .SGsingogroup {
     flex: 1;
     flex-direction: column;
     gap: 0.5rem;
 }
-.SGframe,
-.SGlabel {
-    position: absolute;
-}
 .SGframe {
-    top: 3.1rem;
+    position: absolute;
+    top: 0;
     left: calc(50% - 158.5px);
     width: 19.81rem;
-    overflow: hidden;
-    display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-.SGlabel {
-    top: 0;
-    left: 7.81rem;
-    font-size: 1.13rem;
-    letter-spacing: 0.15px;
-    line-height: 1.5rem;
-    font-weight: 600;
-    color: #204337;
-    text-align: center;
-    display: inline-block;
-    width: 4.19rem;
-    height: 2.48rem;
 }
 .SGsingoinfo {
     position: relative;
     width: 19.81rem;
-    height: 18.91rem;
+    height: 15.81rem;
+    color: #52525c;
 }
 .SGdiv6 {
     flex: 1;
     position: relative;
     letter-spacing: -0.01em;
     font-weight: 500;
-}
-.SGflframe,
-.SGframe3 {
+  }
+  .SGflframe,
+  .SGframe3 {
     position: absolute;
     border-radius: 2px;
     overflow: hidden;
@@ -96,18 +101,18 @@ body {
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-}
-.SGflframe {
+  }
+  .SGflframe {
     height: 104%;
-    width: 50.64%;
+    width: 50.56%;
     top: -2%;
-    right: 49.68%;
+    right: 49.72%;
     bottom: -2%;
-    left: -0.32%;
-    background-color: #ebf0f2;
+    left: -0.28%;
+    background-color: #48685e;
     border: 1px solid transparent;
-}
-.SGframe3 {
+  }
+  .SGframe3 {
     height: 100%;
     width: 50%;
     top: 0;
@@ -115,13 +120,13 @@ body {
     bottom: 0;
     left: 50%;
     background-color: #fff;
+    color: #000;
 }
 .SGpopupbtn {
-    align-self: stretch;
     position: relative;
+    width: 22.5rem;
     height: 3.13rem;
     text-align: center;
-    color: #000;
 }
 .SGsingoform {
     position: relative;
@@ -130,16 +135,28 @@ body {
     border: 1px solid #e2e2e2;
     box-sizing: border-box;
     width: 100%;
-    height: 26.56rem;
+    height: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 1.5rem 1.5rem 0;
+    padding: 0 1.5rem;
     align-items: center;
     justify-content: flex-start;
     gap: 0.94rem;
     text-align: left;
     font-size: 0.94rem;
-    color: #52525c;
+    color: #fff;
     font-family: Inter;
+    animation: slideIn 0.3s ease-in-out;
 }
+  }
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }  

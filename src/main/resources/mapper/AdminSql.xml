@@ -4,7 +4,7 @@
         select * from user where ublacklist=0 and unum!=1 order by ureport desc;
     </select>
     <select id="getAllUserList" resultType="UserDto">
-        select * from user where ublacklist=0 and unum!=1 order by ureport desc LIMIT #{offset}, #{size}
+        select *,(select count(unum) from report r where u.unum=r.unum ) as ureport from user u where ublacklist=0 and unum!=1 order by ureport desc LIMIT #{offset}, #{size}
     </select>
     <select id="getAllUserListScrollSearch" parameterType="Map" resultType="UserDto">
         select * from user where ublacklist=0 and unum!=1 and (unickname LIKE CONCAT('%', #{keyword}, '%')

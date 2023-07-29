@@ -67,14 +67,14 @@ public class HugiController {
 //    }
     @GetMapping("/list")
     public List<HugiDto> hugilist(int page, int size) {
-        System.out.println("스크롤>>");
+//        System.out.println("스크롤>>");
         int offset = (page - 1) * size;
         List<HugiDto> list = hugiMapper.listHugiWithPaging(offset, size);
         return list;
     }
     @GetMapping("/mylist/{unum}")
     public List<HugiDto> myhugilist(@PathVariable int unum, int page, int size) {
-        System.out.println("스크롤>>");
+//        System.out.println("스크롤>>");
         int offset = (page - 1) * size;
         List<HugiDto> list = hugiMapper.listmyHugiWithPaging(unum, offset, size);
         return list;
@@ -106,7 +106,7 @@ public class HugiController {
     @PostMapping("/upload")
     public String photoUpload(MultipartFile upload)
     {
-        System.out.println("upload>>"+upload.getOriginalFilename());
+//        System.out.println("upload>>"+upload.getOriginalFilename());
         if(hphoto!=null) {
             //이전 사진 삭제
             storageService.deleteFile(bucketName, "hugi", hphoto);
@@ -118,7 +118,7 @@ public class HugiController {
 
     @PostMapping("/insert")
     public void insert(@RequestBody HugiDto hdto) {
-        System.out.println("hdto>>" + hdto);
+//        System.out.println("hdto>>" + hdto);
         hdto.setHphoto(hphoto);
         hugiService.insertHugi(hdto);
         hphoto = null;
@@ -137,7 +137,7 @@ public class HugiController {
 
     @DeleteMapping("/delete/{hnum}")
     public void delete(@PathVariable int hnum) {
-        System.out.println("delete>>" + hnum);
+//        System.out.println("delete>>" + hnum);
         HugiDto hugiDto = hugiService.detailPage(hnum);
         String prePhoto = hugiDto.getHphoto();
         storageService.deleteFile(bucketName, "hugi", prePhoto);
