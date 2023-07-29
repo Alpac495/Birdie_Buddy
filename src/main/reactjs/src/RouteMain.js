@@ -10,7 +10,6 @@ import Main from "./Main";
 import RankForm from "./ranking/RankForm";
 import RankList from "./ranking/RankList";
 import JoinDetail from "./joining/JoinDetail";
-import MypageUpdate from "./mypage/MypageUpdate";
 import MypageSetting from "./mypage/MypageSetting";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList, HugiModify} from "./hugi";
@@ -93,7 +92,6 @@ function RouteMain(props) {
 
                 <Route path={'/mypage'} >
                     <Route path="mypage/:unum" element={<Mypage/>}/>
-                    <Route path="update" element={<MypageUpdate/>}/>
                     <Route path="setting" element={<MypageSetting/>}/>
                     <Route path="myyangdo/:unum" element={<MyYangdo/>}/>
                     <Route path="myyangdodetail/:ynum/" element={<MyYangdoDetail/>}/>
