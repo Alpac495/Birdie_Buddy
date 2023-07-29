@@ -28,6 +28,7 @@ import FriendSearch from './friend/FriendSearch';
 import NCloudChatRoomAdmin from "./chatbot/NCloudChatRoomAdmin";
 import RankListS from './ranking/RankListS';
 import Report from "./admin/Report";
+import NoticeEditForm from "./admin/NoticeEditForm";
 
 
 function RouteMain(props) {
@@ -42,6 +43,7 @@ function RouteMain(props) {
                     <Route path="NoticeForm" element={<NoticeForm/>}/>
                     <Route path="NoticeList" element={<NoticeList/>}/>
                     <Route path="NoticeDetail/:nnum" element={<NoticeDetail/>}/>
+                    <Route path="NoticeEditForm/:nnum" element={<NoticeEditForm/>}/>
                     <Route path="Report" element={<Report/>}/>
                 </Route>
 

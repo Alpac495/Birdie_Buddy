@@ -5,11 +5,12 @@ import {useNavigate} from 'react-router-dom';
 import HugiRowList from './HugiRowList';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../header/Header";
+import _ from "lodash"
 
 function HugiList(props) {
     const [unum, setUnum] = useState('');
     const [userNum, setUserNum] = useState('');
-    const [hphoto, setHphoto] = useState('');
+    const [hphoto, setHphoto] = useState(null);
     const [hcontent, setHcontent] = useState('');
     const [hlike, setHlike] = useState('');
     const [uphoto, setUphoto] = useState('');
@@ -31,7 +32,8 @@ function HugiList(props) {
         setLoading(true);
         Axios.get(`/hugi/list?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
             .then((res) => {
-                setHugiData((prevItems) => [...prevItems, ...res.data]);
+                const newData = _.uniqBy([...hugiData, ...res.data], 'hnum');
+                setHugiData(newData);
                 setPage((prevPage) => prevPage + 1);
                 setUnickname(res.data.Unickname);
                 setUphoto(res.data.uphoto);
@@ -203,7 +205,7 @@ function HugiList(props) {
                         borderRadius: '5px',
                         width: '100%',
                         height: '50%',
-                        marginTop:'38px',
+                        margin:'41px auto',
                         padding: '10px',
                         textAlign:'center'
                     }}>
@@ -211,12 +213,12 @@ function HugiList(props) {
 
                         {/*<input type="file" className="form-control" onChange={onUploadEvent}/>*/}
                         {selectedPreviews.map((previewUrl, index) => (
-                        <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '200px',height:'200px',margin:"auto"}}/>
+                        <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '250px',height:'250px',margin:"10px auto",padding:'10px'}}/>
                         ))}
                         <div className="filebox">
-                            <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }} value={selectedFileName || "첨부파일"} placeholder="첨부파일"
-                                   readOnly/>
-                            <label htmlFor="file" style={{width:"35%"}}>파일찾기</label>
+                            <input className="upload-name" style={{width:"70%",backgroundColor:"#fafafa" }}
+                                   value={selectedFileName || "첨부파일"} placeholder="첨부파일" readOnly />
+                            <label htmlFor="file" style={{width:"30%",backgroundColor:"#48685E",padding:'10px'}}>파일찾기</label>
                             <input type="file" id="file" multiple="multiple" onChange={(e) => {
                                 onUploadEvent(e);
                                 onFileChange(e);
@@ -226,11 +228,11 @@ function HugiList(props) {
                         <div className="input-group">
             <textarea
                 className="form-control"
-                style={{width: '80%', resize: "none",backgroundColor:"#fafafa"}}
-                value={hcontent}
+                style={{width: '70%', resize: "none",backgroundColor:"#fafafa"}}
+                value={hcontent} placeholder="글을 입력해 주세요"
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>
-                            <button type="submit" className="HG_submit" style={{width: '20%',height:"62px"}}
+                            <button type="submit" className="HG_submit" style={{width: '30%',height:"62px"}}
                                     onClick={onSubmitEvent}>
                                 작성
                             </button>

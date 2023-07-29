@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import _ from "lodash"
 
 const FriendSearch = () => {
     const url = process.env.REACT_APP_PROFILE;
@@ -28,7 +29,8 @@ const FriendSearch = () => {
                 Axios
                     .get(`/friend/friendsearch?unum=${res.data}&page=${page}&size=12`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
-                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        const newData = _.uniqBy([...items, ...res.data], 'fnum');
+                        setItems(newData);
                         console.log(items);
                         console.log(res.data);
                         setPage((prevPage) => prevPage + 1);
@@ -110,7 +112,7 @@ const FriendSearch = () => {
                    value={keyword}
                     onChange={(e) => {
                         setKeyword(e.target.value);
-                    }}/><button className="AFsearch btn btn-sm btn-outline-success" onClick={search}>검색</button>
+                    }}/><button className="AFsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
                     <InfiniteScroll
                     dataLength={items.length}
                     next={fetchMoreData}

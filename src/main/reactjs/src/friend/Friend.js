@@ -6,6 +6,7 @@ import Profile from "../image/user60.png";
 import * as ncloudchat from 'ncloudchat';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
+import _ from "lodash"
 
 function Friend(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -34,7 +35,8 @@ function Friend(props) {
                 Axios
                     .get(`/friend/paginglist?unum=${res1.data}&page=${page}&size=7`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
-                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        const newData = _.uniqBy([...items, ...res.data], 'fnum');
+                        setItems(newData);
                         console.log(items);
                         console.log(res.data);
                         setPage((prevPage) => prevPage + 1);

@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link, NavLink } from 'react-router-dom';
 import Header from '../header/Header';
 import Profile from "../image/user60.png";
+import _ from "lodash"
 
 function Blacklist(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -19,7 +20,8 @@ function Blacklist(props) {
                 Axios
                     .get(`/admin/getBlackList?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
-                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        const newData = _.uniqBy([...items, ...res.data], 'unum');
+                        setItems(newData);
                         console.log(items);
                         console.log(res.data);
                         setPage((prevPage) => prevPage + 1);
@@ -61,7 +63,7 @@ function Blacklist(props) {
                     onChange={(e) => {
                         setKeyword(e.target.value);
                     }}/>
-                <button className="ULsearch btn btn-sm btn-outline-success" onClick={search}>검색</button>
+                <button className="ULsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
 
             <div className="ULtab">
                 <NavLink to={`/admin/userlist`} style={{color:'black'}}> 
