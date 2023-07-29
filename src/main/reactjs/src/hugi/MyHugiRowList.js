@@ -90,7 +90,7 @@ function MyHugiRowList(props) {
                 copyToClipboard(generatedURL); // 클립보드에 복사
             })
             .catch((error) => {
-                console.error('Error generating shortened URL:', error);
+                // console.error('Error generating shortened URL:', error);
             });
     };
 
@@ -107,7 +107,7 @@ function MyHugiRowList(props) {
                     // setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
                 })
                 .catch((error) => {
-                    console.error('URL 공유 중 오류 발생:', error);
+                    // console.error('URL 공유 중 오류 발생:', error);
                 });
         } else {
             // navigator.share() API를 지원하지 않는 브라우저를 위한 대체 방법
@@ -124,7 +124,7 @@ function MyHugiRowList(props) {
                 setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
             })
             .catch((error) => {
-                console.error('클립보드 복사 중 오류 발생:', error);
+                // console.error('클립보드 복사 중 오류 발생:', error);
             });
     };
 
@@ -177,7 +177,7 @@ function MyHugiRowList(props) {
                 setShowLike(true);
             })
             .catch((error) => {
-                console.log('좋아요 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 처리 중 오류가 발생했습니다.', error);
             });
     };
     const handleClickLikeOff = () => {
@@ -190,7 +190,7 @@ function MyHugiRowList(props) {
                 setShowLike(false);
             })
             .catch((error) => {
-                console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
             });
     };
     const handleClickDelete = () => {
@@ -205,11 +205,11 @@ function MyHugiRowList(props) {
                                 window.location.reload();
                             })
                             .catch((error) => {
-                                console.log('게시물 삭제 중 오류가 발생했습니다.', error);
+                                // console.log('게시물 삭제 중 오류가 발생했습니다.', error);
                             });
                     })
                     .catch((error) => {
-                        console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
+                        // console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
                     });
             }
         } else {
@@ -224,7 +224,7 @@ function MyHugiRowList(props) {
                     resolve();
                 })
                 .catch((error) => {
-                    console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
+                    // console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
                     reject(error);
                 });
         });
@@ -236,7 +236,7 @@ function MyHugiRowList(props) {
                 getComments();
             })
             .catch((error) => {
-                console.log('댓글 삭제 중 오류가 발생함', error);
+                // console.log('댓글 삭제 중 오류가 발생함', error);
             });
     };
     const handleClickDeleteComment = (rhnum) => {
@@ -250,7 +250,7 @@ function MyHugiRowList(props) {
         Axios.get(`/rehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
-                console.log(res.data)
+                // console.log(res.data)
                 setComments(sortedComments);
 
                 res.data.forEach((comment) => {
@@ -263,7 +263,7 @@ function MyHugiRowList(props) {
                 });
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     };
     const fetchPostUserNickname = async (unum) => {
@@ -280,7 +280,7 @@ function MyHugiRowList(props) {
                 if (error.response && error.response.status === 404) {
                     // 404 오류 처리
                 } else {
-                    console.log('오류가 발생했습니다.', error.message);
+                    // console.log('오류가 발생했습니다.', error.message);
                 }
             }
         }
@@ -409,7 +409,7 @@ function MyHugiRowList(props) {
                 setCommentError(false);
             }
         } catch (error) {
-            console.log('오류가 발생했습니다.', error.message);
+            // console.log('오류가 발생했습니다.', error.message);
         }
     };
 
@@ -439,7 +439,7 @@ function MyHugiRowList(props) {
                 setErrorCommentId(null);
             })
             .catch((error) => {
-                console.log('댓글 추가 중 오류가 발생했습니다.', error);
+                // console.log('댓글 추가 중 오류가 발생했습니다.', error);
             });
     };
 
@@ -488,7 +488,9 @@ function MyHugiRowList(props) {
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
             <span>{props.hlike}</span>
+            <div className="HG_list_div_image">
             <img className="HG_list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
+            </div>
             <h6 className="HG_list_text">
                 &nbsp;
                 {hcontent}

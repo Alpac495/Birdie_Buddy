@@ -85,62 +85,40 @@ function YangdoList(props) {
 
 
     return (
-        <div className="YLyangdolist">
-            <div className="YLyangdolist-child" />
-            <InfiniteScroll
-                dataLength={items.length}
-                next={fetchMoreData}
-                hasMore={true}
-                loader={null}
-                endMessage={null}
-            >
-                {
-                    items &&
-                    items.map((row, idx) =>
-                            <div className="YLgroup-parent">
-                                <div className="YLrectangle-parent">
-                                    <div className="YLgroup-child" />
-                                    <div className="YLdiv" onClick={(e) => {
-                                        e.preventDefault();
-                                        onDetailEvent(row.ynum);
-                                    }}>{row.yplace}</div>
-                                    <div className="YLdiv1">{row.yprice}원</div>
-                                    <div className="YLam">{row.ysubject}</div>
-                                </div>
-                                <div className="YLrectangle-group">
-                                    <div className="YLgroup-item" />
-                                    <img className="YLgroup-inner" alt="" src="/group-154.svg" />
-                                    <div className="YLdiv2">{row.unickname}</div>
-                                    <div className="YLdiv3">작성일 : {row.yday}</div>
-                                </div>
-                                <div className="YLrectangle-container">
-                                    <div className="YLrectangle-div" />
-                                    <div className="YLdiv4">23.07</div>
-                                    <div className="YLdiv5">27</div>
-                                </div>
-                            </div>
-                    )
-                }
-            </InfiniteScroll>
-
-            <div className="YLgroup-div">
-                <div className="YLgroup-child1" onClick={mylist} />
-                <div className="YLdiv6" onClick={mylist}>마이 양도</div>
-            </div>
-            <div className="YLrectangle-parent1">
-                <div className="YLgroup-child2" onClick={onWriteButtonEvent} />
-                <img className="YLicon-pencil-thin" onClick={onWriteButtonEvent} alt="" src={pen} />
-            </div>
-            <input
-                type="text"
-                placeholder="검색"
-                value={keyword}
-                onChange={(e) => {
-                    setKeyword(e.target.value);
-                }}
-                className="YLdiv7" />
-            <img className="YLicon-search" onClick={search} alt="" src={search} />
+        <div className="Ylyangdolist">
+      <div className="Ylyangdolist-child" />
+      <div className="Ylrectangle-parent">
+        <div className="Ylgroup-child" />
+        <div className="Yldiv">마이 양도</div>
+      </div>
+      <div className="Ylrectangle-group">
+        <div className="Ylgroup-item" />
+        <img className="Ylicon-pencil-thin" alt="" src={pen} />
+      </div>
+      <div className="Yldiv1">검색</div>
+      <img className="Ylicon-search" alt="" src={search} />
+      <div className="Ylblacklistmodalveticalframe">
+        <div className="Ylgroup-parent">
+          <div className="Ylrectangle-container">
+            <div className="Ylgroup-inner" />
+            <div className="Yldiv2">건설공제조합 세종필드 골프 클럽</div>
+            <div className="Yldiv3">그린피 : 8,000원</div>
+            <div className="Ylam">09:00 AM</div>
+          </div>
+          <div className="Ylgroup-div">
+            <div className="Ylrectangle-div" />
+            <img className="Ylgroup-icon" alt="" src={''} />
+            <div className="Yldiv4">닉네임</div>
+            <div className="Yldiv5">{`작성일 : `}</div>
+          </div>
+          <div className="Ylrectangle-parent1">
+            <div className="Ylgroup-child1" />
+            <div className="Yldiv6">23.07</div>
+            <div className="Yldiv7">27</div>
+          </div>
         </div>
+      </div>
+    </div>
     );
 }
 
