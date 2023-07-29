@@ -5,8 +5,11 @@ import JoinIcon from "../image/icon_flaghole.svg";
 import BuddyIcon from "../image/icon_mybuddy.svg";
 import YangdoIcon from "../image/icon_yangdo.svg";
 import BuddyStory from "../image/icon_buddystory.svg";
-import SettingIcon from "../image/icon_setting.svg";
-import MoveIcon from "../image/vector.svg";
+import phonechange from "../image/phonechange.svg";
+import passchange from "../image/passchange.svg";
+import mypro from "../image/mypro.svg";
+import rang from "../image/rang.svg";
+import out from "../image/out.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../header/Header";
@@ -47,7 +50,7 @@ const MypageSetting = () => {
                 </div>
 
                 <div className="MPSsingle-line-item">
-                    <AccountCircleOutlinedIcon />
+                    <img className="account-icon" alt="" src={mypro} />
                     <div className="MPSlabel1">마이 프로필</div>
                 </div>
                 <div className="MPSsingle-line-item">
@@ -55,9 +58,7 @@ const MypageSetting = () => {
                     <div className="MPSlabel1">마이 버디</div>
                 </div>
                 <div className="MPSsingle-line-item1" />
-                <div className="MPSdivider">
-                    <div className="MPSline-separator" />
-                </div>
+                
                 <div className="MPSlist-item-group-subtitle">
                     <div className="MPSsubtitle">
                         <div className="MPSlabel">Features</div>
@@ -73,16 +74,14 @@ const MypageSetting = () => {
                     <div className="MPSlabel1">마이 양도</div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <TrendingUpIcon />
+                    <img className="account-icon" alt="" src={rang} />
                     <div className="MPSlabel1">마이 랭킹</div>
                 </div>
                 <div className="MPSsingle-line-item">
                     <img className="account-icon" alt="" src={BuddyStory} />
                     <div className="MPSlabel1">마이 스토리</div>
                 </div>
-                <div className="MPSdivider">
-                    <div className="MPSline-separator" />
-                </div>
+                
                 <div className="MPSlist-item-group-subtitle">
                     <div className="MPSsubtitle">
                         <div className="MPSlabel">Services</div>
@@ -90,16 +89,16 @@ const MypageSetting = () => {
                 </div>
 
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src={BuddyStory} />
-                    <div className="MPSlabel1" onClick={() => navi('/login/taltae')}>회원탈퇴</div>
+                    <img className="account-icon" alt="" src={phonechange} />
+                    <div className="MPSlabel1" onClick={() => navi('/login/hpchange')}>휴대폰 번호 변경</div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src={BuddyStory} />
+                    <img className="account-icon" alt="" src={passchange} />
                     <div className="MPSlabel1" onClick={() => navi('/login/passchange')} >비밀번호 변경</div>
                 </div>
                 <div className="MPSsingle-line-item">
-                    <img className="account-icon" alt="" src={BuddyStory} />
-                    <div className="MPSlabel1" onClick={() => navi('/login/hpchange')}>휴대폰번호 변경</div>
+                    <img className="account-icon" alt="" src={out} />
+                    <div className="MPSlabel1" onClick={() => navi('/login/taltae')}>회원탈퇴</div>
                 </div>
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">
