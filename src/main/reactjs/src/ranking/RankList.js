@@ -10,6 +10,7 @@ import bronze from "../images/bronze-medal.png";
 import user from "../images/default_golf.png";
 import Footer from "../footer/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
+import _ from "lodash"
 
 function RankList(props) {
     const [unum, setUnum] = useState(0);
@@ -43,7 +44,8 @@ function RankList(props) {
     const getList = () => {
         Axios.get(`/score/list?page=${page}&size=7`)
             .then(res => {
-                setList((prevItems) => [...prevItems, ...res.data]);
+                const newData = _.uniqBy([...list, ...res.data], 'rnum');
+                setList(newData);
                 setPage((prevPage) => prevPage + 1);
                 setLoading(false);
             })

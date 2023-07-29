@@ -7,6 +7,7 @@ import {NavLink} from "react-router-dom";
 import Profile from "../image/user60.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Footer from "../footer/Footer";
+import _ from "lodash"
 
 
 
@@ -34,7 +35,8 @@ const JoinAllList = () => {
         const url = `/joining/list?page=${page}&size=10`;
         Axios.get(url)
             .then(res => {
-                setData((prevItems) => [...prevItems, ...res.data]);
+                const newData = _.uniqBy([...data, ...res.data], 'jnum');
+                setData(newData);
                 setPage((prevPage) => prevPage + 1);
                 setLoading(false);
                 // console.log(res.data);

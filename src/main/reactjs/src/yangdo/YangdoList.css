@@ -1,262 +1,259 @@
-.YLyangdolist-child {
-    position: absolute;
-    width: calc(100% - 32px);
-    top: 10.31rem;
-    right: 1rem;
-    left: 1rem;
-    border-radius: 3px;
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
-    box-sizing: border-box;
-    height: 2.5rem;
+.Ylgroup-child,
+.Ylyangdolist-child {
+  position: absolute;
+  border-radius: 3px;
 }
-
-.YLgroup-child {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    right: 0;
-    left: 0;
-    border-radius: 5px;
-    background-color: #4f9a81;
-    height: 4.69rem;
+.Ylyangdolist-child {
+  width: calc(100% - 32px);
+  top: 10.31rem;
+  right: 1rem;
+  left: 1rem;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  height: 2.5rem;
 }
-
-.YLam,
-.YLdiv,
-.YLdiv1 {
-    position: absolute;
-    width: calc(100% - 16px);
-    left: 0.63rem;
-    letter-spacing: -0.01em;
+.Ylgroup-child {
+  top: 0;
+  left: 0;
+  background-color: #48685e;
+  width: 3.75rem;
+  height: 1.25rem;
 }
-
-.YLdiv {
-    top: 1.69rem;
-    font-weight: 600;
-    display: inline-block;
-    height: 1.25rem;
+.Yldiv {
+  position: absolute;
+  top: 0.19rem;
+  left: 0.31rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.13rem;
+  height: 0.94rem;
 }
-
-.YLam,
-.YLdiv1 {
-    top: 3.13rem;
-    font-size: 0.75rem;
-    /* display: flex; */
-    align-items: center;
-    height: 0.94rem;
+.Ylgroup-item,
+.Ylrectangle-parent {
+  position: absolute;
+  height: 1.25rem;
 }
-
-.YLam {
-    top: 0.56rem;
-    font-size: 0.63rem;
-    text-align: right;
+.Ylrectangle-parent {
+  top: 8.44rem;
+  left: 1rem;
+  width: 3.75rem;
+  text-align: center;
+  color: #fff;
 }
-
-.YLgroup-item,
-.YLrectangle-parent {
-    position: absolute;
-    top: 0;
-    right: 0;
+.Ylgroup-item {
+  top: 0;
+  right: 0;
+  border-radius: 3px;
+  background-color: #48685e;
+  width: 1.25rem;
 }
-
-.YLrectangle-parent {
-    width: calc(100% - 86px);
-    left: 5.38rem;
-    height: 4.69rem;
-    color: #fff;
+.Ylicon-pencil-thin,
+.Ylrectangle-group {
+  position: absolute;
+  top: 0.13rem;
+  right: 0.13rem;
+  width: 0.94rem;
+  height: 0.94rem;
 }
-
-.YLgroup-item {
-    width: 100%;
-    left: 0;
-    border-radius: 5px;
-    background-color: #ebebf0;
-    border: 1px solid rgba(217, 217, 217, 0.8);
-    box-sizing: border-box;
-    height: 2.5rem;
+.Ylrectangle-group {
+  top: 8.44rem;
+  right: 1rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
-
-.YLgroup-inner {
-    position: absolute;
-    top: 0.25rem;
-    left: 0.5rem;
-    width: 2rem;
-    height: 2rem;
+.Yldiv1 {
+  position: absolute;
+  top: 10.81rem;
+  left: 1.63rem;
+  font-size: 0.81rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  width: 17.13rem;
+  height: 1.56rem;
+  border: none;
+  outline: none;
 }
-
-.YLdiv2,
-.YLdiv3 {
-    position: absolute;
-    width: calc(100% - 62px);
-    top: 0.38rem;
-    left: 3.13rem;
-    letter-spacing: -0.01em;
-    display: flex;
-    align-items: center;
-    height: 0.94rem;
+.Ylicon-search {
+  position: absolute;
+  top: 10.89rem;
+  right: 1.7rem;
+  width: 1.34rem;
+  height: 1.34rem;
 }
-
-.YLdiv3 {
-    top: 1.56rem;
-    left: 3.25rem;
-    font-size: 0.44rem;
-    height: 0.63rem;
+.Ylgroup-inner {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 5px;
+  background-color: #4f9a81;
 }
-
-.YLrectangle-group {
-    position: absolute;
-    width: calc(100% - 86px);
-    top: 5.13rem;
-    right: 0;
-    left: 5.38rem;
-    height: 2.5rem;
-    font-size: 0.75rem;
+.Ylam,
+.Yldiv2,
+.Yldiv3 {
+  position: absolute;
+  width: 93.39%;
+  left: 4.13%;
+  letter-spacing: -0.01em;
 }
-
-.YLrectangle-div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    background-color: #f8f5f0;
-    width: 4.38rem;
-    height: 7.63rem;
+.Yldiv2 {
+  height: 26.67%;
+  top: 36%;
+  font-weight: 600;
+  display: inline-block;
 }
-
-.YLdiv4,
-.YLdiv5 {
-    position: absolute;
-    left: 0.31rem;
-    letter-spacing: -0.01em;
-    width: 3.75rem;
+.Ylam,
+.Yldiv3 {
+  height: 20%;
+  top: 66.67%;
+  font-size: 0.75rem;
+  /* display: flex; */
+  align-items: center;
 }
-
-.YLdiv4 {
-    top: 0.13rem;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    height: 1.91rem;
+.Ylam {
+  top: 12%;
+  font-size: 0.63rem;
+  text-align: right;
 }
-
-.YLdiv5 {
-    top: 2.35rem;
-    font-size: 1.88rem;
-    display: inline-block;
-    height: 3.18rem;
+.Ylrectangle-container {
+  position: absolute;
+  height: 61.48%;
+  width: 73.78%;
+  top: 0;
+  right: 0;
+  bottom: 38.52%;
+  left: 26.22%;
+  color: #fff;
 }
-
-.YLrectangle-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4.38rem;
-    height: 7.63rem;
-    text-align: center;
-    font-size: 1.13rem;
+.Ylrectangle-div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 5px;
+  background-color: #ebebf0;
+  border: 1px solid rgba(217, 217, 217, 0.8);
+  box-sizing: border-box;
 }
-
-.YLgroup-parent {
-    position: absolute;
-    width: calc(100% - 32px);
-    top: 14.69rem;
-    right: 1rem;
-    left: 1rem;
-    height: 7.63rem;
+.Ylgroup-icon {
+  position: absolute;
+  height: 80%;
+  width: 13.22%;
+  top: 10%;
+  right: 83.47%;
+  bottom: 10%;
+  left: 3.31%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
 }
-
-.YLgroup-child1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 3px;
-    background-color: #48685e;
-    width: 3.75rem;
-    height: 1.25rem;
+.Yldiv4,
+.Yldiv5 {
+  position: absolute;
+  height: 37.5%;
+  width: 74.38%;
+  top: 15%;
+  left: 20.66%;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
 }
-
-.YLdiv6 {
-    position: absolute;
-    top: 0.19rem;
-    left: 0.31rem;
-    letter-spacing: -0.01em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.13rem;
-    height: 0.94rem;
+.Yldiv5 {
+  height: 25%;
+  top: 62.5%;
+  left: 21.49%;
+  font-size: 0.44rem;
 }
-
-.YLgroup-child2,
-.YLgroup-div {
-    position: absolute;
-    height: 1.25rem;
+.Ylgroup-child1,
+.Ylgroup-div {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
-
-.YLgroup-div {
-    top: 8.44rem;
-    left: 1rem;
-    width: 3.75rem;
-    text-align: center;
-    font-size: 0.63rem;
-    color: #fff;
+.Ylgroup-div {
+  height: 32.79%;
+  width: 73.78%;
+  top: 67.21%;
+  left: 26.22%;
+  font-size: 0.75rem;
 }
-
-.YLgroup-child2 {
-    top: 0;
-    right: 0;
-    border-radius: 3px;
-    background-color: #48685e;
-    width: 1.25rem;
+.Ylgroup-child1 {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+  background-color: #f8f5f0;
 }
-
-.YLicon-pencil-thin {
-    position: absolute;
-    top: 0.13rem;
-    right: 0.13rem;
-    width: 0.94rem;
-    height: 0.94rem;
+.Yldiv6,
+.Yldiv7 {
+  position: absolute;
+  width: 85.71%;
+  left: 7.14%;
+  letter-spacing: -0.01em;
 }
-
-.YLrectangle-parent1 {
-    position: absolute;
-    top: 8.44rem;
-    right: 1rem;
-    width: 1.25rem;
-    height: 1.25rem;
+.Yldiv6 {
+  height: 25%;
+  top: 1.67%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
-
-.YLdiv7 {
-    position: absolute;
-    top: 10.81rem;
-    left: 1.63rem;
-    font-size: 0.81rem;
-    letter-spacing: -0.01em;
-    display: flex;
-    align-items: center;
-    width: 17.13rem;
-    height: 1.56rem;
-    border: none;
-    outline: none;
+.Yldiv7 {
+  height: 41.67%;
+  top: 30.83%;
+  font-size: 1.88rem;
+  display: inline-block;
 }
-
-.YLicon-search {
-    position: absolute;
-    top: 10.89rem;
-    right: 1.7rem;
-    width: 1.34rem;
-    height: 1.34rem;
+.Ylrectangle-parent1 {
+  position: absolute;
+  height: 100%;
+  width: 21.34%;
+  top: 0;
+  right: 78.66%;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-size: 1.13rem;
 }
-
-.YLyangdolist {
-    position: relative;
-    background-color: #f8f5f0;
-    width: 100%;
-    height: 50rem;
-    overflow: hidden;
-    text-align: left;
-    font-size: 0.88rem;
-    color: #000;
-    font-family: Inter;
+.Ylgroup-parent {
+  position: relative;
+  width: 20.13rem;
+  height: 7.5rem;
+  margin-bottom: 1rem;
+}
+.Ylblacklistmodalveticalframe {
+  position: absolute;
+  width: calc(100% - 32px);
+  top: 13.88rem;
+  right: 1rem;
+  left: 1rem;
+  height: 34.19rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 0.88rem;
+}
+.Ylyangdolist {
+  position: relative;
+  background-color: #f8f5f0;
+  width: 100%;
+  height: 50rem;
+  overflow: hidden;
+  text-align: left;
+  font-size: 0.63rem;
+  color: #000;
+  font-family: Inter;
 }
