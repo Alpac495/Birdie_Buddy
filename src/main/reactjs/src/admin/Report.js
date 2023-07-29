@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import ModalReport from './ModalReport'; // 모달 컴포넌트를 임포트합니다.
 
 const Report = () => {
     const [reportCount, setReportCount] = useState(0);
     const [reportedUsers, setReportedUsers] = useState([]);
     const [reportedUserFilter, setReportedUserFilter] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const fetchReportData = async () => {
         try {
@@ -42,6 +45,16 @@ const Report = () => {
         fetchReportedUser();
     };
 
+    const handleRowClick = (user) => {
+        setSelectedUser(user);
+        setIsModalOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsModalOpen(false);
+        setSelectedUser(null);
+    };
+
     return (
         <div>
             <h1>신고 내역</h1>
@@ -54,23 +67,31 @@ const Report = () => {
             <table>
                 <thead>
                 <tr>
+                    <th>번호</th>
                     <th>신고자</th>
                     <th>피신고자</th>
-                    <th>신고사유</th>
                     <th>신고일자</th>
                 </tr>
                 </thead>
                 <tbody>
                 {reportedUsers.map((user, index) => (
-                    <tr key={index}>
+                    <tr key={index} onClick={() => handleRowClick(user)}>
+                        <td>{user.rnum}</td>
                         <td>{user.unum}</td>
                         <td>{user.runum}</td>
-                        <td>{user.reason}</td>
                         <td>{user.rwriteday}</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
+            {isModalOpen && selectedUser && (
+                <ModalReport
+                    reporterNickname={selectedUser.unum}
+                    reportedNickname={selectedUser.runum}
+                    reportReason={selectedUser.reason}
+                    handleClose={handleClose}
+                />
+            )}
         </div>
     );
 };
