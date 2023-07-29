@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import './NoticeForm.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -9,9 +10,10 @@ function NoticeForm(props) {
     const [ncontent, setNcontent] = useState('');
     const [nphoto, setNphoto]=useState(null);
     const [ncate, setNcate]=useState('');
+    const [nwriteday , setNwriteday]=useState('');
+    const {nnum}=useParams();
     const navi = useNavigate();
     const url = process.env.REACT_APP_NOTICE;
-    
     
 
     const handleSelectChange = (e) => {
@@ -32,11 +34,32 @@ function NoticeForm(props) {
     };
 
     const submit=()=>{
-        axios.post('/admin/noticeWrite',{nsubject, ncontent, nphoto, ncate})
+        axios.post('/admin/noticeUpdate',{nsubject, ncontent, nphoto, ncate})
         .then(res=>{
             navi("/admin/noticelist")
         })
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log("nnum =" +nnum);
+                const response = await axios.get("/admin/noticeDetail?nnum"+nnum);
+                const data = response.data; // 서버로부터 받은 데이터
+
+                console.log("data = " +data);
+                setNsubject(data.nsubject);
+                setNphoto(data.nphoto);
+                setNcontent(data.ncontent);
+                setNcate(data.ncate);
+                setNwriteday(data.nwriteday);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchData();
+    }, [nnum]);
 
     return (
         <div className='nform_wrap'>
@@ -47,7 +70,7 @@ function NoticeForm(props) {
                     Notice    
             </div>
             <h5 style={{marginTop:'25px'}}>제목</h5>
-            <input className='nform_subject' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} />
+            <input className='nform_subject' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} value={nsubject} />
             
             <h5>카테고리</h5>
             <div className='nform_sel'>
@@ -60,14 +83,15 @@ function NoticeForm(props) {
             </div>
             
             <h5>사진</h5>
-            <input className='nform_file' type='file' onChange={onUploadEvent}/>
+            <input className='nform_file' type='file' onChange={onUploadEvent} value={nphoto}/>
 
             <h5>내용</h5>
             <div className='nform_txt'>
             
                 {nphoto != null ? <img alt='' src={`${url}${nphoto}`}/> : null}
                 <textarea  placeholder='내용' onChange={(e) => setNcontent(e.target.value)}> 
-            </textarea> 
+                {ncontent}
+                </textarea> 
             </div>
             
             <div>
