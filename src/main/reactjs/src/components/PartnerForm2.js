@@ -1,5 +1,5 @@
 import "./PartnerForm2.css";
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from "../image/xxx.svg";
 import Button from "@mui/material/Button";
 import {useState} from "react";
 const PartnerForm2 = (props) => {
@@ -9,6 +9,7 @@ const PartnerForm2 = (props) => {
     const [jp2gender, setJp2gender] = useState("");
     const [jp2age, setJp2age] = useState("");
     const [jp2tasu, setJp2tasu] = useState("");
+
 
     const genderSelectHandler = e => {
         setJp1gender(e.currentTarget.value);
@@ -33,18 +34,20 @@ const PartnerForm2 = (props) => {
     const onSubmitEvent =()=>{
         props.propFunction(jp1gender,jp1age,jp1tasu,jp2gender,jp2age,jp2tasu)
     }
+   
+    
     return (
         <form onSubmit={onSubmitEvent}>
         <div className="PF2partnerform2">
           
                 <div className="PF2detail-view">
                     <div className="PF2action-bar-contextual">
-                        <div className="PF2favorite">
-                            <CloseIcon color="white" className="PF2icon1"/>
+                        <div className="PTactions">
+                            <img className="PTclose-clear" alt="" src={CloseIcon} />
                         </div>
-                    </div>
-                    <div className="PF2title">동반자 정보 입력
-                    </div>
+                        
+                        <div className="PTtitle">동반자 정보 입력</div>
+                    </div>    
                 </div>
                 <div className="PF2partnerinfo">
                     <div className="PF2radio">

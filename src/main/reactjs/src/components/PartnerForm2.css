@@ -407,6 +407,34 @@ body {
     font-size: 1rem;
     color: #204337;
   }
+
+
+.PTclose-clear {
+    position: relative;
+    border-radius: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .PTactions,
+  .PTtitle {
+    position: absolute;
+  }
+  .PTactions {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .PTtitle {
+    bottom: 1rem;
+    left: 0.88rem;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+  }
+ 
   .PF2partnerform2 {
     position: fixed;
     top: 0;
