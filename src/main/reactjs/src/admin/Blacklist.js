@@ -61,7 +61,7 @@ function Blacklist(props) {
                     onChange={(e) => {
                         setKeyword(e.target.value);
                     }}/>
-                <button className="ULsearch btn btn-sm btn-outline-success" onClick={search}>검색</button>
+                <button className="ULsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
 
             <div className="ULtab">
                 <NavLink to={`/admin/userlist`} style={{color:'black'}}> 

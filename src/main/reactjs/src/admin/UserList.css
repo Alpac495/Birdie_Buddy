@@ -36,7 +36,7 @@ body {
     justify-content: center;
 }
 .uflframe {
-    width: calc(100% - 178px);
+    width: 50%;
     top: -0.06rem;
     right: 11.19rem;
     left: -0.06rem;
@@ -45,15 +45,14 @@ body {
     height: 3.25rem;
 }
 .uFLframe {
-    width: calc(100% - 180px);
+    width: 50%;
     top: 0;
     right: 0;
-    left: 11.25rem;
     background-color: #fff;
     height: 3.13rem;
 }
 .bflframe {
-    width: calc(100% - 178px);
+    width: 50%;
     top: -0.06rem;
     right: 11.19rem;
     left: -0.06rem;
@@ -62,10 +61,9 @@ body {
     height: 3.25rem;
 }
 .bFLframe {
-    width: calc(100% - 180px);
+    width: 50%;
     top: 0;
     right: 0;
-    left: 11.25rem;
     background-color: #ebebf0;
     height: 3.13rem;
 }
@@ -220,7 +218,6 @@ body {
 .ULsearch {
     position: absolute;
     overflow: hidden;
-    border: 1px solid black;
 }
 .usersearch {
     width: calc(100% - 105px);
@@ -232,13 +229,14 @@ body {
 }
 .ULsearch {
     top: 7rem;
-    left: 16.2rem;
+    right: 3rem;
     font-size: 1rem;
     letter-spacing: 0.15px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 37px;
+    width: 70px;
 }
 .adminuserlist{
     top: 14rem;
