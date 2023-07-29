@@ -9,6 +9,11 @@ function ModalReport({ reporterNickname, reportedNickname, reportReason, setRepo
 
     return (
         <div className="SGsingoform">
+            <div className="SGsingoformbar">
+                <div className="SGsingobar">
+                    <div className="SGtitle">신고하기</div>
+                </div>
+            </div>
             <div className="SGsingoinfo">
                 <div className="SGframe">
                     <div className="SGsingogroup">
@@ -38,15 +43,17 @@ function ModalReport({ reporterNickname, reportedNickname, reportReason, setRepo
                         </div>
                     </div>
                 </div>
+                
             </div>
-            <div className="SGpopupbtn">
-                <div className="SGflframe">
-                    <div className="SGdiv6" onClick={handleConfirm}>확인</div>
+                <div className="SGpopupbtn">
+                    <div className="SGflframe">
+                        <div className="SGdiv6" onClick={handleConfirm}>확인</div>
+                    </div>
+                    <div className="SGframe3">
+                        <div className="SGdiv6" onClick={handleClose}>취소</div>
+                    </div>
                 </div>
-                <div className="SGframe3">
-                    <div className="SGdiv6" onClick={handleClose}>취소</div>
-                </div>
-            </div>
+            
         </div>
     );
 }
