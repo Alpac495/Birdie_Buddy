@@ -9,8 +9,8 @@ body {
     left: calc(50% - 37px);
     letter-spacing: 0.15px;
     font-weight: 500;
-  }
-  .SGsingobar {
+}
+.SGsingobar {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -20,17 +20,17 @@ body {
     left: 0;
     background-color: #0b4648;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
-  }
-  .SGsingoformbar {
+}
+.SGsingoformbar {
     border-radius: 2px;
     width: 22.5rem;
     height: 3.5rem;
     font-size: 1.25rem;
     font-family: Roboto;
-  }
-  .SGdiv,
-  .SGdiv1,
-  .SGsingoformbar {
+}
+.SGdiv,
+.SGdiv1,
+.SGsingoformbar {
     position: relative;
   }
   .SGdiv {
@@ -41,8 +41,8 @@ body {
     flex: 1;
     line-height: 1.5rem;
     opacity: 0.5;
-  }
-  .SGtext-field {
+}
+.SGtext-field {
     border-radius: 3px;
     background-color: #fff;
     border: 2px solid #d9d9d9;
@@ -52,39 +52,39 @@ body {
     align-items: center;
     justify-content: flex-start;
     color: #000;
-  }
-  .SGframe1,
-  .SGtext-field {
+}
+.SGframe1,
+.SGtext-field {
     align-self: stretch;
     flex-direction: row;
-  }
-  .SGframe,
-  .SGframe1,
-  .SGsingogroup {
+}
+.SGframe,
+.SGframe1,
+.SGsingogroup {
     overflow: hidden;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-  }
-  .SGsingogroup {
+}
+.SGsingogroup {
     flex: 1;
     flex-direction: column;
     gap: 0.5rem;
-  }
-  .SGframe {
+}
+.SGframe {
     position: absolute;
     top: 0;
     left: calc(50% - 158.5px);
     width: 19.81rem;
     flex-direction: row;
-  }
-  .SGsingoinfo {
+}
+.SGsingoinfo {
     position: relative;
     width: 19.81rem;
     height: 15.81rem;
     color: #52525c;
-  }
-  .SGdiv6 {
+}
+.SGdiv6 {
     flex: 1;
     position: relative;
     letter-spacing: -0.01em;
@@ -121,14 +121,14 @@ body {
     left: 50%;
     background-color: #fff;
     color: #000;
-  }
-  .SGpopupbtn {
+}
+.SGpopupbtn {
     position: relative;
     width: 22.5rem;
     height: 3.13rem;
     text-align: center;
-  }
-  .SGsingoform {
+}
+.SGsingoform {
     position: relative;
     border-radius: 2px;
     background-color: #fff;
@@ -148,6 +148,7 @@ body {
     color: #fff;
     font-family: Inter;
     animation: slideIn 0.3s ease-in-out;
+}
   }
   @keyframes slideIn {
     0% {
