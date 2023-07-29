@@ -531,12 +531,12 @@ function MyHugiRowList(props) {
                     </div>
                 </DialogTitle>
                 <DialogContent style={{width: '100%', overflowX: 'hidden'}}>
+                    <div>
                     <img className="HG_list_image" src={`${url}${hphoto}`} alt="" value={hphoto}/>
+                    </div>
                     <DialogContentText id="alert-dialog-description">
-                        <hr/>
                         <div style={{width: '100%'}}>{hcontent}</div>
                     </DialogContentText>
-                    <hr/>
                     {unum && (
                         <div className="input-group">
               <textarea
@@ -560,10 +560,10 @@ function MyHugiRowList(props) {
 
                     {commentError && (
                         <div>
-                            <p className="HG_CommentAlert">댓글을 입력해주세요.</p>
+                            <pre className="HG_CommentAlert">댓글을 입력해주세요.</pre>
                         </div>
                     )}
-                    <pre className="HG_preComment">
+                    <div className="HG_preComment">
   {comments && comments.length > 0 ? (
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
@@ -609,18 +609,18 @@ function MyHugiRowList(props) {
                           className="HG_button_Reply"
                           onClick={() => submitReply(comment)}
                       >
-                          대댓글 작성
+                          댓글 작성
                       </button>
                   </div>
               )}
               {replyError && comment.rhnum === errorCommentId && (
                   <div>
-                      <p className="HG_ReplyAlert">대댓글을 입력해주세요.</p>
+                      <pre className="HG_ReplyAlert">댓글을 입력해주세요.</pre>
                   </div>
               )}
               {comment.comments && comment.comments.length > 0 && (
                   <details className="HG_details_Reply">
-                      <summary>댓글보기</summary>
+                      <summary style={{fontSize:'12px'}}>댓글보기</summary>
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="HG_Comment_Reply_List">
@@ -649,9 +649,9 @@ function MyHugiRowList(props) {
           </div>
       ))
   ) : (
-      <p className="HG_NoComments">댓글이 없습니다.</p>
+      <pre className="HG_NoComments">댓글이 없습니다.</pre>
   )}
-</pre>
+</div>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} autoFocus>
