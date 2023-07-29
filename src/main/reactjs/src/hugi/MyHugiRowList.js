@@ -23,10 +23,12 @@ function MyHugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
     const url = process.env.REACT_APP_HUGI;
+    const url2=process.env.REACT_APP_HUGI2;
+    const url3= process.env.REACT_APP_HUGI_325;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
-    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
+
     const navi = useNavigate();
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
@@ -65,9 +67,11 @@ function MyHugiRowList(props) {
             });
         }
     };
+
+    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
     // 클릭 이벤트 핸들러
     const handleClickShare = () => {
-        const longUrl = `http://devster.kr/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
         generateShortURL(longUrl);
     };
     const generateShortURL  = (longUrl) => {
@@ -489,7 +493,7 @@ function MyHugiRowList(props) {
             <span className="HG_spanWriteday">{hwriteday}</span>
             <span>{props.hlike}</span>
             <div className="HG_list_div_image">
-            <img className="HG_list_image" src={`${url}${hphoto}`} alt="" value={hphoto} onClick={handleClickDetail}/>
+            <img className="HG_list_image" src={`${url2}${hphoto}${url3}`} alt="" value={hphoto} onClick={handleClickDetail}/>
             </div>
             <h6 className="HG_list_text">
                 &nbsp;
@@ -531,12 +535,12 @@ function MyHugiRowList(props) {
                     </div>
                 </DialogTitle>
                 <DialogContent style={{width: '100%', overflowX: 'hidden'}}>
-                    <img className="HG_list_image" src={`${url}${hphoto}`} alt="" value={hphoto}/>
-                    <DialogContentText id="alert-dialog-description">
-                        <hr/>
-                        <div style={{width: '100%'}}>{hcontent}</div>
+                    <div style={{textAlign:'center'}}>
+                    <img className="HG_list_image" src={`${url2}${hphoto}${url3}`} alt="" value={hphoto}/>
+                    </div>
+                    <DialogContentText id="alert-dialog-description" style={{width:'100%',height:'100%',fontSize:'15px',padding:'10px',margin:'auto'}}>
+                        {hcontent}
                     </DialogContentText>
-                    <hr/>
                     {unum && (
                         <div className="input-group">
               <textarea
@@ -560,10 +564,10 @@ function MyHugiRowList(props) {
 
                     {commentError && (
                         <div>
-                            <p className="HG_CommentAlert">댓글을 입력해주세요.</p>
+                            <pre className="HG_CommentAlert">댓글을 입력해주세요.</pre>
                         </div>
                     )}
-                    <pre className="HG_preComment">
+                    <div className="HG_preComment">
   {comments && comments.length > 0 ? (
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
@@ -609,18 +613,18 @@ function MyHugiRowList(props) {
                           className="HG_button_Reply"
                           onClick={() => submitReply(comment)}
                       >
-                          대댓글 작성
+                          댓글 작성
                       </button>
                   </div>
               )}
               {replyError && comment.rhnum === errorCommentId && (
                   <div>
-                      <p className="HG_ReplyAlert">대댓글을 입력해주세요.</p>
+                      <pre className="HG_ReplyAlert">댓글을 입력해주세요.</pre>
                   </div>
               )}
               {comment.comments && comment.comments.length > 0 && (
                   <details className="HG_details_Reply">
-                      <summary>댓글보기</summary>
+                      <summary style={{fontSize:'12px'}}>댓글보기</summary>
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="HG_Comment_Reply_List">
@@ -649,9 +653,9 @@ function MyHugiRowList(props) {
           </div>
       ))
   ) : (
-      <p className="HG_NoComments">댓글이 없습니다.</p>
+      <pre className="HG_NoComments">댓글이 없습니다.</pre>
   )}
-</pre>
+</div>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} autoFocus>
