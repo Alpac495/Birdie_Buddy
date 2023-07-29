@@ -19,6 +19,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 import Profile from "../image/user60.png";
+import KakaoImg from "../image/kakao.svg";
 function MyHugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
@@ -68,10 +69,10 @@ function MyHugiRowList(props) {
         }
     };
 
-    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
+    const apiURL = 'http://223.130.137.128/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
     // 클릭 이벤트 핸들러
     const handleClickShare = () => {
-        const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        const longUrl = `http://223.130.137.128`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
         generateShortURL(longUrl);
     };
     const generateShortURL  = (longUrl) => {
@@ -92,6 +93,7 @@ function MyHugiRowList(props) {
                 setShortenedURL(generatedURL);
                 shareShortenedURL(generatedURL); // 단축 URL을 생성하고 나서 SNS 공유 함수 호출
                 copyToClipboard(generatedURL); // 클립보드에 복사
+
             })
             .catch((error) => {
                 // console.error('Error generating shortened URL:', error);
@@ -131,7 +133,47 @@ function MyHugiRowList(props) {
                 // console.error('클립보드 복사 중 오류 발생:', error);
             });
     };
+    const { Kakao } = window;
+    // 배포한 자신의 사이트
+    const realUrl = `http://223.130.137.128/hugi/detail/${hnum}`;
+    // 로컬 주소 (localhost 3000 같은거)
+    const resultUrl = `http://localhost:3000/hugi/detail/${hnum}`;
 
+    // 재랜더링시에 실행되게 해준다.
+    useEffect(()=>{
+        // init 해주기 전에 clean up 을 해준다.
+        Kakao.cleanup();
+        // 자신의 js 키를 넣어준다.
+        Kakao.init('82d531473f9f3c5fc093e4d7e3225bc7');
+        // 잘 적용되면 true 를 뱉는다.
+        console.log(Kakao.isInitialized());
+    },[]);
+
+    const shareKakao = () =>{
+
+        Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '버디버디 라운딩 후기',
+                description: '골프,조인,양도,후기,랭킹,채팅',
+                imageUrl:
+                    `${url2}${hphoto}${url3}`,
+                link: {
+                    webUrl:resultUrl,
+                    mobileWebUrl: resultUrl,
+                },
+            },
+            buttons: [
+                {
+                    title: '후기 보러가기',
+                    link: {
+                        webUrl:resultUrl,
+                        mobileWebUrl:resultUrl,
+                    },
+                },
+            ],
+        });
+    }
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
@@ -164,11 +206,11 @@ function MyHugiRowList(props) {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleClickAvatar  = (funum) =>{
+    const handleClickMyAvatar  = () =>{
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
         } else {
-            navi(`/friend/detail/${funum}`);
+            navi(`/mypage/mypage/${unum}`);
         }
     };
     const handleClickLikeOn = () => {
@@ -483,11 +525,11 @@ function MyHugiRowList(props) {
         <div className="HG_list">
             <div className="HG_list_header">
                 {props.uphoto !== null ? (
-                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,props.unum)}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickMyAvatar.bind(null,props.unum)}/>
                 ):(
-                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,props.unum)}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickMyAvatar.bind(null,props.unum)}/>
                 )}
-                <span className="HG_spanName" onClick={handleClickAvatar.bind(null,props.unum)}>{postUserNickname}</span>
+                <span className="HG_spanName" onClick={handleClickMyAvatar.bind(null,props.unum)}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
@@ -514,6 +556,12 @@ function MyHugiRowList(props) {
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
+                <div className="HG_KakaoIcons" >
+                    <img src={KakaoImg} alt={''}
+                         className="HG_KakaoImg"
+                         onClick={() => {shareKakao()}}>
+                    </img>
+                </div>
             </div>
 
             <Dialog
@@ -525,11 +573,11 @@ function MyHugiRowList(props) {
                 <DialogTitle id="alert-dialog-title">
                     <div className="HG_Dialog_Title">
                         {props.uphoto !== null ? (
-                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,props.unum)}/>
+                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickMyAvatar.bind(null,props.unum)}/>
                         ):(
-                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={Profile}  onClick={handleClickAvatar.bind(null,props.unum)}/>
+                        <Avatar className="HG_list_avatar_Comment1" alt={''} src={Profile}  onClick={handleClickMyAvatar.bind(null,props.unum)}/>
                         )}
-                        <span className="HG_spanCommentList" onClick={handleClickAvatar.bind(null,props.unum)}>
+                        <span className="HG_spanCommentList" onClick={handleClickMyAvatar.bind(null,props.unum)}>
                         {postUserNickname}
                       </span>
                     </div>
@@ -572,11 +620,11 @@ function MyHugiRowList(props) {
       comments.map((comment) => (
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div className="HG_Comments">
-                  <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}</span>
+                  <span className="HG_Commentname" onClick={handleClickMyAvatar.bind(null,comment.unum)}>{comment.unickname}</span>
                   {comment.uphoto !== null ? (
-                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,comment.unum)}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`} onClick={handleClickMyAvatar.bind(null,comment.unum)}/>
                   ):(
-                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,comment.unum)}/>
+                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickMyAvatar.bind(null,comment.unum)}/>
                   )}
                   <pre className="HG_preRhcontent">{comment.rhcontent}</pre>
                   <br/>
@@ -629,11 +677,11 @@ function MyHugiRowList(props) {
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="HG_Comment_Reply_List">
                                   {reply.uphoto !== null ? (
-                                      <Avatar className="HG_list_avatar_Reply" alt={''}  src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,reply.unum)}/>
+                                      <Avatar className="HG_list_avatar_Reply" alt={''}  src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickMyAvatar.bind(null,reply.unum)}/>
                                   ):(
-                                      <Avatar className="HG_list_avatar_Reply" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,reply.unum)}/>
+                                      <Avatar className="HG_list_avatar_Reply" alt={''} src={Profile} onClick={handleClickMyAvatar.bind(null,reply.unum)}/>
                                   )}
-                                  <b className="HG_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
+                                  <b className="HG_ReplyNickname" onClick={handleClickMyAvatar.bind(null,reply.unum)}>
                                       {reply.unickname}
                                   </b>
                                   &nbsp;

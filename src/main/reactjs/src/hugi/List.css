@@ -390,5 +390,21 @@
     text-align: center;
     margin-top: 10px;
 }
+.HG_KakaoImg{
+    padding:8px 8px;
+}
+.HG_KakaoIcons{
+    cursor: pointer;
+    position: relative;
+    right: 10px;
+    bottom: 5px;
+    background-color:#F7E600;
+    width:35px;
+    height:35px;
+    border-radius:100%;
+    text-align:center;
+    float: right;
+
+}
 
 
