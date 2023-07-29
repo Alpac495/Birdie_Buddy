@@ -11,6 +11,18 @@ body {
     letter-spacing: -0.01em;
     font-weight: 500;
 }
+.uflframe,
+.uFLframe {
+    position: absolute;
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.63rem 0.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
 .bflframe,
 .bFLframe {
     position: absolute;
@@ -22,6 +34,23 @@ body {
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
+}
+.uflframe {
+    width: calc(100% - 178px);
+    top: -0.06rem;
+    right: 11.19rem;
+    left: -0.06rem;
+    background-color: #ebebf0;
+    border: 1px solid transparent;
+    height: 3.25rem;
+}
+.uFLframe {
+    width: calc(100% - 180px);
+    top: 0;
+    right: 0;
+    left: 11.25rem;
+    background-color: #fff;
+    height: 3.13rem;
 }
 .bflframe {
     width: calc(100% - 178px);

@@ -103,21 +103,16 @@ const MypageSetting = () => {
                 </div>
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">
-                        <div className="MPSlabel">로그아웃</div>
+                        <div className="MPSlabel" onClick={()=>
+                            axios.get("/login/logout")
+                            .then(res=>{
+                                navi('/')
+                            })
+                            }>로그아웃</div>
                     </div>
                 </div>
 
             </div>
-
-            <img className="vector-icon" alt="" src={MoveIcon} />
-            <img className="vector-icon1" alt="" src={MoveIcon} />
-            <img className="vector-icon2" alt="" src={MoveIcon} />
-            <img className="vector-icon3" alt="" src={MoveIcon} />
-            <img className="vector-icon4" alt="" src={MoveIcon} />
-            <img className="vector-icon5" alt="" src={MoveIcon} />
-            <img className="vector-icon6" alt="" src={MoveIcon} />
-            <img className="vector-icon7" alt="" src={MoveIcon} />
-
         </div>
     );
 };
