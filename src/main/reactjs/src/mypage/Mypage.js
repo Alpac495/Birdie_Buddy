@@ -2,7 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
-import './Mypage.css'
+import './Mypage.css';
+
 import EditIcon from '@mui/icons-material/Edit';
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";

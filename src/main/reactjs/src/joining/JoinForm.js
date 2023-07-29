@@ -244,6 +244,7 @@ const JoinForm = (props) => {
                     overlayColor="rgba(113, 113, 113, 0.3)"
                     placement="Centered"
                     onOutsideClick={closePartnerForm2}
+                    
                 >
                     <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo}/>
                 </PortalPopup>
