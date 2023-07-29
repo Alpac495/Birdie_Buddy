@@ -3,8 +3,11 @@
     <select id="getAllReport" resultType="ReportDto">
         select * from report
     </select>
-    <select id="getReport" parameterType="int" resultType="ReportDto">
-        select * from report where runum=#{runum}
+    <select id="getReport" parameterType="map" resultType="ReportDto">
+        SELECT * FROM report
+        WHERE runum = #{runum}
+        ORDER BY rnum DESC
+            LIMIT #{limit} OFFSET #{offset}
     </select>
     <select id="getTotalCount" resultType="int">
         select count(*) from report
@@ -16,4 +19,7 @@
     <select id="getCountByRunum" parameterType="int" resultType="int">
         select count(*) from report where runum=#{runum}
     </select>
+    <update id="blacklistUser" parameterType="int">
+        UPDATE users SET blacklist=1 WHERE unum = #{unum}
+    </update>
 </mapper>

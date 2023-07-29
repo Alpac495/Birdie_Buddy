@@ -30,8 +30,8 @@ public class ReportController {
     }
 
     @GetMapping("/getreport")
-    public List<ReportDto> getReport(@RequestParam int runum){
-        return reportService.getReport(runum);
+    public List<ReportDto> getReport(@RequestParam int runum, @RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "0") int offset){
+        return reportService.getReport(runum, limit, offset);
     }
 
     @GetMapping("/getcount")
@@ -45,4 +45,7 @@ public class ReportController {
         reportService.newReport(rdto);
     }
 
+    public void blacklistUser(@RequestParam int unum){
+        reportService.blacklistUser(unum);
+    }
 }
