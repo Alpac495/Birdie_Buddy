@@ -19,6 +19,8 @@ import Footer from "../footer/Footer";
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
     const url = process.env.REACT_APP_HUGI;
+    const url2=process.env.REACT_APP_HUGI2;
+    const url3= process.env.REACT_APP_HUGI_325;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
@@ -119,7 +121,7 @@ function HugiDetail(props) {
     };
     // 클릭 이벤트 핸들러
     const handleClickShare = () => {
-        const longUrl = `http://devster.kr/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
         generateShortURL(longUrl);
     };
     const handleSnackbarClose = () => {
@@ -460,7 +462,7 @@ function HugiDetail(props) {
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
             <div style={{textAlign:"center"}}>
-            <img className="HG_list_detailimage" src={`${url}${hphoto}`} alt="" value={hphoto}/>
+            <img className="HG_list_detailimage" src={`${url2}${hphoto}${url3}`} alt="" value={hphoto}/>
             </div>
             <h6 className="HG_list_text">
                 &nbsp;
@@ -475,13 +477,14 @@ function HugiDetail(props) {
                     <FavoriteBorder onClick={handleClickLikeOn} className="HG_Icons" style={{color: "red"}}/>
                 ))}
                 <ShareIcon onClick={handleClickShare} className="HG_Icons"/>
-                <ListIcon onClick={handleClickList} className="HG_Icons"/>
-                {unum === userNum  && (
-                    <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
-                )}
                 {unum === userNum && (
                     <EditIcon onClick={handleClickModify} className="HG_Icons"/>
                 )}
+                {unum === userNum  && (
+                    <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
+                )}
+                <ListIcon onClick={handleClickList} className="HG_Icons"/>
+
             </div>
 
             {unumchk && parseInt(unum) !== 0 && (
@@ -521,7 +524,7 @@ function HugiDetail(props) {
                   ):(
                       <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`}  onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   )}
-                  <pre className="HG_preRhcontent">{comment.rhcontent}</pre>
+                  <pre className="HG_detail_preRhcontent">{comment.rhcontent}</pre>
                   <br/>
                   <span className="HG_spanRhwriteday">{comment.rhwriteday}</span>
                   {unumchk && parseInt(unum) !== 0 && (
