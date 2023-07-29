@@ -31,5 +31,7 @@ public interface AdminMapper {
     public List<UserDto> getBlackUserList(@Param("offset") int offset, @Param("size") int size);
 
     public List<UserDto> getBlackUserListScrollSearch(@Param("keyword") String keyword);
-
+    
+    public void deleteNotice(int nnum);
+    public void updateNotice(int nnum);
 }

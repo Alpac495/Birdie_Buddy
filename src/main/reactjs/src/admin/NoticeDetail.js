@@ -1,15 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Header from "../header/Header";
 import "./NoticeDetail.css";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import EditIcon from '@mui/icons-material/Edit';
+import Footer from "../footer/Footer";
 
 function NoticeDetail(props) {
     const [data,setData]=useState([]);
     const {nnum}=useParams();
     const url = process.env.REACT_APP_NOTICE;
     const [unum, setUnum] = useState(0);
+    const navi = useNavigate();
 
     const unumchk=()=>{
         axios.get("/login/unumChk")
@@ -25,6 +28,18 @@ function NoticeDetail(props) {
             setData(res.data);
         })
     }
+    const handleDeleteClick=()=>{
+        axios.get("/admin/delete?nnum="+nnum)
+        .then(res=>{
+            alert("게시글이 정상적으로 삭제되었습니다.");
+            navi("/admin/noticeList");
+        })
+    }
+
+    const headingEditForm=()=>{
+        navi(`/admin/NoticeEditForm/${nnum}`);
+    }
+
     useEffect(()=>{
         unumchk();
         noticeDetail();
@@ -61,12 +76,19 @@ function NoticeDetail(props) {
                     unum === 1 ? 
                     (
                         <div className='nformBtn_wrap'>
-                        <DeleteOutlineOutlinedIcon style={{ color: '#1F4337' }} />
+                            <DeleteOutlineOutlinedIcon 
+                            style={{ color: '#1F4337' }} 
+                            onClick={handleDeleteClick}
+                            />
+                            <EditIcon
+                            style={{ color: '#1F4337' }} 
+                            onClick={headingEditForm}
+                            />
                         </div>
                     ) : null
                 }
             </div>
-
+                <Footer/>
         </div>
     );
 }
