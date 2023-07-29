@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+body {
+    margin: 0;
+    line-height: normal;
+}
+.SDtitle {
+    position: absolute;
+    top: 1rem;
+    left: 4rem;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+}
+.SDclose-clear {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    border-radius: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.SDsingodetailbar {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0b4648;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
+    width: 22.5rem;
+}
+.SDsingo {
+    border-radius: 2px;
+    width: 22.5rem;
+    height: 3.5rem;
+}
+.SDdiv,
+.SDdiv1,
+.SDsingo {
+    position: relative;
+}
+.SDdiv {
+    align-self: stretch;
+    line-height: 150%;
+}
+.SDdiv1 {
+    flex: 1;
+    line-height: 1.5rem;
+    opacity: 0.5;
+}
+.SDtext-field {
+    border-radius: 3px;
+    background-color: #fff;
+    border: 2px solid #d9d9d9;
+    overflow: hidden;
+    display: flex;
+    padding: 0.75rem 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    color: #000;
+}
+.SDframe1,
+.SDtext-field {
+    align-self: stretch;
+    flex-direction: row;
+}
+.SDframe,
+.SDframe1,
+.SDsingogroup {
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.SDsingogroup {
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.SDframe {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 158.5px);
+    width: 19.81rem;
+    flex-direction: row;
+}
+.SDsingoinfo {
+    position: relative;
+    width: 19.81rem;
+    height: 17.31rem;
+    font-size: 0.94rem;
+    color: #52525c;
+    font-family: Inter;
+}
+.SDsingodetail {
+    position: relative;
+    border-radius: 2px;
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem 1.88rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.94rem;
+    text-align: left;
+    font-size: 1.25rem;
+    color: #fff;
+    font-family: Roboto;
+}
+.SGframe3 {
+    height: 100%;
+    width: 50%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    background-color: #fff;
+    color: #000;
+}
+.SGpopupbtn {
+    position: relative;
+    width: 22.5rem;
+    height: 3.13rem;
+    text-align: center;
+}

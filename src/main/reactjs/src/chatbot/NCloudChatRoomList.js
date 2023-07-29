@@ -125,7 +125,7 @@ const NCloudChatRoomList = () => {
       <div className="CLstacked-content">
         <div className="CLnewlogo" ><Header/></div>
         <div className="CLsubtitle">
-          <div className="CLtitle">채팅목록 <button type={"button"} onClick={handleCreateChannel} style={{marginLeft:'160px',border:'1px solid black'}}>관리자와의 채팅</button></div>
+          <div className="CLtitle">채팅목록 <button className='CDcta-button-3' type={"button"}>관리자와의 채팅</button></div>
         </div>
         {channels.map &&
             channels.map((channel) => (

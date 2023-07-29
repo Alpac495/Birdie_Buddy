@@ -84,7 +84,7 @@ body {
   position: relative;
   background-color: #f8f5f0;
   width: 100%;
-  height: 45.88rem;
+  height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -97,4 +97,18 @@ body {
   font-size: 0.88rem;
   color: #204337;
   font-family: Roboto;
+}
+.CDcta-button-3 {
+  position: absolute;
+  width: 105px;  
+  height: 30px;
+  top: 0rem;
+  left: 14.8rem;
+  border-radius: 3px;
+  background-color: #48685e;
+  font-size: 12px;
+  text-align: center;
+  color: #f8f5f0;
+  border: 1px solid #48685e;
+  cursor: pointer;
 }

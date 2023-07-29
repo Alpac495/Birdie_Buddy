@@ -1,12 +1,21 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Header from "../header/Header";
 import "./NoticeList.css";
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 
 function NoticeList(props) {
     const navi = useNavigate();
     const [data, setData] = useState([]);
+    const [unum, setUnum] = useState(0);
+
+    const unumchk=()=>{
+        axios.get("/login/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+        });
+    }
 
     const noticeList = () => {
         axios.get("/admin/noticeList")
@@ -44,6 +53,7 @@ function NoticeList(props) {
     };
 
     useEffect(() => {
+        unumchk();
         noticeList();
     }, []);
 
@@ -56,31 +66,37 @@ function NoticeList(props) {
                     Notice    
             </div>
             <div className='notice_list'>
-                
-                {data && 
-                    data.map((item, idx) => (
-                        <div key={idx} className='notice_bucket'>
-                            <div className='notice_head'>
-                                <div className='notice_writeday'>{formatDate(item.nwriteday)}</div>
-                                <div className='notice_cate'>
-                                    {item.ncate}
-                                </div>
-                                <div
-                                    className='notice_subject'
-                                    onClick={() => noticeDetail(item.nnum)}
-                                >
-                                    {item.nsubject}
-                                </div>
-                            </div>
-                            <div className='notice_foot'>
-                                
-                            </div>
+                <table className='notice_table'>
+                    <thead>
+                        {
+                            unum === 1?
+                            (
+                                <Link>
+                                    <button className='notice_writeBtn' type='button' style={{textAlign:'center'}}> <CreateOutlinedIcon style={{color:'white'}}/> </button>
+                                </Link>
+                            ):null
+                        }
+                    <tr className='noticeList_head'>
+                        <th style={{ textAlign: 'left' }}>작성일</th>
+                        <th style={{ textAlign: 'left' }}>카테고리</th>
+                        <th style={{ textAlign: 'left' }}>제목</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {data && 
+                        data.map((item, idx) => (
+                        <tr key={idx} onClick={() => noticeDetail(item.nnum)}>
+                            <td style={{ textAlign: 'left', width:'80px' }}>{formatDate(item.nwriteday)}</td>
+                            <td style={{ textAlign: 'left' }}>{item.ncate}</td>
+                            <td style={{ textAlign: 'left' }}>{item.nsubject}</td>
+                        </tr>
+                        ))
+                    }
+                    </tbody>
+                </table>
+                </div>
                         </div>
-                    ))
+                    );
                 }
-            </div>
-        </div>
-    );
-}
 
 export default NoticeList;
