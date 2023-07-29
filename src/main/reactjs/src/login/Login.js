@@ -103,7 +103,7 @@ function Login(props) {
                         <Switch ref={emailRef} onChange={toggle} />
                 }
             /><div className="LGdiv">아이디 저장</div>
-            <div className="LGwrapper">
+            <div className="LGwrapper" onClick={ouSubmitEvent}>
                 <div onClick={ouSubmitEvent} className="LGdiv1">로그인</div>
             </div>
             <div className="LGlogin-inner">
@@ -113,7 +113,7 @@ function Login(props) {
                     <img className="LGicon-naver" alt="" src={navericon} />
                 </div>
             </div>
-            <img className="LGicon" alt="" src={mainlogo} onClick={()=>navi('/')}/>
+            <img className="LGicon" alt="" src={mainlogo} onClick={() => navi('/')} />
             <div className="LGgroup">
                 <div onClick={searchPass} className="LGdiv3">비밀번호 찾기</div>
                 <div onClick={searchID} className="LGdiv4">아이디 찾기</div>
