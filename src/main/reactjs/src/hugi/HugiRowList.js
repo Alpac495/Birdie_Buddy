@@ -24,6 +24,8 @@ function HugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
     const URL = process.env.REACT_APP_HUGI;
+    const URL2=process.env.REACT_APP_HUGI2;
+    const URL3 = process.env.REACT_APP_HUGI_325;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
@@ -515,7 +517,7 @@ function HugiRowList(props) {
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
             <div className="HG_list_div_image">
-               <img src={`${URL}${hphoto}`} alt="" className ="HG_list_image" value={hphoto} onClick={handleClickDetail}/>
+               <img src={`${URL2}${hphoto}${URL3}`} alt="" className ="HG_list_image" value={hphoto} onClick={handleClickDetail}/>
             </div>
                 <h6 className="HG_list_text">
                 &nbsp;
@@ -558,11 +560,11 @@ function HugiRowList(props) {
                     </div>
                 </DialogTitle>
                 <DialogContent style={{width: '100%', overflowX: 'hidden'}}>
-                    <div>
-                    <img className="HG_list_image" src={`${URL}${hphoto}`} alt="" value={hphoto}/>
+                    <div style={{textAlign:'center'}}>
+                    <img className="HG_list_image" src={`${URL2}${hphoto}${URL3}`} alt="" value={hphoto}/>
                     </div>
-                        <DialogContentText id="alert-dialog-description">
-                        <div style={{width: '100%'}}>{hcontent}</div>
+                   <DialogContentText id="alert-dialog-description" style={{width:'100%',height:'100%',fontSize:'15px',padding:'10px',margin:'auto'}}>
+                        {hcontent}
                     </DialogContentText>
                     {unum && (
                         <div className="input-group">
