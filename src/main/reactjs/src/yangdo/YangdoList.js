@@ -107,7 +107,7 @@ function YangdoList(props) {
           </div>
           <div className="Ylgroup-div">
             <div className="Ylrectangle-div" />
-            <img className="Ylgroup-icon" alt="" src={profile} />
+            <img className="Ylgroup-icon" alt="" src={''} />
             <div className="Yldiv4">닉네임</div>
             <div className="Yldiv5">{`작성일 : `}</div>
           </div>
