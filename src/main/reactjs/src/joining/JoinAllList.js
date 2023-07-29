@@ -7,6 +7,7 @@ import {NavLink} from "react-router-dom";
 import Profile from "../image/user60.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Footer from "../footer/Footer";
+import _ from "lodash"
 
 
 
@@ -34,7 +35,8 @@ const JoinAllList = () => {
         const url = `/joining/list?page=${page}&size=10`;
         Axios.get(url)
             .then(res => {
-                setData((prevItems) => [...prevItems, ...res.data]);
+                const newData = _.uniqBy([...data, ...res.data], 'jnum');
+                setData(newData);
                 setPage((prevPage) => prevPage + 1);
                 setLoading(false);
                 // console.log(res.data);
@@ -82,7 +84,9 @@ const JoinAllList = () => {
     const joinformClick = () =>{
         window.location.replace(`/joining/form`)
     }
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     return (
         <div className="JEjoinlistreact">
 
@@ -137,7 +141,9 @@ const JoinAllList = () => {
                                 ) : (
                                     null
                                 )}
-                                endMessage={<Footer />} // Display Footer when the end is reached
+                                endMessage={<div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}}  onClick={scrollToTop}>
+                                    Scroll to Top
+                                </div>} // Display Footer when the end is reached
                             >
                             <div className="JEjlist-wrapper">
                                 {
@@ -186,10 +192,11 @@ const JoinAllList = () => {
                                             }</NavLink>
                                     )}
                             </div>
-                                {/* {data.length > 0 && !loading && (
-                                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                                    <Footer style={{height:"100%"}}/>
-                                )} */}
+                                {data.length > 0 && !loading && (
+                                    <div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}} onClick={scrollToTop}>
+                                        Scroll to Top
+                                    </div>
+                                )}
                             </InfiniteScroll>
                         </div>
                     </div>

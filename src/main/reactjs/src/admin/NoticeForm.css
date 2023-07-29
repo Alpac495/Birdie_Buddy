@@ -32,13 +32,21 @@
     height: 30px;
     border: none;
 }
+.nform_file{
+    width: 75%;
+    margin: 0 auto;
+}
+input[type='file']{
+    background-color: white;
+    border-radius: 4px;
+}
 .nform_txt{
     width: 75%;
     height: 300px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    
+    background-color: white;
     
 }
 .nform_txt img{

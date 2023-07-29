@@ -1,3 +1,4 @@
+
 .PFicon {
     position: absolute;
     height: 60%;
@@ -231,9 +232,8 @@
 }
 .PFpartnerform {
     position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
     border-radius: 2px;
     border: 1px solid #e2e2e2;
     height: 27.5rem;
@@ -241,31 +241,24 @@
     padding: 0 1.5rem 1.5rem;
     justify-content: flex-start;
     gap: 0.94rem;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 27rem;
     text-align: left;
     font-size: 1.25rem;
     color: #204337;
     font-family: Roboto;
-    animation: slideUp 0.5s ease-out;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+  transform: translateY(-100%);
+  }
+  to {
+  transform: translateY(0);
+  }
 }
 
 
-@keyframes slideUp {
-    from {
-      transform: translateY(100%); /* Start the modal below the screen */
-    }
-    to {
-      transform: translateY(0); /* End the modal at its original position */
-    }
-  }
 
-/* Fix horizontal position */
-@media (max-width: 360px) {
-    .PFpartnerform {
-      left: 10px;
-      right: 10px;
-      transform: translateX(0);
-      max-width: calc(100% - 20px);
-    }
-  }
+

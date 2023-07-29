@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import "./UserList.css";
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Profile from "../image/user60.png";
 import Header from '../header/Header';
+import _ from "lodash"
 function UserList(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [searchTerm, setSearchTerm] = useState("");    
@@ -19,9 +20,8 @@ function UserList(props) {
                 Axios
                     .get(`/admin/getuserlist?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
-                        setItems((prevItems) => [...prevItems, ...res.data]);
-                        console.log(items);
-                        console.log(res.data);
+                        const newData = _.uniqBy([...items, ...res.data], 'unum');
+                        setItems(newData);
                         setPage((prevPage) => prevPage + 1);
                         setLoading(false);
                     })
@@ -51,7 +51,11 @@ function UserList(props) {
             });
     }
 
+    const navigate = useNavigate();
 
+    const handleReportCheckClick = (unum) => {
+        navigate(`/admin/report/${unum}`);
+    };
 
     return (
         <div className="alluserlist">
@@ -105,8 +109,7 @@ function UserList(props) {
 
                                     <div className="ULrectangle-parent">
                                         <div className="ULgroup-child" />
-                                            <div className="ULdiv4" onClick={(e)=>addBlackList(item.unum)}>차단하기</div>                                        
-                                    </div>
+                                        <div className="ULdiv4" onClick={() => handleReportCheckClick(item.unum)}>신고 내역 확인</div>                                    </div>
                                 </div>
                         </div>
                     </div>

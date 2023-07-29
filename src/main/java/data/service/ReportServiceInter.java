@@ -9,10 +9,13 @@ public interface ReportServiceInter {
 
     public int getTotalCount();
 
-    public List<ReportDto> getReport(int runum);
+    List<ReportDto> getReport(int runum, int limit, int offset);
 
     public void newReport(ReportDto rdto);
 
     public int getCountByRunum(int runum);
+
+    public void blacklistUser(int unum);
+
 
 }
