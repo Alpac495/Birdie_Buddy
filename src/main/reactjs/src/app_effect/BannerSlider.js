@@ -26,7 +26,7 @@ export default class SimpleSlider extends Component {
             slidesToShow: 1,
             slidesToScroll: 1,
             autoplay:true,
-            autoplaySpeed:10000,
+            autoplaySpeed:1000,
             afterChange: this.handleSlideChange,
             prevArrow: null, // 이전 화살표를 감춥니다.
             nextArrow: null, // 다음 화살표를 감춥니다.

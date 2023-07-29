@@ -7,7 +7,6 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const SimpleSlider = () => {
-    const [friendReco, setFriendReco] = useState([]);
     const [unum, setUnum] = useState(0);
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
@@ -15,7 +14,6 @@ const SimpleSlider = () => {
     const [fdata,setFdata]=useState('');
 
     
-
     const unumchk=()=>{
         Axios.get("/login/unumChk")
         .then(res=> {
