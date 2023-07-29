@@ -173,7 +173,7 @@ const JoinForm = (props) => {
                         <div className="JFdiv1">
                         <div className="JFdiv2">골프장검색</div>
                         </div>
-                        <input className="JFemail" type="search" placeholder="골프장을 검색하세요                          🔎" onClick={openModal}
+                        <input className="JFemail" type="search" placeholder="골프장을 검색하세요                     🔎" onClick={openModal}
                                value={gname} onChange={(e)=>setGname(e.target.value)} required maxLength minLength />
                     </div>
                     <div className="JFframe1">
@@ -244,6 +244,7 @@ const JoinForm = (props) => {
                     overlayColor="rgba(113, 113, 113, 0.3)"
                     placement="Centered"
                     onOutsideClick={closePartnerForm2}
+                    
                 >
                     <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo}/>
                 </PortalPopup>

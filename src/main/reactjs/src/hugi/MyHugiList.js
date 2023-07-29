@@ -6,6 +6,7 @@ import MyHugiRowList from "./MyHugiRowList";
 import Footer from "../footer/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../header/Header";
+import _ from "lodash"
 
 
 function MyHugiList(props) {
@@ -33,7 +34,8 @@ function MyHugiList(props) {
         setLoading(true);
         Axios.get(`/hugi/mylist/${unum}?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
             .then((res) => {
-                setMyHugiData((prevItems) => [...prevItems, ...res.data]);
+                const newData = _.uniqBy([...myHugiData, ...res.data], 'hnum');
+                setMyHugiData(newData);
                 setPage((prevPage) => prevPage + 1);
                 setUnickname(res.data.Unickname);
                 setUphoto(res.data.uphoto);
@@ -205,28 +207,29 @@ function MyHugiList(props) {
                         borderRadius: '5px',
                         width: '100%',
                         height: '50%',
-                        marginTop:'38px',
-                        padding: '10px'
+                        padding: '10px',
+                        margin:'41px auto',
+                        textAlign:'center'
                     }}>
                         {/*<input type="file" className="form-control" onChange={onUploadEvent}/>*/}
                         {selectedPreviews.map((previewUrl, index) => (
-                            <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '150px',height:'150px',margin:"5px 5px",float:"left"}}/>
+                            <img key={index} alt={`미리보기${index}`} src={previewUrl} style={{width: '200px',height:'200px',margin:"auto",padding:'10px'}}/>
                         ))}
                         <div className="filebox">
-                            <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }}
+                            <input className="upload-name" style={{width:"70%",backgroundColor:"#fafafa" }}
                                    value={selectedFileName || "첨부파일"} placeholder="첨부파일" readOnly/>
-                            <label htmlFor="file" style={{width:"35%",backgroundColor:"#48685E"}}>파일찾기</label>
+                            <label htmlFor="file" style={{width:"30%",backgroundColor:"#48685E",padding:'10px'}}>파일찾기</label>
                             <input type="file" id="file" multiple="multiple" onChange={(e) => { onUploadEvent(e); onFileChange(e); }} />
                         </div>
                         <br/>
                         <div className="input-group">
             <textarea
                 className="form-control"
-                style={{width: '80%', resize: "none",backgroundColor:"#fafafa"}}
-                value={hcontent}
+                style={{width: '70%', resize: "none",backgroundColor:"#fafafa"}}
+                value={hcontent} placeholder="글을 입력해 주세요"
                 onChange={(e) => setHcontent(e.target.value)}
             ></textarea>
-                            <button type="submit" className="my_HG_button" style={{width: '20%',height:"62px"}}
+                            <button type="submit" className="my_HG_button" style={{width: '30%',height:"62px"}}
                                     onClick={onSubmitEvent}>
                                 작성
                             </button>

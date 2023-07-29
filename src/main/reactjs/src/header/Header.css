@@ -11,6 +11,7 @@
     font-family: 'Zen Dots';
     background-color: #F8F5F0; /* 원하는 배경 색상을 지정 (선택 사항) */
      z-index: 99; /*다른 요소들보다 앞에 오도록 z-index 설정 */
+     width: 100%;
   }
   .header_menuicon{
     position: absolute;

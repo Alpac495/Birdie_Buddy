@@ -1,5 +1,5 @@
 import "./PartnerForm.css";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "../image/xxx.svg";
 import Button from "@mui/material/Button";
 import React, {useState} from 'react';
 const PartnerForm = ( props ) => {
@@ -24,17 +24,14 @@ const PartnerForm = ( props ) => {
     return (
         <form onSubmit={onSubmitEvent}>
         <div className="PFpartnerform">
-            <div className="PFdetail-view">
-                <div className="PFaction-bar-contextual">
-                   <div className="PFactions">
-                        <div className="PFfavorite">
-                            <CloseIcon color="white" className="PFicon"/>
+            <div className="PF2detail-view">
+                    <div className="PF2action-bar-contextual">
+                        <div className="PTactions">
+                            <img className="PTclose-clear" alt="" src={CloseIcon} />
                         </div>
-                   </div>
-                
-                    <div className="PFtitle">동반자 정보 입력</div>
-                    
-                </div>
+                        
+                        <div className="PTtitle">동반자 정보 입력</div>
+                    </div>    
             </div>
 
             <div className="PFpartnerinfo">

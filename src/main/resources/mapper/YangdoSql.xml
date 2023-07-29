@@ -47,10 +47,13 @@
     </select>
 
     <select id="getPagingListScroll" parameterType="int" resultType="YangdoDto">
-        select * ,(select unickname from user where unum=yangdo.unum) as unickname,
-               (select uhp from user where unum=yangdo.unum) as uhp
-        from yangdo
-        order by yday asc, ysubject asc
+        SELECT *,
+           user.unickname AS unickname,
+           user.uhp AS uhp,
+           user.uphoto AS uphoto
+    FROM yangdo
+    JOIN user ON yangdo.unum = user.unum
+    ORDER BY yday ASC, ysubject ASC
         limit #{offset},#{size}
     </select>
     <select id="getPagingListScrollSearch" parameterType="String" resultType="YangdoDto">

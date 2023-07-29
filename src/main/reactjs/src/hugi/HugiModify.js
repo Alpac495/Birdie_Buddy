@@ -101,7 +101,7 @@ function HugiModify(props) {
         <div style={{ border: '0px solid gray', width: '100%', height:'100%',margin:'100px auto',textAlign:"center",padding:"10px"}}>
             {/* 이미지 미리보기 */}
             {hphoto &&
-                <img alt="" src={`${process.env.REACT_APP_HUGI}${hphoto}`} value={hphoto} style={{ width: '50%'}}/>}
+                <img alt="" src={`${process.env.REACT_APP_HUGI2}${hphoto}${process.env.REACT_APP_HUGI_325}`} value={hphoto}/>}
             <br/><br/>
             <div className="filebox">
                 <input className="upload-name" style={{width:"78%"}} value={selectedFileName || "첨부파일"} placeholder="첨부파일" readOnly />
@@ -123,7 +123,6 @@ function HugiModify(props) {
                     취소
                 </button>
         </div>
-            <Footer/>
         </div>
     );
 }

@@ -122,6 +122,7 @@ public class LoginController {
     @GetMapping("/getuser")
     public UserDto getUser(int unum) {
         System.out.println("unum:" + unum);
+        System.out.println(loginMapper.getUser(unum));
         return loginMapper.getUser(unum);
     }
 

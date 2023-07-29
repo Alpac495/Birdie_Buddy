@@ -142,13 +142,14 @@ body {
 }
 .AFsearch {
     top: 7.38rem;
-    left: 18.4rem;
+    right: 1rem;
     font-size: 1rem;
     letter-spacing: 0.15px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 30px;
+    width: 50px;
 }
 .AFjduphoto-icon {
     position: absolute;
