@@ -97,6 +97,12 @@ public class FriendController {
         return "success";
     }
 
+    @GetMapping("/recommandfriend")
+    public List<UserDto> recommandlist(int unum) {
+        List<UserDto> list = friendMapper.getRecoUserList(unum);
+        return list;
+    }
+
     @GetMapping("/friendsearch")
     public List<UserDto> alluserlist(int unum, int page, int size) {
         System.out.println("스크롤");
