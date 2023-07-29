@@ -7,10 +7,29 @@
     align-items: center;
     flex-direction: column;
     
-}.nform_subject{
+}
+.nform_wrap h5{
+    position: relative;
+    right: 85px;
+    width: 100px;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+.nform_subject{
     width: 75%;
     height: 50px;
     text-align: center;
+    border: none;
+}
+.nform_sel{
+    width: 75%;
+    margin: 0 auto;
+    
+}
+.nform_sel select{
+    width: 100px;
+    height: 30px;
     border: none;
 }
 .nform_txt{

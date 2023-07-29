@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NoticeForm.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Header from "../header/Header";
 
 function NoticeForm(props) {
     const [nsubject, setNsubject]=useState('');
@@ -10,7 +11,7 @@ function NoticeForm(props) {
     const [ncate, setNcate]=useState('');
     const navi = useNavigate();
     const url = process.env.REACT_APP_NOTICE;
-
+    
 
     const handleSelectChange = (e) => {
         setNcate(e.target.value); // 선택한 값으로 ncate 상태 업데이트
@@ -35,29 +36,50 @@ function NoticeForm(props) {
             navi("/admin/noticelist")
         })
     }
+    const isValidImageUrl = (url) => {
+        const img = new Image();
+        img.src = url;
+        return img.complete && img.naturalWidth !== 0;
+      };
 
 
 
     return (
         <div className='nform_wrap'>
-
-            <select value={ncate} onChange={handleSelectChange}>
-                <option selected value="선택하세요">선택하세요</option>
-                <option value="이벤트">이벤트</option>
-                <option value="공지사항">공지사항</option>
-                <option value="블랙리스트">블랙리스트</option>
-            </select>
-            
+            <div className='header'>
+                <Header/>
+            </div>
+            <div className='notice_header'>
+                    Notice    
+            </div>
+            <h5 style={{marginTop:'25px'}}>제목</h5>
             <input className='nform_subject' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} />
-            <br/>
+            
+            <h5>카테고리</h5>
+            <div className='nform_sel'>
+                <select value={ncate} onChange={handleSelectChange}>
+                    <option selected value="선택하세요">선택하세요</option>
+                    <option value="이벤트">이벤트</option>
+                    <option value="공지사항">공지사항</option>
+                    <option value="블랙리스트">블랙리스트</option>
+                </select>
+            </div>
+            
+            <h5>사진</h5>
+            <input className='nform_file' type='file' onChange={onUploadEvent}/>
+
+            <h5>내용</h5>
             <div className='nform_txt'>
-            <img alt='' src={`${url}${nphoto}`}/>
-            <textarea  placeholder='내용' onChange={(e) => setNcontent(e.target.value)}>
+            
+            <textarea placeholder='내용' onChange={(e) => setNcontent(e.target.value)}>
+            {nphoto && isValidImageUrl(url + nphoto) ? <img alt='' src={`${url}${nphoto}`}/> : null}
             </textarea>
             </div>
-            <input type='file' onChange={onUploadEvent}/>
             
-            <button type='button' onClick={submit}>작성</button>
+            <div>
+                <button type='button' onClick={submit}>작성</button>
+                <button type='button'>닫기</button>
+            </div>
         </div>
     );
 }
