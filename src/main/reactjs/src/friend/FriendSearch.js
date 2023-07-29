@@ -112,7 +112,7 @@ const FriendSearch = () => {
                    value={keyword}
                     onChange={(e) => {
                         setKeyword(e.target.value);
-                    }}/><button className="AFsearch btn btn-sm btn-outline-success" onClick={search}>검색</button>
+                    }}/><button className="AFsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
                     <InfiniteScroll
                     dataLength={items.length}
                     next={fetchMoreData}

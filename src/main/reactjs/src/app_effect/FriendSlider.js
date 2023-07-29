@@ -18,7 +18,7 @@ const SimpleSlider = () => {
         Axios.get("/login/unumChk")
         .then(res=> {
             setUnum(res.data);
-            const url="/friend/friendsearch?unum="+res.data;
+            const url="/friend/recommandfriend?unum="+res.data;
             Axios.get(url)
             .then(res=>{
                 setData(res.data);
