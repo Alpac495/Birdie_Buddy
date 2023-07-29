@@ -1,162 +1,182 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
 body {
-    margin: 0;
-    line-height: normal;
+  margin: 0;
+  line-height: normal;
 }
+
 .SGtitle {
-    position: absolute;
-    bottom: 1.06rem;
-    left: calc(50% - 37px);
-    letter-spacing: 0.15px;
-    font-weight: 500;
+  position: absolute;
+  bottom: 1.06rem;
+  left: calc(50% - 37px);
+  letter-spacing: 0.15px;
+  font-weight: 500;
 }
+
 .SGsingobar {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #0b4648;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #0b4648;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.24);
 }
+
 .SGsingoformbar {
-    border-radius: 2px;
-    width: 22.5rem;
-    height: 3.5rem;
-    font-size: 1.25rem;
-    font-family: Roboto;
+  border-radius: 2px;
+  width: 22.5rem;
+  height: 3.5rem;
+  font-size: 1.25rem;
+  font-family: Roboto;
 }
+
 .SGdiv,
 .SGdiv1,
 .SGsingoformbar {
-    position: relative;
-  }
-  .SGdiv {
-    align-self: stretch;
-    line-height: 150%;
-  }
-  .SGdiv1 {
-    flex: 1;
-    line-height: 1.5rem;
-    opacity: 0.5;
+  position: relative;
 }
+
+.SGdiv {
+  align-self: stretch;
+  line-height: 150%;
+}
+
+.SGdiv1 {
+  flex: 1;
+  line-height: 1.5rem;
+  opacity: 0.5;
+}
+
 .SGtext-field {
-    border-radius: 3px;
-    background-color: #fff;
-    border: 2px solid #d9d9d9;
-    overflow: hidden;
-    display: flex;
-    padding: 0.75rem 1rem;
-    align-items: center;
-    justify-content: flex-start;
-    color: #000;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 2px solid #d9d9d9;
+  overflow: hidden;
+  display: flex;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  color: #000;
 }
+
 .SGframe1,
 .SGtext-field {
-    align-self: stretch;
-    flex-direction: row;
+  align-self: stretch;
+  flex-direction: row;
 }
+
 .SGframe,
 .SGframe1,
 .SGsingogroup {
-    overflow: hidden;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
+
 .SGsingogroup {
-    flex: 1;
-    flex-direction: column;
-    gap: 0.5rem;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+
 .SGframe {
-    position: absolute;
-    top: 0;
-    left: calc(50% - 158.5px);
-    width: 19.81rem;
-    flex-direction: row;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 158.5px);
+  width: 19.81rem;
+  flex-direction: row;
 }
+
 .SGsingoinfo {
-    position: relative;
-    width: 19.81rem;
-    height: 15.81rem;
-    color: #52525c;
+  position: relative;
+  width: 19.81rem;
+  height: 15.81rem;
+  color: #52525c;
 }
+
 .SGdiv6 {
-    flex: 1;
-    position: relative;
-    letter-spacing: -0.01em;
-    font-weight: 500;
-  }
-  .SGflframe,
-  .SGframe3 {
-    position: absolute;
-    border-radius: 2px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    padding: 0.63rem 0.5rem;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-  }
-  .SGflframe {
-    height: 104%;
-    width: 50.56%;
-    top: -2%;
-    right: 49.72%;
-    bottom: -2%;
-    left: -0.28%;
-    background-color: #48685e;
-    border: 1px solid transparent;
-  }
-  .SGframe3 {
-    height: 100%;
-    width: 50%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    background-color: #fff;
-    color: #000;
+  flex: 1;
+  position: relative;
+  letter-spacing: -0.01em;
+  font-weight: 500;
 }
+
+.SGflframe,
+.SGframe3 {
+  position: absolute;
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.63rem 0.5rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.SGflframe {
+  height: 104%;
+  width: 50.56%;
+  top: -2%;
+  right: 49.72%;
+  bottom: -2%;
+  left: -0.28%;
+  background-color: #48685e;
+  border: 1px solid transparent;
+}
+
+.SGframe3 {
+  height: 100%;
+  width: 50%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  background-color: #fff;
+  color: #000;
+}
+
 .SGpopupbtn {
-    position: relative;
-    width: 22.5rem;
-    height: 3.13rem;
-    text-align: center;
+  position: relative;
+  width: 22.5rem;
+  height: 3.13rem;
+  text-align: center;
 }
+
 .SGsingoform {
-    position: relative;
-    border-radius: 2px;
-    background-color: #fff;
-    border: 1px solid #e2e2e2;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    padding: 0 1.5rem;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.94rem;
-    text-align: left;
-    font-size: 0.94rem;
-    color: #fff;
-    font-family: Inter;
-    animation: slideIn 0.3s ease-in-out;
+  position: relative;
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #e2e2e2;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.94rem;
+  text-align: left;
+  font-size: 0.94rem;
+  color: #fff;
+  font-family: Inter;
+  animation: slideIn 0.3s ease-in-out;
 }
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
   }
-  @keyframes slideIn {
-    0% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }  
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
