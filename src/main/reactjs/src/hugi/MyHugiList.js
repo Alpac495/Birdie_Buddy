@@ -41,7 +41,7 @@ function MyHugiList(props) {
                 setLoading(false);
             })
             .catch((error) => {
-                console.error("데이터를 더 가져오는 중 오류 발생:", error);
+                // console.error("데이터를 더 가져오는 중 오류 발생:", error);
                 setLoading(false);
             });
     };
@@ -103,9 +103,9 @@ function MyHugiList(props) {
 
             // 파일 이름 출력을 위해 선택된 파일 이름들을 저장
             const selectedFileNames = files.map((file) => file.name);
-            console.log("선택된 파일 이름들:", selectedFileNames);
+            // console.log("선택된 파일 이름들:", selectedFileName);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 // 게시물 작성 이벤트 핸들러 (async/await 사용)
@@ -146,7 +146,7 @@ function MyHugiList(props) {
             setLoading(true); // 로딩 상태를 true로 설정하여 다시 데이터를 불러올 수 있도록 함
             window.location.reload(); // 페이지 새로고침
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 // 파일 선택 시 파일 정보와 미리보기 이미지 업데이트 함수
@@ -154,7 +154,7 @@ function MyHugiList(props) {
         const files = e.target.files;
         const fileArray = Array.from(files).map((file) => {
             const previewUrl = URL.createObjectURL(file);
-            return { file, previewUrl };
+            return { file, previewUrl, name: file.name }; // Include the name of each file in the fileArray
         });
 
         // Limit the number of selected files to 6
@@ -163,6 +163,10 @@ function MyHugiList(props) {
 
         setSelectedFiles(selectedFilesLimited.map((file) => file.file));
         setSelectedPreviews(selectedFilesLimited.map((file) => file.previewUrl));
+
+        // Set the selected file names
+        const selectedFileNames = selectedFilesLimited.map((file) => file.name);
+        setSelectedFileName(selectedFileNames.join(", ")); // Join the names with a comma and update the state
     };
 
     // 홈 버튼 클릭 이벤트 핸들러
@@ -180,9 +184,8 @@ function MyHugiList(props) {
     //     const fileName = e.target.value.split('\\').pop(); // 파일명 추출
     //     setSelectedFileName(fileName); // 파일명 상태 업데이트
     // };
-    const onclickLoad = () => {
-        window.scrollTo({top: 0, behavior: "smooth" });
-        fetchMoreData();
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     return (
         <div className="HG_hugi1">
@@ -194,7 +197,7 @@ function MyHugiList(props) {
             <div className="HG_hugi2">
             {userNum !== 0 && (
                 <details className="HG_details_Timeline">
-                    <summary style={{backgroundColor:"#48685E",color:"#204337"}}>게시물 작성하기</summary>
+                    <summary style={{backgroundColor:"#48685E",color:"#eefaea"}}>게시물 작성하기</summary>
                     <div style={{
                         zIndex:'99',
                         background:'white',
@@ -211,7 +214,7 @@ function MyHugiList(props) {
                         ))}
                         <div className="filebox">
                             <input className="upload-name" style={{width:"65%",backgroundColor:"#fafafa" }}
-                                   value={selectedFiles || "첨부파일"} placeholder="첨부파일" readOnly/>
+                                   value={selectedFileName || "첨부파일"} placeholder="첨부파일" readOnly/>
                             <label htmlFor="file" style={{width:"35%",backgroundColor:"#48685E"}}>파일찾기</label>
                             <input type="file" id="file" multiple="multiple" onChange={(e) => { onUploadEvent(e); onFileChange(e); }} />
                         </div>
@@ -241,7 +244,15 @@ function MyHugiList(props) {
                 ) : (
                     null
                 )}
-                endMessage={<Footer />} // Display Footer when the end is reached
+                endMessage={// Display Footer when the end is reached
+                    myHugiData.length === 0 && !loading ? (
+                        <div className="HG_footer-message">작성된 게시물이 없습니다</div>
+                    ) : (
+                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                            Scroll to Top
+                        </div>
+                    )
+                } // Display Footer when the end is reached
             >
                 <div className="HG_timeline">
                     {myHugiData &&
@@ -261,7 +272,9 @@ function MyHugiList(props) {
                         ))}
                     {myHugiData.length > 0 && !loading && (
                         //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                        <Footer/>
+                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                            Scroll to Top
+                        </div>
                     )}
                 </div>
             </InfiniteScroll>

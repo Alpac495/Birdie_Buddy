@@ -32,12 +32,12 @@ body {
 .SGdiv1,
 .SGsingoformbar {
     position: relative;
-}
-.SGdiv {
+  }
+  .SGdiv {
     align-self: stretch;
     line-height: 150%;
-}
-.SGdiv1 {
+  }
+  .SGdiv1 {
     flex: 1;
     line-height: 1.5rem;
     opacity: 0.5;
@@ -89,9 +89,9 @@ body {
     position: relative;
     letter-spacing: -0.01em;
     font-weight: 500;
-}
-.SGflframe,
-.SGframe3 {
+  }
+  .SGflframe,
+  .SGframe3 {
     position: absolute;
     border-radius: 2px;
     overflow: hidden;
@@ -101,8 +101,8 @@ body {
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-}
-.SGflframe {
+  }
+  .SGflframe {
     height: 104%;
     width: 50.56%;
     top: -2%;
@@ -111,8 +111,8 @@ body {
     left: -0.28%;
     background-color: #48685e;
     border: 1px solid transparent;
-}
-.SGframe3 {
+  }
+  .SGframe3 {
     height: 100%;
     width: 50%;
     top: 0;
@@ -149,3 +149,14 @@ body {
     font-family: Inter;
     animation: slideIn 0.3s ease-in-out;
 }
+  }
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }  

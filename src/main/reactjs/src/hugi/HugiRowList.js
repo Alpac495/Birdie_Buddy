@@ -47,7 +47,6 @@ function HugiRowList(props) {
 
     const [shortenedURL, setShortenedURL] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
-    console.log(funum)
 
     // handleClickModify 함수: 게시물 수정 클릭 이벤트 처리 함수
     const handleClickModify = (hnum) =>{
@@ -94,7 +93,7 @@ function HugiRowList(props) {
                 copyToClipboard(generatedURL); // 클립보드에 복사
             })
             .catch((error) => {
-                console.error('Error generating shortened URL:', error);
+                // console.error('Error generating shortened URL:', error);
             });
     };
 
@@ -112,7 +111,7 @@ function HugiRowList(props) {
                     // setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
                 })
                 .catch((error) => {
-                    console.error('URL 공유 중 오류 발생:', error);
+                    // console.error('URL 공유 중 오류 발생:', error);
                 });
         } else {
             // navigator.share() API를 지원하지 않는 브라우저를 위한 대체 방법
@@ -130,7 +129,7 @@ function HugiRowList(props) {
                 setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
             })
             .catch((error) => {
-                console.error('클립보드 복사 중 오류 발생:', error);
+                // console.error('클립보드 복사 중 오류 발생:', error);
             });
     };
     // handleSnackbarClose 함수: Snackbar 닫는 이벤트 처리 함수
@@ -187,7 +186,7 @@ function HugiRowList(props) {
                 setShowLike(true);
             })
             .catch((error) => {
-                console.log('좋아요 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 처리 중 오류가 발생했습니다.', error);
             });
     };
     // handleClickLikeOff 함수: 좋아요 취소하기 이벤트 처리 함수
@@ -201,7 +200,7 @@ function HugiRowList(props) {
                 setShowLike(false);
             })
             .catch((error) => {
-                console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
             });
     };
     // handleClickDelete 함수: 게시물 삭제 이벤트 처리 함수
@@ -217,11 +216,11 @@ function HugiRowList(props) {
                                 window.location.reload();
                             })
                             .catch((error) => {
-                                console.log('게시물 삭제 중 오류가 발생했습니다.', error);
+                                // console.log('게시물 삭제 중 오류가 발생했습니다.', error);
                             });
                     })
                     .catch((error) => {
-                        console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
+                        // console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
                     });
             }
         } else {
@@ -237,7 +236,7 @@ function HugiRowList(props) {
                     resolve();
                 })
                 .catch((error) => {
-                    console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
+                    // console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
                     reject(error);
                 });
         });
@@ -250,7 +249,7 @@ function HugiRowList(props) {
                 getComments();
             })
             .catch((error) => {
-                console.log('댓글 삭제 중 오류가 발생함', error);
+                // console.log('댓글 삭제 중 오류가 발생함', error);
             });
     };
     // handleClickDeleteComment 함수: 댓글 삭제 이벤트 처리 함수
@@ -280,7 +279,7 @@ function HugiRowList(props) {
                 setComments(sortedComments);
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     };
     // fetchPostUserNickname 함수: 게시물 작성자의 닉네임을 가져오는 함수
@@ -298,7 +297,7 @@ function HugiRowList(props) {
                 if (error.response && error.response.status === 404) {
                     // 404 오류 처리
                 } else {
-                    console.log('오류가 발생했습니다.', error.message);
+                    // console.log('오류가 발생했습니다.', error.message);
                 }
             }
         }
@@ -426,7 +425,7 @@ function HugiRowList(props) {
                 setCommentError(false);
             }
         } catch (error) {
-            console.log('오류가 발생했습니다.', error.message);
+            // console.log('오류가 발생했습니다.', error.message);
         }
     };
     // submitReply 함수: 댓글에 대한 대댓글을 작성하는 함수
@@ -449,14 +448,14 @@ function HugiRowList(props) {
 
         Axios.post("/rehugi/newreply?unum=" + unum, newReply)
             .then((res) => {
-                // console.log('댓글이 성공적으로 추가되었습니다.');
+                console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();
                 toggleReplyForm(comment.rhnum);
                 setReplyError(false);
                 setErrorCommentId(null);
             })
             .catch((error) => {
-                console.log('댓글 추가 중 오류가 발생했습니다.', error);
+                // console.log('댓글 추가 중 오류가 발생했습니다.', error);
             });
     };
 
@@ -515,20 +514,10 @@ function HugiRowList(props) {
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
-            <div id="demo" className="carousel slide HG_list_image" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src={`${URL}${hphoto}`} alt="" className ="HG_list_image" value={hphoto} onClick={handleClickDetail}/>
-                    </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon"></span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                    <span className="carousel-control-next-icon"></span>
-                </button>
+            <div className="HG_list_div_image">
+               <img src={`${URL}${hphoto}`} alt="" className ="HG_list_image" value={hphoto} onClick={handleClickDetail}/>
             </div>
-            <h6 className="HG_list_text">
+                <h6 className="HG_list_text">
                 &nbsp;
                 {hcontent}
             </h6>

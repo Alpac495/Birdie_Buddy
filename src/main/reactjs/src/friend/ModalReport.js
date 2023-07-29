@@ -44,17 +44,16 @@ function ModalReport({ reporterNickname, reportedNickname, reportReason, setRepo
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div className="SGpopupbtn">
-                <div className="SGflframe">
-                    <div className="SGdiv6" onClick={handleConfirm}>확인</div>
-                </div>
-                <div className="SGframe3">
-                    <div className="SGdiv6" onClick={handleClose}>취소</div>
+                <div className="SGpopupbtn">
+                    <div className="SGflframe">
+                        <div className="SGdiv6" onClick={handleConfirm}>확인</div>
+                    </div>
+                    <div className="SGframe3">
+                        <div className="SGdiv6" onClick={handleClose}>취소</div>
+                    </div>
                 </div>
             </div>
-
         </div>
     );
 }

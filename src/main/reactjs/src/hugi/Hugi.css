@@ -201,5 +201,17 @@ body {
     overflow: hidden;
     border: 0;
 }
-
-  
+.HG_footer-message{
+    color:#48685E;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    height:40px;
+    padding: 10px;
+}
+.HG_scroll-to-top-button{
+    color:#48685E;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+}
