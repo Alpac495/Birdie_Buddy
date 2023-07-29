@@ -80,7 +80,7 @@ function HugiDetail(props) {
                 copyToClipboard(generatedURL); // 클립보드에 복사
             })
             .catch((error) => {
-                console.error('Error generating shortened URL:', error);
+                // console.error('Error generating shortened URL:', error);
             });
     };
 
@@ -97,7 +97,7 @@ function HugiDetail(props) {
                     setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
                 })
                 .catch((error) => {
-                    console.error('URL 공유 중 오류 발생:', error);
+                    // console.error('URL 공유 중 오류 발생:', error);
                 });
         } else {
             // navigator.share() API를 지원하지 않는 브라우저를 위한 대체 방법
@@ -114,7 +114,7 @@ function HugiDetail(props) {
                 setSnackbarOpen(true); // URL이 복사되면 Snackbar를 엽니다.
             })
             .catch((error) => {
-                console.error('클립보드 복사 중 오류 발생:', error);
+                // console.error('클립보드 복사 중 오류 발생:', error);
             });
     };
     // 클릭 이벤트 핸들러
@@ -153,7 +153,7 @@ function HugiDetail(props) {
                 setShowLike(true);
             })
             .catch((error) => {
-                console.log('좋아요 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 처리 중 오류가 발생했습니다.', error);
             });
     };
     const handleClickLikeOff = () => {
@@ -166,7 +166,7 @@ function HugiDetail(props) {
                 setShowLike(false);
             })
             .catch((error) => {
-                console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
             });
     };
     const handleClickDelete = () => {
@@ -178,14 +178,14 @@ function HugiDetail(props) {
                         Axios.delete(`/hugi/delete/${hnum}`)
                             .then(() => {
                                 console.log('게시물이 성공적으로 삭제되었습니다.');
-                                window.location.reload();
+                                navi("/hugi/list");
                             })
                             .catch((error) => {
-                                console.log('게시물 삭제 중 오류가 발생했습니다.', error);
+                                // console.log('게시물 삭제 중 오류가 발생했습니다.', error);
                             });
                     })
                     .catch((error) => {
-                        console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
+                        // console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
                     });
             }
         } else {
@@ -200,7 +200,7 @@ function HugiDetail(props) {
                     resolve();
                 })
                 .catch((error) => {
-                    console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
+                    // console.log('댓글과 답글 삭제 중 오류가 발생했습니다.', error);
                     reject(error);
                 });
         });
@@ -212,7 +212,7 @@ function HugiDetail(props) {
                 getComments();
             })
             .catch((error) => {
-                console.log('댓글 삭제 중 오류가 발생함', error);
+                // console.log('댓글 삭제 중 오류가 발생함', error);
             });
     };
     const handleClickDeleteComment = (rhnum) => {
@@ -237,7 +237,7 @@ function HugiDetail(props) {
                 });
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     };
     const fetchPostUserNickname = async (unum) => {
@@ -252,7 +252,7 @@ function HugiDetail(props) {
                 if (error.response && error.response.status === 404) {
                     // 404 오류 처리
                 } else {
-                 console.log('오류가 발생했습니다.', error.message);
+                 // console.log('오류가 발생했습니다.', error.message);
                 }
             }
         }
@@ -359,7 +359,7 @@ function HugiDetail(props) {
                 setCommentError(false);
             }
         } catch (error) {
-            console.log('오류가 발생했습니다.', error.message);
+            // console.log('오류가 발생했습니다.', error.message);
         }
     };
 
@@ -389,7 +389,7 @@ function HugiDetail(props) {
                 setErrorCommentId(null);
             })
             .catch((error) => {
-                console.log('댓글 추가 중 오류가 발생했습니다.', error);
+                // console.log('댓글 추가 중 오류가 발생했습니다.', error);
             });
     };
 
@@ -425,7 +425,7 @@ function HugiDetail(props) {
                 // 서버에서 가져온 다른 데이터도 필요한 경우 여기에 추가적으로 설정합니다.
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     }, [hnum]);
 
@@ -450,12 +450,12 @@ function HugiDetail(props) {
         <Header/>
         <div className="HG_list_detail">
             <div className="HG_list_header">
-                {uphoto !== null ? (
-                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar.bind(null,unum)}/>
+                {uphoto == null ? (
+                    <Avatar className="HG_list_avatar" alt={''}  src={Profile} onClick={handleClickAvatar.bind(null,userNum)}/>
                 ):(
-                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,unum)}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${uphoto}${image2}`} onClick={handleClickAvatar.bind(null,userNum)}/>
                 )}
-                <span className="HG_spanName" onClick={handleClickAvatar.bind(null,unum)}>{postUserNickname}</span>
+                <span className="HG_spanName" onClick={handleClickAvatar.bind(null,userNum)}>{postUserNickname}</span>
             </div>
             &nbsp;
             <span className="HG_spanWriteday">{hwriteday}</span>
@@ -576,16 +576,16 @@ function HugiDetail(props) {
                                   ):(
                                       <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   )}
-                                  <b className="HG_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
+                                  <b className="HG_detail_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
                                       {reply.unickname}
                                   </b>
                                   &nbsp;
                                   <pre className="HG_detail_preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br/>
-                                  <span className="HG_spanReplyRhwriteday">{reply.rhwriteday}</span>
+                                  <span className="HG_detail_spanReplyRhwriteday">{reply.rhwriteday}</span>
                                   {parseInt(reply.unum) === parseInt(unum) && (
                                       <DeleteIcon
-                                          className="HG_Delete_Icon"
+                                          className="HG_detail_Delete_Icon"
                                           onClick={() => handleClickDeleteComment(reply.rhnum)}
                                       />
                                   )}
@@ -599,7 +599,6 @@ function HugiDetail(props) {
       <p className="HG_NoComments">댓글이 없습니다.</p>
   )}
 </pre>
-<Footer/>
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
