@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://223.130.137.128"})
+@CrossOrigin
 @RequestMapping("/hugi")
 public class HugiController {
     String hphoto;

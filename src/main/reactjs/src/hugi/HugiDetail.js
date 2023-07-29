@@ -24,7 +24,7 @@ function HugiDetail(props) {
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
-    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
+
     const navi = useNavigate();
 
     const [openReplyForm, setOpenReplyForm] = useState(null);
@@ -61,6 +61,8 @@ function HugiDetail(props) {
             navi(`/friend/detail/${funum}`);
         }
     };
+
+    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
 
     const generateShortURL  = (longUrl) => {
 

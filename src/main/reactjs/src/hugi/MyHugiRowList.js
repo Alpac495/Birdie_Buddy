@@ -28,7 +28,7 @@ function MyHugiRowList(props) {
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
-    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
+
     const navi = useNavigate();
     const [open, setOpen] = React.useState(false);
     const [openReplyForm, setOpenReplyForm] = useState(null);
@@ -67,6 +67,8 @@ function MyHugiRowList(props) {
             });
         }
     };
+
+    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
     // 클릭 이벤트 핸들러
     const handleClickShare = () => {
         const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
