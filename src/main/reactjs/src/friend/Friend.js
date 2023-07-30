@@ -7,6 +7,7 @@ import * as ncloudchat from 'ncloudchat';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
 import _ from "lodash"
+import chatbtn from '../image/btn_chat.svg'
 
 function Friend(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -183,9 +184,8 @@ function Friend(props) {
                                       </span>
                                     </div>
 
-                                    <div className="FLrectangle-parent">
-                                        <div className="FLgroup-child" />
-                                        <div className="FLdiv4" onClick={onChatEvent.bind(null, item.funum)}>채팅하기</div>
+                                    <div >                                        
+                                        <img alt='' src={chatbtn} className="FLrectangle-parent"/>
                                     </div>
                                 </div>                        
                     </div>

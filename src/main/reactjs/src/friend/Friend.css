@@ -115,8 +115,7 @@ body {
 }
 .FLdiv4,
 .FLrectangle-parent {
-    width: 3.75rem;
-    height: 1.63rem;
+    width: 150%;
 }
 .FLdiv4 {
     position: absolute;

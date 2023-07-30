@@ -48,8 +48,8 @@ const Report = () => {
 
     const handleBlacklist = async () => {
         try {
-            await Axios.post('/api/blacklist', { unum: selectedUser.unum });
-            fetchReportData();
+            await Axios.post('/report/blacklist', { unum: selectedUser.unum });
+            await fetchReportData();
             setIsModalOpen(false);
         } catch (error) {
             console.error('Error adding user to blacklist:', error);
@@ -74,8 +74,7 @@ const Report = () => {
             </div>
             {reportedUsers.map((user, index) => (
                 <div key={index} className="DLgroup" onClick={() => handleRowClick(user)}>
-                    <div className="DLdiv5">{index + 1}</div>
-                    <div className="DLdiv6">{user.runum}</div>
+                    <div className="DLdiv5">{((currentPage - 1) * reportsPerPage) + index + 1}</div>                    <div className="DLdiv6">{user.runum}</div>
                     <div className="DLdiv7">{user.unum}</div>
                     <div className="DLdiv8">
                         {
