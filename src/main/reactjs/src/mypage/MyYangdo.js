@@ -27,6 +27,7 @@ function MyYangdo(props) {
                     .then((res) => {
                         const newData = _.uniqBy([...items, ...res.data], 'ynum');
                         setItems(newData);
+                        console.log(items)
                         setPage((prevPage) => prevPage + 1);
                         setLoading(false);
                     })
