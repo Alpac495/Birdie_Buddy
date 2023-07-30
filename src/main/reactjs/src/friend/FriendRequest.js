@@ -8,6 +8,8 @@ import Profile from "../image/user60.png";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
 import _ from "lodash"
+import buddyrequest from '../image/buddyrequest.svg';
+import acceptbuddy from '../image/acceptbuddy.svg';
 
 function FriendRequest(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -40,12 +42,6 @@ function FriendRequest(props) {
                         console.error("데이터를 더 가져오는 중 오류 발생:", error);
                         setLoading(false);
                     });
-                // const url="/friend/requestlist?unum="+(res.data);
-                // Axios.get(url)
-                //     .then(res=>{
-                //         setData(res.data);
-                //         console.log(res.data)
-                //     })
         });
     }
     useEffect(() => {
@@ -115,10 +111,15 @@ function FriendRequest(props) {
                                       </span>
                                     </div>
 
-                                    <div className="FLrectangle-parent">
-                                        <div className="FLgroup-child" />
-                                        {item.frequest == 2 ? <button type='button' className="FLdiv4" onClick={onRequestingEvent}>요청중</button>
-                                        : (<button type='button' className="FLdiv4" onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>)}
+                                    <div>
+                                        {item.frequest == 2 ? 
+                                        // <button type='button' className="FLdiv4" onClick={onRequestingEvent}>요청중</button>
+                                        <img alt='' src={buddyrequest} className='FLrectangle-parent' onClick={onRequestingEvent}/>
+                                        : 
+                                        (
+                                        // <button type='button' className="FLdiv4" onClick={onAcceptEvent.bind(null, item.unum)}>수락</button>
+                                        <img alt='' src={acceptbuddy} className='FLrectangle-parent' onClick={onAcceptEvent.bind(null, item.unum)}/>
+                                        )}
                                     </div>
                                 </div>
                         </div>                    

@@ -164,8 +164,7 @@ body {
 .AFdiv1,
 .AFdiv2,
 .AFdiv3 {
-    width: 100%;
-    font-weight: 500;
+    width: 80%;
     display: inline-block;
     text-align: center;
 }
@@ -183,7 +182,7 @@ body {
     font-family: Inter;
 }
 .AFdiv3 {
-    top: calc(50% + 40.67px);
+    top: calc(50% + 45.67px);
     font-size: 1rem;
     line-height: 1.38rem;
     font-weight: 600;
