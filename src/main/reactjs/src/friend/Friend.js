@@ -158,7 +158,7 @@ function Friend(props) {
                         <div className="FLdiv">버디 요청</div>
                     </div>
                 </NavLink>
-            </div>
+            </div>            
             <div className='friendlist'>
             <InfiniteScroll
                     dataLength={items.length}

@@ -4,9 +4,6 @@ import "../header/Header.css";
 import Header from "../header/Header";
 import Axios from "axios";
 import "./RankingList.css";
-import gold from "../images/gold-medal.png";
-import silver from "../images/silver-medal.png";
-import bronze from "../images/bronze-medal.png";
 import user from "../images/default_golf.png";
 import Footer from "../footer/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -18,6 +15,7 @@ function RankList(props) {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const url = process.env.REACT_APP_PROFILE;
+    const medal = process.env.REACT_APP_RANKING;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
@@ -66,7 +64,7 @@ function RankList(props) {
                 <Link to="/score/form">스코어 입력</Link>
             </div> */}
 
-            <div className='ranking_List'>
+            <div className='ranking_List' style={{ backgroundImage: `url(${require("../images/golf_ranking.jpg")})` }}>
                 <div className='ranking_search'>
                     <div style={{ visibility: 'hidden' }} >dd</div>
                     <div>
@@ -128,9 +126,9 @@ function RankList(props) {
 
                                     <div>
                                         <div className='ranking_place'>
-                                            {idx + 1 === 1 ? <img alt='' src={gold} /> :
-                                                idx + 1 === 2 ? <img alt='' src={silver} /> :
-                                                    idx + 1 === 3 ? <img alt='' src={bronze} /> :
+                                            {idx + 1 === 1 ? <img alt='' src={`${medal}gold-medal.png`} /> :
+                                                idx + 1 === 2 ? <img alt='' src={`${medal}silver-medal.png`} /> :
+                                                    idx + 1 === 3 ? <img alt='' src={`${medal}bronze-medal.png`} /> :
                                                         <span>{`${idx + 1}th`}</span>}
                                         </div>
                                     </div>

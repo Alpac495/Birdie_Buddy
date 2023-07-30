@@ -59,7 +59,8 @@
     <select id="getPagingListScrollSearch" parameterType="String" resultType="YangdoDto">
         select *,
            (select unickname from user where unum=yangdo.unum) as unickname,
-           (select uhp from user where unum=yangdo.unum) as uhp
+           (select uhp from user where unum=yangdo.unum) as uhp,
+           (select uphoto from user where unum=yangdo.unum) as uphoto
         from yangdo
         where yday like concat('%', #{keyword}, '%')
             or yplace like concat('%', #{keyword}, '%')
@@ -69,7 +70,8 @@
     <select id="getPagingMyListScroll" parameterType="int" resultType="YangdoDto">
         SELECT *,
             (SELECT unickname FROM user WHERE unum = yangdo.unum) AS unickname,
-            (SELECT uhp FROM user WHERE unum = yangdo.unum) AS uhp
+            (SELECT uhp FROM user WHERE unum = yangdo.unum) AS uhp,
+            (SELECT uphoto FROM user WHERE unum = yangdo.unum) AS uphoto
         FROM yangdo
         WHERE unum = #{unum}
         ORDER BY yday ASC, ysubject ASC
@@ -78,7 +80,8 @@
     <select id="getPagingMyListScrollSearch" parameterType="Map" resultType="YangdoDto">
         SELECT *,
             (SELECT unickname FROM user WHERE unum=yangdo.unum) AS unickname,
-            (SELECT uhp FROM user WHERE unum=yangdo.unum) AS uhp
+            (SELECT uhp FROM user WHERE unum=yangdo.unum) AS uhp,
+            (SELECT uphoto FROM user WHERE unum=yangdo.unum) AS uphoto
         FROM yangdo
         WHERE (yday LIKE CONCAT('%', #{keyword}, '%')
             OR yplace LIKE CONCAT('%', #{keyword}, '%'))

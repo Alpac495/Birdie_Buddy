@@ -137,13 +137,13 @@ body {
     background-color: #292d32;
     border: 1px solid #000;
     box-sizing: border-box;
-    width: 3.75rem;
+    width: 5rem;
     height: 1.53rem;
 }
 .ULdiv4,
 .ULrectangle-parent {
-    width: 3.75rem;
-    height: 1.63rem;
+    width: 5rem;
+    height: 1.53rem;
 }
 .ULdiv4 {
     position: absolute;

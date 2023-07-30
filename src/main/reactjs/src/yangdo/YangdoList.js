@@ -174,5 +174,5 @@ function YangdoList(props) {
         </div>
     );
 };
-
+    
 export default YangdoList;
