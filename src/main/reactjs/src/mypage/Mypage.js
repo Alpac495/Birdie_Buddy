@@ -221,9 +221,7 @@ function Mypage(props) {
                         ucontent === null ? <div>자기소개를 입력해 주세요.</div>
                             :
                             ucontent
-                    }
-                  </p>
-                </span>
+                    }                  
               </div>
               <div className="MP2icon-buddychat-parent">
                 <img className="MP2icon-buddychat" alt="" src={FDicon2} />
@@ -280,7 +278,7 @@ function Mypage(props) {
                         alt="" src={FDicon1} />
                 </div>
 
-            </div >
+            </div ></div>
         );
     }
 }
