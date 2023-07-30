@@ -192,7 +192,7 @@ function MyYangdoDetail(props) {
                     <div className="YEpopupbtn">
                         
                         {
-                            unum !=null && unum === dto.unum && unum===1?
+                            unum !=null && unum === dto.unum || unum===1?
                                 <button type='button' className="YEframe"
                                     onClick={()=>{
                                         const url=`/yangdo/delete?num=${dto.ynum}`;

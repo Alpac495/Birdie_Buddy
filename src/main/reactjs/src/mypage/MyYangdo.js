@@ -71,7 +71,7 @@ function MyYangdo(props) {
             <div className="Ylyangdolist-child" />
             <div className="Ylrectangle-parent">
                 <div className="Ylgroup-child" onClick={allList} />
-                <div className="Yldiv" onClick={allList}>마이 양도</div>
+                <div className="Yldiv" onClick={allList}>전체 양도</div>
             </div>
             <div className="Ylrectangle-group">
                 <div className="Ylgroup-item" onClick={onWriteButtonEvent} />
