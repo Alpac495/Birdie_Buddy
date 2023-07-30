@@ -28,7 +28,7 @@
 }
 
 .ranking_List {
-    background-image: url("../images/golf_ranking.jpg");
+    
     background-size: cover;
     overflow-y: auto;
     height: 100%;

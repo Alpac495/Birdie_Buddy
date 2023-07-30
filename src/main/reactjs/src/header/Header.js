@@ -106,7 +106,8 @@ function Header(props) {
                     { text: '양도', path: '/yangdo/list', icon: <TransferWithinAStationIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '랭킹', path: '/score/list', icon: <TrendingUpIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '후기', path: '/hugi/list', icon: <RateReviewIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
-                    { text: '마이페이지', path: '/mypage/main', icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'}
+                    { text: '마이페이지', path: '/mypage/main', icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
+                    { text: '채팅 리스트', path: `/chating/${unum}`, icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'}
                 ].map(({ text, path, icon, marginLeft }) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={NavLink} to={path} activeClassName="active">
