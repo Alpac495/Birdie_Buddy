@@ -44,7 +44,7 @@ function RouteMain(props) {
                     <Route path="NoticeList" element={<NoticeList/>}/>
                     <Route path="NoticeDetail/:nnum" element={<NoticeDetail/>}/>
                     <Route path="NoticeEditForm/:nnum" element={<NoticeEditForm/>}/>
-                    <Route path="Report" element={<Report/>}/>
+                    <Route path="Report/:unum" element={<Report/>}/>
                 </Route>
 
                 <Route path={'yangdo'}>

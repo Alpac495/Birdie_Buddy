@@ -143,6 +143,7 @@ const NCloudChatRoomList = () => {
                 ?"(상대방이 나간 채팅방입니다)":
                 channel.unum === 1 || channel.cunum === 1
                     ?"관리자 채팅방"
+                    : channel.unum === channel.cunum ? "나와의 채팅"
                     : channel.unum == unum ? channel.cunickname : channel.unickname
             }</div>
             {channel.unum == unum ?
