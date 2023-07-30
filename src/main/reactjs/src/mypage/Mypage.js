@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import './Mypage.css';
 import userprofile from "../image/userprofile.svg";
+import profile3 from "../image/profile3.png";
+import back from "../image/bgphoto.png";
 
 import EditIcon from '@mui/icons-material/Edit';
 import FDicon2 from "../image/icon_buddychat.svg";
@@ -171,27 +173,26 @@ function Mypage(props) {
                 </div>
 
                 {
-                    ubgphoto==null || ''?
-                    <img alt='error' className="FDbackprofile" src={userprofile} />
-                    :
-                    <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+                    ubgphoto == null || '' ?
+                        <img alt='error' className="FDbackprofile" src={back} />
+                        :
+                        <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
                 }
 
                 <div className="FDinfobox" />
                 <div className="FDmainprofile">
                     {
-                        uphoto==null || ''?
-                        <img alt='error' style={{ borderRadius: '11%' }} src={userprofile} />
-                        :
-                        <img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
+                        uphoto == null || '' ?
+                            <img alt='error' style={{}} src={profile3} />
+                            :
+                            <img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
                     }
-
-                    <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto} />
-                    <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
-                        <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
-                        <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
-                    </ModalPhoto>
                 </div>
+                <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto} />
+                <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
+                    <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
+                    <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
+                </ModalPhoto>
 
 
                 <div className="FDdiv2">

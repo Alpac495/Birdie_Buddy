@@ -56,6 +56,7 @@ body {
     background-color: #fff;
 }
 .FDmainprofile {
+    position: relative;
     top: 22.06rem;
     left: 1rem;
     background-color: #89e1a4;
