@@ -20,6 +20,9 @@ import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 import Profile from "../image/user60.png";
 import KakaoImg from "../image/kakao.svg";
+import TweetterImg from "../image/newTwitter.png";
+import ShareImg from "../image/share_2.png";
+import CommetImg from "../image/share30.png";
 function MyHugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
@@ -49,6 +52,7 @@ function MyHugiRowList(props) {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [shortenedURL, setShortenedURL] = useState('');
+    const [isIconsVisible, setIsIconsVisible] = useState(false);
 
     const handleClickModify = (hnum) =>{
         if (unum === 0) {
@@ -100,12 +104,15 @@ function MyHugiRowList(props) {
             });
     };
 
-    // SNS 공유 함수
+    // shareShortenedURL 함수: 단축 URL을 SNS에 공유하는 함수
     const shareShortenedURL = (url) => {
-        if (navigator.share) {
+        if (navigator.share)// navigator.share() API를 지원하는 경우
+        {
+            const tweetText = '버디버디 라운딩 후기입니다. ' + url; // 링크를 포함한 원하는 텍스트 생성
+
             navigator.share({
                 title: '버디버디',
-                text:'버디버디 라운딩 후기입니다.',
+                text:tweetText,
                 url: url,
             })
                 .then(() => {
@@ -118,7 +125,10 @@ function MyHugiRowList(props) {
         } else {
             // navigator.share() API를 지원하지 않는 브라우저를 위한 대체 방법
             // 메시지를 사용자에게 보여주거나 다른 접근 방식을 사용할 수 있습니다.
-            alert('이 링크를 공유하세요: ' + url);
+            const tweetText = '버디버디 라운딩 후기입니다. ' + url; // 링크를 포함한 원하는 텍스트 생성
+            const twitterShareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+            window.open(twitterShareURL, '_blank');
+            // alert('이 링크를 공유하세요: ' + url);
             // copyToClipboard(url);// 클립보드에 복사하는 함수 호출
         }
     };
@@ -132,6 +142,12 @@ function MyHugiRowList(props) {
             .catch((error) => {
                 // console.error('클립보드 복사 중 오류 발생:', error);
             });
+    };
+    const shareTweet = () => {
+        //오리지널 Url을 트위터로 공유하기
+        const tweetText = '버디버디 라운딩 후기입니다. ' + `http://223.130.137.128/hugi/detail/${hnum}`; // 링크를 포함한 원하는 텍스트 생성
+        const twitterShareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+        window.open(twitterShareURL, '_blank');
     };
     const { Kakao } = window;
     // 배포한 자신의 사이트
@@ -507,7 +523,9 @@ function MyHugiRowList(props) {
         }
         setReplyContent('');
     };
-
+    const toggleIcons = () => {
+        setIsIconsVisible((prev) => !prev);
+    };
     useEffect(() => {
         getComments();
     }, [hnum, unum]);
@@ -544,24 +562,35 @@ function MyHugiRowList(props) {
             <hr/>
             <div className="HG_IconsZone">
                 {unum !== 0 && (showLike ? (
-                    <FavoriteSharp onClick={handleClickLikeOff} className="HG_Icons" style={{color: "red"}}/>
+                    <FavoriteSharp onClick={handleClickLikeOff} className="HG_Icons" style={{color: "red",width:'30px',height:'28px'}}/>
                 ) : (
-                    <FavoriteBorder onClick={handleClickLikeOn} className="HG_Icons" style={{color: "red"}}/>
+                    <FavoriteBorder onClick={handleClickLikeOn} className="HG_Icons" style={{color: "red",width:'30px',height:'28px'}}/>
                 ))}
-                <MessageIcon onClick={handleClickOpen} className="HG_Icons"/>
-                <ShareIcon onClick={handleClickShare} className="HG_Icons"/>
+                <img src={CommetImg} alt={''} onClick={handleClickOpen} className="HG_CommentIcons"/>
+                <img  alt='' src={ShareImg} className="HG_ShareIcons" onClick={toggleIcons}/>
                 {parseInt(props.unum) === parseInt(unum) && (
                     <EditIcon onClick={()=>handleClickModify(hnum)} className="HG_Icons"/>
                 )}
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
-                <div className="HG_KakaoIcons" >
-                    <img src={KakaoImg} alt={''}
-                         className="HG_KakaoImg"
-                         onClick={() => {shareKakao()}}>
-                    </img>
-                </div>
+                {isIconsVisible && (
+                    <div className="HG_ShareSNS">
+                        <div className="HG_KakaoIcons" >
+                            <img src={KakaoImg} alt={''}
+                                 className="HG_KakaoImg"
+                                 onClick={() => {shareKakao()}}>
+                            </img>
+                        </div>
+                        <div className="HG_TweetterIcons">
+                            <img src={TweetterImg} alt={''} className="HG_TweetterImg"
+                                 onClick={() => {shareTweet()}}>
+                            </img>
+                        </div>
+                        <ShareIcon onClick={handleClickShare} className="HG_ShareApiIcons"/>
+                    </div>
+                )}
+
             </div>
 
             <Dialog
