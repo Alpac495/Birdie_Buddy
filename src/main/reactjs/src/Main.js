@@ -22,7 +22,7 @@ function Main(props) {
             </div>
 
             <div className={'main_banner'}>
-                <Bannerslider/>
+                    <Bannerslider />       
             </div>
 
             <div className={'main_notice'}>
