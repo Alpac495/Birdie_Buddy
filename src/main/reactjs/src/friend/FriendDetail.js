@@ -7,6 +7,9 @@ import FDicon1 from "../image/icon_addbuddy.svg";
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
 import ModalReport from "./ModalReport";
+import SingoBtn from "../image/btn_singo.svg";
+import Header from "../header/Header";
+import { Button } from '@mui/base';
 
 function FriendDetail(props) {
     const [unum, setUnum]=useState('');
@@ -234,7 +237,14 @@ function FriendDetail(props) {
                 <div className="FDdiv5" onClick={onChatEvent.bind(null, funum)}>버디채팅</div>
             </div>
             <div className="FDicon-camera-parent">
-                <button onClick={handleReportClick}>신고하기</button>
+                <img className="FDicon-camera" alt="" src={FDicon3}/>
+                <div className="FDdiv5">버디스토리</div>
+            </div>
+            <div className="FD2singo-btn">
+                <img alt="" className="MP2singo-btn child" onClick={handleReportClick}/>
+            </div>
+            <div className="FD2singo-btn">
+                <Button onClick={handleReportClick}>신고하기</Button>
                 {reportModalOpen &&
                     <ModalReport
                         reporterNickname={unum}
@@ -252,7 +262,7 @@ function FriendDetail(props) {
             {/*  기능 확인을 위해 임시로 위치 조정  */}
             </div>
             <div>
-                <button onClick={handleReportClick}>신고하기</button>
+                <button alt="" src={SingoBtn} onClick={handleReportClick}/>신고하기
                 {reportModalOpen &&
                     <ModalReport
                         reporterNickname={unum}

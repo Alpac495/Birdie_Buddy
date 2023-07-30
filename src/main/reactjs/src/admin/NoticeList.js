@@ -9,30 +9,46 @@ function NoticeList(props) {
     const navi = useNavigate();
     const [data, setData] = useState([]);
     const [unum, setUnum] = useState(0);
+    const [totalPage, setTotalPage] = useState(1);
+    const [page, setPage] = useState(1);
 
     const unumchk=()=>{
         axios.get("/login/unumChk")
-        .then(res=> {
-            setUnum(res.data);
-        });
+            .then(res=> {
+                setUnum(res.data);
+            });
     }
 
     const noticeList = () => {
-        axios.get("/admin/noticeList")
-        .then(res => {
-            console.log(res.data);
-            setData(res.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+        axios.get(`/admin/noticeList?limit=10&offset=${page-1}`)
+            .then(res => {
+                console.log(res.data);
+                setData(res.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    const getTotalCount = () => {
+        axios.get("/admin/noticeCount")
+            .then(res => {
+                const totalCount = res.data;
+                setTotalPage(Math.ceil(totalCount/10));
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     const noticeDetail = (nnum) => {
         navi(`/admin/noticedetail/${nnum}`);
     }
 
-    // Function to format the date based on the condition
+    const pageChange = (value) => {
+        setPage(value);
+    }
+
     const formatDate = (date) => {
         const postDate = new Date(date);
         const currentDate = new Date();
@@ -40,7 +56,6 @@ function NoticeList(props) {
             postDate.getFullYear() === currentDate.getFullYear() &&
             postDate.getMonth() === currentDate.getMonth() &&
             postDate.getDate() === currentDate.getDate();
-
         if (isToday) {
             // If the post is from today, display only the time
             const hours = postDate.getHours();
@@ -55,7 +70,8 @@ function NoticeList(props) {
     useEffect(() => {
         unumchk();
         noticeList();
-    }, []);
+        getTotalCount();
+    }, [page]);
 
     return (
         <div className='notice_wrap'>
@@ -63,19 +79,19 @@ function NoticeList(props) {
                 <Header/>
             </div>
             <div className='notice_header'>
-                    Notice    
+                Notice
             </div>
             <div className='notice_list'>
                 <table className='notice_table'>
                     <thead>
-                        {
-                            unum === 1?
+                    {
+                        unum === 1?
                             (
                                 <Link>
                                     <button className='notice_writeBtn' type='button' style={{textAlign:'center'}}> <CreateOutlinedIcon style={{color:'white'}}/> </button>
                                 </Link>
                             ):null
-                        }
+                    }
                     <tr className='noticeList_head'>
                         <th style={{ textAlign: 'left' }}>작성일</th>
                         <th style={{ textAlign: 'left' }}>카테고리</th>
@@ -83,20 +99,25 @@ function NoticeList(props) {
                     </tr>
                     </thead>
                     <tbody>
-                    {data && 
+                    {data &&
                         data.map((item, idx) => (
-                        <tr key={idx} onClick={() => noticeDetail(item.nnum)}>
-                            <td style={{ textAlign: 'left', width:'80px' }}>{formatDate(item.nwriteday)}</td>
-                            <td style={{ textAlign: 'left' }}>{item.ncate}</td>
-                            <td style={{ textAlign: 'left' }}>{item.nsubject}</td>
-                        </tr>
+                            <tr key={idx} onClick={() => noticeDetail(item.nnum)}>
+                                <td style={{ textAlign: 'left', width:'80px' }}>{formatDate(item.nwriteday)}</td>
+                                <td style={{ textAlign: 'left' }}>{item.ncate}</td>
+                                <td style={{ textAlign: 'left' }}>{item.nsubject}</td>
+                            </tr>
                         ))
                     }
                     </tbody>
                 </table>
-                </div>
-                        </div>
-                    );
-                }
+            </div>
+            <div className='notice_pageNum'>
+                {Array(totalPage).fill().map((_, i) => (
+                    <button key={i} onClick={() => pageChange(i+1)}>{i+1}</button>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 export default NoticeList;

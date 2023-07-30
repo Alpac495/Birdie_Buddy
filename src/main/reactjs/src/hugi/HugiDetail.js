@@ -15,6 +15,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Profile from "../image/user60.png";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import KakaoImg from "../image/kakao.svg";
 
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
@@ -54,9 +55,11 @@ function HugiDetail(props) {
     const handleClickModify = () =>{
         navi(`/hugi/modify/${hnum}`);
     }
-    const handleClickAvatar  = (funum) =>{
+    const handleClickAvatar = (funum) => {
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
+        } else if (funum === unum) {
+            navi(`/mypage/mypage/${unum}`);
         } else {
             navi(`/friend/detail/${funum}`);
         }
@@ -123,9 +126,51 @@ function HugiDetail(props) {
     };
     // 클릭 이벤트 핸들러
     const handleClickShare = () => {
-        const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        const longUrl = `http://223.130.137.128/`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
         generateShortURL(longUrl);
     };
+
+    const { Kakao } = window;
+    // 배포한 자신의 사이트
+    const realUrl = `http://223.130.137.128/hugi/detail/${hnum}`;
+    // 로컬 주소 (localhost 3000 같은거)
+    const resultUrl = `http://localhost:3000/hugi/detail/${hnum}`;
+
+    // 재랜더링시에 실행되게 해준다.
+    useEffect(()=>{
+        // init 해주기 전에 clean up 을 해준다.
+        Kakao.cleanup();
+        // 자신의 js 키를 넣어준다.
+        Kakao.init('82d531473f9f3c5fc093e4d7e3225bc7');
+        // 잘 적용되면 true 를 뱉는다.
+        console.log(Kakao.isInitialized());
+    },[]);
+
+    const shareKakao = () =>{
+
+        Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '버디버디 라운딩 후기',
+                description: '골프,조인,양도,후기,랭킹,채팅',
+                imageUrl:
+                    `${url2}${hphoto}${url3}`,
+                link: {
+                    webUrl:resultUrl,
+                    mobileWebUrl: resultUrl,
+                },
+            },
+            buttons: [
+                {
+                    title: '후기 보러가기',
+                    link: {
+                        webUrl:resultUrl,
+                        mobileWebUrl:resultUrl,
+                    },
+                },
+            ],
+        });
+    }
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
@@ -485,6 +530,12 @@ function HugiDetail(props) {
                 {unum === userNum  && (
                     <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
+                <div className="HG_KakaoIcons" >
+                    <img src={KakaoImg} alt={''}
+                         className="HG_KakaoImg"
+                         onClick={() => {shareKakao()}}>
+                    </img>
+                </div>
                 <ListIcon onClick={handleClickList} className="HG_Icons"/>
 
             </div>

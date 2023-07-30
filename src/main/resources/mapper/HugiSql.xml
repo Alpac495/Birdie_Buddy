@@ -29,8 +29,7 @@
     <update id="updateHugi" parameterType="HugiDto">
         UPDATE hugi
         SET hcontent = #{hcontent},
-            hphoto = #{hphoto},
-            hwriteday = #{hwriteday}
+            hphoto = #{hphoto}
         WHERE hnum = #{hnum}
     </update>
     <update id="addLikeCount" parameterType="int">
