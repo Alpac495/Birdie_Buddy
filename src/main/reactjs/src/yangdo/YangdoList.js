@@ -8,7 +8,7 @@ import axios from 'axios';
 import searchCon from "../image/search.svg";
 import pen from "../image/pen.svg";
 import profile from "../image/User-circle.png";
-import Header from "../header/Header";
+import Header from '../header/Header';
 
 function YangdoList(props) {
     const url = process.env.REACT_APP_PROFILE;
