@@ -428,3 +428,55 @@ button {
 .YElabelUp{
     cursor: pointer;
 }
+
+.YMtitle {
+    position: absolute;
+    top: calc(50% - 44px);
+    left: calc(50% - 180px);
+    letter-spacing: 0.15px;
+    font-weight: 500;
+    display: inline-block;
+    width: 22.5rem;
+  }
+  .YMp {
+    margin: 0;
+  }
+  .YMtext-txt {
+    line-break: anywhere;
+    width: 100%;
+  }
+  .YMtext,
+  .YMtext1 {
+    position: absolute;
+    left: calc(50% - 180px);
+    display: flex;
+    align-items: center;
+    width: 22.5rem;
+  }
+  .YMtext {
+    top: calc(50% - 17px);
+    font-size: 1rem;
+    letter-spacing: 0.44px;
+    line-height: 1.75rem;
+    height: 3.69rem;
+  }
+  .YMtext1 {
+    top: calc(50% + 46px);
+    font-size: 0.75rem;
+    line-height: 0.94rem;
+    font-family: Inter;
+    color: #636363;
+    justify-content: center;
+    height: 1.5rem;
+  }
+  .YMyangdopopup {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 10.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+    color: #292d32;
+    font-family: Roboto;
+  }
+  

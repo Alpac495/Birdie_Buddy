@@ -147,7 +147,7 @@ function YangdoList(props) {
                                     >
                                         <div className="Ylgroup-inner" />
                                         <div className="Yldiv2">{row.yplace}</div>
-                                        <div className="Yldiv3">그린피 : {row.yprice}원</div>
+                                        <div className="Yldiv3">그린피 : {row.yprice? row.yprice.toLocaleString() : '가격 정보 없음'}원</div>
                                         <div className="Ylam">{row.ysubject}</div>
                                     </div>
                                     <div className="Ylgroup-div">

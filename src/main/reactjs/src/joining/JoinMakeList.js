@@ -63,7 +63,7 @@ const JoinMakeList = () => {
                             <div className="JEactions">
                                 <div className="btn1_wrapper">
                                     <button type='button' className="btn btn-sm btn-outline-success" onClick={joinformClick}>
-                                        <b className="JLb">조인만들기</b>
+                                        <b className="JLb">조인 만들기</b>
                                     </button>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ const JoinMakeList = () => {
                                         <p className="JEp">{item.jjoinday} {item.jtime}</p>
                                         
                                         <p className="JEp1"><span className="JEspan">{item.gname}</span></p>
-                                        <p className="JEp1"><span className="JEspan1">그린피 ￦{item.jprice}</span></p>
+                                        <p className="JEp1"><span className="JEspan1">그린피 : {item.jprice? item.jprice.toLocaleString() : '가격 정보 없음'}원</span></p>
                                     </div>
                                     <div className="JEemoji-flag-in-hole-parent">
                                         <img
