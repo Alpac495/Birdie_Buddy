@@ -61,6 +61,7 @@ public class LoginController {
         int n = loginService.loginok(uemail, upass);
         if (n == 1) {
             udto = loginMapper.getUserData(uemail);
+            // udto.getUblacklist();
             int unum = udto.getUnum();
             session.setMaxInactiveInterval(60 * 60 * 5);
             session.setAttribute("unum", unum);
