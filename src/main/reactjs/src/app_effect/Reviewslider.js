@@ -3,8 +3,6 @@ import Slider from 'react-slick';
 import "./Review.css";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import Axios from 'axios';
-import de_hugi from "../images/default_hugi.png";
-import user from "../images/default_golf.png"
 
 export default class SimpleSlider extends Component {
 
@@ -48,6 +46,7 @@ export default class SimpleSlider extends Component {
         const image1 = process.env.REACT_APP_IMAGE1PROFILE;
         const image2 = process.env.REACT_APP_IMAGE87;
         const hugipic = process.env.REACT_APP_HUGI;
+        const defaultPic = process.env.REACT_APP_MAIN;
         
 
 
@@ -72,9 +71,9 @@ export default class SimpleSlider extends Component {
 
 
                                 {item.hphoto !== '' ? (
-                                <img className={'review_img'} alt="프로필 사진" src={`${hugipic}${item.hphoto}`} onClick={() => this.handleTouchStart(idx)} />
+                                <img className={'review_img'} alt="" src={`${hugipic}${item.hphoto}`} onClick={() => this.handleTouchStart(idx)} />
                             ) : (
-                                <img className={'review_img'} alt="프로필 사진" src={de_hugi} onClick={() => this.handleTouchStart(idx)} />
+                                <img className={'review_img'} alt="" src={`${defaultPic}default_hugi.png`} onClick={() => this.handleTouchStart(idx)} />
                             )}
 
                                
@@ -84,7 +83,7 @@ export default class SimpleSlider extends Component {
                                             {item.uphoto != null ? (
                                             <img className={'review_profile'} alt="프로필 사진" src={`${image1}${item.uphoto}${image2}`} />
                                             ) : (
-                                            <img className={'review_profile'} alt="프로필 사진" src={user} />
+                                            <img className={'review_profile'} alt="프로필 사진" src={`${defaultPic}profile3.png`} />
                                             )}
                                             <span className={'review_writer'}>{item.unickname}</span>
                                             <div className={'review_footer'}><FavoriteOutlinedIcon /> {item.hlike}</div>

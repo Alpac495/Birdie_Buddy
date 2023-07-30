@@ -87,7 +87,7 @@ function NoticeList(props) {
                     {
                         unum === 1?
                             (
-                                <Link>
+                                <Link to={"/admin/noticeForm"}>
                                     <button className='notice_writeBtn' type='button' style={{textAlign:'center'}}> <CreateOutlinedIcon style={{color:'white'}}/> </button>
                                 </Link>
                             ):null
