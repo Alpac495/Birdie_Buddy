@@ -1,6 +1,6 @@
 import React, {Component, useState} from 'react';
 import Slider from "react-slick";
-import no from "../images/nooooo.jpg"
+import no from "../images/golf_place.jpg"
 import "./Bannerslider.css";
 
 const totalSlides = 6; // 전체 슬라이드 수
@@ -26,7 +26,7 @@ export default class SimpleSlider extends Component {
             slidesToShow: 1,
             slidesToScroll: 1,
             autoplay:true,
-            autoplaySpeed:1000,
+            autoplaySpeed:3000,
             afterChange: this.handleSlideChange,
             prevArrow: null, // 이전 화살표를 감춥니다.
             nextArrow: null, // 다음 화살표를 감춥니다.

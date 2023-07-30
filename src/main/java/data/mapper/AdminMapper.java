@@ -37,5 +37,6 @@ public interface AdminMapper {
     public int getNoticeCount();
     
     public void deleteNotice(int nnum);
-    public void updateNotice(int nnum);
+    
+    public void updateNotice(NoticeDto dto);
 }

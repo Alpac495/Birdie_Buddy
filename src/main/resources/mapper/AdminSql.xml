@@ -43,7 +43,7 @@
     <delete id="deleteNotice" parameterType="int"> 
         delete from notice where nnum=#{nnum}
     </delete>
-    <update id="updateNotice" parameterType="int">
-        update notice set nsubject=#{nsubject}, ncontent=#{ncontent}, ncate=#{ncate}, nphoto=#{nphoto}, nwriteday=#{nwriteday}  where nnum=#{nnum}
+    <update id="updateNotice" parameterType="NoticeDto">
+        update notice set nsubject=#{nsubject}, ncontent=#{ncontent}, ncate=#{ncate}, nphoto=#{nphoto} where nnum=#{nnum}
     </update>
 </mapper>

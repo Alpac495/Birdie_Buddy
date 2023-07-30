@@ -29,6 +29,4 @@ public class AdminService implements AdminServiceInter {
     public int getNoticeCount() {
         return adminMapper.getNoticeCount();
     }
-
-
 }
