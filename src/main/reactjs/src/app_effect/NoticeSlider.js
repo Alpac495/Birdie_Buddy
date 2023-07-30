@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import "./NoticeSlider.css";
 import Axios  from 'axios';
@@ -41,8 +42,10 @@ export default class SimpleSlider extends Component {
             <div className="notice_slider">
                 <Slider {...settings}>
                     {
-                        noticeList.map((itme, idx)=>(
-                            <div key={idx}>{itme.nsubject}</div>
+                        noticeList.map((item, idx)=>(
+                            <Link className='noticeList_go' key={idx} to={`/admin/noticeDetail/${item.nnum}`}>
+                                <div key={idx}>{item.nsubject}</div>
+                            </Link>
                         ))
                     }
                 </Slider>

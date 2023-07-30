@@ -3,8 +3,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import './Mypage.css';
+import UpdateIcon from "../image/icon_update.svg";
+import userprofile from "../image/userprofile.svg";
+import profile3 from "../image/profile3.png";
+import back from "../image/bgphoto.png";
 
 import EditIcon from '@mui/icons-material/Edit';
+import SingoBtn from "../image/btn_singo.svg";
+import BackPhoto from "../image/icon_mybackphoto.svg";
+import Photoicon from "../image/icon_myphoto.svg"
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
 import FDicon1 from "../image/icon_addbuddy.svg";
@@ -13,7 +20,8 @@ import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
 import ModalBgphoto from "./MypageUpdateBgphoto"
 import Axios from "axios";
-import {NavLink} from "react-router-dom";
+import Header from "../header/Header";
+import { NavLink } from "react-router-dom";
 
 function Mypage(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -70,7 +78,7 @@ function Mypage(props) {
             })
         setConOpen(false);
     }
-    const chnageNick = () => {
+    const changeNick = () => {
         setUnickname(nickRef.current.value)
         axios.get(`/login/updateNick?unickname=${nickRef.current.value}&unum=${unum}`)
             .then(res => {
@@ -163,23 +171,32 @@ function Mypage(props) {
         )
     } else {
         return (
-
             <div className="FDprofile">
                 <div className="FDdiv">
                     <div className="FDchild" />
                 </div>
 
-                <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+                {
+                    ubgphoto == null || '' ?
+                        <img alt='error' className="FDbackprofile" src={back} />
+                        :
+                        <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+                }
 
                 <div className="FDinfobox" />
-                <div className="FDmainprofile"><img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
-
-                    <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto} />
-                    <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
-                        <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
-                        <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
-                    </ModalPhoto>
+                <div className="FDmainprofile">
+                    {
+                        uphoto == null || '' ?
+                            <img alt='error' style={{}} src={profile3} />
+                            :
+                            <img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
+                    }
                 </div>
+                <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto} />
+                <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
+                    <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
+                    <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
+                </ModalPhoto>
 
 
                 <div className="FDdiv2">
@@ -206,29 +223,51 @@ function Mypage(props) {
                         ucontent === null ? <div>자기소개를 입력해 주세요.</div>
                             :
                             ucontent
-                    }
-                    &nbsp;
-                    <EditIcon fontSize="small" onClick={openCon} />
-                    <ModalCon open={conOpen} close={closeCon} changeCon={changeCon} header="자기소개 변경">
-                        <input className={'inputtext'} type={'text'} value={imsiCon} onChange={(e) =>
-                            setImsiCon(e.target.value)
-                        } ref={conRef} />
-                    </ModalCon>
+                    }                  
+              </div>
+              <div className="MP2icon-buddychat-parent">
+                <img className="MP2icon-buddychat" alt="" src={FDicon2} />
+                <div className="MP2div2">버디채팅</div>
+              </div>
+              <div className="MP2icon-buddystory-parent">
+                <img className="MP2icon-buddystory" alt="" src={FDicon3} />
+                <div className="MP2div2">버디스토리</div>
+              </div>
+              <div className="MP2parent">
+                <div className="MP2div2">버디추가</div>
+                <img className="MP2icon-addbuddy" alt="" src={FDicon1} />
+              </div>
+              <div className="MP2singo-btn">
+                <div className="MP2singo-btn-child" />
+                
+                  <img className="MP2singo-btn-child" alt="" src={SingoBtn} />
+              
+              </div>
+              <div className="MP2container">
+                <div className="MP2div6">{unickname}&nbsp;
+                {/* <img alt='' className="MP2update-icon" src={UpdateIcon} onClick={openNick} /> */}
+                  {/* <EditIcon fontSize="small" onClick={openNick} /> */}
+                  <ModalNick open={nickOpen} close={closeNick} changeNick={changeNick} header="닉네임 변경">
+                    <input className="inputtext" type="text" value={imsiNick} onChange={(e) => setImsiNick(e.target.value)} ref={nickRef} />
+                  </ModalNick>
                 </div>
-                <div className="FDdiv4">{unickname}&nbsp;
-                    <EditIcon fontSize="small" onClick={openNick} />
-                    <ModalNick open={nickOpen} close={closeNick} chnageNick={chnageNick} header="닉네임 변경">
-                        <input className={'inputtext'} type={'text'} value={imsiNick} onChange={(e) =>
-                            setImsiNick(e.target.value)
-                        } ref={nickRef} />
-                    </ModalNick>
+                <img className="MP2update-icon" alt="" src={UpdateIcon} onClick={openNick}  />
+              </div>
+              <div className="MP2frame-div">
+                <div className="MP2div7">
+                  {ucontent === null ? <div className='MP2div7'>자기소개를 입력해 주세요.</div> : ucontent}&nbsp;
+                  {/* <EditIcon fontSize="small" onClick={openCon} /> */}
+                  <img className="MP2update-icon" alt="" src={UpdateIcon} onClick={openCon} />
+                  <ModalCon open={conOpen} close={closeCon} changeCon={changeCon} header="자기소개 변경">
+                    <input className="inputtext" type="text" value={imsiCon} onChange={(e) => setImsiCon(e.target.value)} ref={conRef} />
+                  </ModalCon>
                 </div>
                 <NavLink to={`/chating/${unum}`}>
-            <div className="FDicon-message-parent">
-                <img className="FDicon-message" alt="" src={FDicon2}/>
-                <div className="FDdiv5">TEXT2</div>
-            </div>
-            </NavLink>
+                    <div className="FDicon-message-parent">
+                        <img className="FDicon-message" alt="" src={FDicon2} />
+                        <div className="FDdiv5">TEXT2</div>
+                    </div>
+                </NavLink>
                 <div className="FDicon-camera-parent">
                     <img className="FDicon-camera" alt="" src={FDicon3} />
                     <div className="FDdiv5">TEXT3</div>
@@ -241,7 +280,7 @@ function Mypage(props) {
                         alt="" src={FDicon1} />
                 </div>
 
-            </div >
+            </div ></div>
         );
     }
 }

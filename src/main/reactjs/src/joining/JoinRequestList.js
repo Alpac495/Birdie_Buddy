@@ -2,7 +2,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 import "./JoinList.css";
-import iconFlag from "../image/icon_flaghole.svg"
+import Flagicon from "../image/icon_joinflag.svg"
 import Header from "../header/Header";
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
@@ -122,7 +122,7 @@ const JoinRequestList = () => {
                                         <img
                                             className="emoji-flag-in-hole"
                                             alt=""
-                                            src={iconFlag} />
+                                            src={Flagicon} />
                                         <div className="JEdiv5">{4-item.jmcount-item.jucount === 0 ? "꽉 찼어요!" : `${4-item.jmcount-item.jucount}자리 비었어요!`}</div>
                                     </div>
                                     <div>
