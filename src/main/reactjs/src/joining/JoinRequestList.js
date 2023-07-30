@@ -65,8 +65,8 @@ const JoinRequestList = () => {
                         <div className="JEapp-bar-top">
                             <div className="JEactions">
                                 <div className="btn1_wrapper">
-                                    <button type='button' className="btn btn-sm btn-outline-success" onClick={joinformClick}>
-                                        <b className="JLb">조인 만들기</b>
+                                    <button type='button' className="JLbtn" onClick={joinformClick}>
+                                        조인 만들기
                                     </button>
                                 </div>
                             </div>

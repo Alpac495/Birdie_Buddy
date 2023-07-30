@@ -32,7 +32,7 @@ function RankList(props) {
     }
 
     function scrollToUnumItem(unum) {
-        alert(unum);
+        //alert(unum);
         const unumItem = document.querySelector(`[data-unum="${unum}"]`);
         if (unumItem) {
             unumItem.scrollIntoView({ behavior: "smooth" });
@@ -69,7 +69,7 @@ function RankList(props) {
                     <div style={{ visibility: 'hidden' }} >dd</div>
                     <div>
                         <button type='button' onClick={() => scrollToUnumItem(unum)}>
-                            내 순위 조회
+                            내 순위
                         </button>
                     </div>
                 </div>

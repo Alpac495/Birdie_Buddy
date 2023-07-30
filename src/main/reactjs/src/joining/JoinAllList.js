@@ -101,14 +101,14 @@ const JoinAllList = () => {
                             <div className="JEactions">
                                 <div className="btn1_wrapper">
 
-                                    <button type='button' className="btn btn-sm btn-outline-success" onClick={joinformClick}>
-                                        <b className="JLb">조인 만들기</b>
+                                    <button type='button' className="JLbtn" onClick={joinformClick}>
+                                        조인 만들기
                                     </button>
                                 </div>
                             </div>
                             <input className="JEtitle"
                                    type="text"
-                                   placeholder="골프장명 또는 날짜로"
+                                   placeholder="골프장명 또는 날짜로 검색"
                                    value={keyword}
                                     onChange={(e) => {
                                         setKeyword(e.target.value);
