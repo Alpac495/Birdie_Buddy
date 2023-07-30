@@ -396,3 +396,25 @@ body {
   color: #000;
   font-family: Inter;
 }
+.MP2singo-btn {
+  position: absolute;
+  top: 6.81rem;
+  right: 0.56rem;
+  width: 4.25rem;
+  height: 1.25rem;
+  font-size: 0.63rem;
+  color: #fff;
+}
+.MP2singo-btn-child {
+  position: absolute;
+  height: 100%;
+  top: 0;
+}
+.MP2singo-btn-child {
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 3px;
+  background-color: #48685e;
+}
