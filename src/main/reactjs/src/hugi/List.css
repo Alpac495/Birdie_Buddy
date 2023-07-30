@@ -444,5 +444,6 @@
 .HG_ShareApiIcons{
     position: relative;
     margin-left: 30px;
+    cursor: pointer;
 }
 
