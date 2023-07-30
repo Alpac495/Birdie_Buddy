@@ -1,5 +1,5 @@
 import React from 'react';
-import './MypageUpdateBgphoto.css';
+import './MypageModal.css';
 
 function MypageUpdateBgphoto(props) {
     const { open, close, header, changebgphoto } = props;
@@ -15,7 +15,7 @@ function MypageUpdateBgphoto(props) {
                             &times;
                         </button>
                     </header>
-                    <mumain>{props.children}</mumain>
+                    <main>{props.children}</main>
                     <footer>
                         <button onClick={changebgphoto}>
                             저장

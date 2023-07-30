@@ -36,7 +36,7 @@ export default class SimpleSlider extends Component {
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 5000,
-            vertical: true, // 수직 슬라이드로 설정
+            vertical: true,
         };
         return (
             <div className="notice_slider">
