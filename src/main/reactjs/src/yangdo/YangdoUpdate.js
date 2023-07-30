@@ -97,7 +97,7 @@ function YangdoUpdate(props) {
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>
-                        <input style={{marginLeft:'20px'}}
+                        <input className="joinsearch"
                                type="text"
                                placeholder="검색"
                                onChange={(e) => {
