@@ -1,5 +1,5 @@
 import React from 'react';
-import './MypageUpdatePhoto.css';
+import './MypageModal.css';
 
 function MypageUpdatePhoto(props) {
     const { open, close, header, changePhoto } = props;

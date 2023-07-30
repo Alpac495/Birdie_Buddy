@@ -18,7 +18,7 @@ import Alert from '@mui/material/Alert';
 import EditIcon from '@mui/icons-material/Edit';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
-import Profile from "../image/user60.png";
+import Profile from "../image/User-32.png";
 import KakaoImg from "../image/kakao.svg";
 function HugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
@@ -27,7 +27,7 @@ function HugiRowList(props) {
     const URL2=process.env.REACT_APP_HUGI2;
     const URL3 = process.env.REACT_APP_HUGI_325;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
-    const image2 = process.env.REACT_APP_IMAGE40;
+    const image2 = process.env.REACT_APP_IMAGE87;
 
     const navi = useNavigate();
 
@@ -547,10 +547,10 @@ function HugiRowList(props) {
     return (
         <div className="HG_list">
             <div className="HG_list_header">
-                {props.uphoto !== null ? (
-                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,props.unum)}/>
+                {props.uphoto == null ? (
+                    <Avatar className="HG_list_avatar" alt={'error'}  src={Profile}  onClick={handleClickAvatar.bind(null,props.unum)}/>
                 ):(
-                    <Avatar className="HG_list_avatar" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,props.unum)}/>
+                    <Avatar className="HG_list_avatar" alt={''} src={`${image1}${props.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,props.unum)}/>
                 )}
                 <span className="HG_spanName" onClick={handleClickAvatar.bind(null,props.unum)}>{postUserNickname}</span>
             </div>

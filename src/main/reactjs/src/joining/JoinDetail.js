@@ -7,11 +7,12 @@ import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 import Profile from "../image/User-32.png";
 import * as ncloudchat from 'ncloudchat';
+import Header from "../header/Header";
 
 const JoinDetail = () => {
     const url = process.env.REACT_APP_PROFILE;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
-    const image2 = process.env.REACT_APP_IMAGE40;
+    const image2 = process.env.REACT_APP_IMAGE87;
     const [unum, setUnum]=useState('');
     const {jnum} = useParams('');
     const [dto,setDto]=useState({});
@@ -281,6 +282,7 @@ const JoinDetail = () => {
 
     return (
         <div className="joindetail">
+            <Header/>
             <div className="JDdiv">
             </div>
             <div className="JDdongbangroup">
@@ -400,9 +402,9 @@ const JoinDetail = () => {
 
                     <div className="JDdiv10">
                         {dto.unum == unum || unum==1? (
-                            <button type="button" onClick={onJoinCancelEvent}>모집 취소</button>
+                            <div className="JDdiv10btn" onClick={onJoinCancelEvent}>모집 취소</div>
                         ) : check === 1 ? (
-                            <button type="button" onClick={onGaipCancelEvent}>신청 취소</button>
+                            <div className="JDdiv10btn" onClick={onGaipCancelEvent}>신청 취소</div>
                         ) : (
                             <form onClick={onGaipEvent}>
                                 <input type='hidden' value={unum}/>
@@ -411,7 +413,7 @@ const JoinDetail = () => {
                                 <input type='hidden' value={jp1age}/>
                                 <input type='hidden' value={jp1tasu}/>
                                 <input type='hidden' value={jcount}/>
-                                <button type="submit">신청 하기</button>
+                                <div className="JDdiv10btn">신청 하기</div>
                             </form>
                         )}
                     </div>
@@ -420,15 +422,15 @@ const JoinDetail = () => {
                             <div className="joindetail-child2" />
                         ) : (
                             null
-                        )}                    
-                    <div className="JDdiv20">
-                        {dto.unum == unum ? (
-                            <button type="button" onClick={onJoinUpdateEvent}>수정하기</button>
+                        )}
+                        {dto.unum == unum ?
+                        (<div className="JDdiv20">
+                            <div className="JDdiv10btn" onClick={onJoinUpdateEvent}>수정하기</div>
+                            </div>
                         ) : (
                             null
                         )}
-                    </div>
-                </div>
+                    </div>                
             </div>
 
             <div className="jdinfo">
@@ -463,7 +465,7 @@ const JoinDetail = () => {
                 <div className="nav-style" onClick={handleDivClick}>
                     <div className="JDflistprofile1">
                         {dto.uphoto == null ? <img className="jduphoto-icon" alt="" src={Profile} /> :
-                        <img className="jduphoto-icon" src={`${url}${dto.uphoto}`} alt={''}/>}
+                        <img className="jduphoto-icon" src={`${image1}${dto.uphoto}${image2}`} alt={''}/>}
                         <div className="JDdiv11">
                             <span className="JDtxt">
                                 <p className="JDp4">{dto.unickname} (모집자)</p>

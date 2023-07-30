@@ -134,7 +134,7 @@ public class AdminContoller {
         adminMapper.deleteNotice(nnum);
     }
     @PostMapping("/update")
-    public void update(NoticeDto dto){
+    public void update(@RequestBody NoticeDto dto){
         adminMapper.updateNotice(dto);
     }
 }

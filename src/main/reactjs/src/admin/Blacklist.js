@@ -53,6 +53,9 @@ function Blacklist(props) {
                 setLoading(false);
             });
     }
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     return (
         <div className="alluserlist">
             <div className="header"><Header/></div>
@@ -82,8 +85,15 @@ function Blacklist(props) {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "140px", overflow: "none"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={items.length == 0 && !loading ?(
+                        <div className="BL_footer-message">유저가 없습니다</div>
+                    ):(<div className="BL_scroll-to-top-button"
+                            onClick={scrollToTop}>Scroll to Top</div>)}
                 >
 
             {
@@ -112,6 +122,13 @@ function Blacklist(props) {
                     </div>
                  )
             }
+                <br/>
+                {items.length > 0 && !loading &&(
+                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
+                    <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>
+                )}
             </InfiniteScroll>
         </div></div>
     );

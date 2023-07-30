@@ -1,15 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.2d6104dc.css",
-    "main.js": "/static/js/main.58b35e99.js",
+    "main.css": "/static/css/main.03066364.css",
+    "main.js": "/static/js/main.8470e1be.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_ranking.jpg": "/static/media/golf_ranking.61722abbaf185e6f0068.jpg",
     "static/media/golf_back.jpg": "/static/media/golf_back.daecbbea3e4382067f54.jpg",
     "static/media/golf_place.jpg": "/static/media/golf_place.acf2d03cace00fe60acd.jpg",
     "static/media/golf_ad.jpg": "/static/media/golf_ad.d61cf15fb63d8b304b63.jpg",
-    "static/media/bronze-medal.png": "/static/media/bronze-medal.b042076e2a4f3ac51d53.png",
-    "static/media/silver-medal.png": "/static/media/silver-medal.2ef932430b675267f9df.png",
-    "static/media/gold-medal.png": "/static/media/gold-medal.b884151fbb05c35b57f3.png",
     "static/media/bgphoto.png": "/static/media/bgphoto.bece9e6c5cd6c7c89ad3.png",
     "static/media/naverbtn.png": "/static/media/naverbtn.50f997a4772f912cd966.png",
     "static/media/mainlogo.svg": "/static/media/mainlogo.1650e8d293be6ef49e6ba288466b8486.svg",
@@ -54,12 +51,12 @@
     "static/media/icon_card.svg": "/static/media/icon_card.b5c6e916843a189821e4029c0bc67691.svg",
     "static/media/Back.svg": "/static/media/Back.fd37b3bcab978ede06f2d8ce9f11175c.svg",
     "static/media/naver.svg": "/static/media/naver.77d845a3af265652b9702150dfaf02d7.svg",
-    "main.2d6104dc.css.map": "/static/css/main.2d6104dc.css.map",
-    "main.58b35e99.js.map": "/static/js/main.58b35e99.js.map",
+    "main.03066364.css.map": "/static/css/main.03066364.css.map",
+    "main.8470e1be.js.map": "/static/js/main.8470e1be.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d6104dc.css",
-    "static/js/main.58b35e99.js"
+    "static/css/main.03066364.css",
+    "static/js/main.8470e1be.js"
   ]
 }

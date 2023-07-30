@@ -56,7 +56,9 @@ function UserList(props) {
     const handleReportCheckClick = (unum) => {
         navigate(`/admin/report/${unum}`);
     };
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     return (
         <div className="alluserlist">
             <div className="header"><Header/></div>
@@ -86,8 +88,15 @@ function UserList(props) {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "140px", overflow: "none"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={items.length == 0 && !loading ?(
+                        <div className="UL_footer-message">유저가 없습니다</div>
+                    ):(<div className="UL_scroll-to-top-button"
+                            onClick={scrollToTop}>Scroll to Top</div>)}
                 >
             {
                 items.map &&
@@ -112,9 +121,18 @@ function UserList(props) {
                                         <div className="ULdiv4" onClick={() => handleReportCheckClick(item.unum)}>신고 내역 확인</div>                                    </div>
                                 </div>
                         </div>
+
                     </div>
+
                  )
             }
+            <br/>
+                {items.length > 0 && !loading &&(
+                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
+                    <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>
+                )}
             </InfiniteScroll>
             </div>
         </div>

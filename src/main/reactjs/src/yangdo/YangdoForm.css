@@ -170,16 +170,15 @@
   }
 
   .yfpopupbtn {
-    width: 69.13%;
-    right: 30.87%;
+    width: 65%;
     color: #000;
   }
 
   .yfbtngroup {
     position: absolute;
     top: 40.5rem;
-    left: 1.06rem;
-    width: 20.31rem;
+    left: calc(50% - 163px);
+    width: 20.38rem;
     height: 2.5rem;
     text-align: center;
     font-size: 0.94rem;
@@ -196,7 +195,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 22.5rem;
+    width: 100%;
   }
 
   .yangdoform {

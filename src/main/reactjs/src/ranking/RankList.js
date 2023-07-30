@@ -64,7 +64,7 @@ function RankList(props) {
                 <Link to="/score/form">스코어 입력</Link>
             </div> */}
 
-            <div className='ranking_List' style={{ backgroundImage: `url(${require("../images/golf_ranking.jpg")})` }}>
+            <div className='ranking_List'  style={{ backgroundImage: 'url(http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy/ranking/golf_ranking.jpg)' }}>
                 <div className='ranking_search'>
                     <div style={{ visibility: 'hidden' }} >dd</div>
                     <div>

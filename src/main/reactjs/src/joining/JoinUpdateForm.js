@@ -7,6 +7,7 @@ import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 import PartnerForm2 from "../components/PartnerForm2";
 import JoinDetail from "./JoinDetail";
+import Header from "../header/Header";
 
 
 const JoinUpdateForm = () => {
@@ -124,7 +125,8 @@ const JoinUpdateForm = () => {
 
     return (
         <div className="ujoinform">
-            <form onSubmit={onSubmitEvent}>
+            <Header/>
+            <form>
             <div className="jregister" />
             <div className="uframe-parent">
                 <div className="uframe-container">
@@ -157,7 +159,7 @@ const JoinUpdateForm = () => {
             </div>
             <div className="joinupdateform-child" />
                 <div className="jdiv1">#동반자 정보 변경을 원하지 않을 경우<br/>선택하지마세요.</div><br/>
-                <div className="updatejdiv7"><button type='submit'>조인 수정하기</button></div>
+                <div className="updatejdiv7"><div onClick={onSubmitEvent} className="JDdiv10btn">조인 수정하기</div></div>
                 <label className="juradio-button-setonon">
                     <input type='radio' name='partner' ref={noPartnerInputRef} className="jdiv31"/>동반자 없음
                 </label>
