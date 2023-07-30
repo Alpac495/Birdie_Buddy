@@ -188,7 +188,12 @@ function Mypage(props) {
                             <img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
                     }
                     <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
-                        <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={'error'} />
+                        {
+                            imsiphoto==null||''?
+                            <img className={'imsiphoto'} src={profile3} alt={''} />
+                            :
+                            <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
+                        }
                         <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
                     </ModalPhoto>
                 </div>
@@ -197,7 +202,12 @@ function Mypage(props) {
                 <div>
                     <img alt='' className="MP2backimg" src={BackPhoto} onClick={openBg} />
                     <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
-                        <img className="imsibgphoto" src={`${url2}${imsibgphoto}`} alt="error" />
+                        {
+                            imsibgphoto==null||''?
+                            <img className="imsibgphoto" src={back} alt="error" />
+                            :
+                            <img className="imsibgphoto" src={`${url2}${imsibgphoto}`} alt="error" />
+                        }
                         <input className="inputfile" type="file" ref={bgphotoRef} onChange={onUploadEventBg} />
                     </ModalBgphoto>
                 </div>
@@ -210,10 +220,9 @@ function Mypage(props) {
                         <p className="FDp">골프경력 {dto.ucareer} /&nbsp;
                             {
                                 stasu == null || stasu == '' || stasu == 0 ?
-                                    <span> 입력된 타수 정보가 없습니다</span> :
+                                    <span> 타수 정보가 없습니다</span> :
                                     <span>
                                         평균타수 {stasu}타
-                                        {/* <EditIcon fontSize="small" onClick={openBg} />	 */}
                                     </span>
                             }
                         </p>
