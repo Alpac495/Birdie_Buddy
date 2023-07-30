@@ -12,6 +12,8 @@ import _ from "lodash"
 
 
 const JoinAllList = () => {
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
     const url = process.env.REACT_APP_PROFILE;
     const [keyword, setKeyword] = useState('');
     // eslint-disable-next-line no-unused-vars
@@ -167,7 +169,7 @@ const JoinAllList = () => {
                                                     </div>
                                                     <div className="JEdiv4">
                                                         <p className="JEp">{item.jjoinday} {item.jtime}</p>
-                                                        {item.jaccept===0?(<p className="JLp2">#신청 중</p>) : item.jaccept===1?(<p className="JLp2">#조인 확정</p>) : item.jaccept===2?(<p className="JLp2">#모집 중</p>) : null}
+                                                        {/* {item.jaccept===0?(<p className="JLp2">#신청 중</p>) : item.jaccept===1?(<p className="JLp2">#조인 확정</p>) : item.jaccept===2?(<p className="JLp2">#모집 중</p>) : null} */}
                                                         <p className="JEp1"><span className="JEspan">{item.gname}</span></p>
                                                         <p className="JEp1"><span className="JEspan1">그린피 ￦{item.jprice}</span></p>
                                                     </div>
@@ -180,7 +182,7 @@ const JoinAllList = () => {
                                                     </div>
                                                     <div>
                                                         {item.uphoto == null ? <img className="JEavatar-user-60" alt="" src={Profile} /> :
-                                                            <img className="JEavatar-user-60" src={`${url}${item.uphoto}`} alt={''}/>}
+                                                            <img className="JEavatar-user-60" src={`${image1}${item.uphoto}${image2}`} alt={''}/>}
                                                     </div>
                                                     <div className="JErectangle-parent">
                                                         <div className="JEgroup-child" />

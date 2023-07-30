@@ -12,6 +12,8 @@ import Profile from "../image/user60.png";
 
 const JoinMakeList = () => {
     const url = process.env.REACT_APP_PROFILE;
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
     const [unum, setUnum]=useState('');
     const [data, setData] = useState([]);
     const unumchk=()=>{
@@ -126,7 +128,7 @@ const JoinMakeList = () => {
                                     </div>
                                     <div>
                                         {item.uphoto == null ? <img className="JEavatar-user-60" alt="" src={Profile} /> :
-                                        <img className="JEavatar-user-60" src={`${url}${item.uphoto}`} alt={''}/>}
+                                        <img className="JEavatar-user-60" src={`${image1}${item.uphoto}${image2}`} alt={''}/>}
                                     </div>
                                     <div className="JErectangle-parent">
                                         <div className="JEgroup-child" />

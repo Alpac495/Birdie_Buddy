@@ -7,6 +7,7 @@ import "../yangdo/YangdoList.css";
 import profile from "../image/User-circle.png";
 import searchCon from "../image/search.svg";
 import pen from "../image/pen.svg";
+import Header from '../header/Header';
 
 function MyYangdo(props) {
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
@@ -68,6 +69,7 @@ function MyYangdo(props) {
     let prevDay = "";
     return (
         <div className="Ylyangdolist">
+            <Header/>
             <div className="Ylyangdolist-child" />
             <div className="Ylrectangle-parent">
                 <div className="Ylgroup-child" onClick={allList} />

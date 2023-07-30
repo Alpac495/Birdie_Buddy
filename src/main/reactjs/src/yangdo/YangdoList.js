@@ -8,6 +8,7 @@ import axios from 'axios';
 import searchCon from "../image/search.svg";
 import pen from "../image/pen.svg";
 import profile from "../image/User-circle.png";
+import Header from '../header/Header';
 
 function YangdoList(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -94,6 +95,7 @@ function YangdoList(props) {
     let prevDay = "";
     return (
         <div className="Ylyangdolist">
+            <Header/>
             <div className="Ylyangdolist-child" />
             <div className="Ylrectangle-parent">
                 <div className="Ylgroup-child" onClick={mylist} />
