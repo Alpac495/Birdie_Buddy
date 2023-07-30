@@ -93,9 +93,13 @@ public class AdminContoller {
     }
 
     @GetMapping("/noticeList")
-    public List<NoticeDto> noticeList() {
-        List<NoticeDto> list = adminMapper.noticeList();
-        return list;
+    public List<NoticeDto> getNotice(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "0") int offset){
+        return adminService.getNotice(limit, offset);
+    }
+
+    @GetMapping("/noticeCount")
+    public int getNoticeCount(){
+        return adminService.getNoticeCount();
     }
 
     @GetMapping("/noticeDetail")
