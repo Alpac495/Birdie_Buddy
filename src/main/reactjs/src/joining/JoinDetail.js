@@ -5,11 +5,13 @@ import Axios from "axios";
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
-import Profile from "../image/user60.png";
+import Profile from "../image/User-32.png";
 import * as ncloudchat from 'ncloudchat';
 
 const JoinDetail = () => {
     const url = process.env.REACT_APP_PROFILE;
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE40;
     const [unum, setUnum]=useState('');
     const {jnum} = useParams('');
     const [dto,setDto]=useState({});
@@ -254,7 +256,13 @@ const JoinDetail = () => {
             }
         }
     };
-
+    const handleDivClick =() =>{
+        if(dto.unum==unum){
+            navi(`/mypage/mypage/${dto.unum}`);
+        } else{
+            navi(`/friend/detail/${dto.unum}`);
+        }
+    }
     useEffect(() => {
         const disconnectChat = async () => {
             if (nc) {
@@ -310,7 +318,7 @@ const JoinDetail = () => {
                             <div className="JDavatar">
                                 {/* <div className="JDlw">LW</div> */}
                                 {item.uphoto == null ? <img className="JDlw" alt="" src={Profile} /> :
-                                <img className="JDlw" src={`${url}${item.uphoto}`} alt={''}/>}
+                                <img className="JDlw" src={`${image1}${item.uphoto}${image2}`} alt={''}/>}
                             </div></NavLink>
                             {item.jcount == 1 ? <div className="esther-howard"><b>{item.unickname}</b>
                                 <div style={{display:'none'}}>{item.unum}</div>
@@ -361,7 +369,7 @@ const JoinDetail = () => {
                             <NavLink to={`/friend/detail/${item.unum}`} className='nav-style'>
                             <div className="JDavatar">
                                 {item.uphoto == null ? <img className="JDlw" alt="" src={Profile} /> :
-                                <img className="JDlw" src={`${url}${item.uphoto}`} alt={''}/>}
+                                <img className="JDlw" src={`${image1}${item.uphoto}${image2}`} alt={''}/>}
                             </div> </NavLink>
                             {item.jp1gender == null ? <div className="esther-howard"><b>{item.unickname}</b>
                                 <div style={{display:'none'}}>{item.unum}</div>&nbsp;&nbsp;
@@ -451,7 +459,8 @@ const JoinDetail = () => {
             </div>
 
             <div className="JDflistprofile">
-                <NavLink to={`/friend/detail/${dto.unum}`} className='nav-style'>
+                {/*<NavLink to={`/friend/detail/${dto.unum}`} className='nav-style'>*/}
+                <div className="nav-style" onClick={handleDivClick}>
                     <div className="JDflistprofile1">
                         {dto.uphoto == null ? <img className="jduphoto-icon" alt="" src={Profile} /> :
                         <img className="jduphoto-icon" src={`${url}${dto.uphoto}`} alt={''}/>}
@@ -462,7 +471,8 @@ const JoinDetail = () => {
                             </span>
                         </div>
                     </div>
-                </NavLink>
+                </div>
+                {/*</NavLink>*/}
                 <div className="JDrectangle-parent">
                     <div className="JDgroup-child" />
                     <div className="JDdiv12" onClick={onChatEvent.bind(null, dto.unum)}>채팅하기</div>
