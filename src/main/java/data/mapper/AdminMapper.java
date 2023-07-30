@@ -33,5 +33,6 @@ public interface AdminMapper {
     public List<UserDto> getBlackUserListScrollSearch(@Param("keyword") String keyword);
     
     public void deleteNotice(int nnum);
-    public void updateNotice(int nnum);
+    
+    public void updateNotice(NoticeDto dto);
 }

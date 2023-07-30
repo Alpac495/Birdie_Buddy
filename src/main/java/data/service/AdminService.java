@@ -18,5 +18,4 @@ public class AdminService implements AdminServiceInter {
     public List<UserDto> getUserList() {
         return adminMapper.getUserList();
     }
-
 }
