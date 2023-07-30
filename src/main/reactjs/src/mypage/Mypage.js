@@ -3,8 +3,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import './Mypage.css';
-
+import UpdateIcon from "../image/icon_update.svg";
 import EditIcon from '@mui/icons-material/Edit';
+import SingoBtn from "../image/btn_singo.svg";
+import BackPhoto from "../image/icon_mybackphoto.svg";
+import Photoicon from "../image/icon_myphoto.svg"
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
 import FDicon1 from "../image/icon_addbuddy.svg";
@@ -14,6 +17,7 @@ import ModalPhoto from "./MypageUpdatePhoto"
 import ModalBgphoto from "./MypageUpdateBgphoto"
 import Axios from "axios";
 import {NavLink} from "react-router-dom";
+import Header from "../header/Header";
 
 function Mypage(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -164,6 +168,7 @@ function Mypage(props) {
     } else {
         return (
             <div className="MP2profile">
+            <Header/>
               <img alt="error" className="MP2backprofile" src={`${url}${imsibgphoto}`} />
               <div className="MP2div" />
               <div className="MP2infobox-wrapper">
@@ -171,7 +176,8 @@ function Mypage(props) {
               </div>
               <div className="MP2mainprofile">
                 <img alt="error" style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
-                <EditIcon className="photoIcon" fontSize="small" onClick={openPhoto} />
+                <img className="MP2myphoto-icon" alt="" src={Photoicon} onClick={openPhoto} />
+                {/* <EditIcon className="photoIcon" fontSize="small"  /> */}
                 <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
                   <img className="imsiphoto" src={`${url}${imsiphoto}`} alt={''} />
                   <input className="inputfile" type="file" ref={photoRef} onChange={onUploadEvent} />
@@ -191,47 +197,48 @@ function Mypage(props) {
                 </span>
               </div>
               <div className="MP2icon-buddychat-parent">
-                <img className="MP2icon-buddychat" alt="" src="/-icon-buddychat.svg" />
+                <img className="MP2icon-buddychat" alt="" src={FDicon2} />
                 <div className="MP2div2">버디채팅</div>
               </div>
               <div className="MP2icon-buddystory-parent">
-                <img className="MP2icon-buddystory" alt="" src="/-icon-buddystory.svg" />
+                <img className="MP2icon-buddystory" alt="" src={FDicon3} />
                 <div className="MP2div2">버디스토리</div>
               </div>
               <div className="MP2parent">
                 <div className="MP2div2">버디추가</div>
-                <img className="MP2icon-addbuddy" alt="" src="/-icon-addbuddy.svg" />
+                <img className="MP2icon-addbuddy" alt="" src={FDicon1} />
               </div>
               <div className="MP2singo-btn">
                 <div className="MP2singo-btn-child" />
-                <div className="MP2group">
-                  <div className="MP2div5">신고하기</div>
-                  <img className="MP2group-icon" alt="" src="/group.svg" />
-                </div>
+                
+                  <img className="MP2singo-btn-child" alt="" src={SingoBtn} />
+              
               </div>
               <div className="MP2container">
                 <div className="MP2div6">{unickname}&nbsp;
-                  <EditIcon fontSize="small" onClick={openNick} />
+                {/* <img alt='' className="MP2update-icon" src={UpdateIcon} onClick={openNick} /> */}
+                  {/* <EditIcon fontSize="small" onClick={openNick} /> */}
                   <ModalNick open={nickOpen} close={closeNick} changeNick={changeNick} header="닉네임 변경">
                     <input className="inputtext" type="text" value={imsiNick} onChange={(e) => setImsiNick(e.target.value)} ref={nickRef} />
                   </ModalNick>
                 </div>
-                <img className="MP2update-icon" alt="" src="/update.svg" />
+                <img className="MP2update-icon" alt="" src={UpdateIcon} onClick={openNick}  />
               </div>
               <div className="MP2frame-div">
                 <div className="MP2div7">
-                  {ucontent === null ? <div>자기소개를 입력해 주세요.</div> : ucontent}&nbsp;
-                  <EditIcon fontSize="small" onClick={openCon} />
+                  {ucontent === null ? <div className='MP2div7'>자기소개를 입력해 주세요.</div> : ucontent}&nbsp;
+                  {/* <EditIcon fontSize="small" onClick={openCon} /> */}
+                  <img className="MP2update-icon" alt="" src={UpdateIcon} onClick={openCon} />
                   <ModalCon open={conOpen} close={closeCon} changeCon={changeCon} header="자기소개 변경">
                     <input className="inputtext" type="text" value={imsiCon} onChange={(e) => setImsiCon(e.target.value)} ref={conRef} />
                   </ModalCon>
                 </div>
-                <img className="MP2update-icon" alt="" src="/update1.svg" />
+                
                 <NavLink to={`/chating/${unum}`} />
               </div>
-              <img className="MP2myphoto-icon" alt="" src="/myphoto.svg" />
+              <img className="MP2myphoto-icon" alt="" src={Photoicon} onClick={openPhoto} />
               <div className="MP2backimg">
-                <EditIcon fontSize="small" onClick={openBg} />
+                <img alt='' src={BackPhoto} onClick={openBg} />   
                 <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
                   <img className="imsiphoto" src={`${url}${imsibgphoto}`} alt="" />
                   <input className="inputfile" type="file" ref={bgphotoRef} onChange={onUploadEventBg} />

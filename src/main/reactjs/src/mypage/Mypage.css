@@ -296,7 +296,7 @@ body {
   left: calc(50% - 155px);
   width: 5rem;
   height: 3.63rem;
-  color: #66be7a;
+  
 }
 .MP2div5,
 .MP2singo-btn-child {
@@ -376,6 +376,7 @@ body {
   color: #000;
 }
 .MP2div7 {
+  top: 3rem;  
   position: relative;
   letter-spacing: -0.01em;
   font-weight: 500;
