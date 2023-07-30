@@ -7,6 +7,7 @@ import {Link, NavLink, useParams} from 'react-router-dom';
 import Profile from "../image/user60.png";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
+import _ from "lodash"
 
 function FriendRequest(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -28,7 +29,8 @@ function FriendRequest(props) {
                 Axios
                     .get(`/friend/pagingrequestlist?unum=${res.data}&page=${page}&size=10`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
-                        setItems((prevItems) => [...prevItems, ...res.data]);
+                        const newData = _.uniqBy([...items, ...res.data], 'fnum');
+                        setItems(newData);
                         console.log(items);
                         console.log(res.data);
                         setPage((prevPage) => prevPage + 1);

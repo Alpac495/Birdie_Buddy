@@ -53,14 +53,6 @@ function Home(props) {
                     <h2>여기는 몰루입니다.</h2>:
                     <h2>로그인중<br/>unum : {unum}</h2>
             }
-            <input type='file' onChange={onUploadEvent}/>
-
-
-            <img style={{width: '300px'}} alt={'testimg'} src={`${photourl}${photo}`}/>
-            <img style={{width: '300px'}} alt={'test2img'}
-                 src={`http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy/${photo}`}/>
-
-
             <ul> Yangdo
                 <li>
                     <NavLink to={'/yangdo/list'}>양도 리스트</NavLink>

@@ -2,7 +2,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
-import './Mypage.css'
+import './Mypage.css';
+import userprofile from "../image/userprofile.svg";
+
 import EditIcon from '@mui/icons-material/Edit';
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
@@ -12,7 +14,7 @@ import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
 import ModalBgphoto from "./MypageUpdateBgphoto"
 import Axios from "axios";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Mypage(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -168,10 +170,21 @@ function Mypage(props) {
                     <div className="FDchild" />
                 </div>
 
-                <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+                {
+                    ubgphoto==null || ''?
+                    <img alt='error' className="FDbackprofile" src={userprofile} />
+                    :
+                    <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+                }
 
                 <div className="FDinfobox" />
-                <div className="FDmainprofile"><img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
+                <div className="FDmainprofile">
+                    {
+                        uphoto==null || ''?
+                        <img alt='error' style={{ borderRadius: '11%' }} src={userprofile} />
+                        :
+                        <img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
+                    }
 
                     <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto} />
                     <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
@@ -223,11 +236,11 @@ function Mypage(props) {
                     </ModalNick>
                 </div>
                 <NavLink to={`/chating/${unum}`}>
-            <div className="FDicon-message-parent">
-                <img className="FDicon-message" alt="" src={FDicon2}/>
-                <div className="FDdiv5">TEXT2</div>
-            </div>
-            </NavLink>
+                    <div className="FDicon-message-parent">
+                        <img className="FDicon-message" alt="" src={FDicon2} />
+                        <div className="FDdiv5">TEXT2</div>
+                    </div>
+                </NavLink>
                 <div className="FDicon-camera-parent">
                     <img className="FDicon-camera" alt="" src={FDicon3} />
                     <div className="FDdiv5">TEXT3</div>

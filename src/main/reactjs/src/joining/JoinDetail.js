@@ -185,7 +185,7 @@ const JoinDetail = () => {
             Axios.delete(`/joining/joinCancel/${jnum}`)
                 .then(res => {
                     alert("정상적으로 취소되었습니다");
-                    window.location.replace(`/joining/list`)
+                    window.location.replace(`/joining/alllist`)
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -391,7 +391,7 @@ const JoinDetail = () => {
                     <div className="joindetail-child" />
 
                     <div className="JDdiv10">
-                        {dto.unum == unum ? (
+                        {dto.unum == unum || unum==1? (
                             <button type="button" onClick={onJoinCancelEvent}>모집 취소</button>
                         ) : check === 1 ? (
                             <button type="button" onClick={onGaipCancelEvent}>신청 취소</button>

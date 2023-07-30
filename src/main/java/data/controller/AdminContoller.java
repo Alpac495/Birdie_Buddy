@@ -2,6 +2,7 @@ package data.controller;
 
 import java.util.List;
 
+import data.dto.HugiDto;
 import data.dto.NoticeDto;
 import data.dto.UserDto;
 import data.mapper.AdminMapper;
@@ -10,7 +11,9 @@ import naver.cloud.NcpObjectStorageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,6 +104,8 @@ public class AdminContoller {
 
     @GetMapping("/noticeDetail")
     public NoticeDto noticeDetail(int nnum) {
+        System.out.println("???????");
+        System.out.println("없냐????????" + nnum);
         NoticeDto dto = adminMapper.noticeDetail(nnum);
         return dto;
     }
@@ -119,5 +124,21 @@ public class AdminContoller {
 
         System.out.println(photo);
         return photo;
+    }
+
+    @GetMapping("/delete")
+    public void delete(int nnum) {
+        NoticeDto dto = adminMapper.noticeDetail(nnum);
+        photo = dto.getNphoto();
+
+        storageService.deleteFile(bucketName, "notice", photo);
+
+        System.out.println(nnum);
+
+        adminMapper.deleteNotice(nnum);
+    }
+    @PostMapping("/update")
+    public void update(int nnum){
+        adminMapper.updateNotice(nnum);
     }
 }
