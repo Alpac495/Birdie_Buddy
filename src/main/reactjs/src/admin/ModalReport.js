@@ -1,7 +1,7 @@
 import React from 'react';
 import './ModalReport.css';
 
-function ModalReport({ reporterNickname, reportedNickname, reportReason, handleClose }) {
+function ModalReport({ reporterNickname, reportedNickname, reportReason, handleClose, handleBlacklist }) {
     return (
         <div className="SDsingodetail">
             <div className="SDsingo">
@@ -41,7 +41,9 @@ function ModalReport({ reporterNickname, reportedNickname, reportReason, handleC
             <div className="SGpopupbtn">
                 <div className="SGframe3">
                     <div className="SGdiv6" onClick={handleClose}>확인</div>
-                    <div className="SGdiv6" onClick={handleBlacklist}>블랙리스트로</div>
+                    <div className="SGdiv6" 
+                    // onClick={handleBlacklist}
+                    >블랙리스트로</div>
                 </div>
             </div>
         </div>

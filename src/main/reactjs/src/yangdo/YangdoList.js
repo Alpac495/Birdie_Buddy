@@ -167,8 +167,6 @@ function YangdoList(props) {
                 </InfiniteScroll>
             </div>
         </div>
-      </div>
-    </div>
     );
 };
 

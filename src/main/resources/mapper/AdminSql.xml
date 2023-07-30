@@ -7,7 +7,7 @@
         select *,(select count(unum) from report r where u.unum=r.unum ) as ureport from user u where ublacklist=0 and unum!=1 order by ureport desc LIMIT #{offset}, #{size}
     </select>
     <select id="getAllUserListScrollSearch" parameterType="Map" resultType="UserDto">
-        select * from user where ublacklist=0 and unum!=1 and (unickname LIKE CONCAT('%', #{keyword}, '%')
+        select *,(select count(unum) from report r where u.unum=r.unum ) as ureport from user u where ublacklist=0 and unum!=1 and (unickname LIKE CONCAT('%', #{keyword}, '%')
             OR uname LIKE CONCAT('%', #{keyword}, '%')) order by ureport desc
     </select>
     <update id="addBlackList" parameterType="int">
@@ -17,10 +17,10 @@
         update user set ublacklist=ublacklist-1 and ureport=0 where unum=#{unum}
     </update>
     <select id="getBlackUserList" resultType="UserDto">
-        select * from user where ublacklist=1 order by ureport desc;
+        select *,(select count(unum) from report r where u.unum=r.unum ) as ureport from user u where ublacklist=1 order by ureport desc;
     </select>
     <select id="getBlackUserListScrollSearch" parameterType="Map" resultType="UserDto">
-        select * from user where ublacklist=1 and (unickname LIKE CONCAT('%', #{keyword}, '%')
+        select *,(select count(unum) from report r where u.unum=r.unum ) as ureport from user u where ublacklist=1 and (unickname LIKE CONCAT('%', #{keyword}, '%')
             OR uname LIKE CONCAT('%', #{keyword}, '%')) order by ureport desc
     </select>
     <insert id="noticeWrite" parameterType="NoticeDto">
@@ -31,6 +31,14 @@
     </select>
     <select id="noticeDetail" parameterType="int" resultType="NoticeDto">
         select * from notice where nnum=#{nnum}
+    </select>
+    <select id="getNotice" parameterType="map" resultType="NoticeDto">
+        SELECT * FROM notice
+        ORDER BY nnum DESC
+            LIMIT #{limit} OFFSET #{offset}
+    </select>
+    <select id="getNoticeCount" resultType="int">
+        select count(*) from notice
     </select>
     <delete id="deleteNotice" parameterType="int"> 
         delete from notice where nnum=#{nnum}

@@ -110,7 +110,7 @@ const JoinAllList = () => {
                                     onChange={(e) => {
                                         setKeyword(e.target.value);
                                     }}/>
-                            <button type="button" className="JEtitle1 btn btn-sm btn-success" onClick={search}>검색</button>
+                            <button type="button" className="JEtitle1 btn btn-sm btn-outline" onClick={search}>🔎</button>
                         </div>
                     </div>
                     <div className="JEsegmented-control">

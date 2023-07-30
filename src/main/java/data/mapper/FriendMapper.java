@@ -36,6 +36,8 @@ public interface FriendMapper {
 
         public int acceptFriend2(Map<String, Object> map);
 
+        public List<UserDto> getRecoUserList(int unum);
+
         public List<UserDto> getUserList(@Param("unum") int unum, @Param("offset") int offset, @Param("size") int size);
 
         public List<UserDto> getUserListScrollSearch(@Param("unum") int unum, @Param("keyword") String keyword);

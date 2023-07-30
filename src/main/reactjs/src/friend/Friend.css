@@ -25,7 +25,7 @@ body {
     color: black;
 }
 .flframe {
-    width: calc(100% - 178px);
+    width: 50%;
     top: -0.06rem;
     right: 11.19rem;
     left: -0.06rem;
@@ -34,10 +34,9 @@ body {
     height: 3.25rem;
 }
 .FLframe {
-    width: calc(100% - 180px);
+    width: 50%;
     top: 0;
     right: 0;
-    left: 11.25rem;
     background-color: #fff;
     height: 3.13rem;
 }
