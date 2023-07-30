@@ -17,6 +17,7 @@
 .joinsearch {
     width: 290px;
     height: 35px;
+    margin-left: 1px;
 }
 
 .modal > section {

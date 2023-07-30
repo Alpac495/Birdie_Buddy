@@ -61,7 +61,7 @@ function Header(props) {
             {unum === 0 ? (
                 <div className="side_profile">
                     <div className='side_go_login'>
-                        <NavLink to="/login" className={'side_login'}>로그인해 주세요</NavLink>
+                        <NavLink to="/login/login" className={'side_login'}>로그인해 주세요</NavLink>
                     </div>
                 </div>
             ) : (

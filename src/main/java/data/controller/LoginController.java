@@ -153,6 +153,18 @@ public class LoginController {
         return photo;
     }
 
+    @PostMapping("/bgupload")
+    public String bgphotoUpload(@RequestParam("upload") MultipartFile upload) {
+        System.out.println("bgupload>>" + upload.getOriginalFilename());
+        if (photo != null) {
+            // 이전 사진 삭제
+            storageService.deleteFile(bucketName, "bgphoto", photo);
+        }
+        photo = storageService.uploadFile(bucketName, "bgphoto", upload);
+
+        return photo;
+    }
+
     @GetMapping("/updatePhoto")
     public String updatePhoto(String uphoto, int unum) {
         System.out.println(uphoto + "," + unum);

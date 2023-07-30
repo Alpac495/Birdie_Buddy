@@ -144,6 +144,9 @@ function Friend(props) {
         }
     };
 
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
+
     return (
         <div className="friend">            
             <div className="header"><Header/></div>
@@ -175,7 +178,7 @@ function Friend(props) {
                                 <div className="flistprofile1">
                                     <Link to={`/friend/detail/${item.funum}`} className="FDMoveLink">
                                     {item.uphoto == null ? <img className="FLphoto-icon" alt="" src={Profile} /> :
-                                    <img className="FLphoto-icon" src={`${url}${item.uphoto}`} alt={''}/>}
+                                    <img className="FLphoto-icon" src={`${image1}${item.uphoto}${image2}`} alt={''}/>}
                                     </Link>
                                     <div className="FLdiv3">
                                       <span className="FLtxt">

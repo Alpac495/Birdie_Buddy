@@ -43,6 +43,7 @@ function NoticeForm(props) {
     };
 
     const submit=()=>{
+        alert(nsubject);
         axios.post(`/admin/update`, { nnum, nsubject, ncontent, nphoto, ncate})
         
         .then(res=>{

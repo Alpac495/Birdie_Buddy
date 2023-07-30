@@ -218,6 +218,7 @@ function FriendDetail(props) {
             <div className="FDdiv">
                 <div className="FDchild" />
             </div>
+
             <div className="FDbackprofile" />
             <div className="FDinfobox" />
             <div className="FDmainprofile" />

@@ -7,6 +7,7 @@
     border: 1px solid lightgray;
     margin:30px auto;
     padding: 3px;
+    box-shadow: 3px 3px 3px lightgrey;
 }
 .HG_list_detail{
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;

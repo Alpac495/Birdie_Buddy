@@ -1,4 +1,5 @@
 import React from 'react';
+import './MypageModal.css';
 
 function MypageUpdateNickname(props) {
     const { open, close, header, changeCon } = props;
