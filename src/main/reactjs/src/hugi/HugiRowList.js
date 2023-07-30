@@ -19,7 +19,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Axios from 'axios';
 import {FavoriteBorder, FavoriteSharp} from "@mui/icons-material";
 import Profile from "../image/user60.png";
-
+import KakaoImg from "../image/kakao.svg";
 function HugiRowList(props) {
     const {hnum, hcontent, hphoto, hwriteday, hlike} = props;
     // const unickname="test";
@@ -27,7 +27,7 @@ function HugiRowList(props) {
     const URL2=process.env.REACT_APP_HUGI2;
     const URL3 = process.env.REACT_APP_HUGI_325;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
-    const image2 = process.env.REACT_APP_IMAGE87;
+    const image2 = process.env.REACT_APP_IMAGE40;
 
     const navi = useNavigate();
 
@@ -47,7 +47,6 @@ function HugiRowList(props) {
     const [replyError, setReplyError] = useState(false); // 대댓글 입력 오류 여부 상태 추가
     const [errorCommentId, setErrorCommentId] = useState(null); // 오류가 발생한 대댓글의 ID 상태 추가
 
-    const [shortenedURL, setShortenedURL] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     // handleClickModify 함수: 게시물 수정 클릭 이벤트 처리 함수
@@ -70,11 +69,11 @@ function HugiRowList(props) {
         }
     };
 
-    const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
+    const apiURL = 'http://223.130.137.128/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
 
     // handleClickShare 함수: 게시물을 SNS에 공유하는 클릭 이벤트 처리 함수
     const handleClickShare = () => {
-        const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+        const longUrl = `http://223.130.137.128/`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
         generateShortURL(longUrl);
     };
     // generateShortURL 함수: 입력된 URL을 단축 URL로 생성하는 함수
@@ -93,7 +92,6 @@ function HugiRowList(props) {
             .then((res) => {
                 const generatedURL = res.data.result.url;
                 // 단축된 URL 값
-                setShortenedURL(generatedURL);
                 shareShortenedURL(generatedURL); // 단축 URL을 생성하고 나서 SNS 공유 함수 호출
                 copyToClipboard(generatedURL); // 클립보드에 복사
             })
@@ -106,9 +104,11 @@ function HugiRowList(props) {
     const shareShortenedURL = (url) => {
         if (navigator.share)// navigator.share() API를 지원하는 경우
         {
+            const tweetText = '버디버디 라운딩 후기입니다. ' + url; // 링크를 포함한 원하는 텍스트 생성
+
             navigator.share({
                 title: '버디버디',
-                text:'버디버디 라운딩 후기입니다.',
+                text:tweetText,
                 url: url,
             })
                 .then(() => {
@@ -121,7 +121,10 @@ function HugiRowList(props) {
         } else {
             // navigator.share() API를 지원하지 않는 브라우저를 위한 대체 방법
             // 메시지를 사용자에게 보여주거나 다른 접근 방식을 사용할 수 있습니다.
-            alert('이 링크를 공유하세요: ' + url);
+            const tweetText = '버디버디 라운딩 후기입니다. ' + url; // 링크를 포함한 원하는 텍스트 생성
+            const twitterShareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+            window.open(twitterShareURL, '_blank');
+            // alert('이 링크를 공유하세요: ' + url);
             // copyToClipboard(url);// 클립보드에 복사하는 함수 호출
         }
     };
@@ -172,9 +175,11 @@ function HugiRowList(props) {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleClickAvatar  = (funum) =>{
+    const handleClickAvatar = (funum) => {
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
+        } else if (funum === unum) {
+            navi(`/mypage/mypage/${unum}`);
         } else {
             navi(`/friend/detail/${funum}`);
         }
@@ -296,14 +301,10 @@ function HugiRowList(props) {
 
                 if (Unickname) {
                     setPostUserNickname(Unickname);
-                    // console.log("pN=>"+Unickname);//success
+
                 }
             } catch (error) {
-                if (error.response && error.response.status === 404) {
-                    // 404 오류 처리
-                } else {
-                    // console.log('오류가 발생했습니다.', error.message);
-                }
+
             }
         }
     };
@@ -314,7 +315,7 @@ function HugiRowList(props) {
                 setUphoto(userPhoto);
             })
             .catch((error) => {
-               // console.log('Error fetching user photo:', error);
+
             });
     };
 // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
@@ -328,7 +329,7 @@ function HugiRowList(props) {
                 setComments((prevComments) => [...prevComments]); // 댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-                //console.log('Error fetching comment user photo:', error);
+
             });
     };
 
@@ -343,7 +344,7 @@ function HugiRowList(props) {
                 setComments((prevComments) => [...prevComments]); // 대댓글 정보가 추가된 새로운 배열로 state 업데이트
             })
             .catch((error) => {
-               // console.log('Error fetching reply user photo:', error);
+
             });
     };
     // handleClickDetail 함수: 게시물 상세 페이지 이동 이벤트 처리 함수
@@ -483,12 +484,49 @@ function HugiRowList(props) {
         }
         setReplyContent('');
     };
-    const getFirstImage = (hphoto) => {
-        if (Array.isArray(hphoto) && hphoto.length > 0) {
-            return hphoto[0]; // 배열의 첫 번째 이미지 URL 반환
+
+
+    const { Kakao } = window;
+    // 배포한 자신의 사이트
+    const realUrl = `http://223.130.137.128/hugi/detail/${hnum}`;
+    // 로컬 주소 (localhost 3000 같은거)
+    const resultUrl = `http://localhost:3000/hugi/detail/${hnum}`;
+
+        // 재랜더링시에 실행되게 해준다.
+        useEffect(()=>{
+            // init 해주기 전에 clean up 을 해준다.
+            Kakao.cleanup();
+            // 자신의 js 키를 넣어준다.
+            Kakao.init('82d531473f9f3c5fc093e4d7e3225bc7');
+            // 잘 적용되면 true 를 뱉는다.
+            console.log(Kakao.isInitialized());
+        },[]);
+
+        const shareKakao = () =>{
+
+            Kakao.Share.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: '버디버디 라운딩 후기',
+                    description: '골프, 조인, 양도, 후기',
+                    imageUrl:
+                        `${URL2}${hphoto}${URL3}`,
+                    link: {
+                        webUrl:resultUrl,
+                        mobileWebUrl: resultUrl,
+                    },
+                },
+                buttons: [
+                    {
+                        title: '후기 보러가기',
+                        link: {
+                            webUrl:resultUrl,
+                            mobileWebUrl: resultUrl,
+                        },
+                    },
+                ],
+            });
         }
-        return hphoto; // 배열이 아니라면 그대로 반환
-    };
     // useEffect를 이용하여 초기 데이터 로딩
     useEffect(() => {
         getComments();
@@ -496,7 +534,6 @@ function HugiRowList(props) {
     // useEffect를 이용하여 게시물 작성자의 닉네임 가져오기
     useEffect(() => {
         fetchPostUserNickname(props.unum);
-
     }, [props.unum]);
     // useEffect를 이용하여 좋아요 상태 설정
     useEffect(() => {
@@ -541,6 +578,12 @@ function HugiRowList(props) {
                 {parseInt(props.unum) === parseInt(unum) && (
                     <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
+                <div className="HG_KakaoIcons" >
+                    <img src={KakaoImg} alt={''}
+                         className="HG_KakaoImg"
+                         onClick={() => {shareKakao()}}>
+                    </img>
+                </div>
             </div>
 
             <Dialog
@@ -601,10 +644,10 @@ function HugiRowList(props) {
           <div key={comment.rhnum} style={{overflowX: 'hidden'}}>
               <div className="HG_Comments">
                   <span className="HG_Commentname" onClick={handleClickAvatar.bind(null,comment.unum)}>{comment.unickname}</span>
-                  {comment.uphoto == null ? (
-                      <Avatar className="HG_list_avatar_Comment2" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,comment.unum)}/>
-                  ):(
+                  {comment.uphoto !== null ? (
                       <Avatar className="HG_list_avatar_Comment2" alt={''} src={`${image1}${comment.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,comment.unum)}/>
+                  ):(
+                      <Avatar className="HG_list_avatar_Comment2" alt={''}  src={Profile} onClick={handleClickAvatar.bind(null,comment.unum)}/>
                   )}
                   <pre className="HG_preRhcontent">{comment.rhcontent}</pre>
                   <br/>
@@ -656,10 +699,10 @@ function HugiRowList(props) {
                       {comment.comments &&
                           comment.comments.map((reply) => (
                               <div key={reply.rhnum} className="HG_Comment_Reply_List">
-                                  {reply.uphoto == null ? (
-                                      <Avatar className="HG_list_avatar_Reply" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,reply.unum)}/>
+                                  {reply.uphoto !== null ? (
+                                      <Avatar className="HG_list_avatar_Reply" alt={''} src={`${image1}${reply.uphoto}${image2}`} onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   ):(
-                                      <Avatar className="HG_list_avatar_Reply" alt={''} src={`${image1}${reply.uphoto}${image2}`}  onClick={handleClickAvatar.bind(null,reply.unum)}/>
+                                      <Avatar className="HG_list_avatar_Reply" alt={''} src={Profile} onClick={handleClickAvatar.bind(null,reply.unum)}/>
                                   )}
                                   <b className="HG_ReplyNickname" onClick={handleClickAvatar.bind(null,reply.unum)}>
                                       {reply.unickname}
