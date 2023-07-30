@@ -86,7 +86,7 @@ function NoticeForm(props) {
                 </textarea> 
             </div>
             
-            <div>
+            <div className='nform_btnwrap'>
                 <button type='button' onClick={submit}>작성</button>
                 <button type='button'>닫기</button>
             </div>
