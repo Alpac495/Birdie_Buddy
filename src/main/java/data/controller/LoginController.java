@@ -36,7 +36,7 @@ public class LoginController {
     @Autowired
     private NcpObjectStorageService storageService;
     private String bucketName = "bit701-bucket-111/birdiebuddy";
-    
+
     @Value("${naver.accessKey}")
     private String accessKey;
     @Value("${naver.secretKey}")
@@ -52,7 +52,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public int loginok(HttpSession session, String uemail, String upass,
-                       @RequestParam(defaultValue = "false") String saveemail) {
+            @RequestParam(defaultValue = "false") String saveemail) {
         System.out.println("uemail=" + uemail);
         System.out.println("upass=" + upass);
         System.out.println("이메일저장체크=" + saveemail);
@@ -61,13 +61,18 @@ public class LoginController {
         int n = loginService.loginok(uemail, upass);
         if (n == 1) {
             udto = loginMapper.getUserData(uemail);
-            // udto.getUblacklist();
-            int unum = udto.getUnum();
-            session.setMaxInactiveInterval(60 * 60 * 5);
-            session.setAttribute("unum", unum);
-            System.out.println("세션에 저장된 넘:" + unum);
+            int ubcnt = udto.getUblacklist();
+            if (ubcnt != 0) {
+                int unum = udto.getUnum();
+                session.setMaxInactiveInterval(60 * 60 * 5);
+                session.setAttribute("unum", unum);
+                System.out.println("세션에 저장된 넘:" + unum);
 
-            return unum;
+                return unum;
+            } else {
+                return -1;
+            }
+
         } else {
             System.out.println("로그인 실패");
             return 0;
@@ -153,6 +158,18 @@ public class LoginController {
         return photo;
     }
 
+    @PostMapping("/bgupload")
+    public String bgphotoUpload(@RequestParam("upload") MultipartFile upload) {
+        System.out.println("bgupload>>" + upload.getOriginalFilename());
+        if (photo != null) {
+            // 이전 사진 삭제
+            storageService.deleteFile(bucketName, "bgphoto", photo);
+        }
+        photo = storageService.uploadFile(bucketName, "bgphoto", upload);
+
+        return photo;
+    }
+
     @GetMapping("/updatePhoto")
     public String updatePhoto(String uphoto, int unum) {
         System.out.println(uphoto + "," + unum);
@@ -167,24 +184,24 @@ public class LoginController {
         return ubgphoto;
     }
 
-    //    @GetMapping("/unumChk")
-//    public int unumChk(HttpSession session, int unum) {
-//        System.out.println("unumChk:" + unum);
-//        if (session.getAttribute("unum") != null) {
-//            int chkunum = (int) session.getAttribute("unum");
-//            return chkunum;
-//        }
-//        return 0;
-//    }
+    // @GetMapping("/unumChk")
+    // public int unumChk(HttpSession session, int unum) {
+    // System.out.println("unumChk:" + unum);
+    // if (session.getAttribute("unum") != null) {
+    // int chkunum = (int) session.getAttribute("unum");
+    // return chkunum;
+    // }
+    // return 0;
+    // }
 
     @GetMapping("/unumChk")
     public int unumChk(HttpSession session) {
-        if (session.getAttribute("unum") != null) { //로그인을 했을경우
+        if (session.getAttribute("unum") != null) { // 로그인을 했을경우
             int unum = (int) session.getAttribute("unum");
             return unum;
         }
         return 0;
-        
+
     }
 
     @GetMapping("/getRtasu")
@@ -200,7 +217,7 @@ public class LoginController {
     @GetMapping("/unumHpchk")
     public int unumHpchk(int unum, String uhp) {
         UserDto udto = loginMapper.getUser(unum);
-        if (!udto.getUhp().equals(uhp)) { //hp비교
+        if (!udto.getUhp().equals(uhp)) { // hp비교
             return 0;
         } else {
             return 1;
@@ -214,74 +231,71 @@ public class LoginController {
         loginMapper.taltae(unum);
         session.removeAttribute("unum");
     }
+
     @GetMapping("/getUserInfo")
-    public UserDto getUserInfo(HttpSession session){
+    public UserDto getUserInfo(HttpSession session) {
         int unum = (int) session.getAttribute("unum");
         UserDto udto = loginMapper.getUser(unum);
         return udto;
     }
+
     @GetMapping("/passChk")
-    public boolean passChk(HttpSession session, String upass){
+    public boolean passChk(HttpSession session, String upass) {
         int unum = (int) session.getAttribute("unum");
         UserDto udto = loginMapper.getUser(unum);
         System.out.println(udto.getUpass());
         String pass = loginMapper.passChk(upass);
         System.out.println(pass);
-        if(pass.equals(udto.getUpass())){
+        if (pass.equals(udto.getUpass())) {
             return true;
         } else {
             return false;
         }
 
     }
+
     @GetMapping("/passChange")
-    public void passChange(HttpSession session, String upass){
+    public void passChange(HttpSession session, String upass) {
         int unum = (int) session.getAttribute("unum");
         loginService.passChange(unum, upass);
     }
+
     @GetMapping("/hpChange")
-    public void hpChange(HttpSession session, String uhp){
+    public void hpChange(HttpSession session, String uhp) {
         System.out.println(uhp);
         int unum = (int) session.getAttribute("unum");
         loginService.hpChange(unum, uhp);
     }
+
     @GetMapping("/getUserUhp")
-    public UserDto getUserUhp(String uhp){
+    public UserDto getUserUhp(String uhp) {
         int n = loginMapper.getUserUhpCnt(uhp);
-        if(n==0){
+        if (n == 0) {
             return null;
         } else {
             UserDto udto = loginMapper.getUserUhp(uhp);
             return udto;
         }
     }
+
     @GetMapping("/searchPass")
-    public boolean searchPass(String uhp, String uemail){
+    public boolean searchPass(String uhp, String uemail) {
         UserDto dto = loginMapper.getUserUhp(uhp);
         String email = dto.getUemail();
-        if(!email.equals(uemail)){
+        if (!email.equals(uemail)) {
             return false;
         } else {
             return true;
         }
     }
+
     @GetMapping("/passChange2")
-    public void passChange2(String upass, String uemail){
-       UserDto udto = loginMapper.getUserData(uemail);
-       System.out.println(udto);
-       int unum = udto.getUnum();
-       loginService.passChange(unum, upass);
+    public void passChange2(String upass, String uemail) {
+        UserDto udto = loginMapper.getUserData(uemail);
+        System.out.println(udto);
+        int unum = udto.getUnum();
+        loginService.passChange(unum, upass);
     }
-
-    
-
-
-
-
-
-
-
-
 
     @GetMapping("/smsSend")
     public String smsSend(String uhp) throws Exception {
@@ -341,7 +355,7 @@ public class LoginController {
         // bodyJson.put("countryCode","82"); // Optional, 국가 전화번호, (default: 82)
         bodyJson.put("from", "01085454961"); // Mandatory, 발신번호, 사전 등록된 발신번호만 사용 가능
         // bodyJson.put("subject",""); // Optional, 기본 메시지 제목, LMS, MMS에서만 사용 가능
-        bodyJson.put("content", "["+code+"]"); // Mandatory(필수), 기본 메시지 내용,
+        bodyJson.put("content", "[" + code + "]"); // Mandatory(필수), 기본 메시지 내용,
         // SMS: 최대 80byte, LMS, MMS: 최대
         // 2000byte
         bodyJson.put("messages", toArr); // Mandatory(필수), 아래 항목들 참조 (messages.xxx), 최대 1,000개

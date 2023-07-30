@@ -86,14 +86,15 @@ function MyYangdoDetail(props) {
 
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="양도 문의">
-                    <div>
-                        <h5>[{dto.yplace}]</h5>
-                        <p>담당자 : {dto.unickname}</p>
-                        <p>연락처 : {dto.uhp}</p>
-                        <p>
-                            전화 문의를 통해 자세한 정보
-                            확인 바랍니다.
-                        </p>
+                    <div className="YMyangdopopup">
+                        <div className="YMtitle">[{dto.yplace}]</div>
+                        <div className="YMtext">
+                            <span className="YMtext-txt">
+                            <p className="YMp">담당자 : {dto.unickname}</p>
+                            <p className="YMp">연락처 : {dto.uhp}</p>
+                            </span>
+                        </div>
+                        <div className="YMtext1">전화 문의를 통해 자세한 정보 확인 바랍니다.</div>
                     </div>
                 </Modal>
             </React.Fragment>
@@ -191,7 +192,7 @@ function MyYangdoDetail(props) {
                     <div className="YEpopupbtn">
                         
                         {
-                            unum !=null && unum === dto.unum?
+                            unum !=null && unum === dto.unum && unum===1?
                                 <button type='button' className="YEframe"
                                     onClick={()=>{
                                         const url=`/yangdo/delete?num=${dto.ynum}`;

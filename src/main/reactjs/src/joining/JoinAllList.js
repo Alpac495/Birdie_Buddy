@@ -7,11 +7,14 @@ import {NavLink} from "react-router-dom";
 import Profile from "../image/user60.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Footer from "../footer/Footer";
-import _ from "lodash"
+import _ from "lodash";
+import searchCon from "../image/search.svg";
 
 
 
 const JoinAllList = () => {
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
     const url = process.env.REACT_APP_PROFILE;
     const [keyword, setKeyword] = useState('');
     // eslint-disable-next-line no-unused-vars
@@ -99,7 +102,7 @@ const JoinAllList = () => {
                                 <div className="btn1_wrapper">
 
                                     <button type='button' className="btn btn-sm btn-outline-success" onClick={joinformClick}>
-                                        <b className="JLb">조인만들기</b>
+                                        <b className="JLb">조인 만들기</b>
                                     </button>
                                 </div>
                             </div>
@@ -110,7 +113,7 @@ const JoinAllList = () => {
                                     onChange={(e) => {
                                         setKeyword(e.target.value);
                                     }}/>
-                            <button type="button" className="JEtitle1 btn btn-sm btn-outline" onClick={search}>🔎</button>
+                            <img className="JEtitle1 btn btn-sm btn-outline" alt="" src={searchCon} onClick={search} />
                         </div>
                     </div>
                     <div className="JEsegmented-control">
@@ -167,9 +170,10 @@ const JoinAllList = () => {
                                                     </div>
                                                     <div className="JEdiv4">
                                                         <p className="JEp">{item.jjoinday} {item.jtime}</p>
-                                                        {item.jaccept===0?(<p className="JLp2">#신청 중</p>) : item.jaccept===1?(<p className="JLp2">#조인 확정</p>) : item.jaccept===2?(<p className="JLp2">#모집 중</p>) : null}
+                                                        {/* {item.jaccept===0?(<p className="JLp2">#신청 중</p>) : item.jaccept===1?(<p className="JLp2">#조인 확정</p>) : item.jaccept===2?(<p className="JLp2">#모집 중</p>) : null} */}
                                                         <p className="JEp1"><span className="JEspan">{item.gname}</span></p>
-                                                        <p className="JEp1"><span className="JEspan1">그린피 ￦{item.jprice}</span></p>
+                                                        <p className="JEp1"><span className="JEspan1">
+                                                            그린피 : {item.jprice? item.jprice.toLocaleString() : '가격 정보 없음'}원</span></p>
                                                     </div>
                                                     <div className="JEemoji-flag-in-hole-parent">
                                                         <img
@@ -180,7 +184,7 @@ const JoinAllList = () => {
                                                     </div>
                                                     <div>
                                                         {item.uphoto == null ? <img className="JEavatar-user-60" alt="" src={Profile} /> :
-                                                            <img className="JEavatar-user-60" src={`${url}${item.uphoto}`} alt={''}/>}
+                                                            <img className="JEavatar-user-60" src={`${image1}${item.uphoto}${image2}`} alt={''}/>}
                                                     </div>
                                                     <div className="JErectangle-parent">
                                                         <div className="JEgroup-child" />

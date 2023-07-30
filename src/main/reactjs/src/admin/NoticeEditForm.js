@@ -43,6 +43,7 @@ function NoticeForm(props) {
     };
 
     const submit=()=>{
+        alert(nsubject);
         axios.post(`/admin/update`, { nnum, nsubject, ncontent, nphoto, ncate})
         
         .then(res=>{
@@ -85,7 +86,7 @@ function NoticeForm(props) {
                 </textarea> 
             </div>
             
-            <div>
+            <div className='nform_btnwrap'>
                 <button type='button' onClick={submit}>작성</button>
                 <button type='button'>닫기</button>
             </div>
