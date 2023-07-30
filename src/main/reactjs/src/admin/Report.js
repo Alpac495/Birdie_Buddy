@@ -17,7 +17,8 @@ const Report = () => {
 
     const fetchReportData = async () => {
         try {
-            const responseUsers = await Axios.get(`/report/getreport?runum=${unum}&page=${currentPage}&limit=${reportsPerPage}`);
+            const offset = (currentPage - 1) * reportsPerPage;
+            const responseUsers = await Axios.get(`/report/getreport?runum=${unum}&limit=${reportsPerPage}&offset=${offset}`);
             setReportedUsers(responseUsers.data);
 
             const responseCount = await Axios.get(`/report/getcount?runum=${unum}`);
