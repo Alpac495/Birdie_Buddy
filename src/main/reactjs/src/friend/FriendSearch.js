@@ -6,6 +6,10 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash"
+import buddyadd from '../image/buddyadd.svg';
+import buddyrequest from '../image/buddyrequest.svg';
+import mybuddy from '../image/mybuddy.svg';
+import acceptbuddy from '../image/acceptbuddy.svg';
 
 const FriendSearch = () => {
     const url = process.env.REACT_APP_PROFILE;
@@ -29,7 +33,7 @@ const FriendSearch = () => {
                 Axios
                     .get(`/friend/friendsearch?unum=${res.data}&page=${page}&size=12`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
-                        const newData = _.uniqBy([...items, ...res.data], 'fnum');
+                        const newData = _.uniqBy([...items, ...res.data], 'unum');
                         setItems(newData);
                         console.log(items);
                         console.log(res.data);
@@ -98,9 +102,19 @@ const FriendSearch = () => {
         alert("요청 중입니다. 수락을 기다려 주세요.");
     }
 
-    const alreadyrequest2 = () => {
-        alert("이미 친구 요청을 받았습니다. 요청 목록 또는 해당 사용자 프로필에서 확인해주세요.");
-    }
+    const onAcceptEvent = (funum) => {
+        const confirmed = window.confirm('신청을 수락하시겠습니까?');
+            if (confirmed) {
+                Axios.get(`/friend/acceptfriend/${unum}&${funum}`)
+                    .then(res => {
+                        alert("버디 추가 완료!");
+                        window.location.replace(`/friend/search`);
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    });
+            }
+    };
     
     return (
         <div className="AFallfriendlist">
@@ -138,13 +152,17 @@ const FriendSearch = () => {
                     <div className="AFdiv1">{item.ugender} / {year - (parseInt(item.uage.substring(0, 4), 10))}세</div>
                     <div className="AFdiv2">{item.unickname}</div>
                     {myfrienddata.some((friend) => friend.funum === item.unum) ? (
-                        <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={alreadyfriend}>마이버디</button>
+                        // <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={alreadyfriend}>마이버디</button>
+                        <img alt='' src={mybuddy} className='AFdiv3' onClick={alreadyfriend}/>
                     ) : requestcheck.some((friend) => friend.funum == item.unum && friend.frequest == 2) ? (
-                        <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={alreadyrequest2}>요청받음</button>
+                        // <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={alreadyrequest2}>요청받음</button>
+                        <img alt='' src={acceptbuddy} className='AFdiv3' onClick={onAcceptEvent.bind(null, item.unum)}/>
                     ) : requestcheck.some((friend) => friend.funum == item.unum && friend.frequest == 1) ? (
-                        <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={alreadyrequest1}>요청중</button>
+                        // <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={alreadyrequest1}>요청중</button>
+                        <img alt='' src={buddyrequest} className='AFdiv3' onClick={alreadyrequest1}/>
                     ) : (
-                        <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={onRequestFriendEvent.bind(null, item.unum)}>버디요청</button>
+                        // <button className="AFdiv3 btn btn-sm btn-outline-success" onClick={onRequestFriendEvent.bind(null, item.unum)}>버디요청</button>
+                        <img alt='' src={buddyadd} className='AFdiv3' onClick={onRequestFriendEvent.bind(null, item.unum)}/>
                     )}
                     </div>
                 ))

@@ -142,7 +142,7 @@ const JoinForm = (props) => {
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 검색">
                     <div>
-                        <input style={{width:'290px',height:'35px'}}
+                        <input className="joinsearch"
                             type="text"
                             placeholder="검색"
                             onChange={(e) => {
@@ -228,7 +228,7 @@ const JoinForm = (props) => {
 
             <div className="JFlbtn">
                     <div className="JFlbtn-child" />               
-                <div className="JFdiv21"><button type='submit'>조인 만들기</button></div>
+                <button type='submit' className="JFdiv21">조인 만들기</button>
             </div>        
 
                 <input type='hidden' value={jp1gender}/>

@@ -13,6 +13,12 @@
     cursor: pointer;
     border: 0;
 }
+
+.joinsearch {
+    width: 290px;
+    height: 35px;
+}
+
 .modal > section {
     width: 90%;
     max-width: 300px;
@@ -28,8 +34,9 @@
 .modal > section > header {
     position: relative;
     padding: 16px 64px 16px 16px;
-    background-color: #f1f1f1;
+    background-color: #0B4648;
     font-weight: 700;
+    color : #fff;
 }
 .modal > section > header button {
     position: absolute;
@@ -39,7 +46,7 @@
     font-size: 21px;
     font-weight: 700;
     text-align: center;
-    color: #999;
+    color: #fff;
     background-color: transparent;
 }
 .modal > section > main {
@@ -55,7 +62,7 @@
 .modal > section > footer button {
     padding: 6px 12px;
     color: #fff;
-    background-color: #6c757d;
+    background-color: #48685E;
     border-radius: 5px;
     font-size: 13px;
 }

@@ -10,11 +10,20 @@ function NoticeForm(props) {
     const [ncontent, setNcontent] = useState('');
     const [nphoto, setNphoto]=useState(null);
     const [ncate, setNcate]=useState('');
-    const [nwriteday , setNwriteday]=useState('');
     const {nnum}=useParams();
     const navi = useNavigate();
     const url = process.env.REACT_APP_NOTICE;
     
+    useEffect(() => {
+        axios.get("/admin/noticeDetail?nnum="+nnum)
+        .then(res=>{
+            setNsubject(res.data.nsubject);
+            setNcate(res.data.ncate);
+            setNphoto(res.data.nphoto);
+            setNcontent(res.data.ncontent);
+        })
+        
+    }, []);
 
     const handleSelectChange = (e) => {
         setNcate(e.target.value); // 선택한 값으로 ncate 상태 업데이트
@@ -34,32 +43,14 @@ function NoticeForm(props) {
     };
 
     const submit=()=>{
-        axios.post('/admin/noticeUpdate',{nsubject, ncontent, nphoto, ncate})
+        axios.post(`/admin/update`, { nnum, nsubject, ncontent, nphoto, ncate})
+        
         .then(res=>{
             navi("/admin/noticelist")
         })
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                console.log("nnum =" +nnum);
-                const response = await axios.get("/admin/noticeDetail?nnum"+nnum);
-                const data = response.data; // 서버로부터 받은 데이터
-
-                console.log("data = " +data);
-                setNsubject(data.nsubject);
-                setNphoto(data.nphoto);
-                setNcontent(data.ncontent);
-                setNcate(data.ncate);
-                setNwriteday(data.nwriteday);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchData();
-    }, [nnum]);
+    
 
     return (
         <div className='nform_wrap'>
@@ -74,8 +65,8 @@ function NoticeForm(props) {
             
             <h5>카테고리</h5>
             <div className='nform_sel'>
-                <select value={ncate} onChange={handleSelectChange}>
-                    <option selected value="선택하세요">선택하세요</option>
+                <select value={ncate || ''} onChange={handleSelectChange}>
+                    <option value="선택하세요">선택하세요</option>
                     <option value="이벤트">이벤트</option>
                     <option value="공지사항">공지사항</option>
                     <option value="블랙리스트">블랙리스트</option>
@@ -83,13 +74,13 @@ function NoticeForm(props) {
             </div>
             
             <h5>사진</h5>
-            <input className='nform_file' type='file' onChange={onUploadEvent} value={nphoto}/>
+            <input className='nform_file' type='file' onChange={onUploadEvent}/>
 
             <h5>내용</h5>
             <div className='nform_txt'>
             
                 {nphoto != null ? <img alt='' src={`${url}${nphoto}`}/> : null}
-                <textarea  placeholder='내용' onChange={(e) => setNcontent(e.target.value)}> 
+                <textarea  placeholder='내용' onChange={(e) => setNcontent(e.target.value)} value={ncontent}> 
                 {ncontent}
                 </textarea> 
             </div>

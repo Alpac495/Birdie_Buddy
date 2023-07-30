@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import './Mypage.css';
 import UpdateIcon from "../image/icon_update.svg";
+import userprofile from "../image/userprofile.svg";
 import EditIcon from '@mui/icons-material/Edit';
 import SingoBtn from "../image/btn_singo.svg";
 import BackPhoto from "../image/icon_mybackphoto.svg";
@@ -16,8 +17,8 @@ import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
 import ModalBgphoto from "./MypageUpdateBgphoto"
 import Axios from "axios";
-import {NavLink} from "react-router-dom";
 import Header from "../header/Header";
+import { NavLink } from "react-router-dom";
 
 function Mypage(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -167,31 +168,59 @@ function Mypage(props) {
         )
     } else {
         return (
-            <div className="MP2profile">
-            <Header/>
-              <img alt="error" className="MP2backprofile" src={`${url}${imsibgphoto}`} />
-              <div className="MP2div" />
-              <div className="MP2infobox-wrapper">
-                <div className="MP2infobox" />
-              </div>
-              <div className="MP2mainprofile">
-                <img alt="error" style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
-                <img className="MP2myphoto-icon" alt="" src={Photoicon} onClick={openPhoto} />
-                {/* <EditIcon className="photoIcon" fontSize="small"  /> */}
-                <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
-                  <img className="imsiphoto" src={`${url}${imsiphoto}`} alt={''} />
-                  <input className="inputfile" type="file" ref={photoRef} onChange={onUploadEvent} />
-                </ModalPhoto>
-              </div>
-              <div className="MP2div1">
-                <span className="FDtxt">
-                  <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
-                  <p className="FDp">골프경력 {dto.ucareer} /
-                    {stasu == null || stasu === '' || stasu === 0 ?
-                      <span> 입력된 타수 정보가 없습니다</span> :
-                      <span>
-                        평균타수 {stasu}타
-                      </span>
+            <div className="FDprofile">
+                <div className="FDdiv">
+                    <div className="FDchild" />
+                </div>
+
+                {
+                    ubgphoto==null || ''?
+                    <img alt='error' className="FDbackprofile" src={userprofile} />
+                    :
+                    <img alt='error' className="FDbackprofile" src={`${url}${imsibgphoto}`} />
+                }
+
+                <div className="FDinfobox" />
+                <div className="FDmainprofile">
+                    {
+                        uphoto==null || ''?
+                        <img alt='error' style={{ borderRadius: '11%' }} src={userprofile} />
+                        :
+                        <img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
+                    }
+
+                    <EditIcon className={'photoIcon'} fontSize="small" onClick={openPhoto} />
+                    <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
+                        <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
+                        <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
+                    </ModalPhoto>
+                </div>
+
+
+                <div className="FDdiv2">
+                    <span className="FDtxt">
+                        <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
+                        <p className="FDp">골프경력 {dto.ucareer} /
+                            {
+                                stasu == null || stasu == '' || stasu == 0 ?
+                                    <span> 입력된 타수 정보가 없습니다</span> :
+                                    <span>
+                                        평균타수 {stasu}타
+                                        <EditIcon fontSize="small" onClick={openBg} />
+                                        <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
+                                            <img className='imsiphoto' src={`${url}${imsibgphoto}`} alt='' />
+                                            <input className={'inputfile'} type={'file'} ref={bgphotoRef} onChange={onUploadEventBg} />
+                                        </ModalBgphoto>
+                                    </span>
+                            }
+                        </p>
+                    </span>
+                </div>
+                <div className="FDdiv3">
+                    {
+                        ucontent === null ? <div>자기소개를 입력해 주세요.</div>
+                            :
+                            ucontent
                     }
                   </p>
                 </span>
@@ -233,21 +262,26 @@ function Mypage(props) {
                     <input className="inputtext" type="text" value={imsiCon} onChange={(e) => setImsiCon(e.target.value)} ref={conRef} />
                   </ModalCon>
                 </div>
-                
-                <NavLink to={`/chating/${unum}`} />
-              </div>
-              <img className="MP2myphoto-icon" alt="" src={Photoicon} onClick={openPhoto} />
-              <div className="MP2backimg">
-                <img alt='' src={BackPhoto} onClick={openBg} />   
-                <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
-                  <img className="imsiphoto" src={`${url}${imsibgphoto}`} alt="" />
-                  <input className="inputfile" type="file" ref={bgphotoRef} onChange={onUploadEventBg} />
-                </ModalBgphoto>
-              </div>
-              <img className="MP2vector-icon" alt="" src="/vector.svg" />
-            </div>
-          );
-          
+                <NavLink to={`/chating/${unum}`}>
+                    <div className="FDicon-message-parent">
+                        <img className="FDicon-message" alt="" src={FDicon2} />
+                        <div className="FDdiv5">TEXT2</div>
+                    </div>
+                </NavLink>
+                <div className="FDicon-camera-parent">
+                    <img className="FDicon-camera" alt="" src={FDicon3} />
+                    <div className="FDdiv5">TEXT3</div>
+                </div>
+
+                <div className="FDparent" >
+                    <div className="FDdiv5">TEXT1</div>
+                    <img
+                        className="FDicon-user-cirlce-add"
+                        alt="" src={FDicon1} />
+                </div>
+
+            </div >
+        );
     }
 }
 
