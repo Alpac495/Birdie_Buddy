@@ -24,7 +24,6 @@ function NoticeDetail(props) {
     const noticeDetail=()=>{
         axios.get("/admin/noticeDetail?nnum="+nnum)
         .then(res=>{
-            console.log(res.data);
             setData(res.data);
         })
     }
@@ -88,7 +87,6 @@ function NoticeDetail(props) {
                     ) : null
                 }
             </div>
-                <Footer/>
         </div>
     );
 }
