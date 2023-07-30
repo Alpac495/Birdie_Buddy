@@ -20,7 +20,7 @@ function NoticeList(props) {
     }
 
     const noticeList = () => {
-        axios.get(`/admin/noticeList?limit=10&offset=${page-1}`)
+        axios.get(`/admin/noticeList?limit=10&offset=${(page-1) * 10}`)
             .then(res => {
                 console.log(res.data);
                 setData(res.data);

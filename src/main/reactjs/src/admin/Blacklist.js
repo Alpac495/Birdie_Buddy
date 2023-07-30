@@ -53,6 +53,10 @@ function Blacklist(props) {
                 setLoading(false);
             });
     }
+
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
+
     return (
         <div className="alluserlist">
             <div className="header"><Header/></div>
@@ -94,7 +98,7 @@ function Blacklist(props) {
                                 <div className="ulistprofile1">
                                     <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
                                     {item.uphoto == null ? <img className="FLphoto-icon" alt="" src={Profile} /> :
-                                    <img className="FLphoto-icon" src={`${url}${item.uphoto}`} alt={''}/>}
+                                    <img className="FLphoto-icon" src={`${image1}${item.uphoto}${image2}`} alt={''}/>}
                                     </Link>
                                     <div className="ULdiv3">
                                       <span className="ULtxt">
