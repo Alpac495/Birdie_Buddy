@@ -188,7 +188,7 @@ function Friend(props) {
                                     </div>
 
                                     <div >                                        
-                                        <img alt='' src={chatbtn} className="FLrectangle-parent"/>
+                                        <img alt='' src={chatbtn} className="FLrectangle-parent" onClick={onChatEvent.bind(null, item.unum)}/>
                                     </div>
                                 </div>                        
                     </div>
