@@ -128,13 +128,13 @@
     height: 0.06rem;
 }
 .DLdiv9,
-.DLgroup,
 .DLgroup-inner {
     position: absolute;
 }
 .DLgroup {
+    position: relative;
     width: calc(100% - 32px);
-    top: 15.06rem;
+    top: 10rem;
     right: 1rem;
     left: 1rem;
     height: 2.5rem;

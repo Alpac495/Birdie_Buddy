@@ -58,3 +58,16 @@ input[type='file']{
     height: 70%;
     border: none;
 }
+.nform_btnwrap{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.nform_btnwrap button{
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    color: white;
+    background-color: #1F4337;
+}
