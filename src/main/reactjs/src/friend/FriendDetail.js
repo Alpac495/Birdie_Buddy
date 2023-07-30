@@ -71,6 +71,10 @@ function FriendDetail(props) {
         }
     }
 
+    const onMyStory = () => {
+        navi(`/hugi/list/${funum}`);
+    }
+
     const onChatEvent = async (cunum) => {
         if (nc) {
             try {
@@ -232,20 +236,18 @@ function FriendDetail(props) {
             </div>
             <div className="FDdiv3">{dto.ucontent}</div>
             <div className="FDdiv4">{dto.unickname}</div>
-            <div className="FDicon-message-parent">
+            <div className="FDicon-message-parent" onClick={onChatEvent.bind(null, funum)}>
                 <img className="FDicon-message" alt="" src={FDicon2} />
-                <div className="FDdiv5" onClick={onChatEvent.bind(null, funum)}>버디채팅</div>
+                <div className="FDdiv5" >버디채팅</div>
             </div>
-            <div className="FDicon-camera-parent">
+            <div className="FDicon-camera-parent" onClick={onMyStory}>
                 <img className="FDicon-camera" alt="" src={FDicon3}/>
                 <div className="FDdiv5">버디스토리</div>
             </div>
-            <div className="FD2singo-btn">
-                <img alt="" className="MP2singo-btn child" onClick={handleReportClick}/>
-            </div>
-            <div className="FD2singo-btn">
-                <Button onClick={handleReportClick}>신고하기</Button>
-                {reportModalOpen &&
+            <div className="MP2singo-btn" onClick={handleReportClick}>
+                <div className="MP2singo-btn-child" />                
+                  <img className="MP2singo-btn-child" alt="" src={SingoBtn} />  
+                  {reportModalOpen &&
                     <ModalReport
                         reporterNickname={unum}
                         reportedNickname={dto.unum}
@@ -254,13 +256,8 @@ function FriendDetail(props) {
                         reportUser={handleReportSubmit}
                         handleClose={handleClose}
                     />
-                }
-                {/*<div className="FDicon-camera-parent">*/}
-                {/*    <img className="FDicon-camera" alt="" src={FDicon3} />*/}
-                {/*    <div className="FDdiv5">버디스토리</div>*/}
-                {/*</div>*/}
-            {/*  기능 확인을 위해 임시로 위치 조정  */}
-            </div>
+                }            
+              </div>            
             <div>
                 <button alt="" src={SingoBtn} onClick={handleReportClick}/>신고하기
                 {reportModalOpen &&
