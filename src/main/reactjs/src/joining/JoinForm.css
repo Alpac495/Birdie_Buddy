@@ -207,6 +207,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
+    background-color: #48685E;
   }
   .JFlbtn {
     position: absolute;
