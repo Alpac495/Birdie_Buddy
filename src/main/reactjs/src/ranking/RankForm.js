@@ -1,11 +1,9 @@
 import "./RankForm.css";
 import "../header/Header.css";
 import Header from "../header/Header";
-import { useCallback, useEffect, useState } from "react";
-import Button from "@mui/material/Button";
+import { useEffect, useState } from "react";
 import Modal from '../components/Modal';
 import axios from "axios";
-
 
 const RankForm = () => {
     const [n, setN] = useState(1);
@@ -136,7 +134,7 @@ const RankForm = () => {
     };
 
     return (
-        <div className="rankform">
+        <div className="rankform" style={{ backgroundImage: 'url(http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy/ranking/golf_back.jpg)' }}>
             <div>
                 <Header />
             </div>
