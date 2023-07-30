@@ -14,7 +14,7 @@ body {
 }
 
 .SGsingobar {
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
   top: 0;
@@ -167,6 +167,7 @@ body {
   font-size: 0.94rem;
   color: #fff;
   font-family: Inter;
+  
   animation: slideIn 0.3s ease-in-out;
 }
 
