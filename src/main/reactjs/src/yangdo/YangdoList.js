@@ -152,7 +152,12 @@ function YangdoList(props) {
                                     </div>
                                     <div className="Ylgroup-div">
                                         <div className="Ylrectangle-div" />
-                                        <img className="Ylgroup-icon" alt="a" src={`${image1}${row.uphoto}${image2}`} />
+                                        {
+                                            row.uphoto==null?
+                                            <img className="Ylgroup-icon" alt="a" src={profile} />
+                                            :
+                                            <img className="Ylgroup-icon" alt="a" src={`${image1}${row.uphoto}${image2}`} />
+                                        }
                                         <div className="Yldiv4">{row.unickname}</div>
                                         <div className="Yldiv5">작성일 : {row.ywriteday}</div>
                                     </div>
