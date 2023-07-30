@@ -32,4 +32,12 @@
     <select id="noticeDetail" parameterType="int" resultType="NoticeDto">
         select * from notice where nnum=#{nnum}
     </select>
+    <select id="getNotice" parameterType="map" resultType="NoticeDto">
+        SELECT * FROM notice
+        ORDER BY nnum DESC
+            LIMIT #{limit} OFFSET #{offset}
+    </select>
+    <select id="getNoticeCount" resultType="int">
+        select count(*) from notice
+    </select>
 </mapper>

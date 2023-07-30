@@ -1,7 +1,7 @@
 import React from 'react';
 import './ModalReport.css';
 
-function ModalReport({ reporterNickname, reportedNickname, reportReason, handleClose }) {
+function ModalReport({ reporterNickname, reportedNickname, reportReason, handleClose, handleBlacklist }) {
     return (
         <div className="SDsingodetail">
             <div className="SDsingo">

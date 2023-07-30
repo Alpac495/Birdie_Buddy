@@ -45,6 +45,7 @@ public class ReportController {
         reportService.newReport(rdto);
     }
 
+    @PostMapping("/blacklist")
     public void blacklistUser(@RequestParam int unum){
         reportService.blacklistUser(unum);
     }
