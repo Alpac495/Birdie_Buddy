@@ -212,4 +212,10 @@
       font-size: 0.88rem;
     }
   }
+
+  .YFsearch{
+    position: relative;
+    top:-1.8rem;
+    left:90%;
+  }
   
