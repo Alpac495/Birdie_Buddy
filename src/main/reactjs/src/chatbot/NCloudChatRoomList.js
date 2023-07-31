@@ -104,7 +104,8 @@ const NCloudChatRoomList = () => {
     const handleCreateChannel = async () => {
         if (nc) {
             try {
-                const chatid = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=1`)
+                const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=1`);
+                const chatid = response.data.chatid;
                 if(chatid){
                     await nc.disconnect();
                     navigate(`/chating/room/${chatid}/${unum}`);
@@ -126,7 +127,7 @@ const NCloudChatRoomList = () => {
         <div className="CLnewlogo" ><Header/></div>
         <div className="CLsubtitle">
           <div className="CLtitle">채팅목록</div>
-          <button className='CDcta-button-3' type={"button"}>관리자와의 채팅</button>
+          <button className='CDcta-button-3' type={"button"} onClick={handleCreateChannel}>관리자와의 채팅</button>
         </div>
         {channels.map &&
             channels.map((channel) => (
