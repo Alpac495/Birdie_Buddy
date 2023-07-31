@@ -95,6 +95,19 @@ function YangdoList(props) {
     };
     let prevMonthYear = "";
     let prevDay = "";
+
+    function formatDate(dateString) {
+        const dateObj = new Date(dateString); // 입력된 문자열을 Date 객체로 변환
+        const year = dateObj.getFullYear(); // 연도
+        const month = `0${dateObj.getMonth() + 1}`.slice(-2); // 월 (0부터 시작하므로 1을 더해줌)
+        const day = `0${dateObj.getDate()}`.slice(-2); // 일
+        const hours = `0${dateObj.getHours()}`.slice(-2); // 시간
+        const minutes = `0${dateObj.getMinutes()}`.slice(-2); // 분
+    
+        // 형식에 맞게 조합하여 반환
+        return `${year}.${month}.${day} ${hours}:${minutes}`;
+    }
+
     return (
         <div className="Ylyangdolist">
             <Header/>
@@ -169,7 +182,7 @@ function YangdoList(props) {
                                             <img className="Ylgroup-icon" alt="a" src={`${image1}${row.uphoto}${image2}`} />
                                         }
                                         <div className="Yldiv4">{row.unickname}</div>
-                                        <div className="Yldiv5">작성일 : {row.ywriteday}</div>
+                                        <div className="Yldiv5">작성일 : {formatDate(row.ywriteday)}</div>
                                     </div>
                                     <div className="Ylrectangle-parent1">
                                         <div className="Ylgroup-child1" />

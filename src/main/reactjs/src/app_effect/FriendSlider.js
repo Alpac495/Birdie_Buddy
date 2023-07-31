@@ -10,7 +10,6 @@ const SimpleSlider = () => {
     const [unum, setUnum] = useState(0);
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
-    const user = process.env.REACT_APP_MAIN;
     const [data,setData]=useState('');
     const [fdata,setFdata]=useState('');
 

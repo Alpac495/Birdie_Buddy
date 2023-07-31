@@ -251,7 +251,7 @@ function HugiList(props) {
                     null
                 )}
                 endMessage={// Display Footer when the end is reached
-                    hugiData.length === 0 && !loading ? (
+                    hugiData.length == 0 && !loading ? (
                         <div className="HG_footer-message">작성된 게시물이 없습니다</div>
                     ) : (
                         <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
