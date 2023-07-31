@@ -12,7 +12,8 @@ import mybuddy from '../image/mybuddy.svg';
 import acceptbuddy from '../image/acceptbuddy.svg';
 
 const FriendSearch = () => {
-    const url = process.env.REACT_APP_PROFILE;
+    const url = process.env.REACT_APP_IMAGE1PROFILE;
+    const url2 = process.env.REACT_APP_IMAGE80;
     const [searchTerm, setSearchTerm] = useState("");
     const now = new Date();
     const year = now.getFullYear();
@@ -147,7 +148,7 @@ const FriendSearch = () => {
                     <div className="AFitem-2" key={idx}>
                     <Link to={`/friend/detail/${item.unum}`} style={{ color: 'black' }}>
                         {item.uphoto == null ? <img className="AFjduphoto-icon" alt="" src={Profile} /> :
-                        <img className="AFjduphoto-icon" src={`${url}${item.uphoto}`} alt={''}/>}                        
+                        <img className="AFjduphoto-icon" src={`${url}${item.uphoto}${url2}`} alt={''}/>}
                     </Link>
                     <div className="AFdiv1">{item.ugender} / {year - (parseInt(item.uage.substring(0, 4), 10))}세</div>
                     <div className="AFdiv2">{item.unickname}</div>

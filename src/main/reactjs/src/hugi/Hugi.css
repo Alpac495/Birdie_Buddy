@@ -102,7 +102,7 @@ body {
     position: fixed;
     z-index:99;
     width:350px;
-    margin:auto;
+    margin:-10px auto;
 }
 .HG_details_Timeline > summary {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -210,6 +210,8 @@ body {
     padding: 10px;
 }
 .HG_scroll-to-top-button{
+    background-color: transparent;
+    margin-left: 100px ;
     color:#48685E;
     text-align: center;
     cursor: pointer;
