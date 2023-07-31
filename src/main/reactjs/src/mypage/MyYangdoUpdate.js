@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Modal from '../components/Modal';
 import "../yangdo/YangdoForm.css";
 import Header from '../header/Header';
+import searchCon from "../image/search.svg";
 
 function MyYangdoUpdate(props) {
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
@@ -96,13 +97,15 @@ function MyYangdoUpdate(props) {
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>
-                        <input className="joinsearch"
-                               type="text"
-                               placeholder="   검색                                                         🔎"
-                               onChange={(e) => {
-                                   setSearchTerm(e.target.value);
-                               }}/>
-                        <br/><br/>
+                        <div>
+                            <input className="joinsearch"
+                                type="text"
+                                placeholder=" 검색"
+                                onChange={(e) => {
+                                    setSearchTerm(e.target.value);
+                                }}/> 
+                            <img className="YFsearch" alt="" src={searchCon}/>
+                        </div>
                         <ul>
                             {
                                 data.map &&
@@ -129,7 +132,7 @@ function MyYangdoUpdate(props) {
                             <input
                                 className="yfemail1"
                                 type="text"
-                                //placeholder=""
+                                placeholder="골프장을 입력하세요."
                                 maxLength
                                 minLength
                                 value={yangdoData.yplace}
@@ -185,7 +188,7 @@ function MyYangdoUpdate(props) {
                             <input
                                 className="yfemail1"
                                 type="text"
-                                //placeholder=""
+                                placeholder="ex) 150000"
                                 maxLength
                                 minLength
                                 value={yangdoData.yprice}
@@ -204,7 +207,7 @@ function MyYangdoUpdate(props) {
                             <div className="yfdiv">내용</div>
                             <textarea
                                 className="yfemail"
-                                // placeholder=""
+                                placeholder="내용을 입력해주세요."
                                 maxLength
                                 minLength
                                 value={yangdoData.ycontent}
