@@ -6,6 +6,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Profile from "../image/user60.png";
 import Header from '../header/Header';
 import _ from "lodash"
+import searchCon from "../image/search.svg";
+
 function UserList(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [searchTerm, setSearchTerm] = useState("");    
@@ -64,12 +66,12 @@ function UserList(props) {
             <div className="header"><Header/></div>
             <input className="usersearch"
                    type="text"
-                   placeholder="이름 또는 닉네임으로 "
+                   placeholder="이름 또는 닉네임으로 검색하세요."
                    value={keyword}
                     onChange={(e) => {
                         setKeyword(e.target.value);
                     }}/>
-                <button className="ULsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
+                <img className="ULsearch btn btn-sm btn-outline" alt="" src={searchCon} onClick={search} />
                 
             <div className="ULtab">
                 <NavLink to={`/admin/userlist`} style={{color:'black'}}>
@@ -118,7 +120,7 @@ function UserList(props) {
 
                                     <div className="ULrectangle-parent">
                                         <div className="ULgroup-child" />
-                                        <div className="ULdiv4" onClick={() => handleReportCheckClick(item.unum)}>신고 내역 확인</div>                                    </div>
+                                        <div className="ULdiv4" onClick={() => handleReportCheckClick(item.unum)}>신고 내역</div>                                    </div>
                                 </div>
                         </div>
 

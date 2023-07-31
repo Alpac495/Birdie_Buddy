@@ -5,6 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Header from '../header/Header';
 import Profile from "../image/user60.png";
 import _ from "lodash"
+import searchCon from "../image/search.svg";
 
 function Blacklist(props) {
     const url = process.env.REACT_APP_PROFILE;
@@ -65,12 +66,12 @@ function Blacklist(props) {
             <div className="header"><Header/></div>
             <input className="usersearch"
                    type="text"
-                   placeholder="이름 또는 닉네임으로 "
+                   placeholder="이름 또는 닉네임으로 검색하세요."
                    value={keyword}
                     onChange={(e) => {
                         setKeyword(e.target.value);
                     }}/>
-                <button className="ULsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
+                <img className="ULsearch btn btn-sm btn-outline" alt="" src={searchCon} onClick={search} />
 
             <div className="ULtab">
                 <NavLink to={`/admin/userlist`} style={{color:'black'}}> 
@@ -119,7 +120,7 @@ function Blacklist(props) {
 
                                     <div className="ULrectangle-parent">
                                         <div className="ULgroup-child" />
-                                            <div className="ULdiv4" onClick={(e)=>removeBlackList(item.unum)}>차단해제</div>                                        
+                                            <div className="ULdiv4" onClick={(e)=>removeBlackList(item.unum)}>차단 해제</div>                                        
                                     </div>
                                 </div>
                         </div>

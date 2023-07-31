@@ -1,7 +1,8 @@
 import React, {Component, useState} from 'react';
 import Slider from "react-slick";
-import no from "../images/golf_place.jpg"
 import "./Bannerslider.css";
+import Axios  from 'axios';
+import { Link } from 'react-router-dom';
 
 const totalSlides = 6; // 전체 슬라이드 수
 export default class SimpleSlider extends Component {
@@ -10,7 +11,21 @@ export default class SimpleSlider extends Component {
         super(props);
         this.state = {
             currentPage: 0,
+            bannerList:[],
         };
+    }
+
+    componentDidMount() {
+        Axios.get('/main/notice')
+            .then(res => {
+                // 서버에서 받아온 데이터로 상태 업데이트
+                this.setState({ bannerList: res.data });
+                
+                
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     }
 
     handleSlideChange = (current) => {
@@ -19,6 +34,8 @@ export default class SimpleSlider extends Component {
 
     render() {
         const { currentPage } = this.state;
+        const { bannerList } = this.state;
+        const banners = process.env.REACT_APP_NOTICE;
 
         const settings = {
             infinite: true,
@@ -36,24 +53,19 @@ export default class SimpleSlider extends Component {
             <div>
 
                 <Slider {...settings}>
-                    <div>
-                        <img alt={''} src={no}/>
-                    </div>
-                    <div>
-                        <img alt={''} src={no}/>
-                    </div>
-                    <div>
-                        <img alt={''} src={no}/>
-                    </div>
-                    <div>
-                        <img alt={''} src={no}/>
-                    </div>
-                    <div>
-                        <img alt={''} src={no}/>
-                    </div>
-                    <div>
-                        <img alt={''} src={no}/>
-                    </div>
+                    {
+                    
+                    bannerList.map((item, idx) => (
+                        item.ncate === '이벤트' ? (
+                        <Link className='noticeList_go' key={idx} to={`/admin/noticeDetail/${item.nnum}`}>
+                            <div key={idx}>
+                                <img className='banner_size' alt={''} src={`${banners}${item.nphoto}`}/>
+                            </div>
+                        </Link>
+                        ) : null
+                    ))
+                    }
+                   
                 </Slider>
                 <div className="current-page-indicator">
                     {currentPage + 1} / {totalSlides}

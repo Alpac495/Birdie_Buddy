@@ -220,23 +220,22 @@ body {
     overflow: hidden;
 }
 .usersearch {
-    width: calc(100% - 105px);
+    width: calc(100% - 25px);
     top: 7rem;
-    right: 6.38rem;
-    left: 3.44rem;
+    margin-left: 0.8rem;
     max-width: 100%;
     height: 2.31rem;
 }
 .ULsearch {
     top: 7rem;
-    right: 3rem;
+    right: 0.9rem;
     font-size: 1rem;
     letter-spacing: 0.15px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 37px;
-    width: 70px;
+    width: 40px;
 }
 .adminuserlist{
     top: 14rem;

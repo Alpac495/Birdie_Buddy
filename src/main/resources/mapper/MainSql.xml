@@ -43,7 +43,7 @@
     </select>
 
     <select id="getNoticeList" resultType="NoticeDto">
-        select * from notice limit 6
+        select * from notice
     </select>
 
     <select id="getLoginUser" resultType="UserDto">
