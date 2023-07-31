@@ -9,6 +9,7 @@ import CardIcon from "../image/icon_card.svg";
 import TextIcon from "../image/icon_text.svg";
 import SettingIcon from "../image/icon_setting.svg";
 import * as ncloudchat from 'ncloudchat';
+import Header from '../header/Header';
 
 function YangdoDetail(props) {
 
@@ -106,6 +107,7 @@ function YangdoDetail(props) {
                     await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
 
                     alert("정상적으로 생성되었습니다");
+                    await nc.subscribe(newChatId);
                     // 채팅방으로 이동
                     await nc.disconnect();
                     navi(`/chating/room/${newChatId}/${cunum}`);
@@ -117,9 +119,6 @@ function YangdoDetail(props) {
     };
 
     useEffect(() => {
-        // API 요청 등을 통해 데이터를 가져오고 설정하는 로직
-        // ...
-      
         if (dto && dto.yprice !== undefined) {
           console.log(dto.yprice.toLocaleString());
         }
@@ -171,7 +170,7 @@ function YangdoDetail(props) {
 
     return (
         <div className="YEyangdodetailend">
-
+            <Header/>
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="양도 문의">
                     <div className="YMyangdopopup">

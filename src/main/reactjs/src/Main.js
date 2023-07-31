@@ -12,6 +12,7 @@ import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
 
 function Main(props) {
     const [notice, setNotice]=useState([]);
@@ -90,6 +91,9 @@ function Main(props) {
                 <div className={'main_reviewwrap'} onClick={chkLogin}>
                     <Reviewslider/>
                 </div>
+                <button className='main_chat' type='button'> 
+                    <HeadsetMicOutlinedIcon/>
+                </button>
             </div>
                 <Footer/>
         </div>

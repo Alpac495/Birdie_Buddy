@@ -119,6 +119,8 @@ function Friend(props) {
     }, [nc]);
 
     const onChatEvent = async (cunum) => {
+        console.log("cunum :" +cunum);
+        console.log("unum :" +unum);
         if (nc) {
             try {
                 const chatid = await getChatInfo(unum, cunum);
@@ -134,6 +136,7 @@ function Friend(props) {
                     await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
 
                     alert("정상적으로 생성되었습니다");
+                    await nc.subscribe(newChatId);
                     // 채팅방으로 이동
                     await nc.disconnect();
                     navi(`/chating/room/${newChatId}/${cunum}`);
@@ -143,7 +146,9 @@ function Friend(props) {
             }
         }
     };
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
@@ -167,8 +172,14 @@ function Friend(props) {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={items.length>0}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "50px"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={<div className="FL_scroll-to-top-button" style={{marginLeft: "120px"}} onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>}
                 >
             {
                 items.map &&
@@ -188,12 +199,18 @@ function Friend(props) {
                                     </div>
 
                                     <div >                                        
-                                        <img alt='' src={chatbtn} className="FLrectangle-parent" onClick={onChatEvent.bind(null, item.unum)}/>
+                                        <img alt='' src={chatbtn} className="FLrectangle-parent" onClick={onChatEvent.bind(null, item.funum)}/>
                                     </div>
                                 </div>                        
                     </div>
                  )
             }
+                {items.length > 0 && !loading &&(
+                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
+                    <button type="button" className="FL_scroll-to-top-button" onClick={scrollToTop}>
+                        Scroll to Top
+                    </button>
+                )}
         </InfiniteScroll>
         </div>
         </div>

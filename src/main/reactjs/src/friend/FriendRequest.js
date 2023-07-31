@@ -68,7 +68,9 @@ function FriendRequest(props) {
     const onRequestingEvent = () => {
         alert("수락을 기다리거나 해당 사용자 프로필에 방문하여 요청을 취소하세요");
     }
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
 
     return (
@@ -91,8 +93,14 @@ function FriendRequest(props) {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={items.length>0}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "50px"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={<div className="FL_scroll-to-top-button" style={{marginLeft: "120px"}} onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>}
                 >
             {
                 items.map &&
@@ -125,6 +133,12 @@ function FriendRequest(props) {
                         </div>                    
                  )
             }
+                {items.length > 0 && !loading &&(
+                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
+                    <button type="button" className="FL_scroll-to-top-button" onClick={scrollToTop}>
+                        Scroll to Top
+                    </button>
+                )}
             </InfiniteScroll>
         </div></div>
     );

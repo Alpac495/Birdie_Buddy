@@ -1,256 +1,79 @@
-@import url("https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 body {
-    margin: 0;
-    line-height: normal;
-}
-.FDchild {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
-}
-.FDdiv {
-    left: 0;
-    width: 22.5rem;
-    height: 5.25rem;
-}
-.FDdiv,
-.FDdiv1 {
-    position: absolute;
-    top: 0;
-}
-.FDdiv1 {
-    left: 0;
-    letter-spacing: -0.01em;
-    background: linear-gradient(202.17deg, #03c75a, #85c644);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  margin: 0;
+  line-height: normal;
 }
 
-.FDbackprofile {
-    position: absolute;
-    width: 100%;
-    top: calc(50% - 316px);
-    right: 0;
-    left: 0;
-    background-color: #d9d9d9;
-    height: 22.5rem;
-}
-.FDinfobox,
-.FDmainprofile {
-    position: absolute;
-    border-radius: 15px;
-}
-.FDinfobox {
-    height: calc(100% - 416px);
-    width: 100%;
-    top: 26rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
-}
-.FDmainprofile {
-    top: 22.06rem;
-    left: 1rem;
-    background-color: #89e1a4;
-    border: 4px solid #fff;
-    box-sizing: border-box;
-    width: 5.94rem;
-    height: 5.94rem;
-}
-.FDp {
-    margin: 0;
-}
-.FDtxt {
-    line-break: anywhere;
-    width: 100%;
-}
-.FDdiv2,
-.FDdiv3,
-.FDdiv4 {
-    position: absolute;
-    left: 1.56rem;
-    letter-spacing: -0.01em;
-    display: flex;
-    align-items: center;
-    width: 19.44rem;
-}
-.FDdiv2 {
-    top: 30.81rem;
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: #636363;
-}
-.FDdiv3,
-.FDdiv4 {
-    top: 33.44rem;
-    color: #000;
-}
-.FDdiv4 {
-    top: 28.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    width: 18.94rem;
-}
-.FDicon-message {
-    position: absolute;
-    bottom: 2rem;
-    left: calc(50% - 13px);
-    width: 1.63rem;
-    height: 1.62rem;
-}
-.FDdiv5,
-.FDicon-message-parent {
-    position: absolute;
-    left: calc(50% - 40px);
-    width: 5rem;
-}
-.FDdiv5 {
-    bottom: 0;
-    letter-spacing: -0.01em;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 1.25rem;
-}
-.FDicon-message-parent {
-    bottom: 2.5rem;
-    height: 3.63rem;
-    text-align: center;
-}
-.FDicon-camera {
-    position: absolute;
-    bottom: 2.06rem;
-    left: calc(50% - 13px);
-    width: 1.63rem;
-    height: 1.69rem;
-}
-.FDicon-camera-parent {
-    position: absolute;
-    bottom: 2.5rem;
-    left: calc(50% + 76px);
-    width: 5rem;
-    height: 3.75rem;
-    text-align: center;
-}
-.icon-user-cirlce-add,
-.FDparent {
-    position: absolute;
-    bottom: 2rem;
-    left: calc(50% - 13px);
-    width: 1.63rem;
-    height: 1.63rem;
-}
-
-.FDparent {
-    bottom: 2.5rem;
-    left: calc(50% - 155px);
-    width: 5rem;
-    height: 3.63rem;
-    text-align: center;
-}
-.FDprofile {
-    position: relative;
-    background-color: #fff;
-    width: 100%;
-    height: 50rem;
-    overflow: hidden;
-    text-align: left;
-    font-size: 1rem;
-    color: #292d32;
-    font-family: Inter;
-}
-.FD2backprofile,
-.FD2div {
+.FD3backprofile,
+.FD3div {
   position: absolute;
   left: 0;
 }
-.FD2backprofile {
+.FD3backprofile {
   width: 100%;
-  top: 6.25rem;
+  top: 5rem;
   right: 0;
   background-color: #d9d9d9;
   height: 22.5rem;
 }
-.FD2div {
+.FD3div {
   top: 0;
   width: 22.5rem;
   height: 6.25rem;
   display: none;
 }
-.FD2infobox {
+.FD3infobox {
   align-self: stretch;
   flex: 1;
   position: relative;
   border-radius: 15px;
   background-color: #f7f7f7;
 }
-.FD2infobox-wrapper,
-.FD2mainprofile {
+.FD3myinfo {
   position: absolute;
-  box-sizing: border-box;
-}
-.FD2infobox-wrapper {
   width: calc(100% + 20px);
-  top: 27.44rem;
+  top: 25.94rem;
   right: -0.62rem;
   left: -0.62rem;
-  height: 21.94rem;
+  height: ;
   display: flex;
   flex-direction: column;
   padding: 0.63rem;
+  box-sizing: border-box;
   align-items: flex-start;
   justify-content: flex-start;
 }
-.FD2mainprofile {
-  top: 25rem;
-  left: calc(50% - 164px);
-  border-radius: 15px;
-  background-color: #89e1a4;
-  border: 4px solid #fff;
-  width: 5.94rem;
-  height: 5.94rem;
-}
-.FD2p {
+.FD3p {
   margin: 0;
 }
-.FD2txt {
+.FD3about-txt {
   line-break: anywhere;
   width: 100%;
 }
-.FD2div1 {
+.FD3about {
   position: absolute;
-  top: 33.56rem;
-  left: calc(50% - 153px);
+  top: 32.19rem;
+  left: 1.56rem;
   letter-spacing: -0.01em;
   color: #636363;
-  text-align: left;
   display: flex;
   align-items: center;
-  width: 19.13rem;
+  width: 19.44rem;
 }
-.FD2icon-buddychat {
+.FD3icon-buddystory {
   position: absolute;
-  bottom: 2rem;
-  left: calc(50% - 13px);
+  right: 1.69rem;
+  bottom: 2.06rem;
   width: 1.63rem;
-  height: 1.62rem;
+  height: 1.69rem;
 }
-.FD2div2,
-.FD2icon-buddychat-parent,
-.FD2icon-buddystory {
+.FD3buddystory,
+.FD3div1 {
   position: absolute;
-  left: calc(50% - 40px);
   width: 5rem;
 }
-.FD2div2 {
+.MP3div1 {
+  right: 0;
   bottom: 0;
   letter-spacing: -0.01em;
   font-weight: 500;
@@ -259,109 +82,89 @@ body {
   justify-content: center;
   height: 1.25rem;
 }
-.FD2icon-buddychat-parent,
-.FD2icon-buddystory {
-  bottom: 1.75rem;
-  height: 3.63rem;
+.FD3buddystory {
+  right: 1.5rem;
+  bottom: 0.94rem;
+  height: 3.75rem;
+  text-align: center;
 }
-.FD2icon-buddystory {
+.FD3icon-buddystory1 {
+  position: absolute;
   bottom: 2.06rem;
   left: calc(50% - 13px);
   width: 1.63rem;
   height: 1.69rem;
 }
-.FD2icon-buddystory-parent {
-  position: absolute;
-  bottom: 1.75rem;
-  left: calc(50% + 76px);
-  width: 5rem;
-  height: 3.75rem;
-}
-.FD2icon-addbuddy,
-.parent {
-  position: absolute;
-  bottom: 2rem;
-  left: calc(50% - 13px);
-  width: 1.63rem;
-  height: 1.63rem;
-}
-.FD2parent {
-  bottom: 1.75rem;
-  left: calc(50% - 155px);
-  width: 5rem;
-  height: 3.63rem;
-}
-.FD2div5,
-.FD2singo-btn-child {
-  position: absolute;
-  height: 100%;
-  top: 0;
-}
-.FD2singo-btn-child {
-  width: 100%;
-  right: 0;
+.FD3div2 {
   bottom: 0;
-  left: 0;
-  border-radius: 3px;
-  background-color: #48685e;
-}
-.FD2div5 {
-  width: 78.95%;
-  left: 21.05%;
+  left: calc(50% - 40px);
   letter-spacing: -0.01em;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.FD2group,
-.FD2group-icon {
-  position: absolute;
-  bottom: 10%;
-}
-.FD2group-icon {
-  height: 86.67%;
-  width: 22.81%;
-  top: 3.33%;
-  right: 78.07%;
-  left: -0.88%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
-.FD2group {
-  height: 75%;
-  width: 83.82%;
-  top: 15%;
-  right: 4.41%;
-  left: 11.76%;
-}
-.FD2singo-btn {
-  position: absolute;
-  top: 6.81rem;
-  right: 0.56rem;
-  width: 4.25rem;
   height: 1.25rem;
-  font-size: 0.63rem;
-  color: #fff;
 }
-.FD2div6 {
+.FD3buddystory1,
+.FD3div2,
+.FD3div3 {
+  position: absolute;
+  width: 5rem;
+}
+.FD3buddystory1 {
+  bottom: 0.94rem;
+  left: calc(50% - 40px);
+  height: 3.75rem;
+  text-align: center;
+}
+.FD3div3 {
+  bottom: 0;
+  left: 0;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.25rem;
+}
+.FD3addbuddy,
+.FD3icon-addbuddy {
+  position: absolute;
+  bottom: 2rem;
+  left: 1.69rem;
+  width: 1.63rem;
+  height: 1.63rem;
+}
+.FD3addbuddy {
+  bottom: 0.94rem;
+  left: 1.56rem;
+  width: 5rem;
+  height: 3.63rem;
+  text-align: center;
+}
+.FD3div4 {
   position: relative;
   letter-spacing: -0.01em;
   font-weight: 600;
 }
-.FD2wrapper {
+.FD3update-icon {
+  position: relative;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.FD3nick {
   position: absolute;
-  top: 31.56rem;
-  left: calc(50% - 153px);
-  width: 6.69rem;
+  top: 30.19rem;
+  left: 1.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  text-align: left;
+  gap: 0.13rem;
   font-size: 1.25rem;
+  color: #000;
 }
-.FD2div7 {
+.FD3div5 {
   position: relative;
   letter-spacing: -0.01em;
   font-weight: 500;
@@ -369,52 +172,122 @@ body {
   width: 17.75rem;
   flex-shrink: 0;
 }
-.update1-icon {
-  position: relative;
-  width: 1.25rem;
-  height: 1.25rem;
-}
-.FD2container {
+.FD3text {
   position: absolute;
-  top: 36.44rem;
-  left: calc(50% - 153px);
+  top: 35.06rem;
+  left: 1.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.13rem;
-  text-align: left;
+  gap: 0.44rem;
+  color: #000;
 }
-.FD2profile {
+.FD3mainprofile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+  background-color: #89e1a4;
+  border: 4px solid #fff;
+  box-sizing: border-box;
+  width: 5.94rem;
+  height: 5.94rem;
+}
+.FD3myphoto-icon,
+.FD3photogroup {
+  position: absolute;
+  top: 0.56rem;
+  left: 0.56rem;
+  width: 0.75rem;
+  height: 0.62rem;
+}
+.FD3photogroup {
+  top: 23.75rem;
+  left: 1.5rem;
+  width: 5.94rem;
+  height: 5.94rem;
+}
+.FD3instance-child {
+  border-radius: 3px;
+  background-color: #48685e;
+}
+.FD3component-1-inner,
+.FD3instance-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.FD3backimgicon,
+.FD3component-1 {
+  position: absolute;
+  width: 37rem;
+  height: 1.25rem;
+}
+.FD3component-1 {
+  top: 0;
+  right: 0;
+}
+.FD3backimgicon {
+  top: 5.56rem;
+}
+.FD3instance-item {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #f8f5f0;
+}
+.FD3icon {
+  position: absolute;
+  height: 25%;
+  width: 7.23%;
+  top: 5%;
+  right: 91.1%;
+  bottom: 70%;
+  left: 1.67%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.FD3rectangle-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22.5rem;
+  height: 5rem;
+}
+.FD3icon1 {
+  position: absolute;
+  top: 0.45rem;
+  left: 7.81rem;
+  width: 6.88rem;
+  height: 4.15rem;
+  object-fit: cover;
+}
+.FD3instance-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22.5rem;
+  height: 5rem;
+  display: none;
+}
+.FD3profile {
   position: relative;
   background-color: #fff;
   width: 100%;
   height: 46.25rem;
   overflow: hidden;
-  text-align: center;
+  text-align: left;
   font-size: 1rem;
-  color: #000;
+  color: #204337;
   font-family: Inter;
-}
-.MP2singo-btn {
-  position: absolute;
-  top: 6.81rem;
-  right: 0.56rem;
-  width: 4.25rem;
-  height: 1.25rem;
-  font-size: 0.63rem;
-  color: #fff;
-}
-.MP2singo-btn-child {
-  position: absolute;
-  height: 100%;
-  top: 0;
-}
-.MP2singo-btn-child {
-  width: 100%;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 3px;
-  background-color: #48685e;
 }

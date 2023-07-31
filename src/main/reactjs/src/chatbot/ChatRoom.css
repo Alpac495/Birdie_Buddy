@@ -6,8 +6,8 @@ body {
 .CDdiv3 {
   font-weight: 600;
   height: 100%;
-  width: 360px;
-  height: 500px; 
+  width: 100%;
+  height: 530px; 
   border: 1px solid #ccc; 
   border-Radius: 4px;
   overflow: auto;
@@ -28,10 +28,10 @@ body {
 }
 .CDparent {
   width: 100%;
-  top: 10.41rem;
+  top: 8.41rem;
   right: 0;
   left: 0;
-  height: 30.65rem;
+  height: 530px;
 }
 .CDemail {
   border: 1px solid #d9d9d9;
@@ -102,8 +102,8 @@ body {
   position: absolute;
   width: 80px;  
   height: 30px;
-  top: 8rem;
-  left: 17.5rem;
+  top: 6rem;
+  right: 0.2rem;
   border-radius: 3px;
   background-color: #48685e;
   font-size: 12px;
@@ -116,7 +116,7 @@ body {
   position: absolute;
   width: 80px;  
   height: 30px;
-  top: 8rem;
+  top: 6rem;
   left: 0.1rem;
   border-radius: 3px;
   background-color: #48685e;
@@ -128,11 +128,12 @@ body {
 }
 .CDchatdetail-child {
   position: absolute;
-  right: 1.06rem;
+  right: 0.5rem;
   bottom: 1.19rem;
-  background-color: #d9d9d9;
-  width: 3rem;
-  height: 2rem;
+  background-color: #48685e;
+  color: #f8f5f0;
+  width: 3.5rem;
+  height: 2.2rem;
   font-size: 10px;
   font-weight: 700;
 }

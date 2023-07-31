@@ -12,6 +12,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
 import no from "../images/logo.png"
 import user from "../images/default_golf.png"
+import profile3 from "../image/profile90x90.png";
 import Axios from 'axios';
 
 
@@ -48,7 +49,7 @@ function Header(props) {
     function handleClick() {
         // 페이지 이동을 처리하는 로직 작성
         // 예시로 '/' 경로로 이동하는 경우
-        navigate('/'); // 페이지 이동
+        navigate('/birdie_buddy'); // 페이지 이동
     }
 
     const chkLogin=()=>{
@@ -77,15 +78,15 @@ function Header(props) {
                 // unum이 0이 아닌 경우에는 userData에 따라 유저 정보를 표시
                 userData && userData.length > 0 ? (
                     userData.map((item, idx) => (
-                        <div key={idx} className="side_profile">
+                        <div key={idx} className="side_profile" onClick={()=>navi(`/mypage/mypage/${unum}`)}>
                             <div>
                             {item.uphoto != null ? (
                                 <img alt="프로필 사진" src={`${image1}${item.uphoto}${image2}`} />
                                 ) : (
-                                <img alt="프로필 사진" src={user} />
+                                <img alt="프로필 사진" src={profile3} />
                             )}
                             </div>
-                            <div>{item.uname}</div>
+                            <div>{item.unickname}</div>
                         </div>
                     ))
                 ) : null
@@ -95,7 +96,7 @@ function Header(props) {
             <Divider style={{height:'2px'}}/>
             <List onClick={chkLogin}>
                 {[
-                    { text: '공지사항', path: '/notice', icon: <AnnouncementIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
+                    { text: '공지사항', path: '/admin/noticeList', icon: <AnnouncementIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
                     { text: '스코어 작성', path: '/score/form', icon: <EditIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' }
                 ].map(({ text, path, icon, marginLeft }) => (
                     <ListItem key={text} disablePadding>
@@ -115,7 +116,7 @@ function Header(props) {
                     { text: '양도', path: '/yangdo/list', icon: <TransferWithinAStationIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '랭킹', path: '/score/list', icon: <TrendingUpIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '후기', path: '/hugi/list', icon: <RateReviewIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
-                    { text: '마이페이지', path: '/mypage/main', icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
+                    { text: '마이페이지', path: `/mypage/setting`, icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '채팅 리스트', path: `/chating/${unum}`, icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'}
                 ].map(({ text, path, icon, marginLeft }) => (
                     <ListItem key={text} disablePadding>
@@ -149,7 +150,7 @@ function Header(props) {
                 {list()}
             </Drawer>
             <div className='header_logo'>
-                <img alt="" src={no} onClick={handleClick}/>
+                <img style={{height:'80px'}} alt="" src={no} onClick={handleClick}/>
             </div>
             
 

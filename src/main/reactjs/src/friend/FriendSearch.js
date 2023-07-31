@@ -1,7 +1,7 @@
 import "./FriendSearch.css";
 import Header from "../header/Header";
 import Profile from "../image/user60.png";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -10,9 +10,11 @@ import buddyadd from '../image/buddyadd.svg';
 import buddyrequest from '../image/buddyrequest.svg';
 import mybuddy from '../image/mybuddy.svg';
 import acceptbuddy from '../image/acceptbuddy.svg';
+import searchCon from "../image/search.svg";
 
 const FriendSearch = () => {
-    const url = process.env.REACT_APP_PROFILE;
+    const url = process.env.REACT_APP_IMAGE1PROFILE;
+    const url2 = process.env.REACT_APP_IMAGE80;
     const [searchTerm, setSearchTerm] = useState("");
     const now = new Date();
     const year = now.getFullYear();
@@ -115,7 +117,9 @@ const FriendSearch = () => {
                     });
             }
     };
-    
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     return (
         <div className="AFallfriendlist">
             <Header/>
@@ -126,14 +130,22 @@ const FriendSearch = () => {
                    value={keyword}
                     onChange={(e) => {
                         setKeyword(e.target.value);
-                    }}/><button className="AFsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
+                    }}/>
+                    <img className="AFsearch btn btn-sm btn-outline" alt="" src={searchCon} onClick={search} />
                     <InfiniteScroll
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "140px", overflow: "none"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={<div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}}  onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>}
                 >
+
             <div className="AFitem-grid-tiles-3x3">
             {
                 items.map &&
@@ -147,7 +159,7 @@ const FriendSearch = () => {
                     <div className="AFitem-2" key={idx}>
                     <Link to={`/friend/detail/${item.unum}`} style={{ color: 'black' }}>
                         {item.uphoto == null ? <img className="AFjduphoto-icon" alt="" src={Profile} /> :
-                        <img className="AFjduphoto-icon" src={`${url}${item.uphoto}`} alt={''}/>}                        
+                        <img className="AFjduphoto-icon" src={`${url}${item.uphoto}${url2}`} alt={''}/>}
                     </Link>
                     <div className="AFdiv1">{item.ugender} / {year - (parseInt(item.uage.substring(0, 4), 10))}세</div>
                     <div className="AFdiv2">{item.unickname}</div>
@@ -167,8 +179,13 @@ const FriendSearch = () => {
                     </div>
                 ))
                 }
-
-            </div></InfiniteScroll>
+                {items.length > 0 && !loading && (
+                    <button style={{position:"relative",left:'120px',padding:'10px',textAlign:'center',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
+                        Scroll to Top
+                    </button>
+                )}
+                </div>
+            </InfiniteScroll>
         </div>
     );
 };

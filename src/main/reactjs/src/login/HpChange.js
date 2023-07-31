@@ -56,7 +56,7 @@ function HpChange(props) {
         axios.get('/login/hpChange?uhp='+uhp)
         .then(res=>{
             alert("휴대폰 번호가 변경되었습니다.")
-            navi('/')
+            navi('/birdie_buddy')
         })
     }
 

@@ -183,7 +183,7 @@ public class HugiController {
         if (hugiDto != null) {
             return ResponseEntity.ok(hugiDto); // 게시물 정보를 클라이언트에게 반환합니다.
         } else {
-            return ResponseEntity.noContent().build(); // 해당 hnum에 해당하는 게시물이 없는 경우 404 에러를 반환합니다.
+            return ResponseEntity.notFound().build(); // 해당 hnum에 해당하는 게시물이 없는 경우 404 에러를 반환합니다.
         }
     }
 }

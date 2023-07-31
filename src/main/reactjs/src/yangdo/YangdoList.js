@@ -21,7 +21,7 @@ function YangdoList(props) {
     const fetchMoreData = () => {
         setLoading(true);
         Axios
-            .get(`/yangdo/list2?page=${page}&size=7`)
+            .get(`/yangdo/list2?page=${page}&size=8`)
             .then((res) => {
                 // 기존 데이터 중복 방지를 위해 lodash의 uniqBy 함수를 사용하여 중복 제거
                 const newData = _.uniqBy([...items, ...res.data], 'ynum');
@@ -90,9 +90,24 @@ function YangdoList(props) {
             navi(`/mypage/myyangdo/${unum}`)
         }
     }
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     let prevMonthYear = "";
     let prevDay = "";
+
+    function formatDate(dateString) {
+        const dateObj = new Date(dateString); // 입력된 문자열을 Date 객체로 변환
+        const year = dateObj.getFullYear(); // 연도
+        const month = `0${dateObj.getMonth() + 1}`.slice(-2); // 월 (0부터 시작하므로 1을 더해줌)
+        const day = `0${dateObj.getDate()}`.slice(-2); // 일
+        const hours = `0${dateObj.getHours()}`.slice(-2); // 시간
+        const minutes = `0${dateObj.getMinutes()}`.slice(-2); // 분
+    
+        // 형식에 맞게 조합하여 반환
+        return `${year}.${month}.${day} ${hours}:${minutes}`;
+    }
+
     return (
         <div className="Ylyangdolist">
             <Header/>
@@ -122,7 +137,11 @@ function YangdoList(props) {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "50px"}}></div>
+                    ) : (
+                        null
+                    )}
                     endMessage={null}
                 >
                     {items &&
@@ -152,7 +171,9 @@ function YangdoList(props) {
                                         <div className="Yldiv3">그린피 : {row.yprice? row.yprice.toLocaleString() : '가격 정보 없음'}원</div>
                                         <div className="Ylam">{row.ysubject}</div>
                                     </div>
-                                    <div className="Ylgroup-div">
+                                    <div className="Ylgroup-div" onClick={()=>{
+                                        navi(`/friend/detail/${row.unum}`)
+                                    }}>
                                         <div className="Ylrectangle-div" />
                                         {
                                             row.uphoto==null?
@@ -161,7 +182,7 @@ function YangdoList(props) {
                                             <img className="Ylgroup-icon" alt="a" src={`${image1}${row.uphoto}${image2}`} />
                                         }
                                         <div className="Yldiv4">{row.unickname}</div>
-                                        <div className="Yldiv5">작성일 : {row.ywriteday}</div>
+                                        <div className="Yldiv5">작성일 : {formatDate(row.ywriteday)}</div>
                                     </div>
                                     <div className="Ylrectangle-parent1">
                                         <div className="Ylgroup-child1" />
