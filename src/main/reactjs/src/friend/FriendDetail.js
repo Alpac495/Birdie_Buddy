@@ -283,7 +283,7 @@ function FriendDetail(props) {
                     }
                 </div>
                 <div>
-                    <button alt="" src={SingoBtn} onClick={handleReportClick} />신고하기
+                    <button alt="" src={SingoBtn} onClick={handleReportClick} />
                     {reportModalOpen &&
                         <ModalReport
                             reporterNickname={unum}

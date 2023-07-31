@@ -14,7 +14,7 @@ body {
 }
 .jradio-button-setonon {
     position: absolute;
-    top: calc(50% + 320px);
+    top: calc(50% + 280px);
     left: calc(50% - 163px);
     display: flex;
     flex-direction: row;
@@ -26,7 +26,7 @@ body {
 .jradio-button-setoffon,
 .jradio-button-setoffon1 {
     position: absolute;
-    top: calc(50% + 320px);
+    top: calc(50% + 280px);
     left: calc(50% + 62.5px);
     display: flex;
     flex-direction: row;
@@ -126,7 +126,7 @@ body {
   }
   .JFframe {
     position: absolute;
-    top: 7.5rem;
+    top: 5.5rem;
     left: calc(50% - 163px);
     width: 20.38rem;
     flex-direction: column;
@@ -141,7 +141,7 @@ body {
   }
   .JFframe1 {
     position: absolute;
-    top: 13.69rem;
+    top: 11.69rem;
     left: calc(50% - 163px);
     width: 20.38rem;
     flex-direction: column;
@@ -165,7 +165,7 @@ body {
   .JFframe4,
   .JFframe5 {
     position: absolute;
-    top: 19.88rem;
+    top: 17.88rem;
     left: calc(50% - 163px);
     width: 20.38rem;
     display: flex;
@@ -177,14 +177,14 @@ body {
   .JFframe3,
   .JFframe4,
   .JFframe5 {
-    top: 26.06rem;
+    top: 24.06rem;
   }
   .JFframe4,
   .JFframe5 {
-    top: 32.25rem;
+    top: 30.25rem;
   }
   .JFframe5 {
-    top: 38.44rem;
+    top: 36.44rem;
   }
   .JFlbtn-child,
   .JFdiv21 {
@@ -212,7 +212,7 @@ body {
   }
   .JFlbtn {
     position: absolute;
-    bottom: 1rem;
+    bottom: 3rem;
     left: calc(50% - 163px);
     width: 20.38rem;
     height: 2.5rem;
