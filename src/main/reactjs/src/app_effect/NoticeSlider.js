@@ -19,7 +19,8 @@ export default class SimpleSlider extends Component {
             .then(res => {
                 // 서버에서 받아온 데이터로 상태 업데이트
                 this.setState({ noticeList: res.data });
-                console.log(res.data);
+                
+                
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -41,12 +42,15 @@ export default class SimpleSlider extends Component {
         return (
             <div className="notice_slider">
                 <Slider {...settings}>
-                    {
-                        noticeList.map((item, idx)=>(
-                            <Link className='noticeList_go' key={idx} to={`/admin/noticeDetail/${item.nnum}`}>
-                                <div key={idx}>{item.nsubject}</div>
-                            </Link>
-                        ))
+                {
+                    
+                    noticeList.map((item, idx) => (
+                        item.ncate === '공지사항' ? (
+                        <Link className='noticeList_go' key={idx} to={`/admin/noticeDetail/${item.nnum}`}>
+                            <div key={idx}>{item.nsubject}</div>
+                        </Link>
+                        ) : null
+                    ))
                     }
                 </Slider>
             </div>

@@ -23,6 +23,8 @@ function Header(props) {
     const [unum, setUnum] = useState(0);
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
+    const navi = useNavigate();
+
 
     const toggleDrawer = (open) => (event) => {
         setSideBar(open);
@@ -47,6 +49,13 @@ function Header(props) {
         // 페이지 이동을 처리하는 로직 작성
         // 예시로 '/' 경로로 이동하는 경우
         navigate('/'); // 페이지 이동
+    }
+
+    const chkLogin=()=>{
+        if(unum===0){
+            alert("먼저 로그인해 주세요");
+            navi("/login/login");
+        }
     }
 
     // const getUserData()=
@@ -84,7 +93,7 @@ function Header(props) {
                 
             </List>
             <Divider style={{height:'2px'}}/>
-            <List>
+            <List onClick={chkLogin}>
                 {[
                     { text: '공지사항', path: '/notice', icon: <AnnouncementIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
                     { text: '스코어 작성', path: '/score/form', icon: <EditIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' }
@@ -100,7 +109,7 @@ function Header(props) {
                 ))}
             </List>
             <Divider style={{height:'2px'}} />
-            <List>
+            <List onClick={chkLogin}>
                 {[
                     { text: '조인', path: '/joining/alllist', icon: <PeopleIcon style={{ color: '#1F4337' }} />, marginLeft: '20px' },
                     { text: '양도', path: '/yangdo/list', icon: <TransferWithinAStationIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
