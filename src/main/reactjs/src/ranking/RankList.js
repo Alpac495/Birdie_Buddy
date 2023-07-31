@@ -143,7 +143,7 @@ function RankList(props) {
                             </div>
                         ))}
                     {list.length > 0 && !loading && (
-                        <button style={{height:'50px',marginLeft:'130px',padding:'10px',textAlign:'center',fontSize:'18px',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
+                        <button style={{height:'50px',marginLeft:'120px',padding:'10px',textAlign:'center',fontSize:'18px',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
                             Scroll to Top
                         </button>
                     )}
