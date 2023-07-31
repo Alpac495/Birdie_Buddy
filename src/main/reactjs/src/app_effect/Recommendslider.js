@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import Slider from "react-slick";
-import no from "../images/golf_place.jpg"
-import user from "../images/default_golf.png";
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 
 export default class SimpleSlider extends Component {
-    
 
     constructor(props) {
         super(props);
@@ -33,6 +30,8 @@ export default class SimpleSlider extends Component {
         const { joinReco } = this.state; 
         const image1 = process.env.REACT_APP_IMAGE1PROFILE;
         const image2 = process.env.REACT_APP_IMAGE87;
+        const user = process.env.REACT_APP_MAIN;
+
 
 
         const settings = {
@@ -53,7 +52,7 @@ export default class SimpleSlider extends Component {
                   {item.uphoto != null ? (
                     <img alt="프로필 사진" src={`${image1}${item.uphoto}${image2}`} />
                   ) : (
-                    <img alt="프로필 사진" src={user} />
+                    <img alt="프로필 사진" src={`${user}profile3.png`} />
                   )}
                   <div className="rec_info">
                     <span className="b">{item.jjoinday}</span>

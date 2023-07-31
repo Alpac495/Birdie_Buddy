@@ -51,11 +51,14 @@ function Login(props) {
         axios.get(`/login/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
             .then(res => {
                 console.log(res.data)
-                if (res.data !== 0) {
-                    navi("/");
-                } else {
+                if (res.data === 0) {
                     alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.")
                     setUpass('');
+                } else if (res.data===-1){
+                    alert("활동 정지를 당한 회원입니다. 관리자에게 문의해 주세요.")
+                    setUpass('');
+                } else {
+                    navi("/")
                 }
             })
     }
@@ -103,7 +106,7 @@ function Login(props) {
                 }
             /><div className="LGdiv">아이디 저장</div>
             <div className="LGwrapper" onClick={ouSubmitEvent}>
-                <div onClick={ouSubmitEvent} className="LGdiv1">로그인</div>
+                <div className="LGdiv1">로그인</div>
             </div>
             <div className="LGlogin-inner">
                 <div className="LGparent" onClick={handleNaverLogin}>

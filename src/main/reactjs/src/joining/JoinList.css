@@ -89,6 +89,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    margin-bottom: 0.25rem;
 }
 .JEtitle {
     width: 50%;
@@ -374,4 +375,11 @@ body {
 }
 .nav-style {
     color: black;
+}
+
+.JLbtn {
+    font-size: 0.9rem;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #48685E;
 }

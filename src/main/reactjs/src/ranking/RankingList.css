@@ -15,10 +15,10 @@
     width: 100px;
     height: 30px;
     text-align: center;
-    background-color: green;
-    color:  rgba(0,0,0,1);
-    font-weight: bolder;
-    border-radius: 4px;
+    background-color: #48685E;
+    color:  #fff;
+    /* font-weight: bolder; */
+    border-radius: 3px;
     
     
 }
