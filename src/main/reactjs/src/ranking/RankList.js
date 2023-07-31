@@ -143,9 +143,9 @@ function RankList(props) {
                             </div>
                         ))}
                     {list.length > 0 && !loading && (
-                        <div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}} onClick={scrollToTop}>
+                        <button style={{height:'50px',marginLeft:'130px',padding:'10px',textAlign:'center',fontSize:'18px',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
                             Scroll to Top
-                        </div>
+                        </button>
                     )}
                 </InfiniteScroll>
             </div>
