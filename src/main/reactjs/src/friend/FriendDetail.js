@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Axios from "axios";
 import "./FriendDetail.css";
 import * as ncloudchat from 'ncloudchat';
+
 import FDicon1 from "../image/icon_addbuddy.svg";
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
