@@ -6,6 +6,9 @@ import {NavLink, useNavigate, useParams} from "react-router-dom";
 import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 import Profile from "../image/User-32.png";
+import TimeIcon from "../image/icon_time.svg";
+import CardIcon from "../image/icon_card.svg";
+import TextIcon from "../image/icon_text.svg";
 import * as ncloudchat from 'ncloudchat';
 import Header from "../header/Header";
 
@@ -440,19 +443,20 @@ const JoinDetail = () => {
                     </div>
                 </div>
                 <div className="JDdefault">
+                    <img className="JDvector-icon" alt="" src={TimeIcon} />
                     <div className="JDdiv5">{dto.jjoinday} / {dto.jtime}</div>
                 </div>
                 <div className="JDinfobox-group">
                     <div className="JDcheckbox-with-label">
-                        <img className="JDvector-icon" alt="" src="/vector.svg" />
+                        <img className="JDvector-icon" alt="" src={CardIcon} />
                         <div className="JDdiv6">그린피 {dto.jprice}원</div>
                     </div>
                     <div className="JDcheckbox-with-label1">
-                        <img className="JDvector-icon" alt="" src="/-icon-people.svg" />
+                        <img className="JDvector-icon" alt="" src={TextIcon} />
                         <div className="JDdiv7">{dto.jage}</div>
                     </div>
                     <div className="JDcheckbox-with-label">
-                        <img className="JDicon-file" alt="" src="/-icon-file.svg" />
+                        <img className="JDicon-file" alt="" src={TextIcon} />
                         <div className="JDdiv7">
                             <p className="JDp">{dto.jcontent}</p>
                         </div>
