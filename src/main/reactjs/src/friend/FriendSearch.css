@@ -139,6 +139,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 2rem;
 }
 .AFsearch {
     top: 5.38rem;
