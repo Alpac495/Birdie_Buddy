@@ -98,9 +98,14 @@ function FriendRequest(props) {
                     ) : (
                         null
                     )}
-                    endMessage={<div className="FL_scroll-to-top-button" style={{marginLeft: "120px"}} onClick={scrollToTop}>
-                        Scroll to Top
-                    </div>}
+                    endMessage={
+                        items.length == 0 && !loading ? (
+                            <div className="footer-message" style={{textAlign:"center"}}>버디 요청이 없습니다</div>
+                        ) : (
+                            <div className="FL_scroll-to-top-button" style={{textAlign:"center"}} onClick={scrollToTop}>
+                                Scroll to Top
+                            </div>
+                        )}
                 >
             {
                 items.map &&
@@ -133,9 +138,9 @@ function FriendRequest(props) {
                         </div>                    
                  )
             }
-                {items.length > 0 && !loading &&(
+                {items.length > 6 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <button type="button" className="FL_scroll-to-top-button" onClick={scrollToTop}>
+                    <button type="button" className="FL_scroll-to-top-button"  style={{textAlign:"center"}}  onClick={scrollToTop}>
                         Scroll to Top
                     </button>
                 )}
