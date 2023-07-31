@@ -4,6 +4,7 @@ import './PassChange.css';
 import { useNavigate } from 'react-router-dom';
 import Back from "../image/Back.svg";
 import hidelogo from "../image/hidelogo.svg";
+import Header from '../header/Header';
 
 function PassChange(props) {
     const [data, setData] = useState([]);
@@ -60,6 +61,7 @@ function PassChange(props) {
 
     return (
         <div className="PCpasswordchange">
+            <Header/>
             <div className="PCdiv">
                 <ul className="PCul">
                     <li className="PCli">

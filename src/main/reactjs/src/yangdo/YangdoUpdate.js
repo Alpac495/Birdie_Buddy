@@ -1,8 +1,9 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import Axios from "axios";
 import Modal from '../components/Modal';
 import "./YangdoForm.css";
+import Header from '../header/Header';
 
 function YangdoUpdate(props) {
 
@@ -17,65 +18,65 @@ function YangdoUpdate(props) {
         setModalOpen(false);
     };
 
-    const [data,setData]=useState('');
+    const [data, setData] = useState('');
     const [searchTerm, setSearchTerm] = useState("");
 
     const navi = useNavigate();
-    const {ynum,currentPage} = useParams();
+    const { ynum, currentPage } = useParams();
 
-    const [yangdoData,setYangdoData] = useState('');
+    const [yangdoData, setYangdoData] = useState('');
 
-    const getData=()=>{
-        const detailUrl=`/yangdo/detail?num=${ynum}`;
+    const getData = () => {
+        const detailUrl = `/yangdo/detail?num=${ynum}`;
         Axios.get(detailUrl)
-            .then(res=>{
+            .then(res => {
                 setYangdoData(res.data);
             })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getData();
-    },[]);
+    }, []);
 
-    const list=useCallback(()=>{
-        const url="/golfjang/list";
+    const list = useCallback(() => {
+        const url = "/golfjang/list";
         Axios.get(url)
-            .then(res=>{
+            .then(res => {
                 setData(res.data);
                 console.log(res.data)
             })
-    },[]);
+    }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         list();
-    },[list]);
+    }, [list]);
 
-    const selectGolfjang=(e)=>{
+    const selectGolfjang = (e) => {
         const selectedValue = e.target.innerText;
         setYangdoData({
             ...yangdoData,
-            "yplace":selectedValue
+            "yplace": selectedValue
         });
-        {closeModal()}
+        { closeModal() }
     }
 
     // submit 이벤트 발생시 호출함수
-    const onSubmitEvent=(e)=>{
+    const onSubmitEvent = (e) => {
 
         // 기본 이벤트를 무효화(action 호출 막기 위해서)
-       e.preventDefault();
+        e.preventDefault();
 
         if (!yangdoData.yplace) {
             alert("골프장을 입력해주세요.")
-        }else if(!yangdoData.yprice) {
+        } else if (!yangdoData.yprice) {
             alert("가격을 입력해주세요.")
-        }else if(isNaN(yangdoData.yprice)){
+        } else if (isNaN(yangdoData.yprice)) {
             alert("숫자로만 가격을 입력해주세요.")
-        }else if(!yangdoData.yday) {
+        } else if (!yangdoData.yday) {
             alert("예약 날짜를 입력해주세요.")
-        }else if(!yangdoData.ysubject) {
+        } else if (!yangdoData.ysubject) {
             alert("예약 시간을 입력해주세요.")
-        }else {
+        } else {
 
             const url = "/yangdo/update";
             Axios.post(url, yangdoData)
@@ -85,7 +86,7 @@ function YangdoUpdate(props) {
                     navi(`/yangdo/detail/${ynum}`);
                 });
         }
-   }
+    }
 
     const goBack = () => {
         navi(-1);
@@ -93,27 +94,27 @@ function YangdoUpdate(props) {
 
     return (
         <div className="yangdoform">
-
+            <Header />
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>
                         <input className="joinsearch"
-                               type="text"
-                               placeholder="검색"
-                               onChange={(e) => {
-                                   setSearchTerm(e.target.value);
-                               }}/>
-                        <br/><br/>
+                            type="text"
+                            placeholder="검색"
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value);
+                            }} />
+                        <br /><br />
                         <ul>
                             {
                                 data.map &&
-                                data.filter((val)=>{
-                                    if(searchTerm === ""){
+                                data.filter((val) => {
+                                    if (searchTerm === "") {
                                         return val
-                                    }else if(val.gname.includes(searchTerm)){
+                                    } else if (val.gname.includes(searchTerm)) {
                                         return val
                                     }
-                                }).map((item,idx) =>
+                                }).map((item, idx) =>
                                     <span onClick={selectGolfjang}><li>{item.gname}</li></span>
                                 )}
                         </ul>
@@ -136,10 +137,10 @@ function YangdoUpdate(props) {
                                 value={yangdoData.yplace}
                                 onClick={openModal}
                                 onChange={
-                                    (e)=> setYangdoData({
-                                    ...yangdoData,
-                                    "yplace":e.target.value
-                                })}
+                                    (e) => setYangdoData({
+                                        ...yangdoData,
+                                        "yplace": e.target.value
+                                    })}
                             />
                         </div>
                     </div>
@@ -155,25 +156,25 @@ function YangdoUpdate(props) {
                                 minLength
                                 value={yangdoData.yday}
                                 onChange={
-                                    (e)=> setYangdoData({
-                                    ...yangdoData,
-                                    "yday":e.target.value
-                                })}
-                            />      
+                                    (e) => setYangdoData({
+                                        ...yangdoData,
+                                        "yday": e.target.value
+                                    })}
+                            />
                         </div>
                     </div>
 
                     <div className="yframe-yfwrapper">
                         <div className="yfgroup">
                             <div className="yfdiv">시간</div>
-                            <input className="yfemail2" type="time" 
-                                maxLength 
-                                minLength 
+                            <input className="yfemail2" type="time"
+                                maxLength
+                                minLength
                                 value={yangdoData.ysubject}
                                 onChange={
-                                    (e)=> setYangdoData({
+                                    (e) => setYangdoData({
                                         ...yangdoData,
-                                        "ysubject":e.target.value
+                                        "ysubject": e.target.value
                                     })
                                 }
                             />
@@ -191,9 +192,9 @@ function YangdoUpdate(props) {
                                 minLength
                                 value={yangdoData.yprice}
                                 onChange={
-                                    (e)=> setYangdoData({
-                                    ...yangdoData,
-                                    "yprice":e.target.value
+                                    (e) => setYangdoData({
+                                        ...yangdoData,
+                                        "yprice": e.target.value
                                     })
                                 }
                             />
@@ -210,10 +211,10 @@ function YangdoUpdate(props) {
                                 minLength
                                 value={yangdoData.ycontent}
                                 onChange={
-                                    (e)=>setYangdoData({
+                                    (e) => setYangdoData({
                                         ...yangdoData,
-                                        "ycontent":e.target.value
-                                })}></textarea>
+                                        "ycontent": e.target.value
+                                    })}></textarea>
                         </div>
                     </div>
 
@@ -228,14 +229,14 @@ function YangdoUpdate(props) {
                             type='button' onClick={goBack}>닫기
                         </button>
                     </div>
-                
+
                     <div className="yfpopupbtn">
                         <button className="yframe"
                             type='submit' onClick={onSubmitEvent}>양도 수정
                         </button>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     );
