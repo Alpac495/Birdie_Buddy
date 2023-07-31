@@ -119,6 +119,8 @@ function Friend(props) {
     }, [nc]);
 
     const onChatEvent = async (cunum) => {
+        console.log("cunum :" +cunum);
+        console.log("unum :" +unum);
         if (nc) {
             try {
                 const chatid = await getChatInfo(unum, cunum);
@@ -134,6 +136,7 @@ function Friend(props) {
                     await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
 
                     alert("정상적으로 생성되었습니다");
+                    await nc.subscribe(newChatId);
                     // 채팅방으로 이동
                     await nc.disconnect();
                     navi(`/chating/room/${newChatId}/${cunum}`);
@@ -188,7 +191,7 @@ function Friend(props) {
                                     </div>
 
                                     <div >                                        
-                                        <img alt='' src={chatbtn} className="FLrectangle-parent" onClick={onChatEvent.bind(null, item.unum)}/>
+                                        <img alt='' src={chatbtn} className="FLrectangle-parent" onClick={onChatEvent.bind(null, item.funum)}/>
                                     </div>
                                 </div>                        
                     </div>
