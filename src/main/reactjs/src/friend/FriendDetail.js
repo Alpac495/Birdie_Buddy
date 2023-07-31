@@ -293,6 +293,7 @@ function FriendDetail(props) {
                 <img className="FD3backimgicon" alt="" src={SingoBtn} />
 
             </div>
+            </div>
 
 
 
