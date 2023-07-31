@@ -3,7 +3,7 @@ import "./UserList.css";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Profile from "../image/user60.png";
+import Profile from "../image/profile90x90.png";
 import Header from '../header/Header';
 import _ from "lodash"
 import searchCon from "../image/search.svg";

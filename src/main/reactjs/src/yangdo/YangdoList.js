@@ -152,7 +152,9 @@ function YangdoList(props) {
                                         <div className="Yldiv3">그린피 : {row.yprice? row.yprice.toLocaleString() : '가격 정보 없음'}원</div>
                                         <div className="Ylam">{row.ysubject}</div>
                                     </div>
-                                    <div className="Ylgroup-div">
+                                    <div className="Ylgroup-div" onClick={()=>{
+                                        navi(`/friend/detail/${row.unum}`)
+                                    }}>
                                         <div className="Ylrectangle-div" />
                                         {
                                             row.uphoto==null?

@@ -4,6 +4,7 @@ import './FriendSlider.css';
 import AddIcon from '@mui/icons-material/Add';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import profile120 from "../image/profile90x120.png";
 
 const SimpleSlider = () => {
     const [unum, setUnum] = useState(0);
@@ -55,7 +56,7 @@ const SimpleSlider = () => {
             {item.uphoto != null ? (
               <img alt='프로필 사진' src={`${image1}${item.uphoto}${image2}`} />
             ) : (
-              <img alt='프로필 사진' src={`${user}profile3.png`} />
+              <img alt='프로필 사진' src={`${profile120}`} />
             )}
             <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
             <div className={`friend_modal`}></div>

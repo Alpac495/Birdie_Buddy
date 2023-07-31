@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link, NavLink } from 'react-router-dom';
 import Header from '../header/Header';
-import Profile from "../image/user60.png";
+import Profile from "../image/profile90x90.png";
 import _ from "lodash"
 import searchCon from "../image/search.svg";
 
