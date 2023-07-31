@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.ffa8f2f5.css",
-    "main.js": "/static/js/main.2410df4e.js",
+    "main.css": "/static/css/main.5f3be61c.css",
+    "main.js": "/static/js/main.6845817e.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/golf_place.jpg": "/static/media/golf_place.acf2d03cace00fe60acd.jpg",
     "static/media/golf_ad.jpg": "/static/media/golf_ad.d61cf15fb63d8b304b63.jpg",
@@ -49,12 +49,12 @@
     "static/media/icon_card.svg": "/static/media/icon_card.b5c6e916843a189821e4029c0bc67691.svg",
     "static/media/Back.svg": "/static/media/Back.fd37b3bcab978ede06f2d8ce9f11175c.svg",
     "static/media/naver.svg": "/static/media/naver.77d845a3af265652b9702150dfaf02d7.svg",
-    "main.ffa8f2f5.css.map": "/static/css/main.ffa8f2f5.css.map",
-    "main.2410df4e.js.map": "/static/js/main.2410df4e.js.map",
+    "main.5f3be61c.css.map": "/static/css/main.5f3be61c.css.map",
+    "main.6845817e.js.map": "/static/js/main.6845817e.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ffa8f2f5.css",
-    "static/js/main.2410df4e.js"
+    "static/css/main.5f3be61c.css",
+    "static/js/main.6845817e.js"
   ]
 }
