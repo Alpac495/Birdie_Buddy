@@ -230,14 +230,14 @@ function Mypage(props) {
                 </div>
                 <div className="MP2icon-buddychat-parent" onClick={onMyChating}>
                     <img className="MP2icon-buddychat" alt="" src={FDicon2} />
-                    <div className="MP2div2">버디채팅</div>
+                    <div className="MP2div2">버디 채팅</div>
                 </div>
                 <div className="MP2icon-buddystory-parent" onClick={onMyStory}>
                     <img className="MP2icon-buddystory" alt="" src={FDicon3} />
-                    <div className="MP2div2">버디스토리</div>
+                    <div className="MP2div2">버디 스토리</div>
                 </div>
                 <div className="MP2parent" onClick={onMyBuddy}>
-                    <div className="MP2div2">버디리스트</div>
+                    <div className="MP2div2">버디 리스트</div>
                     <img className="MP2icon-addbuddy" alt="" src={FDicon1} />
                 </div>
                 <div className="MP2container">

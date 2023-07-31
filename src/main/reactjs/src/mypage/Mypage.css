@@ -208,6 +208,7 @@ body {
 
 .imsiphoto {
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .imsibgphoto {
@@ -301,7 +302,7 @@ body {
 .MP2icon-buddystory {
   position: absolute;
   left: calc(50% - 40px);
-  width: 5rem;
+  width: 5.21rem;
 }
 
 .MP2div2 {
