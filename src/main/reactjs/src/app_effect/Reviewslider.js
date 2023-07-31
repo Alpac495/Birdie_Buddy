@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import Slider from 'react-slick';
 import "./Review.css";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
@@ -86,7 +86,14 @@ export default class SimpleSlider extends Component {
                                             <img className={'review_profile'} alt="프로필 사진" src={`${defaultPic}profile3.png`} />
                                             )}
                                             <span className={'review_writer'}>{item.unickname}</span>
-                                            <div className={'review_footer'}><FavoriteOutlinedIcon /> {item.hlike}</div>
+                                            <div className={'review_footer'}>
+                                                <div>
+                                                    <FavoriteOutlinedIcon />
+                                                </div> 
+                                                <div style={{fontSize:'22px'}}>
+                                                    {item.hlike}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )}

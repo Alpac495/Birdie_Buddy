@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import './FriendSlider.css';
 import AddIcon from '@mui/icons-material/Add';
