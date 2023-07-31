@@ -135,7 +135,7 @@ function FriendRequest(props) {
             }
                 {items.length > 0 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <button type="button" className="FL_scroll-to-top-button" style={{marginLeft: "120px"}} onClick={scrollToTop}>
+                    <button type="button" className="FL_scroll-to-top-button" onClick={scrollToTop}>
                         Scroll to Top
                     </button>
                 )}

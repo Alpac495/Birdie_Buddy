@@ -193,3 +193,8 @@ body {
     height: auto;
     overflow: hidden;
 }
+.FL_scroll-to-top-button{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
