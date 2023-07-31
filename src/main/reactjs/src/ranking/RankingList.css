@@ -31,14 +31,14 @@
     
     background-size: cover;
     overflow-y: auto;
-    height: 100%;
+    height: 740px;
 }
 
 
-.ranking_List{
+/* .ranking_List{
     height: 100%;
     
-}
+} */
 
 .ranking_mem{
     width: 90%;
