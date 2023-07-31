@@ -4,7 +4,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./FriendRequest.css";
 import {Link, NavLink, useParams} from 'react-router-dom';
-import Profile from "../image/user60.png";
+import Profile from "../image/profile90x90.png";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
 import _ from "lodash"
