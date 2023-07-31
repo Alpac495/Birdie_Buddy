@@ -90,7 +90,9 @@ function YangdoList(props) {
             navi(`/mypage/myyangdo/${unum}`)
         }
     }
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     let prevMonthYear = "";
     let prevDay = "";
     return (
@@ -122,7 +124,11 @@ function YangdoList(props) {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "50px"}}></div>
+                    ) : (
+                        null
+                    )}
                     endMessage={null}
                 >
                     {items &&

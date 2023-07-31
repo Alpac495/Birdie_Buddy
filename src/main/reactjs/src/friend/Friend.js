@@ -143,7 +143,9 @@ function Friend(props) {
             }
         }
     };
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
 
@@ -167,8 +169,14 @@ function Friend(props) {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={items.length>0}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "50px"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={<div className="FL_scroll-to-top-button" style={{marginLeft: "120px"}} onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>}
                 >
             {
                 items.map &&
@@ -194,6 +202,12 @@ function Friend(props) {
                     </div>
                  )
             }
+                {items.length > 0 && !loading &&(
+                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
+                    <button type="button" style={{marginLeft: "120px"}} className="FL_scroll-to-top-button" onClick={scrollToTop}>
+                        Scroll to Top
+                    </button>
+                )}
         </InfiniteScroll>
         </div>
         </div>

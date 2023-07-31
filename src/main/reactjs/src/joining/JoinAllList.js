@@ -197,7 +197,7 @@ const JoinAllList = () => {
                                     )}
                             </div>
                                 {data.length > 0 && !loading && (
-                                    <button style={{height:'50px',marginLeft:'110px',padding:'10px',textAlign:'center',fontSize:'18px'}} onClick={scrollToTop}>
+                                    <button style={{height:'50px',marginLeft:'90px',padding:'10px',textAlign:'center',fontSize:'18px',backgroundColor:'transparent'}} onClick={scrollToTop}>
                                         Scroll to Top
                                     </button>
                                 )}
