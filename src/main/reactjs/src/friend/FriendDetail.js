@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Axios from "axios";
 import "./FriendDetail.css";
 import * as ncloudchat from 'ncloudchat';
+
 import FDicon1 from "../image/icon_addbuddy.svg";
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
@@ -266,6 +267,18 @@ function FriendDetail(props) {
                 <div className="FD3nick">
                     <div className="FD3div4">{`닉네임닉네임길게 . `}</div>
 
+                <div>
+                    <button alt="" src={SingoBtn} onClick={handleReportClick} />
+                    {reportModalOpen &&
+                        <ModalReport
+                            reporterNickname={unum}
+                            reportedNickname={dto.unum}
+                            reportReason={reportReason}
+                            setReportReason={setReportReason}
+                            reportUser={handleReportSubmit}
+                            handleClose={handleClose}
+                        />
+                    }
                 </div>
                 <div className="FD3text">
                     <div className="FD3div5">

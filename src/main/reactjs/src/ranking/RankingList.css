@@ -66,9 +66,8 @@
 }
 .ranking_profile img{
     width: 100%;
+    border-radius: 4px;
 }
-
-
 .ranking_mid{ 
     position: relative;
     width: 200px;

@@ -99,12 +99,12 @@ function YangdoUpdate(props) {
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>
                         <input className="joinsearch"
-                            type="text"
-                            placeholder="검색"
-                            onChange={(e) => {
-                                setSearchTerm(e.target.value);
-                            }} />
-                        <br /><br />
+                               type="text"
+                               placeholder="   검색                                                         🔎"
+                               onChange={(e) => {
+                                   setSearchTerm(e.target.value);
+                               }}/>
+                        <br/><br/>
                         <ul>
                             {
                                 data.map &&

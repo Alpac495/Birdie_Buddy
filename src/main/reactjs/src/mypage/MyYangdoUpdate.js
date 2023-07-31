@@ -98,7 +98,7 @@ function MyYangdoUpdate(props) {
                     <div>
                         <input className="joinsearch"
                                type="text"
-                               placeholder="검색"
+                               placeholder="   검색                                                         🔎"
                                onChange={(e) => {
                                    setSearchTerm(e.target.value);
                                }}/>

@@ -150,7 +150,7 @@ function Header(props) {
                 {list()}
             </Drawer>
             <div className='header_logo'>
-                <img style={{height:'80px'}}alt="" src={no} onClick={handleClick}/>
+                <img style={{height:'80px'}} alt="" src={no} onClick={handleClick}/>
             </div>
             
 
