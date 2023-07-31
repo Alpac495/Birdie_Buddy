@@ -131,8 +131,7 @@ const JoinAllList = () => {
                     </div>
                 </div>
             </div>
-            <div className="JEjlist-parent">
-                <div className="JEjlist">
+            
                     <div className="JEjlist-parent">
                         <div className="JEjlist">
                             <InfiniteScroll
@@ -205,8 +204,7 @@ const JoinAllList = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            
     );
 };
 

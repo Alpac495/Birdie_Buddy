@@ -132,7 +132,7 @@ body {
 }
 .AFyou {
     width: calc(100% - 32px);
-    top: 7.38rem;
+    top: 5.38rem;
     left: 1rem;
     font-size: 1rem;
     letter-spacing: 0.15px;
@@ -142,8 +142,8 @@ body {
     height: 2rem;
 }
 .AFsearch {
-    top: 7.38rem;
-    right: 0.7rem;
+    top: 5.38rem;
+    right: 1rem;
     font-size: 1rem;
     letter-spacing: 0.15px;
     display: flex;
@@ -163,9 +163,8 @@ body {
 }
 
 .AFdiv1,
-.AFdiv2,
-.AFdiv3 {
-    width: 80%;
+.AFdiv2 {
+    width: 90%;
     display: inline-block;
     text-align: center;
 }
@@ -177,7 +176,7 @@ body {
 
 .AFdiv2 {
     top: calc(50%);
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.38rem;
     font-weight: 600;
     font-family: Inter;
@@ -188,6 +187,7 @@ body {
     line-height: 1.38rem;
     font-weight: 600;
     font-family: Inter;
+    width: 80%;
 }
 .AFitem-2 {
     flex: 1;
@@ -216,7 +216,7 @@ body {
 }
 .AFitem-grid-tiles-3x3 {
     position: absolute;
-    top: 9.88rem;
+    top: 7.88rem;
     right: 1rem;
     /* bottom: 4rem; */
     height: auto;
