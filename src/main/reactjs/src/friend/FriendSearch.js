@@ -1,7 +1,7 @@
 import "./FriendSearch.css";
 import Header from "../header/Header";
 import Profile from "../image/user60.png";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -116,7 +116,9 @@ const FriendSearch = () => {
                     });
             }
     };
-    
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     return (
         <div className="AFallfriendlist">
             <Header/>
@@ -132,9 +134,16 @@ const FriendSearch = () => {
                     dataLength={items.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={<h4>마지막</h4>}
-                    endMessage={null}
+                    loader={loading ? ( // 로딩 상태에 따른 메시지 표시
+                        <div className="spinner-border text-primary" style={{marginLeft: "140px", overflow: "none"}}></div>
+                    ) : (
+                        null
+                    )}
+                    endMessage={<div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}}  onClick={scrollToTop}>
+                        Scroll to Top
+                    </div>}
                 >
+
             <div className="AFitem-grid-tiles-3x3">
             {
                 items.map &&
@@ -168,8 +177,13 @@ const FriendSearch = () => {
                     </div>
                 ))
                 }
-
-            </div></InfiniteScroll>
+                {items.length > 0 && !loading && (
+                    <button style={{position:"relative",left:'120px',padding:'10px',textAlign:'center',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
+                        Scroll to Top
+                    </button>
+                )}
+                </div>
+            </InfiniteScroll>
         </div>
     );
 };

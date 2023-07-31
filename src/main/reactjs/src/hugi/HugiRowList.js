@@ -360,9 +360,6 @@ function HugiRowList(props) {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
-        if (unum === 0) {
-            alert('로그인을 먼저 해주세요!');
-        } else {
             navi(`/hugi/detail/${hnum}`, {
                 userNum: unum,
                 hnum: hnum,
@@ -377,7 +374,7 @@ function HugiRowList(props) {
             fetchPostUserNickname(unum); // fetchPostUserNickname 함수에 unum 전달
             fetchUserPhoto(unum);
             // console.log("unum>>"+unum);
-        }
+
     };
     // sortComments 함수: 댓글과 대댓글을 정렬하는 함수
     const sortComments = (comments) => {
