@@ -10,6 +10,7 @@ import buddyadd from '../image/buddyadd.svg';
 import buddyrequest from '../image/buddyrequest.svg';
 import mybuddy from '../image/mybuddy.svg';
 import acceptbuddy from '../image/acceptbuddy.svg';
+import searchCon from "../image/search.svg";
 
 const FriendSearch = () => {
     const url = process.env.REACT_APP_IMAGE1PROFILE;
@@ -129,7 +130,8 @@ const FriendSearch = () => {
                    value={keyword}
                     onChange={(e) => {
                         setKeyword(e.target.value);
-                    }}/><button className="AFsearch btn btn-sm btn-outline" onClick={search}>🔎</button>
+                    }}/>
+                    <img className="AFsearch btn btn-sm btn-outline" alt="" src={searchCon} onClick={search} />
                     <InfiniteScroll
                     dataLength={items.length}
                     next={fetchMoreData}
