@@ -19,6 +19,9 @@ import KakaoImg from "../image/kakao.svg";
 import TweetterImg from "../image/newTwitter.png";
 import ShareImg from "../image/share_2.png";
 import CommetImg from "../image/share30.png";
+import FacebookImg from "../image/facebookimg.png";
+import InstarImg from "../image/instar.png";
+
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
     const url = process.env.REACT_APP_HUGI;
@@ -26,9 +29,11 @@ function HugiDetail(props) {
     const url3= process.env.REACT_APP_HUGI_325;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
-
-
     const navi = useNavigate();
+
+    // 서버에서 데이터를 가져오는 부분
+    const [hugiData, setHugiData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const [openReplyForm, setOpenReplyForm] = useState(null);
     const [showLike, setShowLike] = useState(props.showLike || false);
@@ -68,9 +73,22 @@ function HugiDetail(props) {
     };
 
     const apiURL = 'http://localhost:9009/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
-
-    const generateShortURL  = (longUrl) => {
-
+    const longUrl = `http://223.130.137.128/`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+    // 클릭 이벤트 핸들러
+    const handleClickShare = () => {
+        generateShortURL(longUrl);
+    };
+    const shareTweet=()=>{
+        generateShortURL(longUrl, 'twitter');
+    };
+    const shareToFacebook =() =>{
+        generateShortURL(longUrl, 'facebook');
+    }
+    const shareInstar =()=>{
+        generateShortURL(longUrl, 'instargram');
+    }
+    // generateShortURL 함수: 입력된 URL을 단축 URL로 생성하는 함수
+    const generateShortURL  = async (longUrl ,sns) => {
         const client_id = '8cvbhm3fzt'; // 본인의 클라이언트 아이디값
         const client_secret = 'j1cXNz7BdAeQ7SFB6H8HoKzSqkvLOIgkqYMs3a3N'; // 본인의 클라이언트 시크릿값
         // const longUrl = 'http://devster.kr/'; // 짧게 만들고 싶은 URL 입력칸입니다!!! (젠킨스주소 넣어보기)
@@ -80,17 +98,23 @@ function HugiDetail(props) {
             client_id: client_id,
             client_secret: client_secret,
         };
+        try {
+            const response = await Axios.post(apiURL, requestData);
+            const generatedURL = response.data.result.url;
+            // 단축된 URL 값
+            if (sns === 'twitter') {
+                shareTweet2(generatedURL);
+            } else if (sns === 'facebook') {
+                shareToFacebook2(generatedURL);
+            } else if(sns === 'instargram') {
+                shareToInstar2(generatedURL);
+            }
+            shareShortenedURL(generatedURL); // 단축 URL을 생성하고 나서 SNS 공유 함수 호출
+            copyToClipboard(generatedURL); // 클립보드에 복사
 
-        Axios.post(apiURL, requestData)
-            .then((res) => {
-                const generatedURL = res.data.result.url; // 단축된 URL 값
-                setShortenedURL(generatedURL);
-                shareShortenedURL(generatedURL); // 단축 URL을 생성하고 나서 SNS 공유 함수 호출
-                copyToClipboard(generatedURL); // 클립보드에 복사
-            })
-            .catch((error) => {
-                // console.error('Error generating shortened URL:', error);
-            });
+        }catch(error) {
+            // console.error('Error generating shortened URL:', error);
+        }
     };
 
     // shareShortenedURL 함수: 단축 URL을 SNS에 공유하는 함수
@@ -132,16 +156,29 @@ function HugiDetail(props) {
                 // console.error('클립보드 복사 중 오류 발생:', error);
             });
     };
-    // 클릭 이벤트 핸들러
-    const handleClickShare = () => {
-        const longUrl = `http://223.130.137.128/`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
-        generateShortURL(longUrl);
-    };
-    const shareTweet = () => {
-        //오리지널 Url을 트위터로 공유하기
-        const tweetText = '버디버디 라운딩 후기입니다. ' + `http://223.130.137.128/hugi/detail/${hnum}`; // 링크를 포함한 원하는 텍스트 생성
+    const shareTweet2 = (turl) => {
+        //     const tweetText = '버디버디 라운딩 후기입니다. ' + `http://223.130.137.128/hugi/detail/${hnum}`; // 링크를 포함한 원하는 텍스트 생성
+        const tweetText = '버디버디 라운딩 후기입니다. ' + turl;
         const twitterShareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
         window.open(twitterShareURL, '_blank');
+    };
+    const shareToFacebook2 = (furl) => {
+        // const urlToShare = 'http://223.130.137.128/hugi/detail/' + hnum; // 이 주소가 실제 공유하고자 하는 페이지 주소와 일치해야 함
+        const urlToShare =  furl;
+        const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`;
+        window.open(facebookShareURL, '_blank');
+    };
+    const shareToInstar2 = () => {
+        const instagramAppUrl = "instagram://camera"; // 인스타그램 앱을 실행하는 URL
+        const webFallbackUrl = "https://www.instagram.com/"; // 웹 버전 인스타그램 URL
+
+        // 인스타그램 앱이 설치되어 있는 경우 앱으로 전환
+        window.location.href = instagramAppUrl;
+
+        // 인스타그램 앱이 설치되어 있지 않은 경우 웹 버전으로 이동
+        setTimeout(() => {
+            window.location.href = webFallbackUrl;
+        }, 2000); // 2초 후에 웹 버전으로 이동 (앱 실행이 되지 않으면 웹으로 이동)
     };
     const { Kakao } = window;
     // 배포한 자신의 사이트
@@ -507,7 +544,36 @@ function HugiDetail(props) {
         const likeStatus = localStorage.getItem(`likeStatus_${hnum}`);
         setShowLike(likeStatus === "true");
     }, [hnum]); // hnum이 변경될 때마다 실행
+    useEffect(() => {
+        const fetchHugiData = async () => {
+            try {
+                const response = await Axios.get(`/hugi/detail/${hnum}`);
+                const data = response.data;
+                setHugiData(data);
+            } catch (error) {
+                // 서버에서 해당 hnum에 해당하는 글을 찾을 수 없는 경우 404 페이지로 처리
+                setHugiData(null);
+            } finally {
+                setLoading(false);
+            }
+        };
 
+        fetchHugiData();
+    }, [hnum]);
+
+    if (loading) {
+        return <div className="spinner-border text-primary" style={{marginLeft:'160px',marginTop:'350px', overflow: "none"}}></div>
+    }
+
+    if (!hugiData) {
+        return (
+            <div>
+                <Header/>
+
+                <Footer/>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -552,6 +618,18 @@ function HugiDetail(props) {
                             <img src={KakaoImg} alt={''}
                                  className="HG_KakaoImg"
                                  onClick={() => {shareKakao()}}>
+                            </img>
+                        </div>
+                        <div className="HG_InstarIcons">
+                            <img src={InstarImg} alt={''}
+                                 className="HG_InstarImg"
+                                onClick={() => {shareInstar()}}
+                            >
+                            </img>
+                        </div>
+                        <div className="HG_FacebookIcons">
+                            <img src={FacebookImg} alt={''} className="HG_FacebookImg"
+                                 onClick={()=> {shareToFacebook()}}>
                             </img>
                         </div>
                         <div className="HG_TweetterIcons">
