@@ -38,6 +38,10 @@ function NoticeForm(props) {
         })
     }
 
+    const handleGoBack = () => {
+        window.history.back(); // 뒤로 가기 동작
+    };
+
     return (
         <div className='nform_wrap'>
             <div className='header'>
@@ -72,7 +76,7 @@ function NoticeForm(props) {
             
             <div className='nform_btnwrap'>
                 <button type='button' onClick={submit}>작성</button>
-                <button type='button'>닫기</button>
+                <button type='button' onClick={handleGoBack}>닫기</button>
             </div>
         </div>
     );

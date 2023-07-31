@@ -4,7 +4,7 @@ import "./Bannerslider.css";
 import Axios  from 'axios';
 import { Link } from 'react-router-dom';
 
-const totalSlides = 6; // 전체 슬라이드 수
+const totalSlides = 5; // 전체 슬라이드 수
 export default class SimpleSlider extends Component {
 
     constructor(props) {
@@ -53,18 +53,18 @@ export default class SimpleSlider extends Component {
             <div>
 
                 <Slider {...settings}>
-                    {
-                    
-                    bannerList.map((item, idx) => (
-                        item.ncate === '이벤트' ? (
+                {
+                    bannerList
+                        .filter(item => item.ncate === '이벤트') // '이벤트' 항목만 필터링
+                        .slice(0, 5) // 처음 5개 항목만 자름
+                        .map((item, idx) => (
                         <Link className='noticeList_go' key={idx} to={`/admin/noticeDetail/${item.nnum}`}>
                             <div key={idx}>
-                                <img className='banner_size' alt={''} src={`${banners}${item.nphoto}`}/>
+                            <img className='banner_size' alt={''} src={`${banners}${item.nphoto}`} />
                             </div>
                         </Link>
-                        ) : null
-                    ))
-                    }
+                        ))
+                }
                    
                 </Slider>
                 <div className="current-page-indicator">
