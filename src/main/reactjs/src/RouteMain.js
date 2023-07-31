@@ -112,9 +112,7 @@ function RouteMain(props) {
                     <Route path="/chating/room/:channelId/:cunum" element={<ChatRoom />} />
                 </Route>
 
-                <Route path={'/main'}>
-                    <Route path='main' element={<Main/>}/>
-                </Route>
+                <Route path={'/birdie_buddy'} element={<Main/>}/>
 
                 <Route path="*" element={
                     <div className="error404">

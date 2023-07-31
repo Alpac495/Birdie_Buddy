@@ -4,8 +4,10 @@ import Header from "../header/Header";
 import { useEffect, useState } from "react";
 import Modal from '../components/Modal';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RankForm = () => {
+    const navi = useNavigate('');
     const [n, setN] = useState(1);
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -59,7 +61,7 @@ const RankForm = () => {
                 console.log(updatedP)
             })
         {
-            closeModal()
+            closeModal();
         }
     }
 
@@ -70,7 +72,8 @@ const RankForm = () => {
         }
         axios.post('/score/saveScore', { s, unum, gnum })
             .then(res => {
-                alert("일단 성공. 나중에 이동시킬것.")
+                alert("점수 등록 완료")
+                navi("/score/list")
             })
             .catch(error => {
                 console.log(error);

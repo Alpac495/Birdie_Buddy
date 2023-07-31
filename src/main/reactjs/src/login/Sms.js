@@ -46,9 +46,106 @@ function Sms(props) {
 //     };
 
     return (
-        <div>
-            <button type={'button'} onClick={'sms'}>sms인증</button>
-        </div>
+        <div className="FDprofile">
+                <Header/>
+                <div className="FDdiv">
+                    <div className="FDchild" />
+                </div>
+                {/* <div className="FDbackprofile" /> */}
+                {
+                    dto.ubgphoto == null || '' ?
+                        <img alt='error' className="MP2backprofile" src={back} />
+                        :
+                        <img alt='error' className="MP2backprofile" src={`${url2}${dto.ubgphoto}`} />
+                }
+                <div className="FDinfobox" />
+                {/* <div className="FDmainprofile" /> */}
+                {
+                    dto.uphoto == null || '' ?
+                        <img alt='error' className="FDmainprofile" style={{}} src={profile3} />
+                        :
+                        <img alt='error' className="FDmainprofile" style={{ borderRadius: '11%' }} src={`${image1}${dto.uphoto}${image2}`} />
+                }
+                <div className="FDdiv2">
+                    <span className="FDtxt">
+                        <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
+                        <p className="FDp">골프경력 {dto.ucareer} /&nbsp;
+                            {
+                                stasu == null || stasu == '' || stasu == 0 ?
+                                    <span> 입력된 타수 정보가 없습니다</span> :
+                                    <span>
+                                        평균타수 {stasu}타
+                                    </span>
+                            }</p>
+                    </span>
+                </div>
+                <div className="FDdiv3">자기소개<br/>{dto.ucontent}</div>
+                <div className="FDdiv4">{dto.unickname}</div>
+                <div className="FDicon-message-parent" onClick={onChatEvent.bind(null, funum)}>
+                    <img className="FDicon-message" alt="" src={FDicon2} />
+                    <div className="FDdiv5" >버디채팅</div>
+                </div>
+                <div className="FDicon-camera-parent" onClick={onMyStory}>
+                    <img className="FDicon-camera" alt="" src={FDicon3} />
+                    <div className="FDdiv5">버디스토리</div>
+                </div>
+                <div className="MP2singo-btn" onClick={handleReportClick}>
+                    <div className="MP2singo-btn-child" />
+                    <img className="MP2singo-btn-child" alt="" src={SingoBtn} />
+                    {reportModalOpen &&
+                        <ModalReport
+                            reporterNickname={unum}
+                            reportedNickname={dto.unum}
+                            reportReason={reportReason}
+                            setReportReason={setReportReason}
+                            reportUser={handleReportSubmit}
+                            handleClose={handleClose}
+                        />
+                    }
+                </div>
+                <div>
+                    <button alt="" src={SingoBtn} onClick={handleReportClick} />신고하기
+                    {reportModalOpen &&
+                        <ModalReport
+                            reporterNickname={unum}
+                            reportedNickname={dto.unum}
+                            reportReason={reportReason}
+                            setReportReason={setReportReason}
+                            reportUser={handleReportSubmit}
+                            handleClose={handleClose}
+                        />
+                    }
+                </div>
+                {checkbuddy === 1 ? (
+                    <div className="FDparent" onClick={onFriendCancelEvent}>
+                        <div className="FDdiv5">버디 취소</div>
+                        <img
+                            className="FDicon-user-cirlce-add"
+                            alt="" src={FDicon1} />
+                    </div>
+                ) : requestcheck.some((friend) => friend.funum == funum && friend.frequest == 2) ? (
+                    <div className="FDparent" onClick={onAcceptEvent}>
+                        <div className="FDdiv5">버디 요청 수락</div>
+                        <img
+                            className="FDicon-user-cirlce-add"
+                            alt="" src={FDicon1} />
+                    </div>
+                ) : requestcheck.some((friend) => friend.funum == funum && friend.frequest == 1) ? (
+                    <div className="FDparent" onClick={onFriendCancelEvent}>
+                        <div className="FDdiv5">버디 요청 취소</div>
+                        <img
+                            className="FDicon-user-cirlce-add"
+                            alt="" src={FDicon1} />
+                    </div>
+                ) : (
+                    <div className="FDparent" onClick={onRequestFriendEvent}>
+                        <div className="FDdiv5">버디 요청</div>
+                        <img
+                            className="FDicon-user-cirlce-add"
+                            alt="" src={FDicon1} />
+                    </div>
+                )}
+            </div>
     );
 }
 

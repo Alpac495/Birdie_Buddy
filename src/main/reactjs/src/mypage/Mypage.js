@@ -7,10 +7,13 @@ import './MypageModal.css';
 import UpdateIcon from "../image/icon_update.svg";
 import EditIcon from '@mui/icons-material/Edit';
 import BackPhoto from "../image/icon_mybackphoto.svg";
-import Photoicon from "../image/icon_myphoto.svg"
+import FDicon1 from "../image/icon_addbuddy.svg";
 import FDicon2 from "../image/icon_buddychat.svg";
 import FDicon3 from "../image/icon_buddystory.svg";
-import FDicon1 from "../image/icon_addbuddy.svg";
+import Backimgicon from "../image/icon_mybackphoto.svg";
+import Photoicon from "../image/icon_myphoto.svg";
+import Updateicon from "../image/icon_update.svg";
+
 import ModalNick from "./MypageUpdateNickname"
 import ModalCon from "./MypageUpdateContent"
 import ModalPhoto from "./MypageUpdatePhoto"
@@ -86,14 +89,34 @@ function Mypage(props) {
         setConOpen(false);
     }
     const changeNick = () => {
-        setUnickname(nickRef.current.value)
-        axios.get(`/login/updateNick?unickname=${nickRef.current.value}&unum=${unum}`)
-            .then(res => {
-                console.log(res.data)
-                setUnickname(res.data);
-            })
-        setNickOpen(false);
+        if (nickRef.current.value == '') {
+            alert("닉네임을 입력해주세요");
+            return;
+        } else if (nickRef.current.value.length > 7) {
+            alert("닉네임은 최대 7자까지 가능합니다.");
+            return;
+        } else {
+            axios.get(`/login/nickchk?unickname=${nickRef.current.value}`)
+                .then(res => {
+                    if (res.data == 1) {
+                        alert("중복된 닉네임 입니다")
+                        return;
+                    } else {
+                        axios.get(`/login/updateNick?unickname=${nickRef.current.value}&unum=${unum}`)
+                            .then(res => {
+                                console.log(res.data)
+                                setUnickname(res.data);
+                            })
+                        setNickOpen(false);
+                    }
+                })
+
+        }
     }
+
+
+
+
     const changePhoto = () => {
         axios.get(`/login/updatePhoto?uphoto=${imsiphoto}&unum=${unum}`)
             .then(res => {
@@ -166,58 +189,22 @@ function Mypage(props) {
         )
     } else {
         return (
-            <div className="MP2profile">
+            <div className="MP3profile">
                 <Header />
                 {
                     ubgphoto == null || '' ?
-                        <img alt='error' className="MP2backprofile" src={back} />
+                        <img alt='error' className="MP3backprofile" src={back} />
                         :
-                        <img alt='error' className="MP2backprofile" src={`${url2}${imsibgphoto}`} />
+                        <img alt='error' className="MP3backprofile" src={`${url2}${imsibgphoto}`} />
                 }
-                <div className="MP2div" />
-                <div className="MP2infobox-wrapper">
-                    <div className="MP2infobox" />
+                <div className="MP3div" />
+                <div className="MP3myinfo">
+                    <div className="MP3infobox" />
                 </div>
-
-
-                <div className="MP2mainprofile">
-                    {
-                        uphoto == null || '' ?
-                            <img alt='error' style={{}} src={profile3} />
-                            :
-                            <img alt='error' style={{ borderRadius: '11%' }} src={`${image1}${uphoto}${image2}`} />
-                    }
-                    <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
-                        {
-                            imsiphoto==null||''?
-                            <img className={'imsiphoto'} src={profile3} alt={''} />
-                            :
-                            <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
-                        }
-                        <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
-                    </ModalPhoto>
-                </div>
-                    <img className="MP2myphoto-icon" alt="" src={Photoicon} onClick={openPhoto} />
-                    
-                <div>
-                    <img alt='' className="MP2backimg" src={BackPhoto} onClick={openBg} />
-                    <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
-                        {
-                            imsibgphoto==null||''?
-                            <img className="imsibgphoto" src={back} alt="error" />
-                            :
-                            <img className="imsibgphoto" src={`${url2}${imsibgphoto}`} alt="error" />
-                        }
-                        <input className="inputfile" type="file" ref={bgphotoRef} onChange={onUploadEventBg} />
-                    </ModalBgphoto>
-                </div>
-                <img className="MP2vector-icon" alt="" src="/vector.svg" />
-
-
-                <div className="MP2div1">
-                    <span className="FDtxt">
-                        <p className="FDp">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
-                        <p className="FDp">골프경력 {dto.ucareer} /&nbsp;
+                <div className="MP3about">
+                    <span className="MP3about-txt">
+                        <p className="MP3p">{dto.uage} {dto.ugender === "남" ? "남자" : "여자"}</p>
+                        <p className="MP3p">골프 경력 {dto.ucareer} /&nbsp;
                             {
                                 stasu == null || stasu == '' || stasu == 0 ?
                                     <span> 타수 정보가 없습니다</span> :
@@ -228,50 +215,72 @@ function Mypage(props) {
                         </p>
                     </span>
                 </div>
-                <div className="MP2icon-buddychat-parent" onClick={onMyChating}>
-                    <img className="MP2icon-buddychat" alt="" src={FDicon2} />
-                    <div className="MP2div2">버디 채팅</div>
+                <div className="MP3buddystory" onClick={onMyStory}>
+                    <img className="MP3icon-buddystory" alt="" src={FDicon3} />
+                    <div className="MP3div1">버디스토리</div>
                 </div>
-                <div className="MP2icon-buddystory-parent" onClick={onMyStory}>
-                    <img className="MP2icon-buddystory" alt="" src={FDicon3} />
-                    <div className="MP2div2">버디 스토리</div>
+                <div className="MP3buddystory1" onClick={onMyChating}>
+                    <img className="MP3icon-buddystory1" alt="" src={FDicon2} />
+                    <div className="MP3div2">버디채팅</div>
                 </div>
-                <div className="MP2parent" onClick={onMyBuddy}>
-                    <div className="MP2div2">버디 리스트</div>
-                    <img className="MP2icon-addbuddy" alt="" src={FDicon1} />
+                <div className="MP3addbuddy" onClick={onMyBuddy}>
+                    <div className="MP3div3">버디리스트</div>
+                    <img className="MP3icon-addbuddy" alt="" src={FDicon1} />
                 </div>
-                <div className="MP2container">
-                    <div className="MP2div6">{unickname}&nbsp;
-                        <ModalNick open={nickOpen} close={closeNick} changeNick={changeNick} header="닉네임 변경">
-                            <input className="inputtext" type="text" value={imsiNick} onChange={(e) => setImsiNick(e.target.value)} ref={nickRef} />
-                        </ModalNick>
+                <div className="MP3nick">
+                    <div className="MP3div4">{unickname}&nbsp;</div>
+                    <img className="MP3update-icon" alt="" src={Updateicon} onClick={openNick} />
+                    <ModalNick open={nickOpen} close={closeNick} changeNick={changeNick} header="닉네임 변경">
+                        <input className="inputtext" type="text" value={imsiNick} onChange={(e) => setImsiNick(e.target.value)} ref={nickRef} />
+                    </ModalNick>
+                </div>
+                <div className="MP3text">
+                    <div className="MP3div5">
+                        {
+                            ucontent === null ? <div>자기소개를 입력해 주세요.</div>
+                                :
+                                ucontent
+                        }
                     </div>
-                    <img className="MP2update-icon" alt="" src={UpdateIcon} onClick={openNick} />
+                    <img className="MP3update-icon" alt="" src={Updateicon} onClick={openCon} />
+                    <ModalCon open={conOpen} close={closeCon} changeCon={changeCon} header="자기소개 변경">
+                        <input className="inputtext" type="text" value={imsiCon} onChange={(e) => setImsiCon(e.target.value)} ref={conRef} />
+                    </ModalCon>
                 </div>
-                <div className="MP2frame-div">
-                    <div className="MP2div7">
-                        자기소개&nbsp;&nbsp;
-                        <img className="MP2update-icon" alt="" src={UpdateIcon} onClick={openCon} />
-                        <ModalCon open={conOpen} close={closeCon} changeCon={changeCon} header="자기소개 변경">
-                            <input className="inputtext" type="text" value={imsiCon} onChange={(e) => setImsiCon(e.target.value)} ref={conRef} />
-                        </ModalCon>
-                        <div className="FDtxt2">
-                            {
-                                ucontent === null ? <div>자기소개를 입력해 주세요.</div>
-                                    :
-                                    ucontent
-                            }
-                        </div>
-                    </div>
-
-                    <NavLink to={`/chating/${unum}`} />
+                <div className="MP3photogroup">
+                    {/* <div className="MP3mainprofile" /> */}
+                    {
+                        uphoto == null || '' ?
+                            <img alt='error' className="MP3mainprofile" src={profile3} />
+                            :
+                            <img alt='error' className="MP3mainprofile" src={`${image1}${uphoto}${image2}`} />
+                    }
+                    <img className="MP3myphoto-icon" alt="" src={Photoicon} onClick={openPhoto} />
+                    <ModalPhoto open={photoOpen} close={closePhoto} changePhoto={changePhoto} header="사진 변경">
+                        {
+                            imsiphoto == null || '' ?
+                                <img className={'imsiphoto'} src={profile3} alt={''} />
+                                :
+                                <img className={'imsiphoto'} src={`${url}${imsiphoto}`} alt={''} />
+                        }
+                        <input className={'inputfile'} type={'file'} ref={photoRef} onChange={onUploadEvent} />
+                    </ModalPhoto>
                 </div>
 
+                <img className="MP3backimgicon" alt="" src={Backimgicon} onClick={openBg} />
+                <ModalBgphoto open={bgOpen} close={closeBg} changebgphoto={changebgphoto} header="배경사진 변경">
+                    {
+                        imsibgphoto == null || '' ?
+                            <img className="imsibgphoto" src={back} alt="error" />
+                            :
+                            <img className="imsibgphoto" src={`${url2}${imsibgphoto}`} alt="error" />
+                    }
+                    <input className="inputfile" type="file" ref={bgphotoRef} onChange={onUploadEventBg} />
+                </ModalBgphoto>
 
-
-
-
+                <NavLink to={`/chating/${unum}`} />
             </div>
+
 
 
         );

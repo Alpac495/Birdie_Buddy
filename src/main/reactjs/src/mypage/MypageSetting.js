@@ -119,7 +119,7 @@ const MypageSetting = () => {
                         <div className="MPSlabel" onClick={()=>
                             axios.get("/login/logout")
                             .then(res=>{
-                                navi('/')
+                                navi('/birdie_buddy')
                             })
                             }>로그아웃</div>
                     </div>

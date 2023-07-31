@@ -9,6 +9,7 @@ import CardIcon from "../image/icon_card.svg";
 import TextIcon from "../image/icon_text.svg";
 import SettingIcon from "../image/icon_setting.svg";
 import * as ncloudchat from 'ncloudchat';
+import Header from '../header/Header';
 
 function YangdoDetail(props) {
 
@@ -169,7 +170,7 @@ function YangdoDetail(props) {
 
     return (
         <div className="YEyangdodetailend">
-
+            <Header/>
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="양도 문의">
                     <div className="YMyangdopopup">

@@ -21,7 +21,7 @@ function YangdoList(props) {
     const fetchMoreData = () => {
         setLoading(true);
         Axios
-            .get(`/yangdo/list2?page=${page}&size=7`)
+            .get(`/yangdo/list2?page=${page}&size=8`)
             .then((res) => {
                 // 기존 데이터 중복 방지를 위해 lodash의 uniqBy 함수를 사용하여 중복 제거
                 const newData = _.uniqBy([...items, ...res.data], 'ynum');

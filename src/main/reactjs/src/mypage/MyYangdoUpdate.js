@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Modal from '../components/Modal';
 import "../yangdo/YangdoForm.css";
+import Header from '../header/Header';
 
 function MyYangdoUpdate(props) {
     // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
@@ -91,7 +92,7 @@ function MyYangdoUpdate(props) {
 
     return (
         <div className="yangdoform">
-
+            <Header/>
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 목록">
                     <div>
