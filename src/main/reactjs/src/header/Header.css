@@ -10,6 +10,7 @@
     width: 100%;
   }
   .header_logo{
+    /* width: 360px !important; */
     width: 100%;
     text-align: center;
     height: 80px;

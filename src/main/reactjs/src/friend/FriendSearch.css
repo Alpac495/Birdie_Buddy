@@ -139,10 +139,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 2rem;
 }
 .AFsearch {
     top: 7.38rem;
-    right: 1rem;
+    right: 0.7rem;
     font-size: 1rem;
     letter-spacing: 0.15px;
     display: flex;
