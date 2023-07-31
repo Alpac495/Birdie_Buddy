@@ -19,7 +19,7 @@ import Axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import Header from "../header/Header";
 import userprofile from "../image/userprofile.svg";
-import profile3 from "../image/profile3.png";
+import profile3 from "../image/profile90x90.png";
 import back from "../image/bgphoto.png";
 function Mypage(props) {
     const url = process.env.REACT_APP_PROFILE;
