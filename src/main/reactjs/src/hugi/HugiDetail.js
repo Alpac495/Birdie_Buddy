@@ -21,7 +21,7 @@ import ShareImg from "../image/share_2.png";
 import CommetImg from "../image/share30.png";
 import FacebookImg from "../image/facebookimg.png";
 import InstarImg from "../image/instar.png";
-
+import Er404 from "../image/404.jpg";
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
     const url = process.env.REACT_APP_HUGI;
@@ -102,11 +102,11 @@ function HugiDetail(props) {
             const response = await Axios.post(apiURL, requestData);
             const generatedURL = response.data.result.url;
             // 단축된 URL 값
-            if (sns === 'twitter') {
+            if (sns == 'twitter') {
                 shareTweet2(generatedURL);
-            } else if (sns === 'facebook') {
+            } else if (sns == 'facebook') {
                 shareToFacebook2(generatedURL);
-            } else if(sns === 'instargram') {
+            } else if(sns == 'instargram') {
                 shareToInstar2(generatedURL);
             }
             shareShortenedURL(generatedURL); // 단축 URL을 생성하고 나서 SNS 공유 함수 호출
@@ -169,16 +169,12 @@ function HugiDetail(props) {
         window.open(facebookShareURL, '_blank');
     };
     const shareToInstar2 = () => {
-        const instagramAppUrl = "instagram://camera"; // 인스타그램 앱을 실행하는 URL
+        // const instagramAppUrl = "instagram://camera"; // 인스타그램 앱을 실행하는 URL
         const webFallbackUrl = "https://www.instagram.com/"; // 웹 버전 인스타그램 URL
-
         // 인스타그램 앱이 설치되어 있는 경우 앱으로 전환
-        window.location.href = instagramAppUrl;
-
+        // window.open(instagramAppUrl, '_blank');
         // 인스타그램 앱이 설치되어 있지 않은 경우 웹 버전으로 이동
-        setTimeout(() => {
-            window.location.href = webFallbackUrl;
-        }, 2000); // 2초 후에 웹 버전으로 이동 (앱 실행이 되지 않으면 웹으로 이동)
+        window.open(webFallbackUrl, '_blank');
     };
     const { Kakao } = window;
     // 배포한 자신의 사이트
@@ -569,7 +565,9 @@ function HugiDetail(props) {
         return (
             <div>
                 <Header/>
-
+                <div style={{textAlign:'center'}}>
+                <img src={Er404}  alt={''} style={{width:'500px',height:'650px',margin:'auto'}}></img>
+                </div>
                 <Footer/>
             </div>
         );
