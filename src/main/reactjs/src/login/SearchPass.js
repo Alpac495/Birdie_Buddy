@@ -4,6 +4,7 @@ import axios from "axios";
 import './SearchPass.css';
 import Back from "../image/Back.svg";
 import hidelogo from "../image/hidelogo.svg";
+import Header from '../header/Header';
 
 function SearchPass(props) {
     const [uhp, setUhp] = useState('');
@@ -99,6 +100,7 @@ function SearchPass(props) {
     if (!chk2) {
         return (
             <div className="PC1passwordsearch1">
+                <Header/>
                 <div className="PC1passwordsearch1-child" />
                 <div className="PC1parent">
                     <div className="PC1div">비밀번호 찾기</div>
@@ -170,6 +172,7 @@ function SearchPass(props) {
     } else {
         return (
             <div className="PC2passwordsearch2">
+                <Header/>
                 <div className="PC2div">
                     <ul className="PC2ul">
                         <li className="PC2li">

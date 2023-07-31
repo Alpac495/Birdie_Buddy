@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Axios from "axios";
 import "./Friend.css";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
-import Profile from "../image/user60.png";
+import Profile from "../image/profile90x90.png";
 import * as ncloudchat from 'ncloudchat';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
