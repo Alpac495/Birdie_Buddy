@@ -275,9 +275,9 @@ function MyHugiList(props) {
                         ))}
                     {myHugiData.length > 0 && !loading && (
                         //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                        <button type="button" className="HG_scroll-to-top-button" onClick={scrollToTop}>
                             Scroll to Top
-                        </div>
+                        </button>
                     )}
                 </div>
             </InfiniteScroll>

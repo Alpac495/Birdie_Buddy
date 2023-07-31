@@ -244,3 +244,11 @@ body {
     left: 0;
     height: auto;
 }
+.UL_scroll-to-top-button{
+    background-color: transparent;
+    margin-left: 110px ;
+    color:#48685E;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+}
