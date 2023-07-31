@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import './FriendSlider.css';
 import AddIcon from '@mui/icons-material/Add';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import profile120 from "../image/profile90x120.png";
 
 const SimpleSlider = () => {
     const [unum, setUnum] = useState(0);
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
-    const user = process.env.REACT_APP_MAIN;
     const [data,setData]=useState('');
     const [fdata,setFdata]=useState('');
 
@@ -55,7 +55,7 @@ const SimpleSlider = () => {
             {item.uphoto != null ? (
               <img alt='프로필 사진' src={`${image1}${item.uphoto}${image2}`} />
             ) : (
-              <img alt='프로필 사진' src={`${user}profile3.png`} />
+              <img alt='프로필 사진' src={`${profile120}`} />
             )}
             <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
             <div className={`friend_modal`}></div>

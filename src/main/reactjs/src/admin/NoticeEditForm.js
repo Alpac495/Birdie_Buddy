@@ -50,6 +50,9 @@ function NoticeForm(props) {
         })
     }
 
+    const handleGoBack = () => {
+        window.history.back(); // 뒤로 가기 동작
+    };
     
 
     return (
@@ -61,11 +64,11 @@ function NoticeForm(props) {
                     Notice    
             </div>
             <h5 style={{marginTop:'25px'}}>제목</h5>
-            <input className='nform_subject' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} value={nsubject} />
+            <input className='nform_subject' type='text' placeholder='제목' onChange={(e)=>setNsubject(e.target.value)} value={nsubject} required/>
             
             <h5>카테고리</h5>
             <div className='nform_sel'>
-                <select value={ncate || ''} onChange={handleSelectChange}>
+                <select value={ncate || ''} onChange={handleSelectChange} required>
                     <option value="선택하세요">선택하세요</option>
                     <option value="이벤트">이벤트</option>
                     <option value="공지사항">공지사항</option>
@@ -80,14 +83,14 @@ function NoticeForm(props) {
             <div className='nform_txt'>
             
                 {nphoto != null ? <img alt='' src={`${url}${nphoto}`}/> : null}
-                <textarea  placeholder='내용' onChange={(e) => setNcontent(e.target.value)} value={ncontent}> 
+                <textarea placeholder='내용' onChange={(e) => setNcontent(e.target.value)} value={ncontent} required> 
                 {ncontent}
                 </textarea> 
             </div>
             
             <div className='nform_btnwrap'>
                 <button type='button' onClick={submit}>작성</button>
-                <button type='button'>닫기</button>
+                <button type='button' onClick={handleGoBack}>닫기</button>
             </div>
         </div>
     );

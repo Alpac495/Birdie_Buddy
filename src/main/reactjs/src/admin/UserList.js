@@ -3,7 +3,7 @@ import "./UserList.css";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Profile from "../image/user60.png";
+import Profile from "../image/profile90x90.png";
 import Header from '../header/Header';
 import _ from "lodash"
 import searchCon from "../image/search.svg";
@@ -131,9 +131,9 @@ function UserList(props) {
             <br/>
                 {items.length > 0 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
+                    <button className="UL_scroll-to-top-button" onClick={scrollToTop}>
                         Scroll to Top
-                    </div>
+                    </button>
                 )}
             </InfiniteScroll>
             </div>

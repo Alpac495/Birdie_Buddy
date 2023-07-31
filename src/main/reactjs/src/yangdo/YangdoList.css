@@ -5,7 +5,7 @@
 }
 .Ylyangdolist-child {
   width: calc(100% - 32px);
-  top: 10.31rem;
+  top: 8.31rem;
   right: 1rem;
   left: 1rem;
   background-color: #fff;
@@ -37,7 +37,7 @@
   height: 1.25rem;
 }
 .Ylrectangle-parent {
-  top: 8.44rem;
+  top: 6.44rem;
   left: 1rem;
   width: 3.75rem;
   text-align: center;
@@ -59,14 +59,14 @@
   height: 0.94rem;
 }
 .Ylrectangle-group {
-  top: 8.44rem;
+  top: 6.44rem;
   right: 1rem;
   width: 1.25rem;
   height: 1.25rem;
 }
 .Yldiv1 {
   position: absolute;
-  top: 10.81rem;
+  top: 8.81rem;
   left: 1.63rem;
   font-size: 0.81rem;
   letter-spacing: -0.01em;
@@ -79,7 +79,7 @@
 }
 .Ylicon-search {
   position: absolute;
-  top: 10.89rem;
+  top: 8.89rem;
   right: 1.7rem;
   width: 1.34rem;
   height: 1.34rem;
@@ -236,7 +236,7 @@
 .Ylblacklistmodalveticalframe {
   position: absolute;
   width: calc(100% - 32px);
-  top: 13.88rem;
+  top: 11.88rem;
   right: 1rem;
   left: 1rem;
   height: 34.19rem;

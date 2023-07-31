@@ -11,7 +11,7 @@ import ModalReport from "./ModalReport";
 import SingoBtn from "../image/btn_singo.svg";
 import Header from "../header/Header";
 import { Button } from '@mui/base';
-import profile3 from "../image/profile3.png";
+import profile3 from "../image/profile90x90.png";
 import back from "../image/bgphoto.png";
 
 function FriendDetail(props) {
@@ -259,7 +259,7 @@ function FriendDetail(props) {
                             }</p>
                     </span>
                 </div>
-                <div className="FDdiv3">{dto.ucontent}</div>
+                <div className="FDdiv3">자기소개<br/>{dto.ucontent}</div>
                 <div className="FDdiv4">{dto.unickname}</div>
                 <div className="FDicon-message-parent" onClick={onChatEvent.bind(null, funum)}>
                     <img className="FDicon-message" alt="" src={FDicon2} />
@@ -284,7 +284,7 @@ function FriendDetail(props) {
                     }
                 </div>
                 <div>
-                    <button alt="" src={SingoBtn} onClick={handleReportClick} />신고하기
+                    <button alt="" src={SingoBtn} onClick={handleReportClick} />
                     {reportModalOpen &&
                         <ModalReport
                             reporterNickname={unum}
