@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 90px;
+    height: 80px;
     font-size: 1.88rem;
     font-family: 'Zen Dots';
     background-color: #F8F5F0; /* 원하는 배경 색상을 지정 (선택 사항) */
@@ -12,7 +12,7 @@
   .header_logo{
     width: 100%;
     text-align: center;
-    height: 90px;
+    height: 80px;
   }
   .header_menuicon{
     position: absolute;
