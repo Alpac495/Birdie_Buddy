@@ -94,13 +94,17 @@ const NCloudChatRoomList = () => {
         }
     };
 
-    const handleChannelSelect = async (channelId, cunum) => {
+    const handleChannelSelect = async (channelId, cunum, pramunum) => {
         setSelectedChannel(channelId);
 
         if (nc) {
             await nc.subscribe(channelId);
             await nc.disconnect();
+            if (unum == pramunum){
             navigate(`/chating/room/${channelId}/${cunum}`);
+            }else{
+            navigate(`/chating/room/${channelId}/${pramunum}`);   
+            }
         }
     };
 
@@ -135,7 +139,7 @@ const NCloudChatRoomList = () => {
                 </div>
                 {channels.length > 0 ? (
                     channels.map((channel) => (
-                        <div className="CLtwo-lines-list-avatar" onClick={() => handleChannelSelect(channel.chatid, channel.cunum)}>
+                        <div className="CLtwo-lines-list-avatar" onClick={() => handleChannelSelect(channel.chatid, channel.cunum, channel.unum)}>
                             <div className="CLtwo-line-item">
                                 <div className="CLtext">
                                     {lastMessages[channel.chatid] && (

@@ -127,8 +127,8 @@ function MyRank(props) {
                     data && data.map((item, idx) => (
                         <div className='my_rank'>
                             <div className='my_title'>
-                                작성일&nbsp;:&nbsp;{item.swriteday} <br />
-                                골프장&nbsp;:&nbsp;{item.gname}
+                            &nbsp;&nbsp;&nbsp;작성일&nbsp;:&nbsp;{item.swriteday} <br />
+                            &nbsp;&nbsp;&nbsp;골프장&nbsp;:&nbsp;{item.gname}
                             </div>
                             <br />
                             <table className={'my_scoretable'}>

@@ -1,11 +1,11 @@
 .friend_slider{
-    width: 400px;
+    width: 420px;
     height: 150px;
 }
 .friend_slide{
     position: relative;
-    width: 90px !important;
-    height: 120px;
+    width: 110px !important;
+    height: 140px;
     margin-left: 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 4px gray;
@@ -45,7 +45,7 @@
 .friend_footer{
     position: absolute;
     bottom: 0;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: lighter;
     color: white;
     margin-left: 5px;

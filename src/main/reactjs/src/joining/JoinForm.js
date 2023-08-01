@@ -136,6 +136,9 @@ const JoinForm = (props) => {
         setPartnerForm2Open(false);
     }
 
+    const partneronemodal = useCallback(()=>{
+        setPartnerFormOpen(false);
+    })
     
     return (
         <div className="JFjoinform">
@@ -249,7 +252,7 @@ const JoinForm = (props) => {
                     onOutsideClick={closePartnerForm2}
                     
                 >
-                    <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo}/>
+                    <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo} close={closePartnerForm2}/>
                 </PortalPopup>
             )}
             {isPartnerFormOpen && (
@@ -258,7 +261,7 @@ const JoinForm = (props) => {
                     placement="Centered"
                     onOutsideClick={closePartnerForm}
                 >
-                    <PartnerForm props={closePartnerForm} propFunction={partnerone} />
+                    <PartnerForm props={closePartnerForm} propFunction={partnerone} close={closePartnerForm}/>
                 </PortalPopup>
             )}
         </div>

@@ -250,7 +250,7 @@ function MyHugiRowList(props) {
             objectType: 'feed',
             content: {
                 title: '버디버디 라운딩 후기',
-                description: '골프,조인,양도,후기,랭킹,채팅',
+                description: '골프, 조인, 양도, 후기, 스코어',
                 imageUrl:
                     `${url2}${hphoto}${url3}`,
                 link: {
@@ -260,7 +260,7 @@ function MyHugiRowList(props) {
             },
             buttons: [
                 {
-                    title: '후기 보러가기',
+                    title: '라운딩 후기 보러가기',
                     link: {
                         webUrl:resultUrl,
                         mobileWebUrl:resultUrl,
@@ -301,11 +301,13 @@ function MyHugiRowList(props) {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleClickMyAvatar  = () =>{
+    const handleClickMyAvatar = (funum) => {
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
-        } else {
+        } else if (funum === unum) {
             navi(`/mypage/mypage/${unum}`);
+        } else {
+            navi(`/friend/detail/${funum}`);
         }
     };
     const handleClickLikeOn = () => {

@@ -1,78 +1,82 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate  } from 'react-router-dom';
 
-
-
-
-export default class SimpleSlider extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            joinReco: []
-        };
-    }
-
-    componentDidMount() {
+const SimpleSlider = () => {
+    const [joinReco, setJoinReco] = useState([]);
+    const image1 = process.env.REACT_APP_IMAGE1PROFILE;
+    const image2 = process.env.REACT_APP_IMAGE87;
+    const user = process.env.REACT_APP_MAIN;
+    const navi = useNavigate();
+    const [unum, setUnum] = useState('');
+    useEffect(() => {
         Axios.get('/apimain/reco')
             .then(res => {
-                // 서버에서 받아온 데이터로 상태 업데이트
-                this.setState({ joinReco: res.data });
+                setJoinReco(res.data);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+    }, []);
+    const unumchk=()=>{
+        Axios.get("/login/unumChk")
+            .then(res=> {
+                setUnum(res.data);
+            });
     }
-    
-    render() {
-        const { joinReco } = this.state; 
-        const image1 = process.env.REACT_APP_IMAGE1PROFILE;
-        const image2 = process.env.REACT_APP_IMAGE87;
-        const user = process.env.REACT_APP_MAIN;
-
-
-
-        const settings = {
-            infinite: true,
-            speed: 1000,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            swipeToSlide: true,
-            autoplay:true,
-            autoplaySpeed:3000,
-        };
-
-        return (
-            <div className="test1">
+    // 초기 로딩 시에 unumchk 함수 호출
+    useEffect(() => {
+        unumchk()
+    }, [])
+    const settings = {
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        swipeToSlide: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+    };
+    const onClickJoinReco = (item) => {
+        if (unum === 0) {
+            navi("/");
+        } else {
+            navi(`/joining/detail/${item.jnum}`);
+        }
+    }
+    return (
+        <div className="test1">
             <Slider {...settings}>
-              {joinReco.map((item, idx) => (
-                <Link key={idx} to={`/joining/detail/${item.jnum}`} className="rec_slider">
-                  {item.uphoto != null ? (
-                    <img alt="프로필 사진" src={`${image1}${item.uphoto}${image2}`} />
-                  ) : (
-                    <img alt="프로필 사진" src={`${user}profile3.png`} />
-                  )}
-                  <div className="rec_info">
-                    <span className="b">{item.jjoinday}</span>
-                    <br />
-                    <span className="xx">
-                      {item.gname.length > 10
-                        ? item.gname.substring(0, 10) + '...'
-                        : item.gname}
-                    </span>
-                    <br />
-                    <span className="xx">그린피 {item.jprice} 원</span>
-                    <br />
-                    {4 - item.jmcount - item.jucount === 0 ? null : (
-                      <span className="xx">{`${4 - item.jmcount - item.jucount} 자리`}</span>
-                    )}
-                  </div>
-                </Link>
-              ))}
+                {joinReco.map((item, idx) => (
+                    <div key={idx} className="rec_slider" onClick={() => onClickJoinReco(item)}>
+                        <div>
+                        {item.uphoto != null ? (
+                            <img alt="프로필 사진" src={`${image1}${item.uphoto}${image2}`} />
+                        ) : (
+                            <img alt="프로필 사진" src={`${user}profile3.png`} />
+                        )}
+                        </div>
+                        <div className="rec_info">
+                            <span className="b">{item.jjoinday}</span>
+                            <br />
+                            <span className="xx">
+                                {item.gname.length > 10
+                                    ? item.gname.substring(0, 10) + '...'
+                                    : item.gname}
+                            </span>
+                            <br />
+                            <span className="xx">그린피 {item.jprice} 원</span>
+                            <br />
+                            {4 - item.jmcount - item.jucount === 0 ? null : (
+                                <span className="xx">{`${4 - item.jmcount - item.jucount} 자리`}</span>
+                            )}
+                        </div>
+                    </div>
+                ))}
             </Slider>
-          </div>
-        );
-    }
+        </div>
+    );
 }
+
+export default SimpleSlider;

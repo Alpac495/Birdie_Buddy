@@ -51,20 +51,7 @@ function NoticeList(props) {
 
     const formatDate = (date) => {
         const postDate = new Date(date);
-        const currentDate = new Date();
-        const isToday =
-            postDate.getFullYear() === currentDate.getFullYear() &&
-            postDate.getMonth() === currentDate.getMonth() &&
-            postDate.getDate() === currentDate.getDate();
-        if (isToday) {
-            // If the post is from today, display only the time
-            const hours = postDate.getHours();
-            const minutes = postDate.getMinutes();
-            return `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-        } else {
-            // If the post is from before today, display the year, month, and day
-            return `${postDate.getFullYear()}-${postDate.getMonth() + 1}-${postDate.getDate()}`;
-        }
+        return `${postDate.getFullYear()}-${postDate.getMonth() + 1}-${postDate.getDate()}`;
     };
 
     useEffect(() => {
@@ -84,14 +71,14 @@ function NoticeList(props) {
             <div className='notice_list'>
                 <table className='notice_table'>
                     <thead>
-                    {
+                    {/* {
                         unum === 1?
                             (
                                 <Link to={"/admin/noticeForm"}>
                                     <button className='notice_writeBtn' type='button' style={{textAlign:'center'}}> <CreateOutlinedIcon style={{color:'white'}}/> </button>
                                 </Link>
                             ):null
-                    }
+                    } */}
                     <tr className='noticeList_head'>
                         <th style={{ textAlign: 'left' }}>작성일</th>
                         <th style={{ textAlign: 'left' }}>카테고리</th>

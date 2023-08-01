@@ -3,11 +3,12 @@ import "./Main.css";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Recommendslider from "./app_effect/Recommendslider";
-import no from "./images/golf_ad.jpg";
+import no from "./images/misi.png";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
 import FriendSlider from "./app_effect/FriendSlider";
 import NoticeSlider from "./app_effect/NoticeSlider";
+import AdSlider from "./app_effect/AdSlider";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +18,6 @@ import * as ncloudchat from 'ncloudchat';
 import Axios from "axios";
 
 function Main(props) {
-    const [notice, setNotice]=useState([]);
     const [unum, setUnum] = useState(0);
     const [nc,setNc] = useState('');
     const navi = useNavigate();
@@ -123,7 +123,11 @@ function Main(props) {
 
             {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
             <div className={'main_friendtxt'}>
-                친구 추천
+                <div>친구 추천</div>
+                <div style={{fontSize:'12px', fontWeight:'500'}} 
+                onClick={()=>{
+                    navi("/friend/search")
+                }}>더보기</div>
             </div>
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_friendrec'} style={{marginTop:'10px'}} onClick={chkLogin} >
@@ -134,9 +138,15 @@ function Main(props) {
             {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
 
 
+                    <div className={'main_joinrecotxt'}>
+                        <div>당신을 위한 조인 추천</div>
+                        <div style={{fontSize:'12px', fontWeight:'500'}}
+                        onClick={()=>{
+                            navi("/joining/alllist")
+                        }}>더보기</div>
+                    </div>
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_join'}>
-                    <div className={'main_joinrecotxt'}>당신을 위한 조인 추천</div>
                     <div className={'main_joinreco'} onClick={chkLogin}>
                         <Recommendslider/>
                     </div>
@@ -145,18 +155,31 @@ function Main(props) {
 
             {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
 
-            <div className={'main_ad'}>
-                <img alt={''} src={no}/>
-            </div>
 
             {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
 
+            <div className='adslider'>
+                <AdSlider/>
+            </div>
+
             <div style={{width:'100vw',overflow:'hidden'}}>
-                <div className={'main_reviewtxt'}>Best 후기</div>
+                <div className={'main_reviewtxt'}>
+                    <div>Best 후기</div>
+                    <div style={{fontSize:'12px', fontWeight:'500'}}
+                    onClick={()=>{
+                        navi("/hugi/list")
+                    }}>더보기</div>
+                    
+                </div>
 
                 <div className={'main_reviewwrap'} onClick={chkLogin}>
                     <Reviewslider/>
                 </div>
+
+                <div className={'main_ad'}>
+                    <img alt={''} src={no}/>
+                </div>
+                
                 <button className='main_chat' type='button' onClick={adminChat}> 
                     <HeadsetMicOutlinedIcon/>
                 </button>

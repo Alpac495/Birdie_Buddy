@@ -28,6 +28,7 @@ function FriendDetail(props) {
     const navi = useNavigate();
     const [reportModalOpen, setReportModalOpen] = useState(false);
     const [reportReason, setReportReason] = useState('');
+    const [userInfo, setUserInfo] = useState(null);
 
     const unumchk = async () => {
         const res1 = await Axios.get("/apilogin/unumChk");
@@ -47,7 +48,8 @@ function FriendDetail(props) {
 
         const getUserInfourl = `/apichating/getuserinfo?unum=${unum}`;
         const res5 = await Axios.get(getUserInfourl);
-        const userInfo = res5.data;
+        setUserInfo(res5.data);
+        console.log("userInfo : " + JSON.stringify(userInfo));
 
         const chat = new ncloudchat.Chat();
         chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
@@ -312,8 +314,8 @@ function FriendDetail(props) {
                 <img className="FD3backimgicon" alt="" src={SingoBtn} onClick={handleReportClick} />
                 {reportModalOpen &&
                     <ModalReport
-                        reporterNickname={unum}
-                        reportedNickname={dto.unum}
+                        reporterNickname={userInfo.unickname}
+                        reportedNickname={dto.unickname}
                         reportReason={reportReason}
                         setReportReason={setReportReason}
                         reportUser={handleReportSubmit}

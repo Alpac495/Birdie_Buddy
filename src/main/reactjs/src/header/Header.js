@@ -12,6 +12,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import no from "../images/logo.png";
 import profile3 from "../image/profile90x90.png";
 import Axios from 'axios';
@@ -46,6 +47,10 @@ function Header(props) {
     useEffect(() => {
         unumchk();
     }, []);
+    useEffect(() => {
+        // Update unum whenever userData changes (i.e., after login or logout)
+        setUnum(userData.length > 0 ? userData[0].unum : 0);
+    }, [userData]);
 
     function handleClick() {
         // 페이지 이동을 처리하는 로직 작성
@@ -57,6 +62,7 @@ function Header(props) {
         if(unum===0){
             alert("먼저 로그인해 주세요");
             navi("/login/login");
+            window.location.reload(); // 새로고침
         }
     }
     const handleLogout = () => {
@@ -67,6 +73,9 @@ function Header(props) {
             alert("로그아웃 되었습니다.");
           });
     };
+    const handleGoAdmin=()=>{
+        navi('/admin/userlist');
+    }
 
     
 
@@ -141,6 +150,11 @@ function Header(props) {
                     </ListItem>
                 ))}
             </List>
+            {
+            unum!==1?'':
+            <button style={{marginLeft:'13px', marginBottom:'20px' ,backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleGoAdmin()}> <ManageAccountsIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 관리자 게시판</button>
+            }
+            
             {
             unum===0?'':
             <button style={{marginLeft:'13px',backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleLogout()}> <LogoutIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 로그아웃</button>
