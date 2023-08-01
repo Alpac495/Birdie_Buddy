@@ -34,4 +34,11 @@
     <select id="listUserWithPaging" parameterType="int" resultType="UserDto">
         SELECT * FROM user ORDER BY unum asc LIMIT #{offset}, #{size}
     </select>
+    <select id="myScoreList" parameterType="int" resultType="MyScoreDto">
+        SELECT score.*, golfjangscore.*, golfjang.gname
+        FROM score
+        INNER JOIN golfjangscore ON score.gnum = golfjangscore.gnum
+        INNER JOIN golfjang ON golfjangscore.gnum = golfjang.gnum
+        WHERE score.unum = #{unum}
+    </select>
 </mapper>
