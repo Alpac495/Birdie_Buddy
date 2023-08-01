@@ -40,5 +40,6 @@
         INNER JOIN golfjangscore ON score.gnum = golfjangscore.gnum
         INNER JOIN golfjang ON golfjangscore.gnum = golfjang.gnum
         WHERE score.unum = #{unum}
+        order by snum asc LIMIT #{offset}, #{size}
     </select>
 </mapper>

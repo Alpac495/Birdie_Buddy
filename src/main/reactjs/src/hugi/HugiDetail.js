@@ -246,7 +246,7 @@ function HugiDetail(props) {
             objectType: 'feed',
             content: {
                 title: '버디버디 라운딩 후기',
-                description: '골프,조인,양도,후기,랭킹,채팅',
+                description: '골프, 조인, 양도, 후기, 스코어',
                 imageUrl:
                     `${url2}${hphoto}${url3}`,
                 link: {
@@ -256,7 +256,7 @@ function HugiDetail(props) {
             },
             buttons: [
                 {
-                    title: '후기 보러가기',
+                    title: '라운딩 후기 보러가기',
                     link: {
                         webUrl:resultUrl,
                         mobileWebUrl:resultUrl,
