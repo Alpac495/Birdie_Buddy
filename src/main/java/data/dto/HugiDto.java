@@ -18,4 +18,5 @@ public class HugiDto {
     private int unum;
     private String unickname;
     private String uphoto;
+    private int hlikenum;
 }
