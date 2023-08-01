@@ -32,12 +32,20 @@
             hphoto = #{hphoto}
         WHERE hnum = #{hnum}
     </update>
-    <update id="addLikeCount" parameterType="int">
-        update hugi set hlike = hlike + 1 where hnum = #{hnum}
+    <insert id="addLikeToHugiLike" parameterType="map">
+        INSERT INTO hugilike (unum, hnum)
+        VALUES (#{unum}, #{hnum})
+    </insert>
+
+    <delete id="removeLikeFromHugiLike" parameterType="map">
+        DELETE FROM hugilike
+        WHERE unum = #{unum} AND hnum = #{hnum}
+    </delete>
+
+    <update id="incrementHugiLikeCount" parameterType="int">
+        UPDATE hugi SET hlike = hlike + 1 WHERE hnum = #{hnum}
     </update>
-    <update id="removeLikeCount" parameterType="int">
-        update hugi set hlike = hlike - 1 where hnum = #{hnum}
-    </update>
+
     <select id="detailPage" parameterType="int" resultType="HugiDto">
         select * from hugi where hnum=#{hnum}
     </select>

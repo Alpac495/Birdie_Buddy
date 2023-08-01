@@ -58,13 +58,15 @@ const SimpleSlider = () => {
               <img alt='프로필 사진' src={`${profile120}`} />
             )}
             <Link to={`/friend/detail/${item.unum}`} className="FDMoveLink">
+            <div className='FDBack'></div>
             <div className={`friend_modal`}></div>
             <div className={'friend_plus'}><AddIcon /></div>
             <div className={'friend_footer'}>
+            <div>{item.unickname}</div>
               <div># {item.rtasu === 0 ? '기록없음' : `${item.rtasu} 타`}</div>
-              <div># 경력{item.ucareer}</div>
-              <div># {item.unickname}</div>
-            </div></Link>
+              <div># 경력{item.ucareer}</div>              
+            </div>
+            </Link>
           </div>
         ) 
       )
