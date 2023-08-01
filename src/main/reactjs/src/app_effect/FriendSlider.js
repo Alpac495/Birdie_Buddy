@@ -12,6 +12,7 @@ const SimpleSlider = () => {
     const image2 = process.env.REACT_APP_IMAGE87;
     const [data,setData]=useState('');
     const [fdata,setFdata]=useState('');
+    const navi = useNavigate();
     
     const unumchk=()=>{
         Axios.get("/apilogin/unumChk")
@@ -27,6 +28,7 @@ const SimpleSlider = () => {
             .then(res=>{
                 setFdata(res.data);
             })
+        })}
 
     useEffect(() => {
         unumchk();
