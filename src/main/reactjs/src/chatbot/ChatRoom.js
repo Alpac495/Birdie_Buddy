@@ -49,7 +49,7 @@ const ChatRoom = () => {
             await chat.connect({
                 id: res2.data.uemail,
                 name: res2.data.unickname,
-                profile: 'https://image_url',
+                profile: res2.data.uemail,
                 customField: 'json',
             });
 
@@ -171,6 +171,7 @@ const ChatRoom = () => {
         window.location.replace(`/chating/${unum}`)
     };
 
+    console.log(unum,data2.unum)
     return (
         <>
             <div className="CDchatdetail">
@@ -178,8 +179,8 @@ const ChatRoom = () => {
                 <div className="CDparent">
                     <div className="CDdiv3" id='chat-messages'>
                             {messages.map &&messages.map((message, index) => (
-                                <div key={index} style={{ textAlign: message.sender.id === data.uemail ? 'right' : 'left', margin: '10px' }}>
-                                    <div style={{ backgroundColor: message.sender.id === data.uemail ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
+                                <div key={index} style={{ textAlign: message.sender.profile === data.uemail ? 'right' : 'left', margin: '10px' }}>
+                                    <div style={{ backgroundColor: message.sender.profile === data.uemail ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
                                         <strong>{message.sender.name}</strong>
                                         <div>{message.content}</div>
                                         <div style={{ fontSize: '12px', color: 'gray' }}>{new Date(message.created_at).toLocaleString()}</div>
@@ -200,7 +201,11 @@ const ChatRoom = () => {
                     <img className="CDicon-list" alt="" src={ChatOutIcon} onClick={handleLeaveChat} />
                     <div className="CDrectangle-parent">
                         <div className="CDgroup-child" />
+                        {unum === data.unum ? 
                         <div className="CDnick1">{data2.unickname}</div>
+                        :
+                        <div className="CDnick1">{data.unickname}</div>
+                        }
                     </div>
                 </div>
 
