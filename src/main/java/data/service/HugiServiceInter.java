@@ -2,7 +2,6 @@ package data.service;
 
 import data.dto.HugiDto;
 import data.dto.UserDto;
-import org.apache.ibatis.annotations.Param;
 
 
 import java.util.List;
@@ -12,8 +11,8 @@ public interface HugiServiceInter {
     public List<HugiDto> getAllHugis();
     public void insertHugi(HugiDto hdto);
     public void updateHugi(HugiDto hdto);
-    void addLikeToHugiLike(int hnum, int unum);
-    void removeLikeFromHugiLike(int hnum, int unum);
+    public void addLikeCount(int hnum);
+    public void removeLikeCount(int hnum);
     public HugiDto detailPage(int hnum);
     public void deleteHugi(int hnum);
     public UserDto getUserDto(int unum);

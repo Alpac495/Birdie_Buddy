@@ -286,27 +286,30 @@ function HugiDetail(props) {
         unumchk()
     }, [])
 
-    // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면 setShowLike(true)를 호출하여 버튼을 활성화합니다.
     const handleClickLikeOn = () => {
-        Axios.post(`/hugi/like/${hnum}`, { unum: unum })
+        // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
+        // setShowLike(true)를 호출하여 버튼을 활성화합니다.
+        Axios.post(`/hugi/like/${hnum}`)
             .then(() => {
                 alert("좋아요를 눌렀습니다!");
+                localStorage.setItem(`likeStatus_${hnum}`, "true"); // 좋아요 상태를 localStorage에 저장
                 setShowLike(true);
             })
             .catch((error) => {
-                console.error('좋아요 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 처리 중 오류가 발생했습니다.', error);
             });
     };
-
-// 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면 setShowLike(false)를 호출하여 버튼을 비활성화합니다.
     const handleClickLikeOff = () => {
-        Axios.delete(`/hugi/unlike/${hnum}`, { data: { unum: unum } })
+        // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
+        // setShowLike(false)를 호출하여 버튼을 비활성화합니다.
+        Axios.delete(`/hugi/unlike/${hnum}`)
             .then(() => {
                 alert("좋아요를 취소했습니다!");
+                localStorage.setItem(`likeStatus_${hnum}`, "false"); // 좋아요 상태를 localStorage에 저장
                 setShowLike(false);
             })
             .catch((error) => {
-                console.error('좋아요 취소 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
             });
     };
     const handleClickDelete = () => {
@@ -579,6 +582,12 @@ function HugiDetail(props) {
         // fetchPostUserNickname 함수를 사용하여 postUserNickname 상태를 설정합니다.
         fetchPostUserNickname(props.unum);
     }, [props.unum]);
+
+    useEffect(() => {
+        // 페이지가 로드될 때 localStorage에서 좋아요 상태를 불러와서 적용
+        const likeStatus = localStorage.getItem(`likeStatus_${hnum}`);
+        setShowLike(likeStatus === "true");
+    }, [hnum]); // hnum이 변경될 때마다 실행
     useEffect(() => {
         const fetchHugiData = async () => {
             try {
