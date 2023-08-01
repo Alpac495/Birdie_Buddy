@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/hugi")
+@RequestMapping("/apihugi")
 public class HugiController {
     String hphoto;
     String bucketPath = "http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";

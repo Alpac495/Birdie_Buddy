@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/score")
+@RequestMapping("/apiscore")
 public class ScoreController {
 
     String photo;

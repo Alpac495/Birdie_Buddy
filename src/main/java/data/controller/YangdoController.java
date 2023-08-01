@@ -13,7 +13,7 @@ import java.util.Vector;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/yangdo")
+@RequestMapping("/apiyangdo")
 public class YangdoController {
 
     @Autowired

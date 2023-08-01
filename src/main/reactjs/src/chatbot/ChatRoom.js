@@ -21,14 +21,14 @@ const ChatRoom = () => {
 
     const unumchk = async () => {
         try {
-            const res1 = await Axios.get("/login/unumChk");
+            const res1 = await Axios.get("/apilogin/unumChk");
             setUnum(res1.data);
 
-            const url = "/chating/getuserinfo?unum=" + res1.data;
+            const url = "/apichating/getuserinfo?unum=" + res1.data;
             const res2 = await Axios.get(url);
             setData(res2.data);
 
-            const url2 = "/chating/getuserinfo?unum=" + cunum;
+            const url2 = "/apichating/getuserinfo?unum=" + cunum;
             const res3 = await Axios.get(url2);
             setData2(res3.data);
 
@@ -152,7 +152,7 @@ const ChatRoom = () => {
             return;
         }
         try {
-            await Axios.get(`/chating/unsubchatid?unum=${unum}&chatid=${channelId}`);
+            await Axios.get(`/apichating/unsubchatid?unum=${unum}&chatid=${channelId}`);
             const message = `${unum} 님이 나가셨습니다`;
             await nc.sendMessage(channelId, {
                 name: "Admin",

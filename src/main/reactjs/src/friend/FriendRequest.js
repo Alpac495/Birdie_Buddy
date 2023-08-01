@@ -23,13 +23,13 @@ function FriendRequest(props) {
     const [loading, setLoading] = useState(false);
     
     const fetchMoreData=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
             setFunum(res.data);
             setLoading(true);
                 Axios
-                    .get(`/friend/pagingrequestlist?unum=${res.data}&page=${page}&size=10`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .get(`/apifriend/pagingrequestlist?unum=${res.data}&page=${page}&size=10`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
                         const newData = _.uniqBy([...items, ...res.data], 'fnum');
                         setItems(newData);
@@ -54,7 +54,7 @@ function FriendRequest(props) {
     const onAcceptEvent = (unum) => {
         const confirmed = window.confirm('신청을 수락하시겠습니까?');
             if (confirmed) {
-                Axios.get(`/friend/acceptfriend/${unum}&${funum}`)
+                Axios.get(`/apifriend/acceptfriend/${unum}&${funum}`)
                     .then(res => {
                         alert("버디 추가 완료. 버디 리스트에서 확인하세요.");
                         window.location.replace(`/friend/requestlist`);

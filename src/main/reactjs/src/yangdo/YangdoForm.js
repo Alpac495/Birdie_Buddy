@@ -30,7 +30,7 @@ function YangdoForm(props) {
     const navigate = useNavigate();
 
     const list=useCallback(()=>{
-        const url="/golfjang/list";
+        const url="/apigolfjang/list";
         Axios.get(url)
             .then(res=>{
                 setData(res.data);
@@ -52,7 +52,7 @@ function YangdoForm(props) {
 
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
+        Axios.get("/apilogin/unumChk?unum="+unum)
             .then(res=>{
                 setUnum(res.data);
             })
@@ -77,7 +77,7 @@ function YangdoForm(props) {
         }else if(!ysubject) {
             alert("예약 시간을 입력해주세요.")
         }else{
-            Axios.post("/yangdo/insert", {unum, ycontent, yprice, yday, ysubject, yplace})
+            Axios.post("/apiyangdo/insert", {unum, ycontent, yprice, yday, ysubject, yplace})
                 .then(res => {
 
                     // 목록으로 이동

@@ -30,7 +30,7 @@ const JoinUpdateForm = () => {
     const navi=useNavigate();
 
     const selectData=useCallback(()=>{
-        const url="/joining/detail?jnum="+(jnum);
+        const url="/apijoining/detail?jnum="+(jnum);
         Axios({
             type:'get',
             url,
@@ -63,7 +63,7 @@ const JoinUpdateForm = () => {
         const jp2ageValue = noPartnerInputRef.current && noPartnerInputRef.current.checked || onePartnerInputRef.current.checked ? "" : jp2age;
         const jp2tasuValue = noPartnerInputRef.current && noPartnerInputRef.current.checked || onePartnerInputRef.current.checked ? "" : jp2tasu;
         const jucountValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "1" : jucount;
-        Axios.post("/joining/update",{
+        Axios.post("/apijoining/update",{
             jnum,jcontent,jjoinday,gname,jprice, jtime, jage, 
             jp1gender: jp1genderValue, jp1age: jp1ageValue, jp1tasu: jp1tasuValue,
              jp2gender: jp2genderValue, jp2age: jp2ageValue, jp2tasu: jp2tasuValue, jucount: jucountValue

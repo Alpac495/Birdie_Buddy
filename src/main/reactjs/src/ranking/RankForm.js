@@ -16,14 +16,14 @@ const RankForm = () => {
     const [data, setData] = useState('');
     const [unum, setUnum] = useState(0);
     const list = () => {
-        const url = "/golfjang/list";
+        const url = "/apigolfjang/list";
         axios.get(url)
             .then(res => {
                 setData(res.data);
             });
     };
     const unumchk = () => {
-        axios.get("/login/unumChk?unum=" + unum)
+        axios.get("/apilogin/unumChk?unum=" + unum)
             .then(res => {
                 console.log(res.data)
                 setUnum(res.data);
@@ -45,7 +45,7 @@ const RankForm = () => {
         console.log(idx)
         setGname(e.target.innerText);
         setGnum(idx + 1)
-        axios.get('/score/getGpar?gnum=' + (idx + 1))
+        axios.get('/apiscore/getGpar?gnum=' + (idx + 1))
             .then(res => {
                 console.log(res.data)
                 const gdata = res.data[0];
@@ -70,7 +70,7 @@ const RankForm = () => {
             alert("골프장을 선택해 주세요")
             return;
         }
-        axios.post('/score/saveScore', { s, unum, gnum })
+        axios.post('/apiscore/saveScore', { s, unum, gnum })
             .then(res => {
                 alert("점수 등록 완료")
                 navi("/score/list")

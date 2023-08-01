@@ -21,7 +21,7 @@ function Taltae(props) {
     };
 
     const unumchk = () => {
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
             .then(res => {
                 console.log(res.data)
                 setUnum(res.data)
@@ -37,13 +37,13 @@ function Taltae(props) {
             alert("휴대폰번호 11자리를 입력해 주세요")
             setUhp('');
         } else {
-            axios.get("/login/unumHpchk?unum=" + unum + "&uhp=" + uhp)
+            axios.get("/apilogin/unumHpchk?unum=" + unum + "&uhp=" + uhp)
                 .then(res => {
                     if (res.data == 0) {
                         alert("회원정보와 휴대폰번호가 일치하지 않습니다")
                         setUhp('');
                     } else {
-                        axios.get("/login/smsSend?uhp=" + uhp)
+                        axios.get("/apilogin/smsSend?uhp=" + uhp)
                             .then(res => {
                                 alert("번호로 코드 전송")
                             })
@@ -53,7 +53,7 @@ function Taltae(props) {
     }
 
     const codeChk = () => {
-        axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
+        axios.get('/apilogin/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
                     alert("인증 성공")
@@ -70,7 +70,7 @@ function Taltae(props) {
         } else if (!chk2) {
             alert("약관에 동의해 주세요")
         } else if (window.confirm("회원탈퇴를 진행하시겠습니까?")) {
-            axios.get('/login/taltae?unum=' + unum)
+            axios.get('/apilogin/taltae?unum=' + unum)
                 .then(res => {
                     alert("탈퇴완료")
                     navi("/birdie_buddy")

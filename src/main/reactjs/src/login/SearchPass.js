@@ -25,14 +25,14 @@ function SearchPass(props) {
             alert("휴대폰번호 11자리를 입력해 주세요")
             setUhp('');
         } else {
-            axios.get("/login/getUserUhp?uhp=" + uhp)
+            axios.get("/apilogin/getUserUhp?uhp=" + uhp)
                 .then(res => {
                     if (res.data == "no") {
                         alert("입력한 휴대폰 번호로 가입된 아이디가 없습니다.")
                         setUhp('');
                     } else {
                         alert("인증 번호를 발송했습니다.")
-                        axios.get('/login/smsSend?uhp=' + uhp)
+                        axios.get('/apilogin/smsSend?uhp=' + uhp)
                             .then(response => {
                                 console.log(response.data);
                             })
@@ -45,7 +45,7 @@ function SearchPass(props) {
     }
 
     const codeChk = () => {
-        axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
+        axios.get('/apilogin/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
                     alert("인증 되었습니다.")
@@ -59,7 +59,7 @@ function SearchPass(props) {
         if (chk == false || uemail == '') {
             alert("휴대폰 번호 인증을 해주세요.")
         } else {
-            axios.get("/login/searchPass?uhp=" + uhp + "&uemail=" + uemail)
+            axios.get("/apilogin/searchPass?uhp=" + uhp + "&uemail=" + uemail)
                 .then(res => {
                     if (res.data) {
                         alert("확인되었습니다.")
@@ -88,10 +88,10 @@ function SearchPass(props) {
             alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
             return;
         }
-        axios.get('/login/passChange2?upass=' + newpass + "&uemail=" + uemail)
+        axios.get('/apilogin/passChange2?upass=' + newpass + "&uemail=" + uemail)
             .then(res => {
                 alert("비밀번호가 변경되었습니다. \n새로운 비밀번호로 로그인해 주세요.")
-                axios.get('/login/logout')
+                axios.get('/apilogin/logout')
                     .then(res => {
                         navi('/')
                     })

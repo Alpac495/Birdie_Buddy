@@ -20,7 +20,7 @@ const JoinAllList = () => {
     // eslint-disable-next-line no-unused-vars
     const [unum, setUnum]=useState('');
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
         });
@@ -35,7 +35,7 @@ const JoinAllList = () => {
 
     const list =() => {
         setLoading(true);
-        const url = `/joining/list?page=${page}&size=10`;
+        const url = `/apijoining/list?page=${page}&size=10`;
         Axios.get(url)
             .then(res => {
                 const newData = _.uniqBy([...data, ...res.data], 'jnum');
@@ -55,7 +55,7 @@ const JoinAllList = () => {
     }, []);
 
     const search = () => {
-        Axios.get("/joining/searchlist?keyword=" + keyword)
+        Axios.get("/apijoining/searchlist?keyword=" + keyword)
             .then(res => {
                 setData(res.data);
                 setPage((prevPage) => prevPage + 1);

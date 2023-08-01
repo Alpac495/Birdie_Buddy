@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/friend")
+@RequestMapping("/apifriend")
 public class FriendController {
 
     String photo;

@@ -21,7 +21,7 @@ function Blacklist(props) {
     const fetchMoreData=()=>{
         setLoading(true);
                 Axios
-                    .get(`/admin/getBlackList?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .get(`/apiadmin/getBlackList?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
                         const newData = _.uniqBy([...items, ...res.data], 'unum');
                         setItems(newData);
@@ -37,7 +37,7 @@ function Blacklist(props) {
     };
 
     const removeBlackList=(unum)=>{
-        Axios.get('/admin/removeBlackList?unum='+unum)
+        Axios.get('/apiadmin/removeBlackList?unum='+unum)
     }
 
     useEffect(()=>{
@@ -45,7 +45,7 @@ function Blacklist(props) {
     },[])
 
     const search = () => {
-        Axios.get("/admin/blacksearchlist?keyword=" + keyword)
+        Axios.get("/apiadmin/blacksearchlist?keyword=" + keyword)
             .then(res => {
                 setItems(res.data);
                 setPage((prevPage) => prevPage + 1);

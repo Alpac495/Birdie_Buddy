@@ -11,7 +11,7 @@ const SimpleSlider = () => {
     const navi = useNavigate();
     const [unum, setUnum] = useState('');
     useEffect(() => {
-        Axios.get('/main/reco')
+        Axios.get('/apimain/reco')
             .then(res => {
                 setJoinReco(res.data);
             })

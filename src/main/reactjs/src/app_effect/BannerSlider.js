@@ -23,7 +23,7 @@ export default function SimpleSlider() {
     }, [])
 
     useEffect(() => {
-        Axios.get('/main/notice')
+        Axios.get('/apimain/notice')
             .then(res => {
                 setBannerList(res.data);
             })

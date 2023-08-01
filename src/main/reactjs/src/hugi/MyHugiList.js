@@ -32,7 +32,7 @@ function MyHugiList(props) {
     }, []);
     const fetchMoreData = () => {
         setLoading(true);
-        Axios.get(`/hugi/mylist/${unum}?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
+        Axios.get(`/apihugi/mylist/${unum}?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
             .then((res) => {
                 const newData = _.uniqBy([...myHugiData, ...res.data], 'hnum');
                 setMyHugiData(newData);
@@ -51,7 +51,7 @@ function MyHugiList(props) {
 
 // unum 유무 확인 후 설정하는 함수
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res=> {
                 setUserNum(res.data);
             });
@@ -66,7 +66,7 @@ function MyHugiList(props) {
     }, []); // unum이 변경되면 해당 unum에 대한 데이터를 다시 가져옴
 
     const getUser = () => {
-        Axios.get(`/hugi/getUser/${unum}`)
+        Axios.get(`/apihugi/getUser/${unum}`)
             .then((res) => {
                 //console.log("unum>>"+unum);// Success!
                 setUnickname(res.data);
@@ -100,7 +100,7 @@ function MyHugiList(props) {
         });
 
         try {
-            const res = await Axios.post('/hugi/upload', uploadFiles);
+            const res = await Axios.post('/apihugi/upload', uploadFiles);
             setHphoto(res.data); // 서버로부터 받아온 사진 URL을 단일 문자열로 설정
 
             // 파일 이름 출력을 위해 선택된 파일 이름들을 저장
@@ -138,10 +138,10 @@ function MyHugiList(props) {
             // 여러 파일 업로드 처리
             const uploadFiles = new FormData();
             selectedFiles.forEach((file) => uploadFiles.append('upload', file));
-            const res = await Axios.post('/hugi/upload', uploadFiles);
+            const res = await Axios.post('/apihugi/upload', uploadFiles);
             dataToSend.hphoto = res.data; // 서버로부터 받아온 여러 파일의 URL을 dataToSend에 설정
 
-            await Axios.post('/hugi/insert', dataToSend);
+            await Axios.post('/apihugi/insert', dataToSend);
             setHcontent('');
             setSelectedFiles([]); // 파일 선택 초기화
             setSelectedPreviews([]); // 파일 미리보기 초기화

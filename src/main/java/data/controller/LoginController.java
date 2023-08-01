@@ -25,7 +25,7 @@ import java.security.SecureRandom;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/login")
+@RequestMapping("/apilogin")
 public class LoginController {
 
     String photo;

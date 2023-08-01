@@ -16,7 +16,7 @@ export default class SimpleSlider extends Component {
     }
 
     componentDidMount() {
-        Axios.get('/main/hugi')
+        Axios.get('/apimain/hugi')
             .then(res => {
                 // 서버에서 받아온 데이터로 상태 업데이트
                 this.setState({ reviewList: res.data });

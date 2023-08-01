@@ -20,7 +20,7 @@ function UserList(props) {
     const fetchMoreData=()=>{
         setLoading(true);
                 Axios
-                    .get(`/admin/getuserlist?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .get(`/apiadmin/getuserlist?page=${page}&size=20`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
                         const newData = _.uniqBy([...items, ...res.data], 'unum');
                         setItems(newData);
@@ -33,7 +33,7 @@ function UserList(props) {
                     });
     };
     const  addBlackList=(unum)=>{
-        Axios.get('/admin/addBlackList?unum='+unum)
+        Axios.get('/apiadmin/addBlackList?unum='+unum)
         
     }
     useEffect(()=>{
@@ -41,7 +41,7 @@ function UserList(props) {
     },[])
 
     const search = () => {
-        Axios.get("/admin/usersearchlist?keyword=" + keyword)
+        Axios.get("/apiadmin/usersearchlist?keyword=" + keyword)
             .then(res => {
                 setItems(res.data);
                 setPage((prevPage) => prevPage + 1);

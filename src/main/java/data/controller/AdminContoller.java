@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/admin")
+@RequestMapping("/apiadmin")
 public class AdminContoller {
 
     @Autowired

@@ -44,9 +44,9 @@ function Login(props) {
 
     const ouSubmitEvent = (e) => {
         e.preventDefault();
-        axios.get(`/login/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
+        axios.get(`/apilogin/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             if (res.data === 0) {
                 alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.")
                 setUpass('');

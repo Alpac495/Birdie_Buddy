@@ -22,17 +22,17 @@ function SearchID(props) {
             alert("휴대폰 번호 11자리를 입력해 주세요.")
             setUhp('');
         } else {
-            axios.get("/login/getUserUhp?uhp=" + uhp)
+            axios.get("/apilogin/getUserUhp?uhp=" + uhp)
                 .then(res => {
                     console.log(res.data.length)
                     if (res.data == '') {
                         alert("입력한 휴대폰 번호로 가입된 아이디가 없습니다.")
                         setUhp('');
                     } else {
-                        axios.get('/login/smsSend?uhp=' + uhp)
+                        axios.get('/apilogin/smsSend?uhp=' + uhp)
                             .then(response => {
                                 alert("인증 번호를 발송했습니다.")
-                                axios.get("/login/getUserUhp?uhp=" + uhp)
+                                axios.get("/apilogin/getUserUhp?uhp=" + uhp)
                                 .then(res=>{
                                     setData(res.data);
                                     console.log(res.data)
@@ -47,7 +47,7 @@ function SearchID(props) {
     }
 
     const codeChk = () => {
-        axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
+        axios.get('/apilogin/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
                     alert("인증 되었습니다.")
