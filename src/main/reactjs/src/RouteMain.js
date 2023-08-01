@@ -24,6 +24,7 @@ import MyHugiList from "./hugi/MyHugiList";
 import FriendSearch from './friend/FriendSearch';
 import Report from "./admin/Report";
 import NoticeEditForm from "./admin/NoticeEditForm";
+import Score from './ranking/Score';
 
 
 function RouteMain(props) {
@@ -98,6 +99,7 @@ function RouteMain(props) {
                 <Route path={'/score'} >
                     <Route path="form" element={<RankForm/>}/>
                     <Route path="list" element={<RankList/>}/>
+                    <Route path="myList" element={<Score/>}/>
                 </Route>
 
                 <Route path={'/chating'} >
