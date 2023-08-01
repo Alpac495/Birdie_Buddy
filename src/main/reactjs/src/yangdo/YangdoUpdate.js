@@ -118,7 +118,7 @@ function YangdoUpdate(props) {
                                         return val
                                     }
                                 }).map((item, idx) =>
-                                    <span onClick={selectGolfjang}><li>{item.gname}</li></span>
+                                    <span onClick={selectGolfjang}><li>{item.gname}</li><br/></span>
                                 )}
                         </ul>
                     </div>
