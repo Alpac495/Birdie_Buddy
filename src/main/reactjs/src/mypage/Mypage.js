@@ -47,9 +47,9 @@ function Mypage(props) {
     const bgphotoRef = useRef();
     const [reportReason, setReportReason] = useState('');
     const unumchk = () => {
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
             .then(res => {
-                axios.get("/login/getuser?unum=" + res.data)
+                axios.get("/apilogin/getuser?unum=" + res.data)
                     .then(res => {
                         console.log(res.data);
                         setDto(res.data);
@@ -62,7 +62,7 @@ function Mypage(props) {
                         setUbgphoto(res.data.ubgphoto);
                         setImsibgphoto(res.data.ubgphoto);
                         setUnum(res.data.unum);
-                        axios.get("/login/getRtasu?unum=" + res.data.unum)
+                        axios.get("/apilogin/getRtasu?unum=" + res.data.unum)
                             .then(res => {
                                 setStasu(res.data);
                             })
@@ -81,7 +81,7 @@ function Mypage(props) {
     }
     const changeCon = () => {
         setUcontent(conRef.current.value)
-        axios.get(`/login/updateCon?ucontent=${conRef.current.value}&unum=${unum}`)
+        axios.get(`/apilogin/updateCon?ucontent=${conRef.current.value}&unum=${unum}`)
             .then(res => {
                 console.log(res.data)
                 setUcontent(res.data);
@@ -96,13 +96,13 @@ function Mypage(props) {
             alert("닉네임은 최대 7자까지 가능합니다.");
             return;
         } else {
-            axios.get(`/login/nickchk?unickname=${nickRef.current.value}`)
+            axios.get(`/apilogin/nickchk?unickname=${nickRef.current.value}`)
                 .then(res => {
                     if (res.data == 1) {
                         alert("중복된 닉네임 입니다")
                         return;
                     } else {
-                        axios.get(`/login/updateNick?unickname=${nickRef.current.value}&unum=${unum}`)
+                        axios.get(`/apilogin/updateNick?unickname=${nickRef.current.value}&unum=${unum}`)
                             .then(res => {
                                 console.log(res.data)
                                 setUnickname(res.data);
@@ -118,7 +118,7 @@ function Mypage(props) {
 
 
     const changePhoto = () => {
-        axios.get(`/login/updatePhoto?uphoto=${imsiphoto}&unum=${unum}`)
+        axios.get(`/apilogin/updatePhoto?uphoto=${imsiphoto}&unum=${unum}`)
             .then(res => {
                 console.log(res.data)
                 setUphoto(res.data);
@@ -126,7 +126,7 @@ function Mypage(props) {
         setPhotoOpen(false);
     }
     const changebgphoto = () => {
-        axios.get(`/login/updateBgPhoto?ubgphoto=${imsibgphoto}&unum=${unum}`)
+        axios.get(`/apilogin/updateBgPhoto?ubgphoto=${imsibgphoto}&unum=${unum}`)
             .then(res => {
                 console.log(res.data)
                 setUbgphoto(res.data);
@@ -164,7 +164,7 @@ function Mypage(props) {
     const onUploadEvent = (e) => {
         const uploadFile = new FormData();
         uploadFile.append('upload', e.target.files[0]);
-        Axios.post('/login/upload', uploadFile)
+        Axios.post('/apilogin/upload', uploadFile)
             .then((res) => {
                 console.log(res.data);
                 setImsiphoto(res.data);
@@ -173,7 +173,7 @@ function Mypage(props) {
     const onUploadEventBg = (e) => {
         const uploadFile = new FormData();
         uploadFile.append('upload', e.target.files[0]);
-        Axios.post('/login/bgupload', uploadFile)
+        Axios.post('/apilogin/bgupload', uploadFile)
             .then((res) => {
                 console.log(res.data);
                 setImsibgphoto(res.data);

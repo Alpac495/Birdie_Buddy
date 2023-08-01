@@ -14,15 +14,15 @@ const SimpleSlider = () => {
     const [fdata,setFdata]=useState('');
     
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
-            const url="/friend/recommandfriend?unum="+res.data;
+            const url="/apifriend/recommandfriend?unum="+res.data;
             Axios.get(url)
             .then(res=>{
                 setData(res.data);
             })
-            const url2=`/friend/list?unum=`+res.data;
+            const url2=`/apifriend/list?unum=`+res.data;
             Axios.get(url2)
             .then(res=>{
                 setFdata(res.data);

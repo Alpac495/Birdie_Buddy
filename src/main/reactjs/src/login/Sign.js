@@ -81,7 +81,7 @@ function Sign(props) {
             alert("닉네임 중복 확인을 진행해 주세요.")
             return;
         }
-        axios.post("/login/sign", { uemail, upass, uname, unickname, uage, ugender, uhp, ucareer })
+        axios.post("/apilogin/sign", { uemail, upass, uname, unickname, uage, ugender, uhp, ucareer })
             .then(res => {
                 alert("환영합니다! 가입이 완료되었습니다.");
                 navi("/")
@@ -97,7 +97,7 @@ function Sign(props) {
             //alert("아이디는 5자 이상이어야 합니다.");
             return;
         } else {
-            axios.get(`/login/emailchk?uemail=${uemail}`)
+            axios.get(`/apilogin/emailchk?uemail=${uemail}`)
                 .then(res => {
                     if (res.data == 1) {
                         //alert("아이디 중복")
@@ -120,7 +120,7 @@ function Sign(props) {
             setUnickname('');
             return;
         } else {
-            axios.get(`/login/nickchk?unickname=${unickname}`)
+            axios.get(`/apilogin/nickchk?unickname=${unickname}`)
             .then(res => {
                 if (res.data == 1) {
                     //alert("닉네임 중복")
@@ -138,7 +138,7 @@ function Sign(props) {
             alert("휴대폰 번호 11자리를 입력해 주세요.")
             setUhp('');
         } else {
-            axios.get('/login/hpchk?uhp=' + uhp)
+            axios.get('/apilogin/hpchk?uhp=' + uhp)
                 .then(res => {
                     if (res.data == 1) {
                         alert("이미 등록된 번호입니다.")
@@ -146,7 +146,7 @@ function Sign(props) {
                         setUhp('');
                     } else {
                         alert("인증 번호를 발송했습니다.")
-                        axios.get('/login/smsSend?uhp=' + uhp)
+                        axios.get('/apilogin/smsSend?uhp=' + uhp)
                             .then(response => {
                                 console.log(response.data);
                             })
@@ -158,7 +158,7 @@ function Sign(props) {
         }
     }
     const codeChk = () => {
-        axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
+        axios.get('/apilogin/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
                     alert("인증되었습니다.")

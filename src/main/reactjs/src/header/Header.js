@@ -33,10 +33,10 @@ function Header(props) {
     };
 
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
-            const url="/main/userdata?unum="+res.data;
+            const url="/apimain/userdata?unum="+res.data;
             Axios.get(url)
             .then(res=>{
                 setUserData(res.data);
@@ -60,7 +60,7 @@ function Header(props) {
         }
     }
     const handleLogout = () => {
-        Axios.get("/login/logout")
+        Axios.get("/apilogin/logout")
           .then(res => {
             navi('/birdie_buddy');
             unumchk();

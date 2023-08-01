@@ -29,9 +29,9 @@ function MyRank(props) {
         getData();
     }, []);
     const getData = () => {
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
             .then(res => {
-                axios.get(`/score/myScoreList?unum=${res.data}&page=${page}&size=4`)
+                axios.get(`/apiscore/myScoreList?unum=${res.data}&page=${page}&size=4`)
                     .then(res => {
                         const newData = _.uniqBy([...data, ...res.data], 'snum')
                         setData(newData);
@@ -46,7 +46,7 @@ function MyRank(props) {
     }
 
     const getList = () => {
-        Axios.get(`/score/list?page=${page}&size=100`)
+        Axios.get(`/apiscore/list?page=${page}&size=100`)
             .then(res => {
                 const matchedData = res.data.find(item => item.unum == unum);
                 if (matchedData) {

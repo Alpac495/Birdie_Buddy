@@ -21,7 +21,7 @@ function YangdoList(props) {
     const fetchMoreData = () => {
         setLoading(true);
         Axios
-            .get(`/yangdo/list2?page=${page}&size=8`)
+            .get(`/apiyangdo/list2?page=${page}&size=8`)
             .then((res) => {
                 // 기존 데이터 중복 방지를 위해 lodash의 uniqBy 함수를 사용하여 중복 제거
                 const newData = _.uniqBy([...items, ...res.data], 'ynum');
@@ -37,7 +37,7 @@ function YangdoList(props) {
     }
     const [unum, setUnum] = useState('');
     const unumchk = () => {
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res => {
                 setUnum(res.data);
             })
@@ -71,7 +71,7 @@ function YangdoList(props) {
         }
     }
     const search = () => {
-        axios.get("/yangdo/searchList?keyword=" + keyword)
+        axios.get("/apiyangdo/searchList?keyword=" + keyword)
             .then(res => {
                 setItems(res.data);
                 setPage((prevPage) => prevPage + 1);

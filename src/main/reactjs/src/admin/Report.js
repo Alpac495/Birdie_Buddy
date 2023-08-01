@@ -18,10 +18,10 @@ const Report = () => {
     const fetchReportData = async () => {
         try {
             const offset = (currentPage - 1) * reportsPerPage;
-            const responseUsers = await Axios.get(`/report/getreport?runum=${unum}&limit=${reportsPerPage}&offset=${offset}`);
+            const responseUsers = await Axios.get(`/apireport/getreport?runum=${unum}&limit=${reportsPerPage}&offset=${offset}`);
             setReportedUsers(responseUsers.data);
 
-            const responseCount = await Axios.get(`/report/getcount?runum=${unum}`);
+            const responseCount = await Axios.get(`/apireport/getcount?runum=${unum}`);
             setReportCount(responseCount.data);
             console.log('Report Count: ', responseCount.data);
         } catch (error) {
@@ -49,7 +49,7 @@ const Report = () => {
 
     const handleBlacklist = async () => {
         try {
-            await Axios.post('/report/blacklist', { unum: selectedUser.unum });
+            await Axios.post('/apireport/blacklist', { unum: selectedUser.unum });
             await fetchReportData();
             setIsModalOpen(false);
         } catch (error) {

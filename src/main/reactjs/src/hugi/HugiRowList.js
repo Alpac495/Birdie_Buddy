@@ -242,7 +242,7 @@ function HugiRowList(props) {
     }, [snackbarOpen]);
 // unumchk 함수: 로그인된 사용자의 unum 값을 확인하는 함수
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res=> {
                 setUnum(res.data);
             });
@@ -277,7 +277,7 @@ function HugiRowList(props) {
     const handleClickLikeOn = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(true)를 호출하여 버튼을 활성화합니다.
-        Axios.post(`/hugi/like/${hnum}`)
+        Axios.post(`/apihugi/like/${hnum}`)
             .then(() => {
                 alert("좋아요를 눌렀습니다!");
                 localStorage.setItem(`likeStatus_${hnum}`, "true"); // 좋아요 상태 저장
@@ -291,7 +291,7 @@ function HugiRowList(props) {
     const handleClickLikeOff = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(false)를 호출하여 버튼을 비활성화합니다.
-        Axios.delete(`/hugi/unlike/${hnum}`)
+        Axios.delete(`/apihugi/unlike/${hnum}`)
             .then(() => {
                 alert("좋아요를 취소했습니다!");
                 localStorage.setItem(`likeStatus_${hnum}`, "false"); // 좋아요 상태 저장
@@ -308,7 +308,7 @@ function HugiRowList(props) {
             if (confirmed) {
                 deleteAllComments()
                     .then(() => {
-                        Axios.delete(`/hugi/delete/${hnum}`)
+                        Axios.delete(`/apihugi/delete/${hnum}`)
                             .then(() => {
                                 console.log('게시물이 성공적으로 삭제되었습니다.');
                                 window.location.reload();
@@ -328,7 +328,7 @@ function HugiRowList(props) {
     // deleteAllComments 함수: 게시물에 해당하는 모든 댓글과 대댓글을 삭제하는 함수
     const deleteAllComments = () => {
         return new Promise((resolve, reject) => {
-            Axios.delete(`/rehugi/deleteAllComments/${hnum}`)
+            Axios.delete(`/apirehugi/deleteAllComments/${hnum}`)
                 .then(() => {
                     console.log('댓글과 답글이 성공적으로 삭제되었습니다.');
                     resolve();
@@ -341,7 +341,7 @@ function HugiRowList(props) {
     };
     // handleDeleteComment 함수: 특정 댓글을 삭제하는 함수
     const handleDeleteComment = (rhnum) => {
-        Axios.delete(`/rehugi/deletecomment/${rhnum}`)
+        Axios.delete(`/apirehugi/deletecomment/${rhnum}`)
             .then(() => {
                 console.log('댓글 삭제 완료');
                 getComments();
@@ -360,7 +360,7 @@ function HugiRowList(props) {
     // getComments 함수: 게시물에 해당하는 모든 댓글과 대댓글을 가져오는 함수
     // getComments 함수 내부에서도 setNickname을 호출하여 unickname 값을 설정합니다.
     const getComments = () => {
-        Axios.get(`/rehugi/comments?hnum=${hnum}`)
+        Axios.get(`/apirehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
                 // console.log(res.data)
@@ -384,7 +384,7 @@ function HugiRowList(props) {
     const fetchPostUserNickname = async (unum) => {
         if (unum) {
             try {
-                const res = await Axios.get(`/hugi/getUser/${unum}`);
+                const res = await Axios.get(`/apihugi/getUser/${unum}`);
                 const Unickname = res.data;
 
                 if (Unickname) {
@@ -397,7 +397,7 @@ function HugiRowList(props) {
         }
     };
     const fetchUserPhoto = (unum) => {
-        Axios.get(`/hugi/getUserPhoto/${unum}`)
+        Axios.get(`/apihugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 setUphoto(userPhoto);
@@ -408,7 +408,7 @@ function HugiRowList(props) {
     };
 // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchCommentUserPhoto = (unum, comment) => {
-        Axios.get(`/hugi/getUserPhoto/${unum}`)
+        Axios.get(`/apihugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // comment 객체에 댓글 작성자의 프로필 사진 정보 추가
@@ -423,7 +423,7 @@ function HugiRowList(props) {
 
 // 대댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchReplyUserPhoto = (unum,reply) => {
-        Axios.get(`/hugi/getUserPhoto/${unum}`)
+        Axios.get(`/apihugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // reply 객체에 대댓글 작성자의 프로필 사진 정보 추가
@@ -495,7 +495,7 @@ function HugiRowList(props) {
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
         try {
-            const res = await Axios.get(`/hugi/getUser/${unum}`);
+            const res = await Axios.get(`/apihugi/getUser/${unum}`);
             const userNickname = res.data;
             if (userNickname) {
                 const newComment = {
@@ -510,7 +510,7 @@ function HugiRowList(props) {
                     depth: null,
                 };
 
-                await Axios.post('/rehugi/newcomment', newComment);
+                await Axios.post('/apirehugi/newcomment', newComment);
                 getComments();
                 setRhcontent('');
                 setCommentError(false);
@@ -537,7 +537,7 @@ function HugiRowList(props) {
             depth: comment.depth + 1,
         };
 
-        Axios.post("/rehugi/newreply?unum=" + unum, newReply)
+        Axios.post("/apirehugi/newreply?unum=" + unum, newReply)
             .then((res) => {
                 console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();

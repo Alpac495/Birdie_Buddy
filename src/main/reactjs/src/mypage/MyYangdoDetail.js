@@ -31,7 +31,7 @@ function MyYangdoDetail(props) {
 
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
+        Axios.get("/apilogin/unumChk?unum="+unum)
             .then(res=>{
                 setUnum(res.data);
             })
@@ -41,7 +41,7 @@ function MyYangdoDetail(props) {
     }, [])
 
     const selectData=()=>{
-        const url = `/yangdo/detail?num=${ynum}`;
+        const url = `/apiyangdo/detail?num=${ynum}`;
         Axios.get(url)
             .then(res=>{
                 setDto(res.data);
@@ -196,7 +196,7 @@ function MyYangdoDetail(props) {
                             unum !=null && unum === dto.unum || unum===1?
                                 <button type='button' className="YEframe"
                                     onClick={()=>{
-                                        const url=`/yangdo/delete?num=${dto.ynum}`;
+                                        const url=`/apiyangdo/delete?num=${dto.ynum}`;
                                         window.confirm("마감 / 삭제하시겠습니까?") &&
                                         Axios.delete(url)
                                         .then((res)=>{

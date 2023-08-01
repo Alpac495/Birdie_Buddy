@@ -21,7 +21,7 @@ function NoticeForm(props) {
     const onUploadEvent = (e) => {
         const uploadFile = new FormData();
         uploadFile.append('upload', e.target.files[0]);
-        axios.post('/admin/upload', uploadFile)
+        axios.post('/apiadmin/upload', uploadFile)
             .then((res) => {
                 console.log(res.data);
                 setNphoto(res.data);
@@ -32,7 +32,7 @@ function NoticeForm(props) {
     };
 
     const submit=()=>{
-        axios.post('/admin/noticeWrite',{nsubject, ncontent, nphoto, ncate})
+        axios.post('/apiadmin/noticeWrite',{nsubject, ncontent, nphoto, ncate})
         .then(res=>{
             navi("/admin/noticelist")
         })

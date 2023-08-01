@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/report")
+@RequestMapping("/apireport")
 public class ReportController {
 
     @Autowired

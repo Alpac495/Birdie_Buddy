@@ -13,14 +13,14 @@ function NoticeList(props) {
     const [page, setPage] = useState(1);
 
     const unumchk=()=>{
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
             .then(res=> {
                 setUnum(res.data);
             });
     }
 
     const noticeList = () => {
-        axios.get(`/admin/noticeList?limit=10&offset=${(page-1) * 10}`)
+        axios.get(`/apiadmin/noticeList?limit=10&offset=${(page-1) * 10}`)
             .then(res => {
                 console.log(res.data);
                 setData(res.data);
@@ -31,7 +31,7 @@ function NoticeList(props) {
     }
 
     const getTotalCount = () => {
-        axios.get("/admin/noticeCount")
+        axios.get("/apiadmin/noticeCount")
             .then(res => {
                 const totalCount = res.data;
                 setTotalPage(Math.ceil(totalCount/10));

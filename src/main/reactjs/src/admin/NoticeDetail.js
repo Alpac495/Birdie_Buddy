@@ -15,20 +15,20 @@ function NoticeDetail(props) {
     const navi = useNavigate();
 
     const unumchk=()=>{
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
         });
     }
 
     const noticeDetail=()=>{
-        axios.get("/admin/noticeDetail?nnum="+nnum)
+        axios.get("/apiadmin/noticeDetail?nnum="+nnum)
         .then(res=>{
             setData(res.data);
         })
     }
     const handleDeleteClick=()=>{
-        axios.get("/admin/delete?nnum="+nnum)
+        axios.get("/apiadmin/delete?nnum="+nnum)
         .then(res=>{
             alert("게시글이 정상적으로 삭제되었습니다.");
             navi("/admin/noticeList");

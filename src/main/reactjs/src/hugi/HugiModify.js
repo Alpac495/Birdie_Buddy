@@ -19,7 +19,7 @@ function HugiModify(props) {
     const navi = useNavigate();
 
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res=> {
                 setUnum(res.data);
             });
@@ -32,7 +32,7 @@ function HugiModify(props) {
         const uploadFile = new FormData();
         uploadFile.append('upload', e.target.files[0]);
         try {
-            const res = await Axios.post('/hugi/upload', uploadFile);
+            const res = await Axios.post('/apihugi/upload', uploadFile);
             setHphoto(res.data);
         } catch (error) {
             // console.log(error);
@@ -66,7 +66,7 @@ function HugiModify(props) {
 
         // console.log('modifyData>>', dataToUpdate);
         try {
-            await Axios.post('/hugi/update', dataToUpdate);
+            await Axios.post('/apihugi/update', dataToUpdate);
             navi('/hugi/list');
         } catch (error) {
             // console.log(error);
@@ -80,7 +80,7 @@ function HugiModify(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await Axios.get(`/hugi/detail/${hnum}`);
+                const response = await Axios.get(`/apihugi/detail/${hnum}`);
                 const data = response.data; // 서버로부터 받은 데이터
                 setHlike(data.hlike);
                 setHphoto(data.hphoto);

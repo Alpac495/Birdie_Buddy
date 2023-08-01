@@ -35,7 +35,7 @@ function NaverCallBack(props) {
                 console.log("naverLogin.user.gender:" + naverLogin.user.birthday)//08-25
                 console.log("naverLogin.user.gender:" + naverLogin.user.birthyear)//1997
                 console.log("naverLogin.user.gender:" + naverLogin.user.mobile)//010-8545-4961
-                axios.get(`/login/signchk?uemail=${naverLogin.user.email}`)
+                axios.get(`/apilogin/signchk?uemail=${naverLogin.user.email}`)
                     .then(res => {
                         if (res.data == 0) { //회원가입해야함
                             console.log("email:" + naverLogin.user.email);
@@ -50,7 +50,7 @@ function NaverCallBack(props) {
                                 }
                             })
                         } else {
-                            axios.get('/login/socialLogin?unum='+res.data)
+                            axios.get('/apilogin/socialLogin?unum='+res.data)
                                 .then((res=>{
                                     navi("/")
                                 }))
