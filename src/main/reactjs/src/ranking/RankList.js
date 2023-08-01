@@ -20,6 +20,9 @@ function RankList(props) {
     const medal = process.env.REACT_APP_RANKING;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
+    const isUnumFound = list.some(item => item.unum === unum);
+
+    
 
     useEffect(() => {
         unumchk();
@@ -35,6 +38,10 @@ function RankList(props) {
 
     function switchList() {
         setMyRanking(prevMyRanking => !prevMyRanking);
+        if (!isUnumFound) {
+            alert("스코어 등록이 필요합니다");
+            window.location.replace("/score/form");        
+        }
     }
 
     const getList = () => {
