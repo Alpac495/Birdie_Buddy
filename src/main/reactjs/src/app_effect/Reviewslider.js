@@ -26,7 +26,8 @@ export default class SimpleSlider extends Component {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-    }
+    }  
+  
 
     handleTouchStart = (idx) => {
         const { isClickedList } = this.state;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Login.css';
 import { FormControlLabel, Switch } from "@mui/material";
 import kakaoicon from "../image/kakao.svg";
@@ -55,7 +55,7 @@ function Login(props) {
                 setUpass('');
             } else {
                     localStorage.removeItem("uemail");
-                    if (saveemail == true) {
+                    if (saveemail === true) {
                         localStorage.setItem("uemail", uemail)
                     }
                     navi("/birdie_buddy")

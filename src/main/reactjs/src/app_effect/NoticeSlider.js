@@ -37,7 +37,7 @@ export default class SimpleSlider extends Component {
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 5000,
-            vertical: true,
+            vertical:true,
         };
         return (
             <div className="notice_slider">
@@ -47,7 +47,12 @@ export default class SimpleSlider extends Component {
                     noticeList.map((item, idx) => (
                         item.ncate === '공지사항' ? (
                         <Link className='noticeList_go' key={idx} to={`/admin/noticeDetail/${item.nnum}`}>
-                            <div key={idx}>{item.nsubject}</div>
+                            <div key={idx} className='notices_com'> 
+                                <div style={{fontWeight:'bolder',marginRight:'5px', marginLeft:'15px'}}>
+                                    [공지]
+                                </div>     
+                                <div>{item.nsubject}</div>   
+                            </div>
                         </Link>
                         ) : null
                     ))
