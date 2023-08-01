@@ -1,0 +1,20 @@
+.my_scoretable{
+    width: 21rem;
+    height: 120px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 0 auto;
+    font-weight: bolder;
+    border-radius: 10px;
+    color: aliceblue
+}
+.my_scoretable tr:not(:last-child){
+    border-bottom: 1px black solid;
+}
+.my_numpad{
+    width: 9%;
+}
+.my_firsttd{
+    width: 3rem;
+    height: 30px;
+}

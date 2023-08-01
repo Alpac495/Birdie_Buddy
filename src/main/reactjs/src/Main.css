@@ -23,6 +23,11 @@
     height: 30px;
     font-size: 12px;
 }
+.main_friendtxt{
+    font-size: 15px;
+
+    
+}
 .main_ad{
     margin: 30px 0;
 }
@@ -53,6 +58,7 @@
 .main_joinrecotxt{
     margin-bottom: 5px;
     margin-left: 15px;
+    font-size: 15px;  
 }
 .main_joinreco div img{
     width: 75px;
@@ -66,6 +72,7 @@
 .main_reviewtxt{
     margin-bottom: 8px;
     margin-left: 20px;
+    font-size: 15px;
 }
 .main_reviewwrap{
     height: 250px;

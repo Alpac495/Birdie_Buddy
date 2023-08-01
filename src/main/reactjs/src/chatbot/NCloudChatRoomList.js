@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import "./NCloudChatRoomList.css";
 import Header from '../header/Header';
+import profile3 from "../image/profile90x90.png";
+
 
 const NCloudChatRoomList = () => {
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
@@ -92,12 +94,13 @@ const NCloudChatRoomList = () => {
         }
     };
 
-    const handleChannelSelect = async (channelId) => {
+    const handleChannelSelect = async (channelId, cunum) => {
         setSelectedChannel(channelId);
+
         if (nc) {
             await nc.subscribe(channelId);
             await nc.disconnect();
-            navigate(`/chating/room/${channelId}/${unum}`);
+            navigate(`/chating/room/${channelId}/${cunum}`);
         }
     };
 
@@ -109,12 +112,12 @@ const NCloudChatRoomList = () => {
                 const chatid = response.data.chatid;
                 if(chatid){
                     await nc.disconnect();
-                    navigate(`/chating/room/${chatid}/${unum}`);
+                    navigate(`/chating/room/${chatid}/1`);
                 }else {
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
                     setChannels([...channels, { node: newchannel }]);
                     await Axios.post("/chating/insertchatid",{unum,cunum: "1",chatid: newchannel.id});
-                    await navigate(`/chating/room/${newchannel.id}/${unum}`);
+                    await navigate(`/chating/room/${newchannel.id}/1`);
                 }
             } catch (error) {
                 console.error('Error creating and subscribing channel:', error);
@@ -132,9 +135,9 @@ const NCloudChatRoomList = () => {
         </div>
         {channels.map &&
             channels.map((channel) => (
-        <div className="CLtwo-lines-list-avatar" onClick={() => handleChannelSelect(channel.chatid)}>
+        <div className="CLtwo-lines-list-avatar" onClick={() => handleChannelSelect(channel.chatid, channel.cunum)}>
           <div className="CLtwo-line-item">
-            <div className="CLtext">            
+            <div className="CLtext">
             {lastMessages[channel.chatid] && (
                 <>
                   <p>{lastMessages[channel.chatid].sender.name}의 메세지 : {lastMessages[channel.chatid].content}</p>
@@ -148,8 +151,10 @@ const NCloudChatRoomList = () => {
                     : channel.unum === channel.cunum ? "나와의 채팅"
                     : channel.unum == unum ? channel.cunickname : channel.unickname
             }</div>
-            {channel.unum == unum ?
-            <img className="CLavatar-icon" alt="" src={`${image1}${channel.cuphoto}${image2}`} />
+            {channel.cunum === 0 || channel.cunum === 1 ?
+                <img className={"CLavatar-icon"} alt="" src={profile3}/>
+            :channel.unum == unum ?
+                    <img className="CLavatar-icon" alt="" src={`${image1}${channel.cuphoto}${image2}`} />
             :<img className="CLavatar-icon" alt="" src={`${image1}${channel.uphoto}${image2}`} />}
           </div>
         </div>

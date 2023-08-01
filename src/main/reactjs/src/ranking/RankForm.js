@@ -165,7 +165,8 @@ const RankForm = () => {
                                 <span onClick={(e) => {
                                     selectGolfjang(e, idx)
                                 }}><li>{item.gname}</li><br /></span>
-                            )}
+                            )
+                        }
                     </ul>
                 </div>
             </Modal>
