@@ -21,7 +21,7 @@ public class TestController {
     String bucketPath="http://kr.object.ncloudstorage.com/bit701-bucket-111/birdiebuddy";
 
 
-    @PostMapping("/upload")
+    @PostMapping("/apiupload")
     public String upload(MultipartFile upload){
         System.out.println("upload>>"+upload);
         if(photo!=null){

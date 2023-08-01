@@ -40,10 +40,10 @@ const Report = () => {
         setSelectedUser(user);
 
         try {
-            const reporterResponse = await Axios.get(`/chating/getuserinfo?unum=${user.unum}`);
+            const reporterResponse = await Axios.get(`/apichating/getuserinfo?unum=${user.unum}`);
             setReportname(reporterResponse.data.unickname);
 
-            const reportedResponse = await Axios.get(`/chating/getuserinfo?unum=${user.runum}`);
+            const reportedResponse = await Axios.get(`/apichating/getuserinfo?unum=${user.runum}`);
             setReportedname(reportedResponse.data.unickname);
 
             setIsModalOpen(true);
