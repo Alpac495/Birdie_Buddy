@@ -10,26 +10,25 @@ const SimpleSlider = () => {
     const [unum, setUnum] = useState(0);
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
-    const [data, setData] = useState('');
-    const [fdata, setFdata] = useState('');
+    const [data,setData]=useState('');
+    const [fdata,setFdata]=useState('');
     const navi = useNavigate();
-
-    const unumchk = () => {
-        Axios.get("/login/unumChk")
-            .then(res => {
-                setUnum(res.data);
-                const url = "/friend/recommandfriend?unum=" + res.data;
-                Axios.get(url)
-                    .then(res => {
-                        setData(res.data);
-                    })
-                const url2 = `/friend/list?unum=${res.data}`;
-                Axios.get(url2)
-                    .then(res => {
-                        setFdata(res.data);
-                    })
-            });
-    }
+    
+    const unumchk=()=>{
+        Axios.get("/apilogin/unumChk")
+        .then(res=> {
+            setUnum(res.data);
+            const url="/apifriend/recommandfriend?unum="+res.data;
+            Axios.get(url)
+            .then(res=>{
+                setData(res.data);
+            })
+            const url2=`/apifriend/list?unum=`+res.data;
+            Axios.get(url2)
+            .then(res=>{
+                setFdata(res.data);
+            })
+        })}
 
     useEffect(() => {
         unumchk();

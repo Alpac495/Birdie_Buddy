@@ -28,12 +28,12 @@ const FriendSearch = () => {
     const [keyword, setKeyword] = useState('');
     
     const fetchMoreData=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
             setLoading(true);
                 Axios
-                    .get(`/friend/friendsearch?unum=${res.data}&page=${page}&size=12`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .get(`/apifriend/friendsearch?unum=${res.data}&page=${page}&size=12`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
                         const newData = _.uniqBy([...items, ...res.data], 'unum');
                         setItems(newData);
@@ -46,12 +46,12 @@ const FriendSearch = () => {
                         console.error("데이터를 더 가져오는 중 오류 발생:", error);
                         setLoading(false);
                     });
-            const furl="/friend/list?unum="+res.data;
+            const furl="/apifriend/list?unum="+res.data;
             Axios.get(furl)
             .then(res=>{
                 setMyfriendData(res.data);
             })
-            const frurl="/friend/requestcheck?unum="+res.data;
+            const frurl="/apifriend/requestcheck?unum="+res.data;
             Axios.get(frurl)
             .then(res=>{
                 setRequestCheck(res.data)
@@ -63,7 +63,7 @@ const FriendSearch = () => {
     }, [])    
 
     const search = () => {
-        Axios.get("/friend/friendsearchlist?unum="+unum+"&keyword=" + keyword)
+        Axios.get("/apifriend/friendsearchlist?unum="+unum+"&keyword=" + keyword)
             .then(res => {
                 setItems(res.data);
                 setPage((prevPage) => prevPage + 1);
@@ -78,14 +78,14 @@ const FriendSearch = () => {
     const onRequestFriendEvent=(funum)=>{
         const confirmed = window.confirm('버디 요청을 하시겠습니까?');
             if (confirmed) {
-                Axios.post("/friend/requestfriend1", {unum, funum})
+                Axios.post("/apifriend/requestfriend1", {unum, funum})
                     .then(res => {
 
                     })
                     .catch(err => {
                         console.log(err.message);
                     })
-                Axios.post("/friend/requestfriend2", {unum, funum})
+                Axios.post("/apifriend/requestfriend2", {unum, funum})
                     .then(res => {
                         alert("버디 요청이 되었습니다. 상대방이 수락시 버디리스트에서 확인 가능합니다.")
                         window.location.replace(`/friend/search`)
@@ -107,7 +107,7 @@ const FriendSearch = () => {
     const onAcceptEvent = (funum) => {
         const confirmed = window.confirm('신청을 수락하시겠습니까?');
             if (confirmed) {
-                Axios.get(`/friend/acceptfriend/${unum}&${funum}`)
+                Axios.get(`/apifriend/acceptfriend/${unum}&${funum}`)
                     .then(res => {
                         alert("버디 추가 완료!");
                         window.location.replace(`/friend/search`);

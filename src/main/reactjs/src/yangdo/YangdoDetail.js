@@ -39,10 +39,10 @@ function YangdoDetail(props) {
 
     const unumchk= async ()=>{
         try {
-            const res = await Axios.get("/login/unumChk?unum="+unum)
+            const res = await Axios.get("/apilogin/unumChk?unum="+unum)
             setUnum(res.data)
 
-            const res2 = await Axios.get("/chating/getuserinfo?unum="+res.data)
+            const res2 = await Axios.get("/apichating/getuserinfo?unum="+res.data)
             setData(res2.data);
 
             const chat = new ncloudchat.Chat();
@@ -68,7 +68,7 @@ function YangdoDetail(props) {
             console.log("getChatInfo");
             console.log("unum1: "+unum);
             console.log("unum2: "+cunum);
-            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
+            const response = await Axios.get(`/apichating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -104,7 +104,7 @@ function YangdoDetail(props) {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum)});
                     const newChatId = newchannel.id;
-                    await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
+                    await Axios.post("/apichating/insertchatid", {unum, cunum, chatid: newChatId});
 
                     alert("정상적으로 생성되었습니다");
                     await nc.subscribe(newChatId);
@@ -126,7 +126,7 @@ function YangdoDetail(props) {
 
 
     const selectData=()=>{
-        const url = `/yangdo/detail?num=${ynum}`;
+        const url = `/apiyangdo/detail?num=${ynum}`;
         Axios.get(url)
             .then(res=>{
                 setDto(res.data);
@@ -282,7 +282,7 @@ function YangdoDetail(props) {
                             unum !=null && unum==dto.unum || unum==1? 
                                 <button type='button' className="YEframe"
                                     onClick={()=>{
-                                        const url=`/yangdo/delete?num=${dto.ynum}`;
+                                        const url=`/apiyangdo/delete?num=${dto.ynum}`;
                                         window.confirm("마감 / 삭제하시겠습니까?") &&
                                         Axios.delete(url)
                                         .then((res)=>{

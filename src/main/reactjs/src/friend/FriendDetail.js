@@ -28,26 +28,28 @@ function FriendDetail(props) {
     const navi = useNavigate();
     const [reportModalOpen, setReportModalOpen] = useState(false);
     const [reportReason, setReportReason] = useState('');
+    const [userInfo, setUserInfo] = useState(null);
 
     const unumchk = async () => {
-        const res1 = await Axios.get("/login/unumChk");
+        const res1 = await Axios.get("/apilogin/unumChk");
         const unum = res1.data;
         setUnum(res1.data);
 
-        const url = `/friend/checkbuddy?unum=${res1.data}&funum=${funum}`;
+        const url = `/apifriend/checkbuddy?unum=${res1.data}&funum=${funum}`;
         const res2 = await Axios.get(url);
         setCheckbuddy(res2.data);
 
-        const frurl = `/friend/requestcheck?unum=${res1.data}`;
+        const frurl = `/apifriend/requestcheck?unum=${res1.data}`;
         const res3 = await Axios.get(frurl);
         setRequestCheck(res3.data);
 
-        const res4 = await Axios.get(`/login/getRtasu?unum=${funum}`);
+        const res4 = await Axios.get(`/apilogin/getRtasu?unum=${funum}`);
         setStasu(res4.data);
 
-        const getUserInfourl = `/chating/getuserinfo?unum=${unum}`;
+        const getUserInfourl = `/apichating/getuserinfo?unum=${unum}`;
         const res5 = await Axios.get(getUserInfourl);
-        const userInfo = res5.data;
+        setUserInfo(res5.data);
+        console.log("userInfo : " + JSON.stringify(userInfo));
 
         const chat = new ncloudchat.Chat();
         chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
@@ -70,7 +72,7 @@ function FriendDetail(props) {
             console.log("getChatInfo");
             console.log("unum1: " + unum);
             console.log("unum2: " + cunum);
-            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
+            const response = await Axios.get(`/apichating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -96,7 +98,7 @@ function FriendDetail(props) {
                     const newChatId = newchannel.id;
                     await nc.subscribe(newChatId);
 
-                    await Axios.post("/chating/insertchatid", { unum, cunum, chatid: newChatId });
+                    await Axios.post("/apichating/insertchatid", { unum, cunum, chatid: newChatId });
 
                     alert("정상적으로 생성되었습니다");
                     // 채팅방으로 이동
@@ -110,7 +112,7 @@ function FriendDetail(props) {
     };
 
     const selectData = useCallback(() => {
-        const url = `/friend/detail?funum=${funum}`;
+        const url = `/apifriend/detail?funum=${funum}`;
         Axios({
             type: 'get',
             url,
@@ -129,14 +131,14 @@ function FriendDetail(props) {
         e.preventDefault();
         const confirmed = window.confirm('버디 요청을 하시겠습니까?');
         if (confirmed) {
-            Axios.post("/friend/requestfriend1", { unum, funum })
+            Axios.post("/apifriend/requestfriend1", { unum, funum })
                 .then(res => {
 
                 })
                 .catch(err => {
                     console.log(err.message);
                 })
-            Axios.post("/friend/requestfriend2", { unum, funum })
+            Axios.post("/apifriend/requestfriend2", { unum, funum })
                 .then(res => {
                     alert("버디 요청이 되었습니다. 상대방이 수락시 버디리스트에서 확인 가능합니다.")
                     window.location.replace(`/friend/detail/${funum}`)
@@ -150,7 +152,7 @@ function FriendDetail(props) {
     const onFriendCancelEvent = () => {
         const confirmed = window.confirm('정말 취소하시겠습니까?');
         if (confirmed) {
-            Axios.delete(`/friend/friendcancel/${unum}&${funum}`)
+            Axios.delete(`/apifriend/friendcancel/${unum}&${funum}`)
                 .then(res => {
                     alert("정상적으로 취소되었습니다");
                     window.location.replace(`/friend/detail/${funum}`)
@@ -164,7 +166,7 @@ function FriendDetail(props) {
     const onAcceptEvent = () => {
         const confirmed = window.confirm('신청을 수락하시겠습니까?');
         if (confirmed) {
-            Axios.get(`/friend/acceptfriend/${unum}&${funum}`)
+            Axios.get(`/apifriend/acceptfriend/${unum}&${funum}`)
                 .then(res => {
                     alert("버디 추가 완료. 버디 리스트에서 확인하세요.");
                     window.location.replace(`/friend/detail/${funum}`);
@@ -197,7 +199,7 @@ function FriendDetail(props) {
             console.log("신고자 : " + unum);
             console.log("피 신고자 : " + dto.unum);
 
-            const response = await Axios.post('/report/newReport', {
+            const response = await Axios.post('/apireport/newReport', {
                 unum: unum,
                 runum: dto.unum,
                 reason: reportReason
@@ -312,8 +314,8 @@ function FriendDetail(props) {
                 <img className="FD3backimgicon" alt="" src={SingoBtn} onClick={handleReportClick} />
                 {reportModalOpen &&
                     <ModalReport
-                        reporterNickname={unum}
-                        reportedNickname={dto.unum}
+                        reporterNickname={userInfo.unickname}
+                        reportedNickname={dto.unickname}
                         reportReason={reportReason}
                         setReportReason={setReportReason}
                         reportUser={handleReportSubmit}

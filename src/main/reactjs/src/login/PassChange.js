@@ -19,7 +19,7 @@ function PassChange(props) {
     const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
     const navi = useNavigate();
     const getUserInfo = () => {
-        axios.get("/login/getUserInfo")
+        axios.get("/apilogin/getUserInfo")
             .then(res => {
                 setData(res.data)
             })
@@ -29,7 +29,7 @@ function PassChange(props) {
     }, [])
 
     const passChnage = () => {
-        axios.get('/login/passChk?upass=' + upass)
+        axios.get('/apilogin/passChk?upass=' + upass)
             .then(res => {
                 console.log(res.data);
                 if (!res.data) {
@@ -42,10 +42,10 @@ function PassChange(props) {
                     alert("비밀번호는 8자리 이상, 16자리 이하로 영어/숫자/특수문자를 포함해야 합니다.");
                     return;
                 } else {
-                    axios.get('/login/passChange?upass=' + newpass)
+                    axios.get('/apilogin/passChange?upass=' + newpass)
                         .then(res => {
                             alert("비밀번호가 변경되었습니다. \n새로운 비밀번호로 로그인해 주세요.")
-                            axios.get('/login/logout')
+                            axios.get('/apilogin/logout')
                                 .then(res => {
                                     navi('/login/login')
                                 })

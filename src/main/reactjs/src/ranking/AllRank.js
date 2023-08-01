@@ -25,7 +25,7 @@ function AllRank(props) {
     }, []);
 
     const unumchk = () => {
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res => {
                 setUnum(res.data);
             })
@@ -36,7 +36,7 @@ function AllRank(props) {
     }
 
     const getList = () => {
-        Axios.get(`/score/list?page=${page}&size=7`)
+        Axios.get(`/apiscore/list?page=${page}&size=7`)
             .then(res => {
                 const newData = _.uniqBy([...list, ...res.data], 'rnum');
                 setList(newData);

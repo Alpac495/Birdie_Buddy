@@ -35,16 +35,16 @@ const JoinDetail = () => {
 
 
     const unumchk = async () => {
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(async res => {
                 setUnum(res.data);
-                Axios.get("/login/getRtasu?unum=" + res.data)
+                Axios.get("/apilogin/getRtasu?unum=" + res.data)
                     .then(res => {
                         setStasu(res.data);
                     });
 
                 // 여기서 UserInfo를 가져오고 채팅을 초기화합니다.
-                const getUserInfourl = `/chating/getuserinfo?unum=${res.data}`;
+                const getUserInfourl = `/apichating/getuserinfo?unum=${res.data}`;
                 const res2 = await Axios.get(getUserInfourl);
 
                 const chat = new ncloudchat.Chat();
@@ -81,7 +81,7 @@ const JoinDetail = () => {
         setJp1age(jp1age);
         setJp1tasu(jp1tasu);        
         setPartnerFormOpen(false);
-        Axios.post("/joinmember/joinGaip", {unum, jnum, jp1gender, jp1age, jp1tasu, jcount})
+        Axios.post("/apijoinmember/joinGaip", {unum, jnum, jp1gender, jp1age, jp1tasu, jcount})
                 .then(res => {
                     window.location.replace(`/joining/detail/${jnum}`)
                 })
@@ -91,7 +91,7 @@ const JoinDetail = () => {
     }
 
     const confirmlist = useCallback(() => {
-        const url = "/joinmember/confirmlist?jnum="+(jnum);
+        const url = "/apijoinmember/confirmlist?jnum="+(jnum);
         Axios.get(url)
             .then(res => {
                 setConfirm(res.data);
@@ -105,7 +105,7 @@ const JoinDetail = () => {
     }, [confirmlist]);
 
     const sublist = useCallback(() => {
-        const url = "/joinmember/sublist?jnum="+(jnum);
+        const url = "/apijoinmember/sublist?jnum="+(jnum);
         Axios.get(url)
             .then(res => {
                 setSub(res.data);
@@ -119,7 +119,7 @@ const JoinDetail = () => {
     }, [sublist]);
 
     const selectData=useCallback(()=>{
-        const url="/joining/detail?jnum="+(jnum);
+        const url="/apijoining/detail?jnum="+(jnum);
         Axios({
             type:'get',
             url,
@@ -135,7 +135,7 @@ const JoinDetail = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const checkmember = useCallback(()=>{
-        const url=`/joinmember/checkmember/${unum}&${jnum}`;        
+        const url=`/apijoinmember/checkmember/${unum}&${jnum}`;        
         Axios.get(url)
             .then(res=>{
                 setCheck(res.data)
@@ -160,7 +160,7 @@ const JoinDetail = () => {
             setJcount(2);
             setPartnerFormOpen(true);   
         }else{
-            Axios.post("/joinmember/joinGaip", {unum, jnum, jcount})
+            Axios.post("/apijoinmember/joinGaip", {unum, jnum, jcount})
                 .then(res => {
                     window.location.replace(`/joining/detail/${jnum}`)
                 })
@@ -174,7 +174,7 @@ const JoinDetail = () => {
     const onGaipCancelEvent=()=> {
         const confirmed = window.confirm('정말 취소하시겠습니까?');
         if (confirmed) {
-            Axios.delete(`/joinmember/joinCancel/${unum}&${jnum}`)
+            Axios.delete(`/apijoinmember/joinCancel/${unum}&${jnum}`)
                 .then(res => {
                     alert("정상적으로 취소되었습니다");
                     window.location.replace(`/joining/detail/${jnum}`)
@@ -188,7 +188,7 @@ const JoinDetail = () => {
     const onJoinCancelEvent=()=> {
         const confirmed = window.confirm('모집을 취소하시겠습니까?');
         if (confirmed) {
-            Axios.delete(`/joining/joinCancel/${jnum}`)
+            Axios.delete(`/apijoining/joinCancel/${jnum}`)
                 .then(res => {
                     alert("정상적으로 취소되었습니다");
                     window.location.replace(`/joining/alllist`)
@@ -206,7 +206,7 @@ const JoinDetail = () => {
         }else {
             const confirmed = window.confirm('신청을 수락하시겠습니까?');
             if (confirmed) {
-                Axios.get(`/joinmember/acceptJoin/${unum}&${jnum}`)
+                Axios.get(`/apijoinmember/acceptJoin/${unum}&${jnum}`)
                     .then(res => {
                         window.location.replace(`/joining/detail/${jnum}/${writerunum}`);
                     })
@@ -226,7 +226,7 @@ const JoinDetail = () => {
             console.log("getChatInfo");
             console.log("unum1: "+unum);
             console.log("unum2: "+cunum);
-            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
+            const response = await Axios.get(`/apichating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -241,14 +241,14 @@ const JoinDetail = () => {
                 if (chatid) {
                     // chatid != null 일 경우
                     await nc.disconnect();
-                    navi(`/chating/room/${chatid}/${unum}`);
+                    navi(`/chating/room/${chatid}/${cunum}`);
                 } else {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum)});
                     const newChatId = newchannel.id;
                     await nc.subscribe(newChatId);
 
-                    await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
+                    await Axios.post("/apichating/insertchatid", {unum, cunum, chatid: newChatId});
 
                     alert("정상적으로 생성되었습니다");
                     // 채팅방으로 이동

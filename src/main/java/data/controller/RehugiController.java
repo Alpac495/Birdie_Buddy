@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/rehugi")
+@RequestMapping("/apirehugi")
 public class RehugiController {
     @Autowired
     private NcpObjectStorageService storageService;

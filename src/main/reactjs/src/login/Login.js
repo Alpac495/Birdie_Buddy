@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Login.css';
 import { FormControlLabel, Switch } from "@mui/material";
 import kakaoicon from "../image/kakao.svg";
@@ -44,9 +44,9 @@ function Login(props) {
 
     const ouSubmitEvent = (e) => {
         e.preventDefault();
-        axios.get(`/login/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
+        axios.get(`/apilogin/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             if (res.data === 0) {
                 alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.")
                 setUpass('');
@@ -55,7 +55,7 @@ function Login(props) {
                 setUpass('');
             } else {
                     localStorage.removeItem("uemail");
-                    if (saveemail == true) {
+                    if (saveemail === true) {
                         localStorage.setItem("uemail", uemail)
                     }
                     navi("/birdie_buddy")

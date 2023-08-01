@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/golfjang")
+@RequestMapping("/apigolfjang")
 public class GolfjangController {
 
     String photo;

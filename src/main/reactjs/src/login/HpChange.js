@@ -14,7 +14,7 @@ function HpChange(props) {
     const [chk, setChk] = useState(false);
     const navi = useNavigate();
     const getUserInfo=()=>{
-        axios.get("/login/getUserInfo")
+        axios.get("/apilogin/getUserInfo")
         .then(res=>{
             setData(res.data)
         })
@@ -27,14 +27,14 @@ function HpChange(props) {
             alert("휴대폰 번호 11자리를 입력해 주세요.")
             setUhp('');
         } else {
-            axios.get('/login/hpchk?uhp=' + uhp)
+            axios.get('/apilogin/hpchk?uhp=' + uhp)
                 .then(res => {
                     if (res.data == 1) {
                         alert("이미 등록된 번호입니다.")
                         setUhp('');
                     } else {
                         alert("인증 번호를 발송했습니다.")
-                        axios.get('/login/smsSend?uhp=' + uhp)
+                        axios.get('/apilogin/smsSend?uhp=' + uhp)
                             .then(response => {
                                 console.log(response.data);
                             })
@@ -53,7 +53,7 @@ function HpChange(props) {
             alert("휴대폰 인증을 진행해 주세요.")
             return;
         }
-        axios.get('/login/hpChange?uhp='+uhp)
+        axios.get('/apilogin/hpChange?uhp='+uhp)
         .then(res=>{
             alert("휴대폰 번호가 변경되었습니다.")
             navi('/birdie_buddy')
@@ -61,7 +61,7 @@ function HpChange(props) {
     }
 
     const codeChk = () => {
-        axios.get('/login/codechk?uhp=' + uhp + '&code=' + code)
+        axios.get('/apilogin/codechk?uhp=' + uhp + '&code=' + code)
             .then(res => {
                 if (res.data) {
                     alert("인증되었습니다.")

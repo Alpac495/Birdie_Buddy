@@ -30,7 +30,7 @@ function HugiList(props) {
     }, []);
     const fetchMoreData = () => {
         setLoading(true);
-        Axios.get(`/hugi/list?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
+        Axios.get(`/apihugi/list?page=${page}&size=10`) // 페이지 당 10개의 아이템을 요청하도록 수정
             .then((res) => {
                 const newData = _.uniqBy([...hugiData, ...res.data], 'hnum');
                 setHugiData(newData);
@@ -49,7 +49,7 @@ function HugiList(props) {
 
 // unum 유무 확인 후 설정하는 함수
     const unumchk = () => {
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res => {
                 setUnum(res.data);
             });
@@ -66,7 +66,7 @@ function HugiList(props) {
 
 
     const getUser = () => {
-        Axios.get(`/hugi/getUser/${unum}`)
+        Axios.get(`/apihugi/getUser/${unum}`)
             .then((res) => {
                 //console.log("unum>>"+unum);// Success!
                 setUnickname(res.data.unickname);
@@ -104,7 +104,7 @@ function HugiList(props) {
         });
 
         try {
-            const res = await Axios.post('/hugi/upload', uploadFiles);
+            const res = await Axios.post('/apihugi/upload', uploadFiles);
             setHphoto(res.data); // 서버로부터 받아온 사진 URL을 단일 문자열로 설정
 
             // 파일 이름 출력을 위해 선택된 파일 이름들을 저장
@@ -142,10 +142,10 @@ function HugiList(props) {
             // 여러 파일 업로드 처리
             const uploadFiles = new FormData();
             selectedFiles.forEach((file) => uploadFiles.append('upload', file));
-            const res = await Axios.post('/hugi/upload', uploadFiles);
+            const res = await Axios.post('/apihugi/upload', uploadFiles);
             dataToSend.hphoto = res.data; // 서버로부터 받아온 여러 파일의 URL을 dataToSend에 설정
 
-            await Axios.post('/hugi/insert', dataToSend);
+            await Axios.post('/apihugi/insert', dataToSend);
             setHcontent('');
             setSelectedFiles([]); // 파일 선택 초기화
             setSelectedPreviews([]); // 파일 미리보기 초기화

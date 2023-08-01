@@ -28,7 +28,7 @@ function YangdoUpdate(props) {
     const [yangdoData, setYangdoData] = useState('');
 
     const getData = () => {
-        const detailUrl = `/yangdo/detail?num=${ynum}`;
+        const detailUrl = `/apiyangdo/detail?num=${ynum}`;
         Axios.get(detailUrl)
             .then(res => {
                 setYangdoData(res.data);
@@ -40,7 +40,7 @@ function YangdoUpdate(props) {
     }, []);
 
     const list = useCallback(() => {
-        const url = "/golfjang/list";
+        const url = "/apigolfjang/list";
         Axios.get(url)
             .then(res => {
                 setData(res.data);
@@ -79,7 +79,7 @@ function YangdoUpdate(props) {
             alert("예약 시간을 입력해주세요.")
         } else {
 
-            const url = "/yangdo/update";
+            const url = "/apiyangdo/update";
             Axios.post(url, yangdoData)
                 .then(res => {
 

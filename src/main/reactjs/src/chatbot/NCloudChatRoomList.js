@@ -23,10 +23,10 @@ const NCloudChatRoomList = () => {
 
     const unumchk = async () => {
         try {
-            const res1 = await Axios.get("/login/unumChk");
+            const res1 = await Axios.get("/apilogin/unumChk");
             setUnum(res1.data);
 
-            const url = "/chating/getuserinfo?unum=" + res1.data;
+            const url = "/apichating/getuserinfo?unum=" + res1.data;
             const res2 = await Axios.get(url);
             setData(res2.data);
             setUnickname(res2.data.unickname);
@@ -43,7 +43,7 @@ const NCloudChatRoomList = () => {
                 customField: 'json',
             });
 
-            const channelRes = await Axios.get(`/chating/getchatroom?unum=${res2.data.unum}`);
+            const channelRes = await Axios.get(`/apichating/getchatroom?unum=${res2.data.unum}`);
             const channelIds = channelRes.data;
 
             // Add fetching of last messages for channels
@@ -94,13 +94,17 @@ const NCloudChatRoomList = () => {
         }
     };
 
-    const handleChannelSelect = async (channelId, cunum) => {
+    const handleChannelSelect = async (channelId, cunum, pramunum) => {
         setSelectedChannel(channelId);
 
         if (nc) {
             await nc.subscribe(channelId);
             await nc.disconnect();
+            if (unum == pramunum){
             navigate(`/chating/room/${channelId}/${cunum}`);
+            }else{
+            navigate(`/chating/room/${channelId}/${pramunum}`);   
+            }
         }
     };
 
@@ -108,7 +112,7 @@ const NCloudChatRoomList = () => {
     const handleCreateChannel = async () => {
         if (nc) {
             try {
-                const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=1`);
+                const response = await Axios.get(`/apichating/getchatinfo?unum1=${unum}&unum2=1`);
                 const chatid = response.data.chatid;
                 if(chatid){
                     await nc.disconnect();
@@ -116,7 +120,7 @@ const NCloudChatRoomList = () => {
                 }else {
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
                     setChannels([...channels, { node: newchannel }]);
-                    await Axios.post("/chating/insertchatid",{unum,cunum: "1",chatid: newchannel.id});
+                    await Axios.post("/apichating/insertchatid",{unum,cunum: "1",chatid: newchannel.id});
                     await navigate(`/chating/room/${newchannel.id}/1`);
                 }
             } catch (error) {
@@ -135,7 +139,7 @@ const NCloudChatRoomList = () => {
                 </div>
                 {channels.length > 0 ? (
                     channels.map((channel) => (
-                        <div className="CLtwo-lines-list-avatar" onClick={() => handleChannelSelect(channel.chatid, channel.cunum)}>
+                        <div className="CLtwo-lines-list-avatar" onClick={() => handleChannelSelect(channel.chatid, channel.cunum, channel.unum)}>
                             <div className="CLtwo-line-item">
                                 <div className="CLtext">
                                     {lastMessages[channel.chatid] && (

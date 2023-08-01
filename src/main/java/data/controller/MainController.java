@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/main")
+@RequestMapping("/apimain")
 public class MainController {
 
   @Autowired

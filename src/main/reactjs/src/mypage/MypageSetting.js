@@ -20,9 +20,9 @@ const MypageSetting = () => {
     const [unum, setUnum] = useState('');
     const navi = useNavigate();
     const unumchk = () => {
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
             .then(res => {
-                axios.get("/login/getuser?unum=" + res.data)
+                axios.get("/apilogin/getuser?unum=" + res.data)
                     .then(res => {
                         console.log(res.data);
                         setUnum(res.data.unum);
@@ -117,7 +117,7 @@ const MypageSetting = () => {
                 <div className="MPSlist-item-group-subtitle3">
                     <div className="MPSsubtitle">
                         <div className="MPSlabel" onClick={()=>
-                            axios.get("/login/logout")
+                            axios.get("/apilogin/logout")
                             .then(res=>{
                                 navi('/birdie_buddy')
                             })

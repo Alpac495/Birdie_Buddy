@@ -40,7 +40,7 @@ const KakaoCallback = () => {
                             console.log('이메일' + kakao_account.email);
                             console.log('성별' + kakao_account.gender);
                             console.log('닉네임' + kakao_account.profile.nickname);
-                            axios.get(`/login/signchk?uemail=${kakao_account.email}`)
+                            axios.get(`/apilogin/signchk?uemail=${kakao_account.email}`)
                                 .then(res => {
                                     if (res.data == 0) { //회원가입해야함
                                         console.log("email:" + kakao_account.email);
@@ -52,7 +52,7 @@ const KakaoCallback = () => {
                                             }
                                         })
                                     } else {
-                                        axios.get('/login/socialLogin?unum=' + res.data)
+                                        axios.get('/apilogin/socialLogin?unum=' + res.data)
                                             .then((res => {
                                                 navi("/")
                                             }))

@@ -19,12 +19,12 @@ function MyYangdo(props) {
     const [loading, setLoading] = useState(false);
     const navi = useNavigate();
     const fetchMoreData = () => {//수정
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
             .then(res => {
                 setUnum(res.data);
                 setLoading(true);
                 axios
-                    .get(`/yangdo/myyangdoList?unum=${res.data}&page=${page}&size=7`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .get(`/apiyangdo/myyangdoList?unum=${res.data}&page=${page}&size=7`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
                         const newData = _.uniqBy([...items, ...res.data], 'ynum');
                         setItems(newData);
@@ -48,7 +48,7 @@ function MyYangdo(props) {
         navi(`/mypage/myyangdodetail/${ynum}`);
     }
     const search = () => {
-        axios.get("/yangdo/myyangdoListSearch?unum="+unum+"&keyword=" + keyword)
+        axios.get("/apiyangdo/myyangdoListSearch?unum="+unum+"&keyword=" + keyword)
             .then(res => {
                 setItems(res.data);
                 setPage((prevPage) => prevPage + 1);

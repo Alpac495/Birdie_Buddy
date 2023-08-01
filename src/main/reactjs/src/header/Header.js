@@ -12,6 +12,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import no from "../images/logo.png";
 import profile3 from "../image/profile90x90.png";
 import Axios from 'axios';
@@ -33,10 +34,10 @@ function Header(props) {
     };
 
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
-            const url="/main/userdata?unum="+res.data;
+            const url="/apimain/userdata?unum="+res.data;
             Axios.get(url)
             .then(res=>{
                 setUserData(res.data);
@@ -57,25 +58,28 @@ function Header(props) {
         navigate('/birdie_buddy'); // 페이지 이동
     }
 
-    const chkLogin=()=>{
-        if(unum===0){
+    const chkLogin=()=> {
+        if (unum === 0) {
             alert("먼저 로그인해 주세요");
             navi("/login/login");
             window.history.pushState(null, null, "/"); // 브라우저의 주소를 메인 페이지로 변경
-            window.onpopstate = function(event) {
+            window.onpopstate = function (event) {
                 // 뒤로가기 버튼을 눌렀을 때 처리할 로직
                 navigate("/birdie_buddy"); // 메인 페이지로 이동
             };
         }
     }
     const handleLogout = () => {
-        Axios.get("/login/logout")
+        Axios.get("/apilogin/logout")
           .then(res => {
             navi('/birdie_buddy');
             unumchk();
             alert("로그아웃 되었습니다.");
           });
     };
+    const handleGoAdmin=()=>{
+        navi('/admin/userlist');
+    }
 
     
 
@@ -150,6 +154,11 @@ function Header(props) {
                     </ListItem>
                 ))}
             </List>
+            {
+            unum!==1?'':
+            <button style={{marginLeft:'13px', marginBottom:'20px' ,backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleGoAdmin()}> <ManageAccountsIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 관리자 게시판</button>
+            }
+            
             {
             unum===0?'':
             <button style={{marginLeft:'13px',backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleLogout()}> <LogoutIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 로그아웃</button>

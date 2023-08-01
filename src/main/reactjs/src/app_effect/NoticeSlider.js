@@ -8,9 +8,9 @@ const SimpleSlider = () => {
     const [noticeList, setNoticeList] = useState([]);
     const navi = useNavigate();
     const [unum, setUnum]=useState('');
-
+  
     useEffect(() => {
-        Axios.get('/main/notice')
+        Axios.get('/apimain/notice')
             .then(res => {
                 setNoticeList(res.data);
             })

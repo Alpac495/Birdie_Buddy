@@ -29,9 +29,9 @@ function MyRank(props) {
         getData();
     }, []);
     const getData = () => {
-        axios.get("/login/unumChk")
+        axios.get("/apilogin/unumChk")
             .then(res => {
-                axios.get(`/score/myScoreList?unum=${res.data}&page=${page}&size=4`)
+                axios.get(`/apiscore/myScoreList?unum=${res.data}&page=${page}&size=4`)
                     .then(res => {
                         const newData = _.uniqBy([...data, ...res.data], 'snum')
                         setData(newData);
@@ -46,7 +46,7 @@ function MyRank(props) {
     }
 
     const getList = () => {
-        Axios.get(`/score/list?page=${page}&size=100`)
+        Axios.get(`/apiscore/list?page=${page}&size=100`)
             .then(res => {
                 const matchedData = res.data.find(item => item.unum == unum);
                 if (matchedData) {
@@ -127,8 +127,8 @@ function MyRank(props) {
                     data && data.map((item, idx) => (
                         <div className='my_rank'>
                             <div className='my_title'>
-                                작성일&nbsp;:&nbsp;{item.swriteday} <br />
-                                골프장&nbsp;:&nbsp;{item.gname}
+                            &nbsp;&nbsp;&nbsp;작성일&nbsp;:&nbsp;{item.swriteday} <br />
+                            &nbsp;&nbsp;&nbsp;골프장&nbsp;:&nbsp;{item.gname}
                             </div>
                             <br />
                             <table className={'my_scoretable'}>

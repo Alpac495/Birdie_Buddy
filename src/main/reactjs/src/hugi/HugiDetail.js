@@ -73,7 +73,7 @@ function HugiDetail(props) {
     };
 
     const apiURL = 'http://223.130.137.128/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
-    const longUrl = `http://223.130.137.128/`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+    const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
     // handleClickShare 함수: 게시물을 SNS에 공유하는 클릭 이벤트 처리 함수
     const handleClickShare = () => {
         generateShortURL(longUrl);
@@ -250,16 +250,16 @@ function HugiDetail(props) {
                 imageUrl:
                     `${url2}${hphoto}${url3}`,
                 link: {
-                    webUrl:resultUrl,
-                    mobileWebUrl: resultUrl,
+                    webUrl:realUrl,
+                    mobileWebUrl: realUrl,
                 },
             },
             buttons: [
                 {
                     title: '라운딩 후기 보러가기',
                     link: {
-                        webUrl:resultUrl,
-                        mobileWebUrl:resultUrl,
+                        webUrl:realUrl,
+                        mobileWebUrl:realUrl,
                     },
                 },
             ],
@@ -277,7 +277,7 @@ function HugiDetail(props) {
         }
     }, [snackbarOpen]);
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res=> {
                 setUnum(res.data);
             });
@@ -289,7 +289,7 @@ function HugiDetail(props) {
     const handleClickLikeOn = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(true)를 호출하여 버튼을 활성화합니다.
-        Axios.post(`/hugi/like/${hnum}`)
+        Axios.post(`/apihugi/like/${hnum}`)
             .then(() => {
                 alert("좋아요를 눌렀습니다!");
                 localStorage.setItem(`likeStatus_${hnum}`, "true"); // 좋아요 상태를 localStorage에 저장
@@ -302,7 +302,7 @@ function HugiDetail(props) {
     const handleClickLikeOff = () => {
         // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
         // setShowLike(false)를 호출하여 버튼을 비활성화합니다.
-        Axios.delete(`/hugi/unlike/${hnum}`)
+        Axios.delete(`/apihugi/unlike/${hnum}`)
             .then(() => {
                 alert("좋아요를 취소했습니다!");
                 localStorage.setItem(`likeStatus_${hnum}`, "false"); // 좋아요 상태를 localStorage에 저장
@@ -318,7 +318,7 @@ function HugiDetail(props) {
             if (confirmed) {
                 deleteAllComments()
                     .then(() => {
-                        Axios.delete(`/hugi/delete/${hnum}`)
+                        Axios.delete(`/apihugi/delete/${hnum}`)
                             .then(() => {
                                 console.log('게시물이 성공적으로 삭제되었습니다.');
                                 navi("/hugi/list");
@@ -337,7 +337,7 @@ function HugiDetail(props) {
     };
     const deleteAllComments = () => {
         return new Promise((resolve, reject) => {
-            Axios.delete(`/rehugi/deleteAllComments/${hnum}`)
+            Axios.delete(`/apirehugi/deleteAllComments/${hnum}`)
                 .then(() => {
                     console.log('댓글과 답글이 성공적으로 삭제되었습니다.');
                     resolve();
@@ -349,7 +349,7 @@ function HugiDetail(props) {
         });
     };
     const handleDeleteComment = (rhnum) => {
-        Axios.delete(`/rehugi/deletecomment/${rhnum}`)
+        Axios.delete(`/apirehugi/deletecomment/${rhnum}`)
             .then(() => {
                 console.log('댓글 삭제 완료');
                 getComments();
@@ -366,7 +366,7 @@ function HugiDetail(props) {
     };
     // getComments 함수 내부에서도 setNickname을 호출하여 unickname 값을 설정합니다.
     const getComments = () => {
-        Axios.get(`/rehugi/comments?hnum=${hnum}`)
+        Axios.get(`/apirehugi/comments?hnum=${hnum}`)
             .then((res) => {
                 const sortedComments = sortComments(res.data);
                 setComments(sortedComments);
@@ -386,7 +386,7 @@ function HugiDetail(props) {
     const fetchPostUserNickname = async (unum) => {
         if (unum) {
             try {
-                const res = await Axios.get(`/hugi/getUser/${unum}`);
+                const res = await Axios.get(`/apihugi/getUser/${unum}`);
                 const Unickname = res.data;
                 if (Unickname) {
                     setPostUserNickname(Unickname);
@@ -401,7 +401,7 @@ function HugiDetail(props) {
         }
     };
     const fetchUserPhoto = (unum) => {
-        Axios.get(`/hugi/getUserPhoto/${unum}`)
+        Axios.get(`/apihugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 setUphoto(userPhoto);
@@ -417,7 +417,7 @@ function HugiDetail(props) {
     }, [uphoto,unum]);
     // 댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchCommentUserPhoto = (unum, comment) => {
-        Axios.get(`/hugi/getUserPhoto/${unum}`)
+        Axios.get(`/apihugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // comment 객체에 댓글 작성자의 프로필 사진 정보 추가
@@ -432,7 +432,7 @@ function HugiDetail(props) {
 
 // 대댓글 작성자의 프로필 사진 정보를 가져오는 함수
     const fetchReplyUserPhoto = (unum,reply) => {
-        Axios.get(`/hugi/getUserPhoto/${unum}`)
+        Axios.get(`/apihugi/getUserPhoto/${unum}`)
             .then((res) => {
                 const userPhoto = res.data;
                 // reply 객체에 대댓글 작성자의 프로필 사진 정보 추가
@@ -481,7 +481,7 @@ function HugiDetail(props) {
         const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
         try {
-            const res = await Axios.get(`/hugi/getUser/${unum}`);
+            const res = await Axios.get(`/apihugi/getUser/${unum}`);
             const userNickname = res.data;
             if (userNickname) {
                 const newComment = {
@@ -496,7 +496,7 @@ function HugiDetail(props) {
                     depth: null,
                 };
 
-                await Axios.post('/rehugi/newcomment', newComment);
+                await Axios.post('/apirehugi/newcomment', newComment);
                 getComments();
                 setRhcontent('');
                 setCommentError(false);
@@ -523,7 +523,7 @@ function HugiDetail(props) {
             depth: comment.depth + 1,
         };
 
-        Axios.post("/rehugi/newreply?unum=" + unum, newReply)
+        Axios.post("/apirehugi/newreply?unum=" + unum, newReply)
             .then((res) => {
                 console.log('댓글이 성공적으로 추가되었습니다.');
                 getComments();
@@ -559,7 +559,7 @@ function HugiDetail(props) {
     };
     useEffect(() => {
         // 서버로부터 hnum에 해당하는 데이터를 가져와서 상태에 저장합니다.
-        Axios.get(`/hugi/detail/${hnum}`)
+        Axios.get(`/apihugi/detail/${hnum}`)
             .then((res) => {
                 setPostUserNickname(res.data.unickname);
                 setUphoto(res.data.uphoto);
@@ -591,7 +591,7 @@ function HugiDetail(props) {
     useEffect(() => {
         const fetchHugiData = async () => {
             try {
-                const response = await Axios.get(`/hugi/detail/${hnum}`);
+                const response = await Axios.get(`/apihugi/detail/${hnum}`);
                 const data = response.data;
                 setHugiData(data);
             } catch (error) {

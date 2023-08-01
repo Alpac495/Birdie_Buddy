@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/joining")
+@RequestMapping("/apijoining")
 public class JoiningController {
 
     String photo;

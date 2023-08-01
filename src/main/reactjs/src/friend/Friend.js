@@ -27,14 +27,14 @@ function Friend(props) {
     const fetchMoreData = async () => {
         try {
             // Step 1: Get data from "/login/unumChk" endpoint
-            const res1 = await Axios.get("/login/unumChk");
+            const res1 = await Axios.get("/apilogin/unumChk");
             const unum = res1.data;
             setUnum(unum);
     
             // Step 2: Get data from "/friend/list" endpoint using the unum
             setLoading(true);
                 Axios
-                    .get(`/friend/paginglist?unum=${res1.data}&page=${page}&size=7`) // size=페이지 당 n개의 아이템을 요청하도록 수정
+                    .get(`/apifriend/paginglist?unum=${res1.data}&page=${page}&size=7`) // size=페이지 당 n개의 아이템을 요청하도록 수정
                     .then((res) => {
                         const newData = _.uniqBy([...items, ...res.data], 'fnum');
                         setItems(newData);
@@ -53,7 +53,7 @@ function Friend(props) {
             // console.log(res2.data);
     
             // Step 3: Get user info from "/chating/getuserinfo" using the unum
-            const getUserInfoUrl = `/chating/getuserinfo?unum=${unum}`;
+            const getUserInfoUrl = `/apichating/getuserinfo?unum=${unum}`;
             const res3 = await Axios.get(getUserInfoUrl);
             const userInfo = res3.data;
             setUserData(userInfo);
@@ -95,7 +95,7 @@ function Friend(props) {
             console.log("getChatInfo");
             console.log("unum1: "+unum);
             console.log("unum2: "+cunum);
-            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
+            const response = await Axios.get(`/apichating/getchatinfo?unum1=${unum}&unum2=${cunum}`);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -133,7 +133,7 @@ function Friend(props) {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum)});
                     const newChatId = newchannel.id;
-                    await Axios.post("/chating/insertchatid", {unum, cunum, chatid: newChatId});
+                    await Axios.post("/apichating/insertchatid", {unum, cunum, chatid: newChatId});
 
                     alert("정상적으로 생성되었습니다");
                     await nc.subscribe(newChatId);

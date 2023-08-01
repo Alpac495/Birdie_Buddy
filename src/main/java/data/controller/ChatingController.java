@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/chating")
+@RequestMapping("/apichating")
 public class ChatingController {
 
     String photo;

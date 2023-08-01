@@ -38,7 +38,7 @@ const JoinForm = (props) => {
 
     const [unum, setUnum]=useState(0);
     const unumchk=()=>{
-        Axios.get("/login/unumChk?unum="+unum)
+        Axios.get("/apilogin/unumChk?unum="+unum)
             .then(res=>{
                 setUnum(res.data);
             })
@@ -49,7 +49,7 @@ const JoinForm = (props) => {
     console.log(unum)
     const [data,setData]=useState('');
     const list=useCallback(()=>{
-        const url="/golfjang/list";
+        const url="/apigolfjang/list";
         Axios.get(url)
             .then(res=>{
                 setData(res.data);
@@ -74,7 +74,7 @@ const JoinForm = (props) => {
         const jp2ageValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp2age;
         const jp2tasuValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "" : jp2tasu;
         const jucountValue = noPartnerInputRef.current && noPartnerInputRef.current.checked ? "1" : jucount;
-        Axios.post("/joining/insert",{
+        Axios.post("/apijoining/insert",{
             unum,jcontent,jjoinday,gname,jprice, jtime, jage, 
             jp1gender: jp1genderValue, jp1age: jp1ageValue, jp1tasu: jp1tasuValue,
              jp2gender: jp2genderValue, jp2age: jp2ageValue, jp2tasu: jp2tasuValue, jucount: jucountValue})
@@ -136,6 +136,9 @@ const JoinForm = (props) => {
         setPartnerForm2Open(false);
     }
 
+    const partneronemodal = useCallback(()=>{
+        setPartnerFormOpen(false);
+    })
     
     return (
         <div className="JFjoinform">
@@ -249,7 +252,7 @@ const JoinForm = (props) => {
                     onOutsideClick={closePartnerForm2}
                     
                 >
-                    <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo}/>
+                    <PartnerForm2 props={closePartnerForm2} propFunction={partnertwo} close={closePartnerForm2}/>
                 </PortalPopup>
             )}
             {isPartnerFormOpen && (
@@ -258,7 +261,7 @@ const JoinForm = (props) => {
                     placement="Centered"
                     onOutsideClick={closePartnerForm}
                 >
-                    <PartnerForm props={closePartnerForm} propFunction={partnerone} />
+                    <PartnerForm props={closePartnerForm} propFunction={partnerone} close={closePartnerForm}/>
                 </PortalPopup>
             )}
         </div>

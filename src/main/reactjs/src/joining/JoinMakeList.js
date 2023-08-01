@@ -17,10 +17,10 @@ const JoinMakeList = () => {
     const [unum, setUnum]=useState('');
     const [data, setData] = useState([]);
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
         .then(res=> {
             setUnum(res.data);
-            const url = "/joining/makejoinlist?unum="+res.data;
+            const url = "/apijoining/makejoinlist?unum="+res.data;
             Axios.get(url)
             .then(res => {
                 setData(res.data);
