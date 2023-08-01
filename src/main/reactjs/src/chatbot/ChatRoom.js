@@ -5,6 +5,8 @@ import * as ncloudchat from 'ncloudchat';
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import Axios from 'axios';
 import Header from "../header/Header";
+import ChatListIcon from '@mui/icons-material/ForumOutlined';
+import ChatOutIcon from "../image/out.svg";
 
 
 const ChatRoom = () => {
@@ -194,8 +196,9 @@ const ChatRoom = () => {
                     <button type="submit" className="CDchatdetail-child">보내기</button>
                 </form>
                 <div className="CDchatbar">
-                    <img className="CDicon-trash" alt="" src="/-icon-trash.svg" onClick={handleLeaveChat} />
-                    <img className="CDicon-list" alt="" src="/-icon-list.svg" onClick={handleGoChatList} />
+                    <ChatListIcon className="CDicon-trash" onClick={handleLeaveChat} />
+                    {/* <img className="CDicon-trash" alt="" src="/-icon-trash.svg" onClick={handleLeaveChat} /> */}
+                    <img className="CDicon-list" alt="" src={ChatListIcon} onClick={handleGoChatList} />
                     <div className="CDrectangle-parent">
                         <div className="CDgroup-child" />
                         <div className="CDnick1">닉네임</div>
