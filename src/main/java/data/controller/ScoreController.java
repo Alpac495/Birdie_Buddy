@@ -113,9 +113,9 @@ public class ScoreController {
     }
 
     @GetMapping("/myScoreList")
-    public List<MyScoreDto> myScoreList(int unum){
-        System.out.println(unum);
-        List<MyScoreDto> list = scoreMapper.myScoreList(unum);
+    public List<MyScoreDto> myScoreList(int unum, int page, int size){
+        int offset = (page - 1) * size;
+        List<MyScoreDto> list = scoreMapper.myScoreList(unum, offset, size);
         return list;
     }
 

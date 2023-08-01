@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import InfiniteScroll from "react-infinite-scroll-component";
 import "./Score.css";
-import Header from '../header/Header';
 
 function Score(props) {
     const [data, setData] = useState([]);
