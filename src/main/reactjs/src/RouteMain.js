@@ -30,7 +30,7 @@ function RouteMain(props) {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Main/>}/>
 
                 <Route path={'/admin'} >
                     <Route path="userlist" element={<UserList/>}/>
