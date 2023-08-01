@@ -47,6 +47,10 @@ function Header(props) {
     useEffect(() => {
         unumchk();
     }, []);
+    useEffect(() => {
+        // Update unum whenever userData changes (i.e., after login or logout)
+        setUnum(userData.length > 0 ? userData[0].unum : 0);
+    }, [userData]);
 
     function handleClick() {
         // 페이지 이동을 처리하는 로직 작성
@@ -58,6 +62,7 @@ function Header(props) {
         if(unum===0){
             alert("먼저 로그인해 주세요");
             navi("/login/login");
+            window.location.reload(); // 새로고침
         }
     }
     const handleLogout = () => {
