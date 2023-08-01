@@ -44,20 +44,20 @@ function Login(props) {
 
     const ouSubmitEvent = (e) => {
         e.preventDefault();
-        localStorage.removeItem("uemail");
-        if (saveemail == true) {
-            localStorage.setItem("uemail", uemail)
-        }
         axios.get(`/login/login?uemail=${uemail}&upass=${upass}&saveemail=${saveemail}`)
-            .then(res => {
-                console.log(res.data)
-                if (res.data === 0) {
-                    alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.")
-                    setUpass('');
-                } else if (res.data===-1){
-                    alert("활동 정지를 당한 회원입니다. 관리자에게 문의해 주세요.")
-                    setUpass('');
-                } else {
+        .then(res => {
+            console.log(res.data)
+            if (res.data === 0) {
+                alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.")
+                setUpass('');
+            } else if (res.data===-1){
+                alert("활동 정지를 당한 회원입니다. 관리자에게 문의해 주세요.")
+                setUpass('');
+            } else {
+                    localStorage.removeItem("uemail");
+                    if (saveemail == true) {
+                        localStorage.setItem("uemail", uemail)
+                    }
                     navi("/birdie_buddy")
                 }
             })
