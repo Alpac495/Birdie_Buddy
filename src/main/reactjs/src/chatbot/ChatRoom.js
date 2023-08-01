@@ -200,7 +200,7 @@ const ChatRoom = () => {
                     <img className="CDicon-list" alt="" src={ChatOutIcon} onClick={handleLeaveChat} />
                     <div className="CDrectangle-parent">
                         <div className="CDgroup-child" />
-                        <div className="CDnick1">닉네임</div>
+                        <div className="CDnick1">{data2.unickname}</div>
                     </div>
                 </div>
 

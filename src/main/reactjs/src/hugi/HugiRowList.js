@@ -273,27 +273,32 @@ function HugiRowList(props) {
         }
     };
 
-    // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면 setShowLike(true)를 호출하여 버튼을 활성화합니다.
+    // handleClickLikeOn 함수: 좋아요 누르기 이벤트 처리 함수
     const handleClickLikeOn = () => {
-        Axios.post(`/hugi/like/${hnum}`, { unum: unum })
+        // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
+        // setShowLike(true)를 호출하여 버튼을 활성화합니다.
+        Axios.post(`/hugi/like/${hnum}`)
             .then(() => {
                 alert("좋아요를 눌렀습니다!");
+                localStorage.setItem(`likeStatus_${hnum}`, "true"); // 좋아요 상태 저장
                 setShowLike(true);
             })
             .catch((error) => {
-                console.error('좋아요 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 처리 중 오류가 발생했습니다.', error);
             });
     };
-
-// 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면 setShowLike(false)를 호출하여 버튼을 비활성화합니다.
+    // handleClickLikeOff 함수: 좋아요 취소하기 이벤트 처리 함수
     const handleClickLikeOff = () => {
-        Axios.delete(`/hugi/unlike/${hnum}`, { data: { unum: unum } })
+        // 서버에 좋아요 정보를 전달하고, 성공적으로 처리되면
+        // setShowLike(false)를 호출하여 버튼을 비활성화합니다.
+        Axios.delete(`/hugi/unlike/${hnum}`)
             .then(() => {
                 alert("좋아요를 취소했습니다!");
+                localStorage.setItem(`likeStatus_${hnum}`, "false"); // 좋아요 상태 저장
                 setShowLike(false);
             })
             .catch((error) => {
-                console.error('좋아요 취소 처리 중 오류가 발생했습니다.', error);
+                // console.log('좋아요 취소 처리 중 오류가 발생했습니다.', error);
             });
     };
     // handleClickDelete 함수: 게시물 삭제 이벤트 처리 함수
@@ -618,6 +623,15 @@ function HugiRowList(props) {
     useEffect(() => {
         fetchPostUserNickname(props.unum);
     }, [props.unum]);
+    // useEffect를 이용하여 좋아요 상태 설정
+    useEffect(() => {
+        // 페이지가 로드될 때 localStorage에서 좋아요 상태를 불러와서 적용
+        const likeStatus = localStorage.getItem(`likeStatus_${hnum}`);
+        setShowLike(likeStatus === "true");
+    }, [hnum]); // hnum이 변경될 때마다 실행
+
+
+
     return (
         <div className="HG_list">
             <div className="HG_list_header">

@@ -224,7 +224,7 @@ body {
 .FD3backimgicon,
 .FD3component-1 {
   position: absolute;
-  width: 37rem;
+  /* width: 37rem; */
   height: 1.25rem;
 }
 .FD3component-1 {
@@ -233,7 +233,7 @@ body {
 }
 .FD3backimgicon {
   top: 5.56rem;
-  left: 65px;
+  right:3%;
 }
 .FD3instance-item {
   position: absolute;
