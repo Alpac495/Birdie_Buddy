@@ -121,8 +121,8 @@ function Main(props) {
 
 
 
-            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
-            <div className={'main_friendtxt'} style={{marginLeft:'12px'}}>
+            {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
+            <div className={'main_friendtxt'}>
                 친구 추천
             </div>
             <div style={{width:'100vw',overflow:'hidden'}}>
@@ -131,7 +131,7 @@ function Main(props) {
                 </div>
             </div>
 
-            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+            {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
 
 
             <div style={{width:'100vw',overflow:'hidden'}}>
@@ -143,13 +143,13 @@ function Main(props) {
                 </div>
             </div>
 
-            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+            {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
 
             <div className={'main_ad'}>
                 <img alt={''} src={no}/>
             </div>
 
-            <hr style={{height:'3px', backgroundColor:'lightgray'}}/>
+            {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
 
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_reviewtxt'}>Best 후기</div>
