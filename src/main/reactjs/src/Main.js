@@ -28,9 +28,9 @@ function Main(props) {
 
     const unumchk= async ()=>{
         try {
-            const res = await axios.get("/login/unumChk")
+            const res = await axios.get("/apilogin/unumChk")
             setUnum(res.data);
-            const url = "/chating/getuserinfo?unum=" + res.data;
+            const url = "/apichating/getuserinfo?unum=" + res.data;
             const res2 = await axios.get(url);
             const chat = new ncloudchat.Chat();
             chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
@@ -57,7 +57,7 @@ function Main(props) {
         try {
             console.log("getChatInfo");
             console.log("unum1: "+unum);
-            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=1`);
+            const response = await Axios.get(`/apichating/getchatinfo?unum1=${unum}&unum2=1`);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -76,7 +76,7 @@ function Main(props) {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
                     const newChatId = newchannel.id;
-                    await Axios.post("/chating/insertchatid", {unum, cunum: "1", chatid: newChatId});
+                    await Axios.post("/apichating/insertchatid", {unum, cunum: "1", chatid: newChatId});
                     alert("정상적으로 생성되었습니다");
                     await nc.subscribe(newChatId);
                     // 채팅방으로 이동

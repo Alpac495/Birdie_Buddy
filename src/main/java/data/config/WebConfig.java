@@ -15,6 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
+                System.out.println("동규형1");
     }
 
     @Override
@@ -25,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .setViewName("forward:/");
         registry.addViewController("/{spring:\\w+}/**{spring:?!(\\.js|\\.css)$}")
                 .setViewName("forward:/");
+                System.out.println("동규형2");
     }
 
 }

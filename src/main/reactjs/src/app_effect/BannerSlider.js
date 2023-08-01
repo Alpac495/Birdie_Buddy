@@ -12,7 +12,7 @@ export default function SimpleSlider() {
     const navi = useNavigate();
     const [unum, setUnum]=useState('');
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res=> {
                 setUnum(res.data);
             });
