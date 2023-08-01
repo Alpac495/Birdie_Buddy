@@ -193,12 +193,21 @@ const ChatRoom = () => {
                     <input className="CDemail" type="text" placeholder="Enter your message" value={userInput} onChange={handleUserInput} />
                     <button type="submit" className="CDchatdetail-child">보내기</button>
                 </form>
-                <button className="CDcta-button-1" onClick={handleLeaveChat}>
+                <div className="CDchatbar">
+                    <img className="CDicon-trash" alt="" src="/-icon-trash.svg" onClick={handleLeaveChat} />
+                    <img className="CDicon-list" alt="" src="/-icon-list.svg" onClick={handleGoChatList} />
+                    <div className="CDrectangle-parent">
+                        <div className="CDgroup-child" />
+                        <div className="CDnick1">닉네임</div>
+                    </div>
+                </div>
+
+                {/* <button className="CDcta-button-1" onClick={handleLeaveChat}>
                     채팅 종료
                 </button>
                 <button className="CDcta-button-2" onClick={handleGoChatList}>
                     목록으로
-                </button>
+                </button> */}
             
         </>
     );
