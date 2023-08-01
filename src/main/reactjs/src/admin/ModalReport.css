@@ -102,7 +102,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 0 1.5rem 1.88rem;
+    padding: 0 1.5rem 3rem;
     align-items: center;
     justify-content: flex-start;
     gap: 0.94rem;
@@ -126,4 +126,11 @@ body {
     width: 22.5rem;
     height: 3.13rem;
     text-align: center;
+}
+
+.SGdiv6 {
+    flex: 1;
+    position: relative;
+    letter-spacing: -0.01em;
+    font-weight: 500;
 }
