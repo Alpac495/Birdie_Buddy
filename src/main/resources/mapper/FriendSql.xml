@@ -59,7 +59,7 @@
         update friend set faccept=1 where unum=#{funum} and funum=#{unum}
     </update>
     <select id="getRecoUserList" resultType="UserDto">
-        select * from user where ublacklist=0 and unum!=1 and unum!=#{unum}
+        select *,(select rtasu from ranking r where r.unum=u.unum) as rtasu from user u where ublacklist=0 and unum!=1 and unum!=#{unum}
     </select>
     <select id="getUserList" resultType="UserDto">
         select * from user where ublacklist=0 and unum!=1 and unum!=#{unum} LIMIT #{offset}, #{size}

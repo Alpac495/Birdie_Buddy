@@ -12,7 +12,6 @@ const SimpleSlider = () => {
     const image2 = process.env.REACT_APP_IMAGE87;
     const [data,setData]=useState('');
     const [fdata,setFdata]=useState('');
-
     
     const unumchk=()=>{
         Axios.get("/login/unumChk")
@@ -63,7 +62,7 @@ const SimpleSlider = () => {
             <div className={'friend_plus'}><AddIcon /></div>
             <div className={'friend_footer'}>
             <div>{item.unickname}</div>
-              <div># {item.rtasu === 0 ? '기록없음' : `${item.rtasu} 타`}</div>
+              <div># {item.rtasu != 0 ? `${item.rtasu} 타` : '기록없음'}</div>
               <div># 경력{item.ucareer}</div>              
             </div>
             </Link>
