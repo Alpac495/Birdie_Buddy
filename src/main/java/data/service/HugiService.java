@@ -5,6 +5,7 @@ import data.dto.UserDto;
 import data.mapper.HugiMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -59,13 +60,16 @@ public class HugiService implements HugiServiceInter
         hugiMapper.updateHugi(hdto);
     }
     @Override
-    public void addLikeCount(int hnum) {
-        hugiMapper.addLikeCount(hnum);
+    public void addLikeToHugiLike(int hnum, int unum) {
+        // hugilike 테이블에 좋아요 정보를 추가합니다.
+        hugiMapper.addLikeToHugiLike(hnum, unum);
+        hugiMapper.incrementHugiLikeCount(hnum);
     }
 
-    @Override
-    public void removeLikeCount(int hnum) {
-        hugiMapper.removeLikeCount(hnum);
+    public void removeLikeFromHugiLike(int hnum, int unum) {
+
+        // hugilike 테이블에서 좋아요 정보를 삭제합니다.
+        hugiMapper.removeLikeFromHugiLike(hnum, unum);
     }
 
     @Override
