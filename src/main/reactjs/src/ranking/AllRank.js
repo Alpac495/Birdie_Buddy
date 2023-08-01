@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash"
 
 function AllRank(props) {
-    const [unum, setUnum] = useState(0);
+    const [unum, setUnum] = useState();
     const [list, setList] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ function AllRank(props) {
     }, []);
 
     const unumchk = () => {
-        Axios.get("/login/unumChk?unum=" + unum)
+        Axios.get("/login/unumChk")
             .then(res => {
                 setUnum(res.data);
             })
