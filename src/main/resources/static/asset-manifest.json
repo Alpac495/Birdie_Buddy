@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4aaa1a1b.css",
-    "main.js": "/static/js/main.b6cf11ff.js",
+    "main.css": "/static/css/main.9ae5f6f1.css",
+    "main.js": "/static/js/main.9a492be0.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/404.jpg": "/static/media/404.7894d8be19cfceb5b5ac.jpg",
     "static/media/golf_ad.jpg": "/static/media/golf_ad.d61cf15fb63d8b304b63.jpg",
@@ -49,12 +49,12 @@
     "static/media/icon_card.svg": "/static/media/icon_card.b5c6e916843a189821e4029c0bc67691.svg",
     "static/media/Back.svg": "/static/media/Back.fd37b3bcab978ede06f2d8ce9f11175c.svg",
     "static/media/naver.svg": "/static/media/naver.77d845a3af265652b9702150dfaf02d7.svg",
-    "main.4aaa1a1b.css.map": "/static/css/main.4aaa1a1b.css.map",
-    "main.b6cf11ff.js.map": "/static/js/main.b6cf11ff.js.map",
+    "main.9ae5f6f1.css.map": "/static/css/main.9ae5f6f1.css.map",
+    "main.9a492be0.js.map": "/static/js/main.9a492be0.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4aaa1a1b.css",
-    "static/js/main.b6cf11ff.js"
+    "static/css/main.9ae5f6f1.css",
+    "static/js/main.9a492be0.js"
   ]
 }
