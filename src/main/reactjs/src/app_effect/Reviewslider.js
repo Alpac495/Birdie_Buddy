@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import "./Review.css";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class SimpleSlider extends Component {
 
@@ -86,6 +87,11 @@ export default class SimpleSlider extends Component {
                                             <img className={'review_profile'} alt="프로필 사진" src={`${defaultPic}profile3.png`} />
                                             )}
                                             <span className={'review_writer'}>{item.unickname}</span>
+                                            <Link style={{color:'white'}} to={`/hugi/detail/${item.hnum}`}>
+                                                <div className='review_go'>
+                                                    자세히 보기
+                                                </div>
+                                            </Link>
                                             <div className={'review_footer'}>
                                                 <div>
                                                     <FavoriteOutlinedIcon />
