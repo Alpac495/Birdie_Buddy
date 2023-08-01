@@ -32,7 +32,6 @@ const ChatRoom = () => {
             const res3 = await Axios.get(url2);
             setData2(res3.data);
 
-
             const chat = new ncloudchat.Chat();
             await chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
             setNc(chat);
@@ -179,8 +178,8 @@ const ChatRoom = () => {
                 <div className="CDparent">
                     <div className="CDdiv3" id='chat-messages'>
                             {messages.map &&messages.map((message, index) => (
-                                <div key={index} style={{ textAlign: message.sender.name === data.unickname ? 'right' : 'left', margin: '10px' }}>
-                                    <div style={{ backgroundColor: message.sender.name === data.unickname ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
+                                <div key={index} style={{ textAlign: message.sender.id === data.uemail ? 'right' : 'left', margin: '10px' }}>
+                                    <div style={{ backgroundColor: message.sender.id === data.uemail ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
                                         <strong>{message.sender.name}</strong>
                                         <div>{message.content}</div>
                                         <div style={{ fontSize: '12px', color: 'gray' }}>{new Date(message.created_at).toLocaleString()}</div>
@@ -208,6 +207,9 @@ const ChatRoom = () => {
                 {/* <button className="CDcta-button-1" onClick={handleLeaveChat}>
                     채팅 종료
                 </button>
+                <div className="CDchat-partner">
+                    {data2.unickname}
+                </div>
                 <button className="CDcta-button-2" onClick={handleGoChatList}>
                     목록으로
                 </button> */}
