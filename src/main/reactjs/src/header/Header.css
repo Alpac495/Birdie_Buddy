@@ -13,6 +13,7 @@
   .header_logo{
     /* width: 100%; */
     text-align: center;
+    /* line-height: 0px; */
     height: 80px;
   }
   .header_menuicon{
@@ -23,7 +24,7 @@
     /* 48685E */
 }
 .side_go_login{
-    margin-left: 15px;
+    
 }
 .side_login{
     color: black;
@@ -51,4 +52,6 @@
     width: 60%;
     height: 100%;
     line-height: 50px;
+    font-weight: bolder;
+
 }

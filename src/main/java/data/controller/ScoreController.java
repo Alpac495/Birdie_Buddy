@@ -1,6 +1,7 @@
 package data.controller;
 
 import data.dto.GolfjangScoreDto;
+import data.dto.MyScoreDto;
 import data.dto.RankingDto;
 import data.dto.ScoreDataDto;
 import data.dto.ScoreDto;
@@ -108,6 +109,13 @@ public class ScoreController {
         System.out.println("스크롤");
         int offset = (page - 1) * size;
         List<UserDto> list = scoreMapper.listUserWithPaging(offset, size);
+        return list;
+    }
+
+    @GetMapping("/myScoreList")
+    public List<MyScoreDto> myScoreList(int unum){
+        System.out.println(unum);
+        List<MyScoreDto> list = scoreMapper.myScoreList(unum);
         return list;
     }
 

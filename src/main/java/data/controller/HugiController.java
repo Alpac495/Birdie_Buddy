@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -82,21 +83,32 @@ public class HugiController {
 
 
 
-    @PostMapping("/like/{hnum}")
-    public ResponseEntity<String> addLike(@PathVariable int hnum) {
+    @PostMapping("/hugi/like/{hnum}")
+    public ResponseEntity<String> addLike(@PathVariable int hnum, @RequestBody Map<String, Integer> requestBody) {
         try {
-            // hnum을 사용하여 해당 게시물의 좋아요 정보를 업데이트합니다.
-            hugiService.addLikeCount(hnum);
+            int unum = requestBody.get("unum");
+            // unum 값을 사용하여 해당 사용자의 인증 여부 확인
+            // unum이 DB에 등록된 사용자인지 확인하는 로직 추가
+
+            // hugilike 테이블에 좋아요 정보를 추가하고 hugi 테이블의 hlike 값을 1 증가시킵니다.
+            hugiService.addLikeToHugiLike(hnum, unum);
+
             return ResponseEntity.ok("좋아요 추가 성공");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("좋아요 추가 실패");
         }
     }
-    @DeleteMapping("/unlike/{hnum}")
-    public ResponseEntity<String> removeLike(@PathVariable int hnum) {
+
+    @DeleteMapping("/hugi/unlike/{hnum}")
+    public ResponseEntity<String> removeLike(@PathVariable int hnum, @RequestBody Map<String, Integer> requestBody) {
         try {
-            // hnum을 사용하여 해당 게시물의 좋아요 정보를 업데이트합니다.
-            hugiService.removeLikeCount(hnum);
+            int unum = requestBody.get("unum");
+            // unum 값을 사용하여 해당 사용자의 인증 여부 확인
+            // unum이 DB에 등록된 사용자인지 확인하는 로직 추가
+
+            // hugilike 테이블에서 좋아요 정보를 삭제하고 hugi 테이블의 hlike 값을 1 감소시킵니다.
+            hugiService.removeLikeFromHugiLike(hnum, unum);
+
             return ResponseEntity.ok("좋아요 취소 성공");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("좋아요 취소 실패");
