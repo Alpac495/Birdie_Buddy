@@ -148,3 +148,74 @@ body {
   color: #000;
   font-family: Inter;
 }
+
+.CDicon-list,
+.CDicon-trash {
+  position: absolute;
+  height: 62.5%;
+  width: 7.65%;
+  top: 20%;
+  right: 7.95%;
+  bottom: 17.5%;
+  left: 84.4%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.CDicon-list {
+  height: 44.45%;
+  width: 6.12%;
+  top: 27.5%;
+  right: 0;
+  bottom: 28.05%;
+  left: 93.88%;
+}
+.CDgroup-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  background-color: #48685e;
+  width: 15.06rem;
+  height: 2.5rem;
+}
+.CDnick1 {
+  position: absolute;
+  top: 0.31rem;
+  left: 0.69rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  width: 13.75rem;
+  height: 1.88rem;
+}
+.CDrectangle-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15.06rem;
+  height: 2.5rem;
+}
+.CDchatbar {
+  position: absolute;
+  height: 5.42%;
+  width: 90.83%;
+  top: 11.52%;
+  right: 4.44%;
+  bottom: 83.06%;
+  left: 4.72%;
+  font-size: 1.13rem;
+  color: #fff;
+}
+.CDchatdetail {
+  position: relative;
+  background-color: #f8f5f0;
+  width: 100%;
+  height: 46.13rem;
+  overflow: hidden;
+  text-align: left;
+  font-size: 0.88rem;
+  color: #000;
+  font-family: Inter;
+}
+
