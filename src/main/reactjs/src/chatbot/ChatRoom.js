@@ -195,12 +195,12 @@ const ChatRoom = () => {
                     <button type="submit" className="CDchatdetail-child">보내기</button>
                 </form>
                 <div className="CDchatbar">
-                    <ChatListIcon className="CDicon-trash" onClick={handleLeaveChat} />
+                    <ChatListIcon style={{ color: '#1F4337' }} className="CDicon-trash" onClick={handleGoChatList} />
                     {/* <img className="CDicon-trash" alt="" src="/-icon-trash.svg" onClick={handleLeaveChat} /> */}
-                    <img className="CDicon-list" alt="" src={ChatListIcon} onClick={handleGoChatList} />
+                    <img className="CDicon-list" alt="" src={ChatOutIcon} onClick={handleLeaveChat} />
                     <div className="CDrectangle-parent">
                         <div className="CDgroup-child" />
-                        <div className="CDnick1">닉네임</div>
+                        <div className="CDnick1">{data2.unickname}</div>
                     </div>
                 </div>
 

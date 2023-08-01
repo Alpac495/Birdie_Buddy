@@ -236,7 +236,7 @@ const RankForm = () => {
                     <button onClick={minusHole}>
                         prev hole
                     </button>
-                    <div className="current_hole">{n}번홀</div>
+                    <div className="current_hole">{n} HOLE</div>
                     <button onClick={plusHole}>
                         next hole
                     </button>
@@ -245,7 +245,7 @@ const RankForm = () => {
                     <button onClick={minusScore}>
                         s-
                     </button>
-                    <div className="current_hole" >score</div>
+                    <div className="current_hole" >SCORE</div>
                     <button onClick={plusScore}>
                         s+
                     </button>
@@ -253,7 +253,7 @@ const RankForm = () => {
                 <div>
                     <button className="rank_save" onClick={() => {
                         saveScore()
-                    }}>저장
+                    }}>Save
                     </button>
                 </div>
             </div>
