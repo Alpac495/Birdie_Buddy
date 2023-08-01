@@ -25,5 +25,5 @@ public interface ScoreMapper {
     public void saveRankingUpdate(Map<String, Object> map);
     public List<RankingDto> getRanklist(@Param("offset") int offset, @Param("size") int size);
     public List<UserDto> listUserWithPaging(@Param("offset") int offset, @Param("size") int size);
-    public List<MyScoreDto> myScoreList(int unum);
+    public List<MyScoreDto> myScoreList(@Param("unum") int unum, @Param("offset") int offset, @Param("size") int size);
 }

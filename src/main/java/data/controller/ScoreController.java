@@ -94,7 +94,7 @@ public class ScoreController {
     public List<RankingDto> getRanklist(int page, int size){
         int offset = (page - 1) * size;
         List<RankingDto> list = scoreMapper.getRanklist(offset, size);
-        System.out.println(list);
+        System.out.println(list.size());
         return list;
     }
     
@@ -113,9 +113,10 @@ public class ScoreController {
     }
 
     @GetMapping("/myScoreList")
-    public List<MyScoreDto> myScoreList(int unum){
-        System.out.println(unum);
-        List<MyScoreDto> list = scoreMapper.myScoreList(unum);
+    public List<MyScoreDto> myScoreList(int unum, int page, int size){
+        int offset = (page - 1) * size;
+        List<MyScoreDto> list = scoreMapper.myScoreList(unum, offset, size);
+        System.out.println(list.size());
         return list;
     }
 
