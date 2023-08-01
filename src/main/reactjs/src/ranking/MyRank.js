@@ -19,6 +19,8 @@ function MyRank(props) {
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
     const unum = props.unum;
+    
+
     useEffect(() => {
         // unumchk();
         getList();

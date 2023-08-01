@@ -13,21 +13,37 @@ import Header from "./header/Header";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
+import * as ncloudchat from 'ncloudchat';
+import Axios from "axios";
 
 function Main(props) {
     const [notice, setNotice]=useState([]);
     const [unum, setUnum] = useState(0);
+    const [nc,setNc] = useState('');
     const navi = useNavigate();
 
     useEffect(() => {
         unumchk();
     }, []);
 
-    const unumchk=()=>{
-        axios.get("/login/unumChk")
-            .then(res=> {
-                setUnum(res.data);
+    const unumchk= async ()=>{
+        try {
+            const res = await axios.get("/login/unumChk")
+            setUnum(res.data);
+            const url = "/chating/getuserinfo?unum=" + res.data;
+            const res2 = await axios.get(url);
+            const chat = new ncloudchat.Chat();
+            chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
+            setNc(chat);
+            await chat.connect({
+                id: res2.data.uemail,
+                name: res2.data.unickname,
+                profile: 'https://image_url',
+                customField: 'json',
             });
+        } catch (error) {
+            console.error("Error occurred: ", error)
+        }
     }
 
     const chkLogin=()=>{
@@ -36,6 +52,56 @@ function Main(props) {
             navi("/login/login");
         }
     }
+
+    const getChatInfo = async () => {
+        try {
+            console.log("getChatInfo");
+            console.log("unum1: "+unum);
+            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=1`);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const adminChat = async () => {
+        chkLogin();
+        if(nc){
+            try {
+                const chatid = await getChatInfo();
+                if(chatid){
+                    await nc.disconnect();
+                    navi(`/chating/room/${chatid}/${unum}`);
+                }else {
+                    // chatid == null 일 경우
+                    const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
+                    const newChatId = newchannel.id;
+                    await Axios.post("/chating/insertchatid", {unum, cunum: "1", chatid: newChatId});
+                    alert("정상적으로 생성되었습니다");
+                    await nc.subscribe(newChatId);
+                    // 채팅방으로 이동
+                    await nc.disconnect();
+                    navi(`/chating/room/${newChatId}/${unum}`);
+                }
+            }catch (error) {
+                console.error('Error creating and subscribing channel:', error);
+            }
+        }
+    }
+
+    useEffect(() => {
+        const disconnectChat = async () => {
+            if (nc) {
+                await nc.disconnect();
+            }
+        };
+        window.addEventListener('beforeunload', disconnectChat);
+        // When component unmounts, disconnect
+        return () => {
+            window.removeEventListener('beforeunload', disconnectChat);
+            disconnectChat();
+        };
+    }, [nc]);
 
     return (
         <div className={'mainpage'}>
@@ -49,7 +115,7 @@ function Main(props) {
                 
             </div>
 
-            <div className={'main_notice'}>
+            <div className={'main_notice'} onClick={chkLogin}>
                 <NoticeSlider/>
             </div>
 
@@ -91,7 +157,7 @@ function Main(props) {
                 <div className={'main_reviewwrap'} onClick={chkLogin}>
                     <Reviewslider/>
                 </div>
-                <button className='main_chat' type='button'> 
+                <button className='main_chat' type='button' onClick={adminChat}> 
                     <HeadsetMicOutlinedIcon/>
                 </button>
             </div>

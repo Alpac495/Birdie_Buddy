@@ -1,5 +1,5 @@
 .friend_slider{
-    width: 370px;
+    width: 400px;
     height: 150px;
 }
 .friend_slide{
@@ -34,7 +34,7 @@
 .friend_footer{
     position: absolute;
     bottom: 0;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: lighter;
     color: white;
     margin-left: 5px;
