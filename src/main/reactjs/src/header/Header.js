@@ -12,6 +12,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import no from "../images/logo.png";
 import profile3 from "../image/profile90x90.png";
 import Axios from 'axios';
@@ -72,6 +73,9 @@ function Header(props) {
             alert("로그아웃 되었습니다.");
           });
     };
+    const handleGoAdmin=()=>{
+        navi('/admin/userlist');
+    }
 
     
 
@@ -146,6 +150,11 @@ function Header(props) {
                     </ListItem>
                 ))}
             </List>
+            {
+            unum!==1?'':
+            <button style={{marginLeft:'13px', marginBottom:'20px' ,backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleGoAdmin()}> <ManageAccountsIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 관리자 게시판</button>
+            }
+            
             {
             unum===0?'':
             <button style={{marginLeft:'13px',backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleLogout()}> <LogoutIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 로그아웃</button>

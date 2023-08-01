@@ -40,12 +40,24 @@
 }
 .notice_table thead{
     border-bottom: 2px black solid ;
-
+}
+.notice_table td:first-child{
+    width: 20%;
+}
+.notice_table td:nth-child(2){
+    width: 20%;
+}
+.notice_table td:last-child{
+    width: 60%;
 }
 
+.noticeList_head{
+    width: 100%;
+}
 .notice_table tr{
     height: 50px;
 }
+
 .notice_table td{
     border-bottom: 2px lightgray solid ;
     height: 10px;
