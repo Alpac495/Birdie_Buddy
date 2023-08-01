@@ -50,11 +50,13 @@ const SimpleSlider = () => {
             <Slider {...settings}>
                 {joinReco.map((item, idx) => (
                     <div key={idx} className="rec_slider" onClick={() => onClickJoinReco(item)}>
+                        <div>
                         {item.uphoto != null ? (
                             <img alt="프로필 사진" src={`${image1}${item.uphoto}${image2}`} />
                         ) : (
                             <img alt="프로필 사진" src={`${user}profile3.png`} />
                         )}
+                        </div>
                         <div className="rec_info">
                             <span className="b">{item.jjoinday}</span>
                             <br />
