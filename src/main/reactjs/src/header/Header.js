@@ -64,6 +64,7 @@ function Header(props) {
           .then(res => {
             navi('/birdie_buddy');
             unumchk();
+            alert("로그아웃 되었습니다.");
           });
     };
 
@@ -77,11 +78,14 @@ function Header(props) {
         >
             <List>
             {unum === 0 ? (
-                <div className="side_profile">
-                    <div className='side_go_login'>
-                        <NavLink to="/login/login" className={'side_login'}>로그인해 주세요</NavLink>
-                    </div>
-                </div>
+                        <NavLink to="/login/login" className={'side_login'}> 
+                            <div className="side_profile">
+                                        <div>
+                                            <img alt='' src={profile3}/>
+                                        </div>    
+                                        <div>로그인 해주세요</div>
+                            </div>
+                         </NavLink>
             ) : (
                 // unum이 0이 아닌 경우에는 userData에 따라 유저 정보를 표시
                 userData && userData.length > 0 ? (
@@ -124,8 +128,8 @@ function Header(props) {
                     { text: '양도', path: '/yangdo/list', icon: <TransferWithinAStationIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '랭킹', path: '/score/list', icon: <TrendingUpIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
                     { text: '후기', path: '/hugi/list', icon: <RateReviewIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
-                    { text: '마이페이지', path: `/mypage/setting`, icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
-                    { text: '채팅 리스트', path: `/chating/${unum}`, icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'}
+                    { text: '채팅 리스트', path: `/chating/${unum}`, icon: <ForumOutlinedIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'},
+                    { text: '마이페이지', path: `/mypage/setting`, icon: <PersonIcon style={{ color: '#1F4337' }} />, marginLeft: '20px'}
                 ].map(({ text, path, icon, marginLeft }) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={NavLink} to={path} activeClassName="active">
@@ -139,7 +143,7 @@ function Header(props) {
             </List>
             {
             unum===0?'':
-            <button style={{marginLeft:'11px',backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleLogout()}> <LogoutIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 로그아웃</button>
+            <button style={{marginLeft:'13px',backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleLogout()}> <LogoutIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 로그아웃</button>
             }
         </Box>
     );

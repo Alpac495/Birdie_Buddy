@@ -23,7 +23,7 @@
     /* 48685E */
 }
 .side_go_login{
-    margin-left: 15px;
+    
 }
 .side_login{
     color: black;
@@ -51,4 +51,6 @@
     width: 60%;
     height: 100%;
     line-height: 50px;
+    font-weight: bolder;
+
 }
