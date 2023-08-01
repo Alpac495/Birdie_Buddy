@@ -21,13 +21,17 @@ const PartnerForm = ( props ) => {
         props.propFunction(jp1gender,jp1age,jp1tasu)
     }
 
+    const onCloseEvent =()=>{
+        props.close()
+    }
+
     return (
         <form onSubmit={onSubmitEvent}>
         <div className="PFpartnerform">
             <div className="PF2detail-view">
                     <div className="PF2action-bar-contextual">
                         <div className="PTactions">
-                            <img className="PTclose-clear" alt="" src={CloseIcon} />
+                            <img className="PTclose-clear" onClick={onCloseEvent} alt="" src={CloseIcon}/>
                         </div>
                         
                         <div className="PTtitle">동반자 정보 입력</div>
@@ -63,7 +67,7 @@ const PartnerForm = ( props ) => {
             <div className="PFcta-button-1">
                 <div className="PFround-button-icon">
                     <div className="PFcentered">
-                        <Button className="PFcentered" type='submit'>동반자 정보 저장</Button>
+                        <button className="PFcentered" type='submit'>동반자 정보 저장</button>
                     </div>
                 </div>
             </div>

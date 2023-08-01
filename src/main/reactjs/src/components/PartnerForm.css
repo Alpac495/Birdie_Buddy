@@ -198,14 +198,8 @@
   font-weight: 500;
 }
 .PFcentered {
-  position: absolute;
-  top: calc(50% - 13px);
-  left: calc(50% - 57.5px);
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  color: #0b4648;
+  margin-top: 6px;
 }
 .PFround-button-icon {
   position: relative;
@@ -214,7 +208,7 @@
   border: 2px solid #0b4648;
   box-sizing: border-box;
   width: 20.13rem;
-  height: 3.5rem;
+  height: 3.5rem;  
 }
 .PFcta-button-1,
 .PFpartnerform {
