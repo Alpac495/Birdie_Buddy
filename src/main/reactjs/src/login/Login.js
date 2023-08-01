@@ -58,7 +58,7 @@ function Login(props) {
                     alert("활동 정지를 당한 회원입니다. 관리자에게 문의해 주세요.")
                     setUpass('');
                 } else {
-                    navi("/")
+                    navi("/birdie_buddy")
                 }
             })
     }

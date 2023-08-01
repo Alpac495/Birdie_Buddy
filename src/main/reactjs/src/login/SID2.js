@@ -2,10 +2,12 @@ import React from 'react';
 import './SID2.css';
 import Back from "../image/Back.svg";
 import hidelogo from "../image/hidelogo.svg";
+import Header from '../header/Header';
 
 function SID2({data, navi}) {
     return (
         <div className="IS2idsearch2">
+            <Header/>
             <div className="IS2idsearch2-child" />
             <div className="IS2parent">
                 <div className="IS2div">아이디 찾기</div>

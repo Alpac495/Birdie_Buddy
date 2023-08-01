@@ -13,9 +13,7 @@ import JoinDetail from "./joining/JoinDetail";
 import MypageSetting from "./mypage/MypageSetting";
 import {YangdoDetail, YangdoForm, YangdoList, YangdoUpdate} from "./yangdo";
 import {HugiList, HugiModify} from "./hugi";
-import HugiRowList from "./hugi/HugiRowList";
 import {JoinAllList, JoinMakeList, JoinRequestList, JoinUpdateForm} from "./joining";
-import MypagePay from "./mypage/MypagePay";
 import { MyYangdo, MyYangdoDetail, MyYangdoUpdate } from './mypage';
 import Test from './yangdo/Test';
 import HugiDetail from "./hugi/HugiDetail";
@@ -23,10 +21,7 @@ import { Blacklist, NoticeDetail, NoticeForm, NoticeList, UserList } from './adm
 import NCloudChatRoomList from "./chatbot/NCloudChatRoomList";
 import ChatRoom from "./chatbot/ChatRoom";
 import MyHugiList from "./hugi/MyHugiList";
-import MyHugiRowList from "./hugi/MyHugiRowList";
 import FriendSearch from './friend/FriendSearch';
-import NCloudChatRoomAdmin from "./chatbot/NCloudChatRoomAdmin";
-import RankListS from './ranking/RankListS';
 import Report from "./admin/Report";
 import NoticeEditForm from "./admin/NoticeEditForm";
 
@@ -35,7 +30,7 @@ function RouteMain(props) {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Main/>}/>
 
                 <Route path={'/admin'} >
                     <Route path="userlist" element={<UserList/>}/>
@@ -103,12 +98,10 @@ function RouteMain(props) {
                 <Route path={'/score'} >
                     <Route path="form" element={<RankForm/>}/>
                     <Route path="list" element={<RankList/>}/>
-                    <Route path="listS" element={<RankListS/>}/>
                 </Route>
 
                 <Route path={'/chating'} >
                     <Route path="/chating/:unum" element={<NCloudChatRoomList />} />
-                    <Route path="/chating/0" element={<NCloudChatRoomAdmin />} />
                     <Route path="/chating/room/:channelId/:cunum" element={<ChatRoom />} />
                 </Route>
 

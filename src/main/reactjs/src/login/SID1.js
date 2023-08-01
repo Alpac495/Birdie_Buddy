@@ -2,10 +2,12 @@ import React from 'react';
 import './SID1.css';
 import Back from "../image/Back.svg";
 import hidelogo from "../image/hidelogo.svg";
+import Header from '../header/Header';
 
 function SID1(props) {
     return (
         <div className="IS1idsearch1">
+            <Header/>
             <div className="IS1rectangle-parent">
                 <div className="IS1group-child" onClick={props.codeChk}/>
                 <div className="IS1div" onClick={props.nextbtn}>다음</div>

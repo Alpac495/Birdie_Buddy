@@ -4,7 +4,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import "./FriendRequest.css";
 import {Link, NavLink, useParams} from 'react-router-dom';
-import Profile from "../image/user60.png";
+import Profile from "../image/profile90x90.png";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
 import _ from "lodash"
@@ -98,9 +98,14 @@ function FriendRequest(props) {
                     ) : (
                         null
                     )}
-                    endMessage={<div className="FL_scroll-to-top-button" style={{marginLeft: "120px"}} onClick={scrollToTop}>
-                        Scroll to Top
-                    </div>}
+                    endMessage={
+                        items.length == 0 && !loading ? (
+                            <div className="footer-message" style={{textAlign:"center"}}>버디 요청이 없습니다</div>
+                        ) : (
+                            <div className="FL_scroll-to-top-button" style={{textAlign:"center"}} onClick={scrollToTop}>
+                                Scroll to Top
+                            </div>
+                        )}
                 >
             {
                 items.map &&
@@ -133,9 +138,9 @@ function FriendRequest(props) {
                         </div>                    
                  )
             }
-                {items.length > 0 && !loading &&(
+                {items.length > 6 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <button type="button" className="FL_scroll-to-top-button" onClick={scrollToTop}>
+                    <button type="button" className="FL_scroll-to-top-button"  style={{textAlign:"center"}}  onClick={scrollToTop}>
                         Scroll to Top
                     </button>
                 )}

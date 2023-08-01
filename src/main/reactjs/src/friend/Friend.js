@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Axios from "axios";
 import "./Friend.css";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
-import Profile from "../image/user60.png";
+import Profile from "../image/profile90x90.png";
 import * as ncloudchat from 'ncloudchat';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
@@ -177,9 +177,14 @@ function Friend(props) {
                     ) : (
                         null
                     )}
-                    endMessage={<div className="FL_scroll-to-top-button" style={{marginLeft: "120px"}} onClick={scrollToTop}>
+                    endMessage={
+                    items.length == 0 && !loading ? (
+                    <div className="footer-message" style={{textAlign:"center"}}>버디가 없습니다.</div>
+                ) : (
+                <div className="FL_scroll-to-top-button" style={{textAlign:"center"}} onClick={scrollToTop}>
                         Scroll to Top
-                    </div>}
+                    </div>
+                    )}
                 >
             {
                 items.map &&
@@ -205,9 +210,9 @@ function Friend(props) {
                     </div>
                  )
             }
-                {items.length > 0 && !loading &&(
+                {items.length > 6 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <button type="button" className="FL_scroll-to-top-button" onClick={scrollToTop}>
+                    <button type="button" className="FL_scroll-to-top-button" style={{textAlign:"center"}} onClick={scrollToTop}>
                         Scroll to Top
                     </button>
                 )}

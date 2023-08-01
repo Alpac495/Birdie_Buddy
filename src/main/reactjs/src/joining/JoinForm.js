@@ -7,6 +7,7 @@ import PartnerForm from "../components/PartnerForm";
 import PortalPopup from "../components/PortalPopup";
 import PartnerForm2 from "../components/PartnerForm2";
 import Header from "../header/Header";
+import searchCon from "../image/search.svg";
 
 const JoinForm = (props) => {
 
@@ -142,13 +143,15 @@ const JoinForm = (props) => {
             <React.Fragment>
                 <Modal open={modalOpen} close={closeModal} header="골프장 검색">
                     <div>
-                        <input className="joinsearch"
-                            type="text"
-                            placeholder="   검색                                                         🔎"
-                            onChange={(e) => {
-                                setSearchTerm(e.target.value);
-                            }}/>
-                        <br/><br/>
+                        <div>
+                            <input className="joinsearch"
+                                type="text"
+                                placeholder=" 검색"
+                                onChange={(e) => {
+                                    setSearchTerm(e.target.value);
+                                }}/> 
+                            <img className="YFsearch" alt="" src={searchCon}/>
+                        </div>
                         <ul>
                             {
                                 data.map &&
