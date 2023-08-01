@@ -10,8 +10,9 @@ import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStati
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
-import no from "../images/logo.png"
-import user from "../images/default_golf.png"
+import LogoutIcon from '@mui/icons-material/Logout';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import no from "../images/logo.png";
 import profile3 from "../image/profile90x90.png";
 import Axios from 'axios';
 
@@ -58,8 +59,15 @@ function Header(props) {
             navi("/login/login");
         }
     }
+    const handleLogout = () => {
+        Axios.get("/login/logout")
+          .then(res => {
+            navi('/birdie_buddy');
+            unumchk();
+          });
+    };
 
-    // const getUserData()=
+    
 
     const list = () => (
         <Box
@@ -129,6 +137,10 @@ function Header(props) {
                     </ListItem>
                 ))}
             </List>
+            {
+            unum===0?'':
+            <button style={{marginLeft:'11px',backgroundColor:'#F8F5F0'}} type='button' onClick={()=>handleLogout()}> <LogoutIcon style={{color:'#1F4337'}}/>&nbsp;&nbsp;&nbsp; 로그아웃</button>
+            }
         </Box>
     );
 
