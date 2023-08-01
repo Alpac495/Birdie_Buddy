@@ -12,7 +12,7 @@ import MyRank from './MyRank';
 import AllRank from './AllRank';
 
 function RankList(props) {
-    const [unum, setUnum] = useState(0);
+    const [unum, setUnum] = useState();
     const [list, setList] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -20,43 +20,38 @@ function RankList(props) {
     const medal = process.env.REACT_APP_RANKING;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
-    const isUnumFound = list.some(item => item.unum === unum);
 
     
 
     useEffect(() => {
         unumchk();
-        getList();
+        // getList();
     }, []);
 
     const unumchk = () => {
-        Axios.get("/login/unumChk?unum=" + unum)
+        Axios.get("/login/unumChk")
             .then(res => {
                 setUnum(res.data);
             })
     }
 
     function switchList() {
-        setMyRanking(prevMyRanking => !prevMyRanking);
-        if (!isUnumFound) {
-            alert("스코어 등록이 필요합니다");
-            window.location.replace("/score/form");        
-        }
+        setMyRanking(prevMyRanking => !prevMyRanking);        
     }
 
-    const getList = () => {
-        Axios.get(`/score/list?page=${page}&size=7`)
-            .then(res => {
-                const newData = _.uniqBy([...list, ...res.data], 'rnum');
-                setList(newData);
-                setPage((prevPage) => prevPage + 1);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("데이터를 더 가져오는 중 오류 발생:", error);
-                setLoading(false);
-            });
-    }
+    // const getList = () => {
+    //     Axios.get(`/score/list?page=${page}&size=7`)
+    //         .then(res => {
+    //             const newData = _.uniqBy([...list, ...res.data], 'rnum');
+    //             setList(newData);
+    //             setPage((prevPage) => prevPage + 1);
+    //             setLoading(false);
+    //         })
+    //         .catch((error) => {
+    //             console.error("데이터를 더 가져오는 중 오류 발생:", error);
+    //             setLoading(false);
+    //         });
+    // }
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
