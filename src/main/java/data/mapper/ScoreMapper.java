@@ -1,6 +1,7 @@
 package data.mapper;
 
 import data.dto.GolfjangScoreDto;
+import data.dto.MyScoreDto;
 import data.dto.RankingDto;
 import data.dto.ScoreDto;
 import data.dto.UserDto;
@@ -24,4 +25,5 @@ public interface ScoreMapper {
     public void saveRankingUpdate(Map<String, Object> map);
     public List<RankingDto> getRanklist(@Param("offset") int offset, @Param("size") int size);
     public List<UserDto> listUserWithPaging(@Param("offset") int offset, @Param("size") int size);
+    public List<MyScoreDto> myScoreList(int unum);
 }

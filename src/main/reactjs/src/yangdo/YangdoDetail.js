@@ -99,7 +99,7 @@ function YangdoDetail(props) {
                 if (chatid) {
                     // chatid != null 일 경우
                     await nc.disconnect();
-                    navi(`/chating/room/${chatid}/${unum}`);
+                    navi(`/chating/room/${chatid}/${cunum}`);
                 } else {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum)});
