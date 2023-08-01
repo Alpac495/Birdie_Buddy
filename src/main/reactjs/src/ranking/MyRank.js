@@ -64,9 +64,9 @@ function MyRank(props) {
             });
 
     };
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+    // const scrollToTop = () => {
+    //     window.scrollTo({ top: 0, behavior: 'smooth' });
+    // };
 
     return (
         <div className='rankingList_wrap'>
@@ -119,9 +119,9 @@ function MyRank(props) {
                 ) : (
                     null
                 )}
-                endMessage={<div style={{ height: '50px', padding: '10px', textAlign: 'center', fontSize: '15px' }} onClick={scrollToTop}>
-                    Scroll to Top
-                </div>}
+                // endMessage={<div style={{ height: '50px', padding: '10px', textAlign: 'center', fontSize: '15px' }} onClick={scrollToTop}>
+                //     Scroll to Top
+                // </div>}
             >
                 {
                     data && data.map((item, idx) => (
@@ -192,11 +192,11 @@ function MyRank(props) {
                         </div>
                     ))
                 }
-                {data.length > 0 && !loading && (
+                {/* {data.length > 0 && !loading && (
                     <button style={{ height: '50px', marginLeft: '120px', padding: '10px', textAlign: 'center', fontSize: '18px', opacity: '0.5', backgroundColor: 'transparent' }} onClick={scrollToTop}>
                         Scroll to Top
                     </button>
-                )}
+                )} */}
             </InfiniteScroll>
         </div>
 
