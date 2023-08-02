@@ -8,6 +8,7 @@ import user from "../image/profile90x90.png";
 import Footer from "../footer/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash"
+import ToTopbtn from "../image/Popupbtn.svg";
 import { useNavigate } from 'react-router-dom';
 
 function AllRank(props) {
@@ -64,9 +65,7 @@ function AllRank(props) {
                     ) : (
                         null
                     )}
-                    endMessage={<div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}}  onClick={scrollToTop}>
-                        Scroll to Top
-                    </div>}
+                    endMessage={<img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>}
                 >
 
                     
@@ -131,10 +130,8 @@ function AllRank(props) {
 
 
 
-                    {list.length > 0 && !loading && (
-                        <button style={{height:'50px',marginLeft:'120px',padding:'10px',textAlign:'center',fontSize:'18px',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
-                            Scroll to Top
-                        </button>
+                    {list.length > 6 && !loading && (
+                          <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                     )}
                 </InfiniteScroll>
                 </div>

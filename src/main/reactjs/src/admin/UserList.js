@@ -7,7 +7,7 @@ import Profile from "../image/profile90x90.png";
 import Header from '../header/Header';
 import _ from "lodash"
 import searchCon from "../image/search.svg";
-
+import ToTopbtn from "../image/Popupbtn.svg";
 function UserList(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [searchTerm, setSearchTerm] = useState("");    
@@ -97,8 +97,7 @@ function UserList(props) {
                     )}
                     endMessage={items.length == 0 && !loading ?(
                         <div className="UL_footer-message">유저가 없습니다</div>
-                    ):(<div className="UL_scroll-to-top-button"
-                            onClick={scrollToTop}>Scroll to Top</div>)}
+                    ):(<img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>)}
                 >
             {
                 items.map &&
@@ -129,11 +128,9 @@ function UserList(props) {
                  )
             }
             <br/>
-                {items.length > 0 && !loading &&(
+                {items.length > 8 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <button className="UL_scroll-to-top-button" onClick={scrollToTop}>
-                        Scroll to Top
-                    </button>
+                    <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                 )}
             </InfiniteScroll>
             </div>
