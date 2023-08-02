@@ -153,7 +153,7 @@ const ChatRoom = () => {
         }
         try {
             await Axios.get(`/apichating/unsubchatid?unum=${unum}&chatid=${channelId}`);
-            const message = `${unum} 님이 나가셨습니다`;
+            const message = `${data.unickname} 님이 나가셨습니다`;
             await nc.sendMessage(channelId, {
                 name: "Admin",
                 type: "text",

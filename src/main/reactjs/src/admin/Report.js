@@ -12,8 +12,7 @@ const Report = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const reportsPerPage = 10;
-    const [reportname,setReportname] = useState('');
-    const [reportedname, setReportedname] = useState('');
+    const [userInfos, setUserInfos] = useState({});
 
     const { unum } = useParams();
 
@@ -22,11 +21,15 @@ const Report = () => {
             const offset = (currentPage - 1) * reportsPerPage;
             const responseUsers = await Axios.get(`/apireport/getreport?runum=${unum}&limit=${reportsPerPage}&offset=${offset}`);
             setReportedUsers(responseUsers.data);
-            console.log("responseUsers.data" + JSON.stringify(responseUsers.data))
 
             const responseCount = await Axios.get(`/apireport/getcount?runum=${unum}`);
             setReportCount(responseCount.data);
-            console.log('Report Count: ', responseCount.data);
+
+            const userNumbers = Array.from(new Set(responseUsers.data.flatMap(user => [user.unum, user.runum])));
+            const userPromises = userNumbers.map(unum => Axios.get(`/apichating/getuserinfo?unum=${unum}`));
+            const userResponses = await Promise.all(userPromises);
+            const newUserInfos = Object.fromEntries(userResponses.map((response, i) => [userNumbers[i], response.data.unickname]));
+            setUserInfos(newUserInfos);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -38,18 +41,7 @@ const Report = () => {
 
     const handleRowClick = async (user) => {
         setSelectedUser(user);
-
-        try {
-            const reporterResponse = await Axios.get(`/apichating/getuserinfo?unum=${user.unum}`);
-            setReportname(reporterResponse.data.unickname);
-
-            const reportedResponse = await Axios.get(`/apichating/getuserinfo?unum=${user.runum}`);
-            setReportedname(reportedResponse.data.unickname);
-
-            setIsModalOpen(true);
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
+        setIsModalOpen(true);
     };
 
     const handleClose = () => {
@@ -89,8 +81,9 @@ const Report = () => {
             </div>
             {reportedUsers.map((user, index) => (
                 <div key={index} className="DLgroup" onClick={() => handleRowClick(user)}>
-                    <div className="DLdiv5">{((currentPage - 1) * reportsPerPage) + index + 1}</div>                    <div className="DLdiv6">{user.runum}</div>
-                    <div className="DLdiv7">{user.unum}</div>
+                    <div className="DLdiv5">{((currentPage - 1) * reportsPerPage) + index + 1}</div>
+                    <div className="DLdiv6">{userInfos[user.runum]}</div>
+                    <div className="DLdiv7">{userInfos[user.unum]}</div>
                     <div className="DLdiv8">
                         {
                             new Date(user.rwriteday).getFullYear() + '-' +
@@ -108,8 +101,8 @@ const Report = () => {
             </div>
             {isModalOpen && selectedUser && (
                 <ModalReport
-                    reporterNickname={reportname}
-                    reportedNickname={reportedname}
+                    reporterNickname={userInfos[selectedUser.unum]}
+                    reportedNickname={userInfos[selectedUser.runum]}
                     reportReason={selectedUser.reason}
                     handleClose={handleClose}
                     handleBlacklist={handleBlacklist}
