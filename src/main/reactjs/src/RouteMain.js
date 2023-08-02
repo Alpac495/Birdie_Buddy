@@ -25,6 +25,7 @@ import FriendSearch from './friend/FriendSearch';
 import Report from "./admin/Report";
 import NoticeEditForm from "./admin/NoticeEditForm";
 import Score from './ranking/Score';
+import Adminchat from './chatbot/Adminchat';
 
 
 function RouteMain(props) {
@@ -105,6 +106,7 @@ function RouteMain(props) {
                 <Route path={'/chating'} >
                     <Route path="/chating/:unum" element={<NCloudChatRoomList />} />
                     <Route path="/chating/room/:channelId/:cunum" element={<ChatRoom />} />
+                    <Route path="/chating/Adminchat" element={<Adminchat />} />
                 </Route>
 
                 <Route path={'/birdie_buddy'} element={<Main/>}/>

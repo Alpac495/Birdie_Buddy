@@ -62,10 +62,16 @@ public class LoginController {
         if (n == 1) {
             udto = loginMapper.getUserData(uemail);
             int unum = udto.getUnum();
+            int ublacklist = udto.getUblacklist();
             session.setMaxInactiveInterval(60 * 60 * 5);
             session.setAttribute("unum", unum);
             System.out.println("세션에 저장된 넘:" + unum);
-            return unum;
+            System.out.println("세션에 저장된 블랙:" + ublacklist);
+            if (ublacklist == 1) {
+                return -1;
+            } else {
+                return unum;
+            }
         } else {
             System.out.println("로그인 실패");
             return 0;
