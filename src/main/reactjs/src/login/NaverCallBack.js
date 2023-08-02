@@ -17,7 +17,8 @@ function NaverCallBack(props) {
         const {naver} = window;
         const naverLogin = new naver.LoginWithNaverId({
             clientId: "AmX1zvlO8VFKoSiQZoaz",
-            callbackUrl: "http://localhost:3000/login/ncallback",
+            // callbackUrl: "http://localhost:3000/login/ncallback",
+            callbackUrl: "http://http://223.130.137.128/login/ncallback",
         });
         naverLogin.init();
         if (!location.hash) return;
