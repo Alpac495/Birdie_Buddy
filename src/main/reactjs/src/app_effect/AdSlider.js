@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import "./NoticeSlider.css";
-import ad1 from "../images/ad1.png";
-import ad2 from "../images/ad2.png";
-import ad3 from "../images/ad3.png";
-import ad4 from "../images/ad4.png";
+import ad1 from "../image/aaa.svg";
+import ad2 from "../image/we2.svg";
+import ad3 from "../image/we.svg";
+import ad4 from "../image/devster.svg";
 import "../app_effect/AdSlider.css";
 import { Link, NavLink } from 'react-router-dom';
 
@@ -28,13 +28,13 @@ export default class Fade extends Component {
               <img alt='' src={ad1} />
             </div>
             <div className='ad_slidercom'>
-              <img alt='' src={ad3} />
+              <img alt='' src={ad2} />
             </div>
             <div className='ad_slidercom'>
               <img alt='' src={ad4} />
             </div>
             <div className='ad_slidercom'>
-              <img alt='' src={ad2} />
+              <img alt='' src={ad3} />
             </div>
           </Slider>
         </div>
