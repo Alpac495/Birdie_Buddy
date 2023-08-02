@@ -6,6 +6,7 @@ import ad2 from "../images/ad2.png";
 import ad3 from "../images/ad3.png";
 import ad4 from "../images/ad4.png";
 import "../app_effect/AdSlider.css";
+import { Link, NavLink } from 'react-router-dom';
 
 
 
@@ -27,13 +28,13 @@ export default class Fade extends Component {
               <img alt='' src={ad1} />
             </div>
             <div className='ad_slidercom'>
-              <img alt='' src={ad2} />
-            </div>
-            <div className='ad_slidercom'>
               <img alt='' src={ad3} />
             </div>
             <div className='ad_slidercom'>
-              <img  alt='' src={ad4} />
+              <img alt='' src={ad4} />
+            </div>
+            <div className='ad_slidercom'>
+              <img alt='' src={ad2} />
             </div>
           </Slider>
         </div>

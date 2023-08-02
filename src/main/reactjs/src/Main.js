@@ -3,7 +3,7 @@ import "./Main.css";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Recommendslider from "./app_effect/Recommendslider";
-import no from "./images/misi.png";
+import no from "./images/main_footad.png";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
 import FriendSlider from "./app_effect/FriendSlider";
