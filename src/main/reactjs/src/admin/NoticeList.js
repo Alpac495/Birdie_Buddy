@@ -71,14 +71,14 @@ function NoticeList(props) {
             <div className='notice_list'>
                 <table className='notice_table'>
                     <thead>
-                    {/* {
+                    {
                         unum === 1?
                             (
                                 <Link to={"/admin/noticeForm"}>
                                     <button className='notice_writeBtn' type='button' style={{textAlign:'center'}}> <CreateOutlinedIcon style={{color:'white'}}/> </button>
                                 </Link>
                             ):null
-                    } */}
+                    }
                     <tr className='noticeList_head'>
                         <th style={{ textAlign: 'left' }}>작성일</th>
                         <th style={{ textAlign: 'left' }}>카테고리</th>
