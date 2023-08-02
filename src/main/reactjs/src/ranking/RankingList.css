@@ -28,10 +28,9 @@
 }
 
 .ranking_List {
-    
-    background-size: cover;
     overflow-y: auto;
-    height: 740px;
+    height: 100%;
+    background-repeat: repeat-y;
 }
 
 

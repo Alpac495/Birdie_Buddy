@@ -1,4 +1,4 @@
-
+/* 
 .buddy_footer {
     width: 100%;
     height: 150px;
@@ -8,4 +8,60 @@
     background-size: cover;
 }
 
+ */
 
+ .FFgroup-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #868585;
+    width: 100%;
+    height: 9.38rem;
+  }
+  .FFp {
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+  .FFp2 {
+    margin: 0;
+  }
+  .FFtxt {
+    line-break: anywhere;
+    width: 100%;
+   
+  }
+  .FFbirdie-buddy,
+  .FFdiv {
+    position: absolute;
+    display: flex;
+    align-items: center;
+  }
+  .FFdiv {
+    top: 3.44rem;
+    width: 17.5rem;
+    height: 5.41rem;
+    left: 50%;
+    transform: translateX(-50%);
+    
+  }
+  .FFbirdie-buddy {
+    top: 1.26rem;
+    left: calc(50% - 74px);
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    font-family: "Abhaya Libre ExtraBold";
+    color: rgba(255, 255, 255, 0.8);
+    justify-content: center;
+    width: 9.19rem;
+    height: 1.8rem;
+  }
+  .FFrectangle-parent {
+    position: relative;
+    width: 100%;
+    height: 9.38rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #fff;
+    font-family: Inter;
+  }
+  

@@ -72,8 +72,8 @@ function HugiDetail(props) {
         }
     };
 
-    const apiURL = 'http://223.130.137.128/hugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
-    const longUrl = `http://223.130.137.128/`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
+    const apiURL = 'http://223.130.137.128/apihugi/shortenUrl'; // 스프링 백엔드의 컨트롤러 URL
+    const longUrl = `http://223.130.137.128/hugi/detail/${hnum}`; // 단축시킬 원본 URL 입력 ,hnum도 잘 받아옴
     // handleClickShare 함수: 게시물을 SNS에 공유하는 클릭 이벤트 처리 함수
     const handleClickShare = () => {
         generateShortURL(longUrl);
@@ -250,16 +250,16 @@ function HugiDetail(props) {
                 imageUrl:
                     `${url2}${hphoto}${url3}`,
                 link: {
-                    webUrl:resultUrl,
-                    mobileWebUrl: resultUrl,
+                    webUrl:realUrl,
+                    mobileWebUrl: realUrl,
                 },
             },
             buttons: [
                 {
                     title: '라운딩 후기 보러가기',
                     link: {
-                        webUrl:resultUrl,
-                        mobileWebUrl:resultUrl,
+                        webUrl:realUrl,
+                        mobileWebUrl:realUrl,
                     },
                 },
             ],

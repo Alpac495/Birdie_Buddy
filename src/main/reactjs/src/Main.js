@@ -3,7 +3,7 @@ import "./Main.css";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Recommendslider from "./app_effect/Recommendslider";
-import no from "./images/misi.png";
+import no from "./images/main_footad.png";
 import Reviewslider from "./app_effect/Reviewslider";
 import Bannerslider from "./app_effect/BannerSlider";
 import FriendSlider from "./app_effect/FriendSlider";
@@ -28,9 +28,9 @@ function Main(props) {
 
     const unumchk= async ()=>{
         try {
-            const res = await axios.get("/login/unumChk")
+            const res = await axios.get("/apilogin/unumChk")
             setUnum(res.data);
-            const url = "/chating/getuserinfo?unum=" + res.data;
+            const url = "/apichating/getuserinfo?unum=" + res.data;
             const res2 = await axios.get(url);
             const chat = new ncloudchat.Chat();
             chat.initialize('08c17789-2174-4cf4-a9c5-f305431cc506');
@@ -38,7 +38,7 @@ function Main(props) {
             await chat.connect({
                 id: res2.data.uemail,
                 name: res2.data.unickname,
-                profile: 'https://image_url',
+                profile: res2.data.uemail,
                 customField: 'json',
             });
         } catch (error) {
@@ -47,7 +47,7 @@ function Main(props) {
     }
 
     const chkLogin=()=>{
-        if(unum===0){
+        if(unum==0){
             alert("먼저 로그인해 주세요");
             navi("/login/login");
         }
@@ -57,7 +57,7 @@ function Main(props) {
         try {
             console.log("getChatInfo");
             console.log("unum1: "+unum);
-            const response = await Axios.get(`/chating/getchatinfo?unum1=${unum}&unum2=1`);
+            const response = await Axios.get(`/apichating/getchatinfo?unum1=${unum}&unum2=1`);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -71,24 +71,46 @@ function Main(props) {
                 const chatid = await getChatInfo();
                 if(chatid){
                     await nc.disconnect();
-                    navi(`/chating/room/${chatid}/${unum}`);
+                    navi(`/chating/room/${chatid}/1`);
                 }else {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
                     const newChatId = newchannel.id;
-                    await Axios.post("/chating/insertchatid", {unum, cunum: "1", chatid: newChatId});
-                    alert("정상적으로 생성되었습니다");
+                    await Axios.post("/apichating/insertchatid", {unum, cunum: "1", chatid: newChatId});
                     await nc.subscribe(newChatId);
                     // 채팅방으로 이동
                     await nc.disconnect();
-                    navi(`/chating/room/${newChatId}/${unum}`);
+                    navi(`/chating/room/${newChatId}/1`);
                 }
             }catch (error) {
                 console.error('Error creating and subscribing channel:', error);
             }
         }
     }
-
+    const onClickFriend =()=>{
+        if(unum==0){
+            alert("먼저 로그인을 해주세요");
+            navi("/login/login");
+        }else{
+        navi("/friend/search");
+        }
+    }
+    const onClickAllList =()=>{
+        if(unum==0){
+            alert("먼저 로그인을 해주세요");
+            navi("/login/login");
+        }else{
+        navi("/joining/alllist");
+        }
+    }
+    const onClickHugiList =()=>{
+        if(unum==0){
+            alert("먼저 로그인을 해주세요");
+            navi("/login/login");
+        }else{
+        navi("/hugi/list");
+        }
+    }
     useEffect(() => {
         const disconnectChat = async () => {
             if (nc) {
@@ -124,10 +146,10 @@ function Main(props) {
             {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
             <div className={'main_friendtxt'}>
                 <div>친구 추천</div>
-                <div style={{fontSize:'12px', fontWeight:'500'}} 
-                onClick={()=>{
-                    navi("/friend/search")
-                }}>더보기</div>
+                <div style={{fontSize:'12px', fontWeight:'500',cursor:'pointer'}} 
+                onClick=
+                {onClickFriend}
+                >더보기</div>
             </div>
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_friendrec'} style={{marginTop:'10px'}} onClick={chkLogin} >
@@ -140,10 +162,10 @@ function Main(props) {
 
                     <div className={'main_joinrecotxt'}>
                         <div>당신을 위한 조인 추천</div>
-                        <div style={{fontSize:'12px', fontWeight:'500'}}
-                        onClick={()=>{
-                            navi("/joining/alllist")
-                        }}>더보기</div>
+                        <div style={{fontSize:'12px', fontWeight:'500',cursor:'pointer'}}
+                        onClick=
+                        {onClickAllList}    
+                        >더보기</div>
                     </div>
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_join'}>
@@ -165,10 +187,8 @@ function Main(props) {
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_reviewtxt'}>
                     <div>Best 후기</div>
-                    <div style={{fontSize:'12px', fontWeight:'500'}}
-                    onClick={()=>{
-                        navi("/hugi/list")
-                    }}>더보기</div>
+                    <div style={{fontSize:'12px', fontWeight:'500',cursor:'pointer'}}
+                    onClick={onClickHugiList}>더보기</div>
                     
                 </div>
 

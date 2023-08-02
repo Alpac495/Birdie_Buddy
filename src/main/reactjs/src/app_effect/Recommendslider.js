@@ -9,7 +9,7 @@ const SimpleSlider = () => {
     const image2 = process.env.REACT_APP_IMAGE87;
     const user = process.env.REACT_APP_MAIN;
     const navi = useNavigate();
-    const [unum, setUnum] = useState('');
+    const [unum, setUnum] = useState('0');
     useEffect(() => {
         Axios.get('/apimain/reco')
             .then(res => {
@@ -20,7 +20,7 @@ const SimpleSlider = () => {
             });
     }, []);
     const unumchk=()=>{
-        Axios.get("/login/unumChk")
+        Axios.get("/apilogin/unumChk")
             .then(res=> {
                 setUnum(res.data);
             });
@@ -36,7 +36,7 @@ const SimpleSlider = () => {
         slidesToScroll: 1,
         swipeToSlide: true,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 3500,
     };
     const onClickJoinReco = (item) => {
         if (unum === 0) {

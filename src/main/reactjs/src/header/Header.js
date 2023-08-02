@@ -58,11 +58,15 @@ function Header(props) {
         navigate('/birdie_buddy'); // 페이지 이동
     }
 
-    const chkLogin=()=>{
-        if(unum===0){
+    const chkLogin=()=> {
+        if (unum === 0) {
             alert("먼저 로그인해 주세요");
             navi("/login/login");
-            window.location.reload(); // 새로고침
+            window.history.pushState(null, null, "/"); // 브라우저의 주소를 메인 페이지로 변경
+            window.onpopstate = function (event) {
+                // 뒤로가기 버튼을 눌렀을 때 처리할 로직
+                navigate("/birdie_buddy"); // 메인 페이지로 이동
+            };
         }
     }
     const handleLogout = () => {
@@ -71,13 +75,12 @@ function Header(props) {
             navi('/birdie_buddy');
             unumchk();
             alert("로그아웃 되었습니다.");
+            window.location.reload();
           });
     };
     const handleGoAdmin=()=>{
         navi('/admin/userlist');
     }
-
-    
 
     const list = () => (
         <Box
