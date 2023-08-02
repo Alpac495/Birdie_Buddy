@@ -1,10 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.01702789.css",
-    "main.js": "/static/js/main.27d69ba7.js",
+    "main.css": "/static/css/main.41ecdac3.css",
+    "main.js": "/static/js/main.f718fe01.js",
     "static/js/787.fade2e9e.chunk.js": "/static/js/787.fade2e9e.chunk.js",
     "static/media/404.jpg": "/static/media/404.7894d8be19cfceb5b5ac.jpg",
-    "static/media/golf_ad.jpg": "/static/media/golf_ad.d61cf15fb63d8b304b63.jpg",
+    "static/media/ad1.png": "/static/media/ad1.92c7618088a3c275067b.png",
+    "static/media/ad2.png": "/static/media/ad2.06ae4e0f0c07ae01ba89.png",
+    "static/media/ad3.png": "/static/media/ad3.5931b8bdadb376a20370.png",
+    "static/media/ad4.png": "/static/media/ad4.034ab6e50c42dcee98ab.png",
+    "static/media/footerfull.svg": "/static/media/footerfull.f331f8618d960c9371a0.svg",
+    "static/media/misi.png": "/static/media/misi.c6a113d8978392b61c23.png",
     "static/media/bgphoto.png": "/static/media/bgphoto.bece9e6c5cd6c7c89ad3.png",
     "static/media/naverbtn.png": "/static/media/naverbtn.50f997a4772f912cd966.png",
     "static/media/mainlogo.svg": "/static/media/mainlogo.1650e8d293be6ef49e6ba288466b8486.svg",
@@ -49,12 +54,12 @@
     "static/media/icon_card.svg": "/static/media/icon_card.b5c6e916843a189821e4029c0bc67691.svg",
     "static/media/Back.svg": "/static/media/Back.fd37b3bcab978ede06f2d8ce9f11175c.svg",
     "static/media/naver.svg": "/static/media/naver.77d845a3af265652b9702150dfaf02d7.svg",
-    "main.01702789.css.map": "/static/css/main.01702789.css.map",
-    "main.27d69ba7.js.map": "/static/js/main.27d69ba7.js.map",
+    "main.41ecdac3.css.map": "/static/css/main.41ecdac3.css.map",
+    "main.f718fe01.js.map": "/static/js/main.f718fe01.js.map",
     "787.fade2e9e.chunk.js.map": "/static/js/787.fade2e9e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.01702789.css",
-    "static/js/main.27d69ba7.js"
+    "static/css/main.41ecdac3.css",
+    "static/js/main.f718fe01.js"
   ]
 }

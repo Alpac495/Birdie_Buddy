@@ -38,7 +38,7 @@ function Main(props) {
             await chat.connect({
                 id: res2.data.uemail,
                 name: res2.data.unickname,
-                profile: 'https://image_url',
+                profile: res2.data.uemail,
                 customField: 'json',
             });
         } catch (error) {
