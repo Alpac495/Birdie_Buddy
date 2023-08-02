@@ -50,11 +50,11 @@ export default function SimpleSlider() {
 
     const settings = {
         infinite: true,
-        speed: 500,
+        speed: 1200,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 5000,
         afterChange: handleSlideChange,
         prevArrow: null, // 이전 화살표를 감춥니다.
         nextArrow: null, // 다음 화살표를 감춥니다.

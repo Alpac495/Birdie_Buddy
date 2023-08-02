@@ -36,7 +36,7 @@ const SimpleSlider = () => {
         slidesToScroll: 1,
         swipeToSlide: true,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 3500,
     };
     const onClickJoinReco = (item) => {
         if (unum === 0) {
