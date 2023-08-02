@@ -77,7 +77,6 @@ function Main(props) {
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
                     const newChatId = newchannel.id;
                     await Axios.post("/apichating/insertchatid", {unum, cunum: "1", chatid: newChatId});
-                    alert("정상적으로 생성되었습니다");
                     await nc.subscribe(newChatId);
                     // 채팅방으로 이동
                     await nc.disconnect();
