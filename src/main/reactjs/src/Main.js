@@ -71,7 +71,7 @@ function Main(props) {
                 const chatid = await getChatInfo();
                 if(chatid){
                     await nc.disconnect();
-                    navi(`/chating/room/${chatid}/${unum}`);
+                    navi(`/chating/room/${chatid}/1`);
                 }else {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
@@ -81,14 +81,37 @@ function Main(props) {
                     await nc.subscribe(newChatId);
                     // 채팅방으로 이동
                     await nc.disconnect();
-                    navi(`/chating/room/${newChatId}/${unum}`);
+                    navi(`/chating/room/${newChatId}/1`);
                 }
             }catch (error) {
                 console.error('Error creating and subscribing channel:', error);
             }
         }
     }
-
+    const onClickFriend =()=>{
+        if(unum===0){
+            alert("먼저 로그인을 해주세요");
+            navi("/login/login");
+        }else{
+        navi("/friend/search");
+        }
+    }
+    const onClickAllList =()=>{
+        if(unum===0){
+            alert("먼저 로그인을 해주세요");
+            navi("/login/login");
+        }else{
+        navi("/joining/alllist");
+        }
+    }
+    const onClickHugiList =()=>{
+        if(unum===0){
+            alert("먼저 로그인을 해주세요");
+            navi("/login/login");
+        }else{
+        navi("/hugi/list");
+        }
+    }
     useEffect(() => {
         const disconnectChat = async () => {
             if (nc) {
@@ -125,9 +148,9 @@ function Main(props) {
             <div className={'main_friendtxt'}>
                 <div>친구 추천</div>
                 <div style={{fontSize:'12px', fontWeight:'500'}} 
-                onClick={()=>{
-                    navi("/friend/search")
-                }}>더보기</div>
+                onClick=
+                {onClickFriend}
+                >더보기</div>
             </div>
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_friendrec'} style={{marginTop:'10px'}} onClick={chkLogin} >
@@ -141,9 +164,9 @@ function Main(props) {
                     <div className={'main_joinrecotxt'}>
                         <div>당신을 위한 조인 추천</div>
                         <div style={{fontSize:'12px', fontWeight:'500'}}
-                        onClick={()=>{
-                            navi("/joining/alllist")
-                        }}>더보기</div>
+                        onClick=
+                        {onClickAllList}    
+                        >더보기</div>
                     </div>
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_join'}>
@@ -166,9 +189,7 @@ function Main(props) {
                 <div className={'main_reviewtxt'}>
                     <div>Best 후기</div>
                     <div style={{fontSize:'12px', fontWeight:'500'}}
-                    onClick={()=>{
-                        navi("/hugi/list")
-                    }}>더보기</div>
+                    onClick={onClickHugiList}>더보기</div>
                     
                 </div>
 
