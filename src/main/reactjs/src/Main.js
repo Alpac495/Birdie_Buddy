@@ -47,7 +47,7 @@ function Main(props) {
     }
 
     const chkLogin=()=>{
-        if(unum===0){
+        if(unum==0){
             alert("먼저 로그인해 주세요");
             navi("/login/login");
         }
@@ -89,7 +89,7 @@ function Main(props) {
         }
     }
     const onClickFriend =()=>{
-        if(unum===0){
+        if(unum==0){
             alert("먼저 로그인을 해주세요");
             navi("/login/login");
         }else{
@@ -97,7 +97,7 @@ function Main(props) {
         }
     }
     const onClickAllList =()=>{
-        if(unum===0){
+        if(unum==0){
             alert("먼저 로그인을 해주세요");
             navi("/login/login");
         }else{
@@ -105,7 +105,7 @@ function Main(props) {
         }
     }
     const onClickHugiList =()=>{
-        if(unum===0){
+        if(unum==0){
             alert("먼저 로그인을 해주세요");
             navi("/login/login");
         }else{
@@ -147,7 +147,7 @@ function Main(props) {
             {/* <hr style={{height:'3px', backgroundColor:'lightgray'}}/> */}
             <div className={'main_friendtxt'}>
                 <div>친구 추천</div>
-                <div style={{fontSize:'12px', fontWeight:'500'}} 
+                <div style={{fontSize:'12px', fontWeight:'500',cursor:'pointer'}} 
                 onClick=
                 {onClickFriend}
                 >더보기</div>
@@ -163,7 +163,7 @@ function Main(props) {
 
                     <div className={'main_joinrecotxt'}>
                         <div>당신을 위한 조인 추천</div>
-                        <div style={{fontSize:'12px', fontWeight:'500'}}
+                        <div style={{fontSize:'12px', fontWeight:'500',cursor:'pointer'}}
                         onClick=
                         {onClickAllList}    
                         >더보기</div>
@@ -188,7 +188,7 @@ function Main(props) {
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_reviewtxt'}>
                     <div>Best 후기</div>
-                    <div style={{fontSize:'12px', fontWeight:'500'}}
+                    <div style={{fontSize:'12px', fontWeight:'500',cursor:'pointer'}}
                     onClick={onClickHugiList}>더보기</div>
                     
                 </div>
