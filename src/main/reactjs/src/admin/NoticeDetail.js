@@ -53,8 +53,8 @@ function NoticeDetail(props) {
                     Notice    
             </div>
             <div className='nform_head'>
-                <div className='nform_title'>
-                    <pre className='nform_title'>{data.nsubject}</pre></div>
+
+                    <div className='nform_title'>{data.nsubject}</div>
 
                 <div className='nform_headbtnwrap'>
                     {data.ncate} | {data.nwriteday}
@@ -64,7 +64,7 @@ function NoticeDetail(props) {
             <div className='nform_foot' >
                 <img alt='' src={`${url}${data.nphoto}`}/>
                 <br/>
-                <pre>{data.ncontent}</pre>
+                <pre className={"nform_content"}>{data.ncontent}</pre>
             </div>
             <div className='nform_ground'>
                 <div className='nform_goback' >
