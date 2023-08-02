@@ -48,6 +48,10 @@
     width: 750px;
     overflow-x: hidden;
 }
+.main_friendrec{
+    font-weight: 550;
+}
+
 .rec_slider{
     display: flex !important;
     border: 1px lightgrey solid;

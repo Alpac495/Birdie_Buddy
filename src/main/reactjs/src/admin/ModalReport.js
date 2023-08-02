@@ -7,7 +7,7 @@ function ModalReport({ reporterNickname, reportedNickname, reportReason, handleC
             <div className="SDsingo">
                 <div className="SDsingodetailbar">
                     <div className="SDtitle">신고 상세보기</div>
-                    <div className="SDclose-clear" />
+                    
                 </div>
             </div>
             <div className="SDsingoinfo">
@@ -29,18 +29,19 @@ function ModalReport({ reporterNickname, reportedNickname, reportReason, handleC
                                 </div>
                             </div>
                         </div>
-                        <div className="div">신고 내용</div>
-                        <div className="text-field">
-                            <div className="div1">
+                        <div className="SDdiv">신고 내용</div>
+                        <div className="SDtext-field">
+                            <div className="SDdiv1">
                                 {reportReason}
                             </div>
                         </div>
+                       
                     </div>
                 </div>
             </div>
-            <div className="SGpopupbtn">
-                <div className="SGframe3">
-                    <div className="SGdiv6" onClick={handleClose}>확인</div>
+            <div className="SDpopupbtn">
+                <div className="SDframe3">
+                    <div className="SDdiv6" onClick={handleClose}>확인</div>
                 </div>
             </div>
         </div>
