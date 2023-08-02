@@ -75,13 +75,12 @@ function Header(props) {
             navi('/birdie_buddy');
             unumchk();
             alert("로그아웃 되었습니다.");
+            window.location.reload();
           });
     };
     const handleGoAdmin=()=>{
         navi('/admin/userlist');
     }
-
-    
 
     const list = () => (
         <Box

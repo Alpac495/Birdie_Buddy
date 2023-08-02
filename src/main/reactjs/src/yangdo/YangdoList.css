@@ -234,25 +234,19 @@
   margin-bottom: 1rem;
 }
 .Ylblacklistmodalveticalframe {
-  position: absolute;
+  position: relative;
   width: calc(100% - 32px);
   top: 11.88rem;
   right: 1rem;
   left: 1rem;
-  height: 34.19rem;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  height: 100%;
   font-size: 0.88rem;
 }
 .Ylyangdolist {
-  position: relative;
+  position: absolute;
   background-color: #f8f5f0;
   width: 100%;
-  height: 50rem;
-  overflow: hidden;
+  height: 100%;
   text-align: left;
   font-size: 0.63rem;
   color: #000;
