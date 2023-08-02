@@ -51,7 +51,7 @@ const SimpleSlider = () => {
                 {noticeList.map((item, idx) => (
                     item.ncate === '공지사항' ? (
                         <div key={idx} className="noticeList_go" onClick={() => onClickNotice(item)}>
-                            <div style={{fontWeight:'500', marginLeft:'15px', marginRight:'15px'}}>[공지]</div>
+                            <div style={{fontWeight:'500', marginLeft:'15px', marginRight:'5px'}}>[공지]</div>
                             <div>{item.nsubject}</div>                            
                         </div>
                     ) : null

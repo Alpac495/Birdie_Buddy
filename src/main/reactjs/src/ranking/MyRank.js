@@ -10,7 +10,7 @@ import Footer from "../footer/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash"
 import axios from 'axios';
-
+import ToTopbtn from "../image/Popupbtn.svg";
 function MyRank(props) {
     // const [unum, setUnum] = useState(props.unum);
     const [list, setList] = useState([]);
@@ -64,9 +64,9 @@ function MyRank(props) {
             });
 
     };
-    // const scrollToTop = () => {
-    //     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // };
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <div className='rankingList_wrap'>
@@ -119,9 +119,7 @@ function MyRank(props) {
                 ) : (
                     null
                 )}
-                // endMessage={<div style={{ height: '50px', padding: '10px', textAlign: 'center', fontSize: '15px' }} onClick={scrollToTop}>
-                //     Scroll to Top
-                // </div>}
+                endMessage={<img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>}
             >
                 {
                     data && data.map((item, idx) => (
@@ -192,11 +190,9 @@ function MyRank(props) {
                         </div>
                     ))
                 }
-                {/* {data.length > 0 && !loading && (
-                    <button style={{ height: '50px', marginLeft: '120px', padding: '10px', textAlign: 'center', fontSize: '18px', opacity: '0.5', backgroundColor: 'transparent' }} onClick={scrollToTop}>
-                        Scroll to Top
-                    </button>
-                )} */}
+                {data.length > 2 && !loading && (
+                          <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
+                    )}
             </InfiniteScroll>
         </div>
 

@@ -7,18 +7,11 @@ body {
 .SDtitle {
     position: absolute;
     top: 1rem;
-    left: 4rem;
+    left: 1.5rem;
     letter-spacing: 0.15px;
     font-weight: 500;
 }
-.SDclose-clear {
-    position: absolute;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    border-radius: 40px;
-    width: 2.5rem;
-    height: 2.5rem;
-}
+
 .SDsingodetailbar {
     position: absolute;
     height: 100%;
@@ -93,7 +86,9 @@ body {
     font-family: Inter;
 }
 .SDsingodetail {
-    position: relative;
+    z-index: 9999; 
+    position: absolute;
+    top:0;
     border-radius: 2px;
     background-color: #fff;
     border: 1px solid #e2e2e2;
@@ -110,8 +105,9 @@ body {
     font-size: 1.25rem;
     color: #fff;
     font-family: Roboto;
+    animation: slideIn 0.3s ease-in-out;
 }
-.SGframe3 {
+.SDframe3 {
     height: 100%;
     width: 50%;
     top: 0;
@@ -121,16 +117,27 @@ body {
     background-color: #fff;
     color: #000;
 }
-.SGpopupbtn {
+.SDpopupbtn {
     position: relative;
     width: 22.5rem;
     height: 3.13rem;
     text-align: center;
 }
 
-.SGdiv6 {
-    flex: 1;
+.SDdiv6 {
+    left: 50%;
     position: relative;
     letter-spacing: -0.01em;
-    font-weight: 500;
+    font-weight: 700;
 }
+@keyframes slideIn {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

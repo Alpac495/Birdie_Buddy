@@ -22,6 +22,7 @@ import CommetImg from "../image/share30.png";
 import FacebookImg from "../image/facebookimg.png";
 import InstarImg from "../image/instar.png";
 import Er404 from "../image/404.jpg";
+
 function HugiDetail(props) {
     const { hnum } = useParams(); // URL 매개변수를 가져옵니다.
     const url = process.env.REACT_APP_HUGI;
@@ -313,7 +314,7 @@ function HugiDetail(props) {
             });
     };
     const handleClickDelete = () => {
-        if (parseInt(unum) === parseInt(userNum)) {
+        if (parseInt(unum)===1||parseInt(unum) === parseInt(userNum)) {
             const confirmed = window.confirm('정말 삭제하시겠습니까?');
             if (confirmed) {
                 deleteAllComments()
@@ -651,10 +652,10 @@ function HugiDetail(props) {
                         <FavoriteBorder onClick={handleClickLikeOn} className="HG_Icons" style={{color: "red",width:'30px',height:'28px'}}/>
                     ))}
                 <img  alt='' src={ShareImg} className="HG_ShareIcons" onClick={toggleIcons}/>
-                {unum === userNum && (
+                {(unum === 1||unum === userNum) && (
                     <EditIcon onClick={()=>handleClickModify(hnum)} className="HG_Icons"/>
                 )}
-                {unum === userNum  && (
+                {(unum === 1||unum === userNum)  && (
                     <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
                 <ListIcon onClick={handleClickList} className="HG_Icons"/>
@@ -735,7 +736,7 @@ function HugiDetail(props) {
                           {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
                       </a>
                   )}
-                  {parseInt(comment.unum) === parseInt(unum) && (
+                  {(parseInt(unum)===1 ||parseInt(comment.unum) === parseInt(unum)) && (
                       <DeleteIcon
                           className="HG_Delete_Icon"
                           onClick={() => handleClickDeleteComment(comment.rhnum)}
@@ -789,7 +790,7 @@ function HugiDetail(props) {
                                   <pre className="HG_detail_preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br/>
                                   <span className="HG_detail_spanReplyRhwriteday">{reply.rhwriteday}</span>
-                                  {parseInt(reply.unum) === parseInt(unum) && (
+                                  {(parseInt(unum)===1||parseInt(reply.unum) === parseInt(unum)) && (
                                       <DeleteIcon
                                           className="HG_detail_Delete_Icon"
                                           onClick={() => handleClickDeleteComment(reply.rhnum)}

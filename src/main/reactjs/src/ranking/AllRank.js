@@ -8,6 +8,8 @@ import user from "../image/profile90x90.png";
 import Footer from "../footer/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash"
+import ToTopbtn from "../image/Popupbtn.svg";
+import { useNavigate } from 'react-router-dom';
 
 function AllRank(props) {
     const [unum, setUnum] = useState();
@@ -18,6 +20,7 @@ function AllRank(props) {
     const medal = process.env.REACT_APP_RANKING;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
+    const navi=useNavigate();
 
     useEffect(() => {
         unumchk();
@@ -62,9 +65,7 @@ function AllRank(props) {
                     ) : (
                         null
                     )}
-                    endMessage={<div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}}  onClick={scrollToTop}>
-                        Scroll to Top
-                    </div>}
+                    endMessage={<img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>}
                 >
 
                     
@@ -73,7 +74,7 @@ function AllRank(props) {
                     list.map((item, idx) => (
                     
                         <div className='ranking_wrap'>
-                            <div className={`ranking_mem rank${idx + 1}`} key={idx} style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../image/profile90x90.png)`, backgroundSize: 'cover' }}
+                            <div onClick={()=>navi(`/friend/detail/${item.unum}`)} className={`ranking_mem rank${idx + 1}`} key={idx} style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../image/profile90x90.png)`, backgroundSize: 'cover' }}
                                 data-unum={item.unum}>
 
                                 <div
@@ -129,10 +130,8 @@ function AllRank(props) {
 
 
 
-                    {list.length > 0 && !loading && (
-                        <button style={{height:'50px',marginLeft:'120px',padding:'10px',textAlign:'center',fontSize:'18px',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
-                            Scroll to Top
-                        </button>
+                    {list.length > 6 && !loading && (
+                          <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                     )}
                 </InfiniteScroll>
                 </div>

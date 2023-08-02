@@ -6,7 +6,7 @@ import HugiRowList from './HugiRowList';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../header/Header";
 import _ from "lodash"
-
+import ToTopbtn from "../image/Popupbtn.svg";
 function HugiList(props) {
     const [unum, setUnum] = useState('');
     const [userNum, setUserNum] = useState('');
@@ -254,9 +254,7 @@ function HugiList(props) {
                     hugiData.length == 0 && !loading ? (
                         <div className="HG_footer-message">작성된 게시물이 없습니다</div>
                     ) : (
-                        <div className="HG_scroll-to-top-button" onClick={scrollToTop}>
-                        Scroll to Top
-                    </div>
+                        <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                     )
                 } // Display Footer when the end is reached
             >
@@ -280,9 +278,7 @@ function HugiList(props) {
                         ))}
                     {hugiData.length > 2 && !loading &&(
                     //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                        <button type="button" className="HG_scroll-to-top-button" onClick={scrollToTop}>
-                            Scroll to Top
-                        </button>
+                    <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                     )}
                 </div>
             </InfiniteScroll>
