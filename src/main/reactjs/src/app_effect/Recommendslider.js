@@ -9,7 +9,7 @@ const SimpleSlider = () => {
     const image2 = process.env.REACT_APP_IMAGE87;
     const user = process.env.REACT_APP_MAIN;
     const navi = useNavigate();
-    const [unum, setUnum] = useState('');
+    const [unum, setUnum] = useState('0');
     useEffect(() => {
         Axios.get('/apimain/reco')
             .then(res => {
