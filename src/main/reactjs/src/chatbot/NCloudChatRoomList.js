@@ -120,7 +120,8 @@ const NCloudChatRoomList = () => {
                 }else {
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
                     setChannels([...channels, { node: newchannel }]);
-                    await Axios.post("/apichating/insertchatid",{unum,cunum: "1",chatid: newchannel.id});
+                    await Axios.post("/apichating/insertchatid",{unum: unum,cunum: "1",chatid: newchannel.id});
+                    await nc.subscribe(newchannel.id);
                     await navigate(`/chating/room/${newchannel.id}/1`);
                 }
             } catch (error) {

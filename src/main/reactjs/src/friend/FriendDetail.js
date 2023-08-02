@@ -58,7 +58,7 @@ function FriendDetail(props) {
         await chat.connect({
             id: res5.data.uemail,
             name: res5.data.unickname,
-            profile: 'https://image_url',
+            profile: res5.data.uemail,
             customField: 'json',
         });
     };
@@ -97,10 +97,7 @@ function FriendDetail(props) {
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: String(unum) + " " + String(cunum) });
                     const newChatId = newchannel.id;
                     await nc.subscribe(newChatId);
-
                     await Axios.post("/apichating/insertchatid", { unum, cunum, chatid: newChatId });
-
-                    alert("정상적으로 생성되었습니다");
                     // 채팅방으로 이동
                     await nc.disconnect();
                     navi(`/chating/room/${newChatId}/${cunum}`);
