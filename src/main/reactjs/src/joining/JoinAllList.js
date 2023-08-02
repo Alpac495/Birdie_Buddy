@@ -9,6 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Footer from "../footer/Footer";
 import _ from "lodash";
 import searchCon from "../image/search.svg";
+import ToTopbtn from "../image/Popupbtn.svg";
 
 
 
@@ -196,9 +197,7 @@ const JoinAllList = () => {
                                     )}
                             </div>
                                 {data.length > 0 && !loading && (
-                                    <button style={{height:'50px',marginLeft:'90px',padding:'10px',textAlign:'center',fontSize:'18px',backgroundColor:'transparent'}} onClick={scrollToTop}>
-                                        Scroll to Top
-                                    </button>
+                                    <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                                 )}
                             </InfiniteScroll>
                         </div>
