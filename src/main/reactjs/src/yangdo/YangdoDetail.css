@@ -358,7 +358,7 @@ button {
     justify-content: center;
 }
 .YEgraylbtn {
-    left: 15.11rem;
+    right: 0.5rem;
     border-radius: 3px;
     width: 5.39rem;
     height: 2.5rem;
@@ -398,7 +398,7 @@ button {
 }
 .YEgraylbtn-parent {
     position: relative;
-    width: 20.5rem;
+    width: 100%;
     height: 2.5rem;
     text-align: center;
     color: #292d32;

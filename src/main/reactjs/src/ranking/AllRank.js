@@ -9,6 +9,8 @@ import Footer from "../footer/Footer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash"
 import ToTopbtn from "../image/Popupbtn.svg";
+import { useNavigate } from 'react-router-dom';
+
 function AllRank(props) {
     const [unum, setUnum] = useState();
     const [list, setList] = useState([]);
@@ -18,6 +20,7 @@ function AllRank(props) {
     const medal = process.env.REACT_APP_RANKING;
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
+    const navi=useNavigate();
 
     useEffect(() => {
         unumchk();
@@ -71,7 +74,7 @@ function AllRank(props) {
                     list.map((item, idx) => (
                     
                         <div className='ranking_wrap'>
-                            <div className={`ranking_mem rank${idx + 1}`} key={idx} style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../image/profile90x90.png)`, backgroundSize: 'cover' }}
+                            <div onClick={()=>navi(`/friend/detail/${item.unum}`)} className={`ranking_mem rank${idx + 1}`} key={idx} style={{ backgroundImage: item.uphoto != null ? `url(${image1}${item.uphoto}${image2})` : `url(../image/profile90x90.png)`, backgroundSize: 'cover' }}
                                 data-unum={item.unum}>
 
                                 <div

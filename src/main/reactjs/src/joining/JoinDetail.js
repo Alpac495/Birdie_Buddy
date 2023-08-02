@@ -9,6 +9,7 @@ import Profile from "../image/User-32.png";
 import TimeIcon from "../image/icon_time.svg";
 import CardIcon from "../image/icon_card.svg";
 import TextIcon from "../image/icon_text.svg";
+import BuddyIcon from "../image/icon_mybuddy.svg";
 import * as ncloudchat from 'ncloudchat';
 import Header from "../header/Header";
 
@@ -449,7 +450,7 @@ const JoinDetail = () => {
                         <div className="JDdiv6">그린피 {dto.jprice}원</div>
                     </div>
                     <div className="JDcheckbox-with-label1">
-                        <img className="JDvector-icon" alt="" src={TextIcon} />
+                        <img className="JDvector-icon" alt="" src={BuddyIcon} />
                         <div className="JDdiv7">{dto.jage}</div>
                     </div>
                     <div className="JDcheckbox-with-label">
