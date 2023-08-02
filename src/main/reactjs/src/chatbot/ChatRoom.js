@@ -2,7 +2,7 @@ import iconSend from "../image/icon_yangdo.svg";
 import "./ChatRoom.css";
 import React, { useEffect, useState } from 'react';
 import * as ncloudchat from 'ncloudchat';
-import {NavLink, useNavigate, useParams} from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Axios from 'axios';
 import Header from "../header/Header";
 import ChatListIcon from '@mui/icons-material/ForumOutlined';
@@ -14,17 +14,21 @@ const ChatRoom = () => {
     const [userInput, setUserInput] = useState('');
     const [nc, setNc] = useState(null);
     const { cunum, channelId } = useParams();
-    const [unum, setUnum]=useState('');
+    const [unum, setUnum] = useState('');
     const [data, setData] = useState('');
     const [data2, setData2] = useState('');
-    const navi=useNavigate();
+    const [ublacklist, setUblacklist] = useState('');
+    const navi = useNavigate();
 
     const unumchk = async () => {
         try {
-            const res1 = await Axios.get("/apilogin/unumChk");
-            setUnum(res1.data);
+            const res1 = await Axios.get("/apilogin/getUserInfo");
+            console.log("unum" + res1.data.unum)
+            console.log("ublacklist" + res1.data.ublacklist)
+            setUnum(res1.data.unum);
+            setUblacklist(res1.data.ublacklist);
 
-            const url = "/apichating/getuserinfo?unum=" + res1.data;
+            const url = "/apichating/getuserinfo?unum=" + res1.data.unum;
             const res2 = await Axios.get(url);
             setData(res2.data);
 
@@ -146,6 +150,10 @@ const ChatRoom = () => {
             console.error('Chat is not initialized');
             return;
         }
+        if(ublacklist!==0){
+            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오")
+            return;
+        }
         const userConfirmed = window.confirm('확인을 누를 경우 모든 채팅 내용이 삭제됩니다. 채팅방을 유지하고 싶을 경우 취소를 눌러주세요');
         if (!userConfirmed) {
             // 사용자가 취소를 눌렀을 경우 함수를 종료합니다.
@@ -167,49 +175,55 @@ const ChatRoom = () => {
         }
     };
 
-    const handleGoChatList = ()=> {
-        window.location.replace(`/chating/${unum}`)
+    const handleGoChatList = () => {
+        if (ublacklist === 0) {
+            window.location.replace(`/chating/${unum}`)
+        } else {
+            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오")
+            return;
+        }
+
     };
 
-    console.log(unum,data2.unum)
+    console.log(unum, data2.unum)
     return (
         <>
             <div className="CDchatdetail">
-                <Header/>
+                <Header />
                 <div className="CDparent">
                     <div className="CDdiv3" id='chat-messages'>
-                            {messages.map &&messages.map((message, index) => (
-                                <div key={index} style={{ textAlign: message.sender.profile === data.uemail ? 'right' : 'left', margin: '10px' }}>
-                                    <div style={{ backgroundColor: message.sender.profile === data.uemail ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
-                                        <strong>{message.sender.name}</strong>
-                                        <div>{message.content}</div>
-                                        <div style={{ fontSize: '12px', color: 'gray' }}>{new Date(message.created_at).toLocaleString()}</div>
-                                    </div>
+                        {messages.map && messages.map((message, index) => (
+                            <div key={index} style={{ textAlign: message.sender.profile === data.uemail ? 'right' : 'left', margin: '10px' }}>
+                                <div style={{ backgroundColor: message.sender.profile === data.uemail ? 'lightblue' : 'lightgreen', padding: '5px', borderRadius: '4px', display: 'inline-block' }}>
+                                    <strong>{message.sender.name}</strong>
+                                    <div>{message.content}</div>
+                                    <div style={{ fontSize: '12px', color: 'gray' }}>{new Date(message.created_at).toLocaleString()}</div>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="CDflist-line" />
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <input className="CDemail" type="text" placeholder="Enter your message" value={userInput} onChange={handleUserInput} />
-                    <button type="submit" className="CDchatdetail-child">보내기</button>
-                </form>
-                <div className="CDchatbar">
-                    <ChatListIcon style={{ color: '#1F4337' }} className="CDicon-trash" onClick={handleGoChatList} />
-                    {/* <img className="CDicon-trash" alt="" src="/-icon-trash.svg" onClick={handleLeaveChat} /> */}
-                    <img className="CDicon-list" alt="" src={ChatOutIcon} onClick={handleLeaveChat} />
-                    <div className="CDrectangle-parent">
-                        <div className="CDgroup-child" />
-                        {unum === data.unum ? 
+                <div className="CDflist-line" />
+            </div>
+            <form onSubmit={handleSubmit}>
+                <input className="CDemail" type="text" placeholder="Enter your message" value={userInput} onChange={handleUserInput} />
+                <button type="submit" className="CDchatdetail-child">보내기</button>
+            </form>
+            <div className="CDchatbar">
+                <ChatListIcon style={{ color: '#1F4337' }} className="CDicon-trash" onClick={handleGoChatList} />
+                {/* <img className="CDicon-trash" alt="" src="/-icon-trash.svg" onClick={handleLeaveChat} /> */}
+                <img className="CDicon-list" alt="" src={ChatOutIcon} onClick={handleLeaveChat} />
+                <div className="CDrectangle-parent">
+                    <div className="CDgroup-child" />
+                    {unum === data.unum ?
                         <div className="CDnick1">{data2.unickname}</div>
                         :
                         <div className="CDnick1">{data.unickname}</div>
-                        }
-                    </div>
+                    }
                 </div>
+            </div>
 
-                {/* <button className="CDcta-button-1" onClick={handleLeaveChat}>
+            {/* <button className="CDcta-button-1" onClick={handleLeaveChat}>
                     채팅 종료
                 </button>
                 <div className="CDchat-partner">
@@ -218,7 +232,7 @@ const ChatRoom = () => {
                 <button className="CDcta-button-2" onClick={handleGoChatList}>
                     목록으로
                 </button> */}
-            
+
         </>
     );
 };

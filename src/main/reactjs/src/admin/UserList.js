@@ -32,9 +32,8 @@ function UserList(props) {
                         setLoading(false);
                     });
     };
-    const  addBlackList=(unum)=>{
+    const addBlackList=(unum)=>{
         Axios.get('/apiadmin/addBlackList?unum='+unum)
-        
     }
     useEffect(()=>{
         fetchMoreData();

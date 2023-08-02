@@ -38,6 +38,7 @@ function Blacklist(props) {
 
     const removeBlackList=(unum)=>{
         Axios.get('/apiadmin/removeBlackList?unum='+unum)
+        window.location.reload();
     }
 
     useEffect(()=>{

@@ -27,17 +27,23 @@ function Header(props) {
     const image1 = process.env.REACT_APP_IMAGE1PROFILE;
     const image2 = process.env.REACT_APP_IMAGE87;
     const navi = useNavigate();
+    const [ublacklist, setUblacklist]=useState('');
 
 
     const toggleDrawer = (open) => (event) => {
+        if(ublacklist!==0){
+            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오");
+            return;
+        }
         setSideBar(open);
     };
 
     const unumchk=()=>{
-        Axios.get("/apilogin/unumChk")
+        Axios.get("/apilogin/getUserInfo")
         .then(res=> {
-            setUnum(res.data);
-            const url="/apimain/userdata?unum="+res.data;
+            setUnum(res.data.unum);
+            setUblacklist(res.data.ublacklist)
+            const url="/apimain/userdata?unum="+res.data.unum;
             Axios.get(url)
             .then(res=>{
                 setUserData(res.data);
@@ -55,7 +61,12 @@ function Header(props) {
     function handleClick() {
         // 페이지 이동을 처리하는 로직 작성
         // 예시로 '/' 경로로 이동하는 경우
-        navigate('/birdie_buddy'); // 페이지 이동
+        if(ublacklist===0){
+            navigate('/birdie_buddy'); // 페이지 이동
+        } else {
+            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오")
+        }
+        
     }
 
     const chkLogin=()=> {
