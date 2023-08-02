@@ -489,6 +489,7 @@ function MyHugiRowList(props) {
             });
             fetchPostUserNickname(unum); // fetchPostUserNickname 함수에 unum 전달
             // console.log("unum>>"+unum);
+            window.location.reload();
     };
     const sortComments = (comments) => {
         const sorted = [];
