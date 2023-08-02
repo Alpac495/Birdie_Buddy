@@ -38,7 +38,7 @@ function Main(props) {
             await chat.connect({
                 id: res2.data.uemail,
                 name: res2.data.unickname,
-                profile: 'https://image_url',
+                profile: res2.data.uemail,
                 customField: 'json',
             });
         } catch (error) {
@@ -71,7 +71,7 @@ function Main(props) {
                 const chatid = await getChatInfo();
                 if(chatid){
                     await nc.disconnect();
-                    navi(`/chating/room/${chatid}/${unum}`);
+                    navi(`/chating/room/${chatid}/1`);
                 }else {
                     // chatid == null 일 경우
                     const newchannel = await nc.createChannel({ type: 'PUBLIC', name: "관리자 채팅방"});
@@ -81,7 +81,7 @@ function Main(props) {
                     await nc.subscribe(newChatId);
                     // 채팅방으로 이동
                     await nc.disconnect();
-                    navi(`/chating/room/${newChatId}/${unum}`);
+                    navi(`/chating/room/${newChatId}/1`);
                 }
             }catch (error) {
                 console.error('Error creating and subscribing channel:', error);

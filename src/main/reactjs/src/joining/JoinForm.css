@@ -233,6 +233,15 @@ body {
     color: #204337;
     font-family: Inter;
   }
+
+  .ToTop {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    font-Size: 18px;
+    background-Color: transparent;
+    
+  }
   @media screen and (max-width: 960px) {
     .div2 {
       font-size: 0.88rem;
