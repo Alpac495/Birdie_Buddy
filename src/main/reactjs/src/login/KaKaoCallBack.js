@@ -12,8 +12,8 @@ const KakaoCallback = () => {
         const code = params.get('code');
         const grantType = "authorization_code";
         const REST_API_KEY = "e1c40d8c3604fc88b3261a8776aa4d52";
-        // const REDIRECT_URI = "http://localhost:3000/login/kcallback";
-        const REDIRECT_URI = "http://223.130.137.128/login/kcallback";
+        const REDIRECT_URI = "http://localhost:3000/login/kcallback";
+        // const REDIRECT_URI = "http://223.130.137.128/login/kcallback"; //작동안됨
 
 
         axios.post(
