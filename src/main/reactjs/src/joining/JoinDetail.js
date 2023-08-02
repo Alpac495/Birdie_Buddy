@@ -490,7 +490,7 @@ const JoinDetail = () => {
                     placement="Centered"
                     onOutsideClick={closePartnerForm}
                 >
-                    <PartnerForm props={closePartnerForm} propFunction={partnerone} />
+                    <PartnerForm props={closePartnerForm} propFunction={partnerone} close={closePartnerForm} />
                 </PortalPopup>
             )}
         </div>
