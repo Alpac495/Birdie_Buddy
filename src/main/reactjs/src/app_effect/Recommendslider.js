@@ -41,6 +41,7 @@ const SimpleSlider = () => {
     const onClickJoinReco = (item) => {
         if (unum === 0) {
             navi("/");
+            return;
         } else {
             navi(`/joining/detail/${item.jnum}`);
         }

@@ -11,7 +11,7 @@ import buddyrequest from '../image/buddyrequest.svg';
 import mybuddy from '../image/mybuddy.svg';
 import acceptbuddy from '../image/acceptbuddy.svg';
 import searchCon from "../image/search.svg";
-
+import ToTopbtn from "../image/Popupbtn.svg";
 const FriendSearch = () => {
     const url = process.env.REACT_APP_IMAGE1PROFILE;
     const url2 = process.env.REACT_APP_IMAGE80;
@@ -141,9 +141,7 @@ const FriendSearch = () => {
                     ) : (
                         null
                     )}
-                    endMessage={<div style={{height:'50px',padding:'10px',textAlign:'center',fontSize:'15px'}}  onClick={scrollToTop}>
-                        Scroll to Top
-                    </div>}
+                    endMessage={<img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>}
                 >
 
             <div className="AFitem-grid-tiles-3x3">
@@ -179,10 +177,8 @@ const FriendSearch = () => {
                     </div>
                 ))
                 }
-                {items.length > 0 && !loading && (
-                    <button style={{position:"relative",left:'120px',padding:'10px',textAlign:'center',opacity:'0.5',backgroundColor:'transparent'}} onClick={scrollToTop}>
-                        Scroll to Top
-                    </button>
+                {items.length > 12 && !loading && (
+                    <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                 )}
                 </div>
             </InfiniteScroll>

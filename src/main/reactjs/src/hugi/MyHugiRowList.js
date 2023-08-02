@@ -337,7 +337,7 @@ function MyHugiRowList(props) {
             });
     };
     const handleClickDelete = () => {
-        if (parseInt(props.unum) === parseInt(unum)) {
+        if (parseInt(unum)===1||parseInt(props.unum) === parseInt(unum)) {
             const confirmed = window.confirm('정말 삭제하시겠습니까?');
             if (confirmed) {
                 deleteAllComments()
@@ -645,10 +645,10 @@ function MyHugiRowList(props) {
                 ))}
                 <img src={CommetImg} alt={''} onClick={handleClickOpen} className="HG_CommentIcons"/>
                 <img  alt='' src={ShareImg} className="HG_ShareIcons" onClick={toggleIcons}/>
-                {parseInt(props.unum) === parseInt(unum) && (
+                {(parseInt(unum) === 1 || parseInt(props.unum) === parseInt(unum)) && (
                     <EditIcon onClick={()=>handleClickModify(hnum)} className="HG_Icons"/>
                 )}
-                {parseInt(props.unum) === parseInt(unum) && (
+                {(parseInt(unum) === 1 || parseInt(props.unum) === parseInt(unum)) && (
                     <DeleteIcon onClick={handleClickDelete} className="HG_Icons"/>
                 )}
                 {isIconsVisible && (
@@ -752,7 +752,7 @@ function MyHugiRowList(props) {
                           {openReplyForm === comment.rhnum ? '닫기' : '댓글'}
                       </a>
                   )}
-                  {parseInt(comment.unum) === parseInt(unum) && (
+                  {(parseInt(unum)===1||parseInt(comment.unum) === parseInt(unum)) && (
                       <DeleteIcon
                           className="HG_Delete_Icon"
                           onClick={() => handleClickDeleteComment(comment.rhnum)}
@@ -806,7 +806,7 @@ function MyHugiRowList(props) {
                                   <pre className="HG_preReplyRhcontent">{reply.rhcontent}</pre>
                                   <br/>
                                   <span className="HG_spanReplyRhwriteday">{reply.rhwriteday}</span>
-                                  {parseInt(reply.unum) === parseInt(unum) && (
+                                  {(parseInt(unum)===1 || parseInt(reply.unum) === parseInt(unum)) && (
                                       <DeleteIcon
                                           className="HG_Delete_Icon"
                                           onClick={() => handleClickDeleteComment(reply.rhnum)}
