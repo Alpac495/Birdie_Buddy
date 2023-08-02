@@ -134,7 +134,7 @@ function Taltae(props) {
                     </div>
                 </div>
                 <div className="TTgroup">
-                    <div className="TTdiv6"></div>
+                    <div className="TTdiv6">인증 번호</div>
                     <div className="TTrectangle-container">
                         <div className="TTgroup-inner" />
                         <input type="text" className="TTdiv4" placeholder="인증코드인증 번호를 입력하세요."
