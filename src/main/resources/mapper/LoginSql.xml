@@ -5,7 +5,7 @@
         #{uname}, #{unickname}, #{uage}, #{ugender}, #{uhp}, #{ucareer}, now())
     </insert>
     <select id="loginok" parameterType="Map" resultType="int">
-        select count(*) from user where uemail=#{uemail} and upass=sha2(#{upass}, 256)
+        select count(*) from user where BINARY uemail=#{uemail} and upass=sha2(#{upass}, 256)
     </select>
     <select id="getNickname" parameterType="String" resultType="String">
         select unickname from user where uemail=#{uemail}

@@ -15,7 +15,7 @@
     /* justify-content: space-between; */
 }
 .nform_title{
-    width: 100%;
+    width: 80%;
     height: 70px;
     margin-top: 20px;
     /* display: flex; */
@@ -23,9 +23,11 @@
     margin-left: 20px;
     font-size: 20px;
     font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 .nform_headbtnwrap{
-    width: 100%;
+    width: 95%;
     height: 20px;
     /* display: flex; */
     /* justify-content: flex-end;
