@@ -10,7 +10,7 @@ import Header from '../header/Header';
 import _ from "lodash"
 import buddyrequest from '../image/buddyrequest.svg';
 import acceptbuddy from '../image/acceptbuddy.svg';
-
+import ToTopbtn from "../image/Popupbtn.svg";
 function FriendRequest(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [unum, setUnum]=useState('');
@@ -102,9 +102,7 @@ function FriendRequest(props) {
                         items.length == 0 && !loading ? (
                             <div className="footer-message" style={{textAlign:"center"}}>버디 요청이 없습니다</div>
                         ) : (
-                            <div className="FL_scroll-to-top-button" style={{textAlign:"center"}} onClick={scrollToTop}>
-                                Scroll to Top
-                            </div>
+                            <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                         )}
                 >
             {
@@ -139,10 +137,7 @@ function FriendRequest(props) {
                  )
             }
                 {items.length > 6 && !loading &&(
-                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <button type="button" className="FL_scroll-to-top-button"  style={{textAlign:"center"}}  onClick={scrollToTop}>
-                        Scroll to Top
-                    </button>
+                    <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                 )}
             </InfiniteScroll>
         </div></div>

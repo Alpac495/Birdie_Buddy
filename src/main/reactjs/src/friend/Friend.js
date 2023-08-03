@@ -8,7 +8,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../header/Header';
 import _ from "lodash"
 import chatbtn from '../image/btn_chat.svg'
-
+import ToTopbtn from "../image/Popupbtn.svg";
 function Friend(props) {
     const url = process.env.REACT_APP_PROFILE;
     const [unum, setUnum]=useState('');
@@ -177,11 +177,9 @@ function Friend(props) {
                     )}
                     endMessage={
                     items.length == 0 && !loading ? (
-                    <div className="footer-message" style={{textAlign:"center"}}>버디가 없습니다.</div>
+                    <div className="footer-message" style={{textAlign:"center",}}>버디가 없습니다.</div>
                 ) : (
-                <div className="FL_scroll-to-top-button" style={{textAlign:"center"}} onClick={scrollToTop}>
-                        Scroll to Top
-                    </div>
+                    <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                     )}
                 >
             {
@@ -209,10 +207,7 @@ function Friend(props) {
                  )
             }
                 {items.length > 6 && !loading &&(
-                    //<img src={logo} alt={'logo'} style={{width:"350px",height:"120px"}} onClick={onclickLoad}></img>
-                    <button type="button" className="FL_scroll-to-top-button" style={{textAlign:"center"}} onClick={scrollToTop}>
-                        Scroll to Top
-                    </button>
+                    <img alt='' src={ToTopbtn} className="ToTop" onClick={scrollToTop}/>
                 )}
         </InfiniteScroll>
         </div>

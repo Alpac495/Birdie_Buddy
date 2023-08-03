@@ -186,7 +186,7 @@ function Main(props) {
 
             <div style={{width:'100vw',overflow:'hidden'}}>
                 <div className={'main_reviewtxt'}>
-                    <div>Best 후기</div>
+                    <div>Best 스토리</div>
                     <div style={{fontSize:'12px', fontWeight:'500',cursor:'pointer'}}
                     onClick={onClickHugiList}>더보기</div>
                     
