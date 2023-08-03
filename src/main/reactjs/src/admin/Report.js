@@ -4,7 +4,7 @@ import ModalReport from './ModalReport';
 import { useNavigate, useParams } from 'react-router-dom';
 import "./Report.css";
 import Header from "../header/Header";
-
+import reportImg from "../image/report2.png";
 const Report = () => {
     const [reportCount, setReportCount] = useState(0);
     const [reportedUsers, setReportedUsers] = useState([]);
@@ -76,7 +76,11 @@ const Report = () => {
             <div className="DLrectangle-parent">
                 <div className="DLgroup-child" />
                 <div className="DLwrapper">
-                    <div className="DLdiv">신고 내역 / <span onClick={addBlackList}>차단</span></div>
+                
+                    <div className="DLdiv">신고 내역 
+                    <button  type="button"  className="DL_Report_Btn" onClick={addBlackList}>
+                        <img src={reportImg} alt="" style={{width:"30px",height:"30px"}}/>차단하기</button>
+                    </div>
                 </div>
             </div>
             <div className="DLparent">
