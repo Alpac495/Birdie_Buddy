@@ -161,4 +161,33 @@
     color: #000;
     font-family: Inter;
 }
-
+.DL_Report_Btn{
+    position: relative;
+    top:55px;
+    right:70px;
+    width:6.5rem;
+    height:2rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 15px;
+    font-weight:700;
+    color:#0b4648;
+    background-color: transparent;
+    border: 1px solid #0b4648;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.DL_Report_Btn:active{
+    position: relative;
+    top:55px;
+    right:70px;
+    width:6.5rem;
+    height:2rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 15px;
+    font-weight:700;
+    color:white;
+    background-color: #0b4648;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}

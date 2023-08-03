@@ -23,7 +23,7 @@ function YangdoDetail(props) {
         setModalOpen(false);
     };
 
-    const [dto,setDto] = useState({});
+    const [dto,setDto] = useState([]);
     const {ynum, currentPage} = useParams();
 
     const navi = useNavigate();
@@ -175,7 +175,7 @@ function YangdoDetail(props) {
                         <div className="YMtitle">[{dto.yplace}]</div>
                         <div className="YMtext">
                             <span className="YMtext-txt">
-                            <p className="YMp">담당자 : {dto.unickname}</p>
+                            <p className="YMp">담당자 : {dto.uname}</p>
                             <p className="YMp">연락처 : {dto.uhp}</p>
                             </span>
                         </div>
