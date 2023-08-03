@@ -151,7 +151,14 @@ const ChatRoom = () => {
             return;
         }
         if(ublacklist!==0){
-            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오")
+            Axios.get("/apilogin/logout")
+            .then(res => {
+                navi('/birdie_buddy');
+                unumchk();
+                alert("로그아웃 되었습니다.");
+                window.location.reload();
+            });
+
             return;
         }
         const userConfirmed = window.confirm('확인을 누를 경우 모든 채팅 내용이 삭제됩니다. 채팅방을 유지하고 싶을 경우 취소를 눌러주세요');
@@ -179,7 +186,7 @@ const ChatRoom = () => {
         if (ublacklist === 0) {
             window.location.replace(`/chating/${unum}`)
         } else {
-            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오")
+            alert("블랙리스트로 등록된 사용자는 사이트 이용이 불가합니다. \n관리자에게 문의하여 해제 후 이용해주세요.")
             return;
         }
 

@@ -33,7 +33,7 @@ function Header(props) {
 
     const toggleDrawer = (open) => (event) => {
         if (ublacklist !== 0) {
-            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오");
+            alert("블랙리스트로 등록된 사용자는 사이트 이용이 불가합니다. \n관리자에게 문의하여 해제 후 이용해주세요.")
             return;
         }
         setSideBar(open);
@@ -73,7 +73,7 @@ function Header(props) {
         if (ublacklist === 0) {
             navigate('/birdie_buddy'); // 페이지 이동
         } else {
-            alert("블랙리스트로 등록된 회원입니다. 관리자에게 문의하여 주십시오")
+            alert("블랙리스트로 등록된 사용자는 사이트 이용이 불가합니다. \n관리자에게 문의하여 해제 후 이용해주세요.")
             return;
         }
 
