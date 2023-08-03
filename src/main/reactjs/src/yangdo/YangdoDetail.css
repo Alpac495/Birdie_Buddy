@@ -22,6 +22,7 @@ button {
     width: 18.5rem;
     flex: 1;
     position: relative;
+    left:0.5rem;
     letter-spacing: -0.01em;
     font-weight: 600;
 }
@@ -44,7 +45,7 @@ button {
 }
 .YElabel-wrapper {
     align-self: stretch;
-    width: 9.08rem;
+    width: 10rem;
     flex-direction: row;
     padding: 0.63rem;
     box-sizing: border-box;
