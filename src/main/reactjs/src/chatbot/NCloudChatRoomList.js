@@ -149,13 +149,14 @@ const NCloudChatRoomList = () => {
                                         </>
                                     )}
                                 </div>
-                                <div className="CLlabel">{channel.unum === 0 || channel.cunum === 0
-                                    ?"(상대방이 나간 채팅방입니다)":
-                                    channel.unum === 1 || channel.cunum === 1
-                                        ?"관리자 채팅방"
-                                        : channel.unum === channel.cunum ? "나와의 채팅"
-                                            : channel.unum == unum ? channel.cunickname : channel.unickname
-                                }</div>
+                                <div className="CLlabel">
+                                    {(channel.unum === 0 || channel.cunum === 0) ? "(상대방이 나간 채팅방입니다)" :
+                                        (unum === 1) ? (channel.unum == unum ? channel.cunickname : channel.unickname) :
+                                            (channel.unum === 1 || channel.cunum === 1) ? "관리자 채팅방" :
+                                                (channel.unum === channel.cunum) ? "나와의 채팅" :
+                                                    (channel.unum == unum ? channel.cunickname : channel.unickname)
+                                    }
+                                </div>
                                 {channel.cunum === 0 || channel.cunum === 1 ?
                                     <img className={"CLavatar-icon"} alt="" src={profile3}/>
                                     :channel.unum == unum ?
