@@ -583,7 +583,7 @@ function MyHugiRowList(props) {
             });
     };
 
-    const MAX_COMMENT_LENGTH = 20;
+    const MAX_COMMENT_LENGTH = 45;
 
     const handleCommentChange = (e) => {
         const inputValue = e.target.value;
