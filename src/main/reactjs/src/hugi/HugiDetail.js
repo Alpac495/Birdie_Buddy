@@ -58,7 +58,17 @@ function HugiDetail(props) {
     const [isIconsVisible, setIsIconsVisible] = useState(false);
 
     const handleClickList = () =>{
-        navi('/hugi/list');
+        if(unum===0){
+            alert('로그인을 먼저 해주세요!');
+            navi(`/login/login`);
+            window.history.pushState(null, null, "/"); // 브라우저의 주소를 메인 페이지로 변경
+            window.onpopstate = function (event) {
+                // 뒤로가기 버튼을 눌렀을 때 처리할 로직
+                navi("/birdie_buddy"); // 메인 페이지로 이동
+            };
+        }else{
+            navi('/hugi/list');
+        }
     }
     const handleClickModify = () =>{
         navi(`/hugi/modify/${hnum}`);
@@ -66,6 +76,12 @@ function HugiDetail(props) {
     const handleClickAvatar = (funum) => {
         if (unum === 0) {
             alert('로그인을 먼저 해주세요!');
+            navi(`/login/login`);
+            window.history.pushState(null, null, "/"); // 브라우저의 주소를 메인 페이지로 변경
+            window.onpopstate = function (event) {
+                // 뒤로가기 버튼을 눌렀을 때 처리할 로직
+                navi("/birdie_buddy"); // 메인 페이지로 이동
+            };
         } else if (funum === unum) {
             navi(`/mypage/mypage/${unum}`);
         } else {

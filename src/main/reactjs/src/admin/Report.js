@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ModalReport from './ModalReport';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./Report.css";
 import Header from "../header/Header";
 
@@ -13,6 +13,7 @@ const Report = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const reportsPerPage = 10;
     const [userInfos, setUserInfos] = useState({});
+    const navi=useNavigate();
 
     const { unum } = useParams();
 
@@ -63,13 +64,19 @@ const Report = () => {
         }
     }
 
+    
+    const addBlackList=()=>{
+        Axios.get('/apiadmin/addBlackList?unum='+unum);
+        navi("/admin/blacklist");
+    }
+
     return (
         <div className="DLdecllist">
             <div className={"header"}><Header/></div>
             <div className="DLrectangle-parent">
                 <div className="DLgroup-child" />
                 <div className="DLwrapper">
-                    <div className="DLdiv">신고 내역</div>
+                    <div className="DLdiv">신고 내역 / <span onClick={addBlackList}>차단</span></div>
                 </div>
             </div>
             <div className="DLparent">
