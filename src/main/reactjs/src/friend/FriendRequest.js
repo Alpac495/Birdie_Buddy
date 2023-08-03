@@ -94,7 +94,7 @@ function FriendRequest(props) {
                     next={fetchMoreData}
                     hasMore={items.length>0}
                     loader={loading ? ( // 로딩 상태에 따른 메시지 표시
-                        <div className="spinner-border text-primary" style={{marginLeft: "50px"}}></div>
+                        <div className="spinner-border text-primary" style={{marginLeft: "160px"}}></div>
                     ) : (
                         null
                     )}
