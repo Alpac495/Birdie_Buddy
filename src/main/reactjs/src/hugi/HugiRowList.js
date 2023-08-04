@@ -550,8 +550,8 @@ function HugiRowList(props) {
             });
     };
 
-    const MAX_COMMENT_LENGTH = 20;
-    //20자 제한
+    const MAX_COMMENT_LENGTH = 45;
+    //45자 제한
     // handleCommentChange 함수: 댓글 내용 변경 이벤트 처리 함수
     const handleCommentChange = (e) => {
         const inputValue = e.target.value;
