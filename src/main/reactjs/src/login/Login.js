@@ -53,7 +53,7 @@ function Login(props) {
                 alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.")
                 setUpass('');
             } else if (res.data===-1){
-                alert("활동 정지를 당한 회원입니다. 관리자에게 문의해 주세요.")
+                // alert("활동 정지를 당한 회원입니다. 관리자에게 문의해 주세요.")
                 window.location.replace("/chating/Adminchat");
             } else {
                     localStorage.removeItem("uemail");
