@@ -210,7 +210,7 @@ const JoinDetail = () => {
             if (confirmed) {
                 Axios.get(`/apijoinmember/acceptJoin/${unum}&${jnum}`)
                     .then(res => {
-                        window.location.replace(`/joining/detail/${jnum}/${writerunum}`);
+                        window.location.replace(`/joining/detail/${jnum}`);
                     })
                     .catch(err => {
                         console.log(err.message);

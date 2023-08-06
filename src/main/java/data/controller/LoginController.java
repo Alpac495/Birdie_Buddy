@@ -354,8 +354,8 @@ public class LoginController {
         // bodyJson.put("countryCode","82"); // Optional, 국가 전화번호, (default: 82)
         bodyJson.put("from", "01085454961"); // Mandatory, 발신번호, 사전 등록된 발신번호만 사용 가능
         // bodyJson.put("subject",""); // Optional, 기본 메시지 제목, LMS, MMS에서만 사용 가능
-        // bodyJson.put("content", "[버디버디] 본인확인 인증번호 [" + code + "] 를 입력해주세요"); // Mandatory(필수), 기본 메시지 내용,
-        bodyJson.put("content", "[" + code + "]"); // Mandatory(필수), 기본 메시지 내용,
+         bodyJson.put("content", "[버디버디] 본인확인 인증번호 [" + code + "] 를 입력해주세요."); // Mandatory(필수), 기본 메시지 내용,
+//        bodyJson.put("content", "[" + code + "]"); // Mandatory(필수), 기본 메시지 내용,
         // SMS: 최대 80byte, LMS, MMS: 최대
         // 2000byte
         bodyJson.put("messages", toArr); // Mandatory(필수), 아래 항목들 참조 (messages.xxx), 최대 1,000개

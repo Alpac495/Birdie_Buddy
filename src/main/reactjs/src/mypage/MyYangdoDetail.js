@@ -203,7 +203,7 @@ function MyYangdoDetail(props) {
                                             // 목록으로 이동
                                             navi(`/mypage/myyangdo/${unum}`);
                                         })
-                                    }}>마감 / 삭제</button>:
+                                    }}>마감하기</button>:
                             <button type='button' className="YEframe" onClick={openModal}>양도 신청</button>
                         }
                          

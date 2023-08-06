@@ -87,7 +87,7 @@ const FriendSearch = () => {
                     })
                 Axios.post("/apifriend/requestfriend2", {unum, funum})
                     .then(res => {
-                        alert("버디 요청이 되었습니다. 상대방이 수락시 버디리스트에서 확인 가능합니다.")
+                        alert("버디 요청이 되었습니다. \n상대방이 수락시 버디리스트에서 확인 가능합니다.")
                         window.location.replace(`/friend/search`)
                     })
                     .catch(err => {

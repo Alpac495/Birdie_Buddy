@@ -161,7 +161,7 @@ const ChatRoom = () => {
 
             return;
         }
-        const userConfirmed = window.confirm('확인을 누를 경우 모든 채팅 내용이 삭제됩니다. 채팅방을 유지하고 싶을 경우 취소를 눌러주세요');
+        const userConfirmed = window.confirm('확인을 누를 경우 모든 채팅 내용이 삭제됩니다. \n채팅방을 유지하고 싶을 경우 취소를 눌러주세요');
         if (!userConfirmed) {
             // 사용자가 취소를 눌렀을 경우 함수를 종료합니다.
             return;
